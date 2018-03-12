@@ -1,0 +1,52 @@
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">My Plug-Ins</h2>
+    </div>
+    <div class="ups-group" *ngIf="!amIAReturningUser">
+        <p>
+            You currently have no plug-ins.
+        </p>
+    </div>
+    <div class="ups-group">
+        <ul class="ups-list_style_none" *ngIf="amIAReturningUser">
+            <li class="ups-list_slim" *ngFor="let myPlugInsList of [1,2]">
+                <!-- <hr aria-hidden="true" class="ups-returns_acct_separator"> -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <p>
+                            <strong>{{'<'}}Plug-In Name{{'>'}}</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                        <a class="ups-link ups-btn_has_icon" routerLink="/merchantPlugIn/createPlugInDetail/"><span aria-hidden="true" class="icon ups-icon-edit"></span><span class="hidden-xs" [ngClass]="{'ups-readerTxt': viewportSize.isLtSMVP}">Edit</span><span class="ups-readerTxt">Plug-In Name{{myPlugInsList}}</span></a><button class="ups-link ups-btn_has_icon" (click)="noClickHandlerYet2();" [ngClass]="{'ups-indent': viewportSize.isGtXSVP}"><span aria-hidden="true" class="icon ups-icon-minuscircle"></span><span class="hidden-xs" [ngClass]="{'ups-readerTxt': viewportSize.isLtSMVP}">Delete</span><span class="ups-readerTxt">Plug-In Name{{myPlugInsList}}</span></button>
+                    </div>
+                </div>
+                <!-- <hr aria-hidden="true" class="ups-returns_acct_separator"> -->
+            </li>
+            <!-- <hr aria-hidden="true" class="ups-returns_acct_separator"> -->
+        </ul>
+    </div>
+</section>
+<div class="ups-form_ctaGroup">
+    <a routerLink="/merchantPlugIn/createNamePlugIn" class="ups-cta ups-cta_primary">Create New Plug-In</a>
+    <button type="button" class="ups-cta ups-cta_secondary" *ngIf="amIAReturningUser">Retrieve My Access Key</button>
+</div>
+
+
+<!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+<div class="ups-cms-demo">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label class="ups-lever" onclick="" for="amIAReturningUser">
+                <input type="checkbox" id="amIAReturningUser" name="amIAReturningUser" [(ngModel)]="amIAReturningUser">
+                <!-- if checked then yes -->
+                <div><strong class="ups-form_label">What if I am a returning user?</strong>
+                </div>
+                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DO NOT INCLUDE THIS IN PRODUCTION -->

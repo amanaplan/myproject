@@ -1,0 +1,501 @@
+<!-- **** submitbtn is a temp name, remove before code review **** -->
+
+<div class="ups-wrap_inner">
+    <form name="NBSspaForm" novalidate>
+        <p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// Begin Page Level error messaging //// -->
+        <!-- ////////////////////////////////////////// -->
+        <section *ngIf="(nbsBase.nbsGlobalFormSubmit && nbsSpaSectionHasError())">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+
+                <li *ngIf="!whereFrom.nbsFormValid()">
+                    <a href="#upsDrawerBtn01" class="ups-invalid_color" pointIdClick>Ship From Section</a> is required
+                </li>
+
+                <li *ngIf="!whereTo.nbsFormValid()">
+                    <a href="#upsDrawerBtn02" class="ups-invalid_color" pointIdClick>Ship To Section</a> is required
+                </li>
+
+                <li *ngIf="!what.nbsFormValid()">
+                    <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>Package Information Section</a> is required
+                </li>
+
+                <li *ngIf="!addons.nbsFormValid()">
+                    <a href="#upsDrawerBtn05" class="ups-invalid_color" pointIdClick>Additional Options</a> is required
+                </li>
+
+                <li *ngIf="!payment.nbsFormValid()">
+                    <a href="#upsDrawerBtn07" class="ups-invalid_color" pointIdClick>Payment</a> is required
+                </li>
+
+                <!--<li *ngIf="!whereFrom.nbsFormValid()">
+                    <a href="#upsDrawerBtn01" class="ups-invalid_color" pointIdClick>Where/Address Section</a> is required
+                </li>
+
+                <li *ngIf="!sect02Complete">
+                    <a href="#upsDrawerBtn02" class="ups-invalid_color" pointIdClick>What/Package Info Section</a> is required
+                </li>
+
+                <li *ngIf="!sect03Complete">
+                    <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>How/Shipping Service Section</a> is required
+                </li>-->
+
+            </ul>
+        </section>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Page Level error messaging   //// -->
+        <!-- ////////////////////////////////////////// -->
+        <div [ngClass]="{'ups-group' : !loggedin || vpSize.isSMVP}">
+            <div class="row">
+                <div class="col-md-5" *ngIf="loggedin">
+                    <!--<div class="row">
+                        <div class="col-sm-7">-->
+                            <div class="ups-form_group">
+                                <label for="select_box_1" class="ups-form_label">My Accounts</label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="select" class="ups-dropdown" id="select_box_1">
+                                        <option value="">Select One</option>
+                                        <option value="option_1">Option 1</option>
+                                        <option value="option_2">Option 2</option>
+                                        <option value="option_3">Option 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <!--</div>-->
+                        <!--<div class="col-sm-5">
+                            <div [ngClass]="{'ups-no_label ups-no_label_plus' : vpSize.isGtXSVP && loggedin, 'ups-group' : vpSize.isXSVP}">
+                                <a href="#" class="ups-link">See Account Details</a>
+                            </div>
+                        </div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-6 ups-no_label ups-no_label_plus">
+                        <button class="ups-link" type="button">See Account Details</button>
+                    </div>-->
+                </div>
+                <div class="col-sm-3" *ngIf="!loggedin">
+                    <div>
+                        <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action" id="headerLoginLink">
+                            <span class="icon ups-icon-lock" aria-hidden="true"></span>
+                            Log in
+                        </a>
+                    </div>
+                </div>
+                <div [ngClass]="{'col-sm-9' : !loggedin, 'col-md-7' : loggedin}">
+                    <!--<div class="row">
+                        <div class="col-md-6">-->
+                            <div [ngClass]="{'ups-group' : vpSize.isLtSMVP && loggedin, 'ups-no_label ups-no_label_plus' : vpSize.isGtSMVP && loggedin,
+                                'ups-text-md-right' : loggedin,
+                                'ups-text-sm-right' : !loggedin}">
+
+                                <!-- [ngClass]="{'ups-shipping_header_action' : vpSize.isGtSMVP}" -->
+                                <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action">
+                                    <span class="icon ups-icon-shippingfreight" aria-hidden="true"></span>
+                                    Ship Freight
+                                </a>
+
+                                <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action">
+                                    <span class="icon ups-icon-arrowbackforward" aria-hidden="true"></span>
+                                    Switch View
+                                </a>
+
+                                <!--<div class="ups-text_information_container ups-shipping_header_container">
+                                    <div class="ups-text_information">-->
+                                        <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action" id="nbsSwitchViewInfoBtn" (click)="UpsInfoBtn.toggle(switchViewInfoContainer)">
+                                            <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                            Help
+                                        </button>
+                                    <!--</div>
+                                </div>-->
+
+                                <div class="ups-text_information_wrapper ups-shipping_header_info"
+                                    [ngClass]="{'ups-shipping_header_info_block' : (loggedin && vpSize.isSMVP)}">
+                                    <div class="ups-text_information_container">
+                                        <div class="ups-text_information" upsInfoBtn #switchViewInfoContainer>
+                                            <div class="ups-text_information_tooltip ups-text_information_tooltip_bottomleft ups-text_information_tooltip_expanded">
+                                                <button type="button" class="ups-text_information_close icon ups-icon-x ups-iconAlone">
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <div class="ups-text_information_scroll">
+                                                    <div class="ups-group ups-group_condensed">
+                                                        <p>
+                                                            <strong>What can I do with new ups.com shipping?</strong>
+                                                        </p>
+                                                        <p>
+                                                            Big changes are happening. Some options are still in development, others may be in unexpected places. Take a tour and see top questions: <a href="#" class="ups-link">New Web Shipping Help</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="ups-group ups-group_condensed">
+                                                        <p>
+                                                            <strong>Exit New Shipping Beta</strong>
+                                                        </p>
+                                                        <p>
+                                                            If you're not interested in trying the new format now, you can still return to legecy shipping. We won't ask you again for a while. <a href="#" class="ups-link">Return to Classic Shipping</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        <!--</div>
+                        <div class="col-md-6">-->
+                            <!--<div class="ups-form_group ups-help_wrapper">
+                                <label for="nbsSpaViewSel" class="ups-form_label">Select View</label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close">
+                                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum</p>
+                                    </div>
+                                </div>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select class="ups-dropdown"
+                                        id="nbsSpaViewSel"
+                                        name="nbsSpaViewSel">
+                                        <option>
+                                            Compact View
+                                        </option>
+                                        <option>
+                                            Guided Flow View
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>-->
+
+                        <!--</div>
+                    </div>-->
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// Begin Main body Content          //// -->
+        <!-- ////////////////////////////////////////// -->
+        <section class="ups-group">
+            <ul class="ups-drawer" upsDrawerList #nbsSpaDrawerList>
+
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// Begin From/Return Address Drawer ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item"
+                    [attr.data-keep-open]="!completedWhereFrom">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !whereFrom.nbsFormValid())}">
+                        <span class="h4">
+                            <span [ngClass]="{'ups-icon-checkcircle' : whereFrom.nbsFormValid(),
+                                            'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !whereFrom.nbsFormValid()),
+                                            'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !whereFrom.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Ship From
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Required Section</span>
+                        <span class="ups-readerTxt" *ngIf="whereFrom.nbsFormValid()">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="(nbsBase.nbsGlobalFormSubmit && !whereFrom.nbsFormValid())">Needs to be completed</span>
+                        <span *ngIf="whereFrom.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 0)" class="hidden-xs hidden-sm">[Name-Company/Contact], [City Postal], [Country or Territory]</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer01">
+
+                        <ups-nbs-whereFrom-section #NBSWhereFromView></ups-nbs-whereFrom-section>
+
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End From/Return Address Drawer   ///// -->
+                <!-- //// Begin To Where/Address Drawer    ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item"
+                    [attr.data-keep-open]="!completedWhereTo">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !whereTo.nbsFormValid())}">
+                        <span class="h4">
+                            <span [ngClass]="{'ups-icon-checkcircle' : whereTo.nbsFormValid(),
+                                            'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !whereTo.nbsFormValid()),
+                                            'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !whereTo.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Ship To
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Required Section</span>
+                        <span class="ups-readerTxt" *ngIf="whereTo.nbsFormValid()">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="(nbsBase.nbsGlobalFormSubmit && !whereTo.nbsFormValid())">Needs to be completed</span>
+                        <span *ngIf="whereTo.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 1)" class="hidden-xs hidden-sm">[Name-Company/Contact], [City Postal], [Country or Territory]</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer02">
+
+
+                        <ups-nbs-whereTo-section #NBSWhereToView></ups-nbs-whereTo-section>
+
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End To Where/Address Drawer      ///// -->
+                <!-- //// Begin What/Package Info Drawer   ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item"
+                    [attr.data-keep-open]="!sect02Complete">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !what.nbsFormValid())}">
+                        <span class="h4">
+                            <span [ngClass]="{'ups-icon-checkcircle' : what.nbsFormValid(),
+                                'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !what.nbsFormValid()),
+                                'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !what.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Package Information
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Required Section</span>
+                        <span class="ups-readerTxt" *ngIf="what.nbsFormValid()">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="(nbsBase.nbsGlobalFormSubmit && !what.nbsFormValid())">Needs to be completed</span>
+                        <span *ngIf="what.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 2)" class="hidden-xs hidden-sm"> &nbsp; [nn lbs.], [nnn x nnn x nnn in]</span>
+                        <span *ngIf="what.nbsFormValid() && completedWhatMultiPack && !UpsDrawerList.isOpen(nbsSpaDrawerList, 2)" class="hidden-xs hidden-sm"> &nbsp; [2] Packages</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer03">
+
+
+                        <ups-nbs-what-section #NBSWhatView></ups-nbs-what-section>
+
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End What/Package Info Drawer      //// -->
+                <!-- //// Begin How/Shipping Service Drawer //// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect03Complete">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer04" aria-expanded="false" id="upsDrawerBtn04">
+                        <span class="h4">
+                            <span [ngClass]="{'ups-icon-checkcircle' : when.nbsFormValid(),
+                            'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !when.nbsFormValid()),
+                            'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !when.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Shipping Service
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Required Section</span>
+                        <span class="ups-readerTxt" *ngIf="sect03Complete">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="(submitbtn && !sect03Complete)">Needs to be completed</span>
+                        <!-- <span *ngIf="completedHow" class="hidden-xs hidden-sm"> &nbsp; [Scheduled Pickup], [{{'{'}}Tues, Oct 18 by end of day{{'}'}}, {{'{'}}UPS 2nd Day Air{{'}'}} {{'{'}}${{'}'}}{{'{'}}30.67{{'}'}}{{'{'}}USD{{'}'}}]</span> -->
+                        <span *ngIf="when.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 3)" class="hidden-xs hidden-sm">[Service Name]</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer04">
+
+                        <ups-nbs-when-section #NBSWhenView></ups-nbs-when-section>
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End How/Shipping Service Drawer   //// -->
+                <!-- //// Begin Forms Drawer                //// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect06Complete">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer06" aria-expanded="false" id="upsDrawerBtn06">
+                        <span class="h4">
+                            <span [ngClass]="{'ups-icon-checkcircle' : sect06Complete,
+                                        'ups-icon-alert' : error,
+                                        'ups-empty_circle' : !error && !sect06Complete }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            International Forms
+                        </span>
+                        <span class="ups-readerTxt" *ngIf="sect06Complete">Complete</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer06">
+                        <!--Drawer level error handling -->
+                        <!--This is not currently being utilized, but that will must likely change-->
+                        <!--<div *ngIf="(submitbtn && !sect06Complete)">
+                            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                Please correct the following errors:
+                            </h3>
+
+                            <ul class="ups-icons-error">
+
+                                <li *ngIf="!fieldName_Chosen()">
+                                    <a href="#field_name" class="ups-invalid_color" pointIdClick>field_name</a> is required
+                                </li>
+                            </ul>
+                        </div>-->
+                    <ups-nbs-intForms-section #NBSIntFormsView></ups-nbs-intForms-section>
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Forms Drawer                  //// -->
+                <!-- //// Begin Details/Options Drawer      //// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item"
+                    [attr.data-keep-open]="!sect05Complete">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer05" aria-expanded="false" id="upsDrawerBtn05"
+                    [ngClass]="{ 'ups-drawer_btn_error' : (!addons.nbsFormValid() && nbsBase.nbsGlobalFormSubmit) }">
+                    <span class="h4">
+                        <span [ngClass]="{'ups-icon-checkcircle' : addons.nbsFormValid(),
+                                        'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !addons.nbsFormValid()),
+                                        'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !addons.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Options
+                        </span>
+                        <span *ngIf="addons.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 5)" class="hidden-xs hidden-sm">[ {{'{'}}n{{'}'}} Selected / None Selected]</span>
+                        <span class="ups-readerTxt" *ngIf="sect05Complete">Complete</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer05">
+
+                        <ups-nbs-details-section #NBSDetailsView></ups-nbs-details-section>
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Details/Options Drawer        //// -->
+                <!-- //// Begin Payment Drawer              //// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect07Complete">
+                    <button type="button"
+                        class="ups-drawer-btn"
+                        aria-controls="upsDrawer07"
+                        aria-expanded="false"
+                        id="upsDrawerBtn07"
+                        [ngClass]="{ 'ups-drawer_btn_error' : (!payment.nbsFormValid() && nbsBase.nbsGlobalFormSubmit) }">
+                    <span class="h4">
+                        <span [ngClass]="{'ups-icon-checkcircle' : payment.nbsFormValid(),
+                                            'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !payment.nbsFormValid()),
+                                            'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !payment.nbsFormValid()) }"
+                                    class="icon ups-drawer_left_icon"></span>
+                            Payment
+                            <span class="ups-readerTxt" *ngIf="payment.nbsFormValid()">Complete</span>
+                        </span>
+                        <span class="ups-readerTxt" *ngIf="(nbsBase.nbsGlobalFormSubmit && !payment.nbsFormValid())">Needs to be completed</span>
+                        <span *ngIf="payment.nbsFormValid() && !UpsDrawerList.isOpen(nbsSpaDrawerList, 6)" class="hidden-xs hidden-sm">[VISA ending in {{'{'}}nnnn{{'}'}}]</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer07">
+                        <!--Drawer level error handling -->
+                        <!--This is not currently being utilized, but that will must likely change-->
+                        <!--<div *ngIf="(submitbtn && !sect07Complete)">
+                            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                Please correct the following errors:
+                            </h3>
+
+                            <ul class="ups-icons-error">
+
+                                <li *ngIf="!fieldName_Chosen()">
+                                    <a href="#field_name" class="ups-invalid_color" pointIdClick>field_name</a> is required
+                                </li>
+                            </ul>
+                        </div>-->
+                        <ups-nbs-payment-section #NBSPaymentView></ups-nbs-payment-section>
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Payment Drawer                //// -->
+                <!-- /////////////////////////////////////////// -->
+            </ul>
+        </section>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Main body Content            //// -->
+        <!-- //// Begin Terms and Conditions       //// -->
+        <!-- ////////////////////////////////////////// -->
+        <section class="ups-section">
+            <div class="ups-section-header">
+                <h3 class="ups-section_heading">Terms and Conditions</h3>
+            </div>
+            <div class="ups-form_group">
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="tc_cb1" class="ups-checkbox-custom" name="tc_cb1" type="checkbox">
+                    <label for="tc_cb1" value="2" class="ups-checkbox-custom-label">
+                        [I agree to the UPS Tariff/Terms and Conditions of Service. View and download: <a href="#" class="ups-link">UPS Tariff/Terms and Conditions of Service</a>]
+                    </label>
+                </div>
+            </div>
+            <p>[The charges above were estimated/calculated using published rates; the payor may have negotiated rates or other rates may vary.]</p>
+            <p>[Charges shown are calculated for the first recipient in your distribution list. Select "Ship Now" to process the first shipment from your list, or "Ship To All Addresses" to ship to all list members at once.]</p>
+            <p>[By completing this shipment, you agree to the UPS Tariff/Terms and Conditions of Service. View and download: <a href="#" class="ups-link">UPS Tariff/Term and Conditions of Service</a>.]</p>
+        </section>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Terms and Conditions         //// -->
+        <!-- //// Begin Button Group               //// -->
+        <!-- ////////////////////////////////////////// -->
+        <div class="ups-form_ctaGroup">
+            <button type="button" class="ups-cta ups-cta_tertiary">Review</button>
+            <button type="submit" class="ups-cta ups-cta_primary" (click)="nbsSpaFormSubmit()" onclick="return false;">Pay and Get Label</button>
+        </div>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Button Group                 //// -->
+        <!-- //// Begin Page Level Demo button     //// -->
+        <!-- ////////////////////////////////////////// -->
+        <div class="ups-cms-demo">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Where From/Return Section Complete</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="completedWhereFrom = !completedWhereFrom">Where From/Return Section Complete</button>
+                    <p>Where To Section Complete</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="completedWhereTo = !completedWhereTo">Where To Section Complete</button>
+                </div>
+                <div class="col-md-4">
+                    <p>Where Section Complete</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="completedWhat = !completedWhat; completedWhatMultiPack = false">Single Package</button>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="completedWhatMultiPack = !completedWhatMultiPack; completedWhat = false">Multi Package</button>
+                </div>
+                <div class="col-md-4">
+                    <p>How Section Complete</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="completedHow = !completedHow">How Section Complete</button>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <button class="ups-cta ups-cta_secondary" (click)="loggedin = true">Logged In</button>
+                <button class="ups-cta ups-cta_secondary" (click)="loggedin = false">Not Logged In</button>
+            </div>
+        </div>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Page Level Demo button       //// -->
+        <!-- ////////////////////////////////////////// -->
+    </form>
+</div>
+<!-- ////////////////////////////////////////// -->
+<!-- //// Begin Balance Bar                //// -->
+<!-- ////////////////////////////////////////// -->
+<ups-balanceBar></ups-balanceBar>
+<!-- ////////////////////////////////////////// -->
+<!-- //// End Balance Bar                  //// -->
+<!-- ////////////////////////////////////////// -->

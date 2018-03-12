@@ -1,0 +1,56 @@
+
+{{#if original}}
+    {{> legacy_html_header_original }}
+{{else}}
+    {{> legacy_html_header }}
+{{/if}}
+
+
+
+<div class="iw_viewport-wrapper">
+<!-- Begin WEM Header -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M01_main_nav mainNav}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Header -->
+
+<!-- Begin WEM Body -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+		{{#if rightRail}}
+			{{> ts_rr_start}}
+			{{> ws_rr_start}}
+		{{else}}
+			{{> ws_fw_start}}
+		{{/if}}
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+        {{ body }}
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->
+		{{#if rightRail}}
+			{{> ws_rr_end}}
+			{{> ts_rr_mid}}
+			{{> cms_container}}
+			{{> ts_rr_end}}
+		{{else}}
+			{{> ws_fw_end}}
+		{{/if}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Body -->
+
+<!-- Begin WEM Footer -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M02_footer footer}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Footer -->
+</div>
+
+{{> legacy_html_footer}}

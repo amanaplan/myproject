@@ -1,0 +1,125 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+W01 LOCATION FINDER
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE         TYPE
+    data-map             = boolean  /  show map
+    data-closet          = string   /  AJAX url for closet location
+    data-hasloc          = boolean  /  has saved location
+    data-locmsg          = string   /  translation for "Location Services Not Available"
+
+-------------------------------------------------------------------------------
+
+AJAX:
+
+Currenlty configured in scripts/plugins/ups.locFinder.js
+
+See ajax/location.json or ajax/location_alert.json
+for example for exptected data format.
+
+-------------------------------------------------------------------------------
+
+LAYOUT:
+
+-widget-header
+| 30px
+-alert
+| 30px
+-title
+| 30px
+-map
+| 30px
+-address
+| 15px
+-directions
+| 15px
+-phone
+| 30px
+-hours
+|30px
+-cta
+|30px
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- W01 Location Finder -->
+<!-- For full documentation app/source/partials/widgets/W01_location_finder.hbs -->
+<div class="ups-wrap ups-locFinder_wrap {{bg}}">
+    <div class="ups-wrap_inner">
+        <div class="ups-locFinder ups-form_wrap ups-widget" data-map="{{map}}" data-closest="{{closestAjax}}" data-hasloc="{{hasLoc}}" data-locmsg="Location Services Not Available">
+            <div class="ups-widget_header">
+                <h2>{{title}}</h2>
+                {{#if this.help}}
+                   <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+                {{/if}}
+            </div>
+            <div class="ups-widget_panel">
+                {{#if this.help}}
+                    <div class="ups-help_panel">{{this.help}}</div>
+                {{/if}}
+                {{#if heading}}
+                <h3 class="ups-locFinder_heading {{#isnt noLocator true}}{{#is hasLoc false}}ups-locFinder_headingUnknownLoc{{/is}}{{/isnt}}">{{heading}}</h3>
+                {{/if}}
+            {{#if hasLoc}}
+                {{#if map}}
+                <div class="ups-locFinder_mapWrap">
+                    <a class="ups-locFinder_map" href="{{mapLink}}"></a>
+                </div>
+                {{/if}}
+                <div class="ups-locFinder_info {{#if map}}ups-locFinder_infoMap{{/if}}"></div>
+                <div class="ups-form_ctaGroup ups-form_ctaGroup_map">
+                    <a href="{{cta.link}}" class="ups-locFinder_cta ups-cta ups-ctaFullWidth ups-ctaLocFloat">{{cta.label}}</a>
+                    <a href="{{searchNew.link}}" class="ups-locFinder_link ups-locFinder_search">{{searchNew.label}}</a>
+                </div>
+            {{else}}
+                {{#if noLocator}}
+                <a href="{{viewList.link}}" class="ups-locFinder_link">{{viewList.label}}</a>
+                {{else}}
+                <div class="ups-locFinder_info"></div>
+                <a href="{{currentLoc.link}}" class="ups-locFinder_current">{{currentLoc.label}}<span class="icon ups-icon-location" aria-hidden="true"></span></a>
+                <!-- p class='ups-reqMsg'>
+                    <em>
+                        <span aria-hidden="true">*</span>
+                        <span class="ups-readerTxt">Required</span>
+                        Indicates required field
+                    </em>
+                </p -->
+                <form>
+                    <div class="ups-locFinder_input ups-form_group ups-form_required">
+                        <label for="ups-locFinder_location" class="ups-form_label" id="ups-locfinder-addrslabel">{{addInput.label}} </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="search" name="ups-location" class="ups-form_input" id="ups-locFinder_location" aria-describedby="ups-locfinder-addrslabel ups-locfinder-fieldnote">
+                            <p class="ups-locFinder_note" id="ups-locfinder-fieldnote">{{addInput.note}}</p>
+                        </div>
+                    </div>
+                    <div class="ups-form_ctaGroup">
+                       <button class="ups-cta ups-form_button ups-cta_primary" type="submit">{{cta.label}}</button>
+                    </div>
+                </form>
+                {{/if}}
+            {{/if}}
+            </div>
+        </div>
+    </div> <!-- @end .ups-wrap_inner -->
+    <script>
+    	
+		function loadLocation(){
+			if($location===undefined || $location===false){
+				var s = document.createElement("script");
+			    s.type = "text/javascript";
+			    s.src = "https://www.bing.com/api/maps/mapcontrol";
+			    $("head").append(s);
+			    $location=true;
+			}
+		}	 
+		
+		loadLocation();
+		
+    </script>
+</div> <!-- @end .ups-wrap.ups-locFinder_wrap -->

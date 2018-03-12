@@ -1,0 +1,120 @@
+{{!--------------------------------------------
+===============================================
+W4 My Billing
+===============================================
+---------------------------------------------}}
+<div class="ups-wrap ups-billing_wrap {{bg}} ups-form_wrap">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-billing ups-widget">
+            {{#if this.title}}
+                <div class="ups-widget_header">
+                    {{#if this.title}}
+                        <h2>{{this.title}}</h2>
+                    {{/if}}
+                    {{#if this.help}}
+                        <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                            <span class="ups-helpicon-text">Help</span></button>
+                    {{/if}}
+                </div>
+            {{else}}
+                {{#if this.help}}
+                    <div class="ups-widget_header">
+                        <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span><span class="ups-helpicon-text">Help</span></button>
+                    </div>
+                {{/if}}
+            {{/if}}
+            <div class="ups-widget_panel">
+                {{#if this.help}}
+                    <div class="ups-help_panel"><p>{{this.help}}</p></div>
+                {{/if}}
+                <div class="ups-billing_body">
+                    <!--{{#if header}}<h2>{{header}}</h2>{{/if}}-->
+                    {{#is this.type 'addAccount'}}
+                        <p class="ups-billing_bodyCopy">{{{body}}}</p>
+                    {{else}}
+                        {{#is this.type 'billingError'}}
+                            <p class="ups-billing_error"><span class="icon ups-icon-exclamationcircle" aria-hidden="true"></span> {{{body}}}</p>
+                        {{else}}
+                            <p>{{{body}}}</p>
+                        {{/is}}
+                    {{/is}}
+
+                </div>
+
+                {{#isnt this.type 'addAccount'}}
+                    {{#isnt this.type 'billingError'}}
+                        <div class="ups-billing_tableWrap">
+                            <div class="ups-billing_table">
+                                {{#isnt this.type 'noBillDue'}}
+                                    <div class="ups-billing_tableHead">
+                                        {{#if accountList}}
+                                            <div class="ups_billing-accountNum ups_billing-multiAccount">
+                                                <label for="ups-uid-billing_widget_account_list" class="ups-form_label">Account:</label>
+                                                <div class="ups-dropdown_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+                                                    <select name="name" data-name="name" class="ups-dropdown" id="ups-uid-billing_widget_account_list"  {{#if this.errorMsg}}data-parsley-required-message="{{this.errorMsg}}"{{/if}}>
+                                                        {{#each accountList}}
+                                                            <option value="{{this.number}}">{{this.name}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                    {{#if this.required}}
+                                                        <p class="ups-formError">{{this.errorMsg}}</p>
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+                                        {{else}}
+                                            <div class="ups_billing-accountNum">{{accountNum}}</div>
+                                            <!--<div class="ups_billing-paymentDue">{{paymentDue}}</div>-->
+                                        {{/if}}
+
+                                    </div>
+                                {{/isnt}}
+                                <div class="ups_billing-tableColumn">
+                                    <div class="ups_billing-tableRow">
+                                        <div class="ups_tableRow_label">Amount Due: </div>
+                                        <div class="ups_tableRow_value ups_billing-num">{{amountDue}}</div>
+                                    </div>
+                                    <div class="ups_billing-tableRow">
+                                        <div class="ups_tableRow_label">Payment Due Date: </div>
+                                        <div class="ups_tableRow_value ">{{dueDate}}</div>
+                                    </div>
+                                    {{#is this.type 'billDue'}}
+                                        <div class="ups_billing-tableRow">
+                                            <div class="ups_tableRow-invoice">
+                                                <div class="ups_tableRow_label">Last Invoice Date: </div>
+                                                <div class="ups_tableRow_value">{{invoiceDate}}</div>
+                                            </div>
+                                            <div class="ups_tableRow-total">
+                                                <div class="ups_tableRow_label">Total Outstanding: </div>
+                                                <div class="ups_tableRow_value ups_billing-num">{{totalOutstanding}}</div>
+                                            </div>
+                                        </div>
+                                    {{/is}}
+                                </div>
+
+
+                            </div>
+                        </div>
+                    {{/isnt}}
+                {{/isnt}}
+                <div class="ups-form_ctaGroup ups-billing_{{type}}">
+                    {{#is this.type 'addAccount'}}
+                        <button class="ups-cta ups-cta_primary">Add an Account/Plan to Display</button>
+                        <a href="#billing">Visit UPS Billing Center</a>
+                    {{/is}}
+                    {{#is this.type 'billDue'}}
+                        <button class="ups-cta ups-cta_primary ups-cta_payAccount">Pay Now</button>
+                        <!--<button class="ups-cta ups-cta_changeAccount"><span class="ups-icon-arrowbackforward" aria-hidden="true"></span><span>Remove Account</span></button>-->
+                    {{/is}}
+                    {{#is this.type 'noBillDue'}}
+                        <button class="ups-cta ups-cta_primary ups-cta_payAccount">Visit the Billing Center</button>
+                    {{/is}}
+                    {{#is this.type 'billingError'}}
+                        <button class="ups-cta ups-cta_primary ups-cta_payAccount">Visit the Billing Center</button>
+                    {{/is}}
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- @end .ups-wrap_inner -->
+</div> <!-- @end .ups-wrap.ups-billing_wrap -->

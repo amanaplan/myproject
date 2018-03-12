@@ -1,0 +1,492 @@
+<!--
+** Dangerous Goods Acceptance Tool (DGAT) **
+-->
+
+<!-- <nav class="ups-breadcrumb">
+    <ol>
+        <li class="breadcrumb">
+            <a href="" class="ups-link">Home</a>
+            <span aria-hidden="true"> &gt;</span>
+        </li>
+        <li class="breadcrumb">
+            <a href="" class="ups-link">Help Center</a>
+            <span aria-hidden="true"> &gt;</span>
+        </li>
+        <li class="breadcrumb">
+            <a href="" class="ups-link">Packaging and Supplies Support</a>
+            <span aria-hidden="true"> &gt;</span>
+        </li>
+        <li class="breadcrumb">
+            <a href="" class="ups-link">Dangerous Goods Acceptance Tool</a>
+            <span aria-hidden="true"> </span>
+        </li>
+    </ol>
+</nav> -->
+
+<div class="ups-application_wrapper">
+    <!-- <div class="ups-breadcrumb ups-wrap">
+        <div class="ups-wrap_inner">
+
+            <div class="breadcrumb">
+                <a href="" class="ups-link">Home</a> &gt;
+            </div>
+
+            <div class="breadcrumb">
+                <a href="" class="ups-link">Help Center</a> &gt;
+            </div>
+            <div class="breadcrumb">
+                <a href="" class="ups-link">Packaging and Supplies Support</a>
+            </div>
+            <div class="breadcrumb">Dangerous Goods Acceptance Tool</div>
+        </div>
+    </div> -->
+
+
+    <div class="ups-wrap_inner" [formGroup]="dgatFormGroup">
+        <!-- ////////////////////////////////////////////// -->
+        <!-- //// To Do: Section Level error handling  //// -->
+        <!-- ////////////////////////////////////////////// -->
+
+        <!-- //////////////////////////////////////////// -->
+        <!-- ////      End Core Form Component      ///// -->
+        <!-- ////      Begin Product Component      ///// -->
+        <!-- //////////////////////////////////////////// -->
+        <div class="row">
+            <div class="col-md-6 pull-right" *ngIf="viewportSize.isGtSMVP">
+                <div class="alert alert-warning" role="alert">
+                    <div class="alert-icon pull-left">
+                        <span aria-hidden="true" class="icon ups-icon-informationcircle"></span>
+                    </div>
+                    <button [attr.aria-expanded]="danGoodsAlert" aria-controls="info1" class="ups-alert_collapse" type="button" (click)="danGoodsAlert = !danGoodsAlert">
+                        <span class="ups-readerTxt">Click to expand</span>
+                        <span [ngClass]="{ 'ups-icon-wedgeup' : danGoodsAlert, 'ups-icon-wedgedown' : !danGoodsAlert }" class="icon " aria-hidden="true"></span>
+                    </button>
+                    <div class="alert-title ups-alert_has_icon">
+                        <p>
+                            Dangerous Goods shipping requires a contract
+                        </p>
+                    </div>
+                    <div class="alert-content ups-alert_has_icon" id="info1" *ngIf="danGoodsAlert">
+                        <p>
+                            <button class="ups-link ups-cta ups-cta_secondary" type="button">
+                                <span aria-hidden="true"></span>
+                                {{'{'}}Sign Up{{'}'}}
+                            </button>
+                        </p>
+                        <p>
+                            <button class="ups-link ups-cta ups-cta_secondary" type="button">
+                                <span aria-hidden="true"></span>
+                                {{'{'}}Learn More{{'}'}}
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="!dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Chemical Detail
+                        </h2>
+                    </div>
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-chemDetail" class="ups-form_label">
+                            Chemical ID Number
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <p class="ups-form_subheader" id="ups-chemPrefix">Prefix</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-chemPrefix" id="ups-chemPrefix" class="ups-dropdown">
+                                        <option>Select One</option>
+                                        <option>UN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="ups-form_subheader" id="ups-chemNum">4 digits</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-chemNum" class="ups-form_input" id="ups-chemNum" aria-required="true" required aria-describedby="ups-chemNum_error">
+                                </div>
+                                <!-- <span class="ups-icons-error" id="ups-chemNum_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!dgatFormGroup.controls['chemDetail'] && dgatFormGroup.controls['chemDetail'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="dgatFormGroup.controls['chemDetail'].hasError('required')">
+                                            Chemical ID Number is [ required | Invalid ].
+                                        </span>
+                                    </span>
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6 ups-group" *ngIf="dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Chemical Detail
+                            <button class="ups-link pull-right h5" type="button" (click)="editChemDetail = !editChemDetail" *ngIf="!editChemDetail">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                <span>Edit</span>
+                                <span class="ups-readerTxt">Edit section</span>
+                            </button>
+                            <button class="ups-link pull-right h5" type="button" (click)="editChemDetail = !editChemDetail" *ngIf="editChemDetail">
+                                <span aria-hidden="true" class=""></span>
+                                <span>Cancel</span>
+                                <span class="ups-readerTxt">Cancel</span>
+                            </button>
+                        </h2>
+                    </div>
+                    <p *ngIf="!editChemDetail">
+                        {{'{'}}UN 2709{{'}'}}
+                    </p>
+                    <div class="ups-form_group ups-form_required" *ngIf="editChemDetail">
+                        <label for="ups-chemDetail" class="ups-form_label">
+                            Chemical ID Number
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <p class="ups-form_subheader" id="ups-chemDetail">Prefix</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-chemDetail" id="ups-chemDetail" class="ups-dropdown">
+                                        <option>Select One</option>
+                                        <option>UN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="ups-form_subheader" id="ups-chemDetail">4 digits</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-chemDetail" class="ups-form_input" id="ups-chemDetail" aria-required="true" required aria-describedby="ups-chemDetail_error">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" *ngIf="!dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Ship From
+                        </h2>
+                    </div>
+                    <!-- Begin CAC -->
+                    <ups-cac #DGATCAC></ups-cac>
+                    <!-- End CAC -->
+                </section>
+            </div>
+            <div class="col-md-6 ups-group" *ngIf="dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Ship From
+                            <button class="ups-link pull-right h5" type="button" (click)="editShipFrom = !editShipFrom" *ngIf="!editShipFrom">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                Edit
+                                <span class="ups-readerTxt">Edit section</span>
+                            </button>
+                            <button class="ups-link pull-right h5" type="button" (click)="editShipFrom = !editShipFrom" *ngIf="editShipFrom">
+                                <span aria-hidden="true" class=""></span>
+                                Cancel
+                                <span class="ups-readerTxt">Cancel</span>
+                            </button>
+                        </h2>
+                    </div>
+                    <p *ngIf="!editShipFrom">
+                        {{'{'}}United States{{'}'}}
+                    </p>
+                    <!-- Begin CAC -->
+                    <ups-cac #DGATCAC *ngIf="editShipFrom"></ups-cac>
+                    <!-- End CAC -->
+                </section>
+            </div>
+            <div class="col-md-6 col-offset-1 ups-group" *ngIf="dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Ship To
+                        </h2>
+                    </div>
+                    <p>
+                        <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button" (click)="addShipTo = !addShipTo" *ngIf="!addShipTo">
+                            <span aria-hidden="true" class="icon ups-icon-pluscircle"></span>
+                            Add
+                            <span class="ups-readerTxt">Add ship to section</span>
+                        </button>
+                    </p>
+                    <!-- Begin CAC -->
+                    <ups-cac #DGATCAC *ngIf="addShipTo"></ups-cac>
+                    <!-- End CAC -->
+                    <button class="ups-cta ups-cta_primary" type="button" (click)="addShipTo = !addShipTo" *ngIf="addShipTo">
+                        <span aria-hidden="true" class=""></span>
+                        Done
+                        <span class="ups-readerTxt">Done</span>
+                    </button>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ups-group" *ngIf="dgLookup">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            UPS Service
+                        </h2>
+                    </div>
+                    <p>
+                        <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button" (click)="addService = !addService" *ngIf="!addService">
+                            <span aria-hidden="true" class="icon ups-icon-pluscircle"></span>
+                            Add
+                            <span class="ups-readerTxt">Add UPS service</span>
+                        </button>
+                    </p>
+                    <div class="ups-form_group ups-dropdown_wrapper ups-input_wrapper" *ngIf="addService">
+                        <select name="ups-addServiceOption" id="ups-addService" class="ups-dropdown">
+                            <option>Select One</option>
+                            <option>Two</option>
+                        </select>
+                    </div>
+                    <button class="ups-cta ups-cta_primary" type="button" (click)="addService = !addService" *ngIf="addService">
+                        <span aria-hidden="true" class=""></span>
+                        Done
+                        <span class="ups-readerTxt">Done</span>
+                    </button>
+                </section>
+            </div>
+        </div>
+        <div class="col-md-6" *ngIf="viewportSize.isLtMDVP">
+            <div class="alert alert-warning" role="alert">
+                <div class="alert-icon pull-left">
+                    <span aria-hidden="true" class="icon ups-icon-informationcircle"></span>
+                </div>
+                <button [attr.aria-expanded]="danGoodsAlert" aria-controls="info1" class="ups-alert_collapse" type="button" (click)="danGoodsAlert = !danGoodsAlert">
+                    <span class="ups-readerTxt">Click to expand</span>
+                    <span [ngClass]="{ 'ups-icon-wedgeup' : danGoodsAlert, 'ups-icon-wedgedown' : !danGoodsAlert }" class="icon " aria-hidden="true"></span>
+                </button>
+                <div class="alert-title ups-alert_has_icon">
+                    <p>
+                        Dangerous Goods shipping requires a contract
+                    </p>
+                </div>
+                <div class="alert-content ups-alert_has_icon" id="info1" *ngIf="danGoodsAlert">
+                    <p>
+                        <button class="ups-link ups-cta ups-cta_secondary" type="button">
+                            <span aria-hidden="true"></span>
+                            {{'{'}}Sign Up{{'}'}}
+                        </button>
+                    </p>
+                    <p>
+                        <button class="ups-link ups-cta ups-cta_secondary" type="button">
+                            <span aria-hidden="true"></span>
+                            {{'{'}}Learn More{{'}'}}
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="ups-cta ups-cta_primary" *ngIf="!dgLookup" (click)="dgLookup = !dgLookup">
+            Search
+        </button>
+        <!-- <div class="row" *ngIf="!dgLookup">
+            <div class="col-md-6">
+                <section class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">
+                            Ship To
+                        </h2>
+                    </div>
+                </section>
+                <!-- Begin CAC -->
+        <!-- <ups-cac #DGATCAC></ups-cac> -->
+        <!-- End CAC -->
+        <!-- </div>
+        </div> -->
+    </div>
+</div>
+<div class="row" *ngIf="dgLookup">
+    <!-- Begin Tab Section -->
+    <div class="ups-tabs">
+        <div class="ups-tab-headers ups-wrap">
+            <ul class="ups-wrap_inner" role="tablist">
+                <li class="tab-header ups-tab_borderOrng ups-onboard_tabs" role="tab" aria-selected="true" aria-controls="auth_tab_1" id="tab_1"
+                    tabindex='0' data-tab="49CFR - Domestic US" data-open="true">
+                    <span class="tab-title">49CFR - Domestic US</span>
+                    <span class="tab-border"></span>
+                </li>
+                <li class="tab-header ups-tab_borderBlue ups-onboard_tabs" id="tab_2" role="tab" aria-controls="auth_tab_2" tabindex='0'
+                    aria-selected="false" data-tab="IATA - Domestic US" data-open="false">
+                    <span class="tab-title">IATA - Domestic US</span>
+                    <span class="tab-border"></span>
+                </li>
+                <li class="tab-header ups-tab_borderBlue ups-onboard_tabs" id="tab_3" role="tab" aria-controls="auth_tab_3" tabindex='0'
+                    aria-selected="false" data-tab="IATA - International" data-open="false">
+                    <span class="tab-title">IATA - International</span>
+                    <span class="tab-border"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="ups-tab-content top-tab" aria-labelledby="tab_1" id="auth_tab_1" role="tabpanel" aria-hidden="false" data-tab="49CFR - Domestic US"
+            data-open="true" data-content-selected="true" data-prev-active="false">
+            <div class="tab-header ups-tab_borderOrng" aria-selected="true" aria-controls="auth_tab_1_panel" id="tab_1_panel" data-tab="49CFR - Domestic US">
+                <div class="tab-title">49CFR - Domestic US</div>
+                <button class="ups-med_show">
+                    <span class=" ups-iconAlone ups-icon-minus" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Collapse 49CFR - Domestic US</span>
+                </button>
+            </div>
+            <!-- @end ups-tab-header for mobile -->
+        </div>
+        <div class="ups-tab-content" aria-labelledby="tab_2" id="auth_tab_2" role="tabpanel" aria-hidden="true" data-tab="IATA - Domestic US"
+            data-prev-active="true" data-open="false" data-content-selected="false">
+            <div class="tab-header ups-tab_borderBlue" aria-selected="false" aria-controls="auth_tab_2_panel" id="tab_2_panel" data-tab="IATA - Domestic US">
+                <div class="tab-title">IATA - Domestic US</div>
+                <button class="ups-med_show ">
+                    <span class="ups-iconAlone ups-icon-plus" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Expand IATA - Domestic US</span>
+                </button>
+            </div>
+        </div>
+        <!-- @end ups-tab-content -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="alert-icon pull-left">
+                    <span aria-hidden="true" class="icon ups-icon-informationcircle"></span>
+                </div>
+                <p style="margin-left: 1.5em;">Optional fields have been left blank. Results displayed may change based on the selection of a destination
+                    country and/or service.</p>
+            </div>
+            <div class="col-md-4 ups-text-md-right">
+                <fieldset class="ups-btn_group_fieldset">
+                    <legend class="ups-readerTxt">View</legend>
+                    <div class="ups-btn_group pull-right">
+                        <div class="ups-btn_group_inner">
+                            <div class="ups-btn_group_action_inner">
+                                <input type="radio" value="0" id="tableListView" name="tableView" class="ups-btn_group_radio" (change)="whenSchecListViewBtn('list')">
+                                <!-- formControlName="tableView" -->
+                                <label for="tableListView" class="ups-btn_group_label">
+                                    <span class="ups-readerTxt">List View</span>
+                                    <span class="icon ups-icon-list" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                            <div class="ups-btn_group_action_inner">
+                                <input type="radio" value="1" id="tableGridView" name="tableView" class="ups-btn_group_radio" (change)="whenSchecListViewBtn('grid')">
+                                <!-- formControlName="tableView" -->
+                                <label for="tableGridView" class="ups-btn_group_label">
+                                    <span class="ups-readerTxt">Grid View</span>
+                                    <span class="icon ups-icon-grid" aria-hidden="true"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="ups-table" style="overflow-x:auto;">
+            <table class="table table-bordered table-hover">
+                <caption class="ups-readerTxt">
+                    Dangerous goods table
+                </caption>
+                <thead>
+                    <!-- <tr class="blank_row">
+                        <td colspan="9"></td>
+                    </tr> -->
+                    <tr>
+                        <th>Manage</th>
+                        <th>UN ID Number</th>
+                        <th>Descriptions and Proper Shipping Name</th>
+                        <th>Hazard Class or Division</th>
+                        <th>Packing Group</th>
+                        <th>Label(s) requried or exemption, special permit or exception</th>
+                        <th>DOT Exemption, Special Permits or 173.3</th>
+                        <th>Ground Service to Canada Permitted</th>
+                        <th>Label(s) required or exemption, special permit or exception</th>
+                        <th>LTF QTY MAX NET PER PACKAGE**</th>
+                        <th>PASSENGER AIRCRAFT MAX NET PER PACKAGE**</th>
+                        <th>CARGO AIRCRAFT MAX NET PER PACKAGE ^</th>
+                        <th>DOT EXEMPTION SPECIAL PERMIT OR 173.13</th>
+                        <th>Special Previsions</th>
+                        <th>Exceptions 173.***</th>
+                        <th>Non-Bulk Packaging 173.***</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">
+                            <a href="" class="ups-link">Save</a>
+                        </td>
+                        <td align="center">UN2709</td>
+                        <td align="left">
+                            <strong>Ascetic acid Solution</strong>, not less than 50 percent but not more than 80 percent acid, by
+                            mass
+                        </td>
+                        <td align="center">8</td>
+                        <td align="center">||</td>
+                        <td align="center">CORROSIVE*</td>
+                        <td></td>
+                        <td align="center">YES</td>
+                        <td align="center">CORROSIVE</td>
+                        <td align="center">0.5 L</td>
+                        <td align="center">1 L</td>
+                        <td align="center">30 L</td>
+                        <td></td>
+                        <td align="center">A3, A6, A7, A10</td>
+                        <td align="center">154</td>
+                        <td align="center">202</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a href="" class="ups-link">Save</a>
+                        </td>
+                        <td align="center">UN2709</td>
+                        <td align="left">
+                            <strong>Ascetic acid Solution</strong>, with more than 10 percent and less than 50 percent acid, by mass</td>
+                        <td align="center">8</td>
+                        <td align="center">||</td>
+                        <td align="center">CORROSIVE*</td>
+                        <td></td>
+                        <td align="center">YES</td>
+                        <td align="center">CORROSIVE</td>
+                        <td align="center">1 L</td>
+                        <td align="center">5 L</td>
+                        <td align="center">30 L</td>
+                        <td></td>
+                        <td></td>
+                        <td align="center">154</td>
+                        <td align="center">203</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>{{'{'}}Symbols: ++ requires a Technical Name, *For Ltd Qty see 49 CFR Part 173.***,** See 49 CFR 173.27 for inner
+            receptacle requirements, *Additional CAO Contract Required for all non-Class 9 CAO, #Sub-risk may be omitted
+            from shipping papers if 49 CFR 172.400a(c) criteria met{{'}'}}
+        </p>
+        <p>
+            {{'{'}}AIR SHIPMENT columns "gross" indicates shipping papers must show gross weight, "G" indicates letter "G" must follow
+            gross weight{{'}'}}
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="ups-cms-demo">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="ups-cta ups-cta_secondary" type="button" (click)="dgLookup = !dgLookup ; readyToGo = false">
+                    DG Lookup
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button class="ups-cta ups-cta_secondary" type="button" (click)="dgLookup = false ; readyToGo = !readyToGo">
+                    Default
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

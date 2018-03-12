@@ -1,0 +1,691 @@
+// ----------------------------------------------------
+// W01 Location Finder
+// ----------------------------------------------------
+
+@mixin locFinder_alert {
+    margin-bottom: 20px;
+    span {
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .icon {
+            color: $black;
+            font-size: 1.2em;
+            top: 3px;
+            margin-#{$opposite-direction}: 6px;
+        }
+        //&:before {
+        //    @include ups-icons;
+        //    content: '\e639';
+        //    color: $red;
+        //    font-size: 1.2em;
+        //    position: relative;
+        //    top: 3px;
+        //    margin-#{$opposite-direction}: 6px;
+        //    line-height: 0;
+        //}
+    }
+}
+
+.ups-locFinder_wrap {
+    @include ups-component_margin;
+
+    .ups-widget_panel {
+        // padding-bottom: $margin_3;
+
+        .ups-locFinder_info {
+            margin-bottom: $margin_3;
+        }
+    }
+}
+
+.ups-locFinder.ups-widget {
+
+    &.ups-form_wrap {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .ups-locFinder_loader {
+        width: auto;
+        height: 32px;
+        text-align: center;
+        background: image-url('ajax-loader.gif') no-repeat center;
+        margin: 0 0 20px;
+    }
+
+    .ups-locFinder_alert {
+        @include locFinder_alert;
+        background-color: $stone_40;
+        margin-bottom: $margin_3;
+        padding: 20px 24px;
+        padding-#{$default-float}: 48px;
+        text-indent: -24px;
+        > span{
+            margin-right:5px;
+        }
+    }
+
+    .ups-locFinder_toggle{
+        border: 0;
+        background: transparent;
+        font-family: $sans-bd;
+        position:relative;
+        .icon{
+            font-size: 10px;
+            padding-left: 10px;
+            position: absolute;
+            top: 3px;
+            right: -15px;
+        }
+    }
+
+    form.ups-event-locator{
+        clear:both;
+        .ups-locFinder_alert{
+            background:none;
+            text-indent:0;
+            margin-bottom:15px;
+            padding:0;
+        }
+    }
+
+    .maintext{
+        padding-right:5px;
+    }
+    .toggleSection{
+        padding-right:5px;
+        display: none;
+    }
+    .ups-locFinder_toggle{
+        padding:0;
+    }
+
+    .ups-locFinder_mapWrap {
+        width: 50%;
+        float: $default-float;
+    }
+
+    .ups-locFinder_map {
+        display: block;
+        width: auto;
+        height: 0;
+        position: relative;
+
+        * { cursor: pointer; }
+
+        img {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        &.ups-active {
+            padding-top: 56.25%; // 16:9
+            margin-bottom: $margin_3;
+        }
+    }
+
+    .ups-locFinder_locMsg {
+        background: $stone_60;
+        border: 1px solid $stone_s3;
+        padding: 40px 20px;
+        text-align: center;
+        font-family: $sans-bd;
+        text-transform: uppercase;
+        margin-bottom: $margin_3;
+    }
+
+
+    .ups-locFinder_copy {
+        h3 {
+            font: 1em/1.25 $sans-bd;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+            margin: 0 0 4px;
+        }
+
+        address {
+            font-size: 1em;
+            line-height: 1.25;
+            margin: 0 0 $margin_4;
+        }
+
+        .ups-locFinder_dirLink {
+            color: $black_s3;
+            text-decoration: underline;
+            padding-#{$opposite-direction}: 20px;
+            margin: 0 0 $margin_4;
+            display: inline-block;
+            position: relative;
+            font: 1em/1.25 $sans-bd;
+            @include transition-property(all);
+            @include transition-duration($main-transition-speed);
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            &:hover {
+                color: $black_s1;
+            }
+        }
+
+        .ups-locFinder_phone {
+            font: 1em/1.25 $sans-bd;
+            display: block;
+            margin: 0 0 $margin_4;
+
+            a {
+                margin-#{$default-float}: 4px;
+                font-family: $sans;
+                color: $black_s3;
+                text-decoration: underline;
+
+                &:hover {
+                    color: $black_s1;
+                }
+            }
+        }
+
+        .ups-locFinder_hours {
+            max-width: 280px;
+            margin: 0;
+
+            &.ups-active {
+                .ups-locFinder_daysWrap {
+                    max-height: 500px;
+                }
+
+                .ups-locFinder_hoursTog span {
+                    &:after {
+                        content: '\e62b';
+                    }
+                }
+            }
+        }
+
+        .ups-locFinder_hoursTog {
+            @include unbutton;
+            margin: $margin_4 0 0;
+            border-bottom: 1px solid $black_s3;
+            width: 100%;
+            text-align: $default-float;
+            padding: 0 0 6px;
+            padding-#{$opposite-direction}: 20px;
+            position: relative;
+            max-width: 280px;
+            font-family: $sans-bd;
+            line-height: 1.25;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            span {
+                font-family: $sans;
+                //white-space: nowrap;
+                display: inline-block;
+
+            }
+
+
+        }
+
+        p.ups-locFinder_hoursTog {
+            border-bottom: none;
+            padding: 0;
+
+            &:after { display: none; }
+        }
+
+        .ups-locFinder_daysWrap {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .ups-locFinder_days {
+            width: 100%;
+            @include transition-property(max-height);
+            @include transition-duration(0.3s);
+
+            th {
+                // width: 20%;
+                text-align: #{$opposite-direction};
+                font-weight: normal;
+                font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            th, td {
+                padding: 14px;
+                padding-#{$default-float}: 8px;
+            }
+
+            td { padding-#{$default-float}: 0; }
+
+            tr.ups-active {
+                th, td {
+                    background-color: $stone_40;
+                }
+            }
+        }
+    }
+
+    .ups-locFinder_infoMap {
+        width: 44%;
+        float: $opposite-direction;
+    }
+
+    .ups-form_ctaGroup {
+        float: $opposite-direction;
+        margin: 21px 0 0;
+        // margin: $margin_3 0;
+
+        .ups-cta {
+            margin-bottom: $margin_3;
+        }
+    }
+    .ups-form_ctaGroup_map {
+        clear: $default-float;
+        float: none;
+        margin-top: 0;
+    }
+
+    .ups-locFinder_cta {
+        // padding: 12px 30px 10px;
+        margin-#{$opposite-direction}: 20px;
+
+        &.ups-ctaFullWidth {
+            // padding: 12px 20px 10px;
+            margin-top: 0;
+        }
+
+        &.ups-ctaNoLocFloat {
+            float: $opposite-direction;
+        }
+
+        &.ups-ctaLocFloat {
+            float: none;
+            margin-bottom: $margin_3;
+        }
+    }
+
+    .ups-locFinder_link {
+        color: $black_s3;
+        display: block;
+        text-decoration: underline;
+        position: relative;
+        margin-bottom: $margin_3;
+
+        &.ups-locFinder_search {
+            margin-top: 0;
+            // margin-#{$default-float}: 30px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+    }
+
+    .ups-locFinder_current {
+        color: $black_s3;
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+        float: $opposite-direction;
+        padding-#{$opposite-direction}: 20px;
+
+        .icon {
+            position: absolute;
+            padding-#{$default-float}: 10px;
+        }
+
+        //&:after {
+        //    @include ups-icons;
+        //    content: '\e649';
+        //    text-decoration: none;
+        //    padding-#{$default-float}: 10px;
+        //    position: absolute;
+        //}
+    }
+
+    .ups-locFinder_input {
+        width: 75%;
+        max-width:none;
+        clear: $default-float;
+        float: $default-float;
+        margin: 0 0 $margin_3;
+        label {
+            display: block;
+            font-family: $sans-bd;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+
+        aside &, .iw_columns.col-lg-4 & {
+            margin-bottom: 0;
+        }
+
+        .ups-input_wrapper {
+            max-width: 100%;
+        }
+
+        .ups-form_input {
+            margin: $margin_5 0;
+        }
+
+        .ups-locFinder_note {
+            color: $black_s1;
+            font-size: 0.9em;
+            font-style: italic;
+            margin: 0;
+            float:$default-float;
+        }
+
+        .ups-form_errorWrap {
+            margin: 0;
+        }
+    }
+
+    .ups-locFinder_heading  {
+        font: 2em/1 $sans-bd;
+        margin: 0 0 $margin_3;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+        &.ups-locFinder_headingUnknownLoc {
+            float: $default_float;
+        }
+    }
+
+    @mixin locFinder_current {
+        .ups-locFinder_current {
+            clear: $default_float;
+            float: $default_float;
+            margin: 0 0 24px;
+        }
+    }
+
+    @mixin locFinder_sm {
+        .ups-locFinder_cta {
+            float: none;
+            // padding: 12px 12px 10px;
+
+            &.ups-ctaNoLocFloat {
+                float: $default-float;
+            }
+        }
+
+        .ups-locFinder_input .ups-locFinder_note {
+            margin-bottom: 0;
+        }
+
+        .ups-locFinder_link {
+            color: $black_s3;
+            float: none;
+            display: inline-block;
+            margin-bottom: $margin_3;
+            @include transition-property(all);
+            @include transition-duration($main-transition-speed);
+
+            &.ups-locFinder_search {
+                display: block;
+                margin-#{$default-float}: 0;
+                margin-bottom: $margin_3;
+                text-align: center;
+            }
+
+            &:hover {
+                color: $black_s1;
+            }
+        }
+
+        .ups-form_ctaGroup {
+            width:100%;
+            margin: $margin_3 0;
+
+            .ups-cta {
+                width: 100%;
+                margin: 0 0 $margin_3;
+            }
+        }
+
+        .ups-locFinder_input {
+            width: 100%;
+            margin-bottom: 0;
+            // margin-bottom: $margin_3;
+        }
+
+        .ups-locFinder_cta.ups-ctaFullWidth {
+            width: 100%;
+            max-width: none;
+            margin: 0 0 $margin_3;
+            & .ups-form_ctaGroup {
+                clear: both;
+            }
+        }
+
+        .ups-locFinder_infoMap {
+            width: 100%;
+        }
+
+        .ups-locFinder_mapWrap {
+            width: 100%;
+        }
+
+        .ups-locFinder_map img {
+            width: 100%;
+        }
+
+        @include locFinder_current;
+
+        .ups-locFinder_hoursTog span {
+            position: relative;
+            /* left: 50%; */
+            width: 70%;
+            padding-left: 0;
+            display: block;
+        }
+
+        .ups-locFinder_copy .ups-locFinder_days th,
+        .ups-locFinder_copy .ups-locFinder_days td {
+            width: 50%;
+            text-align: $default-float;
+            padding: 10px 14px;
+        }
+
+        // .ups-locFinder_days td {
+        //     text-align: $opposite-direction;
+        // }
+    }
+
+    aside &,
+    .iw_columns.col-lg-4 & {
+        @include locFinder_sm;
+    }
+
+    @media #{$media-small} {
+        @include locFinder_sm;
+
+        .ups-locFinder_copy {
+            .ups-locFinder_hoursTog {
+                max-width: none;
+            }
+
+        }
+
+    }
+
+    @media #{$media-medium} {
+        @include locFinder_current;
+    }
+}
+
+
+
+.subsection_aside .ups-locFinder_wrap,
+.iw_columns.col-lg-4 .ups-locFinder_wrap {
+    @include aside-pad_sm;
+}
+
+// //styling for location widget in quickstart main nav
+// .ups-locations-quickstart .ups-locFinder_alert {
+//     @include locFinder_alert;
+//     background-color: transparent;
+//     margin-bottom: 0;
+// }
+.ups-headerTools_widgets {
+    li.ups-active{
+        &.ups-locations-quickstart{
+            .ups-tool{
+                .ups-locFinder{
+                    padding-top: 20px;
+                }
+                .ups-widget_header{
+                    h2{
+                        display:block;
+                        padding:0 0 30px 0;
+                        margin:0;
+                        background:transparent;
+                        font-size:1.7em;
+                    }
+
+                }
+                .ups-locFinder_wrap{
+                    .ups-locFinder{
+                        .ups-widget_panel{
+                            h3{
+                                display: none;
+                            }
+                            .ups-locFinder_copy{
+                                h3{
+                                    display : block;
+                                }
+                            }
+                        }
+                    }
+                }
+                .ups-widget_panel{
+                    float : $default-float;
+                    width:100%;
+
+                    .ups-locFinder_heading{
+                        &.ups-locFinder_headingUnknownLoc{
+                            display:none;
+                        }
+                    }
+                    .ups-locFinder_mapWrap{
+                        padding-#{$default-float}:0;
+                    }
+
+                    .ups-locFinder_mapWrap{
+                        padding-#{$opposite-direction}:30px;
+                        height:260px;
+                    }
+                    .ups-location-detail.ups-location-error{
+                        .ups-locFinder_mapWrap{
+                            height: auto;
+                        }
+                    }
+
+                    .ups-locFinder_info {
+                        width:100%;
+                        margin-bottom:0;
+                        padding:0;
+                    }
+                    .ups-locFinder_mapWrap + .ups-locFinder_info {
+                        width:50%
+                    }
+                    position:relative;
+                    .ups-locFinder_current{
+                        top:-55px;
+                        position:absolute;
+                        #{$opposite-direction} : 0;
+                    }
+                }
+                .ups-form_group{
+                    border-#{$default-float}:0;
+                    border-#{$opposite-direction}:0;
+                }
+                .ups-form_ctaGroup{
+                    clear:none;
+                    padding-top:0;
+                    margin-top:30px;
+                    float: left;
+                    width: 100%;
+                    .ups-form_button{
+                        max-width:none;
+                    }
+                }
+
+                .ups-locFinder_input + .ups-form_ctaGroup{
+                    width:35%;
+                    margin-top:22px;
+                    padding-right:0;
+                    .ups-form_button{
+                        float:left;
+                        margin-#{$default-float}:0;
+                    }
+                }
+                .ups-location-detail{
+                    &.ups-location-error{
+                        .ups-locFinder_mapWrap{
+                            height:auto;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.ups-locFinder_wrap{
+    display:none;
+    &.ups-active{
+        display:block;
+    }
+    /*form & {
+        .ups-form_ctaGroup.ups-form_ctaGroup_map{
+            display:none;
+        }
+    }*/
+    .ups-locservice-error{
+        color: $red;
+        margin-bottom:10px;
+    }
+}
+/*
+span.ups-icon-alert-location{
+			color: $black;
+		}
+*/
+
+/*.ie10, .ie9{
+    .ups-ie{
+        display:block
+    }
+    .ups-locFinder_wrap.ups-active{
+        display:none;
+        .ups-form_ctaGroup.ups-form_ctaGroup_map{
+            display:none;
+        }
+    }
+}*/

@@ -1,0 +1,110 @@
+<p>
+    {{instructional_content}}
+</p>
+<div class="row" data-ng-if="removeAccountLabels">
+    <div class="col-xs-3">
+        <div class="ups-group">
+            <p class="ups-group_label">Account:</p>
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <div class="ups-group">
+            <p>ABC123 - Account Nickname</p>
+        </div>
+    </div>
+</div>
+<div class="row" data-ng-if="removeInboundLabels">
+    <div class="col-md-3">
+        <div class="ups-group">
+            <p class="ups-group_label">Location ID:</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="ups-group">
+            <p>ABC123 - Account Nickname</p>
+        </div>
+    </div>
+</div>
+<div class="row" data-ng-if="removeInboundLabels">
+    <div class="col-md-3">
+        <div class="ups-group">
+            <p class="ups-group_label">Address:</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="ups-group">
+            <p>1234 Main Street<br>
+                Roswell, GA<br />
+                30076
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="ups-group" data-ng-if="subscriptionLabels">
+    <ul class="ups-list_style_none">
+        <li>
+            <p>
+                <strong>Subscription Name:</strong><span class="ups-indent">DEF456</span>
+            </p>
+        </li><li>
+            <p>
+                <strong>Subscription Type:</strong><span class="ups-indent">Outbound</span>
+            </p>
+        </li>
+    </ul>
+</div>
+
+<div class="ups-group" data-ng-if="resetPasswordLabels">
+    <ul class="ups-list_style_none">
+        <li>
+            <p>
+                <strong>Name:</strong><span class="ups-indent">Abigail Smith</span>
+            </p>
+        </li><li>
+            <p>
+                <strong>User ID:</strong><span class="ups-indent">absmith</span>
+            </p>
+        </li>
+    </ul>
+</div>
+
+<div class="ups-group" data-ng-if="deleteUser">
+    <p>
+        <strong>User ID:</strong><span class="ups-indent">UserID</span>
+    </p>
+</div>
+
+
+<div class="ups-group" data-ng-if="deleteUser">
+    <p>
+        You are about to delete a user with access to the UPS Services listed below. Deleting this user will permanently remove their User ID and prevent access to these services. This includes all personal information saved in MyUPS such as their Address Book, Shipping History. etc.
+    </p>
+    <ul>
+        <li>
+            <p>
+                Quantum View
+            </p>
+        </li>
+        <li>
+            <p>
+                MyUPS
+            </p>
+        </li>
+    </ul>
+    <p>
+        If CampusShip is listed above, once deleted, the user can no longer ship with this ID and all prior shipping history, address book information and preferences will also be permanently deleted.
+    </p>
+    <p>
+        This process cannot be reversed. Are you sure you want to delete this user?
+    </p>
+</div>
+
+<div class="ups-form_ctaGroup text-center">
+    <button type="submit" class="ups-cta ups-cta_primary"
+        data-ng-click="continueButton();" data-ng-if="!deleteUser">Continue</button>
+    <button type="button" class="ups-cta ups-cta_secondary"
+        data-ng-click="cancel();" data-ng-if="!deleteUser">Cancel</button>
+    <button type="button" class="ups-cta ups-cta_primary" data-ng-click="yesButton();" data-ng-if="deleteUser">Yes</button>
+    <button type="button" class="ups-cta ups-cta_tertiary" data-ng-click="noButton();" data-ng-if="deleteUser">No</button>
+</div>

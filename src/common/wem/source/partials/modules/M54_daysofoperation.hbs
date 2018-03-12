@@ -1,0 +1,105 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M54 DAYS OF OPERATION
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Available Variations via class names:
+
+    HOMEPAGE HERO
+        Applied to div.ups-daysofop
+        .ups-daysofop-full       Display full list
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE       TYPE
+    data-source        = string     AJAX url
+    data-fullurl       = string     URL to full list if applicable
+    data-fulltxt       = string     translated text for "View Full Schedule"
+    data-moredetails   = string     translated text for "More Details"
+    data-lessdetails   = string     translated text for "Less Details"
+    data-downtxt       = string     translated text for "Downloads"
+    data-more-expand   = string     translated text for "expand"
+    data-less-collapse   = string     translated text for "collapse"
+
+-------------------------------------------------------------------------------
+
+AJAX:
+
+Currenlty configured in scripts/plugins/ups.daysofop.js
+to pull data via AJAX from ajax/daysofop_XX.json
+
+XX = country identifier or value from dropdown
+
+See ajax/daysofop_us.json for example for exptected data format.
+
+-------------------------------------------------------------------------------
+
+LAYOUT:
+
+-days-header
+| 30px
+-day-image
+| 30px
+-title
+| 5px
+-status
+| 5px
+-services
+| 15px
+-details
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M54 Days of Operation -->
+<!-- For full documentation app/source/partials/modules/M54_daysofoperation.hbs -->
+<div class="ups-wrap ups-daysofop_wrap">
+    <div class="ups-wrap_inner">
+        <div class="ups-daysofop{{#if isFull}} ups-daysofop-full{{/if}}{{#if staticLoc}} ups-daysofop-staticLoc{{/if}}"
+            data-full="{{isFull}}" data-type="{{dataType}}"
+            {{#if source}} data-source="{{source}}"{{/if}}
+            {{#if fullUrl}} data-fullurl="{{fullUrl}}"{{/if}}
+            {{#if fullTxt}} data-fulltxt="{{fullTxt}}"{{/if}}
+            {{#if moreDetails}} data-moredetails="{{moreDetails}}"  data-more-expand="expand" {{/if}}
+            {{#if lessDetails}} data-lessdetails="{{lessDetails}}"  data-less-collapse="collapse" {{/if}}
+            {{#if downloadTxt}} data-downtxt="{{downloadTxt}}"{{/if}}
+            {{#if staticLoc}} data-staticloc="{{staticLoc}}"{{/if}}
+            {{#compare viewSel.options.length '>' 1}}
+                data-result='{"locales":[{"countryName":"US","dates":[{"monthLabel":"February","monthLabelAbbr":"Feb","monthDates":[{"date":{"datetime":"2017-02-22","dow":"Wed","date":"22","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop2.jpg","alt":"Image Alt Text  1"},"title":"Valentine\u0027s Day","status":{"closed":"true","label":"Closed"},"note":"\u003cp\u003eUPS Critical Ship available\u003c/p\u003e","info":"\u003cp\u003eDuis aute irure dolor in reprehenderit in luptate velit\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eLorem ipsum dolor sit amet\u003c/li\u003e\n\u003cli\u003eConsectetur adipisicing\u003c/li\u003e\n\u003c/ul\u003e"},{"date":{"datetime":"2017-02-24","dow":"Fri","date":"24","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop_mx.jpg","alt":"Image Alt Text  2"},"title":"Labour Day","status":{"closed":"false","label":"Open"},"note":"\u003cp\u003eLorem Ipsum\u003c/p\u003e","info":"\u003cp\u003e\u003cspan id\u003d\"label_21\" class\u003d\"iw-formspub-text-field-label\"\u003eFull Details\u003c/span\u003e\u0026nbsp;\u003cspan id\u003d\"req_label_21\" style\u003d\"font-weight: bold;\" class\u003d\"iw-formspub-field-info\"\u003e\u003c/span\u003e\u0026nbsp;\u003c/p\u003e"}]}]},{"countryName":"CA","dates":[{"monthLabel":"February","monthLabelAbbr":"Feb","monthDates":[{"date":{"datetime":"2017-02-22","dow":"Wed","date":"22","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop_mx.jpg","alt":"Image Alt Text   Alt2"},"title":"Canada Day","status":{"closed":"false","label":"Open"},"note":"\u003cp\u003eAll regular services available\u003c/p\u003e","info":""},{"date":{"datetime":"2017-02-28","dow":"Tue","date":"28","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop2.jpg","alt":"Image Alt Text   Alt4"},"title":"Independence Day","status":{"closed":"true","label":"Closed"},"note":"\u003cp\u003eUPS Critical Ship available\u003c/p\u003e","info":"\u003cp\u003eDuis aute irure dolor in reprehenderit in luptate velit\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eLorem ipsum dolor sit amet\u003c/li\u003e\n\u003cli\u003eConsectetur adipisicing\u003c/li\u003e\n\u003c/ul\u003e"}]}]}],"downloads":[{"label":"World Holidays: November Onwards","link":"http://www.ups.com"}],"disclaimer":"*Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}'
+            {{/compare}}
+            {{#compare viewSel.options.length '==' 1}} 
+                data-result='{"locales":[{"countryName":"CA","dates":[{"monthLabel":"February","monthLabelAbbr":"Feb","monthDates":[{"date":{"datetime":"2017-02-22","dow":"Wed","date":"22","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop_mx.jpg","alt":"Image Alt Text   Alt2"},"title":"Canada Day","status":{"closed":"false","label":"Open"},"note":"\u003cp\u003eAll regular services available\u003c/p\u003e","info":""},{"date":{"datetime":"2017-02-28","dow":"Tue","date":"28","month":"Feb","year":"2017"},"image":{"src":"/assets/resources/images/helpcenter/daysofop2.jpg","alt":"Image Alt Text   Alt4"},"title":"Independence Day","status":{"closed":"true","label":"Closed"},"note":"\u003cp\u003eUPS Critical Ship available\u003c/p\u003e","info":"\u003cp\u003eDuis aute irure dolor in reprehenderit in luptate velit\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eLorem ipsum dolor sit amet\u003c/li\u003e\n\u003cli\u003eConsectetur adipisicing\u003c/li\u003e\n\u003c/ul\u003e"}]}]}],"downloads":[{"label":"World Holidays: November Onwards","link":"http://www.ups.com"}],"disclaimer":"*Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}'
+            {{/compare}}
+            data-lang-error="Content is not available"
+            >
+            <div class="ups-daysofop_head">
+                <h2 class="ups-article-header">{{{title}}}</h2>
+                <p>{{{intro}}}</p>
+            </div>
+            <div class="ups-daysofop_loc">
+                {{#unless staticLoc}}
+                    {{#if print}}
+                    <a class="ups-daysofop_print" href="{{print.link}}"><span class="icon" aria-hidden="true"></span>{{print.label}}</a>
+                    {{/if}}
+
+                    <label for="ups-daysofop_locSel-{{nameToId this.id}}">{{{viewSel.label}}}</label>
+                    <div class="ups-dropdown_wrapper">
+                        <select id="ups-daysofop_locSel" name="ups-daysofop_locSel-{{nameToId this.id}}" class="ups-dropdown">
+                            {{#each viewSel.options}}
+                            <option value="{{this.value}}"{{#if this.selected}} selected{{/if}}>{{{this.label}}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    {{#if print}}
+                    <a class="ups-daysofop_print" href="{{print.link}}">{{print.label}}</a>
+                    {{/if}}
+                {{/unless}}
+            </div>
+            <ul class="ups-daysofop_days">
+               <!-- Days placed here via AJAX -->
+            </ul>
+        </div>
+    </div> <!-- @end .ups-wrap_inner -->
+</div> <!-- @end .ups-wrap.ups-daysofop -->

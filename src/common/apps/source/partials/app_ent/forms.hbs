@@ -1,0 +1,61 @@
+<{{#is this.type "buttonList"}}fieldset{{else}}div{{/is}} class="ups-form_group {{#if this.required}}ups-form_required{{/if}} {{#if help}}ups-help_wrapper {{#is this.input "textField"}}ups-help_textWrapper{{/is}}{{/if}}">
+	{{#if header}}
+		{{#is this.type "buttonList"}}
+		<legend class="ups-form_label">{{this.header}}</legend>
+		{{else}}
+		<label for="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}" class="ups-form_label">
+        	{{this.header}}
+            {{#if this.required}}<span aria-hidden="true" class="ups-required_indicator"></span>{{/if}}
+        </label>
+		{{/is}}
+		{{#if subheader}} <p class="ups-form_subheader">{{subheader}}</p>{{/if}}
+		{{#if help}}
+		   <div class="ups-help">
+				<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+				<div class="ups-help_tooltip">
+					<button type="button" class="ups-help_close icon ups-icon-xcircle ups-iconAlone">
+						<span class="ups-readerTxt">Close</span>
+					</button>
+					<p>{{this.help}}</p>
+				</div>
+		   </div>
+		{{/if}}
+	{{/if}}
+	{{#is this.input "textField"}}
+		<div class=" ups-text_wrapper ups-input_wrapper {{#is this.type 'email'}}email_input{{/is}}" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+			<input type="{{type}}" name="{{this.name}}" class="ups-form_input ups-error" id="ups-uid-ups-uid-{{nameToId ../../title}}-{{nameToId this.header}}" {{#if this.maxlength}}maxlength="{{this.maxlength}}"{{/if}}>
+		</div>
+	{{/is}}
+	{{#is this.type "textArea"}}
+		<div class="ups-textArea_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+			<textarea class = "ups-textArea" id="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}" rows="8" maxlength="500" name="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}"></textarea>
+			<p class="ups-textArea_characters"></p>
+		</div>
+	{{/is}}
+	{{#is this.type "dropdown"}}
+		<div class="ups-dropdown_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+			<select name="{{this.name}}" class="ups-dropdown" id="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}">
+				{{#each items}}
+					<option value="{{this.value}}">{{this.text}}</option>
+				{{/each}}
+			</select>
+		</div>
+	{{/is}}
+	{{#is this.type "buttonList"}}
+	   {{#each items}}
+			<div class = "ups-buttonList_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+				<input id="ups-uid-{{nameToId ../../../title}}-{{nameToId this.text}}" class="ups-{{this.type}}-custom" name="ups-uid-{{nameToId ../../../title}}-{{nameToId this.name}}" type="{{this.type}}" value="{{this.value}}"  {{#if checked}}checked{{/if}}>
+				<label for="ups-uid-{{nameToId ../../../title}}-{{nameToId this.text}}" class="ups-{{this.type}}-custom-label">{{{this.text}}}</label>
+
+			</div>
+		{{/each}}
+	{{/is}}
+	{{#is this.type "checkbox"}}
+		<div class = "ups-checkbox ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+			<input id="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" class="ups-checkbox-custom" name="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" value="{{this.value}}" type="checkbox">
+			<label for="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" class="ups-form_label ups-checkbox-custom-label">
+				{{{this.text}}}
+			</label>
+		</div>
+	{{/is}}
+</{{#is this.type "buttonList"}}fieldset{{else}}div{{/is}}>

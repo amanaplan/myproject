@@ -1,0 +1,118 @@
+<!-- Beginning of Ineligible Returns Policy Details Component -->
+<!--<form [formGroup]="policyDetailsForm" (ngSubmit)="demoSendLabel(policyDetailsForm.value)" novalidate>-->
+
+    <!-- <div *ngIf="(policyDetailsFormSubmitAttempt &amp;&amp; !policyDetailsForm.valid)">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+
+        <ul class="ups-icons-error">
+            <li *ngIf="(!policyDetailsForm.controls['customerEmailReq'].valid && policyDetailsForm.controls['customerEmailReq'].hasError('required'))">
+                <a href="#customerEmailReq" class="ups-invalid_color" pointIdClick>Customer Email <span class="ups-readerTxt">field</span></a> is required.
+            </li>
+            <li *ngIf="(!policyDetailsForm.controls['customerEmailReq'].valid && policyDetailsForm.controls['customerEmailReq'].hasError('pattern'))">
+                <a href="#customerEmailReq" class="ups-invalid_color"pointIdClick>Customer Email <span class="ups-readerTxt">field</span></a> is invalid.
+            </li>
+        </ul>
+    </div> -->
+
+    <div class="ups-section"> <!-- .ups-section -->
+        <!-- Heading -->
+        <div class="ups-section-header">
+            <h2 class="ups-section_heading">Policy Details</h2>
+        </div>
+        <!-- End of Heading -->
+
+        <h3>Reason for Return</h3>
+        <fieldset class="ups-form_group"> <!-- Reason for Return Fieldset -->
+            <legend class="ups-form_label">Select one from the following list</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input class="ups-radio-custom" id="productDamaged" name="reasonForReturn" type="radio">
+                <label class="ups-radio-custom-label" for="productDamaged">Product was damaged upon arrival</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input class="ups-radio-custom" id="productDidNotMatchDescription" name="reasonForReturn" type="radio">
+                <label class="ups-radio-custom-label" for="productDidNotMatchDescription">Product did not match description</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input class="ups-radio-custom" id="changedMind" name="reasonForReturn" type="radio">
+                <label class="ups-radio-custom-label" for="changedMind">Changed mind</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input class="ups-radio-custom" id="wrongSize" name="reasonForReturn" type="radio">
+                <label class="ups-radio-custom-label" for="wrongSize">Wrong size was ordered</label>
+            </div>
+        </fieldset> <!-- End of Reason for Return Fieldset -->
+
+        <div class="row"> <!-- Beginning of Customer Comments Textarea Row -->
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="customerComments" class="ups-form_label">Customer Comments</label>
+                    <div class="ups-textArea_wrapper ups-input_wrapper">
+                        <textarea class="ups-textArea" id="customerComments" rows="8" maxlength="500" name="customerComments"></textarea>
+                        <p class="ups-textArea_characters">Max 500 characters</p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of Customer Comments Textarea Row -->
+
+        <div class="row"> <!-- Beginning of Customer Email Input Row -->
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="customerEmail" class="ups-form_label">Customer Email</label>
+                    <p class="ups-form_subheader">Shipping Notifications</p>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="email" name="customerEmail" class="ups-form_input" id="customerEmail">
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of Customer Email Input Row -->
+
+        <!-- <div class="ups-section-header">
+            <h2 class="ups-section_heading">Return Details</h2>
+        </div> -->
+
+
+        <!-- <div class="ups-form_group">
+            <label for="additionalNotes" class="ups-form_label">Additional Notes</label>
+            <div class="ups-textArea_wrapper ups-input_wrapper">
+                <textarea class="ups-textArea" id="additionalNotes" rows="8" maxlength="500" name="additionalNotes"></textarea>
+            </div>
+        </div>  -->
+
+        <!-- <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="customerEmailReq" class="ups-form_label">Customer Email  <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                    <p class="ups-form_subheader">Print Label</p>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="customerEmailReq" class="ups-form_input" id="customerEmailReq" aria-describedby="customerEmailReq_error" [ngClass]="{'ups-bodError': (!policyDetailsForm.controls['customerEmailReq'].valid &amp;&amp; policyDetailsForm.controls['customerEmailReq'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="policyDetailsForm.controls['customerEmailReq']" required aria-required="true">
+                    </div>
+                    <span class="ups-icons-error" id="customerEmailReq_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!policyDetailsForm.controls['customerEmailReq'].valid &amp;&amp; policyDetailsForm.controls['customerEmailReq'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="policyDetailsForm.controls['customerEmailReq'].hasError('required')">
+                                Email is required.
+                            </span>
+                            <span *ngIf="!policyDetailsForm.controls['customerEmailReq'].hasError('required')">
+                                Email is invalid.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- CTA Button Group -->
+        <div class="ups-form_ctaGroup">
+            <a class="ups-cta ups-cta_primary" routerLink="/ineligibleReturns/complete">Send Label</a>
+        </div>
+        <!-- End of CTA Button Group -->
+
+    </div><!-- .ups-section -->
+
+<!--</form> -->
+<!-- End of Ineligible Returns Policy Details Component -->

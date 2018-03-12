@@ -1,0 +1,168 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M02 FOOTER
+================================================================================
+-------------------------------------------------------------------------------}}
+<!-- M02 Footer -->
+<!-- For full documentation app/source/partials/modules/M02_footer.hbs -->
+
+<footer id="ups-footerWrap" class="ups-wrap" role="contentinfo">
+    <div id="ups-footer" class="ups-wrap_inner">
+        <div class="ups-footer_colsCont ups-container">
+
+            <div class="ups-footer_custserv col-md-3">
+                <!-- CUSTOMER SERVICE -->
+                <div class="ups-footer_links">
+                    <h2 class="ups-footer_toggle" id="ups-footer_custServe">
+                        <span class="icon" aria-hidden="true"></span><span id="ups-footer_custServe2">{{{this.custServ.label}}}</span>
+                        <button class="ups-med_show" aria-expanded="false" aria-labelledby="ups-footer_custServe2" aria-controls="ups-footer_custServeLinks ups-footer_custServeConacts">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            {{!-- <span class="ups-readerTxt" data-lang-show="Expand {{this.custServ.label}}" data-lang-hide="Collapse {{this.custServ.label}}">Expand {{{this.custServ.label}}}</span> --}}
+                        </button>
+                    </h2>
+                    <ul class="ups-footer_expand" aria-labelledby="ups-footer_custServe" id="ups-footer_custServeLinks">
+                        {{#each this.custServ.links}}
+                        <li>
+                            <a href="{{this.link}}"{{#if this.icon}} class="{{this.icon}}"{{/if}}>
+                                {{{this.label}}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <ul class="ups-footer_contact ups-footer_expand" aria-expanded="false" aria-labelledby="ups-footer_custServe" id="ups-footer_custServeConacts">
+                        {{#each this.custServ.contact}}
+                        <li>
+                            <a href="{{this.link}}"{{#if this.blank}} target="_blank"{{/if}}>
+                                <span class="icon {{this.icon}}" aria-hidden="true"></span>{{{this.label}}}
+                                <span class="ups-link_newwindow" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Open the link in a new window</span>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div> <!-- @end .ups-footer_col -->
+
+            <div class="ups-footer_col col-md-3 ups-left-md">
+                <!-- THIS SITE -->
+                <div class="ups-footer_links">
+                    <h2 class="ups-footer_toggle" id="ups-footer_thisSite">
+                        <span id="ups-footer_thisSite2">{{{this.thisSite.label}}}</span>
+                        <button class="ups-med_show" aria-expanded="false" aria-labelledby="ups-footer_thisSite2" aria-controls="ups-footer_thisSiteLinks">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            {{!--<span class="ups-readerTxt" data-lang-show="Expand {{this.thisSite.label}}" data-lang-hide="Collapse {{this.thisSite.label}}">Expand {{{this.thisSite.label}}}</span>--}}
+                        </button>
+                    </h2>
+                    <ul class="ups-footer_expand" aria-labelledby="ups-footer_thisSite" id="ups-footer_thisSiteLinks">
+                        {{#each this.thisSite.links}}
+                        <li>
+                        <a href="{{this.link}}" class="{{#if this.more}} ups-more{{/if}}{{#if this.icon}} {{this.icon}}{{/if}}">
+                            {{{this.label}}}
+                        </a>
+                    </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div> <!-- @end .ups-footer_col -->
+
+            <div class="ups-footer_col col-md-3 ups-left-md">
+                <!-- OTHER UPS SITES -->
+                <div class="ups-footer_sites ups-footer_links">
+                    <h2 class="ups-footer_toggle" id="ups-footer_otherSites" >
+                        <span id="ups-footer_otherSites2">{{{this.otherSites.label}}}</span>
+                        <button class="ups-med_show" aria-labelledby="ups-footer_otherSites2" aria-expanded="false" aria-controls="ups-footer_otherSitesLinks">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            {{!-- <span class="ups-readerTxt" data-lang-show="Expand {{this.otherSites.label}}" data-lang-hide="Collapse {{this.otherSites.label}}">Expand {{{this.otherSites.label}}}</span> --}}
+                        </button>
+                    </h2>
+                    <ul class="ups-footer_expand" aria-labelledby="ups-footer_otherSites" id="ups-footer_otherSitesLinks">
+                        {{#each this.otherSites.links}}
+                        <li>
+                        <a href="{{this.link}}" class="{{#if this.more}} ups-more{{/if}}{{#if this.icon}} {{this.icon}}{{/if}}"{{#if this.blank}} target="_blank"{{/if}}>
+                            {{{this.label}}}
+                            <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Open the link in a new window</span>
+                        </a>
+                    </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <!-- COMPANY INFO -->
+                <div class="ups-footer_info ups-footer_links">
+                    <h2 class="ups-footer_toggle"  id="ups-footer_companyInfo">
+                        <span id="ups-footer_companyInfo2">{{{this.companyInfo.label}}}</span>
+                        <button class="ups-med_show" aria-expanded="false" aria-labelledby="ups-footer_companyInfo2" aria-controls="ups-footer_companyInfoLinks">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            {{!-- <span class="ups-readerTxt" data-lang-show="Expand {{this.companyInfo.label}}" data-lang-hide="Collapse {{this.companyInfo.label}}">Expand {{{this.companyInfo.label}}}</span> --}}
+                        </button>
+                    </h2>
+                    <ul class="ups-footer_expand" aria-labelledby="ups-footer_companyInfo" id="ups-footer_companyInfoLinks">
+                        {{#each this.companyInfo.links}}
+                        <li>
+                        <a href="{{this.link}}" class="{{#if this.more}} ups-more{{/if}}{{#if this.icon}} {{this.icon}}{{/if}}">
+                            {{{this.label}}}
+                        </a>
+                    </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+            </div> <!-- @end .ups-footer_col -->
+            <div class="ups-footer_col col-md-3 ups-left-md">
+                <!-- CONNECT WITH US -->
+                <div class="ups-footer_links">
+                    <h2 class="ups-footer_toggle" id="ups-footer_connect">
+                        <span id="ups-footer_connect2" >{{{this.connect.label}}}</span>
+                        <button class="ups-med_show" aria-expanded="false" aria-labelledby="ups-footer_connect2" aria-controls="ups-footer_connectLinks">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            {{!-- <span class="ups-readerTxt" data-lang-show="Expand {{this.connect.label}}" data-lang-hide="Collapse {{this.connect.label}}">Expand {{{this.connect.label}}}</span> --}}
+                        </button>
+                    </h2>
+                    <ul class="ups-footer_expand" aria-labelledby="ups-footer_connect" id="ups-footer_connectLinks">
+                        {{#each this.connect.links}}
+                        <li>
+                            <a href="{{this.link}}" class="{{#if this.more}} ups-more{{/if}}{{#if this.icon}} {{this.icon}}{{/if}}" {{#if this.target}}target="{{this.target}}"{{/if}}>
+                            {{{this.label}}}
+                            {{#if this.target}}{{#compare this.target '==' '_blank'}}
+                            <span class="ups-link_newwindow" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Open the link in a new window</span>
+                            {{/compare}}{{/if}}
+                        </a>
+                    </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div> <!-- @end .ups-footer_col -->
+
+            
+        </div> <!-- @end .ups-footer_colsCont -->
+
+        <div class="ups-footer_legal">
+            <!-- LEGAL -->
+            <div class="ups-footer_links">
+                <h2 class="ups-med_show ups-footer_toggle" id="ups-footer_legal" >
+                    <span id="ups-footer_legal2">{{{this.legal.label}}}</span>
+                    <button class="ups-med_show" aria-expanded="false" aria-labelledby="ups-footer_legal2" aria-controls="ups-footer_legalLinks">
+                        <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                        {{!-- <span class="ups-readerTxt" data-lang-show="Expand {{this.legal.label}}" data-lang-hide="Collapse {{this.legal.label}}">Expand {{{this.legal.label}}}</span> --}}
+                    </button>
+                </h2>
+                <ul class="ups-footer_expand" aria-labelledby="ups-footer_legal" id="ups-footer_legalLinks">
+                    {{#each this.legal.links}}
+                    <li>
+                        <a href="{{this.link}}" class="{{#if this.more}} ups-more{{/if}}{{#if this.icon}} {{this.icon}}{{/if}}">
+                            {{{this.label}}}
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{!-- <a class="ups-med_show ups-feedback_link {{this.feedback.icon}}" href="{{this.feedback.link}}">{{{this.feedback.label}}}</a> --}}
+                <p class="ups-footer_disclaimer">{{{this.legal.disclaimer}}}</p>
+            </div>
+        </div> <!-- @end .ups-footer_legal -->
+
+    </div> <!-- @end #ups-footer -->
+</footer> <!-- @end #ups-footerWrap -->
+
+

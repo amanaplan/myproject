@@ -1,0 +1,172 @@
+<!------------- -- --------------> 
+<!--   IC DEV Display Module   --> 
+<!------------- -- --------------
+<script type="text/javascript">
+var htmlcobrand;
+$(document).ready(function(){
+	/* Prepend Control Box */
+	$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Track" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Tracking" class="btn"></div></div>');
+	/* Set default container and stylesheet to Internet Pickup */
+	$('.switchContainer').removeClass('ccacmpad1');
+	$('.switchContainer').attr('id', 'ccCntMod');
+	chooseStyle('Tracking', 60);	
+	htmlcobrand = $('.cobrand').html();
+	$('.cobrand').remove();
+	
+});
+/* function to switch views */
+function switchContainer(container) {
+	if(container == 'ccCntMod') {
+		$('.switchContainer').removeClass('ccacmpad1');
+		$('.switchContainer').attr('id', container);
+		chooseStyle('Tracking', 60);
+		$('.cobrand').remove();
+	} 
+	if(container == 'ccacmpad1') {
+		$('.switchContainer').attr('id', '');
+		$('.switchContainer').addClass(container);
+		chooseStyle('Campus Track', 60);
+		$('.cobrand').remove();
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+	}
+}
+
+</script> 
+
+<!------------- -- --------------> 
+<!-- END IC DEV Display Module --> 
+<!------------- -- -------------->
+
+<div class="appLvl modal-dialog mod modal dialog">
+	
+	<div class="appHead clearfix">
+		<h2 class="ups-modal_heading">UPS Access Point&trade; Delivery Alert</h2>
+		<!--<ul>
+			<li>
+				<input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+			</li>
+		</ul>-->
+		<button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()">
+			<span class="icon ups-icon-x" aria-hidden="true"></span>
+			<span class="ups-readerTxt ng-binding">Close Action Unavailable dialog</span>
+		</button>
+	</div>
+	<div class="appBody ups-application_wrapper ups-form_wrap"> 
+		<p>Your package is on the way to a UPS Access Point&trade; location. Allow us to notify you when your package is available for pick-up.</p>
+		<p>Required fields are indicated with <span aria-hidden="true" class="ups-required_indicator"></span></p>
+		<p class="error">&gt;&gt;&gt;Error Message placeholder</p>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+					<label class="ups-form_label" for="repl_id1">
+					Notification Type
+						<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select class="ups-dropdown" name="repl_name" id="repl_id1" required aria-required="true">
+							<option value="repl_value" selected>E-mail</option>
+							<option value="repl_value">SMS</option>
+						</select>
+					</div>						
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="ups-no_label ups-no_label_plus">
+					<a href="repl_href">Add a Number</a>
+				</div> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+					<label class="ups-form_label" for="repl_id2">
+					Notification Language
+						<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select class="ups-dropdown" name="repl_name" id="repl_id2" required aria-hidden="true">
+							<option value="repl_value" selected>United States - English</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+						<label class="ups-form_label" for="repl_id4">
+						Email
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="repl_name" id="repl_id4" class="ups-form_input" required aria-required="true" value="" placeholder="name@abc.com">
+					</div>	
+				</div>
+			</div>
+		</div>		
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+					<label class="ups-form_label" for="repl_id4" class="error">
+					&gt;&gt;&gt;Your Email
+						<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>						
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="repl_name" id="repl_id4" class="ups-form_input" required aria-required="true">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+					<label class="ups-form_label" for="repl_id7">
+						Phone
+						<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="repl_name" id="repl_id7" class="ups-form_input" required aria-required="true">
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="ups-form_group ups-form_required">
+					<label class="ups-form_label" for="repl_id6">
+					Phone 
+					<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select class="ups-dropdown" name="repl_name" id="repl_id6" required aria-required="true">
+							<option value="repl_value" selected>Select Number</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<a href="repl_href" class="ups-no_label ups-no_label_plus">Add a Number</a> </dd>
+			</div>
+		</div>
+		<div class="ups-buttonList_wrapper ups_input_wrapper">
+			<input class="ups-checkbox-custom" name="repl_name" type="checkbox" value="" id="repl_id5"/>
+			<label class="ups-checkbox-custom-label" for="repl_id5">Do not show this message again for this package.</label>
+		</div>		
+	</div>
+	<div class="appFooter">
+		<div class="ups-form_ctaGroup text-center"> 
+			<button type="submit" class="ups-cta ups-cta_primary" value="" name="repl_name">Notify Me</button>
+			<button type="submit" class="ups-cta ups-cta_secondary" value="" name="repl_name">Close</button>			
+		</div>
+	</div>
+
+</div>	
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+		var modal = $('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal', width:550});
+		$('#modalClose').click(function(e){
+			modal.dialog('close');
+		});	
+	});
+</script>

@@ -1,0 +1,135 @@
+<!-- ************************************************************************************ -->
+<!-- M09 Secondary Navigation                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M09 Secondary Navigation - Notes
+********************************************************************************
+
+ - This hierarchal list will be dynamically generated based on nodes in the sitemap.
+
+ - This component should only be used as secondary navigation and should appear on all pages Level 2 and below (reference: Home Page is Level 0, Landing Page - i.e. Products & Services is Level 1, Sub Landing Page - i.e. Healthcare is Level 2). In the Support/Customer Service section, Secondary Navigation should appear on all pages Level 1 and below.
+
+ - This component should always appear as the first component in the right rail.
+
+ - On Small Viewport, this component will display twice in its collapsed state - once at the top of the main content column and once at the top of the right rail column.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M09 Secondary Navigation - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    title                      = string     / YES           / IN THIS SECTION
+    prev                       = object     / YES           / {"label": "Healthcare Products","url": "shipping.html"}
+    prev.url                   = string     / YES           / helpCenter.html
+    prev.label                 = string     / YES           / Help Center
+    items                      = array      / YES           / [{toggle_title, links[]}]
+    links                      = array      / NO            / [{label,url}, {label,url}, {label,url}, ...]
+    links[0].label             = string     / NO            / Packaging and Shipping Support
+    links[0].url               = string     / NO            / #packandship_suppor
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M09 Secondary Navigation - Layout
+********************************************************************************
+
+-secondary nav-
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-secondaryNav">
+    <div class="ups-wrap_inner">
+        <div class="ups-accordion_wrapper ups-accordion_sub ups-active">
+            <h2 class="ups-secnav-head">
+            <button class="ups-accordion_title" aria-controls="ups-secnav-content" aria-expanded="true" id="ups-secnav-title">
+                {{this.title}}
+                <i class="icon ups-icon-plus" aria-hidden="true"></i>
+            </button>
+            </h2>
+            <ul class="ups-accordion_content" id="ups-secnav-content" aria-hidden="false" aria-labelledby="ups-secnav-title">
+                <li class='ups-accordion_item '>
+                    <a class="ups-accordion_prev" href="{{this.prev.url}}"><i class="icon ups-icon-chevronleft" aria-hidden="true"></i> {{this.prev.label}}</a>
+                </li>
+                {{#each this.items}}
+                    <li class='ups-accordion_item ups-active'>
+                        <h3 class="ups-accordion_toggle current_page">{{this.toggle_title}}</h3>
+                        <div class="ups-accordion_expand">
+                            {{#if this.links}}
+                                {{#each this.links}}
+                                    <a href="{{this.url}}">{{this.label}}</a>
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                        <div class="ups-accordion_allLinks" aria-hidden="true" id="ups-secnav-hidden" aria-labelledby="ups-secnav-showhidebutton">
+			              <ul class="ups-accordion_content">
+				             <li class='ups-accordion_item ups-active'>
+		                        <div class="ups-accordion_expand">
+		                            {{#if this.links}}
+		                                {{#each this.links}}
+		                                    <a href="{{this.url}}">{{this.label}}</a>
+		                                {{/each}}
+		                            {{/if}}
+		                        </div>
+		                    </li>
+				            </ul>
+			            </div>
+		                {{#if this.links_extended}}
+		                    <button class="ups-secNavAccordion_showhidetext active" aria-expanded="false" aria-controls="ups-secnav-hidden" id="ups-secnav-showhidebutton">
+		                        <span class="ups-showtext"><span class="icon ups-icon-plus" aria-hidden="true"></span>Show All</span>
+		                        <span class="ups-hidetext"><span class="icon ups-icon-minus" aria-hidden="true"></span>Hide</span> (6)
+		                    </button>
+		                {{/if}}
+			        </li>
+                {{/each}}
+            </ul>
+       </div>
+    </div>
+
+    {{#if this.items }}
+        <div class="ups-secondarynav-extn">
+            <div class="ups-wrap-inner">
+                {{#if this.extn_title}}<h2>{{this.extn_title}}</h2>{{/if}}
+                <ul class="ups-secnavExtn-links">
+                    {{#each this.items}}
+                        {{#if this.links_extended}}
+                            {{#each this.links_extended}}
+                                <li><a href="{{this.url}}">{{{this.label}}}</a><span class="icon" aria-hidden="true"></span></li>
+                            {{/each}}
+                        {{/if}}
+                    {{/each}}
+                </ul>
+                <div class="ups-secNav_allLinks" aria-hidden="true" id="ups-secnav-extnlinks" aria-labelledby="ups-secnavextn-showhidebutton">
+                    <ul class="ups-secnavExtn-links">
+                        {{#each this.items}}
+                            {{#if this.links_extended_showmore}}
+                                {{#each this.links_extended_showmore}}
+                                    <li><a href="{{this.url}}">{{{this.label}}}</a><span class="icon" aria-hidden="true"></span></li>
+                                {{/each}}
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+                {{#each this.items}}
+                    {{#if this.links_extended}}
+                        <button class="ups-secNav_showhidetext active" aria-expanded="false" id="ups-secnavextn-showhidebutton" aria-controls="ups-secnav-extnlinks">
+                            <span class="ups-showtext"><span class="icon ups-icon-plus" aria-hidden="true"></span>Show All</span>
+                            <span class="ups-hidetext"><span class="icon ups-icon-minus" aria-hidden="true"></span>Hide</span> (6)
+                        </button>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    {{/if}}
+</div>

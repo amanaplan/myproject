@@ -1,0 +1,67 @@
+<div class="ups-multi_select_view">
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">
+                    Select from all available tracking numbers.
+                </legend>
+                <div class="ups-text_scroll">
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngFor="let trkNum of multiSelTrkNums; let n = index">
+                        <input type="checkbox"
+                            class="ups-checkbox-custom"
+                            [id]="'claimNewAvailableTrkNum' + n"
+                            [name]="'claimNewAvailableTrkNum' + n"
+                            [value]="trkNum.trkNum"
+                            [(ngModel)]="trkNum.selected"
+                            (ngModelChange)="claimNewAvailableCheckSelAll();"
+                            [ngModelOptions]="{standalone : true}">
+                        <label class="ups-checkbox-custom-label"
+                            [for]="'claimNewAvailableTrkNum' + n">
+                            {{ trkNum.trkNum }}
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="ups-form_group">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input type="checkbox"
+                        class="ups-checkbox-custom"
+                        id="claimNewAvailableSelAll"
+                        name="claimNewAvailableSelAll"
+                        value="trkNum.trkNum"
+                        [ngModel]="claimNewAvailableSelAll"
+                        (ngModelChange)="claimNewAvailableSelAllChange()"
+                        [ngModelOptions]="{standalone : true}">
+                    <label class="ups-checkbox-custom-label"
+                        for="claimNewAvailableSelAll">
+                        Select all
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">
+                    Tracking numbers you have selected
+                </legend>
+                <div class="ups-text_scroll">
+                    <ul class="ups-multi_select_list">
+                        <ng-container *ngFor="let trkNum of multiSelTrkNums; let n = index">
+                            <li class="ups-multi_select_option" *ngIf="trkNum.selected">
+                                <button type="button"
+                                    class="icon ups-icon-x ups-iconAlone ups-multi_select_list_btn"
+                                    (click)="trkNum.selected = false; claimNewAvailableCheckSelAll();">
+                                    <span class="ups-readerTxt">Remove {{ trkNum.trkNum }}</span>
+                                </button>
+                                <span aria-hidden="true">{{ trkNum.trkNum }}</span>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,458 @@
+// ----------------------------------------------------
+// Billing
+// ----------------------------------------------------
+
+.ups-billing_wrap {
+    @include ups-component_margin;
+}
+
+.subsection_main{
+	.ups-billing.ups-widget{
+			div.ups-form_ctaGroup{
+				margin-bottom : 0 ;
+			}
+		}
+	}
+.ups-billing {
+    .ups-widget_panel {
+        h2{
+            font-family: $sans-bd;
+            font-size: 30px;
+            margin: 0 0 $margin_3;
+            padding-top: 0;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+        p{
+            margin-bottom: 30px;
+            line-height: 19px;
+        }
+        a {
+            color: $black_s4;
+            text-decoration: underline;
+            font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+        }
+
+        .ups-billing_tableWrap{
+            p{
+                margin-bottom: 20px;
+            }
+            .ups-billing_table {
+                min-height: 80px;
+                .ups-billing_tableHead {
+                    //width:92%;
+                    width:100%;
+                    float:#{$default-float};
+                    background: $ups_stone;
+                    font-family: $sans-bd;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                    .ups_billing-accountNum {
+                        padding: 12px 10px 10px;
+                        float:#{$default-float};
+                    }
+                    .ups_billing-paymentDue {
+                        padding: 12px 10px 10px;
+                        float:#{$opposite-direction};
+                        background: $ups_gold;
+                    }
+                    .ups-form_label {
+                        display:inline-block;
+                        width:auto;
+                        margin-right:$margin_5;
+                    }
+                    .ups-dropdown_wrapper {
+                        display:inline-block;
+                        width:auto;
+                    }
+                }
+                .ups_billing-tableColumn {
+                    .ups_billing-tableRow {
+                        width: 100%;
+                        border-bottom: 1px solid $ups_stone;
+                        float: #{$default-float};
+                        padding: 15px 10px;
+                        .ups_tableRow_label {
+                            float: #{$default-float};
+                            margin-#{$opposite-direction}: 5px;
+                            font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+                        }
+                        .ups_tableRow_value {
+                            float:#{$opposite-direction};
+                            &.ups_billing-num {
+                                font-size: 23px;
+                                margin-top:-8px;
+                            }
+                        }
+                        .ups_tableRow-invoice {
+                            float: #{$default-float};
+                        }
+                        .ups_tableRow-total {
+                            float:#{$opposite-direction};
+                            margin-top: 60px;
+                        }
+                        &:first-child {
+                            margin-top: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .ups-form_ctaGroup {
+            width: 100%;
+            float:#{$default-float};
+            padding: $margin_4 10px $margin_4;
+            margin-bottom: $margin_3;
+            background: $stone_60;
+            button{
+                float:#{$opposite-direction};
+            }
+            a{
+                float:#{$default-float};
+                height: 100%;
+                color: $black_s4 ;
+                text-decoration: underline;
+                line-height: 1;
+                padding: 17px 0 0;
+                margin: 0 0;
+                margin-#{$default-float}: 15px;
+                font-weight: 400;
+            }
+            .ups-cta_changeAccount {
+                position: relative;
+                background: none;
+                color: $black_s4;
+                padding: 10px 0 10px;
+                margin: 0 30px;
+                font-family: $sans-bd;
+                font-size: 14px;
+
+                span {
+                    text-decoration: underline;
+                }
+
+                &.ups-cta_no-lead-margin {
+                    margin-#{$default-float}: 0px;
+                }
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+                &:before{
+                    font-size: 20px;
+                    margin-#{$opposite-direction}: 7px;
+                    line-height: 0;
+                    position: relative;
+                    top: 5px;
+                }
+            }
+//            .ups-cta_payAccount {
+//                float:#{$opposite-direction};
+//            }
+        }
+
+        .ups-billing_error {
+            font-family: $sans-bd;
+            .icon:before {
+                color:$red;
+                position: relative;
+                top: 6px;
+                padding-right: 6px;
+                font-size:24px;
+            }
+        }
+    }
+}
+
+@mixin ups_billing_md {
+    .ups-widget_panel {
+
+        .ups-billing_tableWrap
+        .ups-billing_table
+        .ups_billing-tableColumn
+        .ups_billing-tableRow {
+            .ups_tableRow-total {
+                padding: 19px 0 0;
+                width: 100%;
+                white-space: pre;
+                text-align: $default-float;
+                float: $default-float;
+            }
+            .ups_tableRow-invoice {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+@mixin ups_billing_sm {
+    .ups-widget_panel {
+        .ups-billing_body {
+            padding: 0;
+            h2{
+                margin-bottom: $margin_3;
+            }
+            p {
+                margin-bottom: $margin_3;
+            }
+        }
+        .ups-billing_tableWrap{
+            p{
+                padding: 0 30px;
+            }
+            max-height: 0;
+            .ups-billing_table {
+                .ups-billing_tableHead {
+                    .ups_billing-accountNum:not(.ups_billing-multiAccount) {
+                        width: 100%;
+                        text-align: center;
+                        font-size: 21px;
+                        padding: $margin_4 10px $margin_4;
+                    }
+                    .ups_billing-multiAccount {
+                        width: 100%;
+                        padding: $margin_4 10px $margin_4;
+                    }
+                    .ups-form_label, .ups-dropdown_wrapper {
+                        display:block;
+                        width:100%;
+                    }
+                    .ups_billing-paymentDue {
+                        width: 100%;
+                        text-align: center;
+                        float: #{$default-float};
+                    }
+                }
+                .ups_billing-tableColumn {
+                    /*padding: 20px;*/
+                    .ups_billing-tableRow {
+                        width: 100%;
+                        border-bottom: 1px solid $ups_stone;
+                        float: #{$default-float};
+                        padding: 12px 0px 10px;
+
+                        .ups_tableRow_label {
+                            width: 100%;
+                            float: #{$default-float};
+                            margin-bottom: 5px;
+                            margin-#{$opposite-direction}: 5px;
+                        }
+                        .ups_tableRow_value {
+                            float: #{$default-float};
+                            font-size: 21px;
+                            margin:0;
+                        }
+                        .ups_tableRow-invoice {
+                            float: #{$default-float};
+                            margin-bottom: 10px;
+
+                            .ups_tableRow_value {
+                                font-size: 14px;
+                            }
+                        }
+                        .ups_tableRow-total {
+                            padding-top: 0px;
+                            float: #{$default-float};
+                            margin-top: 0;
+                            white-space: normal;
+                        }
+                        &:last-child {
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+        .ups-form_ctaGroup {
+            &.ups-billing_addAccount {
+                padding: 0 0 $margin_3;
+                background: none;
+                &:before {
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    float: left;
+                    margin-bottom: $margin_3;
+                    background: $stone_60;
+                }
+            }
+            button {
+                width: 100%;
+                padding: 12px 0px 10px;
+                max-width: 100%;
+                &.ups-cta_payAccount{
+                    margin-bottom: $margin_4;
+                }
+                &.ups-cta_changeAccount {
+                    float: none;
+                    margin: auto;
+                    width: initial;
+                    display: block;
+
+                    &.ups-cta_no-lead-margin {
+                        text-align: center;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                    }
+                }
+            }
+            a {
+                width: 100%;
+                text-align: center;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.ups-billing {
+    @media #{$ss-limit} {
+        @include ups_billing_md;
+    }
+    @media #{$media-medium} {
+        .ups-widget_panel{
+            .ups-billing_tableHead{
+                .ups_billing-accountNum,
+                .ups_billing-paymentDue {
+                    width: 50%;
+                }
+            }
+            .ups-form_ctaGroup {
+                    text-align: center;
+                .ups-cta_payAccount {
+                    width: 100%;
+                    padding: 10px 0 10px;
+                }
+
+                .ups-cta_changeAccount {
+                    float: none;
+                    margin: auto;
+                    width: initial;
+                }
+                &.ups-billing_addAccount {
+                    text-align: center;
+                    button {
+                        float: none;
+                    }
+                    a {
+                        width: 100%;
+                        margin:0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ups-billing {
+    @media #{$media-small} {
+        @include ups_billing_sm;
+    }
+}
+
+.subsection_aside .ups-billing_wrap,
+.iw_columns.col-lg-4 .ups-billing_wrap {
+    @include aside-pad_sm;
+
+    .ups-billing {
+        @include ups_billing_sm;
+    }
+}
+
+
+.ups-headerTools_widgets .ups-billing .ups-toolWrap .ups-tool {
+    .ups-billing {
+        padding: 0 15px;
+        .ups-widget_panel {
+            min-height: 285px;
+            position: relative;
+            .ups-billing_bodyCopy {
+                margin: 50px 0 30px;
+                float: left;
+            }
+            .ups-billing_tableWrap{
+                .ups-billing_table {
+                    min-height: 80px;
+
+                    .ups-billing_tableHead {
+                        .ups_billing-accountNum,
+                        .ups_billing-paymentDue {
+                            padding: 8px 20px;
+                        }
+                    }
+
+                    .ups_billing-tableColumn {
+                        .ups_billing-tableRow {
+                            padding: 15px 20px 13px;
+                            /*&:last-child {
+                                display: none;
+                            }*/
+                        }
+                    }
+                }
+            }
+            .ups-form_ctaGroup {
+                padding: 20px;
+
+                .ups-cta_payAccount {
+                    float: #{$opposite-direction};
+                }
+
+                .ups-cta_changeAccount {
+                    margin-#{$default-float}: 0;
+                }
+            }
+            @media #{$media-medium} {
+                .ups-billing_tableHead{
+                    .ups_billing-accountNum,
+                    .ups_billing-paymentDue {
+                        width: 50%;
+                    }
+                }
+                .ups-form_ctaGroup {
+                    padding: 3%;
+                    .ups-cta_payAccount {
+                        width: 27%;
+                        padding: 10px 0 10px;
+                    }
+
+                    .ups-cta_changeAccount {
+                        width: 72%;
+                        text-align: $default-float;
+                        margin:0;
+                    }
+                    &.ups-billing_addAccount {
+                        text-align: center;
+                        button {
+                            float: none;
+                        }
+                        a {
+                            width: 100%;
+                            margin:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

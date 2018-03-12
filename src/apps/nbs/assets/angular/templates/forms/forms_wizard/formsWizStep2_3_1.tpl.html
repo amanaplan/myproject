@@ -1,0 +1,150 @@
+<div class="ups-form_group">
+    <label class="ups-lever" onclick="" for="hmcMaterialsCAMXUSLever">
+        <input type="checkbox"
+                id="hmcMaterialsCAMXUSLever"
+                name="hmcMaterialsCAMXUSLever"
+                class="ups-lever_checkbox"
+                [(ngModel)]="hmcMaterialsCAMXUSLever"
+                [ngModelOptions]="{'standalone': true}">
+        <strong class="ups-form_label ups-lever_label">Is this item completely made up of materials or parts from Canada, Mexico, and the United States?</strong>
+        <!-- if checked then yes -->
+        <span aria-hidden="true" class="ups-lever_switch">
+            <span class="ups-lever_switch_yes">Yes</span>
+            <span class="ups-lever_switch_bg"></span>
+            <span class="ups-lever_switch_no">No</span>
+        </span>
+    </label>
+</div>
+<div *ngIf="hmcMaterialsCAMXUSLever">
+    <!-- <div class="ups-form_group">
+        <label class="ups-lever" onclick="" for="hmcMinedLever">
+            <input type="checkbox"
+                    id="hmcMinedLever"
+                    name="hmcMinedLever"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="hmcMinedLever"
+                    [ngModelOptions]="{'standalone': true}">
+        <strong class="ups-form_label ups-lever_label">Was this item mined or extracted within the borders of Canada, Mexico, and the United States?</strong>
+            <p class="ups-form_subheader">In other words, this item is a raw material and NOT a manufactured object.</p> -->
+            <!-- if checked then yes -->
+        <!--    <span aria-hidden="true" class="ups-lever_switch">
+                <span class="ups-lever_switch_yes">Yes</span>
+                <span class="ups-lever_switch_bg"></span>
+                <span class="ups-lever_switch_no">No</span>
+            </span>
+        </label>
+    </div> -->
+    <!-- <p>For items with a mix of originating and foreign materials, NAFTA eligibility can be established by how much of the item's cost or value comes from NAFTA-region parts.</p>
+    <div class="alert alert-warning " role="alert">
+        <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+        </div>
+
+        <button type="button"
+                class="ups-alert_collapse"
+                [attr.aria-expanded]="(shipTip1) ? 'true' : 'false'"
+                (click)="shipTip1 = !shipTip1">
+            <span class="ups-readerTxt">Click to expand</span>
+            <span [ngClass]="{ 'ups-icon-wedgeup' : shipTip1, 'ups-icon-wedgedown' : !shipTip1 }" class="icon " aria-hidden="true"></span>
+        </button>
+
+        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip: </strong> How do I figure out the cost of <em>materials</em> in a product?</p></div>
+        <div class="alert-content ups-alert_has_icon" *ngIf="shipTip1">
+            <p>Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah, Blah.</p>
+        </div>
+    </div>
+</div>
+<div class="ups-group ups-group_condensed" *ngIf="!hmcMaterialsCAMXUSLever">
+    <p>There is a limited set of products which may also qualify for NAFTA exemption.</p>
+    <p>The full list of exempted items can be found in
+        <a href="http://tcc.export.gov/Trade_Agreements/All_Trade_Agreements/NAFTA_Part2_Chapter3.asp" class="ups-link ups-new-window">
+        Annex 308.1 of NAFTA
+        <span class="ups-readerTxt">This will open in a new window</span>
+        <span class="ups-icon-newwindow" aria-hidden="true"></span>
+    </a></p>
+</div>
+<fieldset class="ups-form_group" *ngIf="!hmcMaterialsCAMXUSLever">
+    <legend class="ups-form_label">
+        Choose one of the following:
+    </legend>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupIncludeNextPickup0"
+                class="ups-radio-custom"
+                name="criterionRadio"
+                value="0"
+                type="radio"
+                [(ngModel)]="criterionRadio"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupIncludeNextPickup0" class="ups-radio-custom-label">
+            <strong>Preference Criterion E</strong> covers a specific list of Automated Data Processing equipment.
+        </label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupScheduleAdditional1"
+                class="ups-radio-custom"
+                name="criterionRadio"
+                value="1"
+                type="radio"
+                [(ngModel)]="criterionRadio"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupScheduleAdditional1" class="ups-radio-custom-label">
+            {{'{'}}<strong>Preference Criterion F</strong> covers certain agricultural products exported only to Mexico from Canada.{{'}'}}
+        </label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupIncludeNextPickup2"
+                class="ups-radio-custom"
+                name="criterionRadio"
+                value="2"
+                type="radio"
+                [(ngModel)]="criterionRadio"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+            My product does not meet these provisions.
+        </label>
+    </div>
+</fieldset>
+
+<p *ngIf="criterionRadio == '2'"><span class="icon ups-icon-alert"></span> Based on your information, your product is not eligible for reduced duties under NAFTA.</p>
+
+<fieldset class="ups-form_group" *ngIf="hmcMaterialsCAMXUSLever">
+    <legend class="ups-form_label">
+        Choose one of the following statements to describe your product:
+    </legend>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupIncludeNextPickup0"
+                class="ups-radio-custom"
+                name="criterionRadioProduct"
+                value="0"
+                type="radio"
+                [(ngModel)]="criterionRadioProduct"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupIncludeNextPickup0" class="ups-radio-custom-label">
+            At least 60% of the retail cost of the item comes from Canada, Mexico, and U.S.-originating materials.
+        </label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupScheduleAdditional1"
+                class="ups-radio-custom"
+                name="criterionRadioProduct"
+                value="1"
+                type="radio"
+                [(ngModel)]="criterionRadioProduct"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupScheduleAdditional1" class="ups-radio-custom-label">
+            At least 50% of the net cost of producing this item comes from Canada, Mexico, and U.S.-originating materials.
+        </label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="shipmentPickupIncludeNextPickup2"
+                class="ups-radio-custom"
+                name="criterionRadioProduct"
+                value="2"
+                type="radio"
+                [(ngModel)]="criterionRadioProduct"
+                [ngModelOptions]="{'standalone': true}">
+        <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+            Neither of these statements applies.
+        </label>
+    </div>
+</fieldset> -->

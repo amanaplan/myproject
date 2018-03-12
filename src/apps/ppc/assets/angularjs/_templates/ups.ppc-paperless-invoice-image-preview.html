@@ -1,0 +1,54 @@
+<div class="ups-content-wrapper">
+	<form error-on-submit class="ups-application_wrapper" name="ups_paperImagePreview">
+        <p><strong>Preview your image.</strong></p>
+        <p>Your image will be printed as shown below.</p>
+        <!-- <p>Click and drag the image to reposition it within the image
+            preview window. If you have to change the size of the image , click
+            and pull in the bottom right corner of the image.</p> -->
+        <div class="ups-group">
+            <img data-ng-src="" alt="picFile" id="ups-imgPreview" ngf-thumbnail="picFile" class="ups-thumb">
+        </div>
+        
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Which forms should use this image?</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-checkbox-first"
+                    class="ups-checkbox-custom" name="ups-checkbox-first"
+                    type="checkbox" data-ng-model="form.Selected0"> <label
+                    for="ups-checkbox-first" class="ups-checkbox-custom-label">UPS
+                    Paperless Invoice for Package Shipping</label>
+			</div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-checkbox-second"
+                    class="ups-checkbox-custom" name="ups-checkbox-second"
+                    type="checkbox" data-ng-model="form.Selected1"> <label
+                    for="ups-checkbox-second" class="ups-checkbox-custom-label">UPS
+                    Paperless Packing List for Package Shipping</label>
+			</div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-checkbox-third"
+                    class="ups-checkbox-custom" name="ups-checkbox-third"
+                    type="checkbox" data-ng-model="form.Selected2"> <label
+                    for="ups-checkbox-third" class="ups-checkbox-custom-label">UPS
+                    Paperless Worldwide Express Freight Packing List</label>
+			</div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-checkbox-fourth"
+                    class="ups-checkbox-custom" name="ups-checkbox-fourth"
+                    type="checkbox" data-ng-model="form.Selected3"> <label
+                    for="ups-checkbox-fourth" class="ups-checkbox-custom-label">UPS
+                    Paperless Invoice for Air Freight Shipping</label>
+            </div>
+        </fieldset>
+        
+		<div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_tertiary "
+            	data-ng-click="backtoImageUpload()">Back</button>
+        
+            <button type="submit" class="ups-cta ups-cta_primary "
+        	    data-ng-click="addheadRow();cancel()">Done</button>
+            
+            <button class="ups-cta ups-cta_secondary" data-ng-click="cancel()">Cancel</button>
+		</div>
+	</form>
+</div>

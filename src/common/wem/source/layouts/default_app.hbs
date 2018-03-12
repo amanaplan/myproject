@@ -1,0 +1,75 @@
+{{> global_html_header }}
+
+<div class="iw_viewport-wrapper">
+
+<!-- Begin WEM Header -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M01_main_nav mainNav}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Header -->
+
+<!-- Begin WEM Neck -->
+	{{> ts_container_start}}
+
+        {{#if breadcrumb}}
+            {{> ts_component_start}}
+                {{> M14_breadcrumb}}
+            {{> ts_component_end}}
+        {{/if}}
+
+        {{#unless noPageTitle}}
+            {{> ts_component_start}}
+                {{#if this.share}}
+                    {{#compare this.share.length ">" 0}}
+                        {{> M07_page_title_share}}
+                    {{else}}
+                        {{> M07_page_title}}
+                    {{/compare}}
+                {{else}}
+                    {{> M07_page_title}}
+                {{/if}}
+            {{> ts_component_end}}
+        {{/unless}}
+	{{> ts_container_end}}
+<!-- End WEM Neck -->
+
+<!-- Begin WEM Body -->
+    {{> ts_container_start}}
+	{{> ts_component_start}}
+		{{#if rightRail}}
+			{{> ts_rr_start}}
+			{{> ws_rr_start}}
+		{{else}}
+			{{> ws_fw_start}}
+		{{/if}}
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+        {{ body }}
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->
+		{{#if rightRail}}
+			{{> ws_rr_end}}
+			{{> ts_rr_mid}}
+			{{> cms_container}}
+			{{> ts_rr_end}}
+		{{else}}
+			{{> ws_fw_end}}
+		{{/if}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Body -->
+
+<!-- Begin WEM Footer -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M02_footer footer}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Footer -->
+</div>
+
+{{> global_html_footer}}

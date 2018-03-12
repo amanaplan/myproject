@@ -1,0 +1,330 @@
+<div [formGroup]="formsWizStep2_6" class="ups-section">
+    <div class="ups-group">
+        <!-- <p>According to your information, your item has a total customs value of {{'{'}}nnnn.n{{'}'}}{{'{'}}USD{{'}'}} and requires an EEI.</p> -->
+    </div>
+    <div class="ups-group ups-bottomBorder">
+        <h3>U.S. Principal Party of Interest (USPPI)</h3>
+        <p>The person or company exporting this item is the U.S. Principal Party of Interest. If you are sending this shipment as an individual, you are the USPPI. If this is a business or commercial shipment, that business is the USPPI.</p>
+    </div>
+    <!-- //// Begin Section lvl error handling //// -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+        <ul class="ups-icons-error">
+            <li *ngIf="formsWizStep2_6.controls['usppiID'].hasError('required')">
+                <a href="#ups-usppiID" class="ups-invalid_color" pointIdClick>USPPI ID Number is required.</a>
+            </li>
+            <li *ngIf="formsWizStep2_6.controls['typeID'].hasError('required')">
+                <a href="#ups-typeID" class="ups-invalid_color" pointIdClick>Type of ID is required.</a>
+            </li>
+            <li *ngIf="formsWizStep2_6.controls['indond'].hasError('required') && areBonded">
+                <a href="#ups-indond" class="ups-invalid_color" pointIdClick>Inbond Type Code is required.</a>
+            </li>
+            <li *ngIf="formsWizStep2_6.controls['ftzID'].hasError('required') && ftz">
+                <a href="#ups-ftzID" class="ups-invalid_color" pointIdClick>Foreign Trade Zone is required.</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-usppiID" class="ups-form_label">
+                    USPPI ID Number
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p id="ups-usppiIDHelperTxt" class="ups-form_subheader">Tax ID of business or person filing EEI</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        name="ups-usppiID"
+                        id="ups-usppiID"
+                        class="ups-form_input"
+                        aria-required="true"
+                        required=""
+                        aria-describedby="ups-usppiID_error ups-usppiIDHelpherTxt"
+                        formControlName="usppiID"
+                        [ngClass]="{'ups-bodError':  (!formsWizStep2_6.controls['usppiID'].valid && formsWizStep2_6.controls['usppiID'].touched)}">
+                    <div *ngIf="formsWizStep2_6.controls['usppiID'].valid">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-usppiID_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!formsWizStep2_6.controls['usppiID'].valid && formsWizStep2_6.controls['usppiID'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="formsWizStep2_6.controls['usppiID'].hasError('required')">
+                            USPPI ID Number is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-typeID" class="ups-form_label">
+                    Type of ID
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper">
+                    <select id="ups-typeID"
+                        class="ups-dropdown ups-no_label"
+                        name="ups-typeID"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-typeID_error"
+                        formControlName="typeID"
+                        [(ngModel)]="typeID"
+                        [ngClass]="{'ups-bodError':  (!formsWizStep2_6.controls['typeID'].valid && formsWizStep2_6.controls['typeID'].touched)}">
+                        <option value="0">Foreign Enitity</option>
+                    </select>
+                    <div *ngIf="formsWizStep2_6.controls['typeID'].valid">
+                        <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-typeID-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!formsWizStep2_6.controls['typeID'].valid &amp;&amp; formsWizStep2_6.controls['typeID'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="formsWizStep2_6.controls['typeID'].hasError('required')">
+                            Type of ID is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN Ship Tip -->
+    <div class="alert alert-warning " role="alert">
+        <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+        </div>
+
+        <button type="button"
+                class="ups-alert_collapse"
+                aria-expanded="false"
+                (click)="shipTipDisplay = !shipTipDisplay">
+            <span class="ups-readerTxt">Click to expand</span>
+            <span [ngClass]="{ 'ups-icon-wedgeup' : shipTipDisplay, 'ups-icon-wedgedown' : !shipTipDisplay }" class="icon " aria-hidden="true"></span>
+        </button>
+
+        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> What type of IDs are valid for this form?</p></div>
+        <div class="alert-content ups-alert_has_icon" *ngIf="shipTipDisplay">
+            <p>Depending on the nature of your shipment, several ID types can be used:</p>
+            <ul>
+                <li>For individuals, a <strong>Social Security number (SSN)</strong> will suffice.</li>
+                <li>Business shippers can use either an <strong>Employer Identification Number (EIN)</strong> or the <strong>D-U-N-S&copy; Number (DUNS)</strong> for their address. An EIN is a tax ID issued to a business by the IRS; DUNS is a widely recognized location-specific identifier from Dun &amp; Bradstreet.</li>
+                <li>A foreign entity may use a valid ID form issued and recognized by their government or region, such as a <strong>VAT ID</strong>. If no other number is available, a <strong>passport number</strong> may be used for an individual exporter.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- END Ship Tip -->
+    <!-- BEGIN Shipping Info section -->
+    <section class="ups-section">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">Shipment Information</h3>
+        </div>
+        <!-- BEGIN Internal Shipment Lever -->
+        <div class="ups-form_group ups-help_wrapper">
+            <label class="ups-lever" onclick="" for="ups-internalShip">
+                <input type="checkbox"
+                        class="ups-lever_checkbox"
+                        id="ups-internalShip"
+                        name="ups-internalShip"
+                        checked=""
+                        [(ngModel)]="internalShip"
+                        [ngModelOptions]="{'standalone': true}">
+                <strong class="ups-form_label ups-lever_label">Is this an internal shipment by parties in the same organization?</strong>
+                <p class="ups-form_subheader ups-lever_subheader">A "related-party transaction"</p>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+            <div class="ups-help" upsHelpBtn>
+                <button type="button" id="ups-internalShip-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                    <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                    <p>A related party transaction means that either the sender or receiver owns at least 10% of the voting securities of the other party. This would exclude any shipment involving individuals not representing a business, or a business shipping to a customer.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Internal Shipment Lever -->
+        <!-- BEGIN Bonded Goods Lever -->
+        <div class="ups-form_group ups-help_wrapper">
+            <label class="ups-lever" onclick="" for="ups-areBonded">
+                <input type="checkbox"
+                        class="ups-lever_checkbox"
+                        id="ups-areBonded"
+                        name="ups-areBonded"
+                        checked=""
+                        [(ngModel)]="areBonded"
+                        [ngModelOptions]="{'standalone': true}">
+                <strong class="ups-form_label ups-lever_label">Are you shipping bonded goods?</strong>
+                <p class="ups-form_subheader ups-lever_subheader">Also known as an inbond shipment</p>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+            <div class="ups-help" upsHelpBtn>
+                <button type="button" id="ups-areBonded-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                    <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                    <p>Goods shipped in bond are unloaded directly to a bonded warehouse where they may be stored for up to five years. Bonded goods are considered "in customs' custody" during this time, and are not processed for import duties until checked out by an agent of the sender or receiver.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Bonded Goods Lever -->
+        <!-- BEGIN Inbond Type Input -->
+        <div class="row" *ngIf="areBonded">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-indond" class="ups-form_label">
+                        Inbond Type Code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper">
+                        <select id="ups-indond"
+                            class="ups-dropdown"
+                            name="ups-indond"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-indond_error"
+                            formControlName="indond"
+                            [(ngModel)]="indond"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_6.controls['indond'].valid && formsWizStep2_6.controls['indond'].touched)}">
+                            <option value="0">Select One</option>
+                        </select>
+                        <div *ngIf="formsWizStep2_6.controls['indond'].valid">
+                            <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-indond-error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_6.controls['indond'].valid &amp;&amp; formsWizStep2_6.controls['indond'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_6.controls['indond'].hasError('required')">
+                                    Inbond Type Code is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- END Inbond Type Input -->
+        <!-- BEGIN FTZ Lever -->
+        <div class="ups-form_group ups-help_wrapper">
+            <label class="ups-lever" onclick="" for="ups-ftz">
+                <input type="checkbox"
+                        class="ups-lever_checkbox"
+                        id="ups-ftz"
+                        name="ups-ftz"
+                        checked=""
+                        [(ngModel)]="ftz"
+                        [ngModelOptions]="{'standalone': true}">
+                <strong class="ups-form_label ups-lever_label">Will you ship from a foreign trade zone (FTZ)?</strong>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+            <div class="ups-help" upsHelpBtn>
+                <button type="button" id="ups-ftz-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                    <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                    <p>Dangerous goods (corrosive, flammable, explosive, toxic, or otherwise hazardous materials) are subject to strict guidelines for shipping. Dangerous goods may only be shipped internationally on a contract basis. See <a href="http://www.ups.com/hazmat" class="ups-link">ups.com/hazmat</a> for regulations and licensing information.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End FTZ Lever -->
+        <!-- BEGIN FTZ ID Input -->
+        <div class="row" *ngIf="ftz">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-ftzID" class="ups-form_label">
+                        Foreign Trade Zone (FTZ) ID
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="ups-ftzID"
+                            id="ups-ftzID"
+                            class="ups-form_input"
+                            aria-required="true"
+                            required=""
+                            aria-describedby="ups-ftzID_error"
+                            formControlName="ftzID"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_6.controls['ftzID'].valid && formsWizStep2_6.controls['ftzID'].touched)}">
+                        <div *ngIf="formsWizStep2_6.controls['ftzID'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-ftzID_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_6.controls['ftzID'].valid &amp;&amp; formsWizStep2_6.controls['ftzID'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_6.controls['ftzID'].hasError('required')">
+                                Foreign Trade Zone is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- END FTZ ID Input -->
+        <!-- BEGIN Dangerous Goods Lever -->
+        <div class="ups-form_group ups-help_wrapper">
+            <label class="ups-lever" onclick="" for="ups-dg">
+                <input type="checkbox"
+                        class="ups-lever_checkbox"
+                        id="ups-dg"
+                        name="ups-dg"
+                        checked=""
+                        [(ngModel)]="dg"
+                        [ngModelOptions]="{'standalone': true}">
+                <strong class="ups-form_label ups-lever_label">Does this shipment contain dangerous goods?</strong>
+                <p class="ups-form_subheader ups-lever_subheader">Hazardous materials or regulated goods.</p>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+            <div class="ups-help" upsHelpBtn>
+                <button type="button" id="ups-dg-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                    <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                    <p>Dangerous goods (corrosive, flammable, explosive, toxic, or otherwise hazardous materials) are subject to strict guidelines for shipping. Dangerous goods may only be shipped internationally on a contract basis. See <a href="http://www.ups.com/hazmat" class="ups-link">ups.com/hazmat</a> for regulations and licensing information.</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Dangerous Goods Lever -->
+    </section>
+    <!-- END Shipping Info section -->
+    <!-- BEGIN Previous/Next buttons -->
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_tertiary" type="button">Previous</button>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="formSubmit()">Next</button>
+    </div>
+    <!-- END Previous/Next buttons -->
+</div>

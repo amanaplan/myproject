@@ -1,0 +1,35 @@
+<div class="ups-modal-container">
+	<form name="ups_defaultPaymentAirFreightModalform" error-on-submit novalidate>
+                <!-- ups-form_group ups-form_required -->
+				<div class="ups-group">
+					<p class="ups-form_label">Payment Method:</p>
+                          <p>{{nickName}} - <span data-ng-if="airFreight">Air Freight </span>{{method}}</p>
+				</div>
+                           <fieldset class="ups-form_group">
+                            <legend class="ups-form_label ups-readerTxt">Payment Method Options:</legend>
+					     
+                            <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-if="!airFreight">
+
+                                <input data-name="" id="ups-make_default_payment" class="ups-checkbox-custom" name="ups-make_default_payment" data-parsley-multiple="ups-make_default_payment" type="checkbox" value="1">
+
+                                <label for="ups-make_default_payment" class="ups-checkbox-custom-label">Make this my default payment method.</label>
+                            </div>
+                        
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+
+                                <input data-name="" id="ups-make_default_payment_air_freight" class="ups-checkbox-custom" name="ups-make_default_payment_air_freight" data-parsley-multiple="ups-make_default_payment_air_freight" type="checkbox" value="2">
+
+                                <label for="ups-make_default_payment_air_freight" class="ups-checkbox-custom-label">Make this my default payment method for air freight pre-paid shipments.</label>
+                            </div>   <!--This needs to show changes in Cornerstone -->
+                </fieldset>
+				<!-- ups-form_group ups-form_required -->
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary "
+                data-ng-click="done()">Done</button>
+            
+            <button class="ups-cta ups-cta_secondary" type="submit"
+                data-ng-click="cancel()">Cancel</button>
+		</div>
+		<!-- ups-form_ctaGroup text-center -->
+	</form>
+</div>

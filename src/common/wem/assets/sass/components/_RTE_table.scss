@@ -1,0 +1,439 @@
+// ----------------------------------------------------
+// Content Block RTE Table
+// ----------------------------------------------------
+
+@mixin ups-table_sm {
+    margin-left: -$page-margin-sm;
+    margin-right: -$page-margin-sm;
+
+    th, td {
+        border-#{$opposite-direction}: none;
+    }
+}
+
+@mixin ups-comparison-table_sm {
+    table {
+        display: none;
+    }
+
+    .ups-table-comparison_sm,
+    .ups-table-comparisonV2_sm {
+        display: block;
+    }
+}
+
+.ups-table, .ups-table-comparison {
+    table {
+        font-family: $sans;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-collapse: separate;
+    }
+
+    .table_sm_hide, &.table_sm_hide {
+        @media #{$media-small} {
+            display: none;
+        }
+    }
+
+    .table_sm_show, &.table_sm_show {
+        display: none;
+
+        @media #{$media-small} {
+            display: table;
+        }
+    }
+
+    th, td {
+        position: relative;
+        padding: 12px 20px 10px;
+        border: 1px solid $ups_brown;
+        border-#{$default-float}: none;
+        border-top: none;
+        vertical-align: top;
+
+        &:last-child {
+            border-#{$opposite-direction}: none;
+        }
+    }
+
+    thead th {
+        background: $ups_gold;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+    }
+
+    thead td {
+        background: $gold_40;
+        font-family: $sans;
+        font-weight: 700;
+        p{
+        	margin:0;
+        }
+    }
+
+    tbody th {
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @media #{$media-small} {
+            padding-top: 20px;
+        }
+        p{
+        	margin:0;
+        }
+    }
+
+    tbody tr {
+
+        &:first-child th, &:first-child td {
+            border-top: none;
+        }
+    }
+
+    td {
+
+        &[data-open="true"] .mobile-list {
+            max-height: 2000px;
+            margin-top: 10px;
+        }
+
+        &.icon-pad {
+            padding-#{$default-float}: $grid-gutter-width;
+
+            .mobile-list {
+                #{$default-float}: -$page-margin-sm;
+            }
+
+            img {
+                max-height: 16px;
+                max-width: 15px;
+                position: absolute;
+                #{$default-float}: $page-margin-sm;
+            }
+        }
+
+        button {
+            @include unbutton;
+            position: absolute;
+            #{$opposite-direction}: 20px;
+            top: 0;
+            width: 40px;
+            height: 37px;
+            font-size: 0.9em;
+            margin-#{$opposite-direction}: -7px;
+            text-align: center;
+
+            .icon:before {
+                color: $black_s4;
+                display: block;
+                margin-top: 3px;
+            }
+        }
+        .rte-cell.align-left{
+            float:left;
+        }
+        .rte-cell.align-right{
+            float:right;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+        color: $black_s3;
+        padding: 0;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        &:hover {
+            color: $black_s1;
+        }
+    }
+
+    .table-accordion {
+        position: relative;
+        z-index: $zMid;
+    }
+
+    .rte-cell {
+        display: inline-block;
+
+        &:first-child {
+            padding-#{$opposite-direction}: 7px;
+        }
+    }
+
+    .mobile-list {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        margin-top: 0;
+        @include transition-property(all);
+        @include transition-duration(0.3s);
+
+        .list-row {
+            padding-bottom: 3px;
+            display: table;
+        }
+
+        .list-cell {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        a {
+            padding-#{$default-float}: 0;
+        }
+
+        @media #{$media-small} {
+            display: block;
+        }
+    }
+
+    .row-detail-name {
+        text-transform: uppercase;
+        font-family: $sans;
+        font-weight: 700;
+        float: $default-float;
+        padding-#{$opposite-direction}: 5px;
+        font-size: 12px;
+        line-height: 19px;
+        display: table-cell;
+    }
+
+    @media #{$media-small} {
+        @include ups-table_sm;
+    }
+
+    & + p {
+        margin-top:30px;
+    }
+}
+
+.ups-table-comparison {
+    @include ups-component_margin;
+    margin-bottom: 0;
+
+    tbody th {
+        background: $gold_40;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: none;
+    }
+
+    a {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    tbody .icon.ups-icon-check:before {
+        font-size: 35px;
+        @include center-align();
+        position: absolute;
+        margin-#{$default-float}: -6px;
+    }
+
+    td:not(:first-child) {
+        text-align:center;
+        .align-left{
+            float:left;
+        }
+        .align-right{
+            float:right;
+        }
+    }
+
+    .comparison-header {
+        padding: 12px 20px 10px;
+        background: $ups_gold;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .comparison-subheader {
+        padding: 12px 20px 10px;
+        background: $gold_40;
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    .ups-table-comparison_sm,
+    .ups-table-comparisonV2_sm {
+        display: none;
+    }
+
+    .option {
+        padding: 12px 20px 10px;
+        padding-#{$opposite-direction}: 60px;
+        border-top: 1.1px solid $black;
+        position: relative;
+
+        &:last-child {
+            border-bottom: 1.1px solid $black;
+        }
+
+        &:nth-child(2n) {
+            background: #ECECEC;
+        }
+
+        &:nth-child(2n-1) {
+            background: $white;
+        }
+
+        .icon {
+            @include vertical-align();
+            position: absolute;
+            #{$opposite-direction}: 17px;
+            text-align: center;
+            width:30px;
+        }
+
+        a {
+            padding: 0;
+        }
+    }
+
+    @media #{$media-small} {
+        @include ups-comparison-table_sm;
+    }
+}
+.ups-table, .ups-table-comparison{
+  td{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+
+  }
+}
+
+
+/********************changes for UPS-Table-V2**********************************/
+.ups-table.ups-table-v2{
+
+    table{
+        display:table;
+        @media #{$media-small}{
+            display:none;
+        }
+        caption{
+          background: $ups_gold;
+          font-family: $sans;
+          font-weight: 700;
+          text-transform: uppercase;
+          border: none;
+          position: relative;
+          padding: 12px 20px 10px;
+          vertical-align: top;
+          color: $black_s4;
+        }
+        thead th{
+          background: $gold_40;
+          font-family: $sans;
+          font-weight: 700;
+          width:100%;
+          p{
+            margin:0;
+          }
+        }
+        th[scope="row"]{
+          font-weight: normal;
+          text-transform: none;
+        }
+
+    }
+    .ups-accordion_list{
+        display:none;
+        padding-top:0 !important;
+        margin:0 !important;
+        @media #{$media-small}{
+            display:block;
+        }
+        .ups-article-header{
+            margin:0 -20px;
+            background: $ups_gold;
+            font-family: $sans;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            position: relative;
+            padding: 12px 20px 10px;
+            vertical-align: top;
+            color: $black_s4;
+            font-size:14px;
+            &.ups-secondary{
+                background: $gold_40;
+            }
+        }
+        .ups-accordion_wrapper{
+            margin-top:0;
+            .ups-accordion_item{
+                border-bottom:1px solid $black;
+                margin-top:0px;
+                &:first-child{
+                    border-top:1px solid $black;
+                }
+                .ups-accordion_toggle{
+                    font-family:$sans;
+                    font-size:1em;
+                    padding:12px 20px 10px;
+                    border:0;
+                    &:focus{
+                      outline: 2px solid $ups-gold;
+                      outline-offset: -2px;
+                    }
+                }
+                .mobile-list{
+                    display:block;
+                    max-height:none;
+                }
+            }
+        }
+    }
+
+}
+/********************changes for UPS-Comparison Table-V2**********************************/
+.ups-table-comparison{
+  &.ups-table-comparison_v2{
+    caption{
+        background: $ups_gold;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        position: relative;
+        padding: 12px 20px 10px;
+        vertical-align: top;
+        color: $black_s4;
+        &:last-child {
+            border-#{$opposite-direction}: none;
+        }
+    }
+    thead th{
+        background: $gold_40;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: none;
+        position: relative;
+        padding: 12px 20px 10px;
+        border: 1px solid #351c15;
+        border-left: none;
+        border-top: none;
+        &:last-child {
+            border-#{$opposite-direction}: none;
+        }
+    }
+    tbody th{
+      background: transparent;
+    }
+  }
+}

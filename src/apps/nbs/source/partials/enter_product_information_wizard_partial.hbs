@@ -1,0 +1,350 @@
+<!--  enter product information wizard -->
+
+<!-- start Step 1 of 3 - Product Detail modal -->
+
+<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-product_detail_modal" tabindex="-1" role="dialog" aria-labelledby="ups-product_detail_label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+                <h2 class="modal-title" id="ups-certificate_origin_1_label">What are you shipping?</h2>
+            </div>
+            <!-- modal-header -->
+            <div class="modal-body">
+                {{> A04_page_level_required_message}}
+                {{#if error}}
+                	{{> A03_page_level_error this.epiw_pd_error }}
+                {{/if}}
+                <p>Detail the contents of your shipment one item at a time.</p>
+                <p class="ups-form_subheader">Step 1 of 2</p>
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Product #(1) Description</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-form_group">
+                                <label for="certOriginNameItem" class="ups-form_label">Item Nickname</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="certOriginNameItem" class="ups-form_input" id="certOriginNameItem">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-checkbox ups-input_wrapper  "
+						data-errormsg="Save this product for future shipments">
+                        <input check-verify id="ups-offers_checkbox_non-US1"
+							class="ups-checkbox-custom" name="ups-offers_checkbox" value="1"
+							type="checkbox" data-ng-model="saveProduct"
+							data-ng-change="check()" data-ng-checked="saveProduct">
+                        <label
+							for="ups-offers_checkbox_non-US1"
+							class="ups-form_label ups-checkbox-custom-label">Save to my product list</label>
+                    </div>
+                    <!-- ups-checkbox ups-input_wrapper -->
+                    <div class="ups-form_group ups-form_required ups-noTxt">
+                        <label for="emailMessage" class="ups-form_label"> 
+                        	For customs declaration, be as specific as possible. 
+                            <span aria-hidden="true" class="ups-required_indicator"></span> 
+                        </label>
+                        <p class="ups-form_subheader" id="itemDescription4HelperTxt">Item Description (max length 150 characters)</p>
+                        <div class="ups-textArea_wrapper ups-input_wrapper">
+                            <textarea name="emailMessage" 
+                                id="emailMessage" 
+                                class="ups-bleed-full ups-textArea{{#if error}} ng-invalid ng-dirty{{/if}}" 
+                                rows="3" cols="100" 
+                                maxlength="150" 
+                                row-fluid 
+                                data-form="ups_NotificationOption" 
+                                aria-describedby="itemDescription4HelperTxt {{#if error}}emailMessage_error{{/if}}"
+                                aria-required="true"
+                                required>
+                            </textarea>
+                            {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_emailMessage }}
+                              {{/if}}
+                        </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">Quantity</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="qToCountryDropdown" class="ups-form_label"> How is it packaged or sold? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <p class="ups-form_subheader" id="unitOfMeasureHelperTxt">Unit of Measure</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="qToCountryDropdown" name="qToCountryDropdown" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" {{#if error}}aria-describedby="qToCountryDropdown_error"{{/if}} aria-required="true" required>
+                                        <option>Select</option>
+                                    </select>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="push icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_qToCountryDropdown }}
+                              {{/if}}
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="qCertOriginNameItem" class="ups-form_label"> How many are you shipping? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <p class="ups-form_subheader" id="numOfUnitsHelperTxt">Number of Units</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="qCertOriginNameItem" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="qCertOriginNameItem" {{#if error}}aria-describedby="qCertOriginNameItem_error"{{/if}} aria-required="true" required>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_qCertOriginNameItem }}
+                              {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">Customs Value</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="cvCertOriginNameItem" class="ups-form_label"> How much is a single item worth? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <p class="ups-form_subheader" id="pricePerUnitHelperTxt">Price per Unit</p>
+                                <div class="ups-help">
+                                    <button type="button" class="ups-help_link icon ups-icon-questioncircle ups-no_label">Help</button>
+                                    <div class="ups-help_tooltip">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+                                        <p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+                                    </div>
+                                </div>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="cvCertOriginNameItem" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="cvCertOriginNameItem" {{#if error}}aria-describedby="cvCertOriginNameItem_error"{{/if}} aria-required="true" required>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_cvCertOriginNameItem }}
+                              {{/if}}
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <div class="ups-form_group">
+                                <label for="toCountryDropdown" class="ups-no_label"> Currency</label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="toCountryDropdown" name="toCountryDropdown" class="ups-dropdown">
+                                        <option>USD</option>
+                                        <option>CCC</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">Country or Territory of Origin</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="coToCountryDropdown" class="ups-form_label"> Where was this product made or assembled? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="coToCountryDropdown" name="coToCountryDropdown" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" {{#if error}}aria-describedby="coToCountryDropdown_error"{{/if}} aria-required="true" required>
+                                        <option>Select one</option>
+                                    </select>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="push icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_coToCountryDropdown }}
+                              {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-clear ups-form_ctaGroup text-center ups-noTxt">
+                        <button type="submit" class="ups-cta ups-cta_tertiary">Previous</button>
+                        <button type="submit" class="ups-cta ups-cta_primary">Next: {Review Products}</button>
+                    </div>
+                    <div class="text-center ups-noTxt"> 
+                    	<p>Still need help? Call USA Trade 1-800 USA-TRADE 
+                        	<br class="visible-sm-block visible-xs-block">
+                        	or Call UPS Customer Service 1 (800) 742-5877</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end Step 1 of 3 - Product Detail modal --> 
+
+<!-- start Step 1 of 3 - Product Detail - w/Saved Items modal -->
+
+<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-product_detail_saved_items_modal" tabindex="-1" role="dialog" aria-labelledby="ups-product_detail_saved_items_label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+                <h2 class="modal-title" id="ups-certificate_origin_1_label">What are you shipping?</h2>
+            </div>
+            <!-- modal-header -->
+            <div class="modal-body">
+                {{> A04_page_level_required_message}}
+                {{#if error}}
+                	{{> A03_page_level_error this.epiw_si_error }}
+                {{/if}}
+                <p>Detail the contents of your shipment one item at a time.</p>
+                <p class="ups-form_subheader">Step 1 of 2</p>
+                <div class="ups-section">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="siToCountryDropdown" class="ups-no_label">Select Item <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="siToCountryDropdown" name="siToCountryDropdown" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" {{#if error}}aria-describedby="siToCountryDropdown_error"{{/if}} aria-required="true" required>
+                                        <option>Select one</option>
+                                    </select>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="push icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_siToCountryDropdown }}
+                              {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="ups-cta ups-cta_secondary">+ Add New Item</button>
+                    <div class="ups-clear ups-form_ctaGroup text-center ups-noTxt">
+                        <button type="submit" class="ups-cta ups-cta_tertiary">Previous</button>
+                        <button type="submit" class="ups-cta ups-cta_primary">Next: {Review Products}</button>
+                    </div>
+                    <div class="text-center ups-noTxt"> 
+                    	<p>Still need help? Call USA Trade 1-800 USA-TRADE 
+                        	<br class="visible-sm-block visible-xs-block">
+                        	or Call UPS Customer Service 1 (800) 742-5877</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end Step 1 of 3 - Product Detail - w/Saved Items modal --> 
+
+<!-- start Step 2 of 3 - Tariff Code modal -->
+
+<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-tariff_code_modal" tabindex="-1" role="dialog" aria-labelledby="ups-tariff_code_label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+                <h2 class="modal-title" id="ups-certificate_origin_1_label">Tariff Code</h2>
+            </div>
+            <!-- modal-header -->
+            <div class="modal-body">
+                {{> A04_page_level_required_message}}
+                {{#if error}}
+                	{{> A03_page_level_error this.epiw_s2of3_error }}
+                {{/if}}
+                <p>Detail the contents of your shipment one item at a time.</p>
+                <p class="ups-form_subheader">Step 2 of 3</p>
+                <div class="ups-section">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="tcITN" class="ups-form_label">Enter the Harmonized product code {<span aria-hidden="true" class="ups-required_indicator"></span>}</label>
+                                <p class="ups-form_subheader">Tariff Code</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ITN" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="ITN" {{#if error}}aria-describedby="tcITN_error"{{/if}} aria-required="true" required>
+                                </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                      <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                      <span class="ups-readerTxt">Check</span>
+                                  </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_tcITN }}
+                              {{/if}}
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="ups-form_group">
+                                <label for="toCountryDropdown" class="ups-form_label">Tariff Code Lookup</label>
+                                <p class="ups-form_subheader">Product Category</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="toCountryDropdown" name="toCountryDropdown" class="ups-dropdown">
+                                        <option>{Miscellaneous manufactured articles}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-cms-demo">
+                        <div class="text-center">Tariff Code</div>
+                    </div>
+                    <div class="ups-clear ups-form_ctaGroup text-center ups-noTxt">
+                        <button type="submit" class="ups-cta ups-cta_tertiary">Previous</button>
+                        <button type="submit" class="ups-cta ups-cta_primary">Next: {Review Products}</button>
+                    </div>
+                    <div class="text-center ups-noTxt"> Still need help? Call USA Trade 1-800 USA-TRADE <br class="visible-sm-block visible-xs-block">
+                        or Call UPS Customer Service 1 (800) 742-5877 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end Step 2 of 3 - Tariff Code modal -->
+
+<div class="ups-cms-demo"> 
+    <!------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/////   Don't Use Below Code in Production                                 /////   
+/////   Code Below is only to Demonstrate Modals                           /////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------------->
+    
+    <button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-product_detail_modal">Enter Product Information - Step 1 of 3 Product Detail</button>
+    <br>
+    <br>
+    <button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-product_detail_saved_items_modal">Enter Product Information - Step 1 of 3 Product Detail - w/Saved Items</button>
+    <br>
+    <br>
+    <button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-tariff_code_modal">Enter Product Information - Step 2 of 3 - Tariff Code</button>
+    <br>
+    <br>
+    <!-- end enter product information wizard --> 
+    
+</div>

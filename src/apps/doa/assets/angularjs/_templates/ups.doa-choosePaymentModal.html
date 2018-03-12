@@ -1,0 +1,172 @@
+<div data-ng-controller="choosePaymentCtrl" class="row ups-methods">
+	<!-- //// begin ups.doa-choosePaymentModal //// -->
+    <fieldset data-ng-if="savedMethods.length<=3" class="row ups-methods"
+    data-ng-class="{'ups-box_length': savedMethods.length>3}">
+        <legend class="ups-readerTxt">Choose Your Payment Method</legend>
+<!-- 		<div aria-describedby="ups-payment-method-tile-{{$index}}"
+            tabindex="0" data-ng-repeat="item in savedMethods"
+            data-ng-click="checkMethod(item,savedMethods)"
+            data-ng-keypress="checkMethod(item,savedMethods)"
+            data-ng-class="{ 'ups-gold': item.checkSelect}"
+            class="col-sm-4 ups-payMethods">
+            <div class="ups-cp-tile">
+                <label for="ups-cpm-tile-{{$index}}">
+                    <span>{{item.accountType}}</span>
+                    <span data-ng-if="item.accountType==='Payment Card'">Ending with
+                        {{item.cardNumber.slice(-3)}}</span> <span
+                    data-ng-if="item.accountType==='Account'">{{item.payementNickName}}</span></label>
+                <input id="ups-cpm-tile-{{$index}}" type="radio"
+                    name="ups-cpm-tile" class="hidden">
+            </div>
+        </div> -->
+
+        <p data-ng-if="modalPromoSection">We'll apply this discount to your preferred UPS account.</p>
+
+        <div class="ups-cms-demo ups-group" data-ng-if="modalPromoSection">
+        	Promo content fragment repeated here for reference
+        </div>
+
+
+        <div class="ups-boxed_radioGroup" data-ng-if="!modalPromoSection">
+            <div data-ng-repeat="item in savedMethods" data-ng-class="{ 'ups-gold': item.checkSelect}" data-ng-click="checkMethod(item,savedMethods)" class="col-sm-4 ups-input_wrapper ups-boxed_radio">
+                <input id="ups-cpm-tile-{{$index}}" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-{{$index}}">
+                    <span data-ng-if="item.accountType==='Payment Card'">Payment Card <span>Ending with
+                        {{item.cardNumber.slice(-3)}}</span></span> <span
+                    data-ng-if="item.accountType==='Account'">Account<span>{{item.payementNickName}}</span></span>
+                    <span
+                    data-ng-if="item.accountType==='PayPal'">{{item.payementNickName}}</span>
+                </label>
+            </div>
+            <div data-ng-if="savedMethods.length<3" data-ng-click="checkAddone()" class="col-sm-4 ups-input_wrapper ups-boxed_radio  ups-payMethods"  data-ng-class="{ 'ups-gold': addGrey}" >
+                <input id="ups-cpm-add-tile" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+                <em class="icon ups-add-fontIcon">
+                    <span class="ups-icon-pluscircle" aria-hidden="true"></span>
+                </em>
+                <label class="ups-radio-custom-label" for="ups-cpm-add-tile">
+                    <span>Add a New Payment Method</span>
+                </label>
+            </div>
+        </div>
+        <div class="ups-boxed_radioGroup" data-ng-if="modalPromoSection">
+
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('1')" data-ng-class="{ 'ups-gold': (upsAccount1 == '1')}">
+                <input id="ups-cpm-tile-1" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="1" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-1">
+                    <span>Account<span>XYZ123</span></span>
+                </label>
+            </div>
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('2')" data-ng-class="{ 'ups-gold': (upsAccount1 == '2')}" >
+                <input id="ups-cpm-tile-2" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="2" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-2">
+                    <span>Account<span>XYZ456</span></span>
+                </label>
+            </div>
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('3')" data-ng-class="{ 'ups-gold': (upsAccount1 == '3')}" >
+                <input id="ups-cpm-tile-3" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="3" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-3">
+                    <span>Account<span>XYZ789</span></span>
+                </label>
+            </div>
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('4')" data-ng-class="{ 'ups-gold': (upsAccount1 == '4')}">
+                <input id="ups-cpm-tile-4" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="4" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-4">
+                    <span>Account<span>XYZ012</span></span>
+                </label>
+            </div>
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('5')" data-ng-class="{ 'ups-gold': (upsAccount1 == '5')}">
+                <input id="ups-cpm-tile-5" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="5" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-5">
+                    <span>Account<span>XYZ345</span></span>
+                </label>
+            </div>
+            <div class="col-sm-4 ups-input_wrapper ups-boxed_radio" data-ng-click="updateAccountSel('6')" data-ng-class="{ 'ups-gold': (upsAccount1 == '6')}">
+                <input id="ups-cpm-tile-6" class="ups-radio-custom" name="ups-cpm-tile" type="radio" value="6" data-ng-model="upsAccount1">
+                <label class="ups-radio-custom-label" for="ups-cpm-tile-6">
+                    <span>Account<span>XYZ13</span></span>
+                </label>
+            </div>
+
+        <!-- 	<div class="col-sm-4 ups-add ups-payMethods ups-my-address"
+            data-ng-if="savedMethods.length<3" data-ng-click="checkAddone()" data-ng-class="{ 'ups-gold': addGrey}">
+                <input id="ups-cpm-add-tile" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+                <em class="icon ups-icon-pluscircle ups-add-fontIcon"></em>
+                <label for="ups-cpm-add-tile" class=" ups-boldText ups-addOneText ups-addone">Add a New Payment Method</label>
+
+                <label for="ups-cpm-add-tile" class="ups-boldText ups-addOneText ups-addone">Add a New Payment Method<span class="ups-readerTxt">Payment Method</span></label>
+                <div id="ups-cpm-add-payment" class="ups-boldText ups-addOneText ups-addone ">Add a New Payment Method</div>
+            </div> -->
+        </div>
+    </fieldset>
+	<div class="ups-methods ups-table ups-table-responsive"></div>
+	<div data-ng-if="savedMethods.length>3"
+		data-ng-init="length=savedMethods.length"
+		data-ng-class="{'ups-tableScroll':length>=11}"
+		class="ups-table ups-table-responsive">
+		<table class="table table-striped">
+			<caption class="ups-readerTxt">Choose payment table</caption>
+			<tbody>
+				<tr>
+					<th scope="col"
+						data-ng-init="sortNickName=true;(sortWithoutDefault('payementNickName',sortNickName))"
+						class="col-xs-2 "><a
+						data-ng-click="sortNickName=!sortNickName;(sortWithoutDefault('payementNickName',sortNickName))"
+						href="#" onclick="return false;"><span class="ups-readerTxt">Sort By </span> NICKNAME<span
+							data-ng-show="sortNickName" class="icon">
+								<span class="ups-icon-chevrondown" aria-hidden="true"></span>
+							</span>
+							<span data-ng-show="!sortNickName"
+							class="icon ">
+								<span class="ups-icon-chevronup" aria-hidden="true"></span>
+							</span> </a></th>
+					<th scope="col" data-ng-init="sortMethod=true" class="col-xs-2 "><a
+						data-ng-click="sortMethod=!sortMethod;(sortWithoutDefault('Method',!sortMethod))"
+						href="#" onclick="return false;"><span class="ups-readerTxt">Sort By </span> METHOD<span
+							data-ng-show="sortMethod" class="icon">
+								<span class="ups-icon-chevrondown" aria-hidden="true"></span>
+							</span>
+							<span data-ng-show="!sortMethod" class="icon ">
+							<span class="ups-icon-chevronup" aria-hidden="true"></span></span>
+					</a></th>
+					<!-- <th class="col-xs-2 ">Method</th> -->
+					<th scope="col" data-ng-init="sortNumber=true" class="col-xs-2 "><a
+						data-ng-click="sortNumber=!sortNumber;(sortWithoutDefault('Number',!sortNumber))"
+						href="#" onclick="return false;"><span class="ups-readerTxt">Sort By </span> NUMBER<span
+							data-ng-show="sortNumber" class="icon">
+							<span class="ups-icon-chevrondown" aria-hidden="true"></span>
+							</span>
+							<span data-ng-show="!sortNumber" class="icon"><span class="ups-icon-chevronup" aria-hidden="true"></span></span>
+					</a></th>
+				</tr>
+				<tr class="ups-doa-choose-payment-table" tabindex="0" data-ng-keypress="checkMethod(data,savedMethods)" data-ng-click="checkMethod(data,savedMethods)"
+					data-ng-class="{ 'ups-gold': data.checkSelect}"
+					data-ng-repeat="(key, data) in savedMethods track by $index" aria-label="payment method with nickname {{data.payementNickName}}">
+					<td class="col-xs-2 ">{{data.payementNickName}}</td>
+					<td class="col-xs-2 ">{{data.Method}}</td>
+					<td class="col-xs-2 ">{{data.Number}}</td>
+				</tr>
+				<tr data-ng-if="savedMethods.length === 0">
+					<td class="col-xs-12" colspan="3">You haven't added any Method
+						yet.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p data-ng-if="modalPromoSection">By selecting <strong>Next</strong>, I agree to the <a href="repl_href" class="ups-link ups-new-window">Discount Terms and Conditions <span aria-hidden="true" class="ups-icon-newwindow"></span></a></p>
+	<div class="ups-form_ctaGroup text-center">
+        <button type="submit" class="ups-cta ups-cta_tertiary "
+            data-ng-click="ModalService.back()" data-ng-if="!modalPromoSection">Back</button>
+        <button type="submit" class="ups-cta ups-cta_tertiary "
+            data-ng-click="ModalService.back()" data-ng-if="modalPromoSection">Cancel</button>
+        <button type="submit" class="ups-cta ups-cta_primary "
+            data-ng-click="addPaymentMethod()">Next</button>
+	</div>
+    <div data-ng-if="savedMethods.length>=3" class="ups-my-address">
+        <div data-ng-class="{ 'ups-addone': addGrey}"
+            data-ng-click="checkAddone()"
+            class="ups-boldText ups-offset-20 ups-text-underline text-center">
+            <a href="#" onclick="return false;" class="ups-link">Add a New Payment Method</a>
+        </div>
+    </div>
+	<!-- //// end ups.doa-choosePaymentModal //// -->
+</div>

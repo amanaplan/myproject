@@ -1,0 +1,64 @@
+<div *ngIf="attemptSubmit && !checkFormValid()">
+	<h3 class="ups-invalid_color-list ups-error_alert-list">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+		Please correct the following errors
+    </h3>
+
+    <ul class="ups-icons-error">
+        <li *ngIf="updatesSel == '0'">
+            <a href="#updatesSelAll" class="ups-invalid_color" pointIdClick>A delivery update option must be selected</a>
+        </li>
+    </ul>
+</div>
+
+<fieldset class="ups-form_group ups-form_required">
+    <legend class="ups-readerTxt">
+        Which delivery should updates be sent out for?
+        <span class="ups-readerTxt">required</span>
+        <span class="ups-required_indicator" aria-hidden="true"></span>
+    </legend>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input type="radio"
+            id="updatesSelAll"
+            class="ups-radio-custom"
+            name="updatesSel"
+            value="1"
+            aria-describedby="sendUpdatesBecomeMemberHelper updatesSel_error"
+            [(ngModel)]="updatesSel"
+            [ngClass]="{'ups-bodError': attemptSubmit && !checkFormValid()}">
+        <label for="updatesSelAll" class="ups-radio-custom-label">
+            <strong class="ups-text_emphasis">For All Your Deliveries</strong>
+        </label>
+        <p class="ups-indent_with_input" id="sendUpdatesBecomeMemberHelper">
+            Become a UPS My Choice<sup>&reg;</sup> member to receive automatic updates about all your deliveries.
+        </p>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input type="radio"
+            id="updatesSelOne"
+            class="ups-radio-custom"
+            name="updatesSel"
+            value="2"
+            aria-describedby="sendUpdatesOnlyOneHelper updatesSel_error"
+            [(ngModel)]="updatesSel"
+            [ngClass]="{'ups-bodError': attemptSubmit && !checkFormValid()}">
+        <label for="updatesSelOne" class="ups-radio-custom-label">
+            <strong class="ups-text_emphasis">For This Delivery Only</strong>
+        </label>
+        <p class="ups-indent_with_input" id="sendUpdatesOnlyOneHelper">
+            Send status updates to yourself and others by text or email.
+        </p>
+    </div>
+    <div class="ups-icons-error" id="updatesSel_error" role="alert">
+        <div class="ups-invalid_color ups-group" *ngIf="attemptSubmit && !checkFormValid()">
+            <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+            <span class="ups-readerTxt">Invalid:</span>
+            A delivery update option must be selected
+        </div>
+    </div>
+</fieldset>
+
+<div class="ups-form_ctaGroup text-center">
+    <button class="ups-cta ups-cta_primary" (click)="continueBtn()">Continue</button>
+    <button class="ups-cta ups-cta_secondary" (click)="closeBtn()">Cancel</button>
+</div>

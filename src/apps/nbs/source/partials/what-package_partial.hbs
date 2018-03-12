@@ -1,0 +1,1366 @@
+<div class="ups-progress_bar">
+    {{>A22_progress_tracker what_progress }}
+</div>
+
+<div class="ups-app_inner">
+    <div class="ups-group text-center">
+        <h2 class="ups-section_heading ups-centered_header">What kind of packaging are you using?</h2>
+    </div>
+    <div class="row ups-group">
+        <div class="col-md-5">
+            {{> A04_page_level_required_message }}
+        </div>
+        <div class="col-md-7 ups-text-md-right">
+            <!-- for img below, role=presentation and aria-hidden=true both need to be added -->
+            <a href="#" class="ups-cta ups-cta_secondary ups-shipping_header_action ups-btn_has_icon" id="headerClassicLink">
+				<span class="icon ups-icon-arrowleft" aria-hidden="true"></span>
+				Classic Layout
+			</a>
+			<a href="#" class="ups-cta ups-cta_secondary ups-shipping_header_action ups-btn_has_icon" id="headerLoginLink">
+				<span class="icon ups-icon-lock" aria-hidden="true"></span>
+				Log in
+			</a>
+			<a href="#" class="ups-cta ups-cta_secondary ups-shipping_header_action ups-btn_has_icon">
+				<span class="icon ups-icon-shippingfreight" aria-hidden="true"></span>
+				Ship Freight
+			</a>
+        </div>
+    </div>
+
+    {{#if error }}
+    	{{> A03_page_level_error }}
+    {{/if}}
+
+    {{!-- <!--<div class="ups-section">
+    	<div class="ups-section-header ups-help_wrapper">
+        	<h2 class="ups-section_heading">Shipment Details</h2>
+            <div class="ups-help">
+                <button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                    <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                    <p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        	<div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="packaging_type" class="ups-form_label">Packaging Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="packaging_type" class="ups-dropdown" id="packaging_type">
+                            <option value="0">Select...</option>
+                            <option value="1">UPS Letter</option>
+                            <option value="2">Pallet</option>
+                            <option value="3">UPS Express Box</option>
+                            <option value="4">UPS Express Pack</option>
+                            <option value="5">UPS Tube</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+            	{{#if show_custom_value_field }}
+            	<div class="ups-form_group">
+                	{{> A05_switch_lever totalCustomsLever }}
+                </div>
+                {{/if}}
+
+                {{#if show_free_circulation_field }}
+                <div class="ups-form_group ups-help_wrapper">
+                	{{> A05_switch_lever freeCirculationLever }}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="package_number" class="ups-form_label">Number of {{#unless eu_pging }}Packages{{/unless}}{{#if eu_pging }}[Packages/Pallets]{{/if}}</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="package_number" class="ups-dropdown" id="package_number">
+                            <option value="0">Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<div class="ups-form_group" id="sameSizeWeight">
+            		{{> A05_switch_lever sameSizeLever }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        	<div class="col-md-5">
+            	{{#if show_description_fields }}
+            	<div class="ups-form_group">
+                    <label for="reasonShipment" class="ups-form_label">What best describes the reason for this shipment?</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="reasonShipment" class="ups-dropdown" id="reasonShipment">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="col-md-5 col-md-offset-1">
+            	{{#if show_description_fields }}
+            	<div class="ups-form_group ups-form_required">
+                	<label for="shipmentDescription" class="ups-form_label">
+                        Shipment Description
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <p class="ups-form_subheader">Max 35 characters</p>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                    	<input type="text" name="shipmentDescription" class="ups-form_input" id="shipmentDescription" aria-describedby="shipmentDescription_error" aria-required="true" required>
+                    </div>
+                      {{#if non_error}}
+                      <div class="ups-check ups-active">
+                          <span class="ups-icon-check" aria-hidden="true"></span>
+                          <span class="ups-readerTxt">Check</span>
+                      </div>
+                      {{/if}}
+                      {{#if error}}
+                        <span class="ups-icons-error" id="shipmentDescription_error">
+                          <span class="ups-invalid_color">
+                              <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                              <span class="ups-readerTxt">Invalid</span>
+                              <span>Required Information error.</span>
+                          </span>
+                        </span>
+                      {{/if}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        {{#if show_movement_reference_field }}
+        <div class="row">
+        	<div class="col-md-11">
+                <div class="ups-form_group ups-help_wrapper">
+                    <label for="movementReference" class="ups-form_label">
+                        Movement Reference Number
+                    </label>
+                    <div class="ups-help">
+                        <button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Submit an Export Accompanying Document to Request a Movement Reference Number</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="movementReference" class="ups-form_input" id="movementReference">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if show_raw_wood_field }}
+        <div class="ups-form_group ups-form_required">
+        	<div class="ups-checkbox ups-input_wrapper">
+				<input id="raw_wood" class="ups-checkbox-custom" name="raw_wood" value="1" type="checkbox" aria-required="true" required>
+				<label for="raw_wood" class="ups-form_label ups-checkbox-custom-label">
+                	I've read the <a href="repl_href" class="ups-link">Raw Wood Guidelines</a>.
+				</label>
+			</div>
+		</div>
+        {{/if}}
+
+    </div> -->--}}
+
+    <div class="ups-section">
+    	<!--<div class="ups-section-header">
+        	<h3 class="ups-section_heading">Package Details</h3>
+        </div>-->
+
+        <p id="packageSaveTxt" tabindex="-1">Package {<span id="prevPackageNum"></span>} was added.</p>
+        <p id="packageDupTxt" tabindex="-1">Package {1} was copied as Package {2}.</p>
+        <p id="packageUpdTxt" tabindex="-1">Package {<span id="prevPackageUpdNum"></span>} was updated.</p>
+        <p id="packageDelTxt" tabindex="-1">Package {<span id="prevPackageDelNum"></span>} was deleted.</p>
+        <p id="packageEditTxt" tabindex="-1">Edit Package {<span id="curPackageNum2"></span>}.</p>
+
+
+        <section class="panel panel-default" id="collapsedPackageRow1">
+            <div class="panel-heading">
+                <h3>
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package 1
+                </h3>
+                <div class="ups-package_actions"> <!-- ups-collapsed_package_actions -->
+                    <button type="button" class="ups-link" id="pkg1EditBtn">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {1}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg1DelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Package {1}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg1DupBtn">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {1}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Package Type:</span> My Packaging</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Dimensions:</span> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Weight:</span> 999 lbs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel panel-default" id="collapsedPackageRow2">
+            <div class="panel-heading">
+                <h3>
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package 2
+                </h3>
+                <div class="ups-package_actions"> <!-- ups-collapsed_package_actions -->
+                    <button type="button" class="ups-link" id="pkg2EditBtn">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg2DelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {2}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Package Type:</span> My Packaging</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Dimensions:</span> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Weight:</span> 999 lbs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel panel-default" id="collapsedCurPackageRow">
+            <div class="panel-heading">
+                <h3>
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package {<span class="ups-collapsed_cur_package"></span>}
+                </h3>
+                <div class="ups-package_actions"> <!-- ups-collapsed_package_actions -->
+                    <button type="button" class="ups-link" id="curPkgEditBtn">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="curPkgDelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {2}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                Add Package Detail
+                <!--<div class="row">
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Package Type:</span> My Packaging</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Dimensions:</span> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Weight:</span> 999 lbs</p>
+                    </div>
+
+                </div>-->
+            </div>
+        </section>
+
+        <!--<div class="ups-collapsed_package_row" id="collapsedCurPackageRow">
+            <div class="ups-collapsed_package_info">
+                <div class="ups-collapsed_package_number">
+                    Package {<span class="ups-collapsed_cur_package"></span>}
+                </div>
+                <div class="ups-collapsed_package_message">
+                    <button type="button" id="openCurPkg" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                        <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                        Add Package Detail
+                    </button>
+                </div>
+            </div>
+            <div class="ups-collapsed_package_actions">
+                <button type="button" class="ups-cta ups-cta_secondary" id="curPkgEditBtn"><span class="icon ups-icon-edit" aria-hidden="true"></span><span class="ups-readerTxt">Edit Package {<span class="ups-collapsed_cur_package"></span>}</span></button>
+                <button type="button" class="ups-cta ups-cta_secondary" id="curPkgDelBtn"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span><span class="ups-readerTxt">Delete Package {<span class="ups-collapsed_cur_package"></span>}</span></button>
+                <button type="button" class="ups-cta ups-cta_secondary"><span class="icon ups-icon-duplicate" aria-hidden="true"></span><span class="ups-readerTxt">Duplicate Package {<span class="ups-collapsed_cur_package"></span>}</span></button>
+            </div>
+        </div>-->
+
+        <section class="panel panel-default" id="curPackageContainer">
+            <div class="panel-heading">
+                <h3 id="curPackageHeader" class="panel-title">
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package {<span id="curPackageNum">1</span>}
+                </h3>
+                <div class="ups-package_actions">
+                    <button type="button" class="ups-link pull-right" id="curPackageDupBtn">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {<span id="curPackageNum4">2</span>}</span>
+                    </button>
+                    <button type="button" class="ups-link pull-right" id="curPackageDelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Current Package {<span id="curPackageNum3">2</span>}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <!-- Depending upon which package is selected this helper text will be read/displayed -->
+                <span id="packageHelpDefault2" class="ups-readerTxt">Providing weight and dimensions will give you a more accurate rate.</span>
+                <span id="packageHelpPlaceholder2" class="ups-readerTxt"></span>
+                <span id="packageHelpUnpackaged2" class="ups-readerTxt">Please tape corrugated cardboard pieces to all sharp or protruding edges for protection. Cover the other surfaces of the item as needed.</span>
+                <span id="packageHelpFreight2" class="ups-readerTxt">Freight packages are typically {150 lbs.} or more and ship on a pallet or skid.</span>
+                <span id="packageHelpRawWood2" class="ups-readerTxt">Review the <a href="#">Wood Packaging Guidelines</a> to avoid any holds or delays.</span>
+
+                <div class="row ups-package_row ups-group">
+                    <div class="col-md-6 ups-package_separator">
+                        <div class="ups-form_group ups-input_has_unit">
+                            <label for="packaging_type" class="ups-form_label">Packaging Type</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select name="packaging_type" class="ups-dropdown" id="packaging_type">
+                                    <option value="0">I have my own</option>
+                                    <option value="1">UPS Letter</option>
+                                    <option value="2">Pallet</option>
+                                    <option value="3">UPS Express Box - Small</option>
+                                    <option value="4">UPS Express Pack</option>
+                                    <option value="5">UPS Tube</option>
+                                    <option value="6">Unpackaged</option>
+                                    <option value="7">Frieght</option>
+                                </select>
+                            </div>
+                        </div>
+                        {{#if non-us-ca }}
+                        <div class="ups-form_group">
+                            {{>A05_switch_toggle unitMeasureToggle }}
+                        </div>
+                        {{/if}}
+                        <div class="ups-form_group ups-form_required ups-input_has_unit">
+                            <label for="fromWeight" class="ups-form_label">
+                                <span class="palletSel">Pallet </span>Weight
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="fromWeight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="fromWeight" {{#if error}}aria-describedby="fromWeight_error"{{/if}} aria-required="true" required{{#if over150 }} value="151"{{/if}}>
+                                <span class="ups-input_unit_measure">{{#unless non-us }}lbs{{/unless}}{{#if non-us }}kg{{/if}}</span>
+                            </div>
+                              {{#if non_error}}
+                              <div class="ups-check ups-active">
+                                  <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                  <span class="ups-readerTxt">Check</span>
+                              </div>
+                              {{/if}}
+                              {{#if error}}
+                                {{>A11_field_lvl_error error_fromWeight }}
+                              {{/if}}
+                        </div>
+
+                        {{#unless non-us }}
+                            <div class="ups-form_group ups-input_has_unit" id="lengthGroup">
+                                <label for="fromLength" class="ups-form_label">
+                                    <span class="palletSel">Pallet </span>Length
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="fromLength" class="ups-form_input" id="fromLength">
+                                    <span class="ups-input_unit_measure">in</span>
+                                </div>
+                            </div>
+                            <div class="ups-form_group ups-input_has_unit" id="widthGroup">
+                                <label for="fromWidth" class="ups-form_label">
+                                    <span class="palletSel">Pallet </span>Width
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="fromLength" class="ups-form_input" id="fromWidth">
+                                    <span class="ups-input_unit_measure">in</span>
+                                </div>
+                            </div>
+                            <div class="ups-form_group ups-input_has_unit" id="heightGroup">
+                                <label for="fromHeight" class="ups-form_label">
+                                    <span class="palletSel">Pallet </span>Height
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="fromHeight" class="ups-form_input" id="fromHeight">
+                                    <span class="ups-input_unit_measure">in</span>
+                                </div>
+                            </div>
+                        {{/unless}}
+
+                        {{#if non-us }}
+                            <div class="ups-form_group ups-help_wrapper">
+                                {{> A05_switch_lever dimWeightLever }}
+                            </div>
+                            <div id="dimWeightField">
+                                <div class="ups-form_group ups-input_has_unit" id="dimWeightGroup">
+                                    <label for="fromDWeight" class="ups-form_label">
+                                        Dimensional Weight
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="fromDWeight" class="ups-form_input" id="fromDWeight">
+                                        <!--<span class="ups-input_unit_measure">kg</span>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="nonDimWeightFields">
+                                <div class="ups-form_group ups-input_has_unit" id="lengthGroup">
+                                    <label for="fromPLength" class="ups-form_label">
+                                        <span class="palletSel">Pallet </span>Length
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="fromPLength" class="ups-form_input" id="fromPLength">
+                                        <span class="ups-input_unit_measure">cm</span>
+                                    </div>
+                                </div>
+                                <div class="ups-form_group ups-input_has_unit" id="widthGroup">
+                                    <label for="fromPWidth" class="ups-form_label">
+                                        <span class="palletSel">Pallet </span>Width
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="fromPWidth" class="ups-form_input" id="fromPWidth">
+                                        <span class="ups-input_unit_measure">cm</span>
+                                    </div>
+                                </div>
+                                <div class="ups-form_group ups-input_has_unit" id="heightGroup">
+                                    <label for="fromPHeight" class="ups-form_label">
+                                        <span class="palletSel">Pallet </span>Height
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="fromPHeight" class="ups-form_input" id="fromPHeight">
+                                        <span class="ups-input_unit_measure">cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if}}
+
+                        <div class="ups-form_group ups-input_has_unit ups-help_wrapper">
+                            <label for="fromDeclaredValue" class="ups-form_label">
+                                <span class="palletSel">Pallet </span>Declared Value
+                            </label>
+                            <div class="ups-help">
+                                <button type="button" id="ups-formHelp2" class="ups-help_link">
+                                    <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    Help
+                                </button>
+                                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                    <button type="button" class="ups-help_close">
+                                        <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Close</span>
+                                    </button>
+                                    <p>UPS assumes liability of up to $100.00 for loss or damage on all shipments. Declaring the full value of your shipment extends our liability to that amount, up to US $50,000.00 per package, or US $100,000.00 per pallet for UPS Worldwide Express Freight shipments.</p>
+                                </div>
+                            </div>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="fromDeclaredValue" class="ups-form_input" id="fromDeclaredValue">
+                                <span class="ups-input_unit_measure">{{#if non-us }}EUR{{/if}}{{#unless non-us }}USD{{/unless}}</span>
+                            </div>
+                        </div>
+
+                        <div id="freightPackagingDetail">
+                            <div class="ups-form_group">
+                                {{> A05_switch_toggle freightTransportationToggle }}
+                            </div>
+
+                            <div class="ups-form_group ups-form_required ups-input_has_unit">
+                                <label for="package_per_pallet" class="ups-form_label">
+                                    Freight Packaging Detail
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="package_per_pallet" class="ups-dropdown" id="package_per_pallet" aria-required="true" required>
+                                        <option value="1">Select One</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ups-form_group ups-form_required ups-input_has_unit" id="palletSize_selectBox">
+                            <label for="package_per_pallet" class="ups-form_label">
+                                Number of {Pieces}
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <p class="ups-form_subheader">Enter 1 if {pieces} cannot be separated</p>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select name="package_per_pallet" class="ups-dropdown" id="package_per_pallet" aria-required="true" required>
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- display this input if pallet selected in non-US -->
+                        <div class="ups-form_group ups-form_required ups-input_has_unit" id="ups-num_pieces_input">
+                            <label for="ups-num_pieces" class="ups-form_label">
+                                Number of Pieces on Pallet
+                                {<span aria-hidden="true" class="ups-required_indicator"></span>}
+                            </label>
+                            <p class="ups-form_subheader" id="ups-describedby_num_pieces">Enter 1 if units cannot be separated</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="ups-num_pieces"
+                                class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                id="ups-num_pieces"
+                                aria-describedby="ups-describedby_num_pieces{{#if error}} ups-num_pieces_error{{/if}}"
+                                aria-required="true" required="">
+                            </div>
+                            {{#if non_error}}
+                                <div class="ups-check ups-active">
+                                    <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            {{/if}}
+                            {{#if error}}
+                                {{>A11_field_lvl_error error_num_pieces }}
+                            {{/if}}
+
+                        </div>
+                    </div> <!--end second column -->
+                    <div class="col-md-6 text-center hidden-sm hidden-xs">
+                        <!--<span class="icon ups-icon-box ups-package_figure" id="boxTypeFigure"></span>-->
+
+                        <div aria-hidden="true">
+                            {{!-- {{#if over150 }}
+                                <div id="packageHelpOver150">
+                                    {{>A25_speech_bubble pkgHelpOver150 }}
+                                </div>
+                            {{/if}} --}}
+
+                            <div id="packageHelpDefault">
+                                {{>A25_speech_bubble pkgHelpDefault }}
+                            </div>
+
+                            <div id="packageHelpPlaceholder">
+                                {{>A25_speech_bubble }}
+                            </div>
+
+                            <div id="packageHelpUnpackaged">
+                                {{>A25_speech_bubble pkgHelpUnpackaged }}
+                            </div>
+
+                            <div id="packageHelpFreight">
+                                {{>A25_speech_bubble pkgHelpFreight }}
+                            </div>
+
+                            {{#if wwef}}
+                                <div id="packageHelpRawWood">
+                                    {{>A25_speech_bubble pkgHelpRawWoodPallet }}
+                                </div>
+                            {{else}}
+                                <div id="packageHelpRawWood">
+                                    {{>A25_speech_bubble pkgHelpRawWood }}
+                                </div>
+                            {{/if}}
+                        </div>
+
+                        {{!--<div class="ups-speech_bubble">
+                             {{#if over150 }}<p id="packageHelpOver150">Packages over {150 lbs.} or more on a pallet typically classify as Freight.</p>{{/if}}
+                            <!--<p id="packageHelpDefault">Providing weight and dimensions will give you a more accurate rate.</p>
+                            <p id="packageHelpPlaceholder"></p>
+                            <p id="packageHelpUnpackaged">Please tape corrugated cardboard pieces to all sharp or protruding edges for protection. Cover the other surfaces of the item as needed.</p>
+                            <p id="packageHelpFreight">Freight packages are typically {150 lbs.} or more and ship on a pallet or skid.</p>
+                            <p id="packageHelpRawWood">Review the <a href="#" class="ups-link">Wood Packaging Guidelines</a> to avoid any holds or delays.</p>-->
+                        </div>--}}
+                        <div class="ups-package_image_container">
+                            <div class="ups-pkgicon_custom_box" id="boxTypeFigure">
+                                <img src="assets/resources/images/shipping_packages/custom-box-shipping-icons.svg"
+                                    alt="Custom Packaging"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="171">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    L
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    W
+                                </span>
+                                <span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    H
+                                </span>
+                            </div>
+                            <div class="ups-pkgicon_letter" id="imgPkgLetter">
+                                <img src="assets/resources/images/shipping_packages/letter-shipping-icon.svg"
+                                    alt="UPS Letter"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="132">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    {{#unless non-us}}12.5-15in{{/unless}}{{#if non-us}}31.75-38cm{{/if}}
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    {{#unless non-us}}9.5in{{/unless}}{{#if non-us}}24cm{{/if}}
+                                </span>
+                                <!--<span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    H
+                                </span>-->
+                            </div>
+                            <div class="ups-pkgicon_expbox" id="imgPkgExBox">
+                                <img src="assets/resources/images/shipping_packages/express-box-shipping-icon.svg"
+                                    alt="UPS Express Box - Small"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="124">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    {{#unless non-us}}17.5in{{/unless}}{{#if non-us}}44cm{{/if}}
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    {{#unless non-us}}3in{{/unless}}{{#if non-us}}7.5cm{{/if}}
+                                </span>
+                                <span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    {{#unless non-us}}12.5in{{/unless}}{{#if non-us}}31.5cm{{/if}}
+                                </span>
+                            </div>
+                            <div class="ups-pkgicon_pallet" id="imgPkgPallet">
+                                <img src="assets/resources/images/shipping_packages/pallet-shipping-icon.svg"
+                                    alt="UPS Pallet"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="176">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    L
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    W
+                                </span>
+                                <span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    H
+                                </span>
+                            </div>
+                            <div class="ups-pkgicon_expack" id="imgPkgExPack">
+                                <img src="assets/resources/images/shipping_packages/pak-shipping-icon.svg"
+                                    alt="UPS Express Pack"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="132">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    L
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    W
+                                </span>
+                                <!--<span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    H
+                                </span>-->
+                            </div>
+                            <div class="ups-pkgicon_tube" id="imgPkgTube">
+                                <img src="assets/resources/images/shipping_packages/tube-box-shipping-icon.svg"
+                                    alt="UPS Tube"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="92">
+                                <span class="ups-package_length">
+                                    <span class="ups-readerTxt">Length is:</span>
+                                    {{#unless non-us}}38in{{/unless}}{{#if non-us}}96.5cm{{/if}}
+                                </span>
+                                <span class="ups-package_width">
+                                    <span class="ups-readerTxt">Width is:</span>
+                                    {{#unless non-us}}6in{{/unless}}{{#if non-us}}15cm{{/if}}
+                                </span>
+                                <span class="ups-package_height">
+                                    <span class="ups-readerTxt">Height is:</span>
+                                    {{#unless non-us}}6in{{/unless}}{{#if non-us}}15cm{{/if}}
+                                </span>
+                            </div>
+                            <div class="ups-pkgicon_unpackaged" id="imgPkgUnpackaged">
+                                <img src="assets/resources/images/shipping_packages/unpackaged-shipping-icon.svg"
+                                    alt="UPS Unpackaged"
+                                    class="ups-package_image"
+                                    width="170"
+                                    height="192">
+                            </div>
+                        </div>
+                        <!--<div id="rawWoodGuidelinesTxt" class="ups-package-guidelines">Read the <a href="#" class="ups-link">Raw Wood Guidelines</a>.</div>-->
+                    </div>
+                </div>
+
+                {{#unless wwef}}
+                    <div class="ups-form_group ups-form_required" id="descriptionGoodsField">
+                        <label for="over_150_description" class="ups-form_label">
+                            Description of Goods
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                name="over_150_description"
+                                class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                id="over_150_description"
+                                {{#if error}}aria-describedby="over_150_description_error"{{/if}}
+                                aria-required="true"
+                                required>
+                        </div>
+                        {{#if non_error}}
+                            <div class="ups-check ups-active">
+                                <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        {{/if}}
+                        {{#if error}}
+                            {{>A11_field_lvl_error error_over_150_description }}
+                        {{/if}}
+                    </div>
+                {{/unless}}
+
+                <div class="row" id="freightFields">
+                    <div class="col-md-3">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="package_class" class="ups-form_label">
+                                Class
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select name="package_class" class="ups-dropdown" id="package_class">
+                                    <option value="1">40</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ups-form_group">
+                            <label for="package_nmfc" class="ups-form_label">
+                                NMFC
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="package_nmfc"
+                                    class="ups-form_input"
+                                    id="package_nmfc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ups-form_group">
+                            <label for="package_sub" class="ups-form_label">
+                                Sub
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="package_sub"
+                                    class="ups-form_input"
+                                    id="package_sub">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ups-form_group ups-no_label">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="package_hazmat"
+                                    class="ups-checkbox-custom"
+                                    name="package_hazmat"
+                                    value="1"
+                                    type="checkbox">
+                                <label for="package_hazmat" class="ups-form_label ups-checkbox-custom-label">
+                                    Hazmat
+                                </label>
+                            </div>
+                            <!--<label for="package_hazmat" class="ups-form_label">
+                                Hazmat
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="package_hazmat"
+                                    class="ups-form_input"
+                                    id="package_hazmat">
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="ups-drawer">-->
+                    <!--<button type="button" class="ups-drawer-btn">
+                        {View} Additional Options
+                        <span class="pull-right">
+                            <span class="ups-readerTxt">expand</span><span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content">-->
+                    <!--<div class="ups-section-header">
+                        <h2 class="ups-section_heading">Additional Package Options</h2>
+                    </div>-->
+
+                    {{!-- <div class="ups-form_group">
+                        {{> A05_switch_lever additionalPkgOptionsLever }}
+                    </div> --}}
+
+                    {{#if add_options}}
+                        <!-- Begin View Additional Option Drawer -->
+                        <div class="ups-drawer ups-drawer_slim" id="viewMoreOptionsDrawer">
+    					 	<button type="button" class="ups-drawer-btn" aria-controls="viewMoreOptionsDrawerContainer">
+    							<span id="viewMoreOptionsShowTxt">View</span><span id="viewMoreOptionsHideTxt">Hide</span> Additional Options
+    							<span>
+    								<span class="ups-readerTxt">expand</span><span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+    							</span>
+                			</button>
+    						<!-- id="viewMoreOptionsContainer" -->
+    						<div class="ups-drawer-content" id="viewMoreOptionsDrawerContainer">
+                                <hr>
+
+    							<div class="ups-form_group ups-help_wrapper">
+    								{{> A05_switch_lever lithiumBatteryOptionsLever }}
+    							</div>
+    							<div id="lithiumBatteryOptionsSection">
+                                    <div id="lithiumBattShipTip1View1">
+                                        {{>BS02_alert lithiumBatteriesTip}}
+                                    </div>
+                                    {{!-- <div id="lithiumBattShipTip1View2">
+                                        {{>BS02_alert lithiumBatteriesTip2}}
+                                    </div> --}}
+
+                                    <div class="ups-tile" id="lithiumBatteriesTile1">
+                                		<div class="ups-tile_content">
+                                			<div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryType" class="ups-form_label">
+                                                            Type of Battery
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryType" class="ups-dropdown" id="lithiumBatteryType" required aria-required="true">
+                                                                <option value="0">Select One</option>
+        														<option value="1">Ion Cell</option>
+                                                                <option value="2">Metal Cell</option>
+        													</select>
+        												</div>
+        											</div>
+
+                                                </div>
+                                                <div class="col-md-7">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryHowIncluded" class="ups-form_label">
+                                                            How is it packaged?
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryHowIncluded" class="ups-dropdown" id="lithiumBatteryHowIncluded" required aria-required="true">
+                                                                <option value="0">Select One</option>
+        														<option value="1">Contained or installed in equipment</option>
+                                                                <option value="2">Packaged separately with other equipment </option>
+                                                                <option value="3">Alone in box </option>
+        													</select>
+        												</div>
+        											</div>
+
+
+                                                </div>
+                                            </div>
+                                            <p id="lithiumBatterPackagingInfo11">
+                                                The battery is connected to an electronic device or can't be removed from a device.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo12">
+                                                The battery is shipping together with an electronic device but isn't connected to it.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo13">
+                                                The battery is packaged separately and not with other equipment.
+                                            </p>
+                                		</div>
+                                		<button type="button" class="ups-tile_icon ups-link" id="lithiumBatteriesDel1" data-email-id="0">
+                                			<span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                                			<span class="ups-readerTxt">Remove email</span>
+                                		</button>
+                                	</div>
+                                    <div class="ups-tile" id="lithiumBatteriesTile2">
+                                		<div class="ups-tile_content">
+                                			<div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryType2" class="ups-form_label">
+                                                            Type of Battery
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryType2" class="ups-dropdown" id="lithiumBatteryType2" required aria-required="true">
+        														<option value="0">Select One</option>
+        														<option value="1">Ion Cell</option>
+                                                                <option value="2">Metal Cell</option>
+        													</select>
+        												</div>
+        											</div>
+
+                                                </div>
+                                                <div class="col-md-7">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryHowIncluded2" class="ups-form_label">
+                                                            How is it packaged?
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryHowIncluded2" class="ups-dropdown" id="lithiumBatteryHowIncluded2" required aria-required="true">
+                                                                <option value="0">Select One</option>
+        														<option value="1">Contained or installed in equipment</option>
+                                                                <option value="2">Packaged separately with other equipment </option>
+                                                                <option value="3">Alone in box </option>
+        													</select>
+        												</div>
+        											</div>
+
+
+                                                </div>
+                                            </div>
+                                            <p id="lithiumBatterPackagingInfo21">
+                                                The battery is connected to an electronic device or can't be removed from a device.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo22">
+                                                The battery is shipping together with an electronic device but isn't connected to it.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo23">
+                                                The battery is packaged separately and not with other equipment.
+                                            </p>
+                                		</div>
+                                		<button type="button" class="ups-tile_icon ups-link" id="lithiumBatteriesDel2" data-email-id="0">
+                                			<span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                                			<span class="ups-readerTxt">Remove email</span>
+                                		</button>
+                                	</div>
+                                    <div class="ups-tile" id="lithiumBatteriesTile3">
+                                		<div class="ups-tile_content">
+                                			<div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryType3" class="ups-form_label">
+                                                            Type of Battery
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryType3" class="ups-dropdown" id="lithiumBatteryType3" required aria-required="true">
+        														<option value="0">Select One</option>
+        														<option value="1">Ion Cell</option>
+                                                                <option value="2">Metal Cell</option>
+        													</select>
+        												</div>
+        											</div>
+
+                                                </div>
+                                                <div class="col-md-7">
+
+                                                    <div class="ups-form_group ups-form_required">
+        												<label for="lithiumBatteryHowIncluded3" class="ups-form_label">
+                                                            How is it packaged?
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+        												<div class="ups-dropdown_wrapper ups-input_wrapper">
+        													<select name="lithiumBatteryHowIncluded3" class="ups-dropdown" id="lithiumBatteryHowIncluded3" required aria-required="true">
+                                                                <option value="0">Select One</option>
+        														<option value="1">Contained or installed in equipment</option>
+                                                                <option value="2">Packaged separately with other equipment </option>
+                                                                <option value="3">Alone in box </option>
+        													</select>
+        												</div>
+        											</div>
+
+
+                                                </div>
+                                            </div>
+                                            <p id="lithiumBatterPackagingInfo31">
+                                                The battery is connected to an electronic device or can't be removed from a device.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo32">
+                                                The battery is shipping together with an electronic device but isn't connected to it.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo33">
+                                                The battery is packaged separately and not with other equipment.
+                                            </p>
+                                		</div>
+                                		<button type="button" class="ups-tile_icon ups-link" id="lithiumBatteriesDel3" data-email-id="0">
+                                			<span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                                			<span class="ups-readerTxt">Remove email</span>
+                                		</button>
+                                	</div>
+
+                                    <button class="ups-cta ups-cta_secondary ups-btn_has_icon" type="button" id="lithiumBatteriesIncludeAnother">
+                                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                                        Include Another
+                                    </button>
+                                </div>
+
+    							<hr>
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever signatureOptionsLever }}
+    								</div>
+    								<div id="signatureOptionsSection">
+    									<div class="row">
+    										<div class="col-md-5">
+    											<div class="ups-form_group">
+    												<label for="deliverNoSignature" class="ups-form_label">Label</label>
+    												<p class="ups-form_subheader" id="deliverNoSignatureHelpTxt">{option description placeholder}</p>
+    												<div class="ups-dropdown_wrapper ups-input_wrapper">
+    													<select name="deliverNoSignature" class="ups-dropdown" id="deliverNoSignature" aria-describedby="deliverNoSignatureHelpTxt">
+    														<option value="most_recent">Select One</option>
+    													</select>
+    												</div>
+    											</div>
+    										</div>
+    									</div>
+    								</div>
+    								<hr>
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever addReferenceLever }}
+    								</div>
+    								<div id="referenceNumbersSection">
+    									<div class="row">
+    										<div class="col-md-5">
+    											<div class="ups-form_group">
+    												<label for="referenceNum1" class="ups-form_label">
+    													Reference #1
+    												</label>
+    												<div class="ups-text_wrapper ups-input_wrapper">
+    													<input type="text" name="referenceNum1" class="ups-form_input" id="referenceNum1">
+    												</div>
+    											</div>
+    											<fieldset class="ups-form_group">
+    												<legend class="ups-readerTxt">
+    													Reference #1 Options
+    												</legend>
+    												<div class="ups-buttonList_wrapper ups-input_wrapper">
+    													<input id="reference1UseNumberAllPackages" class="ups-checkbox-custom" name="reference1UseNumberAllPackages" type="checkbox" value="1" checked="">
+    													<label for="reference1UseNumberAllPackages" class="ups-checkbox-custom-label">
+    														Use this number for all packages
+    													</label>
+    												</div>
+
+    												<div class="ups-buttonList_wrapper ups-input_wrapper">
+    													<input id="reference1AddBarcode" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="2">
+    													<label for="reference1AddBarcode" class="ups-checkbox-custom-label">
+    														Add a scannable barcode for reference #1 on my shipping label
+    													</label>
+    												</div>
+    											</fieldset>
+    											<div class="ups-form_group">
+    												<label for="referenceNum2" class="ups-form_label">
+    													Reference #2
+    												</label>
+    												<div class="ups-text_wrapper ups-input_wrapper">
+    													<input type="text" name="referenceNum2" class="ups-form_input" id="referenceNum2">
+    												</div>
+    											</div>
+    											<div class="ups-form_group">
+    												<div class="ups-checkbox ups-input_wrapper">
+    													<input id="reference2UseNumberAllPackages" class="ups-checkbox-custom" name="reference2UseNumberAllPackages" type="checkbox" value="1" checked="">
+    													<label for="reference2UseNumberAllPackages" class="ups-checkbox-custom-label">
+    														Use this number for all packages
+    													</label>
+    												</div>
+    											</div>
+    										</div>
+    										<div class="col-md-5 col-md-offset-1">
+    											{{>BS02_alert referenceTip}}
+    										</div>
+    									</div>
+    								</div>
+    								<hr>
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever directDeliverLever }}
+    								</div>
+    								<hr>
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever addCODLever }}
+    								</div>
+    								<div id="addCODSection">
+    									<!--<div class="ups-form_group">
+    										<div class="ups-checkbox ups-input_wrapper">
+    											<input id="collectCOD" class="ups-checkbox-custom" name="collectCOD" type="checkbox" value="1" checked aria-describedby="codCollectHelperTxt">
+    											<label for="collectCOD" class="ups-checkbox-custom-label">
+    												Require payment from receiver in order to deliver this shipment (+$)
+    											</label>
+    											<p class="ups-form_subheader ups-indent_with_input" id="codCollectHelperTxt">After three attempts to collect, your shipment may be returned.</p>
+    										</div>
+    									</div>-->
+
+    									<div class="row">
+    										<div class="col-md-6">
+    											<div class="ups-form_group ups-input_has_unit">
+    												<label for="CODCurrency" class="ups-form_label">C.O.D. Currency</label>
+    												<div class="ups-dropdown_wrapper ups-input_wrapper">
+    													<select name="CODCurrency" class="ups-dropdown" id="CODCurrency">
+    														<option value="most_recent">CCC</option>
+    													</select>
+    												</div>
+    											</div>
+    											<div class="ups-form_group ups-form_required ups-input_has_unit">
+    												<label for="CODAmtCollect" class="ups-form_label">
+    													Amount to Collect on Delivery
+    													<span aria-hidden="true" class="ups-required_indicator"></span>
+    												</label>
+    												<div class="ups-text_wrapper ups-input_wrapper">
+    													<input type="text" name="CODAmtCollect" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="CODAmtCollect" {{#if error}}aria-describedby="CODUnit"{{/if}} aria-required="true" required>
+    													<span class="ups-input_unit_measure">[CAD]</span>
+    												</div>
+    												  {{#if non_error}}
+    												  <div class="ups-check ups-active">
+    													  <span class="icon ups-icon-check" aria-hidden="true"></span>
+    													  <span class="ups-readerTxt">Check</span>
+    												  </div>
+    												  {{/if}}
+    												  {{#if error}}
+    													{{>A11_field_lvl_error error_CODAmtCollect }}
+    												  {{/if}}
+    											</div>
+    											<div class="ups-form_group ups-input_has_unit">
+    												<label for="CODMethod" class="ups-form_label">C.O.D. Payment Method</label>
+    												<div class="ups-dropdown_wrapper ups-input_wrapper">
+    													<select name="CODMethod" class="ups-dropdown" id="CODMethod">
+    														<option value="most_recent">Cashier's check or money order</option>
+    													</select>
+    												</div>
+    											</div>
+    										</div>
+    									</div>
+    								</div>
+    								<hr>
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever additionalHandlingLever }}
+    								</div>
+    								<div id="additionalHandlingSection" class="row">
+    									<div class="col-md-6">
+    										<fieldset class="ups-form_group ups-help_wrapper">
+    											<legend class="ups-readerTxt">
+    												Additional Handling Options
+    											</legend>
+    											<div class="ups-buttonList_wrapper ups-input_wrapper">
+    												<input id="largePackage" class="ups-checkbox-custom" name="largePackage" type="checkbox" value="1" checked="">
+    												<label for="largePackage" class="ups-checkbox-custom-label">
+    													Large Package
+    												</label>
+    												<!--<div class="ups-help">
+    													<button type="button"  id="ups-formHelp3" class="ups-help_link">
+    														<span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+    														Help
+    													</button>
+    													<div class="ups-help_tooltip ups-help_tooltip_topleft">
+    														<button type="button" class="ups-help_close">
+    															<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+    															<span class="ups-readerTxt">Close</span>
+    														</button>
+    														<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+    													</div>
+    												</div>-->
+    												<!--<p class="ups-indent_with_input">placeholder - package is too large to fit</p>-->
+    											</div>
+
+    											<div class="ups-buttonList_wrapper ups-input_wrapper">
+    												<input id="additionalPackageHandling" class="ups-checkbox-custom" name="ups-uid-additionalPackageHandling-unnamed" type="checkbox" value="2">
+    												<label for="additionalPackageHandling" class="ups-checkbox-custom-label">
+    													Additional Handling
+    												</label>
+    												<!--<div class="ups-help">
+    													<button type="button" id="ups-formHelp4" class="ups-help_link">
+    														<span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+    														Help
+    													</button>
+    													<div class="ups-help_tooltip ups-help_tooltip_topleft">
+    														<button type="button" class="ups-help_close">
+    															<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+    															<span class="ups-readerTxt">Close</span>
+    														</button>
+    														<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+    													</div>
+    												</div>-->
+    												<!--<p class="ups-indent_with_input">placeholder - package is too long to fit or is not completely contained in a container.</p>-->
+    											</div>
+    										</fieldset>
+    									</div>
+    								</div>
+    								<hr>
+    								{{!-- <!--<div class="ups-form_group">
+    									 {{> A05_switch_lever upsCarbonNeutralLever }}
+    								</div>
+    								<hr> --> --}}
+    								{{!-- <!--<div class="ups-form_group">
+    									{{> A05_switch_lever deliveryConfirmationLever }}
+    								</div>
+    								<hr>--> --}}
+    								<div class="ups-form_group">
+    									{{> A05_switch_lever chainOfCustodyLever }}
+    								</div>
+    							</div>
+    						</div> <!-- End of View Additional Options Drawer -->
+                    {{/if}}
+                    <div class="ups-form_ctaGroup ups-group">
+                        <button type="button" class="ups-cta ups-cta_primary" id="pkgSaveBtn">Save</button>
+                        <button type="button" class="ups-cta ups-cta_secondary" id="pkgCancelBtn">Cancel</button>
+                    </div>
+                <!--</div>-->
+
+                {{#if shipTipAlert}}
+                    <div id="shipTipAlert">
+                        {{>BS02_alert shipTipAlert}}
+                    </div>
+                {{/if}}
+                {{#if non-us }}
+                    {{>BS02_alert dimWeightAlert}}
+                {{/if}}
+
+            </div> <!-- end .panel-body -->
+
+        </section>
+
+        <section class="panel panel-default" id="collapsedPackageRow2alt">
+            <div class="panel-heading">
+                <h3>
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package 2
+                </h3>
+                <div class="ups-package_actions"> <!-- ups-collapsed_package_actions -->
+                    <button type="button" class="ups-link" id="pkg2altEditBtn">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg2altDelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Package {2}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg2altDupBtn">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {2}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Package Type:</span> My Packaging</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Dimensions:</span> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Weight:</span> 999 lbs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel panel-default" id="collapsedPackageRow3alt">
+            <div class="panel-heading">
+                <h3>
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package 3
+                </h3>
+                <div class="ups-package_actions"> <!-- ups-collapsed_package_actions -->
+                    <button type="button" class="ups-link" id="pkg3altEditBtn">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {3}</span>
+                    </button>
+                    <button type="button" class="ups-link" id="pkg3altDelBtn">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Package {3}</span>
+                    </button>
+                    <button type="button" class="ups-link">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {3}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Package Type:</span> My Packaging</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Dimensions:</span> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><span class="ups-form_label">Weight:</span> 999 lbs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+	</div>
+
+    <div class="ups-group">
+    	<button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon" id="addAdditionalPkgBtn">
+            <span class="icon ups-icon-addpackage" aria-hidden="true"></span>
+            Add Another {{#if wwef}}Pallet{{else}}Package{{/if}}
+        </button>
+    </div>
+
+    <div class="ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+        <!-- onclick added below to prevent WEM validation since error state of page already exist -->
+        <button type="submit" class="ups-cta ups-cta_primary" id="packageContinueBtn" onclick="return false;">Next</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Cancel Shipment</button>
+        <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+            Save Shipment for Later
+            <span class="icon ups-icon-save" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div class="ups-cms-demo">
+    	Only 3 packages can be added in this view, but production Application should allow 20 maximum
+
+        <hr>
+
+        <button type="button" class="ups-cta ups-cta_secondary" id="lithiumBattShipTip1ViewBtn">Lithium Battery - Ship Tip 1</button>
+        <!--<button type="button" class="ups-cta ups-cta_secondary" id="lithiumBattShipTip2ViewBtn">Lithium Battery - Ship Tip 2</button>-->
+        <button type="button" class="ups-cta ups-cta_secondary" id="lithiumBattShipTipNoneViewBtn">Lithium Battery - No Ship Tip</button>
+    </div>
+</div>
+<!-- Balance Bar Widget -->
+{{> A23_balance_bar balance_bar }}
+<!-- End Balance Bar Container -->

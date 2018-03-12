@@ -1,0 +1,45 @@
+---
+title: UPS Internet Freight
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIFS
+appCSS: ups.legacy_overrideUIFS
+dir: ltr
+lang: en
+---
+<div id="main">
+    {{> background_modal_content }} 
+    <!-- Dialog -->
+    <div class="appLvl mod modal dialog">
+        <div class="appHead clearfix">
+            <h2>{{title}}</h2>
+            <ul>
+                <li>
+                    <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+                </li>
+            </ul>
+        </div>
+        <div class="appBody">
+            <p class="error">>>>> error message goes here.</p>
+            <p>request locked due to status ... ... paragraph text.</p>
+        </div>
+        <div class="appFooter">
+            <div class="btnBar alignCenter">
+                <input name="" type="button" value="ok_btn" class="btn">
+            </div>
+        </div>
+    </div>
+    <!-- /END Dialog -->
+    
+<script type="text/javascript">
+	
+$(document).ready(function(){
+
+	$('.modal').dialog({modal:true,dialogClass:'modal', width:470});
+	$('#modalClose').click(function(e){
+		$('.modal').dialog('close');
+	});	
+});
+
+</script>
+</div>

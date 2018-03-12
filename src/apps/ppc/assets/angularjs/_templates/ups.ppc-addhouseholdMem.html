@@ -1,0 +1,246 @@
+
+<div class="ups-application_wrapper ups-app_onboarding"
+	data-ng-controller="myChoiceManageAddressCtrl"> 
+    <!--data-ng-show="addeditMember"--> 
+    <!--<ng-form name="ups_addHouseholdMem" novalidate>--> 
+    <!--
+	<div data-ng-if="addhouseholdMem.length===0">
+		<p>You haven't added any household members yet.</p>
+	</div>
+-->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="col" class="ups-table_header_tertiary">Name</th>
+                    <th scope="col" data-ng-init="sortNickName=true" class="ups-table_header_tertiary">Name Variations</th>
+                    <th scope="col" data-ng-init="sortNumber=true" class="ups-table_header_tertiary">Manage</th>
+                </tr>
+                <tr ng-if="householdMem.length === 0">
+                    <td scope="row" colspan="3"> Share your UPS My Choice benefits. Add household members now. </td>
+                </tr>
+                <tr ng-if="householdMem.length > 0" ng-repeat="member in householdMem">
+                    <td scope="row"> {{member.name}} </td>
+                    <td> {{member.nameVarJoined}} </td>
+                    <td><a href="#" onclick="return false;" data-ng-click="addHouseholdMember('edit', $index)" class="ups-link">Edit</a> | <a href="#" onclick="return false;" data-ng-click="deleteHouseholdMember($index)" class="ups-link">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--
+    <div class=" ups-form_group"
+		data-ng-repeat="member in addhouseholdMem track by $index">
+		<div class="ups-form_group" data-ng-hide="member.isEditable">
+			<h2 class="">Household Member {{$index+1}}</h2>
+			<div class="row">
+				<div class="col-md-3">
+					<strong>Name</strong>
+				</div>
+				<div class="col-md-9">
+					<p>{{member.name}}</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<strong>Name Variations</strong>
+				</div>
+				<div class="col-md-9">{{member.nameVarJoined}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<a href="#" onclick="return false;" data-ng-click="member.isEditable = true" class="ups-link">Edit
+						Household Member {{$index+1}}</a>
+				</div>
+				<div class="col-md-9">
+					<a href="#" onclick="return false;" data-ng-click="deleteHouseholdMember($index)" class="ups-link">Delete
+						Household Member {{$index+1}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="row" data-ng-show="member.isEditable">
+			<div class="col-md-3">
+				<div class="ups-form_group ups-form_required "
+					data-ng-class="{ 'has-error' : ups_addHouseholdMem['ups-firstName'+$index].$invalid && !ups_addHouseholdMem['ups-firstName'+$index].$pristine }">
+					<label for="{{'ups-firstName'+$index}}" class="ups-form_label">First
+						Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="{{'ups-firstName'+$index}}"
+							class="ups-form_input" id="{{'ups-firstName'+$index}}"
+							maxlength="35" required aria-describedby="FirstName-error"
+							aria-required="true" data-ng-model="member.first_name"
+							data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="FirstName-error"> <span class="ups-invalid_color"
+							data-ng-if="!ups_addHouseholdMem['ups-firstName'+$index].$pristine && ups_addHouseholdMem['ups-firstName'+$index].$invalid ">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_addHouseholdMem['ups-firstName'+$index].$error.required">First
+									Name is required.</span> <span
+								data-ng-hide="ups_addHouseholdMem['ups-firstName'+$index].$error.required">Invalid
+									first name.</span>
+						</span>
+						<span data-ng-if=" ups_addHouseholdMem['ups-firstName'+$index].$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_addHouseholdMem['ups-firstName'+$index].$valid)">
+								<span class="ups-icon-check" aria-hidden="true"></span>
+
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div class="ups-form_group">
+					<label for="ups-middleIni" class="ups-form_label">
+                        <span aria-hidden="true">MI</span>
+                        <span class="ups-readerTxt">Middle Initial</span>
+                    </label>
+					<div class="ups-input_wrapper">
+						<input type="text" name="middleIni" class="ups-form_input" id="ups-middleIni" maxlength="35" data-ng-model="member.middle_name" aria-describedby="MiddleName-error" aria-required="true" data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/" data-ng-model-options="{updateOn: 'blur'}">
+						<span id="MiddleName-error"> 
+							<span class="ups-invalid_color" data-ng-if="!ups_addHouseholdMem.middleIni.$pristine && ups_addHouseholdMem.middleIni.$invalid">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span> 
+								<span data-ng-show="ups_addHouseholdMem.middleIni.$invalid">Invalid middle initial.</span>
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="ups-form_group ups-form_required"
+					data-ng-class="{ 'has-error' : ups_addHouseholdMem['ups-lastName'+$index].$invalid && !ups_addHouseholdMem['ups-lastName'+$index].$pristine }">
+					<label for="{{'ups-lastName'+$index}}" class="ups-form_label">Last
+						Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="{{'ups-lastName'+$index}}"
+							class="ups-form_input" id="{{'ups-lastName'+$index}}"
+							maxlength="35" required aria-describedby="LastName-error"
+							aria-required="true" data-ng-model="member.last_name"
+							data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+							data-ng-model-options="{updateOn: 'blur'}"
+							data-ng-blur="checkLastName($index, member.last_name)"> <span
+							id="LastName-error"> <span class="ups-invalid_color"
+							data-ng-if="!ups_addHouseholdMem['ups-lastName'+$index].$pristine && ups_addHouseholdMem['ups-lastName'+$index].$invalid">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_addHouseholdMem['ups-lastName'+$index].$error.required">Last
+									Name is required.</span> <span
+								data-ng-hide="ups_addHouseholdMem['ups-lastName'+$index].$error.required">Invalid
+									last name.</span>
+						</span>
+						<span data-ng-if="ups_addHouseholdMem['ups-lastName'+$index].$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_addHouseholdMem['ups-lastName'+$index].$valid)">
+								<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="ups-form_group  suffix" data-ng-show="isUS">
+					<label for="ups-suffix_select" class="ups-form_label">Suffix</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select error-on-blur name="select" class="ups-dropdown"
+							id="ups-suffix_select" data-ng-model="member.name_suffix"
+							data-ng-init="member.name_suffix = 'None'">
+							<option value="None">Select One</option>
+							<option data-ng-repeat="suffixVal in suffixVals"
+								value="{{suffixVal.value}}">{{suffixVal.option}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="ups-form_group  suffix" data-ng-show="!isUS">
+					<label for="ups-suffix_input_non-US" class="ups-form_label">Suffix</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="suffix" class="ups-form_input"
+							data-ng-model="member.name_suffix" id="ups-suffix_input_non-US"
+							maxlength="5">
+						<div data-ng-if="(ups_signupform.suffix.$valid && member.name_suffix)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="ups-form_group">
+					<label for="ups-name-var" class="ups-form_label">Name
+						Variations</label>
+					<div class="ups-sendAlerts-twoInp"
+						data-ng-repeat="nameVar in member.nameReceiver track by $index">
+						<div class="ups-form_group">
+							<div class=" ups-text_wrapper ups-input_wrapper">
+								<input type="text" class="ups-form_input dynamicTextBox"
+									data-ng-model="member.nameReceiver[$index]" maxLength="35"
+									id="ups-name-var">
+							</div>
+							<a href="#" onclick="return false;" class="ups-link close ups-close-right"
+								data-ng-click="deleteRow(member.nameReceiver, $index)">
+								<span class="ups-icon-minuscircle" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Close</span>
+							</a>
+						</div>
+
+					</div>
+
+					<button data-ng-click="addNameVariation($index)"
+						class="ups-cta ups-cta_secondary ups-name_variation ups-decoration-none"
+						data-ng-show="checkLength($index)<=9">
+						Add a Name Variation<span class="ups-icon-pluscircle" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="ups-form_group">
+					<p data-ng-show="duplicateLastName[$index]">
+						<strong>Note:</strong> this household memeber has a different last
+						name than the primary memebership holder. Additional security
+						questions will be required to verify this person's identity and
+						will be displayed after you select <strong>Save Changes</strong>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr class="ups-hr-color">
+-->
+    
+    <div class="ups-form_ctaGroup">
+        <button data-ng-click="addHouseholdMember('Add')"
+			class="ups-cta ups-cta_primary"
+			data-ng-show="householdMem.length<=9"> Add a Household Member </button>
+    </div>
+    
+    <!--
+    <div class="ups-form_ctaGroup">
+		<button type="submit" class="ups-cta ups-cta_primary"
+			data-ng-click="saveChanges()">Save Changes</button> --
+            !-- data-ng-disabled="!ups_addHouseholdMem.$valid" --
+		!--<button type="button" class="ups-cta ups-cta_secondary"
+			data-ng-click="cancel()">Cancel</button>
+	</div>
+--> 
+    <!--</ng-form>--> 
+</div>

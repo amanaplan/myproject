@@ -1,0 +1,531 @@
+<div id="additionalPackagesTopCtrls" class="ups-track_additional_pkgs_controls">
+    <!--<div class="row">
+        <div class="col-sm-6">
+            <div class="ups-group ups-group_slim">
+                <div class="ups-group_value">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 ups-text-sm-right">
+
+        </div>
+    </div>-->
+    <p>
+        1 - 12 of 35 results
+    </p>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="ups-group">
+                <div class="ups-btn_group ups-btn_group_separate" id="multiTrackTableOptions">
+                    <!--<div class="ups-btn_group_col">-->
+                        <ul class="ups-btn_group_inner">
+                            <li class="ups-btn_group_action_inner">
+                                <button class="ups-cta ups-btn_group_action" (click)="filterByViewToggle()"
+                                id="multiTrackFilterByBtn"
+                                [ngClass]="{'ups-btn_group_action_selected' : filterByView}"
+                                [attr.aria-expanded]="(filterByView) ? 'true' : 'false'"
+                                aria-controls="filterByViewContainer">Display Options</button>
+                            </li>
+                            <!--<li class="ups-btn_group_action_inner" *ngIf="multiPackageView == '0'">
+                                <button class="ups-cta ups-btn_group_action">Sort By</button>
+                            </li>-->
+                            <!--<li class="ups-btn_group_action_inner" *ngIf="multiPackageView == '1'">
+                                <button class="ups-cta ups-btn_group_action" (click)="columnsViewToggle()"
+                                id="multiTrackColumnsBtn"
+                                [ngClass]="{'ups-btn_group_action_selected' : columnsView}"
+                                [attr.aria-expanded]="(columnsView) ? 'true' : 'false'"
+                                aria-controls="columnsViewContainer">Columns</button>
+                            </li>-->
+                        </ul>
+                    <!--</div>
+                    <div class="ups-btn_group_col">
+
+                    </div>-->
+                </div>
+                <!--<div class="ups-btn_group" *ngIf="multiPackageView == '1'">
+                    <ul class="ups-btn_group_inner">
+                        <li class="ups-btn_group_action_inner">
+                            <button class="ups-cta ups-btn_group_action">Export</button>
+                        </li>
+                    </ul>
+                </div>-->
+            </div>
+
+
+            <!--<div class="ups-group_btns ups-group">
+                <div class="ups-group_btn_action_inner">
+                    <button class="ups-cta ups-group_btn_action">Filter By</button>
+                </div>
+                <div class="ups-group_btn_action_inner">
+                    <button class="ups-cta ups-group_btn_action">Sort By</button>
+                </div>
+                <div class="ups-group_btn_action_inner" *ngIf="multiPackageView == '1'">
+                    <button class="ups-cta ups-group_btn_action"><span class="hidden-xs">Toggle </span>Columns</button>
+                </div>
+                <div class="ups-group_btn_separate"></div>
+                <div class="ups-group_btn_action_inner" *ngIf="multiPackageView == '1'">
+                    <button class="ups-cta ups-group_btn_action">Export As...</button>
+                </div>
+            </div>-->
+        </div>
+        <div class="col-md-6 ups-text-md-right ups-recent_tracked_view_actions">
+            <div class="ups-form_group ups-form_group_inline ups-recent_tracked_per_view" *ngIf="vpSize.isGtSMVP">
+                <label for="trkResultsPerView" class="ups-form_label">Results per Page</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="trkResultsPerView" class="ups-dropdown" id="trkResultsPerView">
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
+            </div>
+            <fieldset class="ups-group ups-btn_group_fieldset ups-recent_tracked_view_display">
+                <legend class="ups-form_label ups-btn_group_legend ups-readerTxt">
+                    View
+                </legend>
+                <div class="ups-btn_group">
+                    <div class="ups-btn_group_inner">
+                        <div class="ups-btn_group_action_inner">
+                            <input type="radio"
+                                value="1"
+                                id="multiViewList"
+                                name="multiView"
+                                class="ups-btn_group_radio"
+                                [(ngModel)]="multiPackageView"
+                                (ngModelChange)="multiPackageChange()">
+                            <label for="multiViewList" class="ups-btn_group_label">
+                                <span class="ups-readerTxt">List View</span>
+                                <span class="icon ups-icon-list" aria-hidden="true"></span>
+                            </label>
+                        </div>
+                        <div class="ups-btn_group_action_inner">
+                            <input type="radio"
+                                value="0"
+                                id="multiViewTile"
+                                name="multiView"
+                                class="ups-btn_group_radio"
+                                [(ngModel)]="multiPackageView"
+                                (ngModelChange)="multiPackageChange()">
+                            <label for="multiViewTile" class="ups-btn_group_label">
+                                <span class="ups-readerTxt">Tile View</span>
+                                <span class="icon ups-icon-grid" aria-hidden="true"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+        </div>
+    </div>
+
+    <div id="filterByViewContainer">
+        <div class="ups-tracking_options_toggle_view_wrapper"
+            *ngIf="filterByView"
+            [@slideOpen]="filterByViewAni"
+            (@slideOpen.start)="animationStarted($event)"
+            (@slideOpen.done)="animationDone($event)"
+            [style.top]="getToggleTopCSS()"
+            [ngClass]="{ 'ups-tracking_options_toggle_view_has_popup' : (filterStartDatePicker?.returnsDatePicker || filterEndDatePicker?.returnsDatePicker) }">
+            <div class="ups-tracking_options_toggle_view ups-toggle_view_state ups-toggle_view_left">
+                <div class="ups-toggle_view_arrow_wrapper" id="filterByViewArrow">
+                    <div class="ups-toggle_view_arrow"></div>
+                </div>
+                <div class="row">
+                    <div [ngClass]="{'col-md-3' : multiPackageView == '1', 'col-md-12' : multiPackageView == '0'}">
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label">
+                                Filter by Status
+                            </legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper"
+                                [ngClass]="{'ups-buttonList_inline' : vpSize.isGtSMVP && multiPackageView == '0'}">
+                                <input type="checkbox"
+                                    value="1"
+                                    id="filterStatusReady"
+                                    class="ups-checkbox-custom">
+                                <label for="filterStatusReady" class="ups-checkbox-custom-label">Exception (14)</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper"
+                                [ngClass]="{'ups-buttonList_inline' : vpSize.isGtSMVP && multiPackageView == '0'}">
+                                <input type="checkbox"
+                                    value="1"
+                                    id="filterStatusAddress"
+                                    class="ups-checkbox-custom">
+                                <label for="filterStatusAddress" class="ups-checkbox-custom-label">In Transit (19)</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper"
+                                [ngClass]="{'ups-buttonList_inline' : vpSize.isGtSMVP && multiPackageView == '0'}">
+                                <input type="checkbox"
+                                    value="1"
+                                    id="filterStatusDelivered"
+                                    class="ups-checkbox-custom">
+                                <label for="filterStatusDelivered" class="ups-checkbox-custom-label">Delivered (2)</label>
+                            </div>
+                            <!--<div class="ups-buttonList_wrapper ups-input_wrapper ups-buttonList_inline">
+                                <input type="checkbox"
+                                    value="1"
+                                    id="filterStatusOnWay"
+                                    class="ups-checkbox-custom">
+                                <label for="filterStatusOnWay" class="ups-checkbox-custom-label">On Its Way (3)</label>
+                            </div>-->
+                        </fieldset>
+                    </div>
+                    <div class="col-md-5" *ngIf="multiPackageView == '1'">
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label">
+                                Columns
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input class="ups-checkbox-custom" id="columnsDisplayTrackNum" type="checkbox" value="1" [(ngModel)]="toggleColumns.trkNum">
+                                        <label class="ups-checkbox-custom-label" for="columnsDisplayTrackNum">Tracking Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input class="ups-checkbox-custom" id="columnsDisplayStatus" type="checkbox" value="1" [(ngModel)]="toggleColumns.status">
+                                        <label class="ups-checkbox-custom-label" for="columnsDisplayStatus">Status</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input class="ups-checkbox-custom" id="columnsDisplayDate" type="checkbox" value="1" [(ngModel)]="toggleColumns.date">
+                                        <label class="ups-checkbox-custom-label" for="columnsDisplayDate">Delivery Date</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input class="ups-checkbox-custom" id="columnsDisplayTime" type="checkbox" value="1" [(ngModel)]="toggleColumns.time">
+                                        <label class="ups-checkbox-custom-label" for="columnsDisplayTime">Estimated Time</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    <!--</div>
+                    <div class="col-md-4">
+                        <p class="ups-form_label">
+                            Date
+                        </p>
+                        <div class="ups-form_group">
+                            <label for="filterDateFrom">From</label>
+                            <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                <input type="text"
+                                    id="filterDateFrom"
+                                    class="ups-form_input"
+                                    [ngModel]="filterStartDate | date:'MM/dd/yyyy'"
+                                    (ngModelChange)="(dMoment(filterStartDate, 'MM/dd/yyyy', true)) ? filterStartDate = $event : false">
+                                <button class="ups-date_picker_button"
+                                    type="button"
+                                    (click)="toggleStartDatePicker()">
+                                    <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                            <ups-datepicker #filterStartDatepicker class="ups-datepicker-wrap"></ups-datepicker>
+                        </div>
+                        <div class="ups-form_group">
+                            <label for="filterDateTo">To</label>
+                            <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                <input type="text"
+                                    id="filterDateTo"
+                                    class="ups-form_input"
+                                    [ngModel]="filterEndDate | date:'MM/dd/yyyy'"
+                                    (ngModelChange)="(dMoment(filterEndDate, 'MM/dd/yyyy', true)) ? filterEndDate = $event : false">
+                                <button class="ups-date_picker_button"
+                                    type="button"
+                                    (click)="toggleEndDatePicker()">
+                                    <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                            <ups-datepicker #filterEndDatepicker class="ups-datepicker-wrap"></ups-datepicker>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="ups-form_group ups-form_group_inline ups-recent_tracked_per_view" *ngIf="vpSize.isLtMDVP">
+                    <label for="trkResultsPerView" class="ups-form_label">Results per Page</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="trkResultsPerView" class="ups-dropdown" id="trkResultsPerView">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="all">All</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ups-form_ctaGroup">
+                    <button type="button" class="ups-cta ups-cta_primary">Apply</button>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="filterByViewToggle()">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--<div id="columnsViewContainer">
+        <div class="ups-tracking_options_toggle_view_wrapper"
+            *ngIf="columnsView"
+            [@slideOpen]="columnsViewAni"
+            (@slideOpen.start)="animationStarted($event)"
+            (@slideOpen.done)="animationDone($event)"
+            [style.top]="getToggleTopCSS()">
+            <div class="ups-tracking_options_toggle_view ups-toggle_view_state ups-toggle_view_left">
+                <div class="ups-toggle_view_arrow_wrapper" id="columnsViewArrow">
+                    <div class="ups-toggle_view_arrow"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-readerTxt">
+                                Columns to display
+                            </legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper ups-buttonList_inline">
+                                <input class="ups-checkbox-custom" id="columnsDisplayTrackNum" type="checkbox" value="1" [(ngModel)]="toggleColumns.trkNum">
+                                <label class="ups-checkbox-custom-label" for="columnsDisplayTrackNum">Tracking Number</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper ups-buttonList_inline">
+                                <input class="ups-checkbox-custom" id="columnsDisplayStatus" type="checkbox" value="1" [(ngModel)]="toggleColumns.status">
+                                <label class="ups-checkbox-custom-label" for="columnsDisplayStatus">Status</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper ups-buttonList_inline">
+                                <input class="ups-checkbox-custom" id="columnsDisplayDate" type="checkbox" value="1" [(ngModel)]="toggleColumns.date">
+                                <label class="ups-checkbox-custom-label" for="columnsDisplayDate">Delivery Date</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper ups-buttonList_inline">
+                                <input class="ups-checkbox-custom" id="columnsDisplayTime" type="checkbox" value="1" [(ngModel)]="toggleColumns.time">
+                                <label class="ups-checkbox-custom-label" for="columnsDisplayTime">Estimated Time</label>
+                            </div>
+                        </fieldset>
+                        <button type="button" class="ups-cta ups-cta_tertiary" (click)="columnsViewToggle()">Close</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>-->
+</div>
+
+
+<ul class="ups-tracking_cards" *ngIf="multiPackageView == '0'">
+    <li class="ups-card" *ngFor="let package of allPackages; let k = $index;" [ngClass]="{'ups-tracking_card_exception' : package.exception}">
+        <div class="ups-card_content">
+            <!-- class="ups-form_group" -->
+            <div class="ups-tracking_card_heading">
+                <!--<input type="checkbox" value="1" id="trackingCard1" class="ups-checkbox-custom">
+                <label for="trackingCard1" class="ups-checkbox-custom-label">-->
+                <div class="ups-tracking_card_heading_link">
+                    <a href="#" class="ups-link">{{ package.trackNum }}</a>
+                </div>
+                <!--</label>-->
+                <div class="ups-tracking_card_heading_description">
+                    {{ package.descrip }}
+                </div>
+            </div>
+        </div>
+        <div class="ups-card_content ups-card_content_no_separate">
+            <div class="ups-tracking_card_side">
+                <!-- textAdjust directive path: directives/text_adjust.ts -->
+                <div class="ups-tracking_card_heading_status" textAdjust textAdjustResizeClass="ups-tracking_card_heading_status_long">
+                    <p class="ups-tracking_card_header">
+                        <strong><span [innerHtml]="package.status" textAdjustOriginal></span><span textAdjustSwap></span></strong>
+                    </p>
+                </div>
+                <div class="ups-tracking_card_action" *ngIf="package.actionRequired">
+                    <a href="#" class="ups-link ups-new-window" target="_blank">
+                        Action Required
+                        <span class="icon ups-icon-newwindow" aria-hidden="true"></span>
+                    </a>
+                    <!--<ng-container *ngIf="package.additionalInfo != ''">
+                        {{ package.additionalInfo }}
+                    </ng-container>-->
+                </div>
+                <div class="ups-tracking_card_action"  *ngIf="!package.actionRequired">
+                    <a href="#" class="ups-link">View Details</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="ups-tracking_card_delivery_info">
+            <ng-container *ngIf="package.date != '' || package.time != ''">
+                <p class="ups-form_label">
+                    <strong *ngIf="package.delivered && !package.confirmed">Delivered On</strong>
+                    <strong *ngIf="!package.delivered && !package.confirmed">Scheduled Delivery</strong>
+                    <strong *ngIf="package.confirmed">Confirmed Delivery Window</strong>
+                </p>
+                <p class="ups-tracking_card_date">
+                    {{ package.date }}
+                </p>
+                <!--<p>
+                    <ng-container *ngIf="package.delivered">at</ng-container> {{ package.time }}
+                </p>-->
+            </ng-container>
+            <ng-container *ngIf="package.date == '' || package.time == ''">
+                <p>
+                    Please check back later for estimated delivery.
+                </p>
+            </ng-container>
+        </div>
+        <div class="ups-tracking_card_side_icon">
+            <!--<span class="icon ups-icon-alert" aria-hidden="true"></span>-->
+            <div class="ups-tracking_status_icon ups-tracking_status_icon_exception" *ngIf="package.exception">
+                <span aria-hidden="true" class="icon ups-icon-alert"></span>
+            </div>
+            <div class="ups-tracking_status_icon ups-tracking_status_icon_delivered" *ngIf="package.delivered">
+                <span aria-hidden="true" class="icon ups-icon-check"></span>
+            </div>
+            <div class="ups-tracking_status_icon ups-tracking_status_icon_transit" *ngIf="
+            !package.delivered && !package.exception && !package.unavailable">
+                <span aria-hidden="true" class="icon ups-icon-chevronright"></span>
+            </div>
+            <div class="ups-tracking_status_icon"
+                [ngClass]="{'ups-tracking_status_icon_unavailable' : !package.manifestUpload}"
+                *ngIf="package.unavailable">
+                <span aria-hidden="true" class="icon ups-tracking_icon_square"></span>
+            </div>
+        </div>
+    </li>
+
+</ul>
+
+<div *ngIf="multiPackageView == '1'">
+    <!--<div class="ups-card">-->
+        <div class="ups-table ups-card_table_container ups-progress_table">
+            <table class="ups-card_table ups-tracking_recent_table">
+                <thead>
+                    <tr>
+                        <!--<th>
+                            <span class="ups-readerTxt">Checkbox Selection</span>
+                        </th>-->
+                        <th *ngIf="toggleColumns.trkNum" class="ups-recent_table_trknum_column" scope="col">
+                            Tracking Number
+                        </th>
+                        <th *ngIf="toggleColumns.status" scope="col">
+                            <!--<button class="ups-link ups-btn_has_icon ups-text_nowrap">
+                                Status
+                                <span class="icon ups-icon-chevronup" aria-hidden="true"></span>
+                            </button>-->
+                            Status
+                        </th>
+                        <th *ngIf="toggleColumns.date" class="ups-recent_table_date_column" scope="col">
+                            <button class="ups-link ups-btn_has_icon ups-text_nowrap">
+                                <span class="ups-readerTxt">Sort By</span>
+                                Delivery Date
+                                <span class="ups-readerTxt">Descending</span>
+                                <span class="icon ups-icon-chevrondown" aria-hidden="true"></span>
+                            </button>
+                        </th>
+                        <th *ngIf="toggleColumns.time" class="ups-recent_table_time_column" scope="col">
+                            <!--<button class="ups-link ups-btn_has_icon ups-text_nowrap">
+                                Time
+                                <span class="icon ups-icon-chevrondown" aria-hidden="true"></span>
+                            </button>-->
+                            Estimated Time
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let package of allPackages; let k = $index;">
+                        <th *ngIf="toggleColumns.trkNum" scope="row">
+                            <a href="#" class="ups-link">{{ package.trackNum }}</a>
+                            <div class="ups-tracking_table_description">
+                                {{ package.descrip }}
+                            </div>
+                        </th>
+                        <td *ngIf="toggleColumns.status">
+                            <div class="ups-tracking_icon_group">
+                                <div class="ups-tracking_status_icon ups-tracking_status_icon_exception" *ngIf="package.exception">
+                                    <span aria-hidden="true" class="icon ups-icon-alert"></span>
+                                </div>
+                                <div class="ups-tracking_status_icon ups-tracking_status_icon_delivered" *ngIf="package.delivered">
+                                    <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                </div>
+                                <div class="ups-tracking_status_icon ups-tracking_status_icon_transit" *ngIf="
+                                !package.delivered && !package.exception && !package.unavailable">
+                                    <span aria-hidden="true" class="icon ups-icon-chevronright"></span>
+                                </div>
+                                <div class="ups-tracking_status_icon"
+                                    [ngClass]="{'ups-tracking_status_icon_unavailable' : !package.manifestUpload}"
+                                    *ngIf="package.unavailable">
+                                    <span aria-hidden="true" class="icon ups-tracking_icon_square"></span>
+                                </div>
+                                <div class="ups-tracking_icon_content">
+                                    <div class="ups-group ups-group_condensed ups-group_slim">
+                                        <p [innerHtml]="package.status"></p>
+                                        <p *ngIf="package.additionalInfo != ''">
+                                            {{ package.additionalInfo }}
+                                        </p>
+                                        <p *ngIf="package.actionRequired">
+                                            <a href="#" class="ups-link ups-new-window">
+                                                Action Required
+                                                <span class="icon ups-icon-newwindow" aria-hidden="true"></span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td *ngIf="toggleColumns.date">
+                            <ng-container *ngIf="package.date == ''">
+                                <p>
+                                    Please check back later for estimated delivery.
+                                </p>
+                            </ng-container>
+                            <ng-container *ngIf="package.date != ''">
+                                <p>
+                                    {{ package.longDate }}
+                                </p>
+                            </ng-container>
+                        </td>
+                        <td *ngIf="toggleColumns.time">
+                            <ng-container *ngIf="package.time == ''">
+                                <p>
+                                    N/A
+                                </p>
+                            </ng-container>
+                            <div *ngIf="package.time != ''" class="ups-group ups-group_condensed">
+                                <p>
+                                    {{ package.time }}
+                                </p>
+                                <p *ngIf="package.confirmed">
+                                    Confirmed Delivery Window
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section class="ups-search_support ups-group">
+            <div class="ups-search_results ups-active">
+                <div class="ups-wrap_inner">
+                    <div class="results-footer clearfix">
+                        <div class="footer-container">
+                            <button class="first hidden-xs hidden-sm">First</button>
+                            <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                            <div class="pagination-container">
+                                <button class="pag active hidden-xs hidden-sm">1</button>
+                                <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                                <button class="pag hidden-xs hidden-sm">3</button>
+                                <button class="pag hidden-xs hidden-sm">4</button>
+                                <button class="pag hidden-xs hidden-sm">5</button>
+                            </div>
+                            <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                            <button class="last hidden-xs hidden-sm">Last</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!--</div>-->
+</div>

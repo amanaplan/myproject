@@ -1,0 +1,87 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+    <ng-form name="ups_intlDocsform" data-novalidate>
+        <p>Proper documentation helps your shipments clear Customs
+            without unnecessary delays.</p>
+        <div class="ups-form_group">
+            <h3>International Documentation</h3>
+            <div class="ups-form_group ups-checkbox_group">
+                <div class="ups-checkbox ups-input_wrapper "
+						data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                    <input check-verify id="ups-require_intl_docs"
+							class="ups-checkbox-custom" name="ups-require_intl_docs"
+							value="1" type="checkbox" data-ng-model="formObj.tnc"
+							data-ng-checked="formObj.tnc">
+                    <label
+							for="ups-require_intl_docs"
+							class="ups-form_label ups-checkbox-custom-label">Always
+                        notify me if my shipments require international documents. </label>
+                </div>
+            </div>
+            <!-- ups-checkbox ups-input_wrapper --> 
+            <!-- <p class="ups-offset-30">
+						<strong>Note:</strong>&nbsp;If you decide NOT to check the box
+						above, your international shipments could be delayed in Customs
+						for lack of documents.
+					</p> --> 
+        </div>
+        <h3>Electronic Export Information (EEI) Option</h3>
+        <p>To file EEI forms online, you must first register at
+            aesdirect.census.gov. After registration you'll receive the
+            information needed to set these preferences.</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-filerID_input" class="ups-form_label">AESDirect Filer ID Number</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input error-on-blur type="text" name="filerID" class="ups-form_input" id="ups-filerID_input" value="" data-ng-model="formObj.filerID" maxlength="11">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-ID-type">ID Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-ID-type" class="ups-dropdown" name="ups-ID-type"
+						data-ng-model="formObj.IDType"
+						data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="type in IDType" value="{{type.type}}">{{type.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-EEI-role">EEI Role</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-EEI-role" class="ups-dropdown" name="ups-EEI-role"
+						data-ng-model="formObj.EEIRole"
+						data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="role in EEIRole" value="{{role.type}}">{{role.type}}</option>
+                        </select>
+                    </div>
+                    <p class="ups-role-help-text">Do you act as a forwarding Agent
+                        or a USPPI when you file EEIs?</p>
+                </div>
+                <div class="ups-form_group">
+                    <div class="ups-checkbox ups-input_wrapper "
+						data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                        <input check-verify id="ups-EEI_status"
+							class="ups-checkbox-custom" name="ups-EEI_status" value="1"
+							type="checkbox" data-ng-model="formObj.EEIStatus"
+							data-ng-checked="formObj.EEIStatus">
+                        <label
+							for="ups-EEI_status"
+							class="ups-form_label ups-checkbox-custom-label"> Email
+                            me if my EEI Filing status changes.</label>
+                    </div>
+                    <!-- ups-checkbox ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+					class="ups-cta ups-cta_primary"
+					data-ng-click="saveIntlDocsData()">Save</button>
+            <!-- data-ng-disabled="!(ups_intlDocsform.$dirty)" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+    </ng-form>
+</div>

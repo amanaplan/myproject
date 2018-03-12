@@ -1,0 +1,156 @@
+<div class="ups-pickup_get_started_bar text-center">
+    <h2><!-- class="hidden-xs hidden-sm">-->Let's Get Started!</h2>
+	</div>
+<div class="ups-app_inner">
+    <!--<p>
+        Welcome! Placeholder text welcoming user to UPS Pickup Point. More placeholder text welcoming use to UPS Pickup Point.
+    </p>-->
+    <p>
+       Enter the 9 character ID and the Postal Code to sign in to your individual Pickup Point
+    </p>
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+    <form [formGroup]="signinForm" (ngSubmit)="submitPlacardInfo(signinForm.value)" novalidate>
+        <div *ngIf="(signinFormSubmitAttempt &amp;&amp; !signinForm.valid)">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+
+                <li *ngIf="(!signinForm.controls['placardID'].valid && signinForm.controls['placardID'].hasError('required'))">
+                    <a href="#placardID" class="ups-invalid_color">Placard ID <span class="ups-readerTxt">field</span></a> is required
+                </li>
+                <li *ngIf="(!signinForm.controls['placardID'].valid && !signinForm.controls['placardID'].hasError('required'))">
+                    <a href="#placardID" class="ups-invalid_color">Placard ID <span class="ups-readerTxt">field</span></a> is invalid
+                </li>
+
+                <li *ngIf="(!signinForm.controls['postalCode'].valid && signinForm.controls['postalCode'].hasError('required'))">
+                    <a href="#postalCode" class="ups-invalid_color">Postal Code <span class="ups-readerTxt">field</span></a> is required
+                </li>
+                <li *ngIf="(!signinForm.controls['postalCode'].valid && !signinForm.controls['postalCode'].hasError('required'))">
+                    <a href="#postalCode" class="ups-invalid_color">Postal Code <span class="ups-readerTxt">field</span></a> is invalid
+                </li>
+
+            </ul>
+        </div>
+        <div class="ups-form_group ups-form_required">
+            <label for="placardID" class="ups-form_label">
+                Placard ID
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper ups-has_camera_icon ups-has_camera_xs_only">
+                <button type="button" class="ups-input_camera_button visible-xs">
+                    <span class="icon ups-icon-camera" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Take a Picture</span>
+                </button>
+                <input type="text"
+                    name="placardID"
+                    class="ups-form_input"
+                    id="placardID"
+                    placeholder="6-digit code"
+                    aria-required="true"
+                    required
+                    aria-describedby="placardID_error"
+                    [ngClass]="{'ups-bodError':  (!signinForm.controls['placardID'].valid &amp;&amp; signinForm.controls['placardID'].touched)}"
+                    pattern="^[0-9-]+$"
+                    [formControl]="signinForm.controls['placardID']">
+            </div>
+            <span class="ups-icons-error" id="placardID_error" role="alert">
+                <span class="ups-invalid_color"
+                    *ngIf="(!signinForm.controls['placardID'].valid &amp;&amp; signinForm.controls['placardID'].touched)">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    <span *ngIf="signinForm.controls['placardID'].hasError('required')">
+                        Placard ID is required.
+                    </span>
+                    <span *ngIf="!signinForm.controls['placardID'].hasError('required')">
+                        Placard ID is invalid.
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div class="ups-form_group">
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="savePlacard"
+                    class="ups-checkbox-custom"
+                    name="savePlacard"
+                    type="checkbox"
+                    value="1"
+                    [checked]="savedID">
+                <label for="savePlacard" class="ups-checkbox-custom-label">
+                    Save Pickup Point ID
+                </label>
+            </div>
+        </div>
+        <div class="ups-group" *ngIf="savedID">
+            <p>
+                Previously used IDs
+            </p>
+            <div class="ups-pickup_used_ids">
+                <a href="#/id/5552-46" class="ups-link">5552-46</a><a href="#/id/6254-55" class="ups-link">6254-55</a>
+            </div>
+        </div>
+        <div class="ups-form_group ups-form_required">
+            <label for="postalCode" class="ups-form_label">
+                Postal Code
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text"
+                    name="postalCode"
+                    class="ups-form_input"
+                    id="postalCode"
+                    placeholder="Pickup point postal code"
+                    aria-required="true"
+                    required
+                    aria-describedby="postalCode_error"
+                    [ngClass]="{'ups-bodError':  (!signinForm.controls['postalCode'].valid &amp;&amp; signinForm.controls['postalCode'].touched)}"
+                    pattern="^[0-9-\s]+$"
+                    [formControl]="signinForm.controls['postalCode']">
+            </div>
+            <span class="ups-icons-error" id="postalCode_error" role="alert">
+                <span class="ups-invalid_color"
+                    *ngIf="(!signinForm.controls['postalCode'].valid &amp;&amp; signinForm.controls['postalCode'].touched)">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    <span *ngIf="signinForm.controls['postalCode'].hasError('required')">
+                        Postal Code is required.
+                    </span>
+                    <span *ngIf="!signinForm.controls['postalCode'].hasError('required')">
+                        Postal Code is invalid.
+                    </span>
+                </span>
+            </span>
+        </div>
+        <div class="ups-form_group">
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="rememberMe" class="ups-checkbox-custom" name="rememberMe" type="checkbox" value="1">
+                <label for="rememberMe" class="ups-checkbox-custom-label">
+                    Remember me
+                </label>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+            <!--<button type="button" class="ups-cta ups-cta_secondary">Need help?</button>-->
+        </div>
+    </form>
+</div>
+
+<div class="ups-cms-demo">
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setSavedID()">
+        IDs saved
+    </button>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setNoSavedID()">
+        No IDs saved
+    </button>
+    <hr>
+    Note: Fill in 5554-56 for the PlacardID field and click submit to go to the next screen
+</div>

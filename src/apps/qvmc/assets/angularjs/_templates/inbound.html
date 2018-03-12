@@ -1,0 +1,237 @@
+<div class="main" id="inboundTab">
+	<h1>Quantum View Manage</h1>
+	<form action="../../../legacy_spa/qvmc/_templates/repl_fname" method="repl_method" name="repl_fname">
+		<div class="floatBegin">
+			<ul class="subTab clearfix">
+				<li class="tab-off"><a ui-sref="combined">Combined</a>
+				</li>
+				<li class="tab-off"><a ui-sref="outbound">Outbound</a>
+				</li>
+				<li class="tab-on">Inbound</li>
+				<li class="tab-off"><a ui-sref="thirdparty">Third Party</a>
+				</li>
+				<li class="tab-off"><a ui-sref="import">Imports</a>
+				</li>
+
+			</ul>
+		</div>
+		<div class="floatEnd">
+			<p>Last Updated: 02/15/2016 01:10PM <span><a href="" class="btnlnkR printIconR">Print</a></span> <span><a href="" class="btnlnkR helpIconR">Help</a> </span> </p>
+		</div>
+		<div class="clear"></div>
+		<div class="appLvl tab col24 clearfix">
+			<div class="appHead"></div>
+			<div class="appBody clearfix">
+                <!-- 7703 Edit: Below code was changed -->
+                    <div class="row">
+                        <div class="col-xs-6">
+                                <div class="flexFirst clearfix" ng-controller="DropdownCtrl">
+            						<!-- <dl role="presentation" class="outHozFlex">
+                                        <dt>
+                                            <label for="selectbox_01" class="visually-hidden">Table View</label>
+                                        </dt>
+            							<dd>
+            								<select name="singleSelect" id="selectbox_01" ng-model="data.singleSelect" class="formcol4">
+            									<option value="option-1" selected="selected">Mike ICV</option>
+            									<option value="option-2">Option 1</option>
+            									<option value="option-2">Option 2</option>
+            									<option value="option-3"> &nbsp; Option sub1</option>
+            									<option value="option-4"> &nbsp; Option sub2</option>
+            									<option value="option-2">Option 3</option>
+            									<option value="option-2">Option 4</option>
+            								</select>
+            							</dd>
+            						</dl>-->
+                                    <div class="ups-form_group">
+                                        <label for="selectbox_01" class="visually-hidden">Table View</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="singleSelect" id="selectbox_01" ng-model="data.singleSelect" class="formcol4">
+            									<option value="option-1" selected="selected">Mike ICV</option>
+            									<option value="option-2">Option 1</option>
+            									<option value="option-2">Option 2</option>
+            									<option value="option-3"> &nbsp; Option sub1</option>
+            									<option value="option-4"> &nbsp; Option sub2</option>
+            									<option value="option-2">Option 3</option>
+            									<option value="option-2">Option 4</option>
+            								</select>
+                                        </div>
+                                    </div>
+            					</div>
+                                <div class="flexAfter clearfix">
+                                    <!--<span><img alt="Save" class="img-save" src="/img/btn_save_mini.gif"></span> <span><img alt="Close" class="img-close" src="/img/btn_close_mini.gif"></span>-->
+                                    <button type="button" class="ups-cta ups-cta_tertiary">
+                                        <span class="icon ups-icon-save" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="ups-cta ups-cta_tertiary">
+                                        <span class="icon ups-icon-x" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="clear"></div>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <button type="button" class="ups-cta ups-cta_primary">
+                                UPS Pickup Point Status
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <!--<div ng-controller="DatepickerCtrl" class="flexFirst clearfix">
+           						<div class="flexFirst clearfix">
+           							<dl role="presentation" class="outHozFlex flexFirstPadQvm clearfix"> <dt><label for="datepicker_01">Date Range: <span class="visually-hidden"> from</span> </label></dt>
+           								<dd>
+           									<input name="text" type="text" id="datepicker_01" size="15" value="01/01/2014" />
+           									<dd>
+           							</dl>
+           						</div>
+           						<div class="flexAfter clearfix">
+           							<dl role="presentation" class="outHozFlex flexAfterPadQvm clearfix"> <dt><label for="datepicker_02"> <span class="visually-hidden">date range</span> to</label></dt>
+           								<dd>
+           									<input name="text" type="text" id="datepicker_02" size="15" value="01/01/2014" /> </dd>
+           							</dl>
+           						</div>
+           						<div class="flexAfter clearfix"> <span class=""><img ng-click="()" alt="calender" src="/img/icn_calendar.gif" /></span> </div>
+           						<div class="clear"></div>
+           					</div>-->
+                            <div ng-controller="DatepickerCtrl">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="ups-form_group">
+                                            <label for="datepicker_01" class="ups-form_label">
+                                                Date Range
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input name="datepicker_01"
+                                                    class="ups-form_input"
+                                                    id="datepicker_01"
+                                                    type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="ups-form_group ups-has_calendar_icon">
+                                            <label for="datepicker_02" class="ups-form_label">
+                                                To
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input name="datepicker_02"
+                                                    class="ups-form_input"
+                                                    id="datepicker_02"
+                                                    type="text">
+                                                    <button type="button" class="ups-date_picker_button">
+                                                        <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                                        <span class="ups-readerTxt">Select date from a calendar</span>
+                                                    </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <!--<div class="flexFirstPad clearfix"> <span class="visually-hidden">Click to view preferences</span>
+        						<input type="button" class="btn" value="Preferences" /> </div>
+        					<div class="flexAfterPad clearfix"> <span class="visually-hidden">Click to view alerts</span>
+        						<input type="button" class="btn" value="Alerts" /> </div>
+        					<div class="clear"></div>-->
+                            <button type="button" class="ups-cta ups-cta_primary ups-no_label">
+                                Preferences
+                            </button>
+                            <button type="button" class="ups-cta ups-cta_primary ups-no_label">
+                                Alerts
+                            </button>
+                        </div>
+                    </div>
+
+
+				<div class="flexFirst clearfix">
+					<!--<dl role="presentation" class="outHozFlex"> <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+						<dd>
+							<input type="text" name="txtbox" class="formcol4" /> </dd>
+					</dl>-->
+                    <div class="ups-form_group">
+                        <label for="searchText" class="visually-hidden">Search</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="txtbox" class="formcol4" id="searchText" />
+                        </div>
+                    </div>
+				</div>
+                <!-- 7703 Edit: End of edits -->
+				<div class="flexAfter clearfix" ng-controller="DropdownCtrl">
+					<dl role="presentation" class="outHozFlex"> <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+						<dd>
+							<select name="singleSelect" id="selectbox_02" ng-model="data.singleSelect" class="formcol4">
+								<option value="option-1">Search All Fields</option>
+								<option value="option-2">Option 1</option>
+								<option value="option-2">Option 2</option>
+							</select>
+						</dd>
+					</dl>
+				</div>
+				<div class="flexAfter clearfix"> <input type="button" class="btn" value="Search"></div>
+				<div class="flexAfter clearfix">
+					<div class="flexFirstPad clearfix">
+						<input type="button" class="btn" value="Apply Filters" /><span class="visually-hidden">to results table</span> </div>
+					<div class="flexAfterPad clearfix">
+						<p><a href="#" class="btnInk">Scheduled Delivery</a> </p>
+					</div>
+					<div class="flexAfterPad clearfix">
+						<p><a href="#" class="btnInk">Clear All Filters</a> </p>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="secLvl step">
+					<div class="secHead">
+						<h2> Summary of Inbound Shipments</h2> </div>
+					<div class="secBody">
+						<dl role="presentation" class="outHozFlex clearfix" ng-controller="DropdownCtrl"> <dt><label for="selectbox_03"><span class="visually-hidden">How will you </span>View Summary By: </label></dt>
+							<dd>
+								<select id="selectbox_03" name="singleSelect" ng-model="data.singleSelect" class="formcol5">
+									<option value="option-1" selected="">Location ID</option>
+									<option value="option-2">Option 1</option>
+									<option value="option-2">Option 2</option>
+								</select>
+							</dd>
+						</dl>
+						<div class="clear"></div>
+						<div class="floatBegin floatBenginInb">&nbsp;</div>
+						<div class="floatBegin floatBeginInbBg">
+							Number of Shipments And Total Weight
+						</div>
+						<div class="clear"></div>
+						<div ng-controller="InboundCtrl" class="gridcontent">
+							<div ui-grid="gridOptions" class="grid" ui-grid-pinning ui-grid-selection ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+				<div class="secLvl step">
+					<div class="secHead">
+						<h2> Shipment Details</h2> </div>
+					<div class="secBody">
+						<div class="floatBegin">
+							<p>Displayin 12</p>
+							<p><a href="#" class="btnlnkR newWindowIconR">Add/Remove Fields</a> </p>
+						</div>
+						<div class="floatEnd">
+							<div class="flexFirstPad clearfix"> <span class="visually-hidden">Send to </span>
+								<input type="button" class="btn" value="Email" /> </div>
+							<div class="flexAfterPad clearfix">
+								<input type="button" class="btn" value="Download as CSV" /> </div>
+							<div class="flexAfterPad clearfix">
+								<input type="button" class="btn" value="Schedule a Report" /> </div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+						<div ng-controller="InshipDetCtrl" class="gridcontent">
+							<div ui-grid="gridOptions" class="grid" ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

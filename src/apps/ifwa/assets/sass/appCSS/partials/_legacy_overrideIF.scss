@@ -1,0 +1,614 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+
+#main {
+
+	.col18{
+		float: none !important;
+	}
+
+	#ifwaEnterProdDetails {
+
+		.secHead {
+			padding-bottom: 5px;
+			margin-bottom: 0;
+		}
+
+		.secLvl.secPlain {
+			padding-bottom: 0 !important;
+			margin-bottom: 0;
+		}
+	}
+
+	#addproduct + td {
+		border-top: 1px solid $ups_brown;
+	}
+
+	#productsTable {
+		th:first-child, td.sel:first-child {
+			padding-#{$default-float}: 0;
+			padding-#{$opposite-direction}: 0;
+		}
+
+		tbody + td {
+			background: $ups_stone;
+		}
+
+		th:not(:last-child), td:not(:last-child) {
+			border-#{$opposite-direction}: none;
+		}
+
+		th:not(:first-child), td:not(:first-child) {
+			border-#{$default-float}: 1px solid $ups_brown;
+
+			&:last-child {
+				border-#{$default-float}: none;
+			}
+		}
+	}
+
+	#prodSortIcon {
+		top: 2px;
+		#{$opposite-direction}: -3px;
+	}
+
+	#add-product {
+		padding-bottom: 15px;
+		display: block;
+		float: $default-float;
+	}
+
+    .appLvl {
+        // International Forms
+        hr {
+            background-color: $black_s1;
+            margin: 30px 0;
+            border-color: $black_s1;
+        }
+
+		.secLvlPlain .secHead {
+			background: none;
+		}
+
+        table {
+            label {
+                margin-bottom: 0;
+            }
+
+            tr {
+                .formcol10 img {
+                    vertical-align: middle;// for help icon in select suggest forms next to checkbox
+                }
+            }
+        }
+
+        table[summary="repl_summary"] + .secLvl.clearfix {
+            border: none;
+            padding-#{$default-float}: 15px;
+        }
+
+        table[summary="repl_summary"]{
+        	thead{
+        		tr{
+        			th{
+        				a.btnlnkR.sortDownIconR{
+        					position: absolute;
+        				}
+        			}
+        		}
+        	}
+        }
+
+        .appBody {
+            .secLvl.seccol10 {
+                input[type=text] {
+                    margin: 5px 0;
+                }
+            }
+
+            .secLvl.seccol14 {
+                input[type=button] {
+                    margin-bottom: 5px;
+                }
+            }
+
+            .RIF_Address {
+                margin-top: 15px;
+            }
+
+           .RIF_Address br {
+				display: none;
+			}
+
+		   .RIF_Field{
+		   	margin-top: 10px;
+    		margin-bottom: 10px;
+		   }
+        }
+
+		.headerSortUp .btnlnkR.sortDownIconR, .headerSortUp .btnLnkR.sortDownIconR {
+			background-image: none;
+
+			&:after {
+				@include ups-iconFont("\e67a");
+	            padding-#{$default-float}: 5px;
+			}
+		}
+
+        // Enter Address
+        &.progressBar {
+            .secLvl {
+                @include ups-legacy_colorHeader($sky_s3);
+                border: 1px solid $sky_s3 !important;
+                padding-bottom: 0 !important;
+
+                .secHead {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        input.arrowmini {
+            background-image: url(/assets/resources/images/legacyAppImages/arrowmini.gif) !important;
+            background-position: 1px 1px;
+			padding-#{$default-float}: 20px;
+        }
+
+        .secBody {
+            ul.lstProgress {
+                .number, .title {
+                    color: $black_s4 !important; //must override
+                }
+
+                .number {
+                    font-size: 30px;
+                }
+
+                .step {
+                    background-color: $stone_40;
+                    border: 1px solid $ups-brown;
+                }
+
+                li:not(.start) {
+                    .step {
+                        .number {
+                            background-image: none;
+
+                            &:before {
+                                @include ups-iconFont("\e629");
+                                font-size: 30px;
+                                top: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            table.dataTable {
+                th, th label {
+                    background-color: $ups_gold !important;//$stone_40 !important;
+                }
+            }
+
+            // .RIF_Field, .RIF_Csp1, .RIF_Csp2, .RIF_Csp3 {
+            //     margin: 10px 0;
+            // }
+        }
+
+        .appFooter {
+			margin-top: 15px;
+
+            input[type=image] {
+                display: none;
+            }
+        }
+    }
+
+	input.btnlnkL.saveMini {
+		padding-#{$default-float}: 18px;
+	}
+
+    form[action^="/intl_forms?loc="] , form[name="mainPageForm"] {
+        .appLvl {
+            .secBody {
+                table[summary="repl_summary"]{
+                    thead{
+                        tr{
+                            th{
+                                position:relative;
+
+                                a.btnlnkR.sortDownIconR{
+                                    position: static;
+                                    display:inline;
+
+                                    &:after {
+                                        position: absolute;
+                                        #{$opposite-direction}: 8px;
+                                        top: 12px;
+                                        float: $opposite-direction;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#referenceno_dialog {
+	width: 100% !important;
+
+//			.btnBar.alignCenter { // still center-aligned unless specified
+//				text-align: $default-float !important;
+//			}
+}
+
+form[name="productForm"] {
+	.error {
+		color: $red !important;
+	}
+
+	.appBody .clearfix dl:last-child dt {
+		margin-bottom: 10px;
+		width: 100%;
+	}
+
+	#tariffCodeLabel {
+		//float: $default-float;
+		margin-bottom: 0;
+		margin-#{$opposite-direction}: 3px;
+	}
+
+	.appHead .helpIconR {
+		padding-#{$opposite-direction}: 10px !important;
+		position: relative;
+		top: -3px;
+	}
+
+	td.sel {
+		padding-#{$default-float}: 15px;
+	}
+
+	#SaveOrUpdateProduct {
+		margin-top: 10px;
+	}
+
+	#prodDesc {
+		padding-top: 15px;
+	}
+
+	dt {
+		padding-top: 10px;
+	}
+
+	.flexFirst.clearfix dt {
+		padding-top: 0px;
+	}
+
+	.appBody .clearfix dl:last-child dt {
+		margin-bottom: 0px;
+		width: 100%;
+	}
+
+	.btnBar {
+		margin-top: 15px;
+	}
+}
+
+form[name="declarationPageForm"] {
+	#declarationStmtLib_ID {
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		height: 170px;
+		min-height: 170px;
+		text-align: $default-float;
+	}
+}
+
+form[name="SelectSuggestedFormsForm"] {
+	.secLvl {
+		border: none;
+	}
+}
+
+form[name="soldToForm"] {
+	.RIF_Address br {
+		display: none;
+	}
+
+	.RIF_Field, .RIF_Csp2 {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+form[name="intRecipAddressForm"] {
+	// .RIF_Address br {
+	// 	display: none;
+	// }
+
+	// .RIF_Field, .RIF_Csp2 {
+	// 	margin-top: 10px;
+	// 	margin-bottom: 10px;
+	// }
+}
+
+form[name="ultmtRecipAddressForm"] {
+	// .RIF_Address br {
+	// 	display: none;
+	// }
+
+	// .RIF_Field, .RIF_Csp2 {
+	// 	margin-top: 10px;
+	// 	margin-bottom: 10px;
+	// }
+}
+
+form[name="mainPageForm"] {
+	.secLvl.secLvlPlain {
+		padding-bottom: 0 !important;
+		margin-bottom: 0;
+	}
+
+	.RIF_Address br {
+		display: none;
+	}
+}
+
+.modal {
+
+	select:not([multiple]) {
+        @include ups-selectDD;
+        .modSelSmall {}
+        .modSelMedium {}
+    }
+
+	input.closeIcon {
+		padding-#{$default-float}: 15px;
+		height: 17px;
+	}
+
+	#shipToPostal, #shipToStateValue {
+		display: block;
+	}
+
+	#shipToCsp2 {
+		width: 100%;
+		float: $default-float;
+
+		#shipToState {
+			float: $default-float;
+			margin-bottom: 0;
+			#shipToStateLabel{
+				display: block;
+			}
+		}
+
+		#shipToStateReqdImg {
+			float: $default-float;
+			margin-top: 13px;
+		}
+	}
+}
+
+.ui-dialog.ui-widget .appBody {
+    padding:0 10px!important;
+}
+#ReviewExportFormsViewPrintAction_btn , input[name=ViewAndPrintCompleteFormsCreateNewAction_btn],
+input[name=ViewAndPrintCompleteFormsReuseAction_btn],
+input[name=ViewAndPrintCompleteFormsViewHistoryAction_btn]{
+padding:0
+}
+
+#shipToStateValue{
+float:$default-float;
+}
+
+.modal.ui-dialog.ui-widget .appLvl{
+margin-top:0!important;
+}
+
+#dialog-form #productForm dd {
+overflow:hidden;
+}
+#dialog-form #productForm #productDesc{
+float:$default-float;
+}
+
+#dialog-form #productForm #productDesc +  img{
+margin-top:30px;
+}
+
+#dialog-form #productForm dd select {
+	text-align:$default-float;
+}
+
+.ui-dialog.ui-widget #productForm .appBody {
+	label {
+	  display: inline-block;
+	}
+	#tariffCodeLabel:after {
+	  height: 18px;
+	}
+}
+
+form[name=mainPageForm] .appBody > p {width:725px}
+#shipToStateValue,select[name=AddrBookOption] {width:242px}
+#shipToPostalValue ,#shipToPhoneValue ,input[name=UpdateAddressAs]{width:300px}
+#main .appLvl .secBody ul.lstProgress .number {padding-#{$default-float}:0!important;}
+
+#producerInfoDialog,#intRecipAddressDlg,#ultmtRecipAddressDlg {
+    width: 100%!important;
+
+}
+
+#intRecipCsp1,#intRecipCsp2,#intRecipCsp3,#intRecipStreet,#intRecipAddr2,#intRecipAddr3,#intRecipCountry,#intRecipName,#ultmtRecipCsp1 ,
+#ultmtRecipCsp2,#ultmtRecipCsp3,
+#ultmtRecipName,#ultmtRecipCountry,#ultmtRecipStreet,#ultmtRecipAddr2,#ultmtRecipAddr3,#ultmtRecipName {
+    padding-bottom: 10px;
+    padding-top: 10px
+}
+
+#intRecipCountry br,#intRecipStreet br,#intRecipAddr2 br,#intRecipAddr3 br,
+#intRecipName br,#intRecipContactName br,intRecipCountry br,#intRecipStreet br,#intRecipAddr2 br,#intRecipAddr3 br,
+#ultmtRecipContactName br,#ultmtRecipName br,#ultmtRecipCountry br,#ultmtRecipStreet br,#ultmtRecipAddr2 br,#ultmtRecipAddr3 br,#ultmtRecipCsp1 br
+{
+    display: none
+}
+
+#repl_id17 ,#repl_id19,#taxIDNumberLabel,#intRecipAddressBookOptionLabel,#intRecipAddressBookSaveAsLabel,#ultmtRecipAddressBookOptionLabel,#ultmtRecipAddressBookSaveAsLabel {
+    padding-top: 15px
+}
+#main .appLvl .appBody #address.RIF_Address .RIF_Field {margin-top:0;}
+#main .appLvl .appBody #address.RIF_Address .RIF_Field#addressPhone {clear:both;}
+select#shipToStateValue[name=shipToState] {
+   float:none
+}
+.redErrorBold, .error , .error a{
+    color: #c91a13!important;
+    
+}
+
+
+
+
+
+form[name="mainPageForm"] .RIF_Address .RIF_Field span {
+	display: block;
+}
+
+#main .appLvl,
+.modal.appLvl {
+
+	.appBody .RIF_Address {
+
+		* {
+			float: none !important;
+		}
+
+		.RIF_Field {
+			span {
+				display: block;
+			}
+		}
+
+		br {
+			display: none !important;
+		}
+
+	}
+
+}
+
+#main .appLvl .appBody {
+
+	.flexFirstPad,
+	.flexAfterPad,
+	.flexFirst,
+	.flexAfter {
+
+		.RIF_Address {
+
+			#shipFromcityCSP,
+			#shipFromstateCSP,
+			#shipFrompostalCSP,
+			#shipTocityCSP,
+			#shipTostateCSP,
+			#shipTopostalCSP,
+			#shipToAddresscityCSP,
+			#shipToAddressstateCSP,
+			#shipToAddresspostalCSP,
+			#soldTocityCSP,
+			#soldTostateCSP,
+			#soldTopostalCSP,
+			#summaryText1cityCSP,
+			#summaryText1stateCSP,
+			#summaryText1postalCSP,
+			#summaryText2cityCSP,
+			#summaryText2stateCSP,
+			#summaryText2postalCSP,
+			#summaryText3cityCSP,
+			#summaryText3stateCSP,
+			#summaryText3postalCSP {
+				display: inline;
+
+				* {
+					display: inline;
+				}
+
+			}
+
+		}
+
+	}	
+
+}
+
+
+
+#intRecip,
+#ultmtRecip {
+
+	&.RIF_Address {
+		margin-top: 15px;
+
+		br {
+			display: none !important;
+		}
+
+		.RIF_Field {
+			margin-bottom: 20px;
+			float: none !important;
+
+			span {
+				display: block;
+			}
+		}
+
+		label {
+			padding: 0;
+
+			+ br {
+				display: none !important;
+			}
+		}
+
+	}
+
+	#intRecipcityCSP,
+	#intRecipstateCSP,
+	#intRecippostalCSP,
+	#ultmtRecipcityCSP,
+	#ultmtRecipstateCSP,
+	#ultmtRecippostalCSP
+	 {
+		margin-bottom: 20px;
+
+		> div {
+			float: none !important;
+		}
+	}
+
+}
+
+
+#main select:not([multiple]) {
+	max-width: 95%;
+}
+
+dl > br {
+	display: none !important;
+
+	+ dt label{
+		padding-top: 0 !important;
+	}
+}
+
+
+
+
+
+

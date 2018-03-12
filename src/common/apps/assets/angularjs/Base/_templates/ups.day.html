@@ -1,0 +1,62 @@
+<div>
+    <div class="row">
+        <!--<div class="col-xs-12 col-md-2"></div>-->
+        <div class="col-xs-2 col-md-4">
+            <button type="button"
+                class="btn btn-default btn-sm pull-left uib-left"
+                data-ng-keydown="$event.keyCode == 13 ? move(-1):null" data-ng-click="move(-1)">
+                <span class="ups-readerTxt">Previous Month</span>
+                <em class="icon">
+                    <span class="ups-icon-chevronleft" aria-hidden="true"></span>
+                </em>
+            </button>
+        </div>
+        <div class="col-xs-8 col-md-4">
+            <button id="{{::uniqueId}}-title"
+                aria-live="assertive" aria-atomic="true" type="button"
+                class="btn btn-default btn-sm uib-title ups-decoration-none"
+                data-ng-disabled="datepickerMode === maxMode">
+                <strong>{{title}}</strong>
+            </button>
+        </div>
+        <div class="col-xs-2 col-md-4">
+            <button type="button"
+                class="btn btn-default btn-sm pull-right uib-right ups-decoration-none"
+                data-ng-click="move(1)"
+                data-ng-keydown="$event.keyCode == 13 ? move(1):null"><span class="ups-readerTxt">Next Month</span>
+                <em class="icon ">
+                    <span class="ups-icon-chevronright" aria-hidden="true"></span>
+                </em>
+            </button>
+        </div>
+        <!--<div class="col-xs-12 col-md-2"></div>-->
+    </div>
+
+    <div class="ups-table-responsive">
+    	<table class="table">
+    	<caption class="ups-readerTxt">Calendar</caption>
+    		<tbody class="ups-calendar_grid">
+    			<tr class="ups-day-start">
+    				<th scope="col" data-ng-repeat="label in ::labels track by $index"
+    					class="text-center ups-day-start"><small aria-label="{{::label.full}}">{{::label.abbr}}</small></th>
+    			</tr>
+    			<tr class="uib-weeks" data-ng-repeat="row in rows track by $index">
+    				<td data-ng-repeat="dt in row" class="ups-uib-day text-center ups-date-start"
+                        id="{{::dt.uid}}" data-ng-class="::dt.customClass"
+    					uib-is-class="
+                'btn-info' for selectedDt,
+                'active' for activeDt
+                on dt">
+    					<button type="button" class="btn btn-default btn-sm ups-decoration-none"
+    						data-ng-click="select(dt.date)"
+    						data-ng-keydown="$event.keyCode == 13 ? select(dt.date):null"
+    						data-ng-disabled="::dt.disabled">
+    						<span
+    							data-ng-class="::{'text-muted': dt.secondary, 'text-info': dt.current}">{{::dt.label}}</span>
+    					</button>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div>
+</div>

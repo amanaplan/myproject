@@ -1,0 +1,329 @@
+<section class="ups-section">
+    <h2 class="ups-section_heading ups-centered_header text-center" *ngIf="!nbsBase.getNbsInSinglePg()">
+        Almost done. Let's check a few more details.
+    </h2>
+    <div class="ups-section-header" *ngIf="(review && nbsBase.getNbsInSinglePg()) || (review && intFormsEdit)">
+        <h3 class="ups-section_heading">
+            Export Details
+            <button *ngIf="!intFormsEdit"
+                class="ups-link"
+                type="button"
+                (click)="intFormsEdit = true">
+                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                <span aria-hidden="true" class="hidden-xs">Edit</span>
+                <span class="ups-readerTxt"> this section</span>
+            </button>
+            <button *ngIf="intFormsEdit"
+                class="ups-link"
+                type="button"
+                (click)="intFormsEdit = false">
+                <span aria-hidden="true" class="hidden-xs">Cancel</span>
+                <span class="ups-readerTxt"> editing this section</span>
+            </button>
+        </h3>
+    </div>
+    <div *ngIf="!review || (review && intFormsEdit)">
+        <!-- moved to top of form TFS#554089 -->
+        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}" *ngIf="lever1">
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group" [ngClass]="{'ups-help_wrapper' : lever1Copy1}">
+                    <label class="ups-lever" onclick="" for="importDutiesLever">
+                        <input type="checkbox"
+                                class="ups-lever_checkbox"
+                                id="importDutiesLever"
+                                name="importDutiesLever"
+                                checked=""
+                                [(ngModel)]="importDutiesLever"
+                                [ngModelOptions]="{'standalone': true}">
+                        <strong class="ups-form_label ups-lever_label" *ngIf="lever1Copy1">Do you need to pay import duties on this shipment?</strong>
+                        <strong class="ups-form_label ups-lever_label" *ngIf="!lever1Copy1">Is the total customs value of this shipment greater than {{'{'}}$2,500 USD{{'}'}}?</strong>
+                        <p class="ups-form_subheader ups-lever_subheader" *ngIf="lever1Copy1">Goods not in free circulation.</p>
+                        <p class="ups-form_subheader ups-lever_subheader" *ngIf="!lever1Copy1">Shipments from US to [Puerto Rico/Canada] valued below {{'{'}}$2,500 USD{{'}'}} are not liable for international duties.</p>
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                    <div class="ups-help" upsHelpBtn *ngIf="lever1Copy1">
+                        <button type="button" id="importDutiesLever-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Goods originating from or imported into the European Union are in free circulation and exempt from import duties when moving within the region.</p>
+                            <p>Goods entering or returning to the EU from elsewhere must be processed for import in order to be released for free circulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group ups-form_required">
+                    <label class="ups-form_label" 
+                            [ngClass]="{' ups-no_label' : nbsBase.getNbsInSinglePg()}"
+                            for="describeShipment">What best describes this shipment? </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select class="ups-dropdown"
+                                id="describeShipment"
+                                name="describeShipment"
+                                aria-required="true"
+                                required
+                                [(ngModel)]="describeShipment"
+                                [ngModelOptions]="{'standalone':true}">
+                            <!-- <option selected="selected" value="selectOne">Select One</option> -->
+                            <option value="default">These are documents of no commercial value.</option>
+                            <option value="shipment1">This is a commercial transaction.</option>
+                            <option value="shipment2">This is a gift or loan.</option>
+                            <option value="shipment3">These are personal items (not for sale).</option>
+                            <option value="shipment4">I am shipping within my own company.</option>
+                            <option value="shipment5">This is a government or military shipment.</option>
+                            <option value="shipment6">I am returning something.</option>
+                            <option value="shipment7">I am sending something to be repaired.</option>
+                            <option value="shipment8">These are product samples or promotional items.</option>
+                            <option value="shipment9">None of these statements apply.</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group ups-form_required">
+                    <label class="ups-form_label" for="intForms_whatship"> What are you shipping? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <p class="ups-form_subheader" id="intForms_whatship_helpertxt">Specific description of shipment contents for label, max 35 characters.</p>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                class="ups-form_input" 
+                                id="intForms_whatship" 
+                                name="intForms_whatship" 
+                                required 
+                                aria-required="true"
+                                aria-describedby="intForms_whatship_helpertxt popover"
+                                [(ngModel)]="intForms_whatship"
+                                [disabled]="input1Disabled"
+                                [popover]="popTemplate"
+                                triggers="focus">
+
+                        <template #popTemplate>
+                            <div id="popover">
+                                <p>Give an overall description of your shipment. To prevent customs delays, avoid vague or general items that could describe a variety of items.</p>
+                                <div class="ups-group ups-group_condensed">
+                                    <p><strong>Say:</strong></p>
+                                    <ul class="ups-label_list_options">
+                                        <li>Men's cotton shirts or Tennis shoes (<strong>not</strong> Apparel)</li>
+                                        <li>Computers or Electonic toys (<strong>not</strong> Electonics)</li>
+                                        <li>Leather handbags or Saddles (<strong>not</strong> Leather Goods)</li>
+                                        <li>Hand tools or Power tools (<strong>not</strong> Tools)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </template>
+                                
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}" *ngIf="input2">
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group ups-help_wrapper">
+                    <label class="ups-form_label" for="intForms_refNum"> Movement Reference Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                class="ups-form_input" 
+                                id="intForms_refNum" 
+                                name="intForms_refNum">
+                    </div>
+                    <div class="ups-help" upsHelpBtn>
+                        <button type="button" id="intForms_refNum-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>A Movement Reference Number (MRN) is issued for every export shipment registered with customs in the ATLAS-Export electronic database. Export declarations should be filed with ATLAS for shipments with customs values greater than €1000 EUR. Get more details from the Federal Customs Service:  <a href="#" class="ups-link">www.zoll.de</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="alert alert-warning " role="alert" *ngIf="alert1"> -->
+        <div class="alert alert-warning" role="alert" *ngIf="describeShipment == 'default'">
+            <div class="alert-icon pull-left">
+                <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+            </div>
+
+            <button type="button"
+                    class="ups-alert_collapse"
+                    aria-expanded="false"
+                    (click)="docsShipTip = !docsShipTip">
+                <span class="ups-readerTxt">Click to expand</span>
+                <span [ngClass]="{ 'ups-icon-wedgeup' : docsShipTip, 'ups-icon-wedgedown' : !docsShipTip }" class="icon " aria-hidden="true"></span>
+            </button>
+
+            <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> What are documents of no commercial value?</p></div>
+            <div class="alert-title ups-alert_has_icon" *ngIf="docsShipTip">
+                <p>Typed, written or printed materials with no value for replacement are generally the only items that don't require a commercial invoice for international shipping. The rules regarding what constitues a "document" may vary slightly by country or territory, so check our import/export tool to be sure.</p>
+                <p><a href="#" class="ups-link">Find Items Classified as Documents</a></p>
+            </div>
+        </div>
+        <!-- moved to top of form TFS#554089
+            <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}" *ngIf="lever1">
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group" [ngClass]="{'ups-help_wrapper' : lever1Copy1}">
+                    <label class="ups-lever" onclick="" for="importDutiesLever">
+                        <input type="checkbox"
+                                class="ups-lever_checkbox"
+                                id="importDutiesLever"
+                                name="importDutiesLever"
+                                checked=""
+                                [(ngModel)]="importDutiesLever"
+                                [ngModelOptions]="{'standalone': true}">
+                        <strong class="ups-form_label ups-lever_label" *ngIf="lever1Copy1">Do you need to pay import duties on this shipment?</strong>
+                        <strong class="ups-form_label ups-lever_label" *ngIf="!lever1Copy1">Is the total customes value of this shipment <em>greater</em> than {{'{'}}$2,500 USD{{'}'}}?</strong>
+                        <p class="ups-form_subheader ups-lever_subheader" *ngIf="lever1Copy1">Goods not in free circulation.</p>
+                        <p class="ups-form_subheader ups-lever_subheader" *ngIf="!lever1Copy1">Shipments from US to [Puerto Rico/Canada] valued below {{'{'}}$2,500 USD{{'}'}} are not liable for international duties.</p>
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                    <div class="ups-help" upsHelpBtn *ngIf="lever1Copy1">
+                        <button type="button" id="importDutiesLever-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Goods originating from or imported into the European Union are in free circulation and exempt from import duties when moving within the region.</p>
+                            <p>Goods entering or returning to the EU from elsewhere must be processed for import in order to be released for free circulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div *ngIf="review && nbsBase.getNbsInSinglePg() && !intFormsEdit">
+        <p><strong>This is a gift or loan, [35 Character description length max]</strong></p>
+        <p>Goods not in free circulation</p>
+        <p>Movement Reference Number [nnnnnnnn]</p>
+        <p>{{'{'}}Yes{{'}'}}, the total customs value of this shipment is greater than {{'{'}}$2500 USD{{'}'}}</p>
+    </div>
+</section>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Do you need help with international forms?</h3>
+        
+    </div>
+    <div *ngIf="!review">
+        <fieldset class="ups-form_group ups-toggle_view" *ngIf="!nbsBase.getNbsInSinglePg()">
+            <legend class="ups-readerTxt">Delivery Options</legend>
+            <div class="ups-toggle_view_selection ups-input_wrapper">
+                <input type="radio" 
+                        id="needHelpNo" 
+                        value="0" 
+                        name="needHelpRB" 
+                        class="ups-radio-custom"
+                        [(ngModel)]="needHelpRB" 
+                        [ngModelOptions]="{standalone:true}">
+                <label for="needHelpNo" class="ups-form_label text-center">No</label>
+            </div><div class="ups-toggle_view_or text-center">
+                    --OR--
+            </div><div class="ups-toggle_view_selection ups-input_wrapper">
+                <input type="radio" 
+                        id="needHelpYes" 
+                        value="1" 
+                        name="needHelpRB" 
+                        class="ups-radio-custom"
+                        [(ngModel)]="needHelpRB" 
+                        [ngModelOptions]="{standalone:true}">
+                <label for="needHelpYes" class="ups-form_label text-center">Yes</label> 
+            </div>
+        </fieldset>
+        <fieldset class="ups-form_group" *ngIf="nbsBase.getNbsInSinglePg()">
+            <legend class="ups-readerTxt">Delivery Options</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio" 
+                        id="needHelpNo" 
+                        value="0" 
+                        name="needHelpRB" 
+                        class="ups-radio-custom"
+                        [(ngModel)]="needHelpRB" 
+                        [ngModelOptions]="{standalone:true}">
+                <label for="needHelpNo" class="ups-radio-custom-label">No</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio" 
+                        id="needHelpYes" 
+                        value="1" 
+                        name="needHelpRB" 
+                        class="ups-radio-custom"
+                        [(ngModel)]="needHelpRB" 
+                        [ngModelOptions]="{standalone:true}">
+                <label for="needHelpYes" class="ups-radio-custom-label">Yes</label> 
+            </div>
+        </fieldset>
+
+        <ups-nbs-intFormsYes *ngIf="needHelpRB == '1'"></ups-nbs-intFormsYes>
+        <ups-nbs-intFormsNo *ngIf="needHelpRB == '0'"></ups-nbs-intFormsNo>
+    </div>
+
+    <div *ngIf="review && nbsBase.getNbsInSinglePg()">
+        <p>{{'{'}}This is a paperless shipment.{{'}'}} {{'{'}}All forms should be placed in pouch and attached to package.{{'}'}}</p>
+        <ul class="ups-list_style_none">
+            <li *ngFor="let reviewForm of reviewForms; let i = index">
+                <hr />
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>
+                            <span class="icon ups-icon-checkcircle h4" aria-hidden="true"></span>
+                            <span class="h4">{{reviewForm.label}}</span>
+                        </p>
+                        <p class="ups-indent" *ngIf="i == 2">
+                            <em>[Commercial Invoice], [Electronic Export Information (EEI)], [Other]</em>
+                        </p>
+                        <p class="ups-indent"><strong>Ready to Go.</strong></p>
+                        
+                    </div>
+                    <div class="col-md-7 ups-btn_no_wrap">
+                        <button type="button" class="ups-cta ups-cta_secondary">
+                            <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                            Edit/View
+                            <span class="ups-readerTxt">{{reviewForm.label}}</span>
+                        </button>
+                        <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                            <span class="icon ups-icon-{{reviewForm.icon}}" aria-hidden="true"></span>
+                            {{reviewForm.iconText}}
+                            <span class="ups-readerTxt">{{reviewForm.label}}</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+            <hr />
+        </ul>
+    </div>
+</section>
+<div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}" *ngIf="!review">
+    <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+        <div class="ups-form_group ups-form_required">
+            <label class="ups-form_label" for="intForms_cstVal"> Total Customs Value <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" 
+                        class="ups-form_input" 
+                        id="intForms_cstVal" 
+                        name="intForms_cstVal" 
+                        required 
+                        aria-required="true">
+            </div>
+        </div>
+    </div> 
+</div>
+
+<div class="ups-cms-demo">
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('default')">Default</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('letter')">Letter</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('whysend')">International Shipment - Why Sending? - SELECT Docs of no comm value</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('gnifc')">International Shipment - EU/GNIFC</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('mfn')">International Shipment - EU/MFN</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('stand')">International Shipment - EU/MFN/GNIFC - w/Standard Service</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('uspr')">International Shipment - US to PR</button><br>
+    <button class="ups-cta ups-cta_secondary" type="button" (click)="demoBtn('review')" *ngIf="nbsBase.getNbsInSinglePg()">Review</button>
+</div>

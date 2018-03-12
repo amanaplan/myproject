@@ -1,0 +1,289 @@
+// ----------------------------------------------------
+ // Accordion List
+ // ----------------------------------------------------
+
+.ups-accordion_list {
+    @include ups-component_margin;
+
+    .ups-accordion_listHead {
+        padding: 0; //20px 0 0;
+
+        p {
+            margin: 0 0 30px;
+        }
+    }
+
+    &.ups-wrap:first-child {
+        // padding-top: $margin_1;
+    }
+}
+
+.subsection_aside,
+.iw_columns.col-lg-4 {
+    .ups-accordion_list {
+        padding-top: 0;
+    }
+}
+
+ .ups-accordion_wrapper {
+     border: none;
+     // margin-top: 20px;
+     margin-top: $page-margin / 2;
+     margin-bottom: 0;
+     -moz-transition: $main-transition-speed all;
+     -ms-transition: $main-transition-speed all;
+     -webkit-transition: $main-transition-speed all;
+     transition: $main-transition-speed all;
+
+     .ups-accordion_content {
+         border-bottom: 2px solid $stone_60;
+         padding: 0;
+         list-style: none;
+         margin: 0;
+         .ups-accordion_item {
+             margin-top: 1px;
+             //overflow: hidden; accessbility focus indicator fix
+             min-height: 45px;
+             @include transition-property(all);
+             @include transition-duration(0.5s);
+             .ups-accordion_toggle {
+                 display:block;
+                 position: relative;
+                 -webkit-appearance: none;
+                 border-radius: 0;
+                 background: $white;
+                 border: none;
+                 border-top:2px solid $stone_60;
+                 width: 100%;
+                 margin: 0;
+                 padding: 12px $margin_3;
+                 line-height: 1.5;
+                 font-family: $sans-bd;
+                 font-size: 1.12em;
+                 color:inherit;
+                 @include transition-property(all);
+                 @include transition-duration(0.15s);
+                  @if $text-direction == ltr {
+                    text-align: left;
+                    padding-right: 50px;
+                 } @else {
+                     text-align: right;
+                    padding-left: 50px;
+                 }
+                 .icon {
+                     position: absolute;
+                     height: 16px;
+                     top: 50%;
+                     line-height: 16px;
+                     margin-top: -8px;
+                     overflow: hidden;
+                     @if $text-direction == ltr {
+                         right:$margin_3;
+                     } @else {
+                         left:$margin_3;
+                     }
+                 }
+
+                img {
+                    max-width: 40px;
+                    max-height: 40px;
+                    margin-#{$opposite-direction}: 5px;
+                }
+                &:focus{
+                  outline-offset:-1px;
+                }
+             }
+             .ups-accordion_expand {
+                background: $white;
+                max-height: 0;
+                overflow: hidden;
+                padding: $margin_3;
+                @include transition-property(all);
+                @include transition-duration(0.5s);
+                display: none;
+
+                a {
+                    color: $black_s3;
+                    display: block;
+                    padding: 15px 5px 15px 0;
+                    &.ups-cta:not(.ups-cta_secondary){
+                      color: $white;
+                    }
+                    h4 {
+                        text-decoration: underline;
+                    }
+
+                    &:hover{
+                        color: $black_s1;
+                    }
+                    &.ups-invalid_color, .ups-invalid_color:hover, &.ups-invalid_color-list {
+                        color:$red;
+                        padding:0;
+                        display: inline-block;
+                    }
+                    .ups-vidThumb{
+                        display:inline-block;
+                    }
+                }
+             }
+             .ups-contentBlock {
+                &.ups-wrap{
+                    margin-top:0;
+                }
+                 margin: 0;
+                 padding: 0;
+
+                 a {
+                     margin: 0;
+                 }
+
+                 .ups-link-list {
+                     a {
+                         padding: 12px 0;
+                     }
+                 }
+             }
+             &.ups-active {
+                 max-height: 5000px;
+                 .ups-accordion_toggle {
+                     background: $stone_60 ;
+                     font-family: $sans-bd;
+                     .icon:before {
+                         content: "\e653";
+                     }
+
+                     &:focus {
+                        outline: none;
+                        border: 2px solid $ups_gold;
+                     }
+                 }
+                 .ups-accordion_expand {
+                    max-height: 5000px;
+                    display: block;
+                 }
+             }
+         }
+     }
+
+     @media #{$media-mediumMid} {
+         padding: 0;
+         h2 {
+             margin: 60px 20px 0
+         }
+     }
+ }
+
+.ups-faqs{
+	.ups-accordion_faq.ups-faq_single {
+         .ups-collapsable_content{
+
+          	a{
+          		display: inline;
+          	}
+
+		}
+      }
+	}
+
+@mixin ups_accordionList_sm {
+    margin-bottom: 60px;
+
+    .ups-cta{
+        width: 100%;
+    }
+     .ups-accordion_wrapper {
+         padding-top: 0;
+         padding-bottom: 0;
+
+         .ups-accordion_content {
+             .ups-accordion_item {
+                 .ups-accordion_toggle{
+                     background: $white;
+                     padding: 12px $margin_4;
+                     .icon {
+                         #{$opposite-direction}: $margin_4;
+                     }
+                    &.ups-active {
+                        background-color: $stone_60;
+                    }
+                 }
+                 .ups-accordion_expand {
+                     padding: $margin_4;
+                 }
+                 .ups-contentBlock {
+                     padding: 0;
+                 }
+             }
+         }
+
+         &.ups-faq_single {
+             .ups-accordion_content {
+                 .ups-accordion_item {
+                     .ups-accordion_expand {
+                         padding: 0 $page-margin-sm;
+                     }
+                 }
+             }
+         }
+     }
+    &.ups-accordion_index {
+         .ups-accordion_title,
+         h2.ups-accordion_title{
+            @include unbutton;
+             background: $black_s1;
+             color:$white;
+             text-transform: uppercase;
+             padding: 12px $margin_4;;
+             line-height: 1.5;
+             position: relative;
+             width: 100%;
+             text-align: #{$default-float};
+         }
+         h2.ups-accordion_title{
+           margin: 0;
+           font-size:14px;
+           font-family: $sans;
+         }
+         .ups-accordion_wrapper {
+             border: 1px solid #6e6e6e;
+             margin: 0;
+             .ups-accordion_item {
+                 margin-top: 1px;
+                 .ups-accordion_toggle {
+                     padding: 12px 35px 12px 15px;
+                     border: 0;
+                     &.ups-active {
+                        background: $ups_gold;
+                     }
+                     &:hover {
+                         background: $ups_gold;
+                     }
+                 }
+                .ups-accordion_expand {
+                     padding: 12px $margin_3;
+                 }
+                 .ups-accordion_link {
+                     text-decoration: none;
+                     &:hover {
+                         text-decoration: underline;
+                     }
+                 }
+             }
+         }
+    }
+}
+
+.ups-accordion_list {
+    @media #{$media-small} {
+        @include ups_accordionList_sm;
+        .ups-accordion_wrapper {
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+    }
+}
+
+.subsection_aside .ups-accordion_list,
+.iw_columns.col-lg-4 .ups-accordion_list {
+    @include ups_accordionList_sm;
+}

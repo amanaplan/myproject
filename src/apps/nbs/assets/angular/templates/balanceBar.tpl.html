@@ -1,0 +1,539 @@
+<div class="ups-balance_bar_placeholder">&nbsp;</div>
+<div class="ups-balance_bar_container"
+    [ngStyle]="{'margin-left' : balMarginLeft + 'px', 'margin-right' : balMarginRight + 'px', 'margin-bottom' : balMarginBottom + 'px', 'top' : getBalBarTop()}"
+    [ngClass]="{'ups-fixed_bottom' : fixBottom, 'ups-balance_bar_opened' : expanded}"
+    *ngIf="balanceBarVisible">
+	<div class="ups-balance_bar clearfix" id="ups-balance_bar">
+        <button type="button"
+                class="ups-cta ups-cta_secondary ups-balance_bar_expand_btn"
+                aria-controls="balanceBarExpandContainer"
+                [attr.aria-expanded]="(expanded) ? 'true' : 'false'"
+                (click)="toggleBalBar()"
+                *ngIf="canExpand">
+            <span aria-hidden="true"
+                    class="icon"
+                    [ngClass]="{'ups-icon-chevrondown' : expanded, 'ups-icon-chevronup' : !expanded}"></span>
+            <span class="ups-readerTxt">Balance Bar reveal</span>
+        </button>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    <span class="icon ups-icon-box pull-left" aria-hidden="true"></span>
+                    Total <span *ngIf="totalTaxesDiscount">(with taxes and discount)</span><span *ngIf="totalDiscount">(with discount)</span><span *ngIf="totalOnly">Charges</span> $42.86
+                </h2>
+        		<p>You Save: $20.73</p>
+            </div>
+            <div class="col-md-6 ups-text-md-right">
+                <p>
+                    <em>Showing [Daily/Retail] Rates</em>
+                </p>
+                <p>
+                    <em>User [Preferences/Template] applied</em>
+                </p>
+            </div>
+        </div>
+
+	</div>
+	<div class="ups-balance_bar_expanded"
+        [ngStyle]="(vpSize.isXSVP) && {'top' : balExpBarTop + 'px'}"
+        id="balanceBarExpandContainer">
+		<div class="ups-balance_bar_inner"
+            *ngIf="expanded"
+            [@slideOpen]="balExpandAni"
+            (@slideOpen.start)="animationStarted($event)"
+            (@slideOpen.done)="animationDone($event)">
+			<div class="row">
+				<div [ngClass]="{'col-md-3' : fourColumnView, 'col-md-4' : threeColumnView, 'col-md-5' : twoColumnView}">
+					<h3 class="ups-form_label">Shipping Fees</h3>
+					<div class="ups-balance_table clearfix">
+						<div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Transportation
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Fuel Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Delivery Area Surcharge - Rural
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Extended Area Surcharge (Ship From) - [geo-type]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Extended Area Surcharge (Ship To) - [geo-type]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Fuel Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Residential Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Saturday Processing Fee
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    EEI Filing Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    State Department License Filing Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Security Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Peak Surcharge
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Peak Surcharge - [Residential]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <p>
+                                <strong>Package {{ '{' }}1{{ '}' }}</strong>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Declared Value [(Billed to Shipper)]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Large Package - [Residential]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Peak Surcharge - Large Package - [Residential]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <p>
+                                <strong>Package {{ '{' }}2{{ '}' }}</strong>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Additional Handling - [Unusual Shapped / ...]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Peak Surcharge - Additional Handling - [>70 / Bulky / ...]
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+
+
+						<!--<div class="ups-balance_row clearfix"> <span class="pull-right">$0.00</span> Delivery Area Surcharge - Rural </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> EEI Filing Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Extended Area Surcharge (Ship From) </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Extended Area Surcharge (Ship To) </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Fuel Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Residential Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Security Surcharge </div>-->
+					</div>
+				</div>
+				<div *ngIf="fourColumnView || threeColumnView" [ngClass]="{'col-md-3' : fourColumnView, 'col-md-4' : threeColumnView}">
+					<h3 class="ups-form_label">Additional Option Fees</h3>
+					<div class="ups-balance_table">
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    UPS carbon neutral
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    UPS Proactive Response - Refrigeration Needed
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Direct Delivery Only
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Direct to Retail Shipment
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Deliver to Addressee Only
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Package Release Code
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Saturday Delivery
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <p>
+                                <strong>Package {{ '{' }}1{{ '}' }}</strong>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    C.O.D (nnn.nn USD)
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    UPS Premium Care
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <p>
+                                <strong>Package {{ '{' }}2{{ '}' }}</strong>
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    C.O.D (nnn.nn USD)
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    UPS Premium Care
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+
+
+						<!--<div class="ups-balance_row ups-balance_row_condensed"> C.O.D. Amount </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> - Package 1 </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Email Notifications </div>
+						<div class="ups-balance_row ups-balance_row_condensed"> UPS Premium Care </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> - Package 1 </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> UPS Carbon Neutral </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Deliver to Addressee Only </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Direct Delivery Only </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Package Release Code </div>-->
+					</div>
+				</div>
+				<div class="col-md-3" *ngIf="fourColumnView">
+					<h3 class="ups-form_label">Pickup Charges</h3>
+					<div class="ups-balance_table">
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    Scheduled Pickup
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    {{ '{' }}Pickup Fee{{ '}' }}
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    {{ '{' }}Pickup Fee{{ '}' }}
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+
+						<!--<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Schedule a Pickup </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> [Pickup Fee] </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> [Pickup Fee] </div>-->
+					</div>
+					<p>Pickup Charges: {{ '{' }}disclaimer placeholder{{ '}' }}</p>
+				</div>
+				<div class="col-md-3" [ngClass]="{'col-md-3' : fourColumnView, 'col-md-4' : threeColumnView, 'col-md-5 col-md-offset-1' : twoColumnView}">
+					<h3 class="ups-form_label">Subtotals</h3>
+					<p>{{ '{' }}A discount has been applied to the [standard list / daily / retail] rates for this shipment.{{ '}' }}</p>
+					<div class="ups-balance_table">
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Pickup Charges</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Pickup Contract Rate</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Combined Charges</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Contract Rate</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Subtotal</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>VAT</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong>Published Charges</strong>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    nnn.nn USD
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+						<!--<div class="ups-balance_row ups-balance_row_condensed">
+							<span class="pull-right">$0.00</span> Pickup Charges (Original)
+						</div>
+						<div class="ups-balance_row">
+							<span class="pull-right">$0.00</span>
+							<strong>Pickup Charges (Negotiated)</strong>
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed">
+							<span class="pull-right">$0.00</span>
+							Charges (Original)
+						</div>
+						<div class="ups-balance_row">
+							<span class="pull-right">$0.00</span>
+							<strong>Charges (Negotiated)</strong>
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed">
+							Published Charges: $0.00
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed">
+							<span class="pull-right">$0.00</span>
+							VAT
+						</div>
+						<div class="ups-balance_row">
+							<span class="pull-right">$0.00</span>
+							<strong>Total (with taxes and discount)</strong>
+						</div>-->
+					</div>
+					<!--<p>Tax disclaimer placeholder - EU, CA, MX</p>-->
+				</div>
+			</div>
+
+            <div class="ups-cms-demo">
+				<h4>Column View</h4>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setTwoColumnView()">2 column View</button>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setThreeColumnView()">3 column View</button>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setFourColumnView()">4 column View</button>
+				<h4>Total Title Changes</h4>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setTotalTextTaxesDiscount()">"Total with Taxes and Discount"</button>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setTotalTextDiscount()">"Total with Discount"</button>
+				<button type="button" class="ups-cta ups-cta_secondary" (click)="setTotalTextOnly()">"Total Charges"</button>
+			</div>
+		</div>
+	</div>
+</div>

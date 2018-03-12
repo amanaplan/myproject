@@ -1,0 +1,8 @@
+<p data-ng-if="!myChoiceLite">If you continue, we'll cancel your UPS My Choice enrollment.</p>
+<p data-ng-if="myChoiceLite">If you continue, you will not have access to UPS My Choice service features.</p>
+
+<div class="ups-form_ctaGroup text-center">
+	<button type="button" class="ups-cta ups-cta_primary" data-ng-if="!myChoiceLite" data-ng-click="redirectToUserType()">Yes</button>
+	<button type="button" class="ups-cta ups-cta_secondary" data-ng-if="!myChoiceLite" data-ng-click="openCancellation()">No</button>
+    <button type="button" class="ups-cta ups-cta_primary" data-ng-click="openCancellation()" data-ng-if="myChoiceLite">Continue</button>
+</div>

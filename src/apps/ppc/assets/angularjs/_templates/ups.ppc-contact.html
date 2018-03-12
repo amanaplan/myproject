@@ -1,0 +1,646 @@
+<script type="text/ng-template" id="ups.ppc-contactLVP.html">
+    <!--<div class="ups-application_wrapper">-->
+    <div class="ups-form_wrap">
+        <h2>My Addresses</h2>
+        <div class="ups-table">
+            <table class="table table-striped">
+                <caption class="ups-readerTxt">My addresses table</caption>
+                <tbody>
+                    <tr>
+                        <th scope="col" class="">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify
+                                            id="ups-con" class="ups-checkbox-custom" name="ups-uid"
+                                            type="checkbox" data-ng-model="contacts.selectedAll"
+                                            data-ng-click="contacts.checkAll(contacts.selectedAll, contacts.list)"
+                                            data-ng-checked="contacts.selectedAll"> 
+                                    <label for="ups-con" class="ups-checkbox-custom-label">
+                                        <span class="ups-readerTxt">Select All</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class=""><button  class="ups-link"
+                            data-ng-click="contacts.sortType = 'first_name'; contacts.sortReverse = !contacts.sortReverse" class=""><span
+                                class="ups-readerTxt">Sort By </span> NAME <span
+                                data-ng-show="contacts.sortType == 'first_name' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType == 'first_name' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class=""><button class="ups-link"
+                            data-ng-click="contacts.sortType = 'address1'; contacts.sortReverse = !contacts.sortReverse"><span
+                                class="ups-readerTxt">Sort By </span> ADDRESS <span
+                                data-ng-show="contacts.sortType === 'address1' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType === 'address1' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class=""><button class="ups-link"
+                            data-ng-click="contacts.sortType = 'email'; contacts.sortReverse = !contacts.sortReverse"><span
+                                class="ups-readerTxt">Sort By </span> EMAIL <span
+                                data-ng-show="contacts.sortType == 'email' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType == 'email' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class="">TYPE</th>
+                        <th scope="col" class="">Manage</th>
+                    </tr>
+                    <tr data-ng-repeat="item in contacts.list | orderBy:contacts.sortType:contacts.sortReverse | filter:contacts.searchValue | filterBy:tags.content track by $index">
+                        <td scope="row">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify id="{{'ups-con'+$index}}"
+                                        class="ups-checkbox-custom" name="ups-uid" type="checkbox"
+                                        data-ng-click="contacts.setCheckParent(contacts.selectedAll, contacts.list)"
+                                        data-ng-model="item.Selected" data-ng-checked="item.Selected">
+                                    <label for="{{'ups-con'+$index}}"
+                                        class="ups-checkbox-custom-label">
+                                        <span class="ups-readerTxt">Select {{item.first_name}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item.first_name | capFirstLetter}}</td>
+                        <td>{{ item.address1 | capFirstLetter}}&nbsp;{{ item.address2
+                            | capFirstLetter}}&nbsp;{{ item.address3 | capFirstLetter}}<br>{{
+                            item.city | capFirstLetter}},&nbsp;{{ item.state_select |
+                            capFirstLetter}}&nbsp;{{ item.zipcode | capFirstLetter}}&nbsp;{{
+                            item.country | uppercase}}
+                        </td>
+                        <td>{{ item.email }}</td>
+                        <td><span data-ng-if="item.isdefaultAddressBtn">Default</span><span data-ng-if="!item.isdefaultAddressBtn">My Choice<br><a href="#" onclick="return false;" data-ng-click="toggleDefaultAddress($index)">Make Default</a></span></td>
+                        <td><a href="{{fetchURL['contactShipping']}}" target="_blank">Ship</a> | 
+                            <a href="{{fetchURL['contactLocate']}}" target="_blank">Find Us Nearby</a> | 
+                            <a point-focus href="#" onclick="return false;" data-ng-if="!item.isdefaultAddressBtn"
+                            data-ng-click="editAddressInfo(item._id);pointClass('ups-editAddrpointCls',$index);">
+                                Edit <span class="ups-readerTxt">Contact {{item.first_name}}</span></a>
+                            <a point-focus href="#" onclick="return false;" data-ng-if="item.isdefaultAddressBtn"
+                            data-ng-click="myChoiceInfo(item._id);pointClass('ups-editAddrpointCls',$index);">
+                                Edit <span class="ups-readerTxt">Contact {{item.first_name}}</span></a> | 
+                            <a href="#" onclick="return false;" data-ng-click="contacts.remove(item._id)">
+                                Delete
+                                <span class="ups-readerTxt">Contact {{item.first_name}}</span></a></td>
+                    </tr>
+                    <tr data-ng-if="contacts.list.length === 0">
+                        <td scope="row" colspan="5">You haven't added any contacts yet.</td>
+                    </tr>
+                 </tbody>
+            </table>
+        </div>
+        
+        <div class="ups-form_ctaGroup">
+            <button class="ups-cta ups-cta_primary"
+                data-ng-click="add();pointClass('ups-addpointCls')"
+                type="submit">Add</button>
+        </div>
+    </div>
+    <div class="ups-form_wrap">    
+        <h2>My Contacts</h2>
+        <div class="row ups-form_group">
+            <div class="col-md-4">
+                <label for="ups-search-contacts">Search<span
+                    class="ups-readerTxt">my contacts</span></label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input id="ups-search-contacts" type="text" name="search"
+                        class="ups-form_input" value=""
+                        data-ng-model="contacts.search.first_name" maxlength="35">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!--<div class="ups-form_ctaGroup pull-right">
+                    
+                </div>-->
+                <div class="ups-form_ctaGroup ups-no_label">
+                    <button class="ups-cta ups-cta_primary" data-ng-click="search()"
+                        type="submit">Search</button>
+                    <button class="ups-cta ups-cta_tertiary" data-ng-click="reset()"
+                        type="submit">Reset</button>
+                    <button class="ups-cta ups-cta_secondary" data-ng-click="searchTable('all')">
+                        Show All<span class="ups-readerTxt">contacts</span>
+                    </button>
+                    <button class="ups-cta ups-cta_secondary" id="addTag"
+                        data-popover-class="ups-tag-popover"
+                        data-uib-popover-template="tagsTemplateUrl"
+                        data-popover-is-open="isTagsOpen"
+                        data-ng-click="togglePopover()"
+                        data-popover-placement="{{tags.position}}"
+                        data-popover-trigger="click outsideClick">
+                        Filter<span class="ups-readerTxt">contacts</span> by Tags
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+        <div class="ups-table">
+            <table class="table table-striped">
+                <caption class="ups-readerTxt">My contacts table</caption>
+                <tbody>
+                    <tr>
+                        <th scope="col" class="">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify
+                                        id="ups-con2" class="ups-checkbox-custom" name="ups-uid"
+                                        type="checkbox" data-ng-model="contacts.selectedAll"
+                                        data-ng-click="contacts.checkAll(contacts.selectedAll, contacts.list)"
+                                        data-ng-checked="contacts.selectedAll">
+                                    <label for="ups-con2" class="ups-checkbox-custom-label">
+                                        <span class="ups-readerTxt">Select All</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class=""><button class="ups-link"
+                            data-ng-click="contacts.sortType = 'first_name'; contacts.sortReverse = !contacts.sortReverse" class=""><span
+                                class="ups-readerTxt">Sort By </span> NAME <span
+                                data-ng-show="contacts.sortType == 'first_name' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType == 'first_name' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class=""><button class="ups-link" data-ng-click="contacts.sortType = 'address1'; contacts.sortReverse = !contacts.sortReverse"><span
+                                class="ups-readerTxt">Sort By </span> ADDRESS <span
+                                data-ng-show="contacts.sortType === 'address1' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType === 'address1' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class=""><button class="ups-link"
+                            data-ng-click="contacts.sortType = 'email'; contacts.sortReverse = !contacts.sortReverse"><span
+                                class="ups-readerTxt">Sort By </span> EMAIL <span
+                                data-ng-show="contacts.sortType == 'email' && !contacts.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="contacts.sortType == 'email' && contacts.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class="">Manage</th>
+                    </tr>
+                    <tr
+                        data-ng-repeat="item in contacts.list | orderBy:contacts.sortType:contacts.sortReverse | filter:contacts.searchValue | filterBy:tags.content track by $index">
+                        <td scope="row">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify id="{{'ups-con'+$index}}"
+                                    class="ups-checkbox-custom" name="ups-uid" type="checkbox"
+                                    data-ng-click="contacts.setCheckParent(contacts.selectedAll, contacts.list)"
+                                    data-ng-model="item.Selected" data-ng-checked="item.Selected">
+                                    <label for="{{'ups-con'+$index}}"
+                                    class="ups-checkbox-custom-label"><span
+                                        class="ups-readerTxt">Select {{item.first_name}}</span></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item.first_name | capFirstLetter}}</td>
+                        <td>{{ item.address1 | capFirstLetter}}&nbsp;{{ item.address2
+                            | capFirstLetter}}&nbsp;{{ item.address3 | capFirstLetter}}<br>{{
+                            item.city | capFirstLetter}},&nbsp;{{ item.state_select |
+                            capFirstLetter}}&nbsp;{{ item.zipcode | capFirstLetter}}&nbsp;{{
+                            item.country | uppercase}}
+                        </td>
+                        <td>{{ item.email }}</td>
+                        <td><a href="{{fetchURL['contactShipping']}}" target="_blank">Ship</a> | 
+                            <a href="{{fetchURL['contactLocate']}}" target="_blank">Find Us Nearby</a> | 
+                            <a point-focus href="#" onclick="return false;" class="ups-editAddrpointCls" data-ng-click="editAddressInfo(item._id);pointClass('ups-editAddrpointCls',$index);">
+                                Edit<span class="ups-readerTxt">Contact {{item.first_name}}</span></a> | 
+                            <button onclick="return false;" class="ups-button_link" data-ng-click="contacts.remove(item._id)">
+                                Delete<span class="ups-readerTxt">Contact {{item.first_name}}</span></button</td>
+                    </tr>
+                    <tr data-ng-if="contacts.list.length === 0">
+                        <td scope="row" colspan="5">You haven't added any contacts yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="ups-form_ctaGroup">
+            <button point-focus type="submit"
+                class="ups-cta ups-cta_primary"
+                data-dismiss="modal"
+                data-ng-click="add();pointClass('ups-addpointCls')"
+                data-ng-disabled="contacts.list.length>=4000">Add</button>
+                
+            <button type="button" class="ups-cta ups-cta_tertiary "
+                data-dismiss="modal"
+                data-ng-click="rowDeleted = undefined;contacts.remove();"
+                data-ng-disabled="contacts.getSelected(contacts.list)">
+                Delete Selected Info</button>
+        <!--</div>
+    
+        <div class="ups-form_ctaGroup">-->
+            <a point-focus href="#/contactPage/importContacts"
+                class="ups-cta ups-cta_secondary ups-btn_has_icon"
+                data-ng-click="import;pointClass('ups-importpointCls');">
+                Import<span class="icon ups-icon-download" aria-hidden="true"></span>
+            </a>
+     
+            <button data-ng-click="exportContacts(isDisabled);"
+                data-ng-disabled="isDisabled"
+                data-ng-class="{'ups-disabled-link' : isDisabled}" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                Export<span class="icon ups-icon-export" aria-hidden="true"></span>
+            </button>
+            <!-- #/contactPage/exportContacts -->
+        </div>
+    </div>
+    <div class="ups-form_wrap">                
+        <h2>Distribution Lists</h2>
+       
+        <div class="row ups-form_group">
+            <div class="col-md-4">
+                <label for="ups-search-dl">Search<span
+                    class="ups-readerTxt">distribution lists</span></label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input id="ups-search-dl" type="text" name="search"
+                        class="ups-form_input" value=""
+                        data-ng-model="distribution.search.name" maxlength="35">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="ups-form_ctaGroup ups-no_label">
+                    <button class="ups-cta ups-cta_primary"
+                        data-ng-click="searchList()" type="submit">Search</button>
+                    <button class="ups-cta ups-cta_tertiary"
+                        data-ng-click="resetList()" type="submit">Reset</button>
+                </div>
+            </div>
+        </div>
+       
+        <div class="ups-table">
+            <table class="table table-striped">
+    
+                <tbody>
+                    <tr>
+                        <th scope="col" class="">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify
+                                    id="ups-dist" class="ups-checkbox-custom" name="ups-uid"
+                                    type="checkbox" data-ng-model="distribution.selectedAll"
+                                    data-ng-click="distribution.checkAll(distribution.selectedAll, distribution.list)"
+                                    data-ng-checked="distribution.selectedAll"> <label
+                                    for="ups-dist" class="ups-checkbox-custom-label"><span
+                                        class="ups-readerTxt">Select All</span></label>
+                                </div>
+                            </div>
+                        </th>
+                        <th scope="col" class=""><button class="ups-link"
+                            data-ng-click="sortType = 'name'; distribution.sortReverse = !distribution.sortReverse"><span
+                                class="ups-readerTxt">Sort By </span> LIST NAME <span
+                                data-ng-show="distribution.sortType == 'name' && !distribution.sortReverse">
+                                <span class="icon ups-icon-chevrondown"
+                                    aria-hidden="true"></span></span> <span
+                                data-ng-show="distribution.sortType == 'name' && distribution.sortReverse">
+                                <span class="icon ups-icon-chevronup"
+                                    aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" class="">ACTIONS</th>
+                    </tr>
+                    <tr
+                        data-ng-repeat="item in distribution.list | orderBy:sortType:distribution.sortReverse | filter:distribution.searchValue">
+                        <td scope="row">
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input check-verify id="{{'ups-dist'+$index}}"
+                                    class="ups-checkbox-custom" name="ups-uid" type="checkbox"
+                                    data-ng-model="item.Selected" data-ng-checked="item.Selected"><label
+                                    for="{{'ups-dist'+$index}}" class="ups-checkbox-custom-label"><span
+                                        class="ups-readerTxt">Select {{item.name}}</span></label>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item.name | capFirstLetter}}</td>
+                        <td><a href="{{fetchURL['contactShipping']}}"
+                            target="_blank">Ship</a> | <a
+                            href="#" onclick="return false;" point-focus
+                            data-ng-click="distribution.edit(item.id);pointClass('ups-editDist');">Edit<span
+                                class="ups-readerTxt">Distribution {{item.name}}</span></a> | <a href="#" onclick="return false;"
+                            data-ng-click="distribution.remove(item.id)">Delete<span
+                                class="ups-readerTxt">Distribution {{item.name}}</span></a></td>
+                    </tr>
+                    <tr data-ng-if="distribution.list.length === 0">
+                        <td scope="row" colspan="3">You haven't added any Distribution List yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+        <div class="ups-form_ctaGroup">
+            <button point-focus type="button"
+                class="ups-cta ups-cta_primary" data-dismiss="modal"
+                data-ng-click="distribution.add();pointClass('ups-addDist');">Add
+                New List</button>
+                
+            <button type="button" class="ups-cta ups-cta_tertiary"
+                data-dismiss="modal"
+                data-ng-click="rowDeleted = undefined;distribution.remove()"
+                data-ng-disabled="distribution.getSelected(distribution.list)">
+                Delete Selected</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ups.ppc-contactSVP-addresses.html">
+    <div class="ups-list" data-ng-show="!toggleView">
+    <h2>
+        <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+            data-ng-click="portObjContact.back()">
+            <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+            {{selectedValueContent.title}}
+        </a>
+            </h2>
+    
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <a class="ups-link list_link" href="#" onclick="return false;"
+                        data-ng-repeat="item in contacts.list | orderBy:contacts.sortType:contacts.sortReverse | filter:contacts.searchValue | filterBy:tags.content track by $index"
+                        data-ng-click="portObjContact.next(item)">
+                        <div class="list_detail">
+                            <h3>{{item.first_name}}</h3>
+    
+                            <span>{{ item.address1 | capFirstLetter}}&nbsp;{{
+                                item.address2 | capFirstLetter}}&nbsp;{{ item.address3 |
+                                capFirstLetter}}<br>{{ item.city | capFirstLetter}},&nbsp;{{
+                                item.state_select | capFirstLetter}}&nbsp;{{ item.zipcode |
+                                capFirstLetter}}&nbsp;{{ item.country | uppercase}}
+                            </span><br> <b>{{ item.email }}</b>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-show="toggleView">
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjContact.cancel()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                My Addresses
+            </a>
+        </h2>
+    
+        <ul class="ups-payment_tableContent">
+            <li><h3>{{selectedContact.first_name}}</h3></li>
+            <li>
+                <p><strong>Address</strong></p> {{ selectedContact.address1 |
+                capFirstLetter}}&nbsp;{{ selectedContact.address2 |
+                capFirstLetter}}&nbsp;{{ selectedContact.address3 | capFirstLetter}}<br>{{
+                selectedContact.city | capFirstLetter}},&nbsp;{{
+                selectedContact.state_select | capFirstLetter}}&nbsp;{{
+                selectedContact.zipcode | capFirstLetter}}&nbsp;{{
+                selectedContact.country | uppercase}}
+            </li>
+            <li>
+                <p><strong>Email</strong></p>
+                <p>{{selectedContact.email}}</p>
+            </li>
+            <li>
+                <p><strong>Type</strong></p>
+                <p>
+                    <span data-ng-if="selectedContact.isdefaultAddressBtn">Default</span>
+                    <span data-ng-if="!selectedContact.isdefaultAddressBtn">My Choice<br>
+                        <a href="#" onclick="return false;" data-ng-click="toggleDefaultAddress($index)">Make Default</a>
+                    </span>
+                </p>
+            <li>
+                <p><strong>Manage</strong></p>
+                <a href="{{fetchURL['contactShipping']}}" target="_blank" class="ups-link">Ship</a> | <a href="{{fetchURL['contactLocate']}}" target="_blank" class="ups-link">Locate</a> | <a point-focus href="#" onclick="return false;"
+                class="ups-editAddrpointCls"
+                data-ng-click="editAddressInfo(selectedContact._id);pointClass('ups-editAddrpointCls',$index);" data-ng-if="selectedContact.isdefaultAddressBtn" data-ng-class="{'ups-link' : true}" class="ups-link">Edit<span
+                    class="ups-readerTxt">Contact {{selectedContact.first_name}}</span></a><a point-focus href="#" onclick="return false;"
+                class="ups-editAddrpointCls"
+                data-ng-click="myChoiceInfo(selectedContact._id);pointClass('ups-editAddrpointCls',$index);" data-ng-if="selectedContact.isdefaultAddressBtn" data-ng-class="{'ups-link' : true}" class="ups-link">Edit<span
+                    class="ups-readerTxt">Contact {{selectedContact.first_name}}</span></a> | <a href="#" onclick="return false;"
+                data-ng-click="contacts.remove(selectedContact._id)" class="ups-link">Delete<span
+                    class="ups-readerTxt">Contact {{selectedContact.first_name}}</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="ups-btn-custom-style">
+        <div class="ups-form_ctaGroup">
+            <button point-focus type="submit"
+                class="ups-cta ups-cta_primary ups-addpointCls"
+                data-ng-click="add();pointClass('ups-addpointCls')"
+                data-ng-disabled="contacts.list.length>=4000">Add</button>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="ups.ppc-contactSVP-contact.html">
+    <div class="ups-list" data-ng-show="!toggleView">
+    <h2>
+        <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+            data-ng-click="portObjContact.back()">
+            <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+            {{selectedValueContent.title}}
+        </a>
+            </h2>
+        <div class="row ups-form_group">
+            <div class="col-md-4">
+                <label for="ups-search-contacts">Search<span
+                    class="ups-readerTxt">my contacts</span></label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input id="ups-search-contacts" type="text" name="search"
+                        class="ups-form_input" value=""
+                        data-ng-model="contacts.search.first_name" maxlength="35">
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="ups-form_ctaGroup">
+                    <button class="ups-cta ups-cta_primary" data-ng-click="search()">
+                        Search</button>
+                    <button class="ups-cta ups-cta_tertiary" data-ng-click="reset()">
+                        Reset</button>
+                    <button class="ups-cta ups-cta_secondary" data-ng-click="searchTable('all')">
+                        Show All<span class="ups-readerTxt">contacts</span>
+                    </button>
+                    <button class="ups-cta ups-cta_secondary"
+                        data-popover-class="ups-tag-popover"
+                        data-uib-popover-template="tagsTemplateUrl"
+                        data-popover-is-open="$parent.isTagOpen" data-ng-click="togglePopover()"
+                        data-popover-placement="{{tags.position}}" id="addTag">
+                        Filter<span class="ups-readerTxt">contacts</span> by Tags
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <a class="ups-link list_link" href="#" onclick="return false;"
+                        data-ng-repeat="item in contacts.list | orderBy:contacts.sortType:contacts.sortReverse | filter:contacts.searchValue | filterBy:tags.content track by $index"
+                        data-ng-click="portObjContact.next(item)">
+                        <div class="list_detail">
+                            <h3>{{item.first_name}}</h3>
+    
+                            <span>{{ item.address1 | capFirstLetter}}&nbsp;{{
+                                item.address2 | capFirstLetter}}&nbsp;{{ item.address3 |
+                                capFirstLetter}}<br>{{ item.city | capFirstLetter}},&nbsp;{{
+                                item.state_select | capFirstLetter}}&nbsp;{{ item.zipcode |
+                                capFirstLetter}}&nbsp;{{ item.country | uppercase}}
+                            </span><br> <b>{{ item.email }}</b>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div data-ng-show="toggleView">
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjContact.cancel()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                Contacts
+            </a>
+        </h2>
+    
+        <ul class="ups-payment_tableContent">
+            <li><h3>{{selectedContact.first_name}}</h3></li>
+            <li>
+                <p class="ups-boldText">Address</p> {{ selectedContact.address1 |
+                capFirstLetter}}&nbsp;{{ selectedContact.address2 |
+                capFirstLetter}}&nbsp;{{ selectedContact.address3 | capFirstLetter}}<br>{{
+                selectedContact.city | capFirstLetter}},&nbsp;{{
+                selectedContact.state_select | capFirstLetter}}&nbsp;{{
+                selectedContact.zipcode | capFirstLetter}}&nbsp;{{
+                selectedContact.country | uppercase}}
+            </li>
+            <li>
+                <p class="ups-boldText">Email</p>
+                <p>{{selectedContact.email}}</p>
+            </li>
+            <li>
+                <p class="ups-boldText">Manage</p>
+                <a href="{{fetchURL['contactShipping']}}" target="_blank" class="ups-link">Ship</a> | <a href="{{fetchURL['contactLocate']}}" target="_blank" class="ups-link">Locate</a> | <a point-focus href="#" onclick="return false;"
+                class="ups-editAddrpointCls"
+                data-ng-click="editAddressInfo(selectedContact._id);pointClass('ups-editAddrpointCls',$index);" data-ng-class="{'ups-link' : true}" class="ups-link">Edit<span
+                    class="ups-readerTxt">Contact {{selectedContact.first_name}}</span></a> | <a href="#" onclick="return false;"
+                data-ng-click="contacts.remove(selectedContact._id)" class="ups-link">Delete<span
+                    class="ups-readerTxt">Contact {{selectedContact.first_name}}</span></a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="ups-form_ctaGroup">
+        <button point-focus type="submit"
+            class="ups-cta ups-cta_primary ups-addpointCls"
+            data-ng-click="add();pointClass('ups-addpointCls')"
+            data-ng-disabled="contacts.list.length>=4000">Add</button>  
+       
+    
+    <!--<div class="ups-btn-custom-style">-->
+         <a point-focus href="#/contactPage/importContacts"
+            class="ups-cta ups-cta_secondary"
+            data-ng-click="import;pointClass('ups-importpointCls');">
+            <span class="icon ups-icon-download" aria-hidden="true"></span>
+            Import
+         </a>
+         <button data-ng-click="exportContacts(isDisabled);"
+            data-ng-disabled="isDisabled"
+            data-ng-class="{'ups-disabled-link' : isDisabled}" class="ups-cta ups-cta_secondary"><span
+            class="icon ups-icon-export" aria-hidden="true"></span>
+            Export
+         </button>
+    </div>
+        <!-- #/contactPage/exportContacts -->
+    <!--</div>-->
+
+</script>
+
+<script type="text/ng-template" id="ups.ppc-contactSVP-distribution.html">
+    <div class="ups-list">
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjContact.back()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>	
+                {{selectedValueContent.title}}
+            </a>
+        </h2>
+        <div class="row ups-form_group">
+            <div class="col-md-4">
+                <label for="ups-search-dl">Search<span class="ups-readerTxt">distribution
+                        lists</span></label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input id="ups-search-dl" type="text" name="search"
+                        class="ups-form_input" value=""
+                        data-ng-model="distribution.search.name" maxlength="35">
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="ups-form_ctaGroup">
+                    <button class="ups-cta ups-cta_primary"
+                        data-ng-click="searchList()" type="submit">Search</button>
+                    <button class="ups-cta ups-cta_tertiary"
+                        data-ng-click="resetList()" type="submit">Reset</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix"
+                    data-ng-repeat="item in distribution.list | orderBy:sortType:distribution.sortReverse | filter:distribution.searchValue">
+                    <div class="list_link">
+                        <div class="list_detail">
+                            <h3>{{item.name}}</h3>
+                            <a href="{{fetchURL['contactShipping']}}" target="_blank" class="ups-link">Ship</a> | <a href="#" onclick="return false;" point-focus
+                                class="ups-link ups-editDist"
+                                data-ng-click="distribution.edit(item.id);pointClass('ups-editDist');">
+                                Edit<span class="ups-readerTxt">Distribution {{item.name}}</span></a> | <a href="#" onclick="return false;"
+                                data-ng-click="distribution.remove(item.id)" class="ups-link">Delete<span
+                                class="ups-readerTxt">Distribution {{item.name}}</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ups-form_ctaGroup">
+        <button point-focus type="button"
+            class="ups-cta ups-cta_primary ups-addDist " data-dismiss="modal"
+            data-ng-click="distribution.add();pointClass('ups-addDist');">Add
+            New List</button>
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="ups.ppc-contactSVP.html">
+    <div class="ups-list">
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <a class="ups-link list_link" href="#" onclick="return false;"
+                        data-ng-repeat="item in portObj.content"
+                        data-ng-click="portObj.next(item)">
+                        <div class="list_detail">
+                            <h3>{{item.title}}</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="ups-svp_table" resize data-page-title="Addresses">
+	<!--Previous Link Starts-->
+	<a point-focus="" href="#/profilePage" class="ups-previous_page"> 
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Overview
+	</a>
+	<!--Previous Link Ends-->
+
+	<div data-ng-include="viewPortHtml"></div>
+</div>

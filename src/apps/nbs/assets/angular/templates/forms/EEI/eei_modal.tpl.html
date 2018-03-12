@@ -1,0 +1,1741 @@
+<!--
+** Electronic Export Information (EEI) Modal **
+-->
+<div class="ups-wrap_inner">
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Page Level error messaging //// -->
+    <!-- ////////////////////////////////////////// -->
+    <section *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+        <ul class="ups-icons-error">
+            <li *ngIf="!filingListValid()">
+                <a href="#upsDrawerBtn01" class="ups-invalid_color" pointIdClick>Errors in Filing Options</a>
+            </li>
+            <li *ngIf="!addressListValid()">
+                <a href="#upsDrawerBtn02" class="ups-invalid_color" pointIdClick>Errors in Address Information</a>
+            </li>
+            <li *ngIf="!shipListValid()">
+                <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>Errors in Shipment Information</a>
+            </li>
+            <li *ngIf="!prodListValid() && inProgress">
+                <a href="#upsDrawerBtn04" class="ups-invalid_color" pointIdClick>Errors in Products</a>
+            </li>
+        </ul>
+    </section>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Page Level error messaging   //// -->
+    <!-- ////       BEGIN Page content         //// -->
+    <!-- ////////////////////////////////////////// -->
+    <section class="ups-group">
+        <ul class="ups-drawer" *ngIf="!inProg && !ready" upsDrawerList>
+            <!-- /////////////////////////////////////////////// -->
+            <!-- ////     Begin Filing Options Drawer      ///// -->
+            <!-- /////////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !filingListValid())}">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{ 'ups-empty_circle' : !nbsBase.nbsGlobalFormSubmit,
+                    'ups-icon-alert' : nbsBase.nbsGlobalFormSubmit && !filingListValid(),
+                    'ups-icon-checkcircle' : nbsBase.nbsGlobalFormSubmit && filingListValid()}"></span>
+                    Filing Options
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                    <span class="ups-readerTxt" *ngIf="nbsBase.nbsGlobalFormSubmit && filingListValid()">Complete</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <div class="ups-drawer-content" id="upsDrawer01">
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !filingListValid())">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+
+                            <li *ngIf="filingInfoFormGroup.controls['eeiFilingMethodSel'].invalid">
+                                <a href="#eeiFilingMethodSel" class="ups-invalid_color" pointIdClick>EEI Filing Method is required</a>
+                            </li>
+
+                            <ng-container *ngIf="eeiFilingMethodSel == 2">
+                                <li *ngIf="filingInfoFormGroup.controls['eeiAuthorizePoA'].invalid">
+                                    <a href="#eeiAuthorizePoA" class="ups-invalid_color" pointIdClick>Power of Attorney is required</a>
+                                </li>
+                            </ng-container>
+
+                            <ng-container *ngIf="eeiFilingMethodSel == 3">
+                                <li *ngIf="filingInfoFormGroup.controls['eeiInternalTransactionNum'].invalid">
+                                    <a href="#eeiInternalTransactionNum" class="ups-invalid_color" pointIdClick>Internal Transaction Number is required</a>
+                                </li>
+                            </ng-container>
+
+                            <ng-container *ngIf="eeiFilingMethodSel == 4">
+                                <li *ngIf="filingInfoFormGroup.controls['eeiShipReferenceNum'].invalid">
+                                    <a href="#eeiShipReferenceNum" class="ups-invalid_color" pointIdClick>Shipment Reference Number is required</a>
+                                </li>
+                            </ng-container>
+
+                            <ng-container *ngIf="eeiFilingMethodSel == 2 || eeiFilingMethodSel == 4">
+                                <li *ngIf="filingInfoFormGroup.controls['eeiAuthorizeEmail'].invalid">
+                                    <a href="#eeiAuthorizeEmail" class="ups-invalid_color" pointIdClick>Email is required</a>
+                                </li>
+                                <!-- <li *ngIf="filingInfoFormGroup.controls['eeiNotifyUpdates'].invalid">
+                                    <a href="#eeiNotifyUpdates" class="ups-invalid_color" pointIdClick>Notify For Updates is required</a>
+                                </li> -->
+                            </ng-container>
+
+                        </ul>
+                    </div>
+
+                    <div [formGroup]="filingInfoFormGroup">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="eeiFilingMethodSel" class="ups-form_label">
+                                        EEI Filing Method
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select id="eeiFilingMethodSel"
+                                            name="eeiFilingMethodSel"
+                                            class="ups-dropdown"
+                                            aria-required="true"
+                                            required
+                                            aria-describedby="eeiFilingMethodSel_error"
+                                            formControlName="eeiFilingMethodSel"
+                                            [(ngModel)]="eeiFilingMethodSel"
+                                            [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiFilingMethodSel'].valid && filingInfoFormGroup.controls['eeiFilingMethodSel'].touched)}">
+                                            <option [value]="0">Select One</option>
+                                            <option [value]="1">I don't need an EEI</option>
+                                            <option [value]="2">UPS file it for me (+{{ '{'}}10.00{{ '}'}})</option>
+                                            <option [value]="3">Self file with U.S. Customs through ACE</option>
+                                            <option [value]="4">File post departure as approved USPPI</option>
+                                        </select>
+                                        <div *ngIf="filingInfoFormGroup.controls['eeiFilingMethodSel'].valid">
+                                            <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                            <span class="ups-readerTxt">Check</span>
+                                        </div>
+                                    </div>
+                                    <span class="ups-icons-error" id="eeiFilingMethodSel_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiFilingMethodSel'].valid && filingInfoFormGroup.controls['eeiFilingMethodSel'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="filingInfoFormGroup.controls['eeiFilingMethodSel'].hasError('valNotEqual')">
+                                                EEI Filing Method is required.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="ups-form_group ups-form_required ups-help_wrapper" *ngIf="(eeiFilingMethodSel == 1)">
+                                    <label for="eeiLicenseExemptionSel" class="ups-form_label">
+                                        License Exemption Code
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-help" upsHelpBtn>
+                                        <button class="ups-help_link" id="eeiLicenseExemptionSel_helpbtn" type="button">
+                                            <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                                            Help
+                                        </button>
+                                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                                <span class="ups-readerTxt">Close</span>
+                                            </button>
+                                            <p>In certain specific instances, items above $2,500 USD total value may be exempt from EEI filing. This may include things like baggage or personal items, tools of the trade, temporary exports of less than 1 year (or return of those items), and some charitable gifts or humanitarian items. This would not include items intended for sale.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select id="eeiLicenseExemptionSel"
+                                            name="eeiLicenseExemptionSel"
+                                            class="ups-dropdown"
+                                            aria-required="true"
+                                            required
+                                            aria-describedby="eeiLicenseExemptionSel_error"
+                                            formControlName="eeiLicenseExemptionSel">
+                                            <option [value]="1">Customs Generated Number (ITN)</option>
+                                        </select>
+                                        <div *ngIf="filingInfoFormGroup.controls['eeiLicenseExemptionSel'].valid">
+                                            <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                            <span class="ups-readerTxt">Check</span>
+                                        </div>
+                                    </div>
+                                    <span class="ups-icons-error" id="eeiLicenseExemptionSel_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiLicenseExemptionSel'].valid && filingInfoFormGroup.controls['eeiLicenseExemptionSel'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="filingInfoFormGroup.controls['eeiLicenseExemptionSel'].hasError('valNotEqual')">
+                                                License Exemption Code is required.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div *ngIf="(eeiFilingMethodSel == 2)">
+                            <p>
+                                Please review and authorize the agreement below to file your EEI through UPS.
+                            </p>
+                            <div class="ups-text_scroll ups-group">
+                                <p>I hereby authorize UPS Worldwide Forwarding, Inc. and its affiliates (Forwarding Agent), its successors or assignees, to act for and on its behalf as a true and lawful agent and attorney for me/the organization associated with this account as the U.S. Principal Party in Interest (USPPI), from this date, in the United States either in writing, electronically, or by other authorized means to:</p>
+                                <p>Act as Forwarding Agent for export control, Bureau of the Census reporting, and customs purposes, and to make, endorse, sign or file Electronic Export Information (EEI) through the Automated Export System (AES) or to perform any act which may be required by law in connection with the exportation or transportation of any merchandise shipped or consigned by or to the USPPI and to receive or ship any merchandise on behalf of the USPPI.</p>
+                            </div>
+
+                            <div class="ups-form_group ups-form_required">
+                                <div class="ups-input_wrapper ups-checkbox">
+                                    <input type="checkbox" class="ups-checkbox-custom" id="eeiAuthorizePoA" name="eeiAuthorizePoA" value="1" aria-required="true"
+                                        required aria-describedby="eeiAuthorizePoA_error" formControlName="eeiAuthorizePoA" [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiAuthorizePoA'].valid && filingInfoFormGroup.controls['eeiAuthorizePoA'].touched)}">
+                                    <label for="eeiAuthorizePoA" class="ups-checkbox-custom-label">
+                                        I authorize UPS one time power of attorney for this shipment only.
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <span class="ups-icons-error" id="eeiAuthorizePoA_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiAuthorizePoA'].valid && filingInfoFormGroup.controls['eeiAuthorizePoA'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="filingInfoFormGroup.controls['eeiAuthorizePoA'].hasError('required')">
+                                                Power of Attorney is required.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="(eeiFilingMethodSel == 3)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="eeiTransactionNumType" class="ups-form_label">
+                                            Transaction Number Type
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="eeiTransactionNumType"
+                                                name="eeiTransactionNumType"
+                                                class="ups-dropdown"
+                                                aria-required="true"
+                                                required
+                                                aria-describedby="eeiTransactionNumType_error"
+                                                formControlName="eeiTransactionNumType">
+                                                <option [value]="1">Customs Generated Number (ITN)</option>
+                                            </select>
+                                            <div *ngIf="filingInfoFormGroup.controls['eeiTransactionNumType'].valid">
+                                                <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                                <span class="ups-readerTxt">Check</span>
+                                            </div>
+                                        </div>
+                                        <span class="ups-icons-error" id="eeiTransactionNumType_error" role="alert">
+                                            <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiTransactionNumType'].valid && filingInfoFormGroup.controls['eeiTransactionNumType'].touched)">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt"> invalid</span>
+                                                <span *ngIf="filingInfoFormGroup.controls['eeiTransactionNumType'].hasError('valNotEqual')">
+                                                    License Exemption Code is required.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="eeiInternalTransactionNum" class="ups-form_label">
+                                            What is your Internal Transaction Number?
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <p class="ups-form_subheader" id="eeiInternalTransactionNum_subhelp">
+                                            This number confirms your EEI when you self-file with U.S. Customs.
+                                        </p>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" class="ups-form_input" id="eeiInternalTransactionNum" name="eeiInternalTransactionNum" aria-required="true"
+                                                required aria-describedby="eeiInternalTransactionNum_subhelp eeiInternalTransactionNum_error"
+                                                formControlName="eeiInternalTransactionNum" [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiInternalTransactionNum'].valid && filingInfoFormGroup.controls['eeiInternalTransactionNum'].touched)}">
+                                            <div *ngIf="filingInfoFormGroup.controls['eeiInternalTransactionNum'].valid">
+                                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                                <span class="ups-readerTxt">Check</span>
+                                            </div>
+                                        </div>
+                                        <span class="ups-icons-error" id="eeiInternalTransactionNum_error" role="alert">
+                                            <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiInternalTransactionNum'].valid && filingInfoFormGroup.controls['eeiInternalTransactionNum'].touched)">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt"> invalid</span>
+                                                <span *ngIf="filingInfoFormGroup.controls['eeiInternalTransactionNum'].hasError('required')">
+                                                    Internal Transaction Number is required.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="(eeiFilingMethodSel == 4)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-group">
+                                        <p class="ups-group_label">
+                                            Reference Number Type
+                                        </p>
+                                        <p>
+                                            Shipment Reference Number
+                                        </p>
+                                    </div>
+
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="eeiShipReferenceNum" class="ups-form_label">
+                                            Shipment Reference Number
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" class="ups-form_input" id="eeiShipReferenceNum" name="eeiShipReferenceNum" aria-required="true" required
+                                                aria-describedby="eeiShipReferenceNum_error" formControlName="eeiShipReferenceNum"
+                                                [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiShipReferenceNum'].valid && filingInfoFormGroup.controls['eeiShipReferenceNum'].touched)}">
+                                            <div *ngIf="filingInfoFormGroup.controls['eeiShipReferenceNum'].valid">
+                                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                                <span class="ups-readerTxt">Check</span>
+                                            </div>
+                                        </div>
+                                        <span class="ups-icons-error" id="eeiShipReferenceNum_error" role="alert">
+                                            <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiShipReferenceNum'].valid && filingInfoFormGroup.controls['eeiShipReferenceNum'].touched)">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt"> Invalid</span>
+                                                <span *ngIf="filingInfoFormGroup.controls['eeiShipReferenceNum'].hasError('required')">
+                                                    Shipment Reference Number is required.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" *ngIf="(eeiFilingMethodSel == 2) || (eeiFilingMethodSel == 4)">
+                            <div class="col-md-6">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="eeiAuthorizeEmail" class="ups-form_label">
+                                        Email
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text"
+                                            class="ups-form_input"
+                                            id="eeiAuthorizeEmail"
+                                            name="eeiAuthorizeEmail"
+                                            aria-required="true"
+                                            required
+                                            aria-describedby="eeiAuthorizeEmail_error"
+                                            formControlName="eeiAuthorizeEmail"
+                                            [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiAuthorizeEmail'].valid && filingInfoFormGroup.controls['eeiAuthorizeEmail'].touched)}">
+                                        <div *ngIf="filingInfoFormGroup.controls['eeiAuthorizeEmail'].valid">
+                                            <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                            <span class="ups-readerTxt">Check</span>
+                                        </div>
+                                    </div>
+                                    <span class="ups-icons-error" id="eeiAuthorizeEmail_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiAuthorizeEmail'].valid && filingInfoFormGroup.controls['eeiAuthorizeEmail'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> invalid</span>
+                                            <span *ngIf="filingInfoFormGroup.controls['eeiAuthorizeEmail'].hasError('required')">
+                                                Email is required.
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ups-form_group" *ngIf="(eeiFilingMethodSel == 2) || (eeiFilingMethodSel == 4)">
+                            <div class="ups-input_wrapper ups-checkbox">
+                                <input type="checkbox" 
+                                        class="ups-checkbox-custom" 
+                                        id="eeiNotifyUpdates" 
+                                        name="eeiNotifyUpdates" 
+                                        value="1" 
+                                        aria-describedby="eeiNotifyUpdates_error" 
+                                        formControlName="eeiNotifyUpdates" 
+                                        [ngClass]="{'ups-bodError':  (!filingInfoFormGroup.controls['eeiNotifyUpdates'].valid && filingInfoFormGroup.controls['eeiNotifyUpdates'].touched)}">
+                                <label for="eeiNotifyUpdates" class="ups-checkbox-custom-label">
+                                    Notify me when updates occur to transportation information on my EEI filing.
+                                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                                </label>
+                                <!-- <span class="ups-icons-error" id="eeiNotifyUpdates_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!filingInfoFormGroup.controls['eeiNotifyUpdates'].valid && filingInfoFormGroup.controls['eeiNotifyUpdates'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="filingInfoFormGroup.controls['eeiNotifyUpdates'].hasError('required')">
+                                            Notify For Updates is required.
+                                        </span>
+                                    </span>
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- ///////////////////////////////////////////// -->
+            <!-- ////      End Filing Options Drawer     ///// -->
+            <!-- ////  Begin Address Information Drawer  ///// -->
+            <!-- ///////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !addressListValid())}">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{ 'ups-empty_circle' : !nbsBase.nbsGlobalFormSubmit,
+                    'ups-icon-alert' : nbsBase.nbsGlobalFormSubmit && !addressListValid(),
+                    'ups-icon-checkcircle' : nbsBase.nbsGlobalFormSubmit && addressListValid()}"></span>
+                    Address Information
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                    <span class="ups-readerTxt" *ngIf="nbsBase.nbsGlobalFormSubmit && addressListValid()">Complete</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <div class="ups-drawer-content" id="upsDrawer02">
+                    <!-- /////////////////////////////////////////////// -->
+                    <!-- ////          Address Information         ///// -->
+                    <!-- /////////////////////////////////////////////// -->
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !addressListValid())">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+
+                            <li *ngIf="addressListFormGroup.controls['eeiUSPPIIDnum'].invalid">
+                                <a href="#eeiUSPPIIDnum" class="ups-invalid_color" pointIdClick>USPPI's ID Number is required</a>
+                            </li>
+                            <li *ngIf="addressListFormGroup.controls['eeiTypeID'].invalid">
+                                <a href="#eeiTypeID" class="ups-invalid_color" pointIdClick>Type of ID is required</a>
+                            </li>
+                            <li *ngIf="addressListFormGroup.controls['eeiUltimateConsigneeType'].invalid">
+                                <a href="#eeiUltimateConsigneeType" class="ups-invalid_color" pointIdClick>Ultimate Consignee Type is required</a>
+                            </li>
+                            <ng-container *ngIf="eeiNewAddressCAC.length > 0">
+                                <li *ngFor="let error of eeiNewAddressCAC.first.formErrors()">
+                                    <a [href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{ error.field_name }} is required</a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
+
+                    <div [formGroup]="addressListFormGroup">
+                        <div class="ups-section">
+                            <div class="ups-section-header">
+                                <h3 class="ups-section_heading">
+                                    US Principal Party in Interest (USPPI)
+                                    <p class="ups-section_subheading">
+                                        <em>The sender of the goods</em>
+                                    </p>
+                                </h3>
+                            </div>
+
+                            <div class="ups-group ups-group_condensed">
+                                <p>
+                                    [Country]
+                                </p>
+                                <p>
+                                    [Contact Name], [Company Name]
+                                </p>
+                                <p>
+                                    [Street Address], [Address 2], [Address 3], [City], [State], [Zip]
+                                </p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <div class="ups-form_group ups-form_required">
+                                                <label for="eeiUSPPIIDnum" class="ups-form_label">
+                                                    USPPI's ID Number
+                                                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                </label>
+                                                <p class="ups-form_subheader" id="eeiUSPPIIDnum_subhelp">
+                                                    SSN, EIN, DUNS, etc.
+                                                </p>
+                                                <div class="ups-text_wrapper ups-input_wrapper">
+                                                    <input type="text" class="ups-form_input" id="eeiUSPPIIDnum" name="eeiUSPPIIDnum" aria-required="true" required aria-describedby="eeiUSPPIIDnum_subhelp eeiUSPPIIDnum_error"
+                                                        formControlName="eeiUSPPIIDnum" [ngClass]="{'ups-bodError':  (!addressListFormGroup.controls['eeiUSPPIIDnum'].valid && addressListFormGroup.controls['eeiUSPPIIDnum'].touched)}">
+                                                    <div *ngIf="addressListFormGroup.controls['eeiUSPPIIDnum'].valid">
+                                                        <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                                        <span class="ups-readerTxt">Check</span>
+                                                    </div>
+                                                </div>
+                                                <span class="ups-icons-error" id="eeiUSPPIIDnum_error" role="alert">
+                                                    <span class="ups-invalid_color" *ngIf="(!addressListFormGroup.controls['eeiUSPPIIDnum'].valid && addressListFormGroup.controls['eeiUSPPIIDnum'].touched)">
+                                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                        <span class="ups-readerTxt"> Invalid</span>
+                                                        <span *ngIf="addressListFormGroup.controls['eeiUSPPIIDnum'].hasError('required')">
+                                                            USPPI's ID Number
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="ups-form_group ups-form_required ups-no_label">
+                                                <label for="eeiTypeID" class="ups-form_label">
+                                                    Type of ID
+                                                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                </label>
+                                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                    <select id="eeiTypeID" name="eeiTypeID" class="ups-dropdown" aria-required="true" required aria-describedby="eeiTypeID_error"
+                                                        formControlName="eeiTypeID" [ngClass]="{'ups-bodError':  (!addressListFormGroup.controls['eeiTypeID'].valid && addressListFormGroup.controls['eeiTypeID'].touched)}">
+                                                        <option [value]="0">Select One</option>
+                                                        <option [value]="1">EIN</option>
+                                                        <option [value]="2">DUNS</option>
+                                                        <option [value]="3">SSN</option>
+                                                        <option [value]="4">VAT</option>
+                                                        <option [value]="5">Other</option>
+                                                    </select>
+                                                    <div *ngIf="addressListFormGroup.controls['eeiTypeID'].valid">
+                                                        <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                                        <span class="ups-readerTxt">Check</span>
+                                                    </div>
+                                                    <!--<div *ngIf="addressListFormGroup.controls['eeiTypeID'].valid">
+                                                        <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                                        <span class="ups-readerTxt">Check</span>
+                                                    </div>-->
+                                                </div>
+                                                <span class="ups-icons-error" id="eeiTypeID_error" role="alert">
+                                                    <span class="ups-invalid_color" *ngIf="(!addressListFormGroup.controls['eeiTypeID'].valid && addressListFormGroup.controls['eeiTypeID'].touched)">
+                                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                        <span class="ups-readerTxt"> Invalid</span>
+                                                        <span *ngIf="addressListFormGroup.controls['eeiTypeID'].hasError('valNotEqual')">
+                                                            Type of ID is required.
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="eeiShipDirect">
+                                    <input type="checkbox" id="eeiShipDirect" name="eeiShipDirect" class="ups-lever_checkbox" formControlName="eeiShipDirect"
+                                        [(ngModel)]="eeiShipDirect" (change)="ref.detectChanges()">
+                                    <!-- if checked then yes -->
+                                    <div class="ups-lever_label_container">
+                                        <strong class="ups-form_label ups-lever_label">
+                                            Are you shipping this item directly to the receiver?
+                                        </strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Select NO if you are shipping to an intermediate party or forwarder.</p>
+                                    </div>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                            </div>
+
+
+                        </div>
+
+                        <div class="ups-section">
+                            <div class="ups-section-header">
+                                <h3 class="ups-section_heading">
+                                    Ultimate Consignee
+                                    <p class="ups-section_subheading">
+                                        <em>The receiver of the goods</em>
+                                    </p>
+                                </h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="eeiUltimateConsigneeType" class="ups-form_label">
+                                            Ultimate Consignee Type
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="eeiUltimateConsigneeType" name="eeiUltimateConsigneeType" class="ups-dropdown" aria-required="true" required
+                                                aria-describedby="eeiUltimateConsigneeType_error" formControlName="eeiUltimateConsigneeType"
+                                                [ngClass]="{'ups-bodError':  (!addressListFormGroup.controls['eeiUltimateConsigneeType'].valid && addressListFormGroup.controls['eeiUltimateConsigneeType'].touched)}">
+                                                <option [value]="0">Select One</option>
+                                                <option [value]="1">Direct Consumer</option>
+                                                <option [value]="2">Government Entity</option>
+                                                <option [value]="3">Reseller</option>
+                                                <option [value]="4">Other</option>
+                                            </select>
+                                            <div *ngIf="addressListFormGroup.controls['eeiUltimateConsigneeType'].valid">
+                                                <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                                <span class="ups-readerTxt">Check</span>
+                                            </div>
+                                        </div>
+                                        <span class="ups-icons-error" id="eeiUltimateConsigneeType_error" role="alert">
+                                            <span class="ups-invalid_color" *ngIf="(!addressListFormGroup.controls['eeiUltimateConsigneeType'].valid && addressListFormGroup.controls['eeiUltimateConsigneeType'].touched)">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt"> invalid</span>
+                                                <span *ngIf="addressListFormGroup.controls['eeiUltimateConsigneeType'].hasError('valNotEqual')">
+                                                    Ultimate Consignee Type is required.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ups-group ups-group_condensed" *ngIf="eeiShipDirect">
+                                <p>
+                                    [Country/Territory]
+                                </p>
+                                <p>
+                                    [Contact Name], [Company Name]
+                                </p>
+                                <p>
+                                    [Street Address], [Address 2], [Address 3], [City], [State], [ZIP]
+                                </p>
+                            </div>
+
+                            <div *ngIf="!eeiShipDirect">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="eeiSavedAddressSel" class="ups-form_label">
+                                                Saved Addresses
+                                                <span class="ups-required_indicator" aria-hidden="true"></span>
+                                            </label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select id="eeiSavedAddressSel"
+                                                    name="eeiSavedAddressSel"
+                                                    class="ups-dropdown"
+                                                    aria-required="true"
+                                                    required
+                                                    aria-describedby="eeiSavedAddressSel_error"
+                                                    formControlName="eeiSavedAddressSel"
+                                                    [ngClass]="{'ups-bodError':  (!addressListFormGroup.controls['eeiSavedAddressSel'].valid && addressListFormGroup.controls['eeiSavedAddressSel'].touched)}">
+                                                    <option [value]="1">Enter New Address</option>
+                                                </select>
+                                                <div *ngIf="addressListFormGroup.controls['eeiSavedAddressSel'].valid">
+                                                    <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                                    <span class="ups-readerTxt">Check</span>
+                                                </div>
+                                            </div>
+                                            <span class="ups-icons-error" id="eeiSavedAddressSel_error" role="alert">
+                                                <span class="ups-invalid_color" *ngIf="(!addressListFormGroup.controls['eeiSavedAddressSel'].valid && addressListFormGroup.controls['eeiSavedAddressSel'].touched)">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt"> invalid</span>
+                                                    <span *ngIf="addressListFormGroup.controls['eeiSavedAddressSel'].hasError('valNotEqual')">
+                                                        Ultimate Consignee Address is required.
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                        <ups-cac #eeiNewAddressCAC></ups-cac>
+
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="ups-form_group">
+                                                    <label class="ups-lever" onclick="" for="eeiUltimateAddressSave">
+                                                        <input type="checkbox" id="eeiUltimateAddressSave" name="eeiUltimateAddressSave" class="ups-lever_checkbox" formControlName="eeiUltimateAddressSave"
+                                                            [(ngModel)]="eeiUltimateAddressSave">
+                                                        <!-- if checked then yes -->
+                                                        <div class="ups-lever_label_container">
+                                                            <strong class="ups-form_label ups-lever_label">
+                                                                Save this Address
+                                                            </strong>
+                                                        </div>
+                                                        <span aria-hidden="true" class="ups-lever_switch">
+                                                            <span class="ups-lever_switch_yes">Yes</span>
+                                                            <span class="ups-lever_switch_bg"></span>
+                                                            <span class="ups-lever_switch_no">No</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7" *ngIf="eeiUltimateAddressSave">
+                                                <div class="ups-form_group">
+                                                    <label for="eeiUltimateAddressSaveName" class="ups-form_label">
+                                                        Save as
+                                                    </label>
+                                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                                        <input type="text" class="ups-form_input" id="eeiUltimateAddressSaveName" name="eeiUltimateAddressSaveName" formControlName="eeiUltimateAddressSaveName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="ups-section" *ngIf="!eeiShipDirect">
+                            <div class="ups-section-header">
+                                <h3 class="ups-section_heading">
+                                    Intermediate Consignee
+                                    <p class="ups-section_subheading">
+                                        <em>An agent (not UPS) forwarding the goods to the receiver</em>
+                                    </p>
+                                </h3>
+                            </div>
+
+                            <div class="ups-group ups-group_condensed">
+                                <p>
+                                    [Country/Territory]
+                                </p>
+                                <p>
+                                    [Contact Name], [Company Name]
+                                </p>
+                                <p>
+                                    [Street Address], [Address 2], [Address 3], [City], [State], [ZIP]
+                                </p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="eeiForwardingAgentEIN" class="ups-form_label">
+                                            Forwarding Agent's Tax ID Number
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" class="ups-form_input" id="eeiForwardingAgentEIN" name="eeiForwardingAgentEIN" aria-required="true" required
+                                                aria-describedby="eeiForwardingAgentEIN_error" formControlName="eeiForwardingAgentEIN"
+                                                [ngClass]="{'ups-bodError':  (!addressListFormGroup.controls['eeiForwardingAgentEIN'].valid && addressListFormGroup.controls['eeiForwardingAgentEIN'].touched)}">
+                                            <div *ngIf="addressListFormGroup.controls['eeiForwardingAgentEIN'].valid">
+                                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                                <span class="ups-readerTxt">Check</span>
+                                            </div>
+                                        </div>
+                                        <span class="ups-icons-error" id="eeiForwardingAgentEIN_error" role="alert">
+                                            <span class="ups-invalid_color" *ngIf="(!addressListFormGroup.controls['eeiForwardingAgentEIN'].valid && addressListFormGroup.controls['eeiForwardingAgentEIN'].touched)">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt"> invalid</span>
+                                                <span *ngIf="addressListFormGroup.controls['eeiForwardingAgentEIN'].hasError('required')">
+                                                    Forwarding Agent's Tax ID Number is required.
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ups-section">
+                            <div class="ups-section-header">
+                                <h3 class="ups-section_heading">
+                                    Parties to Transaction
+                                </h3>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button class="ups-help_link" id="eeiLicenseExemptionSel_helpbtn" type="button">
+                                        <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>A related party transaction means that either the sender or receiver owns at least 10% of the voting securities of the other party. This would not include any shipment involving an individual (not representing a business), or between a business and customer.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="eeiInternalShipment">
+                                    <input type="checkbox" id="eeiInternalShipment" name="eeiInternalShipment" class="ups-lever_checkbox" formControlName="eeiInternalShipment">
+                                    <!-- if checked then yes -->
+                                    <div class="ups-lever_label_container">
+                                        <strong class="ups-form_label ups-lever_label">
+                                            Is this an internal shipment by parties in the same organization?
+                                        </strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">A "related-party transaction"</p>
+                                    </div>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </li>
+            <!-- ////////////////////////////////////////////// -->
+            <!-- ////   End Address Information Drawer    ///// -->
+            <!-- ////  Begin Shipment Information Drawer  ///// -->
+            <!-- ////////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !shipListValid())}">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{ 'ups-empty_circle' : (nbsBase.nbsGlobalFormSubmit && (!this.eeiBonded && !this.eeiFtz)) || !this.nbsBase.nbsGlobalFormSubmit,
+                        'ups-icon-alert' : nbsBase.nbsGlobalFormSubmit && !shipListValid() && (this.eeiBonded || this.eeiFtz),
+                        'ups-icon-checkcircle' : nbsBase.nbsGlobalFormSubmit && shipListValid() && (this.eeiBonded || this.eeiFtz)}"></span>
+                    Shipment Information
+                    <span class="ups-readerTxt" *ngIf="nbsBase.nbsGlobalFormSubmit && shipListValid() && (this.eeiBonded || this.eeiFtz)">Complete</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <div class="ups-drawer-content" id="upsDrawer03" [formGroup]="shipInfoFormGroup">
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- //// Begin Page Level Error Handling  //// -->
+                    <!-- ////////////////////////////////////////// -->
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !shipListValid())">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+                            <li *ngIf="(eeiBonded && typeCode == 'select')">
+                                <a href="#ups-eei-typeCode" class="ups-invalid_color" pointIdClick>Inbond Type Code is required when shipping bonded goods</a>
+                            </li>
+                            <li *ngIf="(eeiFtz && shipInfoFormGroup.controls['ftzInput'].hasError('required'))">
+                                <a href="#ups-eei-ftzInput" class="ups-invalid_color" pointIdClick>FTZ ID is required when shipping to a foreign trade zone</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- //// End Page Level Error Handling    //// -->
+                    <!-- //// BEGIN Main Content               //// -->
+                    <!-- ////////////////////////////////////////// -->
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <p>Country or Territory of Ultimate Destination:</p>
+                            <p>
+                                <strong>[ship to country]</strong>
+                            </p>
+                        </div>
+                        <!-- END col-sm-6 col-md-4 -->
+                        <div class="col-sm-6 col-md-4">
+                            <p>Carrier Identification Code:</p>
+                            <p>
+                                <strong>[5x]</strong>
+                            </p>
+                        </div>
+                        <!-- END col-sm-6 col-md-4 -->
+                    </div>
+                    <!-- END row -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// BEGIN Shipment Reference Number //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group">
+                                <label for="ups-eei-refNum" class="ups-form_label">Shipment Reference Number</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eei-refNum" class="ups-form_input" id="ups-eei-refNum">
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END Shipment Reference Number   //// -->
+                            <!-- //// BEGIN Method of Transportation  //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group">
+                                <label for="ups-eei-transp" class="ups-form_label">
+                                    Method of Transportation
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="ups-eei-transp" name="ups-eei-transp" class="ups-dropdown">
+                                        <option value="0">{{'{'}}SET DEFAULT{{'}'}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END Method of Transportation    //// -->
+                            <!-- //// BEGIN shipping bonded goods     //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group">
+                                <label class="ups-lever" for="ups-eei-bonded">
+                                    <input type="checkbox" id="ups-eei-bonded" name="ups-eei-bonded" class="ups-lever_checkbox" aria-describedby="ups-eei-bondedHelpTxt ups-eei-bondedHelp"
+                                        [(ngModel)]="eeiBonded" [ngModelOptions]="{'standalone': true}">
+                                    <strong class="ups-form_label ups-lever_label">Are you shipping bonded goods?</strong>
+                                    <p class="ups-form_subheader" id="ups-eei-bondedHelpTxt">Also known as an inbond shipment</p>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-eei-bondedHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Goods shipped in bond are unloaded directly to a bonded warehouse where they may be stored for up to five years. Bonded goods are considered "in customs' custody" during this time, and are not processed for import duties until checked out by an agent of the sender or receiver.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END shipping bonded goods       //// -->
+                            <!-- //// BEGIN Inbond type code          //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group ups-form_required" *ngIf="eeiBonded">
+                                <label for="ups-eei-typeCode" class="ups-form_label">
+                                    Inbond Type Code
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-eei-typeCode" id="ups-eei-typeCode" class="ups-dropdown" required aria-required="true" aria-describedby="ups-eei-typeCode_error"
+                                        [ngClass]="{'ups-bodError':  (typeCode == 'select' && nbsBase.nbsGlobalFormSubmit) }"
+                                        [(ngModel)]="typeCode" [ngModelOptions]="{'standalone' : true}">
+                                        <option value="select">Select One</option>
+                                        <option value="0">{{'{'}}code{{'}'}}</option>
+                                    </select>
+                                </div>
+                                <span class="ups-icons-error" id="ups-eei-typeCode_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(typeCode == 'select' && nbsBase.nbsGlobalFormSubmit)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        Inbond Type Code is required when shipping bonded goods.
+                                    </span>
+                                </span>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END Inbond type code            //// -->
+                            <!-- //// BEGIN foreign trade jone        //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group">
+                                <label class="ups-lever" for="ups-eei-ftz">
+                                    <input type="checkbox" id="ups-eei-ftz" name="ups-eei-ftz" class="ups-lever_checkbox" aria-describedby="ups-eei-ftzHelp"
+                                        [(ngModel)]="eeiFtz" [ngModelOptions]="{'standalone': true}">
+                                    <strong class="ups-form_label ups-lever_label">Will you ship from a foreign trade zone (FTZ)?</strong>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-eei-ftzHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>A foreign trade zone or FTZ (also called a free trade zone) is a regulated area where import goods can be stored and processed without customs duty. An FTZ is similar to a bonded warehouse, but with less restrictions to use.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END foreign trade jone          //// -->
+                            <!-- //// BEGIN Shipment Reference Number //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group" *ngIf="!eeiFtz">
+                                <label for="ups-eei-poo" class="ups-form_label">U.S. State or Point of Origin</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eei-poo" class="ups-form_input" id="ups-eei-poo">
+                                </div>
+                            </div>
+                            <div class="ups-form_group ups-form_required" *ngIf="eeiFtz">
+                                <label for="ups-eei-ftzInput" class="ups-form_label">
+                                    Foreign Trade Zone (FTZ) ID
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eei-ftzInput" class="ups-form_input" id="ups-eei-ftzInput" aria-required="true" required aria-describedby="ups-eei-ftzInput_error"
+                                        formControlName="ftzInput" [ngClass]="{'ups-bodError': (!shipInfoFormGroup.controls['ftzInput'].valid && shipInfoFormGroup.controls['ftzInput'].touched)}">
+                                </div>
+                                <span class="ups-icons-error" id="ups-eei-ftzInput_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!shipInfoFormGroup.controls['ftzInput'].valid && shipInfoFormGroup.controls['ftzInput'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> invalid</span>
+                                        <span *ngIf="shipInfoFormGroup.controls['ftzInput'].hasError('required')">
+                                            FTZ ID is required when shipping to a foreign trade zone.
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END Shipment Reference Number   //// -->
+                            <!-- //// BEGIN dangerous goods           //// -->
+                            <!-- ///////////////////////////////////////// -->
+                            <div class="ups-form_group">
+                                <label class="ups-lever" for="ups-eei-dangerousGoods">
+                                    <input type="checkbox" id="ups-eei-dangerousGoods" name="ups-eei-dangerousGoods" class="ups-lever_checkbox" aria-describedby="ups-eei-dangrousGoodsHelpTxt ups-eei-dangerousGoodsHelp"
+                                        [(ngModel)]="dangerousGoods" [ngModelOptions]="{'standalone': true}">
+                                    <strong class="ups-form_label ups-lever_label">Does this shipment contain dangerous goods?</strong>
+                                    <p class="ups-form_subheader" id="ups-eei-dangerousGoodsHelpTxt">Hazardous materials or regulated goods</p>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-eei-dangrousGoodsHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Dangerous goods (corrosive, flammable, explosive, toxic, or otherwise hazardous materials) are subject to strict guidelines for shipping. Dangerous goods may only be shipped internationally on a contract basis. Regulations and licensing information: <a href="http://www.ups.com/hazmat" class="ups-link">ups.com/hazmat</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ///////////////////////////////////////// -->
+                            <!-- //// END dangerous goods             //// -->
+                            <!-- ///////////////////////////////////////// -->
+                        </div>
+                        <!-- END col-md-6 -->
+                    </div>
+                    <!-- END row -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- //// BEGIN Specific Instructions Section //// -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <div class="ups-section">
+                        <div class="ups-section-header">
+                            <button type="button" class="ups-link ups-btn_has_icon" id="upsPkgOptionsBtn" [attr.aria-expanded]="showreq4trans" aria-controls="req4trans"
+                                (click)="showreq4trans = !showreq4trans">
+                                <span [ngClass]="{ 'ups-icon-wedgeup' : showreq4trans, 'ups-icon-wedgedown' : !showreq4trans }" class="icon " aria-hidden="true"></span>
+                                Enter this information only if you have specific instructions or requirements for transport.
+                            </button>
+                        </div>
+                        <!-- END ups-section-header -->
+                        <div class="ups-indent" id="req4trans">
+                            <div *ngIf="showreq4trans">
+                                <div class="row">
+                                    <!-- ///////////////////////////////////////// -->
+                                    <!-- //// BEGIN Loading Pier              //// -->
+                                    <!-- ///////////////////////////////////////// -->
+                                    <div class="col-md-4">
+                                        <div class="ups-form_group">
+                                            <label for="ups-eei-loadPier" class="ups-form_label">Loading Pier (Ocean Only)</label>
+                                            <p class="ups-form_subheader" id="ups-eei-loadPierHelpTxt">Optional</p>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="ups-eei-loadPier" class="ups-form_input" id="ups-eei-loadPier" aria-describedby="ups-eei-loadPierHelpTxt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ///////////////////////////////////////// -->
+                                    <!-- //// END Loading Pier                //// -->
+                                    <!-- //// BEGIN Port of Export            //// -->
+                                    <!-- ///////////////////////////////////////// -->
+                                    <div class="col-md-4">
+                                        <div class="ups-form_group">
+                                            <label for="ups-eei-exportCode" class="ups-form_label">Port of Export Code</label>
+                                            <p class="ups-form_subheader" id="ups-eei-exportCodeHelpTxt">4 digits; optional</p>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="ups-eei-exportCode" class="ups-form_input" id="ups-eei-exportCode" aria-describedby="ups-eei-exportCodeHelpTxt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ///////////////////////////////////////// -->
+                                    <!-- //// END Port of Export              //// -->
+                                    <!-- //// BEGIN Foreign Port of Unloading //// -->
+                                    <!-- ///////////////////////////////////////// -->
+                                    <div class="col-md-4">
+                                        <div class="ups-form_group">
+                                            <label for="ups-eei-unloading" class="ups-form_label">Foreign Port of Unloading</label>
+                                            <p class="ups-form_subheader" id="ups-eei-unloadingHelpTxt">Optional</p>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="ups-eei-unloading" class="ups-form_input" id="ups-eei-unloading" aria-describedby="ups-eei-unloadingHelpTxt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ///////////////////////////////////////// -->
+                                    <!-- //// END Foreign Port of Unloading   //// -->
+                                    <!-- ///////////////////////////////////////// -->
+                                </div>
+                                <!-- ///////////////////////////////////////// -->
+                                <!-- //// BEGIN Containerized             //// -->
+                                <!-- ///////////////////////////////////////// -->
+                                <div class="ups-form_group">
+                                    <label class="ups-lever" for="ups-eei-containerized">
+                                        <input type="checkbox" id="ups-eei-containerized" name="ups-eei-containerized" class="ups-lever_checkbox" [(ngModel)]="containerized"
+                                            [ngModelOptions]="{'standalone': true}">
+                                        <strong class="ups-form_label ups-lever_label">Containerized</strong>
+                                        <span aria-hidden="true" class="ups-lever_switch">
+                                            <span class="ups-lever_switch_yes">Yes</span>
+                                            <span class="ups-lever_switch_bg"></span>
+                                            <span class="ups-lever_switch_no">No</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <!-- ///////////////////////////////////////// -->
+                                <!-- //// END Containerized               //// -->
+                                <!-- //// BEGIN Routed Export             //// -->
+                                <!-- ///////////////////////////////////////// -->
+                                <div class="ups-form_group">
+                                    <label class="ups-lever" for="ups-eei-routedExport">
+                                        <input type="checkbox" id="ups-eei-routedExport" name="ups-eei-routedExport" class="ups-lever_checkbox" [(ngModel)]="routedExport"
+                                            [ngModelOptions]="{'standalone': true}">
+                                        <strong class="ups-form_label ups-lever_label">Routed Export Transaction</strong>
+                                        <span aria-hidden="true" class="ups-lever_switch">
+                                            <span class="ups-lever_switch_yes">Yes</span>
+                                            <span class="ups-lever_switch_bg"></span>
+                                            <span class="ups-lever_switch_no">No</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <!-- ///////////////////////////////////////// -->
+                                <!-- //// END Routed Export               //// -->
+                                <!-- ///////////////////////////////////////// -->
+                            </div>
+                        </div>
+                        <!-- END showreq4trans -->
+                    </div>
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- //// END Specific Instructions Section   //// -->
+                    <!-- ///////////////////////////////////////////// -->
+                </div>
+                <!-- END ups-drawer-content / upsDrawer03 -->
+            </li>
+            <!-- ///////////////////////////////////////////// -->
+            <!-- ////   End Shipment Information Drawer  ///// -->
+            <!-- ////        Begin Products Drawer       ///// -->
+            <!-- ///////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer04" aria-expanded="false" id="upsDrawerBtn04" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !prodListValid())}">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{ 'ups-empty_circle' : !nbsBase.nbsGlobalFormSubmit,
+                    'ups-icon-alert' : nbsBase.nbsGlobalFormSubmit && !prodListValid(),
+                    'ups-icon-checkcircle' : nbsBase.nbsGlobalFormSubmit && prodListValid()}"></span>
+                    Products
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                    <span class="ups-readerTxt" *ngIf="nbsBase.nbsGlobalFormSubmit && prodListValid()">Complete</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <!-- //////////////////////////////////// -->
+                <!-- ////    Product Information    ///// -->
+                <!-- //////////////////////////////////// -->
+                <div class="ups-drawer-content" id="upsDrawer04" [formGroup]="prodFormGroup">
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- //// Begin Section Level Error Handling  //// -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !prodListValid()) && inProgress">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+                            <ng-container *ngIf="coreForm.length">
+                                <li *ngFor="let error of coreForm.first.coreFormError();">
+                                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}} is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern)
+                                        ? 'invalid' : '' }}</a>
+                                </li>
+                            </ng-container>
+                            <li *ngIf="(licenseCode == 'select') && eeiExportExemption">
+                                <a href="#ups-eei-licenseCode" class="ups-invalid_color" pointIdClick>License Type Code is required</a>
+                            </li>
+                            <li *ngIf="(eeiOrigin == 'select')">
+                                <a href="#ups-eeiOrigin" class="ups-invalid_color" pointIdClick>Country or Territory of Origin is required</a>
+                            </li>
+                            <li *ngIf="(eeiPackage == 'select')">
+                                <a href="#ups-eeiPackage" class="ups-invalid_color" pointIdClick>Package Type is required</a>
+                            </li>
+                            <li *ngIf="prodFormGroup.controls['eeiGrossWeight'].hasError('required')">
+                                <a href="#ups-eeiGrossWeight" class="ups-invalid_color" pointIdClick>Gross Weight is required</a>
+                            </li>
+                            <li *ngIf="prodFormGroup.controls['eeiTariffNum'].hasError('required')">
+                                <a href="#ups-eeiTariffNum" class="ups-invalid-color" pointIdClick>Harmonized Tariff Number is required</a>
+                            </li>
+                            <li *ngIf="prodFormGroup.controls['eeiHowMany'].hasError('required')">
+                                <a href="#ups-eeiHowMany" class="ups-invalid-color" pointIdClick>Item Quantity is required</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="!inProgress" class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                                No products have been added to this form.
+                            </p>
+                            <p>
+                                <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button">
+                                    <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                                    Add Product
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- ////   End Section Level Error Handling  //// -->
+                    <!-- ////      Begin Core Form Component     ///// -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <ups-coreForm #coreForm *ngIf="inProgress"></ups-coreForm>
+                    <hr>
+                    <!-- //////////////////////////////////////////// -->
+                    <!-- ////      End Core Form Component      ///// -->
+                    <!-- ////      Begin Product Component      ///// -->
+                    <!-- //////////////////////////////////////////// -->
+                    <!-- <div *ngIf="inProgress" class="row">
+                        <!-- <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-eeiPackage" class="ups-form_label">
+                                    How is this product packaged or sold?
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-eeiPackage" id="ups-eeiPackage" class="ups-dropdown" required aria-required="true" aria-describedby="ups-eeiPackage_error"
+                                        [ngClass]="{'ups-bodError': (eeiPackage == 'select' && nbsBase.nbsGlobalFormSubmit) }"
+                                        [(ngModel)]="eeiPackage" [ngModelOptions]="{'standalone' : true}">
+                                        <option value="select">Select One</option>
+                                        <option value="0">Two</option>
+                                    </select>
+                                </div>
+                                <span class="ups-icons-error" id="ups-eeiPackage_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(eeiPackage == 'select' && nbsBase.nbsGlobalFormSubmit)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        Package type is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-eeiHowMany" class="ups-form_label">
+                                    How many of this are you shipping?
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eeiHowMany" class="ups-form_input" id="ups-eeiHowMany" aria-required="true" required aria-describedby="ups-eeiHowMany_error"
+                                        formControlName="eeiHowMany" [ngClass]="{'ups-bodError': (!prodFormGroup.controls['eeiHowMany'].valid && prodFormGroup.controls['eeiHowMany'].touched)}">
+                                </div>
+                                <span class="ups-icons-error" id="ups-eeiHowMany_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!prodFormGroup.controls['eeiHowMany'].valid && prodFormGroup.controls['eeiHowMany'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="prodFormGroup.controls['eeiHowMany'].hasError('required')">
+                                            Amount is [ required | Invalid ].
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-eeiTariffNum" class="ups-form_label">
+                                    Schedule B or Harmonized Tariff Number
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <p class="ups-form_subheader" id="ups-eeiTariffNum_subhelp">6 or 10 digits</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eeiTariffNum" class="ups-form_input" id="ups-eeiTariffNum" aria-required="true" required aria-describedby="ups-eeiTariffNum_error"
+                                        formControlName="eeiTariffNum" [ngClass]="{'ups-bodError': (!prodFormGroup.controls['eeiTariffNum'].valid && prodFormGroup.controls['eeiTariffNum'].touched)}">
+                                </div>
+                                <span class="ups-icons-error" id="ups-eeiTariffNum_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!prodFormGroup.controls['eeiTariffNum'].valid && prodFormGroup.controls['eeiTariffNum'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="prodFormGroup.controls['eeiTariffNum'].hasError('required')">
+                                            Tariff Number is [ required | Invalid ].
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-eeiGrossWeight" class="ups-form_label">
+                                    Gross Weight in Shipment
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eeiGrossWeight" class="ups-form_input" id="ups-eeiGrossWeight" aria-required="true" required
+                                        aria-describedby="ups-eeiGrossWeight_error" formControlName="eeiGrossWeight" [ngClass]="{'ups-bodError': (!prodFormGroup.controls['eeiGrossWeight'].valid && prodFormGroup.controls['eeiGrossWeight'].touched)}">
+                                </div>
+                                <span class="ups-icons-error" id="ups-eeiGrossWeight_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(!prodFormGroup.controls['eeiGrossWeight'].valid && prodFormGroup.controls['eeiGrossWeight'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="prodFormGroup.controls['eeiGrossWeight'].hasError('required')">
+                                            Gross Weight is required.
+                                        </span>
+                                    </span>
+                                </span>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-coreFormHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Add up what this item weighs, in its retail packaging, in the quantity you are shipping it. Then include the weight of the shipping containers they are in. If a package contains only that commodity, gross weight is the same as package weight.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group">
+                                <label for="ups-eeiValue" class="ups-form_label">
+                                    Total value of shipment
+                                    <span aria-hidden="true"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eeiValue" class="ups-form_input ups-error" id="ups-eeiValue">
+                                </div>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-coreFormHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut justo et dui ornare
+                                            lacinia quis vitae elit. Fusce nisi erat, iaculis ac nisi non, elementum venenatis
+                                            turpis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group">
+                                <label for="ups-eeiExempt" class="ups-form_label">
+                                    DDTC/ITAR Exemption
+                                    <span aria-hidden="true"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-eeiExempt" id="ups-eeiExempt" class="ups-dropdown">
+                                        <option>Select One</option>
+                                        <option>Two</option>
+                                        <option>Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-eeiOrigin" class="ups-form_label">
+                                    Country of Origin
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <p class="ups-form_subheader" id="ups-eeiOrigin_subhelp">Where was this product made or assembled?</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-eeiOrigin" id="ups-eeiOrigin" class="ups-dropdown" required aria-required="true" aria-describedby="ups-eeiOrigin_error"
+                                        [ngClass]="{'ups-bodError': (eeiOrigin == 'select' && nbsBase.nbsGlobalFormSubmit) }"
+                                        [(ngModel)]="eeiOrigin" [ngModelOptions]="{'standalone' : true}">
+                                        <option value="select">Select One</option>
+                                        <option value="0">USA</option>
+                                    </select>
+                                </div>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-coreFormHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut justo et dui ornare
+                                            lacinia quis vitae elit. Fusce nisi erat, iaculis ac nisi non, elementum venenatis
+                                            turpis.
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="ups-icons-error" id="ups-eeiOrigin_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(eeiOrigin == 'select' && nbsBase.nbsGlobalFormSubmit)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        Country of Origin is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group">
+                                <label for="ups-eeiVIN" class="ups-form_label">
+                                    VIN/Product Number/Vehicle Title Number
+                                    <span aria-hidden="true"></span>
+                                </label>
+                                <p class="ups-form_subheader" id="ups-eeiTariffNum_helpTxt">Optional</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-eeiVIN" class="ups-form_input ups-error" id="ups-eeiVIN" aria-describedby="ups-eeiTariffNum_helpTxt">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="inProgress" class="row">
+                        <div class="col-md-7">
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="ups-eeiExportExemption">
+                                    <input type="checkbox" id="ups-eeiExportExemption" name="ups-eeiExportExemption" class="ups-lever_checkbox" [(ngModel)]="eeiExportExemption"
+                                        [ngModelOptions]="{'standalone': true}">
+                                    <!-- if checked then yes -->
+                                    <div class="ups-lever_label_container ups-help_wrapper">
+                                        <strong class="ups-form_label ups-lever_label">
+                                            Does this product require an export license or exemption?
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </strong>
+                                    </div>
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+                                </label>
+                                <!-- <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="ups-coreFormHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut justo et dui ornare
+                                            lacinia quis vitae elit. Fusce nisi erat, iaculis ac nisi non, elementum venenatis
+                                            turpis.
+                                        </p>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+                            <div class="alert alert-warning" role="alert">
+                                <div class="alert-icon pull-left">
+                                    <span aria-hidden="true" class="icon ups-icon-informationcircle"></span>
+                                </div>
+                                <button [attr.aria-expanded]="addInfoShipTip" aria-controls="shiptip1" class="ups-alert_collapse" type="button" (click)="addInfoShipTip = !addInfoShipTip">
+                                    <span class="ups-readerTxt">Click to expand</span>
+                                    <span [ngClass]="{ 'ups-icon-wedgeup' : addInfoShipTip, 'ups-icon-wedgedown' : !addInfoShipTip }" class="icon" aria-hidden="true"></span>
+                                </button>
+                                <div class="alert-title ups-alert_has_icon">
+                                    <p>
+                                        <strong>Ship Tip:</strong>
+                                        How do I know if I need an export license?
+                                    </p>
+                                </div>
+                                <div class="alert-content ups-alert_has_icon" id="shiptip1">
+                                    <div *ngIf="addInfoShipTip">
+                                        <p>Only about 5% of exports require an export license. If your shipment involves government or military agencies, certain countries or territories or end user, or if a product has a "dual-use" military or weapons-engineering function, you may need a license or an exception code to export your product. 
+                                            <button type="button" [attr.aria-expanded]="moreInfo" aria-controls="moreShiptip1" class="ups-link" (click)="moreInfo = !moreInfo">
+                                                <span *ngIf="!moreInfo">More...</span>
+                                                <span *ngIf="moreInfo">Less</span>
+                                            </button>
+                                        </p>
+                                        <div id="moreShiptip1">
+                                            <div *ngIf="moreInfo">
+                                                <p>The Bureau of Industry and Security (BIS) divides licensed products into 10 categories:</p>
+                                                <ul class="ups-list_style_none">
+                                                    <li *ngFor="let item of shipTipItems; let i = index">{{i}} - {{item.copy}}</li>
+                                                </ul>
+                                                <!-- <div class="ups-group ups-group_condensed">
+                                                    <p>0 - Nuclear materials equipment and miscellaneous components</p>
+                                                    <p>1 - Materials related to chemicals, microorganisms, and toxins</p>
+                                                    <p>2 - Materials processing</p>
+                                                    <p>3 - Electronics</p>
+                                                    <p>4 - Computers</p>
+                                                    <p>5 - Telecommunications and information security</p>
+                                                    <p>6 - Sensors and lasers</p>
+                                                    <p>7 - Navigation and avionics</p>
+                                                    <p>8 - Marine equipment and accessories</p>
+                                                    <p>9 - Propulsion systems, space vehicles and related equipment</p>
+                                                </div> -->
+                                                <p>Each regulated product has a 5-digit export control classification number (ECCN). If you're exporting a retail item manufactured by another company, chances are they've already classified the item. Look for the ECCNs on the company's website, or find your product on the Commerce Control List: <a href="http://www.bis.doc.gov" class="ups-link">www.bis.doc.gov</a></p>
+                                                <p>Even if your product is listed, it doesn't always mean you need an export license. Every ECCN has one or more "reasons for control" which do not apply equally to all countries or territories. Find your country or territory of export in the Commerce County Chart to see if any "reasons for control" apply: <a href="https://www.bis.doc.gov/index.php/forms-documents/doc_view/14-commerce-country-chart" class="ups-link">Commerce Country Chart</a></p>
+                                                <p><strong>If you need an export license</strong>:</p>
+                                                <p>Apply online with BIS through the SNAP-R portal. There's no fee for filing. Be aware, though, that it can take up to six weeks to get a license processed and approved, depending on volume.</p>
+                                                <p>You can search for denied parties, detect export licenses, and search import and export regulations by country or territory with our TradeAbility international tools: <a href="#" class="ups-link">TradeAbility</a></p>
+                                            </div>
+                                        </div>
+                                        <!-- <ul type="disc">
+                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut justo et dui ornare
+                                                lacinia quis vitae elit. Fusce nisi erat, iaculis ac nisi non, elementum venenatis
+                                                turpis.
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required" *ngIf="eeiExportExemption">
+                                <label for="ups-eei-licenseCode" class="ups-form_label">
+                                    License Type Code
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select name="ups-eei-licenseCode" id="ups-eei-licenseCode" class="ups-dropdown" required aria-required="true" aria-describedby="ups-eei-licenseCode_error"
+                                        [ngClass]="{'ups-bodError':  (licenseCode == 'select' && nbsBase.nbsGlobalFormSubmit) }"
+                                        [(ngModel)]="licenseCode" [ngModelOptions]="{'standalone' : true}">
+                                        <option value="select">Select One</option>
+                                        <option value="0">{{'{'}}code{{'}'}}</option>
+                                    </select>
+                                </div>
+                                <span class="ups-icons-error" id="ups-eei-licenseCode_error" role="alert">
+                                    <span class="ups-invalid_color" *ngIf="(licenseCode == 'select' && nbsBase.nbsGlobalFormSubmit)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        License type code is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="inProgress" class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group">
+                                <p>
+                                    <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button">
+                                        <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                                        Add
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /////////////////////////////////// -->
+                    <!-- ////      End Accordian        //// -->
+                    <!-- ////     Begin Demo Btns       //// -->
+                    <!-- /////////////////////////////////// -->
+                    <div class="ups-cms-demo">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="ups-cta ups-cta_secondary" type="button" (click)="inProgress = !inProgress">
+                                    In Progress
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- View - In Progress / Ready To Go States -->
+        <div class="ups-section" *ngIf="(inProg || ready)">
+            <div class="ups-group ups-faux-drawer">
+                <div class="ups-drawer-header">
+                    <span [ngClass]="{'ups-icon-checkcircle h3' : ready,
+                                    'ups-empty_circle' : inProg }" class="icon ups-drawer_left_icon"></span>
+                    <span *ngIf="inProg">In Progress</span>
+                    <span *ngIf="ready" class="h3">Ready to go</span>
+                    <em class="pull-right">
+                        <span *ngIf="inProg">Some information is required to complete this form.</span>
+                        <span *ngIf="ready">All required fields have been entered in this form.
+                            <br> You may add additional information if you wish.</span>
+                    </em>
+                </div>
+                <div class="ups-drawer-content">
+                    <!-- Filing Options -->
+                    <div class="ups-sectionups-section_condense">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">
+                                Filing Options
+                                <button *ngIf="!editAddInfo" class="ups-link" type="button" (click)="editAddInfo = true">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    <span class="hidden-xs">Edit</span>
+                                    <span class="ups-readerTxt"> section</span>
+                                </button>
+                                <button *ngIf="editAddInfo" class="ups-link" type="button" (click)="editAddInfo = false">
+                                    <span class="hidden-xs">Cancel</span>
+                                    <span class="ups-readerTxt"> editing this section</span>
+                                </button>
+                            </h3>
+                        </div>
+                        <div class="ups-group ups-group_condensed">
+                            <p><strong>EEI Filing Method</strong></p>
+                            <p>[UPS file]</p>
+                        </div>
+                        <div class="ups-group ups-group_condensed">
+                            <p><strong>Transaction Number Type</strong></p>
+                            <p><strong>[Customs generated number (ITN)]</strong></p>
+                        </div>
+                        <div class="ups-group ups-group_condensed">
+                            <p><strong>Internal Transaction Number</strong></p>
+                            <p *ngIf="ready">{{'{'}}nnnnnnnnnnnnnnnnnnnn{{'}'}}</p>
+                            <p class="ups-invalid_color" *ngIf="inProg">
+                                <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                                Internal Transaction Number is required.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Address Info -->
+                    <div class="ups-sectionups-section_condense">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">
+                                Address Information
+                                <button *ngIf="!editAddInfo" class="ups-link" type="button" (click)="editAddInfo = true">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    <span class="hidden-xs">Edit</span>
+                                    <span class="ups-readerTxt"> section</span>
+                                </button>
+                                <button *ngIf="editAddInfo" class="ups-link" type="button" (click)="editAddInfo = false">
+                                    <span class="hidden-xs">Cancel</span>
+                                    <span class="ups-readerTxt"> editing this section</span>
+                                </button>
+                            </h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-section">
+                                    <div class="ups-section-header">
+                                        <h4 class="ups-section_heading">US Principal Party in Interest (USPPI)</h4>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                        <p>{{address.groupValue}}</p>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed">
+                                        <p><strong>USPPI Tax ID</strong></p>
+                                        <p *ngIf="ready">[{{'{'}}&nbsp;&nbsp;&nbsp;&nbsp;{{'}'}}]</p>
+                                        <p class="ups-invalid_color" *ngIf="inProg">
+                                            <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                                            USPPI Tax ID is required.
+                                        </p>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed">
+                                        <p><strong>Parties to Transaction</strong></p>
+                                        <p>{{'{'}}Non-Related{{'}'}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="ups-section">
+                                    <div class="ups-section-header">
+                                        <h4 class="ups-section_heading">Ultimate Consignee</h4>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                        <p>{{address.groupValue}}</p>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed">
+                                        <p><strong>Ultimate Consignee Type</strong></p>
+                                        <p *ngIf="ready">{{'{'}}Direct Consumer{{'}'}}</p>
+                                        <p class="ups-invalid_color" *ngIf="inProg">
+                                            <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                                            Ultimate Consignee Type is required.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipment Data -->
+                    <div class="ups-sectionups-section_condense">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">
+                                Shipment Data
+                                <button *ngIf="!editAddInfo" class="ups-link" type="button" (click)="editAddInfo = true">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    <span class="hidden-xs">Edit</span>
+                                    <span class="ups-readerTxt"> section</span>
+                                </button>
+                                <button *ngIf="editAddInfo" class="ups-link" type="button" (click)="editAddInfo = false">
+                                    <span class="hidden-xs">Cancel</span>
+                                    <span class="ups-readerTxt"> editing this section</span>
+                                </button>
+                            </h3>
+                        </div>
+                        <div class="row" *ngFor="let data of reviewShipData;">
+                            <div class="col-md-5">
+                                <div class="ups-group ups-group_condensed">
+                                    <p><strong>{{data.leftGroupLabel}}</strong></p>
+                                    <p>{{data.leftGroupValue}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="ups-group ups-group_condensed">
+                                    <p><strong>{{data.rightGroupLabel}}</strong></p>
+                                    <p>{{data.rightGroupValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="ups-section">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">
+                                Product Information
+                                <button *ngIf="!editProdInfo" class="ups-link" type="button" (click)="editProdInfo = true">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    <span class="hidden-xs">Edit</span>
+                                    <span class="ups-readerTxt"> section</span>
+                                </button>
+                                <button *ngIf="editProdInfo" class="ups-link" type="button" (click)="editProdInfo = false">
+                                    <span class="hidden-xs">Cancel</span>
+                                    <span class="ups-readerTxt"> editing this section</span>
+                                </button>
+                            </h3>
+                        </div>
+                        <p class="ups-invalid_color" *ngIf="inProg">
+                            <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                            No products have been added to this form.
+                        </p>
+                        <ul class="ups-label_list_options" *ngIf="ready">
+                            <li class="ups-group" *ngFor="let prodName of [1,2]; let i = index;">
+                                <p>
+                                    <strong>{{i+1}}. {{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</strong>
+                                </p>
+                                <div class="ups-group ups-group_condenced ups-indent">
+                                    <p>
+                                        {{'{'}}schedule B No{{'}'}} {{'{'}}n{{'}'}} {{'{'}}unit{{'}'}}
+                                        <span class="ups-indent">{{'{'}}Price/unit{{'}'}} per {{'{'}}unit{{'}'}}</span>
+                                        <span class="ups-indent">Total Value: {{'{'}}total value{{'}'}}[currency]</span>
+                                    </p>
+                                    <p>DDTC: {{'{'}}&nbsp;&nbsp;&nbsp;&nbsp;{{'}'}}</p>
+                                    <p>Export Information Code: [C30 - BIS Regulations]</p>
+                                    <p>Product Origin: [Foreign - F]</p>
+                                    <p>Shipping Weight in Kilos: [25kg]
+                                        <p>VIN/Product Number Vehicle Title Number [C30 - BIS Regulations, XXXNNN, NLR]</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <ups-rtg-inProg *ngIf="(inProg || ready)"></ups-rtg-inProg> -->
+    </section>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Accordian Page content       //// -->
+    <!-- //// Begin Demo Btns                  //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="ready = false ; inProg = false">Form</button>
+        <br>
+        <br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="ready = true ; inProg = false">Ready To Go</button>
+        <br>
+        <br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="inProg = true ; ready = false">In Progress</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- ////         End  Demo Btns           //// -->
+    <!-- ////   Begin Modal Lvl Footer Btns    //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-form_ctaGroup text-center" *ngIf="!inProg && !ready">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()">Cancel</button>
+        <button class="ups-cta ups-primary" type="button" (click)="formSave()">Save and Close</button>
+    </div>
+    <div class="ups-form_ctaGroup text-center" *ngIf="(inProg || ready)">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()">Close</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Modal Lvl Footer Btns        //// -->
+    <!-- ////////////////////////////////////////// -->
+</div>

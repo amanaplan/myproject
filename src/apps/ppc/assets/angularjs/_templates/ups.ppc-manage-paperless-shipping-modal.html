@@ -1,0 +1,87 @@
+<ng-form name="ups_paperlessShippingLanesForm" novalidate> <!-- ADD STATEMENT DECLARATION DIAOGUE -->
+<div class="ups-introductory">
+	<p>Choose between paperless and printed invoices for each lane.</p>
+</div>
+<div class="row">
+	<div class="col-md-2">
+		<label class="ups-form_label">Origin Country</label>
+	</div>
+	<div class="col-md-4">
+		<p>{{originCountry}}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-2">
+		<label class="ups-form_label">Account Number</label>
+	</div>
+	<div class="col-md-4">
+		<p>{{accountNumber}}</p>
+	</div>
+</div>
+<div class="ups-table ups-table-decoration">
+	<div data-ng-init="length=prefCountry.length"
+		class="ups-tableScroll ups-table ups-table-responsive">
+		<table class="table table-striped"
+			id="ups-preferences-country-table">
+			<caption class="ups-form_label readerTxt">Select your forms
+				preferences for each country.</caption>
+			<tbody>
+				<tr>
+					<th scope="col" data-ng-init="sortNickName=true"
+						class="col-xs-2 text-center">Destination Country</th>
+					<th scope="col" data-ng-init="sortNumber=true"
+						class="col-xs-2 text-center">Forms Preference</th>
+				</tr>
+				<tr data-ng-repeat="(key, data) in prefCountry track by $index"
+					data-ng-init="ind=$index">
+					<td class="col-xs-2 ">{{data.name}}</td>
+					<td class="col-xs-2 ">
+						<fieldset>
+							<!-- span data-ng-repeat="(key, i) in formPref track by $index">{{i.type}}</span-->
+							<div data-ng-repeat="(key, i) in formPref track by $index"
+								class="ups-buttonList_wrapper ups-input_wrapper">
+								<div class="ups-radio_column">
+									<input id="{{i.type + ind  + $index}}"
+										class="ups-radio-custom" type="radio"
+										name="{{'prefType'+ ind}}" value="{{$index}}"
+										data-ng-model="formObj.prefType[ind]"
+										data-ng-checked="formObj.prefType[ind]" /> <label
+										for="{{i.type + ind + $index}}"
+										class="ups-form_label ups-radio-custom-label ups-width_auto"><span
+										class="ups-readerTxt">{{data.name}} </span>{{i.type}} </label>
+								</div>
+							</div>
+						</fieldset>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!-- <div class="row ups-offset-03" data-ng-if="isEditModal">
+	<div class="col-xs-12 col-md-12">
+		<div class="ups-form_group ups-checkbox_group">
+			<div class="ups-checkbox ups-input_wrapper "
+				data-errormsg="Agreement to Terms &amp; Conditions is required.">
+				<input check-verify id="ups-new-statement"
+					class="ups-checkbox-custom" name="ups-new-statement" value="1"
+					type="checkbox" data-ng-model="formObj.cBoxNewStatement"
+					data-ng-checked="formObj.cBoxNewStatement"
+					data-ng-click="saveNewStatement(formObj.cBoxNewStatement)">
+				<label for="ups-new-statement"
+					class="ups-form_label ups-checkbox-custom-label"> Save as
+					new statement</label>
+			</div>
+		</div>
+		ups-checkbox ups-input_wrapper
+	</div>
+</div> -->
+<div class="ups-form_ctaGroup text-center">
+	<button type="submit"
+		class="ups-cta ups-cta_primary" data-ng-click="submit()">Save</button>
+		<!-- data-ng-disabled="!ups_paperlessShippingLanesForm.$dirty" -->
+	<button type="submit" class="ups-cta ups-cta_secondary "
+		data-ng-click="cancel()">Cancel</button>
+</div>
+<!-- ups-form_ctaGroup -->
+</ng-form>

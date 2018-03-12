@@ -1,0 +1,571 @@
+// ----------------------------------------------------
+// M54 DAYS OF OPPERATION
+// ----------------------------------------------------
+
+.ups-daysofop {
+    @include ups-component_margin;
+    .ups-daysofop_hide{
+        display:none;
+    }
+
+    .ups-error {
+        color: $red;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .ups-daysofop_head {
+        margin-bottom: 60px;
+    }
+
+    .ups-article-header {
+        margin: 0 0 60px 0;
+    }
+
+    .ups-daysofop_loc {
+        background: $ups_stone;
+        padding: 15px 30px 11px;
+        text-align: center;
+
+        label {
+            margin: 0;
+            position: relative;
+            top: 16px;
+            vertical-align:top;
+        }
+
+        .ups-dropdown_wrapper {
+            max-width: none;
+            width: 50%;
+            margin-#{$default-float}: 12px;
+            display: inline-block;
+            height:35px;
+        }
+    }
+
+    .ups-daysofop_days {
+        @include unlist;
+        padding: $margin_3 0;
+        overflow: hidden;
+        border: 1px solid $ups_stone;
+        border-width: 0 1px 1px;
+
+        &.ups-daysofop_days-full {
+            padding: 0;
+            border: none;
+        }
+    }
+
+    .ups-daysofop_day {
+        overflow: hidden;
+        list-style: none;
+        padding: 0 30px;
+        padding-#{$default_float}: 29px;
+        border-#{$default_float}: 1px solid $ups_stone;
+        margin-#{$default_float}: -1px;
+        @include transition-property(height);
+        @include transition-duration(0.3s);
+
+        &:first-child {
+            padding-#{$default_float}: 30px;
+            border-#{$default_float}: none;
+            border-#{$opposite-direction}: 1px solid $ups_stone;
+            margin-#{$default_float}: 0;
+        }
+
+        img {
+            width: 100%;
+            margin-bottom: $margin_3;
+        }
+
+        time {
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            float: $default_float;
+            background: $stone_60;
+            margin-bottom: 10px;
+
+            .ups-daysofop_dow {
+                display: block;
+                text-transform: uppercase;
+                font-size: 1.1em;
+                margin-bottom: 6px;
+            }
+
+            .ups-daysofop_date {
+                font-weight: normal;
+                display: block;
+                font-size: 3em;
+                margin-bottom: 2px;
+            }
+
+        }
+    }
+
+    .ups-daysofop_details {
+        margin-#{$default_float}: 130px;
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: $margin_5;
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: $margin_5;
+        }
+
+        .ups-daysofop_status {
+            display: block;
+            margin-bottom: $margin_5;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $grass_s3;
+
+            .icon:before {
+                @include ups-icons;
+                content: '\e624';
+                position: relative;
+                top: 2px;
+                margin-#{$opposite-direction}: 5px;
+            }
+
+            &.ups-daysofop_status-closed {
+                color: $red;
+
+                .icon:before {
+                    content: '\e67d';
+                }
+            }
+        }
+    }
+
+    .ups-daysofop_addInfo {
+        margin-#{$default_float}: 130px;
+        clear: both;
+        margin-top: $margin_4; //30px;
+
+        p {
+            margin-bottom: $margin_4;
+        }
+
+        ul {
+            padding-#{$default-float}: $margin_4;
+            list-style: disc;
+        }
+    }
+
+    .ups-daysofop_cta {
+        background: $ups_stone;
+        padding: 12px;
+        text-align: center;
+
+        .ups-cta {
+            display: inline-block;
+            padding: 10px 50px 10px;
+        }
+    }
+    //STATIC LOCATION
+    &.ups-daysofop-staticLoc {
+        .ups-daysofop_loc {
+            padding: 0;
+            border-top: 1px solid $ups_stone;
+            @media #{$media-small} {
+              border-top: 0;
+            }
+        }
+
+        &.ups-daysofop-full {
+            .ups-daysofop_loc {
+                border: none;
+            }
+        }
+    }
+    .ups-daysofop_hide{
+    	display:none !important;
+    }
+
+
+    // FULL LIST
+    &.ups-daysofop-full {
+        .ups-daysofop_loc {
+            text-align: $default-float;
+            position: relative;
+        }
+    }
+
+    .ups-daysofop_print {
+        // float: $opposite-direction;
+        height: 37px;
+        line-height: 37px;
+        color: $ups_brown;
+        padding-#{$opposite-direction}: 30px;
+        position: relative;
+        position: absolute;
+        #{$opposite-direction}: 30px;
+        top: 50%;
+        margin-top: -15px;
+
+         .icon:before {
+            @include ups-icons;
+            content: '\e65d';
+            position: absolute;
+            top: 0;
+            #{$opposite-direction}: 0;
+            height: 37px;
+            line-height: 35px;
+            font-size: 1.5em;
+        }
+
+        .no-touch &:hover,
+        .no-touch &:focus {
+             .icon:before {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .ups-daysofop_accordion {
+        border: none;
+        padding: 0 0 60px;
+        margin: 0;
+
+        .ups-accordion_content {
+            .ups-accordion_item {
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                &.ups-active {
+                    .ups-accordion_toggle {
+                        background: $stone_60;
+                    }
+                }
+
+                .ups-accordion_expand {
+                    padding: 0 20px;
+
+                    .ups-daysofop_day {
+                        padding: $margin_3 0 0;
+                        margin-top: $margin_3;
+                        // margin-#{$opposite-direction}: 80px;
+                        border: none;
+                        position: relative;
+                        // border-top: 1px solid $ups_stone;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            display: block;
+                            height: 1px;
+                            background: $ups_stone;
+                            #{$default-float}: 130px;
+                            #{$opposite-direction}: 80px;
+                            top: 0;
+                        }
+
+                        &:first-child {
+                            padding: 0;
+                            margin: 0;
+                            &:before { display: none;}
+                        }
+
+                        .ups-daysofop_details {
+                            margin-#{$opposite-direction}: 80px;
+                        }
+
+                        .ups-daysofop_addInfo {
+                            max-height: 0;
+                            margin: 0;
+                            padding-top: $margin_5;
+                            overflow: hidden;
+                            @include transition-property(max-height);
+                            @include transition-duration(0.3s);
+                            margin-#{$default-float}: 130px;
+                            margin-#{$opposite-direction}: 80px;
+
+                            &.ups-active {
+                                margin-#{$default-float}: 130px;
+                                max-height: 500px;
+                            }
+
+                            li {
+                                margin-bottom: 5px;
+                            }
+                        }
+
+                        .ups-daysofop_detToggle {
+                            @include unbutton;
+                            margin-top: $margin_4;
+                            margin-#{$default-float}: 25px;
+                            font-weight: 700;
+
+                            &:before {
+                                @include ups-icons;
+                                display: inline-block;
+                                width: 20px;
+                                content: "\e65b";
+                                font-size: 0.7em;
+                                margin-#{$opposite-direction}: 4px;
+                            }
+
+                            &.ups-active {
+                                &:before {
+                                    content: "\e653";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.ups-active {
+                    .ups-accordion_toggle {
+                        // background: $white;
+                    }
+                    .ups-accordion_expand {
+                        padding: 30px 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .ups-daysofop_downloads {
+        background: $ups_stone;
+        padding: $margin_3 20px $margin_4;
+
+        h3 {
+            margin: 0 0 15px;
+            font-family: $sans-bd;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+
+        ul {
+            padding-#{$default-float}: 15px;
+            margin: 0;
+
+            li {
+                margin: $margin_4 0;
+
+                a {
+                    color: $ups_brown;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .ups-daysofop_disclaimer {
+        color: $black_s1;
+        font-size: 0.9em;
+        margin-top: $margin_3;
+        border-top: 1px solid $ups_stone;
+        padding: $margin_4 20px;
+    }
+
+}
+
+@mixin daysofop_sm {
+    .ups-daysofop {
+        // padding-top: $page-margin-sm;
+        // padding-bottom: $page-margin-sm;
+
+        .ups-daysofop_head {
+            margin-bottom: 30px;
+        }
+
+        .ups-article-header {
+            margin: 0 0 30px 0;
+        }
+
+        .ups-daysofop_loc {
+            text-align: $default_float;
+            padding: 25px 15px 35px;
+
+            label {
+                position: static;
+                display: block;
+                margin: 0 10px 15px;
+            }
+
+            .ups-dropdown_wrapper {
+                width: 100%;
+                margin: 0;
+                display: block;
+            }
+        }
+
+        .ups-daysofop_days {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .ups-daysofop_addInfo {
+            margin: 0;
+            padding-top: 20px;
+            // margin-#{$default-float}: 130px;
+            clear: both;
+        }
+
+        .ups-daysofop_cta {
+            background: none;
+            // padding: 0 20px;
+            padding: 0;
+            // margin-top: 40px;
+
+            .ups-cta {
+                display: block;
+                width: 100%;
+                padding: 10px 15px 10px;
+                margin: 0 auto;
+            }
+        }
+
+        .ups-daysofop_day {
+            float: none;
+            padding: 40px 0;
+            border: none;
+            width: 100%;
+            border-top: 1px solid $ups_stone;
+
+            &:first-child {
+                border: none;
+            }
+
+            &:before {
+                #{$default-float}: 0;
+                #{$opposite-direction}: 0;
+            }
+
+            .ups-daysofop_details {
+                margin-#{$opposite-direction}: 0;
+            }
+
+            .ups-daysofop_addInfo {
+                margin-#{$default-float}: 0;
+                margin-#{$opposite-direction}: 0;
+
+                &.ups-active {
+                    margin-#{$default-float}: 0;
+                }
+            }
+        }
+
+        .ups-daysofop_accordion {
+            padding-bottom: 30px;
+
+            .ups-accordion_content {
+                .ups-accordion_item.ups-active {
+                    .ups-accordion_expand {
+                        padding: 0 20px;
+
+                        .ups-daysofop_day {
+                            float: none;
+                            padding: $margin_3 0 $margin_4;
+                            margin: 0;
+                            border: none;
+                            width: 100%;
+                            border-top: 1px solid $ups_stone;
+
+                            &:first-child {
+                                border: none;
+                            }
+
+                            &:before {
+                                #{$default-float}: 0;
+                                #{$opposite-direction}: 0;
+                            }
+
+                            .ups-daysofop_details {
+                                margin-#{$opposite-direction}: 0;
+                            }
+
+                            .ups-daysofop_addInfo {
+                                margin-#{$default-float}: 0;
+                                margin-#{$opposite-direction}: 0;
+
+                                &.ups-active {
+                                    margin-#{$default-float}: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        .ups-daysofop_print {
+            display: none;
+        }
+
+    }
+}
+
+.ups-daysofop_wrap {
+    aside &,.col-lg-4 & {
+        padding: 0;
+        @include daysofop_sm;
+        @include aside-pad_sm;
+
+        @media #{$media-small} {
+            .ups-daysofop_days {
+                margin: 0 -20px;
+            }
+        }
+    }
+}
+
+@media #{$media-medium} {
+    @include daysofop_sm;
+
+    .ups-daysofop {
+
+        .ups-daysofop_day:first-child {
+            padding-#{$default-float}: 0;
+        }
+
+        .ups-accordion_content {
+            .ups-accordion_item {
+                .ups-accordion_toggle {
+                    text-transform: uppercase;
+                    &.ups-active {
+                        background: $white;
+                        // border-bottom: 1px solid $stone_60;
+                    }
+                }
+            }
+        }
+    }
+
+    .ups-daysofop_detToggle {
+        display: none;
+    }
+
+    .ups-daysofop .ups-daysofop_accordion .ups-accordion_content .ups-accordion_item .ups-accordion_expand .ups-daysofop_day .ups-daysofop_addInfo {
+        max-height: none;
+    }
+}
+
+@media #{$media-small} {
+
+    .ups-daysofop {
+        .ups-daysofop_loc,
+        .ups-daysofop_days-full {
+            margin: 0 -20px;
+        }
+    }
+}

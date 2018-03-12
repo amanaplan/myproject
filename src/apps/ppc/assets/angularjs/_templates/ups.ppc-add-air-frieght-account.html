@@ -1,0 +1,188 @@
+<div class="ups-application_wrapper ups-form_wrap ups-air-frieght">
+	<!-- //// begin ups.ppc-add-air-frieght-account //// -->
+    <p>
+        Measure your packaging, and enter the longest side of the package as
+        <strong>Length</strong>. Accurate measurements help us provide better
+        rate quotes.
+    </p>
+    
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+    
+    <form name="ups_add_frieght" error-on-submit novalidate>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-pck-name" class="ups-form_label">
+                        Custom Packaging Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+
+                    <div class="ups-text-wrapper ups-input_wrapper">
+                        <input error-on-blur type="text" name="name"
+                            class="ups-form_input" id="ups-pck-name" maxlength="35"
+                            required aria-required="true" data-ng-model="formObj.name"
+                            aria-describedby="ups-pck-name-error"><span
+                            class="ups-invalid_color" id="ups-pck-name-error"
+                            data-ng-show="!ups_add_frieght.name.$pristine && ups_add_frieght.name.$invalid" role="alert">
+                            <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                            data-ng-show="ups_add_frieght.name.$error.required">Name
+                                is required.</span> <span
+                            data-ng-if="formObj.name && ups_add_frieght.name.$valid && ups_add_frieght.name.$dirty">
+                                <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span> <span class="ups-invalid_color" role="alert"> <span
+                            data-ng-show="isDupName">Package Name already exists.</span>
+
+                        </span>
+                        <div data-ng-if="(formObj.name && ups_add_frieght.name.$valid && ups_add_frieght.name.$dirty)">
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                
+                <fieldset class="ups-form_group ups-form_required">
+                    <legend class="ups-form_label">Dimensions</legend>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ups-form_group">
+                                <label for="ups-afrLength" class="ups-form_label">
+                                	<span class="ups-readerTxt">Package Dimensions</span>Length
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <span class="ups-icon-x hidden-sm hidden-xs" aria-hidden="true"></span> <input
+                                        error-on-blur number-mask type="text" name="afrLength"
+                                        class="ups-form_input" id="ups-afrLength" maxlength="4"
+                                        data-ng-model="formObj.afrLength" required> <span
+                                        class="ups-invalid_color"
+                                        data-ng-show="!ups_add_frieght.afrLength.$pristine && ups_add_frieght.afrLength.$invalid"  role="alert">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-show="ups_add_frieght.afrLength.$error.required">Length
+                                            is required.</span>
+                                    </span> <span class="ups-invalid_color" role="alert"><span
+                                        class="icon ups-error_exclamation" data-ng-if="isZeroDimL"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-if="isZeroDimL && !ups_add_frieght.afrLength.$error.required">Package
+                                            dimensions must be greater than zero.</span> </span>
+                                    <div data-ng-if="(!isZeroDimL && formObj.afrLength && ups_add_frieght.afrLength.$valid && ups_add_frieght.afrLength.$dirty)">
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                            class="ups-readerTxt">Check</span>
+                                    </div>
+                                </div>
+                                <!-- ups-text_wrapper ups-input_wrapper -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-form_group">
+                                <label for="ups-afrWidth" class="ups-form_label">
+                                	<span class="ups-readerTxt">Package Dimensions</span>Width
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <span class="ups-icon-x hidden-sm hidden-xs" aria-hidden="true"></span> <input
+                                        error-on-blur number-mask type="text" name="afrWidth"
+                                        class="ups-form_input" id="ups-afrWidth" maxlength="4"
+                                        data-ng-model="formObj.afrWidth" required> <span
+                                        class="ups-invalid_color"
+                                        data-ng-show="!ups_add_frieght.afrWidth.$pristine && ups_add_frieght.afrWidth.$invalid"  role="alert">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-show="ups_add_frieght.afrWidth.$error.required">Width
+                                            is required.</span>
+                                    </span> <span class="ups-invalid_color" role="alert"><span
+                                        class="icon ups-error_exclamation" data-ng-if="isZeroDimW"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-if="isZeroDimW && !ups_add_frieght.afrWidth.$error.required">Package
+                                            dimensions must be greater than zero.</span> </span>
+                                    <div data-ng-if="(!isZeroDimW && formObj.afrWidth && ups_add_frieght.afrWidth.$valid && ups_add_frieght.afrWidth.$dirty)">
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                            class="ups-readerTxt">Check</span>
+                                    </div>
+                                </div>
+                                <!-- ups-text_wrapper ups-input_wrapper -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-form_group">
+                                <label for="ups-afrHeight" class="ups-form_label">
+                                	<span class="ups-readerTxt">Package Dimensions</span>Height
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <span class="ups-icon-cm" aria-hidden="true"></span> <input
+                                        error-on-blur number-mask type="text" name="afrHeight"
+                                        class="ups-form_input" id="ups-afrHeight" maxlength="4"
+                                        data-ng-model="formObj.afrHeight" required> <span
+                                        class="ups-invalid_color"
+                                        data-ng-show="!ups_add_frieght.afrHeight.$pristine && ups_add_frieght.afrHeight.$invalid" role="alert">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-show="ups_add_frieght.afrHeight.$error.required">Height
+                                            is required.</span>
+                                    </span> <span class="ups-invalid_color" role="alert"> <span
+                                        class="icon ups-error_exclamation" data-ng-show="isZeroDimH"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span><span
+                                        data-ng-show="isZeroDimH && !ups_add_frieght.afrHeight.$error.required">Package
+                                            dimensions must be greater than zero.</span>
+                                    </span>
+                                    <div data-ng-if="(!isZeroDimH && formObj.afrHeight && ups_add_frieght.afrHeight.$valid && ups_add_frieght.afrHeight.$dirty)">
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                            class="ups-readerTxt">Check</span>
+                                    </div>
+                                </div>
+                                <!-- ups-text_wrapper ups-input_wrapper -->
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label class="ups-form_label" for="ups-unit"><span
+                        class="ups-readerTxt">Package Dimensions</span>Unit of Measure
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-unit" class="ups-dropdown" name="ups-unit"
+                            data-ng-model="formObj.Unit"
+                            data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')" aria-required="true" required>
+                            <option data-ng-repeat="unit in unitMeasure" value="{{unit}}">{{unit}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="ups-form_group">
+                    <div class="ups-checkbox ups-input_wrapper "
+            			data-ng-if="isEditModal && !isAddDisabled"
+                        data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                        <input check-verify id="ups-new-statement"
+                            class="ups-checkbox-custom" name="ups-new-statement" value="1"
+                            type="checkbox" data-ng-model="formObj.cBoxNewPackage"
+                            data-ng-checked="formObj.cBoxNewPackage"
+                            data-ng-click="saveNewStatement(formObj.cBoxNewPackage)">
+                        <label for="ups-new-statement"
+                            class="ups-form_label ups-checkbox-custom-label">Save
+                            this as a new custom packaging type.</label>
+                    </div>
+                </div>
+                <!-- ups-checkbox ups-input_wrapper -->
+            </div>
+        </div>
+        
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary"
+                data-dismiss="null" data-ng-click="submit(formObj)">
+                {{isEditModal?(formObj.cBoxNewPackage?'Save as New':'Save Changes'):'Save'}}</button>
+                <!--data-ng-disabled="newStatementChecked ? !(ups_add_frieght.$valid && formObj.cBoxNewPackage): !(ups_add_frieght.$valid && ups_add_frieght.$dirty)" -->
+            <button type="button" class="ups-cta ups-cta_secondary"
+                data-ng-click="cancel()">Cancel</button>
+        </div>
+    </form>
+	<!-- //// end ups.ppc-add-air-frieght-account //// -->
+</div>

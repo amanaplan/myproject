@@ -1,0 +1,91 @@
+<div data-ng-controller="preferenceMyChoiceSurePost"  class="  ups-application_wrapper">
+	<ng-form name="formObj.ups_mychoiceSurePost" novalidate>
+		
+				<!--<p>You can choose to have UPS notify you whenever you receive a <a class="ups-new-window ups-link" href="#" onclick="return false;" data-ng-click="openTearmsAndConditions('https://www.ups.com/content/us/en/tracking/help/tracking/umc_surepost.html')"><span class="ups-readerTxt">help about</span> UPS SurePost<span class="ups-icon-newwindow" aria-hidden="true"></span></a> or <a class="ups-new-window ups-link" href="#" onclick="return false;" data-ng-click="openTearmsAndConditions('https://www.ups.com/content/us/en/tracking/help/tracking/umc_basic.html')"><span class="ups-readerTxt">help about</span>Basic<span class="ups-readerTxt">package</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> package, or automatically upgrade your packages to <a class="ups-help_link ups-new-window ups-form_link-noDecoration" href="#" onclick="return false;" data-ng-click="openTearmsAndConditions('https://www.ups.com/content/us/en/tracking/help/tracking/umc_upsground.html')"><span class="ups-readerTxt">help about</span>UPS Ground<span class="ups-readerTxt">delivery</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> delivery.</p>-->
+                <p>Some of your deliveries may be eligible for an upgrade to a faster service.</p>
+            	<p>If the shipper chooses UPS SurePost&reg;, a contract service that coordinates final delivery with the U.S. Postal Service, you can choose to upgrade your delivery to UPS Ground. Just make sure you've saved a default payment method for any applicable fees.</p>
+            
+		<fieldset class="ups-form_group">
+			<legend class="ups-form_label">How would you like us to handle eligible upgrades?</legend>
+			<div class="row">
+				<div class="col-md-5">
+				 	<div class="ups-buttonList_wrapper ups-input_wrapper">
+						<input id="ups-automatically" data-ng-click="notifyClicked = false;form.sendTo=''" class="ups-radio-custom" type="radio" name="rad"  value="automatic"  data-ng-model="form.radVal">
+						<label for="ups-automatically" class="ups-radio-custom-label">
+							Automatically upgrade all packages (free for Premium members, {3.50 USD} for all others).
+						</label>
+
+						<!--<div class="ups-offset-30">
+							<p data-ng-if=isPremium><strong>Note:</strong><em> FREE</em> to all UPS My Choice Premium Members.</p>
+							<p data-ng-if=!isPremium><strong>Note: </strong>A fee of $3.50 applies per package for UPS My Choice Members.</p>
+							<p data-ng-if="DefaultCount===0"><strong>Note:</strong> To choose this feature a default payment method must be provided in your <a href="#/paymentPage" class="ups-link ups-new-window">Payment Options<span class="ups-readerTxt">will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>.</p>
+							<p data-ng-if="isvacation"><strong>Note: </strong>Your delivery option preferences will apply to packages that are upgraded.</p>
+						</div>-->
+					 	<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input  data-ng-click="disableNotify();notifyClicked = false;form.sendTo='';"  id="ups-prefer" class="ups-radio-custom" type="radio" name="rad" value="prefer"  data-ng-model="form.radVal"> <label for="ups-prefer"  class="ups-radio-custom-label">
+								I'm not interested in upgrading my packages at this time.</label>
+						</div>
+					</div>
+					 <div class="ups-buttonList_wrapper ups-input_wrapper">
+						<input id="ups-notify-text"  class="ups-radio-custom" type="radio"  name="rad" value="notifyMe" data-ng-click="notifyClicked = true;form.sendTo='jsmith@email.com'"   data-ng-model="form.radVal"> <label for="ups-notify-text" class="ups-radio-custom-label">
+							Notify me whenever a package is eligible for an upgrade</label>
+					</div>
+					<div class="ups-form_group">
+						<label for="ups-notify" class="ups-form_label">Notification Method</label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select  name="ups-pickupOption" id="ups-notify" data-ng-options="item for item in Notify" class="ups-dropdown" data-ng-model="form.selectnotify">
+							</select>
+						</div>
+					<!-- ups-dropdown_wrapper ups-input_wrapper -->
+					</div>
+					<div class="ups-form_group" data-ng-class="{'ups-form_required':notifyClicked}">
+						<label for="ups-sendTo" class="ups-form_label">
+                        	Email or Phone Number
+                        	<span aria-hidden="true" class="ups-required_indicator" data-ng-if="(notifyClicked)"></span>
+                        </label>
+						<div data-ng-if="notifyClicked" class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+							<input validate-email id="ups-sendTo" type="email"  class="ups-form_input" required  maxlength="35"  name="emailBox" data-ng-model="form.sendTo">
+							<span class="ups-invalid_color" data-ng-show="(!formObj.ups_mychoiceSurePost.emailBox.$pristine && formObj.ups_mychoiceSurePost.emailBox.$invalid)" role="alert">
+								<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span data-ng-show="formObj.ups_mychoiceSurePost.emailBox.$error.required">This field is required.</span>
+								<span data-ng-hide="formObj.ups_mychoiceSurePost.emailBox.$error.required">Please
+									enter a valid email address.</span>
+							</span>
+							<div data-ng-if="(form.sendTo.length)">
+								<span class="ups-icon-check" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Check</span>
+							</div>
+						</div>
+						<div data-ng-if="!notifyClicked" class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+							<input  id="ups-sendTo"   type="text"  class="ups-form_input"  maxlength="35"  name="sendTo" data-ng-model="form.sendTo">
+						</div>
+					<!-- ups-dropdown_wrapper ups-input_wrapper -->
+					</div>
+				</div>
+			</div>
+			</fieldset>
+		<div class=" row  ups-form_ctaGroup">
+			<div class="col-md-5">
+				<button type="button" data-ng-click="saveChanges()" class="ups-cta ups-cta_primary">Save Changes</button>
+                <!-- data-ng-disabled="!formObj.ups_mychoiceSurePost.$dirty" -->
+				<button class="ups-cta ups-cta_secondary "  type="submit" data-ng-click="cancel()">Cancel</button>
+			</div>
+		</div>
+	</ng-form>
+    
+    
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons in production. 									  --
+    --																			  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <!--<br><br>
+    <button class="ups-cta ups-cta_secondary" ng-click="isPremium = true">Premium My Choice member</button><button class="ups-cta ups-cta_secondary" ng-click="isPremium = false">Basic My Choice Member</button><br><button class="ups-cta ups-cta_secondary" ng-click="DefaultCount = 0">No Payment Method</button><button class="ups-cta ups-cta_secondary" ng-click="DefaultCount = 1">Has Payment Method</button><br><button class="ups-cta ups-cta_secondary" ng-click="isvacation = true">Vacation Set</button><button class="ups-cta ups-cta_secondary" ng-click="isvacation = false">Vacation Not Set</button>-->
+    <!------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    
+    
+</div>

@@ -1,0 +1,440 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M01 MAIN NAV
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Available Variations via class names:
+
+    CAMPUS SHIP
+        Applied to header#ups-headerWrap
+        .ups-header-campusShip       Displays CampusShip version of header
+
+------------------------------------------------------------------------------
+
+Alerts:
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE         TYPE        DEFAULT
+    data-link            = string   /  n/a           URL to alerts landing page
+    data-linktxt         = string   /  n/a           text for closed link
+    data-prevtxt         = string   /  "Previous"    translation text
+    data-nexttxt         = string   /  "Next"        translation text
+
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M01 Main Nav -->
+<!-- For full documentation app/source/partials/modules/M01_main_nav.hbs -->
+<div id="ups-navContainer">
+
+
+    {{#if alerts}}
+    <div id="ups-alertsWrap" role="group" aria-label="Time Sensitive Information from UPS">
+        <div id="ups-alerts"
+            data-link="{{alerts.link}}"
+            data-linktxt="{{alerts.linkTxt}}"
+            data-prevtxt="{{alerts.prevTxt}}"
+            data-nexttxt="{{alerts.nextTxt}}">
+            <i class="ups-icon ups-icon-exclamationcircle" aria-hidden="true"></i>
+            <div class="ups-alerts_controls">
+                <span class="ups-alert_index"></span>/<span class="ups-alert_size"></span>
+            </div> <!-- @end #ups-alerts_controls -->
+            <ul class="ups-alerts_list">
+                {{#each alerts.messages}}
+                <li class="ups-alert_msg" tabindex="0">
+                    <span>{{this.message}}</span>
+                    <a class="ups-alerts_link" href="{{this.link}}">...More</a>
+                </li>
+                {{/each}}
+            </ul> <!-- @end #ups-alerts_list -->
+            <button class="ups-alerts_close">
+                <i class="ups-icon ups-iconAlone ups-icon-xcircle" aria-hidden="true"></i>
+                <span class="ups-readerTxt">{{alerts.closeTxt}}</span>
+            </button>
+        </div> <!-- @end #ups-alerts -->
+    </div> <!-- @end #ups-alertsWrap -->
+    {{/if}}
+
+    <a id="ups-skipNav" href="#ups-main" tabindex="0">Skip to Content</a>
+
+    <header id="ups-headerWrap" class="ups-wrap{{#if campusShip}} ups-header-campusShip{{/if}}">
+        <div id="ups-header" class="ups-wrap_inner">
+            <a id="ups-header_logo" href="/">UPS</a>
+
+            {{#if campusShip}}
+                <span class="ups-campusShip_head">UPS CampusShip<sup>&reg;</sup></span>
+            {{/if}}
+
+            {{#if tools}}
+            <div id="ups-headerTools" role="navigation" aria-label="Quick Start">
+                <a href="javascript:void(0)" class="ups-toolsToggle" role="button" aria-controls="ups-quickStartPanel" aria-expanded="false" id="ups-quickStartMenu">{{tools.label}}
+                    
+                    <span class="icon" aria-hidden="true"></span>
+                </a>
+                <div class="ups-headerTools_list" id="ups-quickStartPanel" aria-hidden="true" aria-labelledby="ups-quickStartMenu">
+                    <div class="ups-headerTools_msg">
+                        <h3>{{{tools.messaging}}}</h3>
+                    </div>
+                    <ul class="ups-headerTools_widgets">
+                        <li class="ups-headerTools_track">
+                            {{> W16_simple_track}}
+                        </li>
+
+                        {{#if tools.widgets.ship.show}}
+                        <li class="ups-ship ups-toolCont" id="Shipping" data-widget-source="ship"  data-ajax-source="AddressBook">
+                            <a href="{{tools.widgets.ship.link}}" id="ups-quickStartShip" class="ups-headerTools_widgetToggle" role="button" aria-controls="ups-quickStartShipPanel" aria-expanded="false"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.ship.label}}}
+                               
+                            </a>
+                            {{#if tools.widgets.ship.data}}
+                            <div class="ups-toolWrap" aria-hidden="true" id="ups-quickStartShipPanel" aria-labelledby="ups-quickStartShip">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W13_shipping tools.widgets.ship.data}}
+                                </div>
+                            </div>
+                            {{/if}}
+                        </li>
+                        {{/if}}
+
+                            {{#if tools.widgets.resources.show}}
+                                <li class="ups-resources ups-toolCont">
+                                    <a href="{{tools.widgets.resources.link}}" class="ups-headerTools_widgetToggle"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.resources.label}}}</a>
+                                </li>
+                            {{/if}}
+
+                            {{#if tools.widgets.ecsadmin.show}}
+                                <li class="ups-ecsadmin ups-toolCont">
+                                    <a href="{{tools.widgets.ecsadmin.link}}" class="ups-headerTools_widgetToggle"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.ecsadmin.label}}}</a>
+                                </li>
+                            {{/if}}
+
+                        {{#if tools.widgets.quote.show}}
+                        <li class="ups-quote ups-toolCont" id="CTC" data-ajax-source="AddressBook" data-widget-source="quote">
+                            <a href="{{tools.widgets.quote.link}}" id="ups-quickStartQuote" role="button" aria-controls="ups-quickStartQuotePanel" aria-expanded="false" class="ups-headerTools_widgetToggle"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.quote.label}}}
+                                
+                            </a>
+                            <div class="ups-toolWrap" aria-hidden="true" id="ups-quickStartQuotePanel" aria-labelledby="ups-quickStartQuote" role="region">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W11_quote tools.widgets.quote.data}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+
+                        {{#if tools.widgets.locations.show}}
+                        <li class="ups-locations ups-locations-quickstart ups-toolCont">
+                            <a href="{{tools.widgets.locations.link}}" id="ups-quickStartLocation" class="ups-headerTools_widgetToggle" role="button" aria-controls="ups-quickStartLocationPanel" aria-expanded="false"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.locations.label}}}
+                                
+                            </a>
+                            <div class="ups-toolWrap" id="ups-quickStartLocationPanel" aria-hidden="true" aria-labelledby="ups-quickStartLocation" role="region">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W01_location_finder tools.widgets.locations.data}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+
+                        {{#if tools.widgets.deliveries_nli.show}}
+                        <li class="ups-deliveries ups-toolCont">
+                            <a href="{{tools.widgets.deliveries.link}}" id="ups-quickStartDelivery" class="ups-headerTools_widgetToggle" role="button" aria-controls="ups-quickStartDeliveryPanel" aria-expanded="false"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.deliveries_nli.label}}}
+                                
+                            </a>
+                            <div class="ups-toolWrap" role="region" id="ups-quickStartDeliveryPanel" aria-hidden="true" aria-labelledby="ups-quickStartDelivery">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W05_manageHomeDeliveries_RNLI}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+
+                        {{#if tools.widgets.deliveries.show}}
+                        <li class="ups-deliveries ups-toolCont" >
+                            <a href="{{tools.widgets.deliveries.link}}" id="ups-quickStartDeliveryShow" class="ups-headerTools_widgetToggle ups-quickstart-iconLink" role="button" aria-controls="ups-quickStartDeliveryShowPanel" aria-expanded="false"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.deliveries.label}}}
+                                {{#compare tools.widgets.deliveries.data.accounts.0.total ">" 0}}
+                                    <span class="ups-package-notification">
+                                        {{tools.widgets.deliveries.data.accounts.0.total}}
+                                    </span>
+
+                                {{/compare}}
+                                
+                            </a>
+                            <div class="ups-toolWrap" id="ups-quickStartDeliveryShowPanel" aria-hidden="true" aria-labelledby="ups-quickStartDeliveryShow" role="region">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W05_manageHomeDeliveries_quickstart tools.widgets.deliveries.data}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+
+                        {{#if tools.widgets.billing.show}}
+                        <li class="ups-billing ups-toolCont ups-hasAlerts">
+                            <a href="{{tools.widgets.billing.link}}" id='ups-quickStartBilling' class="ups-headerTools_widgetToggle" aria-controls="ups-quickStartBillingPanel" role="button"  aria-expanded="false"><span class="icon" aria-hidden="true"></span>{{{tools.widgets.billing.label}}}
+                                {{#is tools.widgets.billing.data.type 'billDue'}}
+                                    <span class="ups-headerTool_widgetAlert ups-icon-exclamation" aria-hidden="true"></span>
+                                {{/is}}
+                                
+                            </a>
+                            <div class="ups-toolWrap" id="ups-quickStartBillingPanel" role="region" aria-expanded="false" aria-labelledby="ups-quickStartBilling">
+                                <div class="ups-tool">
+                                    <button class="ups-headerTools_widgetClose"><span class="icon" aria-hidden="true"></span><span class="ups-readerTxt">{{{tools.widgetClose}}}</span></button>
+                                    {{> W04_billing tools.widgets.billing.data}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if}}
+                    </ul>
+
+                        {{#if tools.links}}
+                            <ul class="ups-headerTools_links">
+                                {{#each tools.links}}
+                                    <li>
+                                        <a href="{{this.link}}">{{{this.label}}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/if}}
+
+            <div id="ups-touchNav" class=" ups-med_show">
+                <button class="ups-menuToggle">
+                    <span class="ups-iconAlone ups-icon-menu" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Menu</span>
+                </button>
+                {{#if search}}
+                <a href="#searchLanding" id="ups-mobSearch_btn" class="ups-searchBtn" aria-expanded="false" aria-controls="ups-header_search-mob">
+                    <span class="ups-iconAlone ups-icon-search" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Search</span>
+                </a>
+                {{/if}}
+            </div>
+
+            <nav id="ups-navItems" class="ups-container">
+
+                <div class="ups-menuClose ups-med_show">
+                <button class="ups-mobmenu-close">
+                    <span class="ups-iconAlone ups-icon-x" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Close</span>
+                </button>
+                </div>
+                <div class="ups-menuBack ups-med_show">
+                <button class="ups-menuBack-button">
+                    <span class="ups-icon-chevronleft" aria-hidden="true">
+                    </span>Back</button>
+                </div>
+                <ul class="ups-navItems_primary" role="navigation" aria-label="main">
+                    {{#each nav}}
+                    <li class="ups-navMenu ups-menu{{#if this.current}} ups-current{{/if}}">
+                        <a href="#" class="ups-menu_toggle" role="button" aria-controls="ups-menuPanel{{@index}}" aria-expanded="false" id="ups-menuLinks{{@index}}">{{{this.label}}}
+                            
+                            <span class="ups-mobnav-arrow" aria-hidden="true"></span>
+                        </a>
+                        <div class="ups-menu_list ups-cols-{{this.cols.length}}" id="ups-menuPanel{{@index}}" aria-hidden="true" aria-labelledby="ups-menuLinks{{@index}}">
+                            <h2 class="ups-med_show">{{{this.label}}}</h2>
+                            <div class="ups-menu_listCols">
+                                {{#each this.cols}}
+                                <div class="ups-menu_column">
+                                    <h3>{{{this.label}}}</h3>
+                                    <ul class="ups-menu_links">
+                                        {{#each this.links}}
+                                        <li>
+                                            <a href="{{this.link}}">
+                                                {{{this.label}}}{{#if this.product}}: <em>{{{this.product}}}</em>{{/if}}
+                                            </a>
+                                        </li>
+                                        {{/each}}
+
+                                                {{#if this.more}}
+                                                    <li><a class="ups-more" href="{{this.more.link}}">{{this.more.label}}</a></li>
+                                                {{/if}}
+                                            </ul>
+                                        </div> <!-- @end .ups-menu_column -->
+                                    {{/each}}
+
+                                    {{#if this.cta}}
+                                        <a class="ups-menu_cta" href="{{this.cta.link}}">{{this.cta.label}}<span class="icon" aria-hidden="true"></span></a>
+                                    {{/if}}
+                                </div> <!-- @end .ups-menu_listCols -->
+
+                                <!-- <a class="ups-menu_marketing-message" href="" tabindex="0"></a> -->
+                                <div class="ups-menu_mktg ups-med_hide">
+                                    {{#if this.marketing.links}}
+                                        <div class="ups-menu_mktgLinks">
+                                            <h3>{{#if this.marketing.links.more}}<a class="ups-more" href="{{this.marketing.links.more.link}}">{{this.marketing.links.more.label}}</a> {{/if}}{{{this.marketing.links.label}}}</h3>
+                                            <ul class="ups-menu_links">
+                                                {{#each this.marketing.links.links}}
+                                                    <li>
+                                                        <a href="{{this.link}}"{{#if this.more}} class="ups-more"{{/if}}>
+                                                            {{{this.label}}}
+                                                            {{#if this.product}}<i>{{{this.product}}}</i>{{/if}}
+                                                        </a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                        </div>  <!-- @end .ups-menu_mktgLinks -->
+                                    {{/if}}
+
+                                <div class="ups-menu_mktgCallout">
+                                    <a href="{{this.marketing.callout.cta.link}}">
+                                        <img src="{{this.marketing.callout.img}}" tabindex="0" alt="{{this.marketing.callout.alt}}">
+                                    </a>
+                                    <h3>{{this.marketing.callout.heading}}</h3>
+                                    {{#if this.marketing.callout.copy}}<p>{{this.marketing.callout.copy}}</p>{{/if}}
+                                    <a class="ups-cta_link" href="{{this.marketing.callout.cta.link}}">{{this.marketing.callout.cta.label}}</a>
+                                </div>  <!-- @end .ups-menu_mktgCallout -->
+                            </div> <!-- @end .ups-menu_mktg -->
+                        </div> <!-- @end .ups-menu_list -->
+                    </li> <!-- @end .ups-navMenu -->
+                    {{/each}}
+                </ul> <!-- @end .ups-navItems_primary -->
+
+                {{#if custserv}}
+                <div id="ups-header_custServ" class="ups-menu col-md-3" role="navigation" aria-label="customer service">
+                    <button class="ups-menu_toggle" id="ups-custServe-toggle" aria-controls="ups-custServe-panel"><span class="icon" aria-hidden="true"></span>{{custserv.label}}
+                        <span class="ups-mobnav-arrow" aria-hidden="true"></span>
+                    </button>
+                    <div class="ups-header_custServ_list ups-menu_list{{#if custserv.support}} ups-header_custServ_list-hasSupport{{/if}} {{#if custserv.single}} single_box{{/if}}" id="ups-custServe-panel" aria-labelledby="ups-custServe-toggle">
+                        <h2 class="ups-med_show">{{custserv.label}}</h2>
+
+                            {{#if custserv.support}}
+                                <div class="ups-header_custServ_support col-md-4">
+                                    <h3>{{custserv.support.label}}</h3>
+                                    <ul>
+                                        {{#each custserv.support.links}}
+                                            <li>
+                                                {{#if this.number}}
+                                                    <span>{{{this.label}}}</span>
+                                                    <a href="tel:{{this.link}}">{{this.number}}</a>
+                                                {{else}}
+                                                    <a href="{{this.link}}">{{{this.label}}}</a>
+                                                {{/if}}
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            {{/if}}
+
+                            <ul class="ups-headerCust_links col-md-{{#if custserv.support}}4{{else}}6{{/if}}">
+                                {{#each custserv.links}}
+                                    <li>
+                                        <a href="{{this.link}}">{{{this.label}}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+
+                            <ul class="ups-header_custServ_contact col-md-{{#if custserv.support}}4{{else}}6{{/if}}">
+                                {{#each custserv.contact}}
+                                    <li class="ups-icon-{{this.class}}">
+                                        <a href="{{this.link}}">
+                                            <span class="icon" aria-hidden="true"></span>
+                                            <span>{{{this.label}}}</span>
+                                            {{#if this.blank}}
+                                                <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt">Open the link in a new window</span>
+                                            {{/if}}
+                                        </a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/if}}
+
+                <ul class="ups-header_utils" role="navigation" aria-label="Utilities Menu">
+                    {{#if utils.login}}
+                        <li class="ups-login">
+                            <a href="{{utils.login.link}}">{{utils.login.label}}</a>
+                        </li>
+                    {{/if}}
+                    {{#if utils.signup}}
+                        <li class="ups-signup">
+                            <a href="{{utils.signup.link}}">{{utils.signup.label}}</a>
+                        </li>
+                    {{/if}}
+                    {{#if utils.locations}}
+                        <li class="ups-locations">
+                            <a href="{{utils.locations.link}}">{{utils.locations.label}}</a>
+                        </li>
+                    {{/if}}
+                    <li class="ups-language ups-menu" aria-label="main">
+                        <a href="javascript:void(0)" class="ups-menu_toggle" id="ups-language-toggle" aria-expanded="false" aria-controls="ups-language-panel" role="button"><span class="icon ups-icon-globe" aria-hidden="true" ></span>{{utils.language.label}}
+                            
+                            <span class="icon ups-icon-chevrondown" aria-hidden="true"></span>
+                            <span class="ups-mobnav-arrow" aria-hidden="true"></span>
+                        </a>
+                        <div class="ups-menu_list" id="ups-language-panel" aria-labelledby="ups-language-toggle">
+                            <ul>
+                                {{#each utils.language.langs}}
+                                    <li lang="{{this.code}}"><a href="{{this.link}}"{{#if this.active}} class="ups-active"{{/if}}>{{{this.label}}}</a></li>
+                                {{/each}}
+                            </ul>
+                            <div class="ups-more">
+                                <a href="{{utils.language.more.link}}">{{utils.language.more.label}}</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    {{#if utils.account}}
+                    <li class="ups-account ups-menu" aria-label="main">
+                        <a href="javascript:void(0)" class="ups-menu_toggle" id="ups-account-toggle" aria-controls="ups-account-panel" role="button" aria-expanded="false">{{#if utils.account.userImg}}<img class="ups-account_user" src="{{utils.account.userImg}}" alt="user profile image">{{/if}}{{utils.account.label}}
+                            
+                            <span class="icon ups-icon-chevrondown" aria-hidden="true"></span>
+                            <span class="ups-mobnav-arrow" aria-hidden="true"></span>
+                        </a>
+                        <div class="ups-menu_list" id="ups-account-panel" aria-labelledby="ups-account-toggle">
+                            {{#if utils.account.userImg}}
+                            <div class="ups-account_profile">
+                                <img class="ups-account_user" src="{{utils.account.userImg}}" alt="user profile image">
+                                <h3>{{utils.account.label}}</h3>
+                            </div>
+                            {{/if}}
+                            {{#if utils.account.cta}}
+                            <a href="{{utils.account.cta.link}}" class="ups-cta">{{utils.account.cta.label}}</a>
+                            {{/if}}
+                            {{#each utils.account.links}}
+                            <ul>
+                                {{#each this}}
+                                    <li><a href="{{this.link}}">{{{this.label}}}</a></li>
+                                {{/each}}
+                            </ul>
+                            {{/each}}
+                        </div>
+                    </li>
+                    {{/if}}
+                </ul> <!-- @end .ups-header_utils -->
+
+                {{#if search}}
+                    <form id="ups-header_search" method="post" data-action="#TBD" action="#TBD">
+                        <label for="ups-mainNav-search" class="ups-readerTxt">Search</label>
+                        <input id="ups-mainNav-search" type="search" name="ups-search" placeholder="Search">
+                        <button id="ups-mainNav_search_submit" class="ups-header_search_submit" type="submit">
+                            <i class="ups-icon-search" aria-hidden="true"></i>
+                            <span class="ups-readerTxt">Go</span>
+                        </button>
+                    </form>
+                {{/if}}
+
+            </nav> <!-- @end #ups-navItems -->
+
+            {{#if search}}
+            <form id="ups-header_search-mob" method="post" data-action="#TBD" action="#TBD" role="search" aria-labelledby="ups-mobSearch_btn">
+                <label for="ups-search-mob" class="ups-readerTxt">Search</label>
+                <input type="search" name="ups-search-mob" placeholder="Search" id="ups-search-mob">
+                <button class="ups-cta" type="submit"><span class="icon" aria-hidden="true"></span>Go</button>
+            </form>
+            {{/if}}
+
+
+        </div><!-- @end #ups-header -->
+
+    </header><!-- @end #ups-headerWrap -->
+</div><!-- @end #ups-navContainer -->

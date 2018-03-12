@@ -1,0 +1,155 @@
+// ----------------------------------------------------
+// M19 MEDIA PLAYER
+// ----------------------------------------------------
+
+.ups-mplayer {
+    @include ups-component_margin;
+
+    .ups-video_frameWrap {
+        margin: 0 auto;
+    }
+
+    .ups-video_frame {
+        height: 0;
+        padding-top: 56.25%;
+        position: relative;
+        margin-bottom: $margin_3;
+
+        .video-js,
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .vjs-big-play-button {  // !important needed to overide injected CSS... gross
+            width: 100px !important;
+            height: 80px !important;
+            top: 50% !important;
+            left: 50% !important;
+            position: absolute;
+            margin: -50px 0 0 -40px !important;
+
+            &:before {
+                font-size: 30px;
+                line-height: 80px;
+                margin: 0 auto;
+                width: 50px;
+            }
+        }
+
+        .vjs-play-control,
+        .vjs-volume-menu-button,
+        .vjs-fullscreen-control {
+            color: $ups_gold;
+        }
+    }
+
+    .ups-page-share {
+        float: $opposite-direction;
+        margin-top: -11px;
+        max-width: 232px;
+        position: static;
+        height: auto;
+        width: 60px;
+
+        .share-btn-container {
+            width: 68px;
+        }
+
+        .share-container {
+            width: 237px;
+
+            .share_list {
+                padding-#{$default-float}: 0px;
+            }
+        }
+
+        .share_open {
+            width: 52px;
+            height: 26px;
+            font-size: 12px;
+            line-height: 13px;
+            margin-top: 11px;
+            padding-#{$opposite-direction}: 25px;
+            padding-top: 1px;
+
+            &:before {
+                font-size: 20px;
+                #{$opposite-direction}: 0;
+                top: 0px;
+            }
+        }
+
+    }
+
+    h2 {
+        font-family: $sans-bd;
+        float: $default-float;
+        margin: 0 0 $margin_4;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    p {
+        clear: both;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$media-small} {
+
+        .ups-page-share {
+            float: $default-float;
+            position: static;
+            height: auto;
+            margin-top: 0;
+
+            .share_open {
+                padding: 0;
+                padding-#{$default-float}: 25px;
+
+                &:before {
+                    #{$default-float}: 0;
+                    #{$opposite-direction}: auto;
+                }
+            }
+
+            .share_close {
+                padding-top: 7px;
+                position: absolute;
+                right: 3px;
+            }
+
+            .share-container {
+                position: relative;
+            }
+        }
+
+        h2 {
+            float: none;
+            margin-bottom: 10px;
+        }
+
+        .ups-video_frameWrap {
+            margin-left: -$page-margin-sm;
+            margin-right: -$page-margin-sm;
+        }
+
+        .ups-video_frame {
+            margin-bottom: 20px;
+        }
+    }
+
+}
+
+.ups-popUp_link{
+  color: $black_s3;
+}

@@ -1,0 +1,31 @@
+{{!--
+********************************************************************************
+A09 Drawer
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    id_content                 = string     / YES            / id of drawer content
+    title                      = string     / YES            / Drawer Title
+    title_right                = string     / NO             / Any Content on the right
+    content					   = RTE        / YES            / html for the drawer
+    slim                       = boolean    / NO             / if slim version should be used
+
+********************************************************************************
+--}}
+
+<div class="ups-drawer{{#if slim }} ups-drawer_slim{{/if}}">
+	<button type="button" class="ups-drawer-btn" aria-controls="{{id_content}}">
+    	{{ title }}
+        <span{{#unless slim }} class="pull-right"{{/unless}}>
+        	<!--<span class="ups-readerTxt">expand</span>--><span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+            <span class="ups-drawer-title-right">{{ title_right }}</span>
+        </span>
+    </button>
+    <div class="ups-drawer-content" id="{{id_content}}">
+    	{{#if content}}
+    		{{{ this.content }}}
+        {{/if}}
+    </div>
+</div>

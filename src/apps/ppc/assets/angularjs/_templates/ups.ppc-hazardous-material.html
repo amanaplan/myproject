@@ -1,0 +1,104 @@
+<form error-on-submit name="ups_editAccount" novalidate class="ups-application_wrapper">
+    <!-- //// begin ups.ppc-hazardous-material //// -->
+    <h3>Special Shipping Permissions Required</h3>
+    <div data-ng-if="!enabled || readOnly">
+        <p> For safety reasons, we require everyone
+            shipping hazardous materials to select a UPS pickup and agree to
+            our Dangerous Goods Agreement Checklist. </p>
+        <p> If you need to ship hazardous materials,
+            request additional information below. Please know that it may take
+            up to 72 hours to process your request and send all necessary
+            documents. </p>
+    </div>
+    
+    <p data-ng-if="enabled && !readOnly">You can use this account to ship Dangreous Goods, which may include lithium batteries.</p>
+    
+    <!--<p><a href="#" data-ng-click="openpopup('idg').preventdefault()" class="ups-link ups-new-window"> Read the Dangerous Goods Agreement Checklist <span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span> </a></p>-->
+    <p><a href="#" data-ng-click="openpopup('hazardousHelp').preventdefault()" class="ups-link ups-new-window"> Learn More About Shipping Hazardous Material <span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span> </a></p>
+    
+    <div class="ups-group" data-ng-if="enabled && !readOnly">
+    	<p>No longer need to ship dangerous goods?</p>
+        <button type="button" class="ups-link">Cancel These Shipping Permissions.</button>
+    </div>
+    <div data-ng-if="!enabled && !readOnly">
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-shipping_priveleges"
+                            class="ups-checkbox-custom" name="ups-shipping_priveleges"
+                            value="1" type="checkbox"
+                            data-ng-model="formObj.shipping_priveleges.active"
+                            data-ng-change="privelegesCheck()"
+                            data-ng-checked="formObj.shipping_priveleges.active">
+                <label
+                            for="ups-shipping_priveleges"
+                            class="ups-form_label ups-checkbox-custom-label">Request
+                    needed shipping privileges.</label>
+            </div>
+            <!-- ups-checkbox ups-input_wrapper --> 
+        </div>
+        <!-- ups-form_group -->
+        <div class="row">
+        	<div class="col-md-5">
+                <fieldset class="ups-form_group"
+                            data-ng-show="formObj.shipping_priveleges.active">
+                    <legend class="ups-readerTxt">Important question about you package</legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper ups-help_wrapper">
+                        <input check-verify id="ups-hazardous_material"
+                                    class="ups-checkbox-custom" name="ups-uid-form_title-unnamed"
+                                    type="checkbox" value="1" data-ng-change="choosePrivelege()"
+                                    data-ng-model="formObj.shipping_priveleges.hazardous_material"
+                                    data-ng-checked="formObj.shipping_priveleges.hazardous_material">
+                        <label for="ups-hazardous_material"
+                                    class="ups-checkbox-custom-label"> Dangerous Goods </label>
+                        <div class="ups-help"> <a href="#" onclick="return false;" data-ng-click="isPopoverOpen = !isPopoverOpen"
+                                        class="ups-help_link icon ups-active">Help <span class="ups-icon-questioncircle" aria-hidden="true"></span></a>
+                            <div class="ups-help_tooltip ups-help_tooltip_bottomleft"
+                                        data-ng-style="isPopoverOpen ? {'display':'block'} :{'display':'none'}">
+                                <button type="button" data-ng-click="isPopoverOpen = false"
+                                            class="ups-help_close icon "> <span class=" ups-icon-x ups-iconAlone" aria-hidden="true"></span> <span class="ups-readerTxt">Close</span> </button>
+                                <p>Explanatory text lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input check-verify id="ups-lithium_battery"
+                                    class="ups-checkbox-custom" name="lithium_battery"
+                                    type="checkbox" value="2" data-ng-change="choosePrivelege()"
+                                    data-ng-model="formObj.shipping_priveleges.lithium_battery"
+                                    data-ng-checked="formObj.shipping_priveleges.lithium_battery">
+                        <label for="ups-lithium_battery" class="ups-checkbox-custom-label">Lithium
+                            Batteries</label>
+                    </div>
+                    <!-- ups-buttonList_wrapper ups-input_wrapper -->
+                </fieldset>
+        	</div>
+        </div>
+        <!-- ups-form_group ups-reveal_content -->
+        <div class="ups-form_ctaGroup ups-group" data-ng-show="formObj.shipping_priveleges.active">
+            <button type="submit" class="ups-cta ups-cta_primary"
+                        data-ng-click="submitRequest()">Submit My Request</button>
+            <!--data-ng-disabled="!sumbitReq" -->
+            <!-- ups-form_ctaGroup -->
+        </div>
+        <p data-ng-if="confirmSubmit"> <strong>Thanks for your request.</strong> </p>
+        
+    </div>
+    <div class="ups-group" data-ng-if="enabled">
+        	<a href="https://www.ups.com/content/us/en/resources/techsupport/worldship/downloads.html" class="ups-link">Download WorldShip</a>
+    </div>
+   <!------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--	Remove these buttons in production. 									  --
+--																			  --
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" ng-click="enabled = false">Not Enabled</button>
+        <button class="ups-cta ups-cta_secondary" ng-click="enabled = true">Enabled</button>
+    </div>
+    <!------------------------------------------------------------------------------
+-------------------------------------------------------------------------------> 
+    <!-- //// end ups.ppc-hazardous-material //// -->
+</form>

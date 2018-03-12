@@ -1,0 +1,76 @@
+// ----------------------------------------------------
+// Unique styles for Mobile/Responsive application pages
+// ----------------------------------------------------
+
+
+// TEMPORARY FIX FOR M.APPS
+// remove once TEAMSITE_UI css is updated in CMS and ST env.
+body {
+    &.ups-appPage {
+        min-width:initial !important;
+    }
+
+    @media #{$media-small} {
+        min-width: initial !important;
+    }	
+}
+
+body {
+	.subhead .subtask a {
+		color: inherit;
+	}
+}
+
+#main {
+	input[type="radio"], input[type="checkbox"] {
+		margin-top: 1px;
+	}
+}
+
+@-moz-document url-prefix() {
+	select:not([multiple]) {
+		text-align: left;
+		option {
+			padding-#{$default-float}: 15px;
+		}
+	}
+	.RIF_Address .RIF_Country :-moz-any(span)::before, 
+	.RIF_Address .RIF_State :-moz-any(span)::before, 
+	.RIF_Address > div :-moz-any(span)::before {
+		background-color: transparent;
+	}
+}
+
+@media screen\9 {
+	select:not([multiple]) {
+		background-image: none !important;
+		min-width: 70px;
+		padding-#{$opposite-direction}: 5px;
+	}
+}
+
+@media screen\0 {
+	select:not([multiple]) {
+		background-image: none !important;
+		min-width: 70px;
+		padding-#{$opposite-direction}: 5px;
+	}
+}
+
+.content .alert.alert-info.error-content{
+	color:$red!important;
+	border:1px solid $red;
+
+}
+
+form[name=inputForm] #telephone{border-radius:0}
+
+/* 410064 Footer alignment and customer service icon correction overriding production.min.css */
+footer{
+	text-align: $default-float;
+	h2 span{
+		display:inline-block;
+	}
+}
+
+		

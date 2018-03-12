@@ -1,0 +1,518 @@
+---
+title: cam_shi_shi(1add)_his(2qry)
+layout: legacy.hbs
+version: v4
+appID: com.ups.ECS
+appCSS: ups.legacy_overrideECS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+       <form action="">
+        <!-- ECS C-Clamp -->
+        <div class="ccacmpad1"> 
+          <!-- Begin Application Container -->
+          <div> 
+            <!-- begin application content -->
+            <div class="campusship"><img alt="" border="0" height="8" src="/img/icn_page_title_cs.gif" width="1"></div>
+            <div class="uis"> <img alt="" height="15" src="/img/xln_spacer.gif" width="1"><br>
+              <img alt="" border="0" height="19" src="/img/icn_ship_head.gif" width="41"><span class="header">Create a Shipment</span><br>
+              <img alt="" height="15" src="/img/xln_spacer.gif" width="1"><br>
+            </div>
+            
+            <!-- begin application header -->
+            <table class="appheadercolor" border="0" cellpadding="0" cellspacing="0" width="566">
+              <tr>
+                <td width="283"><!-- begin title -->
+                  
+                  <div class="appspacepad"><span class="header2">Shipping History</span></div>
+                  
+                  <!-- end title --></td>
+                <td width="283"><!-- begin module navigation -->
+                  
+                  <div class="uis">
+                    <div class="modspacepad" align="right"><a href="#Help" class="white">Help<img alt="" src="/img/1.gif" width="3" height="10" border="0"><img alt="Help" border="0" height="9" src="/img/icn_help_white.gif" width="9"></a></div>
+                  </div>
+                  
+                  <!-- end module navigation --></td>
+              </tr>
+            </table>
+            <!-- end application header --> 
+            
+            <!-- begin instructional text -->
+            <table class="instrcolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+              <tr>
+                <td><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+              </tr>
+              <tr>
+                <td valign="top" width="546"><div class="instrpad"> Use Shipping History to review, track and void your previous shipments. You can 
+                    also re-ship using the shipping information from a previous shipment. To change 
+                    which fields are displayed, select Change Shipping History View. <br>
+                    <br>
+                    <!-- 	Admin Version of content
+		Use Shipping History to review, track and void previous shipments. Packages can 
+		also be re-shipped using the shipping information from a previous shipment. 
+		<br><br>
+		Administrators can view their own shipping history or the history for any user 
+		or location they administer. To see personal history, select the "View history 
+		for" radio button and choose "personal" from the associated list. 
+		<br><br>
+		To see others' history, select the "View history for" radio button and choose 
+		either "user", "location", or "location and reference" from the associated list. 
+		<br><br>
+		Administrators can export shipping history for any location they administer by 
+		selecting the "Export history for" radio button and choosing either "location" 
+		or "location and reference" from the associated list.  --> 
+                  </div>
+                  <br></td>
+              </tr>
+            </table>
+            <!-- end instructional text --> 
+            
+            <!-- begin module header -->
+            <table class="modcolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+              <tr>
+                <td><table border="0" cellpadding="0" cellspacing="0" width="566">
+                    <tr>
+                      <td width="10"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td width="283"><!-- begin module title -->
+                        
+                        <div class="modspacepad"><span class="modheader">History Selections</span></div>
+                        
+                        <!-- end module title --></td>
+                      <td width="283"><!-- begin module navigation -->
+                        
+                        <div class="uis"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></div>
+                        <div class="campusship">
+                          <div class="modspacepad" align="right"><a href="#Help" class="white">Help<img alt="" src="/img/1.gif" width="3" height="10" border="0"><img alt="Help" border="0" height="9" src="/img/icn_help_white.gif" width="9"></a></div>
+                        </div>
+                        
+                        <!-- end module navigation --></td>
+                      <td width="10"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            <!-- end module header --> 
+            
+            <!-- begin module -->
+            <table class="modbordercolor2" border="0" cellpadding="2" cellspacing="0" width="566">
+              <tr>
+                <td><!-- begin module column modulepad table - 5 columns with 3 spacer columns and 2 content columns -->
+                  
+                  <table class="modbgcolor2" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="modline2" colspan="5"><img alt="" border="0" height="3" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin left content column --> 
+                        <a href="#Shipping History View">Change Shipping History View</a> <br>
+                        <br>
+                        <a href="#View Export Query List">View Export Query List</a> 
+                        <!-- end left content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin right content column --> 
+                        <a href="#View Previous Release History">View Previous Release History</a> <br>
+                        <br>
+                        <a href="#Export All Company Locations">Export All Company Locations</a> <br>
+                        <br>
+                        <a href="#Export Current View">Export Current View</a> 
+                        <!-- end right content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end module column modulepad table --> 
+                  
+                  <!-- begin module column modulepad table - 5 columns with 3 spacer columns and 2 content columns -->
+                  
+                  <table class="modbgcolor2" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin left content column --> 
+                        Display per Page: <br>
+                        <select class="modSelMedium" name="ShipmentsPerPage" size="1">
+                          <option>10 Shipments</option>
+                          <option selected>25 Shipments</option>
+                          <option>50 Shipments</option>
+                        </select>
+                        <br>
+                        <br>
+                        Show History For The Last: <br>
+                        <select class="modSelMedium" name="HistorySpan" size="1">
+                          <option>1 Day</option>
+                          <option selected>7 Days</option>
+                          <option>30 Days</option>
+                          <option>Custom Date Range</option>
+                        </select>
+                        
+                        <!-- end left content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin right content column -->
+                        
+                        <table border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td valign="top"><input  checked name="ViewHistory" type="radio" value="ViewHistory"></td>
+                            <td valign="top"> View History for: <br>
+                              <select class="modSelMedium" size="1" name="HistoryView">
+                                <option selected>None Selected</option>
+                                <option>Personal</option>
+                                <option>User</option>
+                                <option>Location</option>
+                                <option>Location and Reference</option>
+                              </select></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2"><br></td>
+                          </tr>
+                          <tr>
+                            <td valign="top"><input name="ExportHistory" type="radio" value="ExportHistory"></td>
+                            <td valign="top"> Export History for: <br>
+                              <select class="modSelMedium" size="1" name="HistoryExport">
+                                <option selected>None Selected</option>
+                                <option>Location</option>
+                                <option>Location and Reference</option>
+                              </select></td>
+                          </tr>
+                        </table>
+                        <div align="right"><a href="#Go"><img alt="" border="0" height="18" src="/img_translations/en/btn_go_a.gif" width="38"></a></div>
+                        
+                        <!-- end right content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end module column modulepad table --> 
+                  
+                  <!-- begin module column spacing table - 5 columns with 3 spacer columns and 2 content columns -->
+                  
+                  <table class="modbgcolor2" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin left content column --> 
+                        Start Date: <br>
+                        <select class="modSelMediumSmall" name="Month" size="1">
+                          <option value="00" selected>Month</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                        </select>
+                        <select class="modSelSmall" name="Day" size="1">
+                          <option value="00" selected>Day</option>
+                          <option value="01">01</option>
+                          <option value="02">02</option>
+                          <option value="03">03</option>
+                          <option value="04">04</option>
+                          <option value="05">05</option>
+                          <option value="06">06</option>
+                          <option value="07">07</option>
+                          <option value="08">08</option>
+                          <option value="09">09</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="30">31</option>
+                        </select>
+                        <select class="modSelSmall" name="Year" size="1">
+                          <option value="00" selected>Year</option>
+                          <option value="01">2001</option>
+                          <option value="02">2002</option>
+                          <option value="03">2003</option>
+                          <option value="04">2004</option>
+                          <option value="05">2005</option>
+                          <option value="06">2006</option>
+                          <option value="07">2007</option>
+                          <option value="08">2008</option>
+                          <option value="09">2009</option>
+                          <option value="10">2010</option>
+                        </select>
+                        <br>
+                        (maximum range is 90 days) 
+                        <!-- end left content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="48%"><!-- begin right content column --> 
+                        End Date: <br>
+                        <select class="modSelMediumSmall" name="Month" size="1">
+                          <option value="00" selected>Month</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                        </select>
+                        <select class="modSelSmall" name="Day" size="1">
+                          <option value="00" selected>Day</option>
+                          <option value="01">01</option>
+                          <option value="02">02</option>
+                          <option value="03">03</option>
+                          <option value="04">04</option>
+                          <option value="05">05</option>
+                          <option value="06">06</option>
+                          <option value="07">07</option>
+                          <option value="08">08</option>
+                          <option value="09">09</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                          <option value="16">16</option>
+                          <option value="17">17</option>
+                          <option value="18">18</option>
+                          <option value="19">19</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="30">31</option>
+                        </select>
+                        <select class="modSelSmall" name="Year" size="1">
+                          <option value="00" selected>Year</option>
+                          <option value="01">2001</option>
+                          <option value="02">2002</option>
+                          <option value="03">2003</option>
+                          <option value="04">2004</option>
+                          <option value="05">2005</option>
+                          <option value="06">2006</option>
+                          <option value="07">2007</option>
+                          <option value="08">2008</option>
+                          <option value="09">2009</option>
+                          <option value="10">2010</option>
+                        </select>
+                        <br>
+                        <br>
+                        <div align="right"><a href="#Retrieve Shipments"><img alt="" border="0" height="18" src="/img_translations/en/btn_retrieve_shipments.gif" width="120"></a></div>
+                        
+                        <!-- end right content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="5"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end module column spacing table --></td>
+              </tr>
+            </table>
+            <!-- end module --> 
+            
+            <!-- begin module divider line -->
+            <div class="campusship">
+              <table class="moddividercolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+                <tr>
+                  <td><img alt="" border="0" height="16" src="/img/icn_module_divider.gif" width="1"></td>
+                </tr>
+              </table>
+            </div>
+            <!-- end module divider line --> 
+            
+            <!-- begin module divider line -->
+            <div class="uis">
+              <table class="moddividercolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+                <tr>
+                  <td><img alt="" border="0" height="6" src="/img/icn_module_divider_gline.gif" width="566"></td>
+                </tr>
+              </table>
+            </div>
+            <!-- end module divider line --> 
+            
+            <!-- begin module header -->
+            <table class="modcolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+              <tr>
+                <td><table border="0" cellpadding="0" cellspacing="0" width="566">
+                    <tr>
+                      <td width="10"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td width="283"><!-- begin module title -->
+                        
+                        <div class="modspacepad"><span class="modheader">Query List</span></div>
+                        
+                        <!-- end module title --></td>
+                      <td width="283"><!-- begin module navigation -->
+                        
+                        <div class="uis"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></div>
+                        <div class="campusship">
+                          <div class="modspacepad" align="right"><a href="#Help" class="white">Help<img alt="" src="/img/1.gif" width="3" height="10" border="0"><img alt="Help" border="0" height="9" src="/img/icn_help_white.gif" width="9"></a></div>
+                        </div>
+                        
+                        <!-- end module navigation --></td>
+                      <td width="10"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            <!-- end module header --> 
+            
+            <!-- begin module -->
+            <table class="modbordercolor2" border="0" cellpadding="2" cellspacing="0" width="566">
+              <tr>
+                <td><!-- begin module column modulepad table - 3 columns with 2 spacer columns and 1 content columns -->
+                  
+                  <table class="modbgcolor2" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="modline2" colspan="3"><img alt="" border="0" height="3" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="98%"><!-- begin content column --> 
+                        Please select a query ID from the list below and select Download File to download export data. <br>
+                        <br>
+                        <span class="bold">Select Download File type:</span> <br>
+                        <select class="modSelMedium" name="Download File type" size="1">
+                          <option value="1" selected>Select One</option>
+                          <option value="2">Uncompressed</option>
+                          <option value="3">WinZip</option>
+                          <option value="4">GZip</option>
+                        </select>
+                        <br>
+                        <br>
+                        <span class="bold">Queries 1 through 25 out of 54 in the last 7 days.</span> <br>
+                        <a href="#Previous">Previous</a> &nbsp;&nbsp;<a href="#Next">Next</a> <br>
+                        <div align="right">
+                          <input value="Download File" class="btn" type="button" name="repl_fname">
+                        </div>
+                        
+                        <!-- end content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end module column modulepad table --> 
+                  
+                  <!-- begin results table -->
+                  
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td bgcolor="#cccccc" height="24" width="1%">&nbsp;</td>
+                      <td bgcolor="#cccccc" height="24" width="99%"><div class="modulepad"><span class="bold">Query ID</span></div></td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ffffff" height="24">&nbsp;
+                        <input name="queryIDSelect" type="radio" value="1"></td>
+                      <td bgcolor="#ffffff" height="24"><div class="modulepad">query ID</div></td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#cccccc" height="24">&nbsp;
+                        <input name="queryIDSelect" type="radio" value="1"></td>
+                      <td bgcolor="#cccccc" height="24"><div class="modulepad">query ID</div></td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#cccccc" colspan="12"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end results table --> 
+                  
+                  <!-- begin module column modulepad table 2 - 3 columns with 2 spacer columns and 1 content columns -->
+                  
+                  <table class="modbgcolor2" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td colspan="3"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                    <tr>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                      <td valign="top" width="98%"><!-- begin content column -->
+                        
+                        <div align="right">
+                          <input value="Download File" class="btn" type="button" name="repl_fname">
+                        </div>
+                        <br>
+                        <span class="bold">Queries 1 through 25 out of 54 in the last 7 days.</span> <br>
+                        <a href="#Previous">Previous</a> &nbsp;&nbsp;<a href="#Next">Next</a> 
+                        <!-- end content column --></td>
+                      <td width="1%"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="10"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                    </tr>
+                  </table>
+                  
+                  <!-- end module column modulepad table --></td>
+              </tr>
+            </table>
+            <!-- end module --> 
+            
+            <!-- begin buttons -->
+            <table class="butbarbgcolor2" border="0" cellpadding="0" cellspacing="0" width="566">
+              <tr>
+                <td valign="top"><div align="right"><img alt="" border="0" height="2" src="/img/xln_spacer.gif" width="1"></div></td>
+              </tr>
+            </table>
+            <!-- end buttons -->
+            <div align="center" class="cobrand"><br>
+              Company Support: &nbsp;&nbsp;4105604203&nbsp;&nbsp;<a href="mailto:test@ups.com">test@ups.com</a></div>
+            <!-- end application content --> 
+            
+          </div>
+        </div>
+      </form>
+      </div>

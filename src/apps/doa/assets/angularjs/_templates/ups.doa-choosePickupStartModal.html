@@ -1,0 +1,59 @@
+<div class="ups-box-modal" data-ng-controller="ChoosePickupStartCtrl">
+	<!-- //// begin ups.doa-choosePickupStartModal //// -->
+    <!-- CHOOSE ADDRESS CONTENT -->
+	<p>Your driver can start picking up shipments in next three to ten
+		business days.</p>
+	<p>If you need to ship before your pickups start, request a UPS On-Call Pickup&reg; or use one of our many dropoff locations.</p>
+	<form name="ups_pickupstartdate" error-on-submit novalidate>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required">
+
+					<label for="ups-pickup-start-date" class="ups-form_label">
+                    	Pick your start date
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+
+						<input error-on-blur type="text" name="pickUpStartDate"
+							class="ups-form_input" id="ups-pickup-start-date"
+							uib-datepicker-popup="{{format}}" data-ng-model="dt"
+							is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close"
+							alt-input-formats="altInputFormats" aria-required="true" required/> <span
+							class="ups-readerTxt">Please enter date in mm/dd/yyyy
+							format</span> <span id="ups-pickup-start-date-error" role="alert"><span
+							class="ups-invalid_color"
+							data-ng-if="!ups_pickupstartdate.pickUpStartDate.$pristine && ups_pickupstartdate.pickUpStartDate.$invalid">
+								<span class="icon ups-error_exclamation"> <span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+								data-ng-show="ups_pickupstartdate.pickUpStartDate.$error.required">Start
+									date is required.</span> <span
+								data-ng-hide="ups_pickupstartdate.pickUpStartDate.$error.required">Invalid
+									start Date.</span>
+						</span> <span data-ng-if="ups_pickupstartdate.pickUpStartDate.$valid">
+								<span class="ups-readerTxt">Check</span>
+						</span> </span>
+
+						<div data-ng-if="(ups_pickupstartdate.pickUpStartDate.$valid)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="ups-start_date">
+		<uib-datepicker ng-model="dt" class="ups-datepicker_inline" datepicker-options="dateOptions"></uib-datepicker>
+	</div>
+    <div class="ups-form_ctaGroup text-center">
+        <button type="submit" class="ups-cta ups-cta_tertiary "
+            data-ng-click="goback()">Back</button>
+        <button type="submit" class="ups-cta ups-cta_primary "
+            data-ng-init="dateSelected=false" data-ng-disabled="!dateSelected"
+            data-ng-click="nextToConfirmation()">Next</button>
+    </div>
+	<!-- //// end ups.doa-choosePickupStartModal //// -->
+</div>

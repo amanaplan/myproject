@@ -1,0 +1,11 @@
+<div class="ups-accordion_item" ng-class="{'ups-active' : isOpen}">
+	<a href="#" onclick="return false;" role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}"
+		class="ups-accordion_toggle accordion-toggle" data-ng-keypress="toggleOpen($event)" data-toggle="collapse" tabindex="0" aria-controls="{{::panelId}}" data-ng-click="toggleOpen()" uib-accordion-transclude="heading" ng-class="{'ups-active' : isOpen}">
+		<span uib-accordion-header data-ng-class="{'text-muted': isDisabled}">{{heading}}</span>
+	</a>
+	<div id="{{::panelId}}" aria-labelledby="{{::headingId}}"
+		aria-hidden="{{!isOpen}}" role="tabpanel"
+		class="ups-accordion_expand" uib-collapse="!isOpen">
+		<div data-ng-transclude></div>
+	</div>
+</div>

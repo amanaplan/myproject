@@ -1,0 +1,137 @@
+<!-- Search Users Dialog Modal -->
+    <div data-ng-controller="quantumViewSearchUsersDialog">
+        <div class="ups-group">
+            <p>Enter your search information and select a user to continue.</p>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ups-form_group">
+                        <label for="ups_search" class="ups-form_label">Search</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="search" id="ups_search" class="ups-form_input" name="ups_search" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="ups-form_group">
+                        <label for="ups_search_by" class="ups-form_label">Search By</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_search_by" class="ups-dropdown" name="ups_search_by">
+                                <option value="0">
+                                    Name
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ups-form_group">
+                        <label for="ups_search_qualifier" class="ups-form_label">Search Qualifier</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_search_qualifier" class="ups-dropdown" name="ups_search_qualifier">
+                                <option value="0">
+                                    Starts With
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="ups-form_ctaGroup ups-no_label">
+                        <button type="button" class="ups-cta ups-cta_primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ups-group">
+            <button type="button" data-ng-click="showOptionSearchCriteriaButton();" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-link" aria-expanded="{{ (showOptionSearchCriteria) ? 'true' : 'false' }}" aria-controls="showOptionSearchCriteria"><span class="icon" data-ng-class="{'ups-icon-plus' : !showOptionSearchCriteria, 'ups-icon-minus' : showOptionSearchCriteria}"></span> <span data-ng-if="!showOptionSearchCriteria">Show</span> <span data-ng-if="showOptionSearchCriteria">Hide</span> Optional Search Criteria
+            </button>
+        </div>
+        <div data-ng-if="showOptionSearchCriteria" id="showOptionSearchCriteria">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ups-form_group">
+                        <label for="ups_search_privilege" class="ups-form_label">Search By Privilege</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_search_privilege" class="ups-dropdown" name="ups_search_privilege">
+                                <option value="0">
+                                    All Users
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="ups-form_group">
+                        <label for="ups_search_by_view" class="ups-form_label">Search By View</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_search_by_view" class="ups-dropdown" name="ups_search_by_view">
+                                <option value="0">
+                                    Select One
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ups-form_group ups-help_wrapper">
+                        <label for="ups_search_within_view" class="ups-form_label">Search Within View For</label>
+                        <div class="ups-help">
+                            <button type="button" id="ups-formHelp2" class="ups-help_link" data-ng-click="isPopoverOpen = !isPopoverOpen">
+                                <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                Help
+                            </button>
+                            <div class="ups-help_tooltip ups-help_tooltip_topleft" data-ng-style="isPopoverOpen ? {'display':'block'} :{'display':'none'}">
+                                <button type="button" class="ups-help_close" data-ng-click="isPopoverOpen = false">
+                                    <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Close</span>
+                                </button>
+                                <p>Lorem ipsom dolor</p>
+                            </div>
+                        </div>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="search" name="ups_search_within_view" class="ups-form_input" id="ups_search_within_view" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="ups-form_ctaGroup ups-no_label">
+                        <button type="button" class="ups-cta ups-cta_primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Users</h3>
+        <p>
+            Select a user to continue, or modify your search criteria to search again.
+        </p>
+        <!-- Table -->
+        <div class="ups-table table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="col" class="ups-table_header_tertiary">
+                            <button class="ups-link" data-ng-click="sortBy('name')"><span
+                                    class="ups-readerTxt">Sort By </span>Name
+                                    <span aria-hidden="true" class="icon" ng-class="{'ups-icon-chevrondown': reverse, 'ups-icon-chevronup': !reverse}"></span>
+                            </button>
+                        </th>
+                        <th scope="col" class="ups-table_header_tertiary">User ID</th>
+                        <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                    </tr>
+                    <tr data-ng-repeat="user in qvmSearchUsers | orderBy:propertyName:!reverse">
+                        <th scope="row">{{user.usersName}}</th>
+                        <td>{{user.userID}}</td>
+                        <td>
+                             <div class="ups-form_ctaGroup text-center">
+                                <button class="ups-button_link" type="button" data-ng-if="user.selectUserButton" ng-click="selectActionsButton();">Select User<span aria-hidden="true" class="ups-readerTxt"> Select User {{user.userID}}</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End of Table -->
+        <div class="ups-form_ctaGroup text-center">
+            <button type="button" class="ups-cta ups-cta_tertiary" data-ng-click="cancelButton()">Cancel</button>
+        </div>
+    </div>

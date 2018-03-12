@@ -1,0 +1,137 @@
+<h2 class="ups-readerTxt">Product List</h2>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Upload Document</h3>
+    </div>
+    <div class="ups-group">
+        <p>
+            Upload a list of your items to get verified approval.
+        </p>
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-4" *ngIf="uploadName">
+        </div>
+        <div class="col-md-4">
+            <div class="ups-upload-wrap">
+                <input type="file" name="file" class="ups-upload" [(ngModel)]="uploadName">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="ups-cta ups-cta_primary">Download Doc</button>
+        </div>
+    </div> -->
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+    <div class="ups-cms-demo">
+        <p>
+            This section will be developed once a comp/wire is received for the initial view of this section. PM has been informed.
+        </p>
+        <small>- As of Thursday, 3/1/18</small>
+    </div>
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+</section>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Product List</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="searchItems">Search Items</label>
+                <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                    <input class="ups-form_input" id="searchItems" name="searchItems" type="search">
+                    <button class="ups-input_action ups-input_action_invert"> <span aria-hidden="true" class="icon ups-icon-search"></span> <span class="ups-readerTxt">Click to search for products in the below list</span> </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p [ngClass]="{'text-right ups-no_label ups-no_label_plus': viewportSize.isGtSMVP}">
+                {{this.allProductList.length}} Items
+            </p>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="ups-table">
+        <table class="table table-striped ups-returns_hist_table ups-drawer ups-drawer_slim" upsDrawerList>
+            <caption class="ups-readerTxt">
+                Product List Table
+            </caption>
+            <!-- Initial Product List Row -->
+            <thead>
+                <tr>
+                    <th scope="col" class="ups-table_header_tertiary"><button class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon" (click)="sortProductListItemBtn();">Item
+
+                        <span *ngIf="!sortProductListItemAsc"
+                        class="ups-readerTxt">Currently Sorted By Descending Order. Click to sort by ascending order. </span><span *ngIf="sortProductListItemAsc"
+                            class="ups-readerTxt">Currently Sorted By Ascending Order. Click to sort by descending order.</span>
+
+                            <span class="icon" [ngClass]="{'ups-icon-chevrondown': !sortProductListItemAsc, 'ups-icon-chevronup': sortProductListItemAsc}" aria-hidden="true"></span>
+                        </button>
+                    </th>
+                    <th scope="col" class="ups-table_header_tertiary" *ngIf="viewportSize.isGtSMVP"><button class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon" (click)="sortProductListStatusBtn();">Status<span *ngIf="!sortProductListStatusAsc"
+                    class="ups-readerTxt">Currently Sorted By Descending Order. Click to sort by ascending order. </span><span *ngIf="sortProductListStatusAsc"
+                        class="ups-readerTxt">Currently Sorted By Ascending Order. Click to sort by descending order.</span>
+
+                        <span class="icon" [ngClass]="{'ups-icon-chevrondown': !sortProductListStatusAsc, 'ups-icon-chevronup': sortProductListStatusAsc}" aria-hidden="true"></span>
+                        </button>
+                    </th>
+                    <th scope="col" aria-hidden="true">
+                    </th>
+                </tr>
+            </thead>
+            <!-- End of Initial Product List Row -->
+                <!-- Product List Detail -->
+                <!-- Code Notes:
+                Why do we repeat tbody?
+                Because there is a row underneath the tbody that is specific to only that specific tbody. This is accessible proof. You can find this table on Returns History as well. -->
+                <ng-container *ngFor="let item of allProductList | orderby: [sortProductListItem,sortProductListStatus]">
+                    <tbody class="ups-drawer_list_item">
+                    <tr scope="row">
+                        <td>{{item.productListLabel }}</td>
+                        <td *ngIf="viewportSize.isGtSMVP">{{item.isItApproved}}</td>
+                        <td><button class="ups-drawer-btn" type="button" [attr.id]="'openDrawerBtn' + item.id" [attr.aria-controls]="'openDrawer' + item.id" aria-expanded="false"><span class="pull-right"><span class="icon ups-icon-wedgedown" aria-hidden="true"></span><span class="ups-readerTxt">Expand/Collapse for more details about {{item.productListLabel}}</span></span>
+                            </button></td>
+                    </tr>
+                    <tr class="ups-drawer-content" [attr.id]="'openDrawer' + item.id">
+                        <td colspan="6">
+                            <div class="ups-group ups-group_condensed">
+                                <p><strong>Description:</strong><span class="ups-readerTxt">of {{item.productListLabel}}</span></p>
+                                <p>
+                                    {{item.productListDetail1}}
+                                </p>
+                                <p>
+                                    {{item.productListDetail2}}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                </ng-container>
+                <!-- End of Product List Detail -->
+        </table>
+    </div>
+    <!-- End of Table -->
+    <!-- Pagination -->
+    <section class="ups-search_support ups-group">
+        <div class="ups-search_results ups-active">
+            <div class="ups-wrap_inner">
+                <div class="results-footer clearfix">
+                    <div class="footer-container">
+                        <button class="first hidden-xs hidden-sm">First</button>
+                        <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                        <div class="pagination-container">
+                            <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                            <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                            <button class="pag hidden-xs hidden-sm">3</button>
+                            <button class="pag hidden-xs hidden-sm">4</button>
+                            <button class="pag hidden-xs hidden-sm">5</button>
+                        </div>
+                        <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                        <button class="last hidden-xs hidden-sm">Last</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Pagination -->
+</section>

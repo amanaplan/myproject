@@ -1,0 +1,64 @@
+// POPOVER
+// ----------------------------------
+.popover {
+	@include border_radius(0);
+	border-color: $stone_s3;
+
+	&.top > .arrow {
+		border-top-color: $stone_s3;
+	}
+	&.right {
+		max-width: 300px;
+		width: 100%;
+		> .arrow {
+			border-right-color: $stone_s3;
+		}
+	}
+	&.bottom > .arrow {
+		border-bottom-color: $stone_s3;
+	}
+	&.left > .arrow {
+		border-left-color: $stone_s3;
+	}
+
+	.popover-content {
+		padding: $margin_4;
+	}
+}
+
+//source content for popover
+/*.ups-popover_content {
+	display: none;
+}*/
+.popover.right > .arrow:after {
+    border-right-color: $ups_brown;
+}
+.popover.top > .arrow:after {
+    border-top-color: $ups_brown;
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: $ups_brown;
+}
+
+/*
+From PPC 
+*/
+.popover {
+	max-width: none;
+	min-width: 260px;
+    width: 300px;
+	@media screen and (min-width: #{$screen-md}){
+		width: 500px;
+	}
+}
+
+.popover {
+	// z-index: 999;
+	z-index: $zindex-popover;
+	background-color: $ups_brown;
+	color: $white;
+	.ups-invalid_color {
+		font-family: $sans;
+	}
+}

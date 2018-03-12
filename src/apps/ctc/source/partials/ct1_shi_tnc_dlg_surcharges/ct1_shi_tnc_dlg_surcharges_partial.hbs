@@ -1,0 +1,163 @@
+
+{{>"background_modal_content"}}
+
+<!-- Begin Application Module -->
+<div class="appLvl modal-dialog mod modal dialog"> 
+	
+	<!-- Begin Application Header -->
+	<div class="appHead clearfix">
+		<h2 class="ups-modal_heading">Alerts or Surcharge Notices</h2>
+		<!-- Old Close Button Implementation -->
+		<!--<ul>
+			<li>
+				<input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+			</li>
+		</ul>-->
+		<!-- New WEM Button Implementation -->
+		<button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span class="ups-readerTxt ng-binding">Close This Dialog</span> </button>
+	</div>
+	<!-- End Application Header --> 
+	
+	<!-- Begin Application Body -->
+	<div class="appBody ups-application_wrapper ups-form_wrap">
+		<p>Based on your shipment characteristics, the following alerts surcharge notices apply to your quote.</p>
+		<!-- Old Legacy Table -->
+		<!--<div class="clearfix">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dataTable tableonly valignTop">
+				<tbody>
+					<tr>
+						<th></th>
+						<th nowrap>weight<br>
+							lbs</th>
+						<th nowrap>packaging/dimensions<br>
+							(inches)</th>
+						<th nowrap>alerts or surcharge notices</th>
+					</tr>
+					<tr class="odd">
+						<td>1</td>
+						<td>10</td>
+						<td>other packaging / 12 x 15 x 10</td>
+						<td>[signature required]</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>15</td>
+						<td>other packaging / 12 x 15 x 10</td>
+						<td> [<a href="repl_href" class="btnlnkR newWindowIconR">large package</a> applies] <br>
+							[Seasonal Surcharge applies]</td>
+					</tr>
+					<tr class="odd">
+						<td>3</td>
+						<td>12</td>
+						<td>other packaging /<br>
+							100 x 15 x 10</td>
+						<td> [<a href="repl_href" class="btnlnkR newWindowIconR">large package</a> applies] <br>
+							[<a href="repl_href" class="btnlnkR newWindowIconR">dimensional weight</a> applies] </td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>10</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+					<tr class="odd">
+						<td>5</td>
+						<td>15</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>12</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="pushRight">[large package surcharge applies]</p>
+		</div>-->
+		
+		<!-- NEW LEGACY/WEM Table -->
+		<div class="clearfix">
+			<table width="100%" cellspacing="0" cellpadding="0" border="0" class="dataTable ups-table_group">
+				<tbody>
+					<tr>
+						<th></th>
+						<th scope="col">weight
+							(lbs)</th>
+						<th scope="col">packaging/dimensions
+							(inches)</th>
+						<th scope="col">alerts or surcharge notices</th>
+					</tr>
+					<tr class="odd">
+						<td scope="row">1</td>
+						<td>10</td>
+						<td nowrap>other packaging / 12 x 15 x 10</td>
+						<td>[signature required]</td>
+					</tr>
+					<tr>
+						<td scope="row">2</td>
+						<td>15</td>
+						<td nowrap>other packaging / 12 x 15 x 10</td>
+						<td> [<a href="repl_href" class="ups-link ups-new-window">large package<span class="ups-icon-newwindow" aria-hidden="true"></span><span class="ups-readerTxt">This will open a new window</span></a> applies]
+							[Seasonal Surcharge applies]</td>
+					</tr>
+					<tr class="odd">
+						<td scope="row">3</td>
+						<td>12</td>
+						<td nowrap>other packaging /
+							100 x 15 x 10</td>
+						<td> [<a href="repl_href" class="ups-link ups-new-window">large package<span class="ups-icon-newwindow" aria-hidden="true"></span><span class="ups-readerTxt">This will open a new window</span></a> applies] 
+							[<a href="repl_href" class="ups-link ups-new-window">dimensional weight<span class="ups-icon-newwindow" aria-hidden="true"></span><span class="ups-readerTxt">This will open a new window</span></a> applies] </td>
+					</tr>
+					<tr>
+						<td scope="row">4</td>
+						<td>10</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+					<tr class="odd">
+						<td scope="row">5</td>
+						<td>15</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+					<tr>
+						<td scope="row">6</td>
+						<td>12</td>
+						<td>pallet / 40 x 40 x 36</td>
+						<td>[pallet surcharge applies]</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="pull-right">[large package surcharge applies]</p>
+		</div>
+	</div>
+	<!-- End Application Body --> 
+	
+	<!-- Begin Application Footer -->
+	<!-- Old Button -->
+	<!-- <div class="appFooter">
+		<div class="btnBar alignCenter">
+			<input id="repl_id" name="repl_name" type="button" value="okay" class="btn">
+		</div>
+	</div> -->
+	<!-- New WEM/Legacy Button Group -->
+	<div class="appFooter">
+		<div class="ups-form_ctaGroup text-center">
+			<button type="button" class="ups-cta ups-cta_primary">Okay</button>
+		</div>
+	</div>
+	<!-- End Application Footer --> 
+	
+</div>
+<!-- End Application Module --> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+</script> 

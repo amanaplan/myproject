@@ -1,0 +1,59 @@
+---
+title: cancel membership
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+	{{> background_modal_content }}
+  
+<div class="appLvl mod modal dialog">
+  <div class="appHead clearfix">
+    <h2>{{title}}</h2>
+    <ul>
+      <li>
+        <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+      </li>
+    </ul>
+  </div>
+  <div class="appBody">
+    <p>are you sure you want to cancel this membership?  select <strong>yes</strong> to cancel.  select <strong>no</strong> to keep this membership active.</p>
+    <dl>
+      <dt>
+        <label for="repl_id">delivery address:</label>
+      </dt>
+      <dd>32 sand court<br/>
+        destin, fl 32451</dd>
+    </dl>
+    <dl>
+      <dt>
+        <label for="repl_id">delivery address description:</label>
+      </dt>
+      <dd>beach house</dd>
+    </dl>
+  </div>
+  <div class="appFooter">
+    <div class="btnBar alignCenter">
+      <input type="button" class="btn" value="yes" name="repl_name">
+      <input type="button" class="btn" value="no" name="repl_name">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+		
+$(document).ready(function(){
+		var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:470});
+		$('#modalClose').click(function(e){
+				modal.dialog('close');
+		});
+	});
+
+
+</script>
+</div>

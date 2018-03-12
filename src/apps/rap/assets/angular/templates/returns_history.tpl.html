@@ -1,0 +1,185 @@
+<div class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Returns History</h2>
+    </div>
+    <div class="row" *ngIf="viewportSize.isLtMDVP">
+        <div class="col-md-5">
+            <div class="ups-form_group">
+                <label for="selectTableCategory" class="ups-form_label">
+                    Select Category
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="selectTableCategory" class="ups-dropdown" id="selectTableCategory">
+                        <option value="0">Date Return Created</option>
+                        <option value="1">Return Tracking No.</option>
+                        <option value="2">Policy Name</option>
+                        <option value="3">Billing Account</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="ups-form_group">
+                <label for="returnsSearch">Enter date, tracking number, policy name or billing account</label>
+                <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                    <input class="ups-form_input" id="returnsSearch" name="returnsSearch" type="search">
+                    <button class="ups-input_action ups-input_action_invert"> <span aria-hidden="true" class="icon ups-icon-search"></span> <span class="ups-readerTxt">Click to search for a return</span> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_group_inline">
+                <label for="showResults" class="ups-form_label">Showing results for last:</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="showResults" class="ups-dropdown" id="showResults">
+                        <option value="0">30 days</option>
+                        <option value="1">60 days</option>
+                        <option value="2">90 days</option>
+                        <option value="3">6 months</option>
+                        <option value="4">1 year</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ups-group">
+        <p>Click to sort by:</p>
+    </div>
+    <!-- Table -->
+    <div class="ups-table">
+        <table class="table table-striped ups-returns_hist_table ups-drawer ups-drawer_slim" upsDrawerList>
+            <caption class="ups-readerTxt">
+                My Returns History
+            </caption>
+            <!-- Initial Returns History Row -->
+            <thead>
+                <tr>
+                    <!-- <th scope="col" aria-hidden="true">
+
+                    </th> -->
+                    <th scope="col"><button class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">Date Return Created  <span
+                        class="ups-readerTxt">(Sorted By Descending Order)</span> <span><span class="icon ups-icon-chevrondown" aria-hidden="true"></span></span>
+                        </button>
+                    </th>
+                    <th scope="col" *ngIf="viewportSize.isGtSMVP">Return Tracking <span aria-hidden="true">No.</span><span class="ups-readerTxt">Number</span>
+                    </th>
+                    <th scope="col" *ngIf="viewportSize.isGtSMVP">Policy Name
+                    </th>
+                    <th scope="col" *ngIf="viewportSize.isGtSMVP">Billing Account
+                    </th>
+                    <th scope="col" class="" aria-hidden="true">
+                    </th>
+                </tr>
+            </thead>
+            <!-- End of Initial Returns History Row -->
+                <!-- Return History Detail -->
+                <ng-container *ngFor="let item of allReturnHistory">
+                    <tbody class="ups-drawer_list_item">
+                    <tr scope="row">
+                        <!-- <td>
+                            {{item.isThereAPlugIn}}
+                        </td> -->
+                        <td><strong>{{item.dateReturnCreated }}</strong></td>
+                        <td *ngIf="viewportSize.isGtSMVP"><a href="repl_href">{{item.returnTrackingNumber}}</a></td>
+                        <td *ngIf="viewportSize.isGtSMVP">{{item.policyNameCategory}}</td>
+                        <td *ngIf="viewportSize.isGtSMVP">{{item.billingAccountNumber}}</td>
+                        <td><button class="ups-drawer-btn" type="button" [attr.id]="'openDrawerBtn' + item.id" [attr.aria-controls]="'openDrawer' + item.id" aria-expanded="false"><span class="pull-right"><span class="icon ups-icon-wedgedown" aria-hidden="true"></span><span class="ups-readerTxt">Expand/Collapse</span></span>
+                            </button></td>
+                    </tr>
+                    <tr *ngIf="item.returnHistoryDetail" class="ups-drawer-content" [attr.id]="'openDrawer' + item.id">
+                        <td colspan="5">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Reason for Return:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>{{ item.returnHistoryDetail?.reasonforReturn }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Comments:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>{{ item.returnHistoryDetail?.returnComments }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Email:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>{{ item.returnHistoryDetail?.returnEmailAddress }}</p>
+                                </div>
+                            </div>
+
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Forward Tracking:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>
+                                        <a href="#">{{ item.returnHistoryDetail?.forwardTrackingNumber }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Reference Number 1:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>{{ item.returnHistoryDetail?.referenceNumber1 }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p><strong>Reference Number 2:</strong></p>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>{{ item.returnHistoryDetail?.referenceNumber2 }}</p>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+                </ng-container>
+                <!-- End of Return History Detail -->
+        </table>
+    </div>
+    <!-- End of Table -->
+</div>
+<!-- Pagination -->
+<section class="ups-search_support ups-group">
+    <div class="ups-search_results ups-active">
+        <div class="ups-wrap_inner">
+            <div class="results-footer clearfix">
+                <div class="footer-container">
+                    <button class="first hidden-xs hidden-sm">First</button>
+                    <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                    <div class="pagination-container">
+                        <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                        <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                        <button class="pag hidden-xs hidden-sm">3</button>
+                        <button class="pag hidden-xs hidden-sm">4</button>
+                        <button class="pag hidden-xs hidden-sm">5</button>
+                    </div>
+                    <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                    <button class="last hidden-xs hidden-sm">Last</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Pagination -->
+<!-- CTA Button -->
+<div class="ups-form_ctaGroup">
+    <a class="ups-cta ups-cta_primary" routerLink="/returnsHistory/createReport">Create Report</a>
+</div>
+<!-- End of CTA Button -->

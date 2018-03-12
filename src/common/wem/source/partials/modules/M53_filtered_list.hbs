@@ -1,0 +1,57 @@
+{{!--------------------------------------------
+===============================================
+M53 Filtered List
+===============================================
+---------------------------------------------}}
+
+<div class="ups-list ups-wrap ups-filtered-list">
+    <div class="ups-wrap_inner">
+
+        {{#if title}}
+            <h2 class="ups-article-header{{#if title.text-align}} {{title.text-align}}{{/if}}">{{title.text}}</h2>
+        {{/if}}
+
+        {{#if introductory}}
+        <div class="ups-list_introductory">
+            <p>{{introductory}}</p>
+        </div>
+        {{/if}}
+
+        <div class="ups-list_filter clearfix">
+            <div class="ups-filter_container">
+                <label for="ups-filter_{{nameToId label}}" class="ups-form_label">{{label}}</label>
+                <div class="ups-dropdown_wrapper">
+                    <select name="filter_type" class="ups-dropdown" id="ups-filter_{{nameToId label}}">
+                        <option value="" disabled selected>Select one</option>
+                        <option value="all">Select all</option>
+                        <!-- <option value="alphabetically">Sort A - Z</option> -->
+                        {{#each tags}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="ups-list_component">
+            {{#compare type '===' "col-multi"}}
+                {{> M15_list_multi list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "links"}}
+                {{> M15_list_links list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "bullets"}}
+                {{> M15_list_bullets list_items}}
+            {{/compare}}
+        </div>
+
+        {{#if explanatory}}
+        <div class="ups-list_explanatory">
+            <p>{{explanatory}}</p>
+        </div>
+        {{/if}}
+
+    </div>
+</div>

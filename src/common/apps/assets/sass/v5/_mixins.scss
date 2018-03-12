@@ -1,0 +1,86 @@
+// MIXINS
+// ----------------------------------
+@mixin app_md {
+	width: auto;
+	//margin: 0 -60px $page-margin;
+
+	.ups-app_header {
+		padding: 12px 60px;
+
+		a { #{$opposite-direction}: 60px; }
+	}
+
+	.ups-app_panel {
+		padding: 50px 60px;
+		border: none;
+		border-bottom: 1px solid $ups_stone;
+	}
+}
+
+@mixin app_sm {
+	width: auto;
+
+	.ups-app_header {
+		padding: 14px 20px;
+		.ups-help_button{
+			padding: 0 15px;
+		}
+	}
+
+	.ups-app_panel {
+		padding: $margin_3 20px 0;
+		border: 1px solid $black_s1;
+		border-top: 0;
+		.ups-help_panel {
+			margin: 0;
+			margin-bottom: $margin_3;
+			padding: 0 20px;
+		}
+		.ups-form_doubleButton {
+			width: 100%;
+			max-width: 100%;
+			padding: 12px 0 10px;
+
+			&:last-child {
+				margin-bottom: $margin_3;
+			}
+		}
+
+		.ups-subsection-alt & {
+			border: none;
+		}
+	}
+
+}
+@mixin border_left_radius($radius) {
+	-webkit-border-left-radius: $radius;
+	-moz-border-left-radius: $radius;
+	-ms-border-left-radius: $radius;
+	border-left-radius: $radius;
+	
+	-webkit-border-right-radius: 0;
+	-moz-border-right-radius: 0;
+	-ms-border-right-radius: 0;
+	border-right-radius: 0;
+}
+@mixin border_right_radius($radius) {
+	-webkit-border-left-radius: 0;
+	-moz-border-left-radius: 0;
+	-ms-border-left-radius: 0;
+	border-left-radius: 0;
+	
+	-webkit-border-right-radius: $radius;
+	-moz-border-right-radius: $radius;
+	-ms-border-right-radius: $radius;
+	border-right-radius: $radius;
+}
+@mixin border_radius($radius) {  
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin size($width, $height: $width) {
+      width: $width;
+      height: $height;
+}

@@ -1,0 +1,164 @@
+---
+title: ct1_tra_qvm_dlg_search
+layout: legacy.hbs
+version: legacy
+appCSS: ups.legacy_overrideQVMC
+dir: ltr
+lang: en
+---
+
+<!--
+NOTE: the maximum modal dialog size of 470px x 790px, and minimum modal dialog size of 230px x 230px
+as set by UPS Brand Group must be set by the container which hosts this page.  Size constraints
+are not set within this document.
+-->
+<!--<style type="text/css">
+.dl_inline {
+	margin-bottom:8px;
+}
+.dl_inline dt, .dl_inline dd {
+	display:inline;
+}
+div#main {
+	border:1px solid #008198;
+}
+.mod {
+	background-color:#FFFFFF;
+}
+.mod th {
+	background-color:#DCEDE5;
+}
+.mod th h2 {
+	color:#008198;
+}
+.mod th ul {
+	margin-right:10px;
+}
+</style>-->
+<div id="main">
+	<form action="repl_fname">
+		<table border="0" cellspacing="0" cellpadding="0" class="mod">
+			<tr>
+				<th><div>
+						<h2>Search</h2>
+						<ul>
+							<li><a href="javascript:void(0)"><img src="/img/icn_cross_mini_wht.gif" alt="Close" title="Close" width="12" height="12"></a></li>
+						</ul>
+						<div style="clear:both;"></div>
+					</div></th>
+			</tr>
+			<tr>
+				<td><div class="introMod">
+						<p class="error">&gt;&gt;&gt;{Error Text Here} </p>
+						<p>Enter a search word, phrase, or number. You can also limit your search to specific shipment types, or by date. Required fields are indicated with <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></p>
+					</div>
+					<div class="modFlex">
+						<div class="modContent">
+							<fieldset>
+							<legend>Search</legend>
+							<dl>
+								<dt>
+									<label>View:</label>
+								</dt>
+								<dd>
+									<select>
+										<option value="" selected>Outbound</option>
+										<option value="">Inbound</option>
+										<option value="">Third Party</option>
+										<option value="">Imports</option>
+										<option value="">Custom View 1</option>
+										<option value="">Custom View ...</option>
+										<option value="">Custom View n</option>
+									</select>
+								</dd>
+							</dl>
+							<p>Specify a date range below. Requests are limited to a maximum of 45 days at a time. Days Available for Viewing: 45 of 120 </p>
+							<dl class="dl_inline">
+								<dt>
+									<label>Date Range:</label>
+								</dt>
+								<dd>
+									<input name="repl_name" type="text" id="start_date" size="10" value="" class="datepicker" title="Date format is mm/dd/yyyy.">
+								</dd>
+								<dt>
+									<label>to</label>
+								</dt>
+								<dd>
+									<input name="repl_name" type="text" id="end_date" size="10" value="" class="datepicker" title="Date format is mm/dd/yyyy.">
+									<img class="ui-datepicker-trigger" src="/img/icn_calendar.gif" alt="" title="" style="margin-left:2px;"> </dd>
+							</dl>
+							<dl>
+								<dt>
+									<label>Search Using:</label>
+								</dt>
+								<dd>
+									<select>
+										<option value="" selected>Select One</option>
+										<option>Tracking Number</option>
+										<option>Ship To Name</option>
+										<option>Ship To State</option>
+										<option>Ship To Postal Code</option>
+										<option>Reference Number(s)</option>
+									</select>
+									<img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"> </dd>
+								<dt>
+									<label>That...:</label>
+								</dt>
+								<dd>
+									<select size="1">
+										<option value="" selected>Starts With</option>
+										<option>Equals</option>
+										<option>Contains</option>
+									</select>
+								</dd>
+								<dt>
+									<label>Search Word, Phrase, or Number:</label>
+								</dt>
+								<dd>
+									<input name="repl_name" type="text" size="32" value="">
+									<img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"> </dd>
+							</dl>
+							</fieldset>
+						</div>
+					</div></td>
+			</tr>
+			<tr>
+				<td class="btn-bar"><div class="margincenter">
+						<input type="button" class="btn" value="Cancel" name="repl_name"><input type="button" class="btn" value="Search" name="repl_name">
+					</div></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#start_date").datepicker({
+		duration:"",
+		buttonImage:"",
+		buttonText:"",
+		changeMonth: false,
+		changeYear: false,
+		closeAtTop: false,
+		currentText: "",
+		clearText: "",
+		minDate: new Date(),
+		prevText: '',
+		nextText: '',
+		showOn:'focus'
+	});
+	$("#end_date").datepicker({
+		duration:"",
+		buttonImage: "/img/icn_calendar.gif",
+		buttonText:"",
+		changeMonth: false,
+		changeYear: false,
+		closeAtTop: false,
+		currentText: "",
+		clearText: "",
+		minDate: new Date(),
+		prevText: '',
+		nextText: '',
+		showOn:'focus'
+	});
+});
+</script>

@@ -1,0 +1,186 @@
+<div data-ng-controller="AddorAuthenticateAccountCtrl"
+	class="ups-modal-container">
+	<p>We need to verify your information to make sure no one fraudulently uses your payment account.</p>
+	<p>An invoice is required to complete this process. If you have not yet recieved an invoice, please contact [Customer Service Number].</p>
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+    
+	<form name="ups_addAuthAccform" error-on-submit novalidate>
+		<fieldset class="ups-form_group">
+			<legend class="ups-form_label">Payment Account Type</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper"
+                data-ng-repeat="i in accountType">
+                <input id="{{i.type}}" class="ups-radio-custom" type="radio"
+                    name="{{i.type}}" value="{{i.type}}"
+                    data-ng-model="formObj.userId"
+                    data-ng-click="toggleAccountType($index)"
+                    data-ng-checked="{{i.isSelected}}" /> 
+                <label for="{{i.type}}" class="ups-radio-custom-label">{{i.type}}</label>
+            </div>
+		</fieldset>
+		
+		<div class="row">
+			<div class="col-md-5">
+                <div class="ups-form_group ups-form_required "
+                    data-ng-class="{ 'has-error' : ups_addAuthAccform.accNumber.$invalid && !ups_addAuthAccform.accNumber.$pristine }">
+                    <label for="ups-first_name_input" class="ups-form_label">{{isUPS
+                        ? 'Account Number' : 'Air Freight Account Number'}}
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="accNumber"
+                            class="ups-form_input" id="ups-first_name_input" value=""
+                            data-ng-model="formObj.acc_number" required
+                            maxlength="{{isUPS ? '6' : '9'}}"
+                            aria-describedby="accNumber-error" aria-required="true"
+                            number-mask data-ng-pattern="/^\d+$/"
+                            data-ng-model-options="{updateOn: 'blur'}"> <span
+                            id="accNumber-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!ups_addAuthAccform.accNumber.$pristine && ups_addAuthAccform.accNumber.$invalid">
+                                <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                <span class="ups-readerTxt">Invalid</span> <span
+                                data-ng-show="ups_addAuthAccform.accNumber.$error.required">{{isUPS
+                                    ? 'Account Number' : 'Air Freight Account Number'}} is
+                                    required.</span> <span
+                                data-ng-hide="ups_addAuthAccform.accNumber.$error.required">Invalid
+                                    {{isUPS ? 'Account Number' : 'Air Freight Account Number'}}.</span>
+                        </span>
+                        <span data-ng-if="ups_addAuthAccform.accNumber.$valid" >
+                    <span class="ups-readerTxt">Check</span>
+                    </span>
+                        </span>
+                        <div data-ng-if="(ups_addAuthAccform.accNumber.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                
+                <div class="ups-form_group ups-form_required ">
+                    <label for="ups-accName" class="ups-form_label">
+                        Nickname
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="accName"
+                            class="ups-form_input" id="ups-accName" value="" maxlength="35"
+                            required data-ng-model="formObj.acc_name"
+                            aria-describedby="account-name-error" aria-required="true"
+                            data-ng-model-options="{updateOn: 'blur'}"> <span
+                            id="account-name-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!ups_addAuthAccform.accName.$pristine && ups_addAuthAccform.accName.$invalid">
+                                <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                <span class="ups-readerTxt">Invalid</span> <span
+                                data-ng-show="ups_addAuthAccform.accName.$error.required">Nickname
+                                    is required.</span>
+                        </span>
+                        <span data-ng-if="ups_addAuthAccform.accName.$valid" >
+                    <span class="ups-readerTxt">Check</span>
+                    </span>
+                        </span>
+
+                        <div data-ng-if="(ups_addAuthAccform.accName.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                
+                <div class="ups-form_group ups-form_required" data-ng-show="isUPS">
+                    <label for="ups-country_select" class="ups-form_label">
+                        Country
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select name="ups-state_select" id="ups-country_select"
+                            class="ups-dropdown" data-ng-model="formObj.country"
+                            data-ng-change="formObj.countryName = (countryList|filter:{code:formObj.country})[0].country"
+                            data-ng-init="formObj.countryName = (countryList|filter:{code:formObj.country})[0].country"
+                            aria-required="true" required>
+                            <option data-ng-repeat="countries in countryList"
+                                value="{{countries.code}}">{{countries.country}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                
+                <div class="ups-form_group" data-ng-class="{'ups-form_required' : isUPS}" data-ng-if="isUPS">
+                    <label for="ups-pCode" class="ups-form_label">
+                        Postal Code for Pickup Address
+                        <span data-ng-if="{{isUPS ? 'true' : 'false'}}" aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="pCode"
+                            class="ups-form_input" id="ups-pCode" value="" maxlength="15"
+                            data-ng-required="{{isUPS ? 'true' : 'false'}}"
+                            aria-required="{{isUps ? 'true' : 'false' }}"
+                            data-ng-model="formObj.pcode" aria-describedby="email-error"
+                            data-ng-keyup="getpCode($event)"
+                            data-ng-model-options="{updateOn: 'blur'}"> <span
+                            data-ng-show="isUPS" id="email-error" role="alert"><span
+                            class="ups-invalid_color"
+                            data-ng-if="!ups_addAuthAccform.pCode.$pristine && ups_addAuthAccform.pCode.$invalid">
+                                <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                <span class="ups-readerTxt">Invalid</span> <span
+                                data-ng-show="ups_addAuthAccform.pCode.$error.required">Postal
+                                    Code is required.</span>
+                        </span>
+                        <span data-ng-if="ups_addAuthAccform.pCode.$valid" >
+                    <span class="ups-readerTxt">Check</span>
+                    </span>
+                        </span>
+
+                        <div data-ng-if="(isUPS && ups_addAuthAccform.pCode.$valid)">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                
+				<div class="ups-form_group ups-checkbox_group">
+					<div class="ups-checkbox ups-input_wrapper "
+						data-errormsg="Agreement to Terms &amp; Conditions is required.">
+						<input check-verify id="ups-terms_checkbox"
+							class="ups-checkbox-custom" name="ups-terms_checkbox" value="1"
+							type="checkbox" data-ng-model="formObj.tnc"
+							data-ng-checked="formObj.tnc"> <label
+							for="ups-terms_checkbox"
+							class="ups-form_label ups-checkbox-custom-label">{{isUPS
+							? 'Make this my default payment method' : 'Make this my default
+							Air Freight account for pre-paid air freight shipments.'}} </label>
+					</div>
+					<!-- ups-checkbox ups-input_wrapper -->
+				</div>
+				<!-- ups-form_group ups-form_required -->
+			</div>
+		</div>
+        
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary "
+                data-ng-click="openAuthenticateModal()">Next</button>
+            
+            <button class="ups-cta ups-cta_secondary" type="submit"
+                data-ng-click="resetFormFields();ModalService.dismiss()">Cancel</button>
+		</div>
+		<!-- ups-form_ctaGroup text-center -->
+	</form>
+</div>

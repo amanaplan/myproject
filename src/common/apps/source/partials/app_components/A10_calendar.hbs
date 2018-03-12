@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-md-5">
+    
+    
+        <div class="ups-form_group">
+            <label for="ups-date_picker" class="ups-form_label">{{label}}</label>
+            <p id="ups-date_picker-helper" class="ups-form_subheader">{{helper}}</p> 
+            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                <input type="text" 
+                       name="repl_name_datepicker"
+                       class="ups-form_input" 
+                       id="ups-date_picker" 
+                       value=""
+                       maxlength="10" 
+                       aria-describedby="ups-date_picker-helper">
+                {{#if error}}
+                    <span class="ups-invalid_color"> 
+                        <span class="push icon ups-error_exclamation">
+                        	<span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span> 
+                        <span class="ups-readerTxt">Invalid</span><span> Invoice date is required.</span>
+                    </span> 
+                {{/if}}
+                {{#if check}}
+                    <!-- @Note: screen reader text needs to be translated as well --> 
+                    <span class="push icon ups-icon-check" aria-hidden="true"></span> 
+                    <span class="ups-readerTxt">Check</span> 
+                {{/if}}
+                <button type="button" class="ups-date_picker_button" ng-click="openCalender()"> 
+                    <span class="icon ups-icon-calendar" aria-hidden="true"></span> 
+                    <span class="ups-readerTxt">Select date from a calendar</span> 
+                </button>
+                <span uib-datepicker-popup="{{format}}" 
+                      ng-model="formObj.dateFrom" 
+                      is-open="popup1.opened" 
+                      datepicker-options="dateOptions"
+                      data-ng-required="true" 
+                      close-text="Close" 
+                      datepicker-template-url="/app_assets/templates/ups.datepickerpopup.html"></span> 
+              </div>
+            <!-- ups-text_wrapper ups-input_wrapper --> 
+        </div>
+        
+        
+	</div>
+</div>
+
+
+
+
+
+
+
+

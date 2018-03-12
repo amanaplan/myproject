@@ -1,0 +1,430 @@
+<div [ngClass]="{'ups-toggle_view_left': !nbsBase.getNbsInSinglePg(), 'ups-toggle_box': nbsBase.getNbsInSinglePg()}">
+
+    <h4>{{noWizardHeading}}</h4>
+    <div class="ups-group">
+        <p *ngIf="undo">This is a paperless shipment.
+            <button type="button" class="ups-link" (click)="undo = false">Undo</button>
+        </p>
+        <p *ngIf="!undo">
+            <button type="button" class="ups-link" (click)="undo = true">Process as paperless</button>
+        </p>
+    </div>
+    <ul class="ups-list_style_none" *ngIf="noWizardLevers">
+        <li class="ups-form_group" *ngIf="!reuseFormLever">
+            <hr />
+            <label class="ups-lever" onclick="" for="uploadCompletedLever">
+                <input type="checkbox" id="uploadCompletedLever" name="uploadCompletedLever" class="ups-lever_checkbox" [(ngModel)]="uploadCompletedLever">
+                <!-- if checked then yes -->
+                <div class="ups-lever_label_container">
+                    <strong class="ups-form_label ups-lever_label">
+                        Upload Completed Export Forms
+                    </strong>
+                </div>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+        </li>
+        <li class="ups-form_group" *ngIf="!uploadCompletedLever">
+            <hr />
+            <label class="ups-lever" onclick="" for="reuseFormLever">
+                <input type="checkbox" id="reuseFormLever" name="reuseFormLever" class="ups-lever_checkbox" [(ngModel)]="reuseFormLever">
+                <!-- if checked then yes -->
+                <div class="ups-lever_label_container">
+                    <strong class="ups-form_label ups-lever_label">
+                        Reuse Forms From History
+                    </strong>
+                </div>
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+            </label>
+        </li>
+    </ul>
+
+    <!-- No Wizard - Use History -->
+
+    <div *ngIf="reuseFormLever">
+        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group">
+                    <label for="displaySavedForms" class="ups-form_label">
+                        Display the following:
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="displaySavedForms" name="displaySavedForms" class="ups-dropdown">
+                            <option value="0">All Saved Forms</option>
+                            <option value="1">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--start/end date row -->
+                    <!-- Beginning of Enter Start Date input box -->
+                    <div class="col-md-6">
+                        <div class="ups-form_group">
+                            <label for="enter_start_date" class="ups-form_label">
+                                Enter Start Date
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input type="text" name="enter_start_date" class="ups-form_input" id="enter_start_date" placeholder="mm/dd/yyyy" aria-label="Please enter date in mm/dd/yyyy format" [ngModel]="dt | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(dt, 'MM/dd/yyyy', true)) ? dt = $event : false">
+                                <button type="button" class="ups-date_picker_button" (click)="toggleStartDatePicker();">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                                <ups-datepicker #NBSUseHistoryStartDatePicker class="ups-datepicker-wrap"></ups-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Enter Start Date Input Box -->
+                    <!-- Beginning of Enter End Date Input Box -->
+                    <div class="col-md-6">
+                        <div class="ups-form_group">
+                            <label for="enter_start_date" class="ups-form_label">
+                                Enter End Date
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input type="text" name="enter_end_date" class="ups-form_input" id="enter_end_date" aria-required="true" placeholder="mm/dd/yyyy" value="" aria-label="Please enter date in mm/dd/yyyy format" [ngModel]="dt2 | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(dt2, 'MM/dd/yyyy', true)) ? dt2 = $event : false">
+                                <button type="button" class="ups-date_picker_button" (click)="toggleEndDatePicker();">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                                <ups-datepicker #NBSUseHistoryEndDatePicker class="ups-datepicker-wrap"></ups-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="ups-cta ups-cta_primary" (click)="retrieveBtn = true">Retrieve</button>
+    </div>
+    <!-- First Uploaded -->
+    <div class="row" *ngIf="formsUploadedCompletedOne">
+        <div class="col-xs-7">
+            <p class="h4">
+                <span class="icon ups-icon-checkcircle" aria-hidden="true"></span> {{ '{' }}uploaded filename.xxx{{ '}' }}</p>
+        </div>
+        <div class="col-xs-5 text-right" *ngIf="renameRemoveOne">
+            <button type="button" class="ups-link">
+                <span class="icon ups-icon-edit" aria-hidden="true"></span> Edit</button>
+            <button type="button" class="ups-link">
+                <span class="icon ups-icon-xcircle" aria-hidden="true"></span> Delete</button>
+        </div>
+    </div>
+    <p class="ups-indent" *ngIf="formsUploadedOne">
+        [Commercial Invoice], [Electronic Export Information (EEI)], [Other]
+    </p>
+
+    <!-- Second Uploaded -->
+    <div class="row ups-indent" *ngIf="formsUploadedCompletedTwo">
+        <div class="col-xs-7">
+            <p class="h4">{{ '{' }}uploaded file2.xxx{{ '}' }}</p>
+        </div>
+        <div class="col-xs-5 text-right" *ngIf="renameRemoveTwo">
+            <button type="button" class="ups-link">
+                <span class="icon ups-icon-edit" aria-hidden="true"></span> Edit</button>
+            <button type="button" class="ups-link">
+                <span class="icon ups-icon-xcircle" aria-hidden="true"></span> Delete</button>
+        </div>
+    </div>
+    <p class="ups-indent " *ngIf="formsUploadedTwo">
+        [Power of Attorney]
+    </p>
+    <!-- Second Uploaded -->
+
+    <!-- Choose File Input/Button -->
+    <div [ngClass]="{'ups-indent': !noWizardLevers && chooseFileInput}" class="row" *ngIf="((noWizardLevers && uploadCompletedLever) || chooseFileInput) && uploadCompletedLever">
+        <div class="col-sm-6">
+            <div class="ups-form_group">
+                <label for="chooseFile" class="ups-form_label">
+                    Choose File
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="chooseFile" class="ups-form_input" id="chooseFile">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ups-form_ctaGroup ups-no_label">
+                <button name="browseBtn" type="button" class="ups-cta ups-cta_primary">[Browse...]</button>
+            </div>
+        </div>
+    </div>
+    <!-- Choose File Input/Button -->
+
+
+    <div [ngClass]="{'ups-indent': (!noWizardLevers && !uploadAdditional) || threeCombinedForms || formsUploaded || threeCombinedFormsRename || oneAdditionalUpload}">
+        <!-- New File Name -->
+        <div class="row" *ngIf="newFileNameInput">
+            <div class="col-sm-5">
+                <div class="ups-form_group">
+                    <label for="newFileName" class="ups-form_label">
+                        New File Name
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="newFileName" class="ups-form_input" id="newFileName">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ups-form_ctaGroup ups-no_label">
+                    <button type="button" class="ups-cta ups-cta_primary">Save</button>
+                </div>
+            </div>
+        </div>
+        <!-- New File Name -->
+
+        <!-- How many forms... Select Box -->
+        <div class="row" *ngIf="howManyFormsSB">
+            <div class="col-md-4">
+                <div class="ups-form_group">
+                    <label for="howManyForms" class="ups-form_label">
+                        How many forms does this file include?
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="howManyForms" name="howManyForms" class="ups-dropdown">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How many forms... Select Box -->
+
+        <ul class="ups-list_style_none" *ngIf="formTypeList">
+            <div class="row">
+                <div class="col-md-6">
+                    <li class="ups-form_group ups-form_required" *ngFor="let input of formType; let j = index">
+                        <label for="formType[j]" class="ups-form_label">
+                            Form Type
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="formType[j]" name="formType[j]" class="ups-form_input">
+                                <option value="0">{{input.label}}</option>
+                            </select>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </ul>
+
+        <div class="ups-form_ctaGroup">
+            <button type="button" class="ups-cta ups-cta_primary" *ngIf="doneBtn">Done</button>
+            <button type="button" class="ups-cta ups-cta_secondary" *ngIf="cancelBtn">Cancel</button>
+            <button type="button" class="ups-cta ups-cta_primary" *ngIf="addMoreBtn">Add More Forms</button>
+        </div>
+    </div>
+
+    <div *ngIf="!uploadCompletedLever && !reuseFormLever">
+        <ul class="ups-list_style_none" *ngIf="!isComplete">
+            <li *ngFor="let completedSelection of internationalFormsNoNotComp; let i = index">
+                <hr />
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="!completedSelection.isItCompleted">
+                            <input id="ups-setService{{i}}" class="ups-checkbox-custom" name="ups-setService{{i}}" type="checkbox" [attr.checked]="completedSelection.selected" [attr.aria-describedby]="'ups-setServiceHelpTxt'+i" [(ngModel)]="completedSelection.yesAddOptions" [ngModelOptions]="{standalone:true}">
+                            <label for="ups-setService{{i}}" class="ups-checkbox-custom-label"><span class="h4">{{completedSelection.label}}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-7 ups-btn_no_wrap" *ngIf="!completedSelection.isItCompleted">
+                        <button type="button" class="ups-cta ups-cta_secondary">
+                            <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                            Edit/View
+                        </button>
+                    </div> -->
+                </div>
+                <div id="ups-setServiceHelpTxt{{i}}">
+                    <div *ngIf="completedSelection.yesAddOptions">
+                        <!-- BEGIN Lead Copy -->
+                        <p id="ups-setServiceHelpTxt{{i}}" class="ups-lever_subheader">
+                            <span aria-hidden="true" class="icon ups-icon-alert" *ngIf="completedSelection.strongStatus == 'Required'"></span>
+                            <strong *ngIf="completedSelection.isItAStrongStatus">{{completedSelection.strongStatus}}</strong> {{completedSelection.regularStatus}}
+                            <a href="{{completedSelection.link}}" class="ups-link" *ngIf="completedSelection.link">{{completedSelection.link}}</a>.
+                        </p>
+                        <!-- END Lead Copy -->
+                    </div>
+                    <div *ngIf="completedSelection.yesAddOptions">
+                        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                <!-- BEGIN How would you like to add dropdown -->
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="ups-form_dropdown{{i}}" class="ups-form_label">
+                                        How would you like  to add this form?
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="ups-form_dropdown{{i}}" class="ups-dropdown" id="ups-form_dropdown{{i}}" required aria-required="true" [(ngModel)]="completedSelection.addOption">
+                                            <option [value]="0">Complete online</option>
+                                            <option [value]="1">I'll attach my own</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- END How would you like to add dropdown -->
+                            </div>
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                <div [ngClass]="{'ups-no_label' : nbsBase.getNbsInSinglePg()}">
+                                    <!-- BEGIN Complete Now btn -->
+                                    <button type="button" class="ups-cta ups-cta_primary" *ngIf="completedSelection.addOption == '0'">Complete Now</button>
+                                    <!-- END Complete Now btn -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <hr />
+            <li>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="ups-uploadCompletedForms" class="ups-checkbox-custom" name="ups-uploadCompletedForms" type="checkbox">
+                            <label for="ups-uploadCompletedForms" class="ups-checkbox-custom-label"><span class="h4">Upload Completed Export Forms</span>
+                                    </label>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="ups-list_style_none" *ngIf="isComplete">
+            <li *ngFor="let completedSelection of internationalFormsNoComp; let i = index">
+                <hr />
+                <div [ngClass]="{'ups-group':vpSize.isXSVP || vpSize.isSMVP}" *ngIf="completedSelection.isItCompleted">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p>
+                                <span class="icon ups-icon-checkcircle h4" aria-hidden="true" *ngIf="completedSelection.isItCompleted"></span>
+                                <span class="h4">{{completedSelection.label}}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-7 ups-btn_no_wrap">
+                            <button type="button" class="ups-cta ups-cta_secondary">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                Edit/View
+                                <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                            </button>
+                            <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                                <span class="icon ups-icon-{{completedSelection.icon}}" aria-hidden="true"></span>
+                                {{completedSelection.iconText}}
+                                <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <hr />
+        </ul>
+    </div>
+
+    <ul class="ups-list_style_none" *ngIf="retrieveBtn && reuseFormLever">
+        <li *ngFor="let completedSelection of internationalFormsNo; let i = index">
+            <hr />
+            <div [ngClass]="{'ups-group':vpSize.isXSVP || vpSize.isSMVP}" *ngIf="completedSelection.isItCompleted">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>
+                            <span class="icon ups-icon-checkcircle h4" aria-hidden="true" *ngIf="completedSelection.isItCompleted"></span>
+                            <span class="h4">{{completedSelection.label}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-7 ups-btn_no_wrap">
+                        <button type="button" class="ups-cta ups-cta_secondary">
+                            <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                            Edit/View
+                            <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                        </button>
+                        <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                            <span class="icon ups-icon-{{completedSelection.icon}}" aria-hidden="true"></span>
+                            {{completedSelection.iconText}}
+                            <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!completedSelection.isItCompleted">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="!completedSelection.isItCompleted">
+                            <input id="ups-setService{{i}}" class="ups-checkbox-custom" name="ups-setService{{i}}" type="checkbox" [attr.checked]="completedSelection.selected" [attr.aria-describedby]="'ups-setServiceHelpTxt'+i" [(ngModel)]="completedSelection.yesAddOptions" [ngModelOptions]="{standalone:true}">
+                            <label for="ups-setService{{i}}" class="ups-checkbox-custom-label"><span class="h4">{{completedSelection.label}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-7 ups-btn_no_wrap" *ngIf="!completedSelection.isItCompleted">
+                        <button type="button" class="ups-cta ups-cta_secondary">
+                            <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                            Edit/View
+                        </button>
+                    </div>
+                </div>
+                <div id="ups-setServiceHelpTxt{{i}}">
+                    <div *ngIf="completedSelection.yesAddOptions">
+                        <!-- BEGIN Lead Copy -->
+                        <p id="ups-setServiceHelpTxt{{i}}" class="ups-lever_subheader">
+                            <span aria-hidden="true" class="icon ups-icon-alert" *ngIf="completedSelection.strongStatus == 'Required'"></span>
+                            <strong *ngIf="completedSelection.isItAStrongStatus">{{completedSelection.strongStatus}}</strong> {{completedSelection.regularStatus}}
+                            <a href="{{completedSelection.link}}" class="ups-link" *ngIf="completedSelection.link">{{completedSelection.link}}</a>.
+                        </p>
+                        <!-- END Lead Copy -->
+                    </div>
+                    <div *ngIf="completedSelection.yesAddOptions">
+                        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                <!-- BEGIN How would you like to add dropdown -->
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="ups-form_dropdown{{i}}" class="ups-form_label">
+                                        How would you like  to add this form?
+                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="ups-form_dropdown{{i}}" class="ups-dropdown" id="ups-form_dropdown{{i}}" required aria-required="true" [(ngModel)]="completedSelection.addOption">
+                                            <option [value]="0">Complete online</option>
+                                            <option [value]="1">I'll attach my own</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- END How would you like to add dropdown -->
+                            </div>
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                <div [ngClass]="{'ups-no_label' : nbsBase.getNbsInSinglePg()}">
+                                    <!-- BEGIN Complete Now btn -->
+                                    <button type="button" class="ups-cta ups-cta_primary" *ngIf="completedSelection.addOption == '0'">Complete Now</button>
+                                    <!-- END Complete Now btn -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <hr />
+    </ul>
+
+    <!-- CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->
+    <div class="ups-cms-demo" *ngIf="!uploadCompletedLever && !reuseFormLever">
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="isComplete = !isComplete">Forms
+            <span *ngIf="isComplete">not </span>Completed</button>
+    </div>
+
+    <div class="ups-cms-demo" *ngIf="uploadCompletedLever">
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="toggledOn();">Toggled on</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="threeCombinedForms();">3 Combined Forms Upload</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="formsUploaded();">Forms Uploaded</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="threeCombinedFormsRename();">3 Combined Forms - Rename</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="uploadAdditional();">Upload Additional</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="oneAdditionalUpload();">1 Additional Upload</button>
+    </div>
+    <!-- CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->
+    <!-- No Wizard - Upload Forms -->
+
+    <!-- ENTER EXPORT DOCUMENTATION SHIPMENT LIST HERE -->
+</div>

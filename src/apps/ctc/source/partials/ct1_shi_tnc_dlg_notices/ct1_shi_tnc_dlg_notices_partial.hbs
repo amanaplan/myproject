@@ -1,0 +1,62 @@
+
+{{>"background_modal_content"}}
+
+<!-- Begin Application Module -->
+<div class="appLvl modal-dialog mod modal dialog"> 
+	
+	<!-- Begin Application Header -->
+	<div class="appHead clearfix">
+		<h2 class="ups-modal_heading">Guarantees and Notices</h2>
+		<!-- Old Close Button Implementation -->
+		<!--<ul>
+			<li>
+				<input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+			</li>
+		</ul>-->
+		
+		<!-- New Close Button Implementation -->		
+		<button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span class="ups-readerTxt ng-binding">Close This Dialog</span> </button>
+	</div>
+	<!-- End Application Header --> 
+	
+	<!-- Begin Application Body -->
+	<div class="appBody">
+		<p>Based on your shipment characteristics, the following guarantees and notices apply to your quote:</p>
+		<!-- Removed classes .iDiv and .formcol24 and replaced with .ups-text_scroll -->
+		<div class="ups-text_scroll">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit posuere lectus, eget rhoncus augue dignissim at. Quisque mollis urna hendrerit dui mollis consectetur. Sed congue nulla tincidunt est consectetur viverra. Vestibulum eget dui lectus. Nullam dictum nunc nec magna tincidunt auctor. Vestibulum imperdiet vehicula auctor. Proin varius magna nec lacus ornare at elementum erat feugiat.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit posuere lectus, eget rhoncus augue dignissim at. Quisque mollis urna hendrerit dui mollis consectetur. Sed congue nulla tincidunt est consectetur viverra. Vestibulum eget dui lectus.</p>
+		</div>
+		<br>
+	</div>
+	<!-- End Application Body --> 
+	
+	<!-- Begin Application Footer -->
+	<!-- Old Legacy Button Implementation -->
+	<!--<div class="appFooter">
+		<div class="btnBar alignCenter">
+			<input name="repl_name" type="button" value="cancel" class="btn">
+			<input name="repl_name" type="button" value="okay" class="btn">
+		</div>
+	</div>-->
+	<!-- New  WEM/Legacy Button Implementation -->
+	<div class="appFooter">
+		<div class="ups-form_ctaGroup text-center">
+			<button type="button" class="ups-cta ups-cta_primary">Okay</button>
+			<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+		</div>
+	</div>
+	<!-- End Application Footer --> 
+	
+</div>
+<!-- End Application Module --> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+</script> 

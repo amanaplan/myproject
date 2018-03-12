@@ -1,0 +1,185 @@
+<form error-on-submit name="ups_editAccount" novalidate class="ups-application_wrapper" data-ng-init="enrolled = 0">
+    <!-- //// begin ups.ppc-bill-my-account //// -->
+    <p data-ng-if="enrolled < 3 && !readOnly">Bill shipping charges to your payment account at participating UPS customer centers and Staples<sup>&reg;</sup> locations with our Bill My Account service.</p>
+    <div class="row" data-ng-if="enrolled === 0 || enrolled === 3">
+        <div class="col-md-3">
+            <p><strong>Account:</strong></p>
+        </div>
+        <div class="col-md-2">
+            <p>[NNNXX]</p>
+        </div>
+    </div>
+    <p data-ng-if="enrolled === 3"><strong>Note:</strong> This account is not eligible for the Store Payment with Bill My Account feature.</p>
+    <div data-ng-if="enrolled === 0">
+    	<div class="row">
+        	<div class="col-md-3">
+            	<p><strong>Enrollment Status:</strong></p>
+            </div>
+            <div class="col-md-2">
+            	<p>Not Enrolled</p>
+            </div>
+        </div>
+        <!-- <p>To enable to <a href="repl_href" class="ups-link ups-icon-questioncircle">Bill My Account</a> feature for this account, select <strong>Enroll Now</strong>.</p> -->
+        <div class="ups-form_ctaGroup" data-ng-hide="readOnly">
+            <button type="button" class="ups-cta ups-cta_primary" data-ng-click="enrolled = 1">Enroll My Account</button>
+        </div>
+    </div>
+    
+    <div data-ng-if="enrolled === 1">
+    	<fieldset class="ups-form_group">
+        	<legend class="ups-form_label">Choose your eligible transactions.</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="repl_id_sansgas" class="ups-radio-custom" name="repl_name_sansgas" type="radio" value="yes" checked="">
+                <label for="repl_id_sansgas" class="ups-radio-custom-label">Shipping and Non-Shipping goods and services</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="repl_id_so" class="ups-radio-custom" name="repl_name_sansgas" type="radio" value="no"> 
+                <label for="repl_id_so" class="ups-radio-custom-label">Shipping only</label>
+            </div>
+        </fieldset>
+        
+        <fieldset class="ups-form_group">
+        	<legend class="ups-form_label">How would you like to get your receipt?</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="repl_id_gprats" class="ups-radio-custom" name="repl_name_gprats" type="radio" value="no" ng-click="email = false">
+                <label for="repl_id_gprats" class="ups-radio-custom-label">Get printed receipts at the store.</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="repl_id_smer" class="ups-radio-custom" name="repl_name_gprats" type="radio" value="yes" checked="" ng-click="email = true"> 
+                <label for="repl_id_smer" class="ups-radio-custom-label">Send me email receipts.</label>
+            </div>
+            <div class="row ups-indent" data-ng-if="email">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups-email" class="ups-form_label">Email</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input id="ups-email" type="text" name="ups-email" class="ups-form_input" maxlength="35" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        
+        <p>Read and accept the Bill My Account Terms and Conditions.</p>
+        
+        <div tabindex="0" aria-describedby="ups-uta-agreement" class="ups-text_scroll ups-element_relative" data-scrolly="showMore()">
+            <div id="ups-uta-agreement">
+                <h3>Terms header...</h3>
+                <p>Bacon ipsum dolor amet beef ribs alcatra prosciutto boudin
+                    strip steak short ribs tail ham. Chuck shoulder beef t-bone rump
+                    ball tip andouille alcatra tongue shank meatloaf boudin jerky.
+                    Shoulder venison fatback capicola flank pig ham hock ribeye. Shankle
+                    cupim tri-tip sausage, boudin ribeye fatback chicken spare ribs
+                    venison. Short loin pork loin shankle kevin pastrami. Meatball
+                    biltong drumstick beef ribs shankle corned beef filet mignon sausage
+                    pork chop venison.</p>
+                <p>Strip steak hamburger beef ribs ball tip pork chop swine
+                    sausage ground round andouille tail. Pancetta alcatra corned beef
+                    short loin, shoulder andouille turducken t-bone jerky meatball.
+                    Sausage shank rump turducken meatloaf. Jowl ham hock meatball pig
+                    pancetta brisket sausage alcatra tri-tip. Sirloin biltong sausage,
+                    pig alcatra landjaeger bresaola hamburger kielbasa flank shankle
+                    beef ribs. Cow ground round sirloin, landjaeger pastrami pork belly
+                    porchetta doner salami cupim ball tip bacon.</p>
+                <p>Tri-tip kielbasa jowl doner pancetta cow bacon tail salami
+                    strip steak tenderloin ham hock rump. Tail beef turducken short loin
+                    hamburger. Biltong ball tip alcatra rump chuck frankfurter swine
+                    drumstick kielbasa pork belly. Porchetta bresaola shank, short ribs
+                    short loin tongue chicken tenderloin drumstick shoulder ball tip
+                    pork loin kielbasa meatloaf. Chuck turkey kevin pig shoulder ham
+                    hock flank andouille short loin fatback beef. Meatloaf beef ribs
+                    tenderloin beef.</p>
+                <p>Pig boudin pork shankle short ribs jowl sausage beef ribs
+                    andouille meatloaf. Ball tip pig alcatra leberkas. Flank turducken
+                    porchetta picanha leberkas ham hock meatloaf brisket shank kevin.
+                    Chuck leberkas venison, t-bone short ribs capicola fatback
+                    tenderloin tongue shankle pork belly salami filet mignon kevin pig.
+                    Tail jerky boudin ground round sirloin bacon. Pork belly meatloaf
+                    pork loin kielbasa filet mignon alcatra t-bone short loin sausage
+                    brisket cupim.</p>
+                <p>Chicken cow tri-tip meatloaf t-bone cupim. Beef ribs capicola
+                    swine leberkas. Filet mignon tenderloin pork chop, sirloin tongue
+                    swine shank drumstick prosciutto hamburger landjaeger ham hock
+                    salami short loin. Pastrami filet mignon turkey swine, short ribs
+                    sirloin alcatra jowl t-bone turducken prosciutto fatback. Turkey
+                    capicola porchetta brisket alcatra andouille. Beef ground round pork
+                    chop kevin tri-tip sirloin.</p>
+                <div class="ups-no-outline" tabindex="1"> <a href="#" onclick="return false;"><span class="ups-link ups-readerTxt">UPS Technology Agreement Terms and Conditions</span></a> </div>
+            </div>
+        </div>
+        
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-shipping_priveleges"
+                            class="ups-checkbox-custom" name="ups-shipping_priveleges"
+                            value="1" type="checkbox"
+                            data-ng-model="formObj.shipping_priveleges.active"
+                            data-ng-change="privelegesCheck()"
+                            data-ng-checked="formObj.shipping_priveleges.active">
+                <label
+                            for="ups-shipping_priveleges"
+                            class="ups-form_label ups-checkbox-custom-label">Yes, I agree to the Bill My Account <a href="repl_href" class="ups-link">terms and conditions</a>.</label>
+            </div>
+        </div>
+        
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+        </div>
+    </div>
+    
+    <div data-ng-if="enrolled === 2">
+    	<div class="row">
+        	<div class="col-md-3">
+            	<p><strong>Account:</strong></p>
+            </div>
+            <div class="col-md-2">
+            	<p>[NNNXX]</p>
+            </div>
+        </div>
+    	
+        <div class="row">
+        	<div class="col-md-3">
+            	<p><strong>Enrollment Status:</strong></p>
+            </div>
+            <div class="col-md-2">
+            	<p>Enrolled</p>
+            </div>
+        </div>
+    	
+        <div class="row">
+        	<div class="col-md-3">
+            	<p><strong>Preferences:</strong></p>
+            </div>
+            <div class="col-md-5">
+            	<p>Email my reciepts.</p>
+                <p>Send reciepts to [email address]</p>
+                <p>[Use my account to pay for transactions that include shipping and non-shipping goods and services. / Use my account to pay for shipping services only.]</p>
+            </div>
+        </div>
+        
+        <p>Since only select locations offer this service, please confirm your location's participation before you go to the store. Use the ups.com location filters to search by Bill My Account.</p>
+        
+        <div class="ups-form_ctaGroup" data-ng-hide="readOnly">
+            <button type="button" class="ups-cta ups-cta_primary">Edit Preferences</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel Enrollment</button>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons / comments before production. 					      --
+    --						/ppcProfile.html#/paymentPage/EditCardAccount		  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" ng-click="enrolled = 0">Not Enrolled</button>
+        <button class="ups-cta ups-cta_secondary" ng-click="enrolled = 1; email = true">Enroll</button>
+        <button class="ups-cta ups-cta_secondary" ng-click="enrolled = 2">Enrolled</button>
+        <button class="ups-cta ups-cta_secondary" ng-click="enrolled = 3">Not Eligible</button>
+    </div>
+    <!------------------------------------------------------------------------------
+	-------------------------------------------------------------------------------> 
+    <!-- //// end ups.ppc-bill-my-account //// -->
+</form>

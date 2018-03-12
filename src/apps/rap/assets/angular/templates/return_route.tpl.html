@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-3">
+        <nav class="ups-side_menu ups-group">
+            <ul>
+                <!-- Administration Drawer -->
+                <li class="ups-drawer ups-drawer_slim ups-side_menu_list" upsDrawer>
+                    <button type="button" class="ups-link ups-drawer-btn" aria-expanded="false" aria-controls="viewAdministrationList">Administration <span class="pull-right"><span aria-hidden="true" class="icon ups-icon-chevrondown"></span></span></button>
+                    <!-- Sub Menu Panel -->
+                    <ul class="ups-drawer-content ups-side_sub_menu" id="viewAdministrationList">
+                        <!-- Acounts Link -->
+                        <li routerLinkActive="ups-side_sub_menu_active" [routerLinkActiveOptions]="{exact: true}" class="ups-side_sub_menu_list"><a routerLink="/administration/accounts" class="ups-link">Accounts</a></li>
+                        <!-- Users Link -->
+                        <li routerLinkActive="ups-side_sub_menu_active" class="ups-side_sub_menu_list"><a routerLink="/administration/users" class="ups-link">Users</a></li>
+                    </ul>
+                    <!-- End of Sub Menu Panel -->
+                </li>
+                <!-- End of Administration Drawer -->
+
+                <!-- Returns Policies Link -->
+                <li class="ups-side_menu_list" routerLinkActive="ups-side_menu_active"><a routerLink="/returnsPolicies" class="ups-link">Returns Policies</a>
+                </li>
+
+                <!-- Returns History Link-->
+                <li class="ups-side_menu_list" routerLinkActive="ups-side_menu_active"><a routerLink="/returnsHistory" class="ups-link">Returns History</a>
+                </li>
+
+                <!-- Ineligible Returns Link-->
+                <li class="ups-side_menu_list" routerLinkActive="ups-side_menu_active"><a routerLink="/ineligibleReturns" class="ups-link">Ineligible Returns</a>
+                </li>
+
+                <!-- Merchant Plug-In Link-->
+                <li class="ups-side_menu_list" routerLinkActive="ups-side_menu_active"><a routerLink="/merchantPlugIn" class="ups-link">Merchant Plug-In</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>

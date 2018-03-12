@@ -1,0 +1,112 @@
+<!-- Beginning of Delete Policy New Angular 2/4 Modal -->
+<ups-modal modal-title="Delete Policy" #deletePolicyModal2></ups-modal>
+<!-- Beginning of Delete Policy New Angular 2/4 Modal -->
+<div class="ups-group">
+    <p>{{panelMessaging}}</p>
+</div>
+
+<!-- Beginning of Returns Manager Section -->
+<div class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">My Returns Panel</h2>
+    </div>
+    <div class="ups-group">
+        <p>
+            Manage your return policies
+        </p>
+    </div>
+    <ul class="ups-list_style_none" *ngIf="returnsPolicyRow">
+        <li *ngFor="let list of returnsManager">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                        {{list.returnsManagerLabel}}
+                    </p>
+                </div>
+                <div class="col-md-4 ups-text-md-right" *ngIf="!viewOption">
+                    <a class="ups-link" routerLink="/returnsPolicies/editPolicy">Edit <span class="ups-readerTxt">{{list.returnsManagerLabel}}</span></a><span aria-hidden="true"> | </span><button class="ups-link" (click)="demoReturnsPolicyDeleteModal2();">Delete<span class="ups-readerTxt">{{list.returnsManagerLabel}}</span></button>
+                </div>
+                <div class="col-md-4 ups-text-md-right" *ngIf="viewOption">
+                    <a class="ups-link" routerLink="/returnsPolicies/viewPolicy">View Only</a>
+                </div>
+            </div>
+            <!-- <hr class="ups-returns_acct_separator"> -->
+        </li>
+    </ul>
+    <!-- CTA Button Group -->
+    <div class="ups-form_ctaGroup">
+        <a class="ups-cta ups-cta_primary" routerLink="/returnsPolicies/createPolicy">Create New Policy</a>
+    </div>
+    <!-- End of CTA Button Group -->
+</div>
+
+<!-- End of Returns Manager Section -->
+
+
+<!-- Beginning of Universal Return Rules Section -->
+<div class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Universal Return Rules</h2>
+    </div>
+    <p *ngIf="!universalReturnRulesLeverYes">
+        This section allows you to set return rules independent of individual policies and product categories. You currently have no Universal Return Rules.
+    </p>
+    <ol class="ups-list_style_none" *ngIf="universalReturnRulesLeverYes">
+        <li *ngFor="let rule of priorityOptions; let r = index; last as isLast">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="ups-group">
+                        <p><strong>{{r + 1}}. {{rule.reason}}</strong></p>
+                        <div class="ups-indent">
+                            <ul>
+                                <li>
+                                    {{rule.shipToOrRegion}}
+                                </li>
+                                <li>
+                                    Bill to: {{rule.billToLocation}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 ups-text-md-right">
+                    <a class="ups-link" routerLink="#">Edit <span class="ups-readerTxt">{{rule.reason}}</span></a><span aria-hidden="true"> | </span><button class="ups-link" (click)="noClickHandlerYet();">Delete<span class="ups-readerTxt">{{rule.reason}}</span></button>
+                </div>
+            </div>
+            <hr aria-hidden="true" *ngIf="!isLast" class="ups-returns_acct_separator">
+        </li>
+    </ol>
+    <div class="ups-form_ctaGroup">
+        <a class="ups-cta ups-cta_primary" routerLink="{{universalReturnRulesLink}}">New Return Rules</a>
+    </div>
+</div>
+<!-- End of Universal Return Rules Section -->
+
+<!--CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->
+<div class="ups-cms-demo">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="ups-form_group">
+                <label class="ups-lever" onclick="" for="viewOnlyOption">
+                <input type="checkbox" id="viewOnlyOption" name="viewOnlyOption" [(ngModel)]="viewOption">
+                <!-- if checked then yes -->
+                <div><strong class="ups-form_label">View Only Option?</strong>
+                </div>
+                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="ups-form_group">
+                <label class="ups-lever" onclick="" for="universalReturnRulesLever">
+                <input type="checkbox" id="universalReturnRulesLever" name="universalReturnRulesLever" [(ngModel)]="universalReturnRulesLeverYes">
+                <!-- if checked then yes -->
+                <div><strong class="ups-form_label">Does this user have at least one universal rule return?</strong>
+                </div>
+                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!--CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->

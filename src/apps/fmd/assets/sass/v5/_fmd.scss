@@ -1,0 +1,352 @@
+@keyframes indicator_pulse {
+    0% {
+        box-shadow: 0 0 10px 0px $ups-gold;
+    }
+
+    50% {
+        box-shadow: 0 0 10px 2px $ups-gold;
+    }
+
+    100% {
+        box-shadow: 0 0 10px 0px $ups-gold;
+    }
+}
+
+@keyframes slide_in_#{$default-float} {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide_in_#{$opposite-direction} {
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+[hidden] { display: none !important;}
+
+.ups-progress_delivery {
+    background-color: $grass_s3;
+    color: $white;
+    position: relative;
+    padding: 15px 30px 3px;
+
+    &:before, &:after {
+        width: 20px;
+        height: 50%;
+        position: absolute;
+        #{$default-float}: 100%;
+        content: "";
+    }
+
+    &:before {
+        top: 0px;
+        //background: linear-gradient(to right top, lighten($grass_s3, 1%) 51%, $grass_s3 50%, transparent 50%);
+        background:  linear-gradient(to $opposite-direction top, $grass_s3 48%, rgba($grass_s3, 0) 51%);
+    }
+
+    &:after {
+        top: 50%;
+        //background: linear-gradient(to right bottom, $grass_s3 50%, transparent 50%);
+        background:  linear-gradient(to $opposite-direction bottom, $grass_s3 48%, rgba($grass_s3, 0) 51%);
+    }
+
+    .ups-link {
+        color: white;
+    }
+
+    .ups-progress_delivery_title {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .ups-progress_delivery_heading {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+
+        &.ups-progress_delivery_heading.ups-progress_delivery_heading_large {
+            font-size: 1.9em;
+        }
+    }
+
+    .ups-progress_delivery_bar {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        margin-bottom: 10px;
+
+        &:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 17%;
+            right: 17%;
+            bottom: 12px;
+            margin: 0 auto;
+            border-bottom: 4px solid $white;
+            z-index: 1;
+        }
+
+        li {
+            list-style: none;
+            display: inline-block;
+            width: 33%;
+            text-align:center;
+            position: relative;
+            z-index: 2;
+
+            &.ups-progress_delivery_bar_complete {
+                .ups-progress_delivery_bar_indicator .ups-progress_delivery_bar_indicator_inner {
+                    background-color: white;
+                    box-shadow: none;
+                }
+            }
+
+            &.ups-progress_delivery_bar_current .ups-progress_delivery_bar_indicator .ups-progress_delivery_bar_indicator_inner {
+                background-color: $ups-gold;
+                box-shadow: 0px 0px 10px 2px $ups-gold;
+
+                animation-name: indicator_pulse;
+                animation-timing-function: ease-in-out;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+
+            .ups-progress_delivery_bar_indicator {
+                position: relative;
+                text-align: center;
+                margin-top: 5px;
+
+                .ups-progress_delivery_bar_indicator_inner {
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 18px;
+                    background-color: $grass_s3;
+                    box-shadow: 0 0 0 4px $white inset;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    @media #{$media-medium} {
+        padding: 10px 5px 1px;
+
+        &:before, &:after {
+            display: none;
+        }
+    }
+}
+
+.ups-progress_details {
+    padding: 15px 10px;
+    background-color: $stone_40;
+
+    .ups-article-header {
+        margin-bottom: 15px;
+    }
+}
+
+.ups-progress_disclaimer {
+    padding: 15px 10px;
+    background-color: $white;
+}
+
+.slide-left {
+    animation-name: slide_in_left;
+    animation-timing-function: linear;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.slide-right {
+    animation-name: slide_in_right;
+    animation-timing-function: linear;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+/*.ups-follow_details, .ups-progress_disclaimer {
+
+}*/
+
+.ups-follow_map {
+    //min-height: 500px;
+    transition: height .5s;
+    height: 500px;
+    padding-#{$default-float}: 0;
+
+    .ups-follow_map_holder {
+        height: 500px;
+        position: relative;
+
+        .ups-follow_map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /**********************************************
+        **  Bing Map Re-center button                **
+        **********************************************/
+
+        .ups-follow_map_recenter {
+            position: absolute;
+            bottom: 45px;
+            #{$opposite-direction}: 10px;
+            background-color: $white;
+            background-color: rgba($white, .9);
+            border: 2px solid $black_s1;
+            text-decoration: none;
+
+            &:hover, &:focus, &:active {
+                background-color: $white;
+                //background-color: rgba($white, .9);
+                text-decoration: none;
+            }
+
+            .ups-icon-locationhollow {
+                position: relative;
+                top: 2px;
+            }
+
+            @media #{$media-medium} {
+                width: auto;
+                #{$opposite-direction}: auto;
+                #{$default-float}: 10px;
+                bottom: 38px;
+                padding: 5px 20px 5px;
+            }
+        }
+
+        /**********************************************
+        **  End Bing Map Re-center button            **
+        **********************************************/
+    }
+
+    .ups-follow_map_update {
+        position: absolute;
+        top: 0;
+        left: 8px;
+        background-color: $white;
+        margin-right: 100px;
+        padding: 0 5px;
+    }
+
+    @media #{$media-medium} {
+        height: 400px;
+        padding-#{$default-float}: 15px;
+
+        .ups-follow_map_holder {
+            height: 400px;
+        }
+    }
+}
+
+.ups-follow_details {
+    padding-#{$opposite-direction}: 0;
+    position: relative;
+    z-index: 5;
+
+    @media #{$media-medium} {
+        padding-#{$opposite-direction}: 15px;
+    }
+}
+
+.ups-progress_details_container {
+    padding-#{$opposite-direction}: 0;
+
+    @media #{$media-medium} {
+        padding-#{$opposite-direction}: 15px;
+    }
+}
+
+.ups-delivery_no_map {
+    padding: 100px 5px 0;
+    //min-height: 500px;
+    text-align: center;
+    background-color: $stone_s3;
+    height: 500px;
+    transition: height .5s, padding .5s;
+
+    .ups-delivery_no_map_icon .icon {
+        font-size: 4em;
+        line-height: 85px;
+        color: $ups_brown;
+    }
+
+    .ups-delivery_no_map_heading {
+        font-size: 1.4em;
+        font-weight: bold;
+        max-width: 320px;
+        margin: 0 auto 15px;
+    }
+
+    .ups-delivery_no_map_text {
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    @media #{$media-medium} {
+        height: 400px;
+    }
+}
+
+.ups-progress_showhide_btn {
+    background-color: $white;
+
+    .ups-cta {
+        width: 100%;
+        text-align: #{$default-float};
+        border-top: 1px solid $stone_40;
+        border-bottom: 1px solid $stone_40;
+        border-radius: 1px;
+    }
+}
+
+.ups-follow_map_reduced {
+    height: 250px;
+
+    .ups-follow_map_holder {
+        height: 250px;
+    }
+
+    .ups-delivery_no_map {
+        height: 250px;
+        padding-top: 10px;
+    }
+    //min-height: 200px;
+}
+
+.ups-follow_map_homepin {
+    position: absolute;
+    #{$default-float}: 30%;
+    top: 45%;
+
+    &:before {
+        font-size: 29px;
+        background-color: $white;
+    }
+}
+
+.ups-follow_map_truckpin {
+    position: absolute;
+    #{$default-float}: 45%;
+    top: 65%;
+}

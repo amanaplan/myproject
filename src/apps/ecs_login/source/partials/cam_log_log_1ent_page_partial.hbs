@@ -1,0 +1,101 @@
+<div class="row">
+	<div class="col-md-5">
+		<section class="ups-section">
+			<div class="ups-section-header">
+				<h2 class="ups-section_heading">Returning Users</h2>
+			</div>
+			<div class="introductory">
+				<p>User ID and Password fields are case sensitive.</p>
+				<p>
+					<em>
+						<span aria-hidden="true">*</span>
+						<span class="ups-readerTxt">Required</span>
+						Indicates required field
+					</em>
+				</p>
+			</div>
+			<form action="#"> <!-- replace action with appropriate value -->
+				{{#if showErrors}}
+				{{> A03_page_level_error }}
+				{{/if}}
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-uid-user-id" class="ups-form_label">User ID <span aria-hidden="true" class="ups-required_indicator"></span></label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="ups-uid-user-id" id="ups-uid-user-id" class="ups-form_input" required aria-required="true">
+					</div>
+					{{#if showErrors}}
+					{{> A11_field_lvl_error uder_id_message }} 
+					{{/if}}
+				</div>
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-uid-password" class="ups-form_label">Password <span aria-hidden="true" class="ups-required_indicator"></span></label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="ups-uid-password" id="ups-uid-password" class="ups-form_input" required aria-required="true">
+						<a class="ups-link ups-forgetPass" href="#">I forgot my ID or password</a>
+					</div>
+					{{#if showErrors}}
+					{{> A11_field_lvl_error password_message }}
+					{{/if}} 
+				</div>
+				<div class="ups-form_group">
+					<div class="ups-input_wrapper ups-checkbox">
+						<input type="checkbox" name="ups-uid-remember-me" id="ups-uid-remember-me" class="ups-checkbox-custom">
+						<label for="ups-uid-remember-me" class="ups-checkbox-custom-label ups-checkbox-help-link">Remember my User ID.</label>
+					</div>
+				</div>
+
+				<div class="ups-form_ctaGroup"> 
+			        <button type="submit" class="ups-cta ups-cta_primary">Log In</button>		        
+			    </div>
+			</form>
+		</section>
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<hr class="visible-xs-block visible-sm-block">
+
+		<section class="ups-section">
+				<form action="#"> <!-- replace action with appropriate value -->
+					<div class="ups-form_group">
+						<label for="ups-uid-language" class="ups-form_label">Change the language of this page</label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="ups-uid-language" id="ups-uid-language" class="ups-dropdown">
+								<option value="en_US" selected>English</option>
+								<option value="bg_BG">Bulgarian</option>
+								<option value="cs_CZ">Czech</option>
+								<option value="da_DK">Danish</option>
+								<option value="nl_NL">Dutch</option>
+								<option value="et_EE">Estonian</option>
+								<option value="fr_FR">French</option>
+								<option value="de_DE">German</option>
+								<option value="el_CY">Greek</option>
+								<option value="hu_HU">Hungarian</option>
+								<option value="it_IT">Italian</option>
+								<option value="ja_JP">Japanese</option>
+								<option value="ko_KR">Korean</option>
+								<option value="lv_LV">Latvian</option>
+								<option value="lt_LT">Lithuanian</option>
+								<option value="pl_PL">Polish</option>
+								<option value="pt_BR">Portuguese</option>
+								<option value="ro_RO">Romanian</option>
+								<option value="ru_RU">Russian</option>
+								<option value="zh_CN">Simplified Chinese(China)</option>
+								<option value="es_ES">Spanish</option>
+								<option value="sk_SK">Slovak</option>
+								<option value="sv_SE">Swedish</option>
+								<option value="zh_HK">Traditional Chinese(Hong Kong)</option>
+								<option value="zh_TW">Traditional Chinese(Taiwan)</option>
+								<option value="tr_TR">Turkish</option>
+								<option value="uk_UA">Ukrainian</option>
+								<option value="vi_VN">Vietnamese</option>
+							</select>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup"> 
+				        <button type="submit" class="ups-cta ups-cta_tertiary">
+				        	Update Language
+				        </button>        
+				    </div>
+				</form>
+		</section>
+	</div>
+</div>

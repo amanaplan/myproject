@@ -1,0 +1,365 @@
+
+<div class="row" data-ng-init="countryCode = 'us'">
+    <div class="col-md-6">
+        <div class="ups-form_group ups-form_required">
+            <label for="ups-cardType" class="ups-form_label">
+                Card Type
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select
+                    error-on-blur
+                    data-ng-class="{'ups-bodError':(ups_Cardform.cardType.$invalid && clicked)}"
+                    id="ups-cardType" class="ups-dropdown" name="cardType"
+                    data-ng-model="form.Cardtype"
+                    data-ng-change="changeImage(form.Cardtype)" required aria-required="true"
+                    data-ng-options="item for item in payementData.cardOptions | filter:filterPaymentOptions(countryCode)">
+                    <option value="" selected>--Select One--</option>
+                </select>
+                </div>
+                <span class="ups-invalid_color"
+                      data-ng-show="(!ups_Cardform.cardType.$pristine && ups_Cardform.cardType.$invalid)||(ups_Cardform.cardType.$invalid && clicked) " role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_Cardform.cardType.$error.required">This field is required.</span> </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="ups-form_group ups-form_required"
+            data-ng-if="ischoosePayment">
+            <label for="ups-card_name" class="ups-form_label">
+                Cardholder Name
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input
+                    data-ng-class="{'ups-bodError':(ups_Cardform.Cardholder.$invalid && clicked)}"
+                    error-on-blur id="ups-card_name" type="text" name="Cardholder"
+                    class="ups-form_input" data-ng-pattern="" maxlength="35"
+                    data-ng-model="form.Cardholder" required aria-required="true"
+                    data-ng-model-options="{updateOn: 'blur'}">
+                <div data-ng-if="ups_Cardform.Cardholder.$valid">
+                    <!-- @Note: screen reader text needs to be translated as well -->
+                    <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Complete</span> </div>
+            </div>
+            <span class="ups-invalid_color"
+                    data-ng-show="(!ups_Cardform.Cardholder.$pristine && ups_Cardform.Cardholder.$invalid)||(ups_Cardform.Cardholder.$invalid && clicked)" role="alert"> <span class="push icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_Cardform.Cardholder.$error.required">This
+                field is required.</span> </span>
+            <!-- ups-text_wrapper ups-input_wrapper -->
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div data-ng-if="!ischoosePayment"
+            class="ups-form_group ups-form_required">
+            <label for="ups-card_cardNumber" class="ups-form_label">
+                Card Number
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input
+                    data-ng-class="{'ups-bodError':(ups_Cardform.cardNumber.$invalid && clicked),'ups-bodError':invalidCard}"
+                    error-on-blur id="ups-card_cardNumber"
+                    number-mask
+                    type="text" name="cardNumber" class="ups-form_input"
+                    data-ng-pattern=""
+                    data-ng-keydown="$event.keyCode == 13 ? changeCard(form.cardNumber):null"
+                    data-ng-keyup="$event.keyCode == 13 ? changeCard(form.cardNumber):null"
+                    data-ng-change="checkLength(form.cardNumber)" maxlength="16"
+                    required aria-required="true" data-ng-model="form.cardNumber"
+                    data-ng-model-options="{updateOn: 'blur'}"
+                    aria-describedby="ups-cardnumber-error">
+                <div data-ng-show="!invalidCard" data-ng-if="ups_Cardform.cardNumber.$valid"> <span class="ups-icon-check" aria-hidden="true"></span>
+                    <!-- @Note: screen reader text needs to be translated as well -->
+                    <span class="ups-readerTxt">Complete</span> </div>
+            </div>
+            <span id="ups-cardnumber-error" role="alert"><span class="ups-invalid_color"
+                    data-ng-show="(!ups_Cardform.cardNumber.$pristine && ups_Cardform.cardNumber.$invalid)|| (clicked && ups_Cardform.cardNumber.$invalid)"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_Cardform.cardNumber.$error.required">This
+                field is required.</span> </span> <span class="ups-invalid_color" data-ng-show="invalidCard"> <span data-ng-show="invalidCard">Invalid Card Number.</span> <span
+                        class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> </span> <span data-ng-show="!invalidCard" data-ng-if="ups_Cardform.cardNumber.$valid" > <span class="ups-readerTxt">Complete</span> </span> </span>
+            <!-- ups-text_wrapper ups-input_wrapper -->
+        </div>
+        <div data-ng-if="ischoosePayment"
+            class="ups-form_group ups-form_required">
+            <label for="ups-card_cardNumber" class="ups-form_label">
+                Card Number
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input
+                    data-ng-class="{'ups-bodError':(ups_Cardform.cardNumber.$invalid && clicked),'ups-bodError':invalidCard}"
+                    error-on-blur id="ups-card_cardNumber"
+                    number-mask
+                    type="text" name="cardNumber" class="ups-form_input"
+                    data-ng-pattern=""
+                    data-ng-keydown="$event.keyCode == 13 ? changeCard(form.cardNumber):null"
+                    data-ng-keyup="$event.keyCode == 13 ? changeCard(form.cardNumber):null"
+                    data-ng-change="checkLength(form.cardNumber)" maxlength="35"
+                    required aria-required="true" data-ng-model="form.cardNumber"
+                    data-ng-model-options="{updateOn: 'blur'}"
+                    aria-describedby="ups-cp-card-number-error">
+
+                <div data-ng-show="!invalidCard" data-ng-if="ups_Cardform.cardNumber.$valid">
+                    <!-- @Note: screen reader text needs to be translated as well -->
+                    <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Complete</span> </div>
+            </div>
+            <span id="ups-cp-card-number-error" role="alert"><span
+                    class="ups-invalid_color"
+                    data-ng-show="(!ups_Cardform.cardNumber.$pristine && ups_Cardform.cardNumber.$invalid)||(ups_Cardform.cardNumber.$invalid && clicked)"> <span data-ng-show="invalidCard" class="ups-readerTxt">Invalid
+                Card Number.</span> <span
+                        class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_Cardform.cardNumber.$error.required">This
+                field is required.</span> </span> <span class="ups-invalid_color" data-ng-show="invalidCard"> <span data-ng-show="invalidCard">Invalid Card Number.</span> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> </span> <span data-ng-show="!invalidCard" data-ng-if="ups_Cardform.cardNumber.$valid" > <span class="ups-readerTxt">Complete</span> </span> </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="ups-group clearfix" aria-hidden="true">
+            <ul class="ups-cardOrder_list">
+                <li class="ups-{{item | join}}"
+                    data-ng-repeat="item in payementData.cardOptions"
+                    data-ng-class="{'ups-active':item===form.Cardtype}"
+                    data-ng-show="(payementData.cardCountries[countryCode].indexOf(item) !== -1)">
+                    <!--<span class="ups-readerTxt">{{item}}</span>-->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- ups-form_group ups-form_required -->
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-2">
+        <div class="ups-form_group ups-form_required">
+            <label for="ups-month" class="ups-form_label">
+                Expiration
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <select
+                    error-on-blur
+                    data-ng-class="{'ups-bodError':(ups_Cardform.month.$invalid && clicked)}"
+                    id="ups-month" class="ups-dropdown" name="month"
+                    data-ng-model="form.month" required aria-required="true">
+                    <option value="" selected>--Month--</option>
+                    <option data-ng-disabled="item.isValid"
+                        data-ng-repeat="item in Months" value="{{item.month}}"> {{item.month}}</option>
+                </select>
+                </div>
+                 <span class="ups-invalid_color"
+                      data-ng-show="(!ups_Cardform.month.$pristine && ups_Cardform.month.$invalid)||(ups_Cardform.month.$invalid && clicked)" role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span class="ups-readerTxt">Invalid</span> <span
+                    data-ng-show="ups_Cardform.month.$error.required">This
+                field is required.</span> </span>
+        </div>
+        <!-- ups-form_group ups-form_required -->
+    </div>
+    <div class="col-sm-6 col-md-2">
+        <div class="ups-form_group ups-form_required">
+            <label for="ups-year" class="ups-no_label ups-readerTxt">
+                Expiration Year
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper ups-offset-22"
+                data-errormsg="This field is required">
+                <select
+                    error-on-blur
+                    data-ng-class="{'ups-bodError':(ups_Cardform.Year.$invalid && clicked)}"
+                    id="ups-year" class="ups-dropdown" required aria-required="true"
+                    data-ng-change="changeYear(form.year)" name="Year"
+                    data-ng-model="form.year" data-ng-options="item for item in Year">
+                    <option value="" selected>--Year--</option>
+                </select>
+                 </div>
+                 <span class="ups-invalid_color"
+                      data-ng-show="(!ups_Cardform.Year.$pristine && ups_Cardform.Year.$invalid)||(ups_Cardform.Year.$invalid && clicked)" role="alert"> <span class="ups-readerTxt">Invalid</span> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span><span
+                    data-ng-show="ups_Cardform.Year.$error.required">This field
+                is required.</span> </span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="ups-form_group ups-form_required ups-help_wrapper">
+            <label for="ups-code" class="ups-form_label">{{ischoosePayment
+                ? 'CCV' : 'CVV'}}
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-help"> <a href="#" onclick="return false;" data-ng-click="isPopoverOpen = !isPopoverOpen"
+                    class="ups-help_link icon ups-active ups-form_link-noDecoration">Help <span class="ups-icon-questioncircle" aria-hidden="true"></span><span
+                    class="ups-readerTxt">{{ischoosePayment ? 'about CCV' :
+                'about CVV'}}</span></a>
+                <div class="ups-help_tooltip ups-help_tooltip_topleft"
+                    data-ng-style="isPopoverOpen ? {'display':'block'} :{'display':'none'}">
+                    <button type="button" data-ng-click="isPopoverOpen = false"
+                        class="ups-help_close icon "> <span class=" ups-icon-x ups-iconAlone" aria-hidden="true"></span> <span class="ups-readerTxt">Close</span> </button>
+                    <p>The CVV is the number your card company uses to verify transactions. Most cards show a three-digit number to the right of your signature area on the back. American Express<sup>&reg;</sup> prints a four-digit code on the front of the card, directly above the card number.</p>
+                </div>
+            </div>
+            <div data-ng-if="!ischoosePayment">
+            <div class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input
+                    data-ng-class="{'ups-bodError':(ups_Cardform.verify.$invalid && clicked),'ups-bodError':invalidCode}"
+                    error-on-blur id="ups-code" number-mask
+                    data-ng-change="checkcodeLength(form.verify)" type="text"
+                    name="verify" data-ng-pattern="" class="ups-form_input"
+                    maxlength="4" required aria-required="true" data-ng-model="form.verify"
+                    data-ng-keyup="$event.keyCode == 13 ? changeVerCode(form.verify): null"
+                    data-ng-keydown="$event.keyCode == 13 ? changeVerCode(form.verify):null"
+                    data-ng-model-options="{updateOn: 'blur'}"
+                    aria-describedby="ups-payment-cvv-error">
+
+                <div data-ng-show="!invalidCode" data-ng-if="ups_Cardform.verify.$valid"> <span class="ups-icon-check" aria-hidden="true"></span>
+                    <!-- @Note: screen reader text needs to be translated as well -->
+                    <span class="ups-readerTxt">Complete</span> </div>
+            </div>
+            <span id="ups-payment-cvv-error" role="alert"><span class="ups-invalid_color"
+                    data-ng-show="(!ups_Cardform.verify.$pristine && ups_Cardform.verify.$invalid)||(ups_Cardform.verify.$invalid && clicked)"> <span class="icon ups-error_exclamation"><span class=" ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_Cardform.verify.$error.required">This
+                field is required.</span> </span> <span class="ups-invalid_color" data-ng-show="invalidCode"> <span class="icon ups-error_exclamation"><span class=" ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="invalidCode">Invalid Code.</span> </span> <span data-ng-show="!invalidCode" data-ng-if="ups_Cardform.verify.$valid" > <span class="ups-readerTxt">Complete</span> </span> </span></div>
+                <div data-ng-if="ischoosePayment">
+            <div
+                class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input
+                    data-ng-class="{'ups-bodError':(ups_Cardform.verify.$invalid && clicked),'ups-bodError':invalidCode}"
+                    id="ups-code" number-mask
+                    data-ng-change="checkcodeLength(form.verify)" required aria-required="true"
+                    type="password" name="verify" data-ng-pattern=""
+                    class="ups-form_input" maxlength="5" data-ng-model="form.verify"
+                    data-ng-keyup="changeVerCode(form.verify)"
+                    data-ng-keydown="$event.keyCode == 13 ? changeVerCode(form.verify):null"
+                    data-ng-model-options="{updateOn: 'blur'}">
+
+                <div data-ng-show="!invalidCode" data-ng-if="ups_Cardform.verify.$valid"><span class=" ups-icon-check" aria-hidden="true"></span>
+                    <!-- @Note: screen reader text needs to be translated as well -->
+                    <span class="ups-readerTxt">Complete</span> </div>
+            </div>
+             <span class="ups-invalid_color"
+                    data-ng-show="(!ups_Cardform.verify.$pristine && ups_Cardform.verify.$invalid)||(ups_Cardform.verify.$invalid && clicked)" role="alert"> <span class="icon ups-error_exclamation"><span class=" ups-icon-exclamation" aria-hidden="true"></span></span> <span class="ups-readerTxt">Invalid</span> <span
+                    data-ng-show="ups_Cardform.verify.$error.required">This
+                field is required.</span> </span><span class="ups-invalid_color" data-ng-show="invalidCode"> <span class="icon ups-error_exclamation"><span class=" ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="invalidCode">Invalid CCV.</span> </span></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <!-- ups-form_group ups-form_required -->
+        <div class="ups-form_group">
+            <label class="ups-form_label" for="ups-cardNickName">Nickname</label>
+            <div class="ups-text_wrapper ups-input_wrapper"
+                data-errormsg="This field is required">
+                <input id="ups-cardNickName" type="text" name="Nickname"
+                    class="ups-form_input" data-ng-pattern="" maxlength="35"
+                    data-ng-model="form.Nickname"
+                    data-ng-model-options="{updateOn: 'blur'}">
+            </div>
+            <!-- ups-text_wrapper ups-input_wrapper -->
+        </div>
+    </div>
+</div>
+<div class="ups-form_group ups-checkbox ups-input_wrapper  "
+    data-errormsg="Remember Me">
+    <input check-verify id="ups-offers_checkbox_non-US"
+        class="ups-checkbox-custom ups-ng-pristine data-ng-untouched data-ng-valid"
+        type="checkbox" name="makeDefault" data-ng-pattern=""
+        data-ng-model="form.makeDefault"
+        data-ng-model-options="{updateOn: 'blur'}">
+    <label
+        for="ups-offers_checkbox_non-US" class="ups-checkbox-custom-label"> Make this my default payment method.</label>
+</div>
+<fieldset class="ups-form_group ups-form_required">
+    <legend class="ups-form_label ups-no-border ups-asterisk-no-label">
+        Billing Address
+        <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+    </legend>
+    <div data-errormsg="This field is required">
+        <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Remember Me">
+            <input id="ups-sameBillingAddress" class="ups-radio-custom"
+                type="radio" name="ups-sameBillingAddress"
+                data-ng-click="diffAddress=false ; form.addressStatus='SameAdd';"
+                data-ng-checked="form.SameAddr" value="SameAdd" data-ng-pattern=""
+                data-ng-model="form.checkAddr"
+                data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required aria-required="true">
+            <label
+                data-ng-init="form.addressStatus='SameAdd'"
+                for="ups-sameBillingAddress" class="ups-radio-custom-label"> Same as my profile address.
+                    <address data-ng-if="!ischoosePayment" data-ng-show="!diffAddress">
+                        <p>{{::form.address.address2}}</p>
+                        <p>{{::form.address.address1}}</p>
+                        <p>{{::form.address.country}}</p>
+                    </address>
+            </label>
+        </div>
+    </div>
+    <div data-errormsg="This field is required">
+        <div class="ups-buttonList_wrapper ups-input_wrapper"
+            data-errormsg="Remember Me">
+            <input id="ups-diffBillingAddress" class="ups-radio-custom"
+                type="radio" name="ups-sameBillingAddress"
+                data-ng-click="diffAddress=true ; form.addressStatus='diffAdd';checkAddress()"
+                data-ng-checked="form.diffAddr" value="diffAdd"
+                data-ng-model="form.checkAddr" data-ng-pattern=""
+                data-ng-model-options="{updateOn: 'blur'}">
+            <label
+                data-ng-init="form.addressStatus='SameAdd'"
+                for="ups-diffBillingAddress" class="ups-radio-custom-label"> Enter a different billing address.</label>
+        </div>
+    </div>
+    <!-- ups-form_group ups-form_required -->
+</fieldset>
+
+<div class="ups-cms-demo">
+    <div class="ups-form_group">
+        <label for="testCountrySel" class="ups-form_label">Test Country Sel</label>
+        <div class="ups-dropdown_wrapper">
+            <select class="ups-dropdown" id="testCountrySel" ng-model="countryCode">
+                <option value="ar">Argentina</option>
+                <option value="at">Austria</option>
+                <option value="au">Australia</option>
+                <option value="be">Belguim</option>
+                <option value="br">Brazil</option>
+                <option value="ca">Canada</option>
+                <option value="ch">Switzerland</option>
+                <option value="cn">China</option>
+                <option value="co">Colombia</option>
+                <option value="cr">Costa Rica</option>
+                <option value="cz">Czech Republic</option>
+                <option value="de">Germany</option>
+                <option value="dk">Denmark</option>
+                <option value="do">Dominican Republic</option>
+                <option value="es">Spain</option>
+                <option value="fi">Finland</option>
+                <option value="fr">France</option>
+                <option value="gb">United Kingdom</option>
+                <option value="gr">Greece</option>
+                <option value="hk">Hong Kong</option>
+                <option value="hu">Hungary</option>
+                <option value="in">India</option>
+                <option value="id">Indonesia</option>
+                <option value="ie">Ireland</option>
+                <option value="it">Italy</option>
+                <option value="jp">Japan</option>
+                <option value="kr">South Korea</option>
+                <option value="lu">Luxembourg</option>
+                <option value="mo">Macau</option>
+                <option value="my">Malaysia</option>
+                <option value="mx">Mexico</option>
+                <option value="nl">Netherlands</option>
+                <option value="nz">New Zealand</option>
+                <option value="no">Norway</option>
+                <option value="ph">Philippines</option>
+                <option value="pl">Poland</option>
+                <option value="pr">Puerto Rico</option>
+                <option value="pt">Portugal</option>
+                <option value="ro">Romania</option>
+                <option value="ru">Russia</option>
+                <option value="se">Swedan</option>
+                <option value="sg">Singapore</option>
+                <option value="th">Thailand</option>
+                <option value="tw">Taiwan</option>
+                <option value="us">United States</option>
+                <option value="vn">Vietnam</option>
+                <option value="za">South Africa</option>
+            </select>
+        </div>
+    </div>
+</div>

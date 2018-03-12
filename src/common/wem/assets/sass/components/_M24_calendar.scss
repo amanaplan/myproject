@@ -1,0 +1,451 @@
+// ----------------------------------------------------
+// M24 Calendar
+// ----------------------------------------------------
+
+
+.ups-calendar {
+    margin-bottom: 60px;
+
+    .ups-calendar_nav {
+        float: $default-float;
+        padding: 0 48px;
+        margin-#{$default-float}: -18px;
+        margin-bottom: $margin_3;
+        position: relative;
+
+        h1 {
+            margin: 0;
+        }
+
+        a {
+            display: block;
+            position: absolute;
+            height: 0;
+            width: 48px;
+            padding-top: 48px;
+            color: transparent;
+            text-decoration: none;
+            top: 50%;
+            margin-top: -24px;
+
+            .icon:before {
+                @include ups-icons;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 48px;
+                width: 48px;
+                line-height: 48px;
+                text-align: center;
+                color: $ups_brown;
+                font-size: 1.6em;
+            }
+
+            &.ups-calendar_prev {
+                #{$default-float}: 0;
+                .icon:before { content: '\e627';
+                    .ups-rtl & { content: '\e629'; }
+                }
+            }
+            &.ups-calendar_next {
+                #{$opposite-direction}: 0;
+                .icon:before { content: '\e629';
+                    .ups-rtl & { content: '\e627'; }
+                }
+            }
+        }
+    }
+
+    .ups-calendar_toggle {
+        @include unlist;
+        float: $opposite-direction;
+        margin-top: 10px;
+        margin-#{$opposite-direction}: -10px;
+
+        li {
+            display: inline-block;
+            padding: 0 10px;
+            border-#{$default-float}: 1px solid $black_s1;
+
+            &:first-child { border: none; }
+
+            &.ups-active button {
+                font: 1.2em $sans-bd;
+                padding-#{$default-float}: 24px;
+            }
+        }
+
+        button {
+            @include unbutton;
+            display: block;
+            position: relative;
+            padding-#{$default-float}: 20px;
+
+            .icon:before {
+                @include ups-icons;
+                position: absolute;
+                #{$default-float}: 0;
+                text-decoration: none;
+                font-size: 0.8em;
+            }
+
+            &.ups-calendar_fullBtn .icon:before { content: '\e61e'; }
+            &.ups-calendar_listBtn .icon:before { content: '\e648'; }
+        }
+
+    }
+
+    .ups-calendar_body {
+        clear: both;
+    }
+
+    .ups-calendar_weekdays {
+        display: table;
+        width: 100%;
+    }
+
+    .ups-calendar_weekdays {
+        @include unlist;
+        display: table-row;
+        background: $black_s3;
+        color: $white;
+        font-family: $sans-bd;
+        text-align: center;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        li {
+            display: table-cell;
+            width: 14.2857%; // 100/7
+            padding: 10px 0;
+            position: relative;
+            line-height: 1.6em;
+
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 10px;
+                bottom: 10px;
+                #{$default-float}: 0;
+                width: 1px;
+                background: $black_s1;
+            }
+
+            &:first-child:before {
+                display: none;
+            }
+        }
+    }
+
+    .ups-calendar_week {
+        @include unlist;
+        display: table-row;
+
+        &:nth-child(2) li.ups-calendar_empty {
+            border-bottom: 1px solid $stone_s3;
+        }
+
+        li {
+            display: table-cell;
+            vertical-align: top;
+            position: relative;
+            border: 1px solid $stone_s3;
+            border-top: none;
+            border-#{$default-float}: none;
+            width: 14.2857%; // 100/7
+            padding: 30px 10px 10px;
+            line-height: 80px;
+
+            &:first-child {
+                border-#{$default-float}: 1px solid $stone_s3;
+            }
+
+            h2 {
+                position: absolute;
+                top: 10px;
+                #{$opposite-direction}: 10px;
+                font: 400 1em/1 $sans;
+                margin: 0;
+            }
+
+            &.ups-active {
+                background: $stone_60;
+                line-height: 1.25em;
+            }
+
+            &.ups-calendar_today {
+                background: $ups_gold;
+            }
+
+
+            &.ups-calendar_empty {
+                border: none;
+            }
+            &.ups-calendar_first {
+                border-#{$opposite-direction}: 1px solid $stone_s3;
+            }
+
+            a {
+                display: block;
+                margin-bottom: $margin_4;
+                color: $ups_brown;
+                text-decoration: underline;
+
+                &.ups-calendar_more {
+                    font-family: $sans-bd;
+                    padding-#{$opposite-direction}: 10px;
+                    text-decoration: none;
+
+                    span:not(.icon) {
+                        text-decoration: underline;
+                    }
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+
+                    .icon:after {
+                        @include ups-icons;
+                        content: '\e629';
+                        font-size: 0.9em;
+                        margin-#{$default-float}: 4px;
+                        position: relative;
+                        line-height: 0;
+                        top: 2px;
+
+                        .ups-rtl & {
+                            content: '\e627';
+                        }
+                    }
+                }
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    color: $black_s3;
+                }
+            }
+        }
+    }
+
+    .ups-calendar_count {
+        display: none;
+        text-align: center;
+        padding: 15px;
+        margin: 0;
+
+        span {
+            font-family: $sans-bd;
+        }
+    }
+
+    article {
+        overflow: hidden;
+        margin-bottom: $margin_3;
+
+        header {
+            background: $black_s1;
+            color: $white;
+            padding: 10px 15px;
+            overflow: hidden;
+            margin-bottom: $margin_3;
+
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            h2 {
+                margin: 0;
+                font: 1.2em $sans-bd;
+            }
+
+            p {
+                float: $opposite-direction;
+                margin: 0;
+                margin-#{$default-float}: 15px;
+            }
+        }
+
+        img {
+            float: $default-float;
+            width: 35%;
+        }
+
+        .ups-calendar_dayCont {
+            float: $default-float;
+            width: 60%;
+            margin-#{$default-float}: $margin_3;
+
+            p {
+                margin: 0 0 $margin_4;
+            }
+
+            .ups-calendar_more {
+                @include unbutton;
+                margin: 0 10px;
+                font-family: $sans-bd;
+
+                .ups-rtl & {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            .ups-calendar_moreTxt {
+                display: none;
+
+                &.ups-active {
+                    display: block;
+                }
+            }
+        }
+
+        dl {
+            overflow: hidden;
+            margin-bottom: $margin_3;
+
+            dt {
+                font-family: $sans-bd;
+                float: $default-float;
+                clear: $default-float;
+                font-weight: 400;
+                margin-top: $margin_4;
+                margin-#{$opposite-direction}: 4px;
+
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            dd {
+                margin-top: $margin_4;
+                font-family: $sans;
+                float: $default-float;
+
+                a {
+                    color: $ups_brown;
+                    text-decoration: underline;
+                    @include transition-property(color);
+                    @include transition-duration($main-transition-speed);
+
+                    &:hover {
+                        color: $black_s3;
+                    }
+
+                }
+            }
+
+        }
+
+        .ups-calendar_dayCtas {
+            @include unlist;
+            margin-top: -15px;
+
+            li {
+                display: inline;
+                margin-#{$opposite-direction}: 30px;
+
+                .ups-cta { margin-top: 15px; }
+            }
+        }
+
+    }
+
+    @media #{$media-small} {
+        margin-left: -20px;
+        margin-right: -20px;
+
+        .ups-calendar_nav {
+            background: $black_s1;
+            color: $white;
+            float: none;
+            margin: 0;
+            padding: 0 54px;
+
+            h1 {
+                font: 400 1em/1 $sans-bd;
+                text-align: center;
+                padding: 15px 0;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            a.ups-calendar_prev { #{$default-float}: 6px; }
+            a.ups-calendar_next { #{$opposite-direction}: 6px; }
+
+            a .icon:before {
+                color: $white;
+                font-size: 1.2em;
+            }
+        }
+
+        .ups-calendar_toggle { display: none; }
+
+        .ups-calendar_count {
+            display: block;
+        }
+
+        article {
+            margin-bottom: $margin_3;
+            header {
+                background: $ups_gold;
+                color: $ups_brown;
+                padding: 14px 20px;
+                overflow: hidden;
+                margin-bottom: 0;
+
+                h2 {
+                    margin: 0;
+                    font: 1.2em $sans-bd;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            img {
+                float: none;
+                display: block;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .ups-calendar_dayCont {
+                float: none;
+                width: auto;
+                margin: 0 20px;
+            }
+
+            .ups-calendar_dayCtas {
+                margin-top: 0;
+
+                li {
+                    display: block;
+                    margin: 24px 0 0;
+
+                    a {
+                        margin: 0 auto;
+                        display: block;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+}

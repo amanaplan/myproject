@@ -1,0 +1,123 @@
+// ----------------------------------------------------
+// Feed Based Blog
+// ----------------------------------------------------
+
+
+@mixin ups_feedBased_blog_sm {
+    
+    .ups-content_wrap {
+        
+        .ups-article {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
+        &:first-child .ups-article {
+            margin-top: $page-margin;
+        }
+    }
+    
+}
+
+.ups-feedBased_blog {
+	@include ups-component_margin;
+	
+	.ups-wrap {
+		margin-top: $margin_1;
+	}
+	
+    @media #{$media-small} {
+        @include ups_feedBased_blog_sm;
+    }
+}
+
+.subsection_aside .ups-feedBased_blog,
+.iw_columns.col-lg-4 .ups-feedBased_blog {
+    @include ups_feedBased_blog_sm;
+}
+
+.ups-feedBased_blog-wrapper {
+    .ups-content_wrap {
+        padding-bottom: $page-margin;
+        border-bottom: 10px solid $stone_s3;
+        float: left;
+        
+        &:first-child .ups-article {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: $margin_1;
+        }
+
+        @media #{$media-small} {
+            margin-bottom: $margin_3;
+            padding-bottom: $margin_3;
+        }
+
+        .ups-article {
+            padding: 0 !important;
+            margin-bottom: 0;
+
+            .ups-wrap_inner {
+                padding:0;
+                border:0;
+
+                .ups-article-header {
+                    cursor: pointer;
+//                    font-size: 2.1em;
+                    line-height: 40px;
+//                    font-family: $sans;
+                    float: $default-float;
+                    width:100%;
+                    @include transition-property(all);
+                    @include transition-duration($main-transition-speed);
+
+                    @media #{$media-small} {
+                        margin-bottom: $margin_3;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: $black_s3;
+                    }
+                }
+
+            .ups-article_author {
+                    clear: $default-float;
+                    margin-bottom: 5px;
+                }
+
+                .ups-article_wrap {
+                    padding: 10px 0 0;
+
+                    ul {
+                        padding: 0 30px;
+                    }
+                }
+
+            }
+        }
+        .ups-feedBased_blog-link{
+            display: block;
+            margin-top: 10px;
+            color: $ups_brown;
+            text-decoration: underline;
+            font-family: $sans-bd;
+            @if $text-direction == ltr {
+                float: left;
+            } @else {
+                float: right;
+            }
+
+            &:hover {
+                color: $black_s3;
+            }
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+    }
+
+}

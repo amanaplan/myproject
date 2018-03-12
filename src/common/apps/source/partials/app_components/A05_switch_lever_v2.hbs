@@ -1,0 +1,73 @@
+{{!--
+********************************************************************************
+A05 Switch Lever - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    label                      = string     / YES           / Lever Control Title
+    label_labelby              = string     / NO            / if the label should have label by attribute (hides the text)
+    label_right                = boolean    / NO            / if the label and helper txt should be positioned on the right side
+    name                       = string     / YES           / Name for the checkbox
+    id                         = string     / YES           / ID for the checkbox
+    checked                    = boolean    / NO            / to check or uncheck by default
+    helper_txt                 = string     / NO            / helper text under the label
+    helper_txt_nonitalic       = boolean    / NO            / if the helper text should not be italic
+    help_btn                   = string     / NO            / if there is a help button shown on the label
+    required_indicator         = boolean    / NO            / if the lever is required to be yes only (checked)
+
+********************************************************************************
+
+Lever needs to inside a div with class of ups-form_group.
+
+--}}
+
+
+<label class="ups-lever" onclick="" for="{{ this.id }}">
+    <input type="checkbox" id="{{ this.id }}" name="{{ this.name }}" {{#if this.checked }}checked{{/if}}{{#if label_labelby }} aria-labelledby="{{ label_labelby }}"{{/if}}{{#if required_indicator }} aria-required="true" required{{/if}} class="ups-lever_checkbox">
+    <!-- if checked then yes -->
+    {{#unless label_right }}
+    <div class="ups-lever_label_container">
+    {{#unless label_labelby }}<strong class="ups-form_label ups-lever_label">
+    {{ this.label }}
+    {{#if required_indicator }}
+    <span aria-hidden="true" class="ups-required_indicator ups-lever_required_indicator"></span>
+    {{/if}}
+    </strong>{{/unless}}
+    {{#if helper_txt }}
+    	<p{{#unless helper_txt_nonitalic }}  class="ups-form_subheader ups-lever_subheader"{{/unless}}>{{ this.helper_txt }}</p>
+    {{/if}}
+    </div>
+    {{/unless}}
+
+    <span aria-hidden="true" class="ups-lever_switch">
+    	<span class="ups-lever_switch_yes">Yes</span>
+        <span class="ups-lever_switch_bg"></span>
+        <span class="ups-lever_switch_no">No</span>
+    </span>
+
+    {{#if label_right}}
+    <div class="ups-lever_rlabel">
+    {{#unless label_labelby }}<strong class="ups-form_label ups-lever_label">{{ this.label }}{{#if required_indicator }}
+        <span aria-hidden="true" class="ups-required_indicator ups-lever_required_indicator"></span>
+    {{/if}}</strong>{{/unless}}
+    {{#if helper_txt }}
+    	<p{{#unless helper_txt_nonitalic }} class="ups-form_subheader ups-lever_subheader"{{/unless}}>{{ this.helper_txt }}</p>
+    {{/if}}
+    </div>
+    {{/if}}
+
+</label>
+
+{{#if help_btn }}
+<div class="ups-help">
+    <button type="button" id="{{ this.id }}-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+            <span class="ups-readerTxt">Close</span>
+        </button>
+        <p>{{{ help_btn }}}</p>
+    </div>
+</div>
+{{/if}}

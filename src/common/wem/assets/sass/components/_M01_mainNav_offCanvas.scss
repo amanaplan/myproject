@@ -1,0 +1,692 @@
+// ----------------------------------------------------
+// MAIN NAV - OFF CANVAS
+// ----------------------------------------------------
+
+@media #{$media-medium} {
+
+    #ups-pageWrap {
+        position:relative;
+        #{$opposite-direction}: 0%;
+        @include transition-property($opposite-direction);
+        @include transition-duration($offCanvas_dur);
+    }
+
+    #ups-headerWrap {
+        &, .ups-headFixed & {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding-top: 0;
+            //border-top: $head_line_md solid $ups_gold; // removed gold bar per PMG-157
+            height: $head_hgt_md - $head_line_md; // changed per PMG-157
+            #{$opposite-direction}: 0%;
+            @include transition-duration($offCanvas_dur);
+
+            &:before { display: none; }
+        }
+    }
+
+    #ups-navItems {
+        visibility: hidden;
+        display: block;
+        position: fixed;
+        width: 100%;
+        min-width: 320px;
+        margin: 0;
+        padding-#{$default-float}: $offCanvas_close;
+        top: 0;
+        bottom: 0;
+        overflow-y: auto;
+        #{$default-float}: 100%;
+        border-top: 1px solid $white;
+        @include transition-property($default-float);
+        @include transition-duration($offCanvas_dur);
+        @include box-shadow(rgba($black, 0.5) 15px 0 25px);
+
+        .ups-rtl & {
+            @include box-shadow(rgba($black, 0.5) -15px 0 25px);
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: $black_s3;
+            z-index: 0;
+        }
+
+        .ups-menuClose {
+            @include unbutton;
+            color: $white;
+            background: $ups_brown;
+            position: fixed;
+            #{$default-float}: 100%;
+            top: 0;
+            bottom: 0;
+            font-size: 22px;
+            width: $offCanvas_close;
+            z-index: 1;
+            @include box-shadow(rgba($black, 0.5) 5px 0 10px);
+            @include transition-property($default-float);
+            @include transition-duration($offCanvas_dur);
+
+
+            .ups-rtl & {
+                @include box-shadow(rgba($black, 0.5) -5px 0 25px);
+            }
+
+            .ups-icon-x {
+                position: absolute;
+                top: 24px;
+                left: 50%;
+                margin-left: -11px;
+            }
+            .ups-mobmenu-close{
+                  width: 50px;
+                  height: 50px;
+                  margin-left: 7px;
+                  margin-top: 10px;
+                  background: none;
+                  border: none;
+            }
+        }
+
+        .ups-navItems_primary {
+            display: block;
+            width: auto;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ups-navMenu {
+            float: none;
+            padding: 0;
+
+            .ups-menu_toggle {
+                width: 100%;
+                padding: 24px;
+                padding-#{$opposite-direction}: 60px;
+                height: auto;
+                text-align: $default-float;
+                background: $ups_brown;
+                border-bottom: 1px solid $white;
+                position: relative;
+                .ups-mobnav-arrow{
+                    &:after {
+                        @include ups-icons;
+                        content: '\e629';
+                        padding-#{$default-float}: 10px;
+                        font-size: 18px;
+                        position: absolute;
+                        top: 50%;
+                        margin-top: -3px;
+                        line-height: 0;
+                        #{$opposite-direction}: 20px;
+
+                        .ups-rtl & {
+                            content: '\e627'
+                        }
+                    }
+                }
+                &:focus{
+                  outline: 1px auto $ups-gold;
+                  z-index: 10;
+                  border:0;
+                  outline-offset: -3px;
+                }
+                .ie9 &, .ie10 &, .ie11 &{
+                    &:focus{
+                    outline: 1px solid $ups-gold;
+                  }
+                }
+            }
+
+            &.ups-active .ups-menu_toggle {
+                border-bottom: 1px solid $white;
+                color: $white;
+            }
+
+            .ups-menu_cta {
+                position: static;
+                display: block;
+                padding: 20px 0;
+                color: $white;
+                font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+
+                &:after { display: none; }
+            }
+        }
+
+        .ups-menu_list {
+            width: auto;
+            top: 66px;
+            #{$default-float}: 0;
+            #{$opposite-direction}: 0;
+            bottom: 0;
+            position: fixed;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            z-index: -1;
+            padding: 20px 0;
+            padding-#{$default-float}: $offCanvas_close;
+            margin: 0;
+            border: none;
+            background: none;
+
+            &:before { display: none; }
+
+            h2 {
+                padding: 12px 24px;
+                color: $white;
+                font: 1.15em/1 $sans-bd;
+                letter-spacing: 0;
+                margin: 0;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            .ups-menu_listCols {
+                width: auto;
+            }
+
+            .ups-account_profile {
+                display: block;
+            }
+        }
+
+        .ups-menuBack {
+            @include unbutton;
+            display: block;
+            visibility: hidden;
+            width: 100%;
+            padding: 24px;
+            padding-#{$default-float}: 24px + $offCanvas_close;
+            height: auto;
+            text-align: $default-float;
+            background: $ups_brown;
+            border-top: 1px solid $white;
+            border-bottom: 1px solid $white;
+            font-size: 1.2em;
+            color: $white;
+            text-transform: uppercase;
+            position: fixed;
+            top: 0;
+            left: 100%;
+            @include transition-property($default-float);
+            @include transition-duration($offCanvas_dur);
+
+            &:before {
+                font-size: 1.2em;
+                line-height: 0;
+                position: relative;
+                top: 2px;
+                margin-#{$opposite-direction}: 8px;
+                .ups-rtl & {
+                    content: '\e629';
+                    float:right;
+                    margin:3px -6px 0 8px;
+                }
+            }
+            .ups-menuBack-button{
+                  background: none;
+                  border: 0;
+                  text-transform: uppercase;
+            }
+        }
+
+        .ups-menu_listCols {
+            padding: 0;
+            padding-#{$default-float}: 35px;
+            padding-#{$opposite-direction}: 24px;
+        }
+
+        .ups-menu_column {
+            float: none;
+            width: 100%;
+            padding: 0;
+
+            h3 { display: none; }
+
+            a {
+                color: $white;
+                padding: 20px 0;
+            }
+        }
+
+
+        #ups-header_custServ {
+            position: static;
+            height: auto;
+
+            &.ups-active {
+                border-bottom: none;
+
+                .ups-toolsToggle {
+                    height: auto;
+                    padding-bottom: 24px;
+                }
+            }
+
+            .ups-header_custServ_list {
+                top: 66px;
+            }
+
+            .ups-menu_toggle {
+                float: none;
+                height: auto;
+                width: 100%;
+                padding: 24px;
+                padding-#{$opposite-direction}: 60px;
+                text-align: $default-float;
+                line-height: 1.2em;
+                font-size: 1em;
+                border-bottom: 1px solid $white;
+                position: relative;
+
+                &:before {
+                    font-size: 1.8em;
+                    top: 8px;
+                    padding-#{$opposite-direction}: 12px;
+                }
+
+                .ups-mobnav-arrow{
+                    &:after {
+                        @include ups-icons;
+                        content: '\e629';
+                        padding-#{$default-float}: 10px;
+                        font-size: 18px;
+                        position: absolute;
+                        top: 50%;
+                        margin-top: -3px;
+                        line-height: 0;
+                        #{$opposite-direction}: 20px;
+
+                        .ups-rtl & {
+                            content: '\e627'
+                        }
+                    }
+                }
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    height: auto;
+                    padding-bottom: 24px;
+                }
+            }
+
+            .ups-headerCust_links,
+            .ups-header_custServ_contact {
+                float: none;
+                width: 100%;
+                // float: $default-float;
+                padding: 0;
+                padding-#{$default-float}: 35px;
+                padding-#{$opposite-direction}: 24px;
+                padding-top: 12px;
+                margin: 12px 0 0;
+                border-top: rgba($stone_s3, 0.3) solid 2px;
+
+                li {
+                    border: none;
+                }
+
+                a {
+                    color: $white;
+                    padding: 20px 0;
+                    border: none;
+                }
+            }
+
+            .ups-header_custServ_contact {
+
+                a {
+                    padding-#{$default-float}: 35px;
+
+                    &:before {
+                        left: 0;
+                        top: 50%;
+                        line-height: 0;
+                        margin-top: -2px;
+                        color: $ups_gold;
+                    }
+
+                    .no-touch &:hover,
+                    .no-touch &:focus {
+                        background: none;
+                        text-decoration: underline;
+                        &:before { text-decoration: none; }
+                    }
+                }
+            }
+
+            .ups-header_custServ_support {
+                color: $white;
+                border: none;
+                padding: 12px;
+                margin: 12px 0 0;
+                border-top: rgba($stone_s3, 0.3) solid 2px;
+
+                h3 {
+                    color: $white;
+                    font: 1.4em/1 $sans;
+                    letter-spacing: 0;
+                    margin: 0;
+                    padding: 12px;
+                }
+
+                ul {
+                    padding: 0 23px;
+                }
+
+                li {
+                    padding: 12px 0;
+                }
+
+                a {
+                    color: $white;
+                }
+            }
+        }
+
+        .ups-header_utils {
+            position: relative;
+            top: 0;
+            background: $black_s3;
+
+            li {
+                float: none;
+                font-size: 1em;
+                padding: 0;
+                border-bottom: 1px solid $white;
+
+                &.ups-active:before { display: none; }
+
+                a {
+                    display: block;
+                    padding: 24px;
+                    padding-#{$opposite-direction}: 60px;
+
+                    .ups-icon-chevrondown{
+                        display:none;
+                    }
+
+                    .no-touch &:hover,
+                    .no-touch &:focus {
+
+                        color: $white;
+                    }
+
+                }
+
+                .ups-menu_list {
+                    ul {
+                        padding: 0 24px;
+                    }
+
+                    li {
+                        border: none;
+                    }
+
+                    a {
+                        padding: 16px 0;
+                        color: $white;
+                    }
+                }
+
+                .ups-more {
+                    padding: 12px 24px;
+                    border-color: rgba($stone_s3, 0.3);
+                }
+
+                &.ups-account {
+                    padding-right: 0;
+                    border-bottom: 1px solid $white;
+
+                    .ups-account_profile {
+                        margin-top: -15px;
+                        padding: 22px 24px;
+                        overflow: hidden;
+
+                        h3 {
+                            font-family: $sans-bd;
+                            color: $white;
+                            margin: 0;
+
+                            .ups-rtl {
+                                font-family: $sans;
+                                font-weight: 700;
+                            }
+                        }
+
+                        img {
+                            float: $default-float;
+                            margin: -22px 15px;
+                            margin-#{$default-float}: -24px;
+                            height: 60px;
+                        }
+                    }
+
+                    .ups-menu_toggle {
+
+                        img {
+                            height: 65px;
+                            top: -24px;
+                            margin-#{$opposite-direction}: 16px;
+                            margin-#{$default-float}: -25px;
+                        }
+
+                        &.ups-user {
+                            &:before {
+                                @include ups-icons;
+                                content: '\e675';
+                                padding-#{$opposite-direction}: 10px;
+                                font-size: 1.3em;
+                                line-height: 0;
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+                    }
+
+                    .ups-cta {
+                        margin: 12px 24px 24px;
+                        width: auto;
+                    }
+
+                    ul {
+                        // padding-top: 12px;
+                        // margin-top: 12px;
+                        // border-top: 2px solid rgba($stone_s3, 0.3);
+                        border: none;
+                        margin: 0;
+
+                        &:first-of-type {
+                            margin-top: 0;
+                            padding-top: 0;
+                            border: none;
+                        }
+                    }
+                }
+
+            }
+
+            .ups-alerts_link a {
+                position: relative;
+
+                &:before {
+                    @include ups-icons;
+                    content: '\e639';
+                    position: relative;
+                    line-height: 0;
+                    font-size: 1.8em;
+                    top: 8px;
+                    padding-right: 12px;
+                }
+
+                &:after {
+                    @include ups-icons;
+                    content: '\e629';
+                    padding-#{$default-float}: 10px;
+                    font-size: 18px;
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -3px;
+                    line-height: 0;
+                    #{$opposite-direction}: 20px;
+
+                    .ups-rtl & {
+                        content: '\e627'
+                    }
+                }
+            }
+            li a{
+              &:focus{
+                z-index: 10;
+                border: 0;
+              }
+            }
+        }
+    }
+
+    // OFF CANVAS ACTIVE
+    .ups-offCanvas {
+        overflow:hidden;
+        #ups-pageWrap {
+            #{$opposite-direction}: 100%;
+        }
+
+        #ups-headerWrap {
+            &, .ups-headFixed & {
+                #{$opposite-direction}: 100%;
+                position:fixed;
+            }
+        }
+
+        #ups-navItems {
+            z-index: 0;
+            visibility: visible;
+            @media #{$media-medium} {
+                z-index: 2;
+            }
+
+            &, & .ups-menuClose {
+                #{$default-float}: 0%;
+            }
+            
+        }
+        
+        #ups-mobSearch_btn,
+        #ups-headerTools #ups-quickStartMenu.ups-toolsToggle,
+        #ups-header_logo,
+        #ups-skipNav,
+        #ups-touchNav .ups-menuToggle{
+          display:none;
+        }
+        .container-fluid.iw_section,
+        #ups-alertsWrap, .ups-menuBack, #ups-skipNav{
+          visibility: hidden;
+        }
+        .container-fluid.iw_section:nth-child(1){
+          visibility: visible;
+        }
+        .ups-headerTools_list{
+          display:none !important;
+        }
+    }
+
+    // OFF CANVAS ACTIVE w/ SUBNAV
+    .ups-offCanvas-subnav {
+        #ups-navItems {
+            #{$default-float}: -100%;
+            overflow: visible;
+            .ups-menuBack {
+                // display: block;
+                visibility: visible;
+                #{$default-float}: 0;
+            }
+        }
+
+        .ups-menu_list {
+            #{$default-float}: 100%;
+        }
+        
+        #ups-menuLinks0,
+        #ups-menuLinks1,
+        #ups-menuLinks2,
+        #ups-custServe-toggle,
+        .ups-login,
+        .ups-signup,
+        .ups-locations,
+        .ups-language #ups-language-toggle,
+        .ups-account #ups-account-toggle{
+          display: none;
+        }
+        .ups-header_utils{
+         > li{
+          a{
+            visibility: hidden;
+            }
+          }
+          .ups-more{
+            a{
+              visibility: visible;
+              }
+          }
+        }
+        .ups-menu_list ul > li{
+          a{
+            visibility: visible;
+          }
+        }
+    }
+
+    #ups-header_custServ .ups-menu_toggle .ups-mobnav-arrow,
+    #ups-navItems .ups-header_utils li a.ups-menu_toggle .ups-mobnav-arrow{
+        &:after {
+            @include ups-icons;
+            content: '\e629';
+            padding-#{$default-float}: 10px;
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            margin-top: -3px;
+            line-height: 0;
+            #{$opposite-direction}: 20px;
+
+            .ups-rtl & {
+                content: '\e627'
+            }
+        }
+    }
+
+}
+
+@media #{$media-medium} {
+    #ups-headerWrap {
+        &, .ups-headFixed & {
+            position: fixed;
+            //border-top: $head_line_sm solid $ups_gold; //removed gold bar per PMG-157
+            //height: $head_hgt_md;
+        }
+    }
+}
+
+@media #{$media-small} {
+    #ups-headerWrap {
+        &, .ups-headFixed & {
+            position: static;
+            height: auto;
+        }
+    }
+}

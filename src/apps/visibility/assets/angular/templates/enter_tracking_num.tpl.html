@@ -1,0 +1,134 @@
+<ups-modal #trackReferenceModal></ups-modal>
+
+<ups-modal #otherTrackingModal></ups-modal>
+
+<ups-modal #importTrackingNumModal></ups-modal>
+
+<div class="ups-track_pg_bg">
+    <form [formGroup]="trackingForm">
+        <!-- [pageTitle] directive path: common/apps/assets/angular/pageTitle.ts -->
+        <div class="ups-wrap" [pageTitle]="'Tracking'">
+            <div class="ups-wrap_inner">
+
+                <!--<div class="ups-track_history_container">-->
+
+                <div class="ups-track_enternum_top">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="ups-card">
+                                <div class="ups-card_content">
+                                    <div *ngIf="(!trackingForm.valid && formSubmitted) || (formSubmitted && enterTrkNumLines > 26)">
+                            			<h3 class="ups-invalid_color-list ups-error_alert-list">
+                                            <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                                            Please correct the following errors
+                                        </h3>
+                            			<ul class="ups-icons-error">
+                            				<li *ngIf="!trackingForm.valid">
+                                                <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                                                <a class="ups-invalid_color" href="#trackingNumEntry" pointIdClick>Tracking Numbers <span class="ups-readerTxt">field</span> are required</a>
+                                            </li>
+                                            <li *ngIf="enterTrkNumLines > 26">
+                                                <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                                                <a class="ups-invalid_color" href="#trackingNumEntry" pointIdClick>Only 25 tracking numbers can be entered.</a>
+                                            </li>
+                            			</ul>
+                            		</div>
+
+                                    <div class="ups-form_group ups-help_wrapper">
+                                        <label for="trackingNumEntry" class="ups-form_label">Tracking Numbers</label>
+                                        <p class="ups-form_subheader">
+                                            Enter up to 25 tracking numbers, one per line.
+                                        </p>
+                                        <div class="ups-help">
+                                            <button type="button" id="ups-formHelp2" class="ups-help_link">
+                                                <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                                Help
+                                            </button>
+                                            <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                                <button type="button" class="ups-help_close">
+                                                    <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <p>Lorem ipsum.</p>
+                                            </div>
+                                        </div>
+                                        <div class="ups-input_wrapper ups-textArea_wrapper">
+                                            <!-- , 'ups-tracking_textarea_expanded' : multipleTrackNumsEntered -->
+                                            <textarea id="trackingNumEntry"
+                                                class="ups-textArea ups-textbox_textarea ups-tracking_textarea_expanded"
+                                                aria-required="true"
+                                                required
+                                                aria-describedby="trackingNumEntry_error"
+                                                [rows]="enterTrkNumLines"
+                                                [(ngModel)]="trackingNums"
+                                                formControlName="trackingNums"
+                                                [ngClass]="{'ups-bodError':  ((!trackingForm.controls['trackingNums'].valid && trackingForm.controls['trackingNums'].touched) || enterTrkNumLines > 26)}"
+                                                (ngModelChange)="trackNumChange()"
+                                                (keydown)="trackNumKeyDown($event)"></textarea>
+                                            <span class="ups-icons-error" id="trackingNumEntry_error">
+                                                <span class="ups-invalid_color"
+                                                    *ngIf="(!trackingForm.controls['trackingNums'].valid &amp;&amp; trackingForm.controls['trackingNums'].touched) || enterTrkNumLines > 26">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Invalid</span>
+                                                    <span *ngIf="enterTrkNumLines > 25">Only 25 tracking numbers can be entered.</span>
+                                                    <span *ngIf="trackingForm.controls['trackingNums'].hasError('required')">Please provide tracking number or InfoNotice number.</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- *ngIf="!loggedin" -->
+                                    <p *ngIf="!loggedin" >
+                                        By selecting the Track button, I agree to the
+                                        <a href="#" class="ups-link">
+                                            Terms and Conditions
+                                            <span class="icon ups-link_newwindow" aria-hidden="true"></span></a>.
+                                    </p>
+
+                                    <div class="ups-form_ctaGroup">
+                                        <button type="button" class="ups-cta ups-cta_primary" (click)="checkForm()">Track</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-card">
+                                <div class="ups-card_content">
+                                    <div class="ups-group">
+                                        <button type="button" class="ups-link" (click)="trackReferenceBtn()">Track by Reference Number</button>
+                                    </div>
+                                    <div class="ups-group">
+                                        <button type="button" class="ups-link" (click)="importTrackNum()">Import Tracking Numbers</button>
+                                    </div>
+                                    <div class="ups-group hidden-sm hidden-xs">
+                                        <button type="button" class="ups-link" (click)="otherTrackingBtn()">Other Tracking Services</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+        <div class="ups-track_history_container">
+            <div class="ups-section">
+                <div class="ups-section-header">
+                    <h2 class="ups-section_heading">Recently Tracked</h2>
+                </div>
+                <p *ngIf="!loggedin">
+                    <a href="#" class="ups-link">Login</a> or <a href="#" class="ups-link">Sign up</a> to view your recently tracked shipments.
+                </p>
+                <div *ngIf="loggedin">
+                    <ups-tracking-additional-packages></ups-tracking-additional-packages>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

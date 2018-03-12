@@ -1,0 +1,49 @@
+<div  data-ng-controller="choosePaymentCtrl" class="ups-add-Payment">
+	<!-- //// begin ups.doa-addPaymentModal //// -->
+    <!-- <div  aria-describedby="ups-add-payment-tile-text-{{$index}}" tabindex="0" data-ng-repeat="item in Method" data-ng-click="checkMethod(item,Method,item.Account)" data-ng-keypress="checkMethod(item,Method,item.Account)" 
+        data-ng-class="{ 'ups-gold': item.checkSelect,'ups-max-count-disabled':(item.maxlimit == palCount && item.Account==='PayPal')|| (item.maxlimit == cardCount && item.Account==='Payment Card') || (item.maxlimit == shipCount && item.Account==='Shipping Account')}"
+        class="col-xs-4 ups-payMethods">
+        <div class="ups-cp-tile ups-cp-add-modal">
+        <label for="ups-add-payment-tile-{{$index}}">	
+            <div data-ng-if="item.Account==='Payment Card'"
+                class="icon ups-icon-creditcard ups-cardSize"></div>
+            <div data-ng-if="item.Account==='Shipping Account'"
+                class="icon ups-icon-addshipment ups-cardSize"></div>
+            <div data-ng-if="item.Account==='PayPal'"
+                class="icon ups-icon-paypal ups-cardSize"></div>
+            <span id="ups-add-payment-tile-text-{{$index}}">{{item.Account}}</span></label>
+            <input id="ups-add-payment-tile-{{$index}}"  type="radio"  name="ups-add-payment-tile-{{$index}}" class="hidden">
+        </div>
+    </div> -->
+
+    <fieldset class="ups-methods">
+        <legend class="ups-readerTxt">Add a payment method</legend>
+        <div class="ups-boxed_radioGroup">
+            <div aria-describedby="ups-add-payment-tile-text-{{$index}}" data-ng-click="checkMethod(item,Method,item.Account)" class="ups-input_wrapper ups-boxed_radio col-xs-4" data-ng-repeat="item in Method" data-ng-class="{ 'ups-gold': item.checkSelect,'ups-max-count-disabled':(item.maxlimit == palCount && item.Account==='PayPal')|| (item.maxlimit == cardCount && item.Account==='Payment Card') || (item.maxlimit == shipCount && item.Account==='Shipping Account')}">
+                <input id="ups-add-payment-tile-{{$index}}" class="ups-radio-custom" name="ups-add-payment-tile" type="radio">
+                <label class="ups-radio-custom-label" for="ups-add-payment-tile-{{$index}}">
+                    <span data-ng-if="item.Account==='Payment Card'"
+                        class="icon ups-cardSize">		
+                        <span class="ups-icon-creditcard" aria-hidden="true"></span>
+                    </span>
+                    <span data-ng-if="item.Account==='Shipping Account'"
+                        class="icon ups-cardSize">
+                        <span class="ups-icon-dot" aria-hidden="true"></span>
+                    </span>
+                    <span data-ng-if="item.Account==='PayPal'"
+                        class="icon ups-cardSize">
+                        <span class="ups-icon-paypal" aria-hidden="true"></span>
+                    </span>
+                    <span id="ups-add-payment-tile-text-{{$index}}">{{item.Account}}</span>
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="ups-form_ctaGroup text-center">
+        <button type="submit" class="ups-cta ups-cta_tertiary "
+            data-ng-click="ModalService.back()">Back</button>
+        <button type="submit" class="ups-cta ups-cta_primary "
+            data-ng-click="nextToChooseMethod()">Next</button>
+    </div>
+	<!-- //// end ups.doa-addPaymentModal //// -->
+</div>

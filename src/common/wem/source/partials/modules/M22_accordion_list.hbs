@@ -1,0 +1,121 @@
+<!-- ************************************************************************************ -->
+<!-- M22 Accordion List                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M22 Accordion List - Notes
+********************************************************************************
+
+ - Targetable.
+ - Dynamic or Defined.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M22 Accordion List - Data
+********************************************************************************
+
+Available Variations via class names:
+
+    Secondary Navigation Skin
+        Applied to div.ups-accordion_list
+        .ups-accordion_index       Displays navigation version of the accordion list
+
+
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    heading                    = string     / NO            / List Title
+    copy                       = string     / NO            / Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    cta                        = string     / NO            / Button CTA
+    items                      = array      / YES           / [{toggle_title, content{}},{toggle_title, content{},{toggle_title, content{},...]
+    noscroll                   = boolean    / NO            / True
+
+    For Secondary Navigation Skin
+    type                       = string     / NO            / index
+    links                      = array      / NO            / [{label,url}, {label,url}, {label,url}, ...]
+    links[0].label             = string     / NO            / Packaging and Shipping Support
+    links[0].url               = string     / NO            / #packandship_suppor
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M22 Accordion List - Layout
+********************************************************************************
+
+-accordion List-
+| 60px
+
+********************************************************************************
+--}}
+
+
+<section class="ups-accordion_list ups-wrap {{#is type 'index'}}ups-accordion_index{{/is}}">
+    <div class="ups-wrap_inner">
+
+        {{#is type 'index'}}
+
+            <div class="ups-accordion_title">{{this.title}}</div>
+
+        {{else}}
+        <div class="ups-accordion_listHead">
+            {{#if this.heading}}<h2 class="ups-article-header">{{this.heading}}</h2>{{/if}}
+
+            {{#if this.copy}}<p>{{this.copy}}</p>{{/if}}
+
+            {{#if cta}}<button class="ups-cta">{{this.cta}}</button>{{/if}}
+
+        </div>
+
+        {{/is}}
+        <div class="ups-accordion_wrapper"{{#if noscroll}} data-noscroll="true"{{/if}}>
+            <div class="ups-accordion_content" role="presentation">
+            {{#each this.items}}
+                <div class='ups-accordion_item' >
+                    <div class="ups-acc-headcont" role="heading" aria-level="3">
+                        <a href="#" class="ups-accordion_toggle" role="button" aria-controls="ups-accordionPanel{{@index}}" id="ups-accordionHead{{@index}}" aria-expanded="false">
+                        {{#if image}} <img src="{{image}}" alt="{{imageAlt}}"> {{/if}}
+                        {{this.toggle_title}}
+                        <i>
+                            <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                        </i>
+                    </a>
+                    </div>
+                    <div class="ups-accordion_expand" role="region" id="ups-accordionPanel{{@index}}" aria-hidden="true" aria-labelledby="ups-accordionHead{{@index}}">
+
+                        {{#if this.content}}
+                            {{>M44_content_block this.content}}
+                        {{/if}}
+
+                        {{#if this.copy}}
+                            <p>{{this.copy}}</p>{{/if}}
+                        {{#if this.links}}
+                        {{#each this.links}}
+                            <a class = "ups-accordion_link ups-body-link" href="{{this.url}}">
+                                {{this.label}}
+                            </a>
+                        {{/each}}
+                        {{/if}}
+                        {{#if this.link}}
+                            <a class = "ups-accordion_link ups-body-link" href="{{this.link}}">
+                                {{this.linkLabel}}
+                            </a>
+                        {{/if}}
+                        {{#if cta}}
+                            <button class="ups-cta">
+                                {{this.cta.label}}
+                            </button>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</section>

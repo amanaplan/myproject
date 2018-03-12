@@ -1,0 +1,174 @@
+.ups-trackingbar {
+    margin: 30px 0 35px;
+    position: relative;
+
+    .ups-trackingbar_indicator_bg {
+        height: 0.71429em; //0.71429em {10px}
+        background-color: $ups_stone;
+        border-radius: 0.35714em; //0.35714em {5px}
+
+        .ups-trackingbar_indicator {
+            background-color: $water_s3;
+            width: $trk_progress_bar_exception;
+            min-width: 1.07143em; //1.07143em {15px}
+            height: 0.71429em; //0.71429em {10px}
+            border-radius: 0.35714em; //0.35714em {5px}
+            position: relative;
+
+            -webkit-animation: tracking_indicator_move_alert 1.2s linear;
+            animation: tracking_indicator_move_alert 1.2s linear;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: -0.71429em; //-0.71429em {-10px}
+                #{$opposite-direction}: -0.28571em; //-0.28571 {-4px}
+                height: 2.14286em; //2.14286em {30px}
+                width: 2.14286em; //2.14286em {30px}
+                background-color: $white;
+                border: 3px solid $water_s3;
+                border-radius: 2.14286em; //2.14286em {30px}
+            }
+
+            &.ups-trackingbar_indicator_first {
+                width: $trk_progress_bar_min_width; //1.71429em {24px}
+                -webkit-animation: none;
+                animation: none;
+            }
+
+            &.ups-trackingbar_indicator_second {
+                width: $trk_progress_bar_in_possession;
+                -webkit-animation-name: tracking_indicator_move_second;
+                animation-name: tracking_indicator_move_second;
+            }
+
+            &.ups-trackingbar_indicator_third {
+                width: $trk_progress_bar_in_transit;
+                -webkit-animation-name: tracking_indicator_move_third;
+                animation-name: tracking_indicator_move_third;
+            }
+
+            &.ups-trackingbar_indicator_fourth {
+                width: $trk_progress_bar_out_delivery;
+                -webkit-animation-name: tracking_indicator_move_fourth;
+                animation-name: tracking_indicator_move_fourth;
+            }
+
+            &.ups-trackingbar_indicator_fifth {
+                width: $trk_progress_bar_ap;
+                -webkit-animation-name: tracking_indicator_move_fifth;
+                animation-name: tracking_indicator_move_fifth;
+            }
+
+            &.ups-trackingbar_indicator_last {
+                width: $trk_progress_bar_delivered;
+                -webkit-animation-name: tracking_indicator_move_last;
+                animation-name: tracking_indicator_move_last;
+
+                &:after {
+                    border: none;
+                    background-color: $water_s3;
+                }
+            }
+
+            .ups-trackingbar_square {
+                width: 0.85714em; //0.85714em {12px}
+                height: 0.85714em; //0.85714em {12px}
+                background-color: $water_s3;
+                position: absolute;
+                #{$opposite-direction}: 0.35714em; //0.35714em {5px}
+                top: -0.07143em; //-0.07143em {-1px}
+                z-index: 2;
+            }
+
+            .icon {
+                color: $water_s3;
+                position: absolute;
+                #{$opposite-direction}: 0.35714em; //0.35714em {5px}
+                top: 0;
+                z-index: 2;
+                font-size: 11px;
+                cursor: default;
+                /*-webkit-animation: tracking_indicator_exclamation 1.7s linear;
+                animation: tracking_indicator_exclamation 1.7s linear;*/
+            }
+
+            .icon.ups-trackingbar_exclamation {
+                /*color: $black;
+                position: absolute;*/
+                /*#{$opposite-direction}: 4px;
+                top: -2px;*/
+                /*font-size: 29px;
+                top: -9px;
+                right: -9px;
+                z-index: 2;*/
+                /*font-size: 14px;
+                font-weight: bold;*/
+                /*-webkit-animation: tracking_indicator_exclamation 1.7s linear;
+                animation: tracking_indicator_exclamation 1.7s linear;*/
+            }
+
+            .icon.ups-trackingbar_check {
+                font-size: 15px;
+                color: $white;
+                //#{$opposite-direction}: -0.12903em; //-0.12903em {-4px} (because 31px font)
+                //top: -0.29032em; //-0.29032em {-9px} (because 31px font)
+                #{$opposite-direction}: 4px;
+                top: -2px;
+
+                &:before {
+                    font-size: 1em;
+                    color: $white;
+                }
+            }
+
+
+        }
+    }
+
+    &.ups-trackingbar_exception {
+        .ups-trackingbar_indicator_bg {
+            background-color: $ups_stone;
+
+            .ups-trackingbar_indicator {
+                background-color: $ups_gold;
+
+                &:after {
+                    border: none;
+                    border-bottom: 2.14286em solid white; //2.14286em {30px}
+                    border-#{$opposite-direction}: 1.07143em solid transparent; //1.07143em {15px}
+                    border-#{$default-float}: 1.07143em solid transparent; //1.07143em {15px}
+                    top: -0.71429em; //-0.71429em {-10px}
+                    #{$opposite-direction}: -0.71429em; //-0.71429em {-10px}
+                    background-color: transparent;
+                    border-radius: 1px;
+                }
+
+                .icon.ups-trackingbar_exclamation {
+                    color: $black;
+                    position: absolute;
+                    font-size: 29px;
+                    top: -0.31034em; //-0.31034em {-9px} (because 29px font)
+                    #{$opposite-direction}: -0.31034em; //-0.31034em {-9px} (because 29px font)
+                    z-index: 2;
+                    -webkit-animation: tracking_indicator_alert_notify .1s linear 1.5s 2;
+                    animation: tracking_indicator_alert_notify .1s linear 1.5s 2;
+                }
+            }
+        }
+    }
+
+    &.ups-trackingbar_unknown {
+        .ups-trackingbar_indicator_bg .ups-trackingbar_indicator {
+            background-color: $ups_stone;
+
+            &:after {
+                border: 3px solid $ups_stone;
+            }
+
+            .ups-trackingbar_square {
+                background-color: $ups_stone;
+            }
+        }
+    }
+}

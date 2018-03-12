@@ -1,0 +1,631 @@
+---
+title: Legacy Mobile Global Locator Filter
+dir: ltr
+lang: en
+layout: legacy.hbs
+appCSS: globalLocatorMobile
+---
+
+<!-- SearchBodyStart -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Mobile Application Version = 16.03.02.00 -->
+
+
+<script src="../javascript/libs/modernizr-2.8.3.min.js"></script>
+<script src="../javascript/libs/jquery/jquery-1.11.1.min.js"></script>
+
+
+
+
+
+
+
+<script>
+
+
+$(document).ready(function(){
+
+ $('select[name^="sortBy"] option[value="null"]').attr("selected","selected");
+ $('select[name^="distanceWithin"] option[value="null"]').attr("selected","selected");
+ $('select[name^="openFilterDaySelect"] option[value="6"]').attr("selected","selected");
+ $('select[name^="openFilterFromSelect"] option[value="null"]').attr("selected","selected");
+ $('select[name^="openFilterToSelect"] option[value="null"]').attr("selected","selected");
+ $('select[name^="dropOffFilterSelect"] option[value="null"]').attr("selected","selected");
+ $('select[name^="dropOffAirGround"] option[value="dropOffGround"]').attr("selected","selected");
+ 
+ $("#reset").click(function(){
+ $(':checkbox').each(function () {
+ $(this).removeAttr('checked');
+ });
+ $('#dropOffFilterSelect option').prop('selected', function () {
+ return this.defaultSelected;
+ });
+ $('#sortBy option').prop('selected', function () {
+ if(this.value==="01"){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ $('#distanceWithin option').prop('selected', function () {
+ if(this.value=== "25"){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ $('#openFilterDaySelect option').prop('selected', function () {
+ var d = new Date();
+ var weekday = new Array(7);
+ weekday[0] = "1";
+ weekday[1] = "2";
+ weekday[2] = "3";
+ weekday[3] = "4";
+ weekday[4] = "5";
+ weekday[5] = "6";
+ weekday[6] = "7";
+ if(this.value===weekday[d.getDay()]){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ var now = 'Now';
+ $('#openFilterFromSelect option').prop('selected', function () {
+ if(this.text.indexOf(now) > -1){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ $('#openFilterToSelect option').prop('selected', function () {
+ if(this.text.indexOf(now) > -1){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ 
+ $('#dropOffFilterSelect option').prop('selected', function () {
+ if(this.text.indexOf(now) > -1){
+ return true;
+ }else{
+ return false;
+ }
+ });
+ $('#dropOffAirGround option').prop('selected', function () {
+ if(this.value==="dropOffGround"){
+ return true;
+ }else{
+ return false;
+ }
+ });
+});
+});
+
+window.onload = function()
+{
+ var d = new Date();
+ var halfHour = Math.round(d.getMinutes()/30);
+ if(halfHour == 0)
+ {
+ halfHour = '00';
+ }else{
+ halfHour = '30';
+ }
+ 
+ var hour = d.getHours();
+ if("US" == "US"){
+ var ampm = ' AM';
+ if(hour > 12) 
+ {
+ ampm = ' PM';
+ }
+ 
+ hour = hour % 12;
+ hour = hour ? hour : 12;
+ } 
+ hour = hour < 10 ? '0'+hour : hour;
+ var finalString = hour.toString();
+ finalString = finalString.concat(":");
+ finalString = finalString.concat(halfHour.toString());
+ if("US" == "US"){
+ finalString = finalString.concat(ampm.toString());
+
+ }
+ if(document.getElementById("currentTime") !== null){
+ document.getElementById("currentTime").value=finalString;
+ }
+}
+</script>
+
+ <div class="subhead">
+ <div class="back">
+ <a href="/mobile/locator?loc=en_US&nosearch=nosearch&locCountry=US">Back</a>
+ </div>
+ 
+
+ <h1>Filter</h1>
+ 
+ <div class="subtask">
+ <button type="reset" id="reset">Reset</button>
+ </div>
+
+ </div>
+
+<form name="filter_form" id="filter_form" action="../mobile/locator?loc=en_US" method="POST" class="global_form">
+ 
+
+ 
+ <div class="content">
+
+ <div class="accordion">
+
+ 
+ <h2><a data-toggle="collapse" data-target="#location-types" class="collapsed">Location Types</a></h2>
+ <div class="collapse" id="location-types">
+ 
+ <div class="checkbox">
+ <label><input id="dropbox" type="checkbox" value="dropbox" name="dropbox" />
+ UPS Drop Box</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="store" type="checkbox" value="store" name="store" />
+ The UPS Store</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="upsAccessPoint" type="checkbox" value="upsAccessPoint" name="upsAccessPoint" />
+ UPS Access Point™</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="customerCenter" type="checkbox" value="customerCenter" name="customerCenter" />
+ UPS Customer Centers</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="authorizedOutlets" type="checkbox" value="authorizedOutlets" name="authorizedOutlets" />
+ Authorized Shipping Outlets</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="authorizedServiceProviders" type="checkbox" value="authorizedServiceProviders" name="authorizedServiceProviders" />
+ UPS Authorized Service Providers</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="allianceLocation" type="checkbox" value="allianceLocation" name="allianceLocation" />
+ Retail Chains</label>
+ </div>
+ 
+ </div>
+
+ 
+ 
+ 
+ <h2><a data-toggle="collapse" data-target="#location-filters" class="collapsed">Location Filters</a></h2>
+ <div class="collapse" id="location-filters">
+ <div class="row">
+ <div class="checkbox col-xs-6"> 
+ <label><input type="checkbox" class="js-open" name="openCheckBox"  >Open</label>
+ </div>
+ 
+ <div class="col-xs-6">
+ <div class="form-group">
+ <label>Day of week</label>
+ <div class="custom-select">
+ <select class="js-open" name="openFilterDaySelect" id="openFilterDaySelect">
+ <option value="1" >Sunday</option>
+ <option value="2" >Monday</option>
+ <option value="3" >Tuesday</option>
+ <option value="4" >Wednesday</option>
+ <option value="5" >Thursday</option>
+ <option value="6" >Friday</option>
+ <option value="7" >Saturday</option>
+ </select>
+ </div>
+ </div>
+ 
+ <div class="form-group">
+ <label>From</label>
+ <div class="custom-select">
+ 
+ <select class="js-open" name="openFilterFromSelect" id="openFilterFromSelect">
+ 
+ <option value=0600>06:00 AM</option>
+ 
+ <option value=0630>06:30 AM</option>
+ 
+ <option value=0700>07:00 AM</option>
+ 
+ <option value=0730>07:30 AM</option>
+ 
+ <option selected="selected" value=0800>08:00 AM (Now)</option>
+ 
+ <option value=0830>08:30 AM</option>
+ 
+ <option value=0900>09:00 AM</option>
+ 
+ <option value=0930>09:30 AM</option>
+ 
+ <option value=1000>10:00 AM</option>
+ 
+ <option value=1030>10:30 AM</option>
+ 
+ <option value=1100>11:00 AM</option>
+ 
+ <option value=1130>11:30 AM</option>
+ 
+ <option value=1200>12:00 PM</option>
+ 
+ <option value=1230>12:30 PM</option>
+ 
+ <option value=1300>01:00 PM</option>
+ 
+ <option value=1330>01:30 PM</option>
+ 
+ <option value=1400>02:00 PM</option>
+ 
+ <option value=1430>02:30 PM</option>
+ 
+ <option value=1500>03:00 PM</option>
+ 
+ <option value=1530>03:30 PM</option>
+ 
+ <option value=1600>04:00 PM</option>
+ 
+ <option value=1630>04:30 PM</option>
+ 
+ <option value=1700>05:00 PM</option>
+ 
+ <option value=1730>05:30 PM</option>
+ 
+ <option value=1800>06:00 PM</option>
+ 
+ <option value=1830>06:30 PM</option>
+ 
+ <option value=1900>07:00 PM</option>
+ 
+ <option value=1930>07:30 PM</option>
+ 
+ <option value=2000>08:00 PM</option>
+ 
+ <option value=2030>08:30 PM</option>
+ 
+ <option value=2100>09:00 PM</option>
+ 
+ <option value=2130>09:30 PM</option>
+ 
+ <option value=2200>10:00 PM</option>
+ 
+ <option value=2230>10:30 PM</option>
+ 
+ <option value=2300>11:00 PM</option>
+ 
+ <option value=2330>11:30 PM</option>
+ 
+ </select>
+ 
+ </div>
+ </div>
+ 
+ 
+ <div class="form-group">
+ <label>To:</label>
+ <div class="custom-select">
+ 
+ <select class="js-open" name="openFilterToSelect" id="openFilterToSelect">
+ 
+ <option value=0600>06:00 AM</option>
+ 
+ <option value=0630>06:30 AM</option>
+ 
+ <option value=0700>07:00 AM</option>
+ 
+ <option value=0730>07:30 AM</option>
+ 
+ <option selected="selected" value=0800>08:00 AM (Now)</option>
+ 
+ <option value=0830>08:30 AM</option>
+ 
+ <option value=0900>09:00 AM</option>
+ 
+ <option value=0930>09:30 AM</option>
+ 
+ <option value=1000>10:00 AM</option>
+ 
+ <option value=1030>10:30 AM</option>
+ 
+ <option value=1100>11:00 AM</option>
+ 
+ <option value=1130>11:30 AM</option>
+ 
+ <option value=1200>12:00 PM</option>
+ 
+ <option value=1230>12:30 PM</option>
+ 
+ <option value=1300>01:00 PM</option>
+ 
+ <option value=1330>01:30 PM</option>
+ 
+ <option value=1400>02:00 PM</option>
+ 
+ <option value=1430>02:30 PM</option>
+ 
+ <option value=1500>03:00 PM</option>
+ 
+ <option value=1530>03:30 PM</option>
+ 
+ <option value=1600>04:00 PM</option>
+ 
+ <option value=1630>04:30 PM</option>
+ 
+ <option value=1700>05:00 PM</option>
+ 
+ <option value=1730>05:30 PM</option>
+ 
+ <option value=1800>06:00 PM</option>
+ 
+ <option value=1830>06:30 PM</option>
+ 
+ <option value=1900>07:00 PM</option>
+ 
+ <option value=1930>07:30 PM</option>
+ 
+ <option value=2000>08:00 PM</option>
+ 
+ <option value=2030>08:30 PM</option>
+ 
+ <option value=2100>09:00 PM</option>
+ 
+ <option value=2130>09:30 PM</option>
+ 
+ <option value=2200>10:00 PM</option>
+ 
+ <option value=2230>10:30 PM</option>
+ 
+ <option value=2300>11:00 PM</option>
+ 
+ <option value=2330>11:30 PM</option>
+ 
+ </select>
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="row">
+ <div class="checkbox col-xs-6"> 
+ <label><input type="checkbox" name="dropOffByCheckBox" class="js-dropoff-by js-enabler"  >Dropoff by</label>
+ </div>
+
+ <div class="col-xs-6">
+
+ <div class="custom-select">
+ 
+ <select class="js-dropoff-by" name="dropOffFilterSelect" id="dropOffFilterSelect">
+ 
+ <option value=0600>06:00 AM</option>
+ 
+ <option value=0630>06:30 AM</option>
+ 
+ <option value=0700>07:00 AM</option>
+ 
+ <option value=0730>07:30 AM</option>
+ 
+ <option selected="selected" value=0800>08:00 AM (Now)</option>
+ 
+ <option value=0830>08:30 AM</option>
+ 
+ <option value=0900>09:00 AM</option>
+ 
+ <option value=0930>09:30 AM</option>
+ 
+ <option value=1000>10:00 AM</option>
+ 
+ <option value=1030>10:30 AM</option>
+ 
+ <option value=1100>11:00 AM</option>
+ 
+ <option value=1130>11:30 AM</option>
+ 
+ <option value=1200>12:00 PM</option>
+ 
+ <option value=1230>12:30 PM</option>
+ 
+ <option value=1300>01:00 PM</option>
+ 
+ <option value=1330>01:30 PM</option>
+ 
+ <option value=1400>02:00 PM</option>
+ 
+ <option value=1430>02:30 PM</option>
+ 
+ <option value=1500>03:00 PM</option>
+ 
+ <option value=1530>03:30 PM</option>
+ 
+ <option value=1600>04:00 PM</option>
+ 
+ <option value=1630>04:30 PM</option>
+ 
+ <option value=1700>05:00 PM</option>
+ 
+ <option value=1730>05:30 PM</option>
+ 
+ <option value=1800>06:00 PM</option>
+ 
+ <option value=1830>06:30 PM</option>
+ 
+ <option value=1900>07:00 PM</option>
+ 
+ <option value=1930>07:30 PM</option>
+ 
+ <option value=2000>08:00 PM</option>
+ 
+ <option value=2030>08:30 PM</option>
+ 
+ <option value=2100>09:00 PM</option>
+ 
+ <option value=2130>09:30 PM</option>
+ 
+ <option value=2200>10:00 PM</option>
+ 
+ <option value=2230>10:30 PM</option>
+ 
+ <option value=2300>11:00 PM</option>
+ 
+ <option value=2330>11:30 PM</option>
+ 
+ </select>
+ 
+ </div>
+ <br>
+ <div class="custom-select"> 
+ <select class="js-dropoff-by" name="dropOffAirGround">
+ <option value="dropOffAir">Air/Express</option>
+ <option value="dropOffGround">Ground/Standard</option>
+ </select>
+ </div>
+ </div>
+ </div>
+  
+ <div class="checkbox">
+ <label><input id="staffedLocations" type="checkbox" value="staffedLocations" name="staffedLocations" />
+ Staffed location</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="acceptsPayment" type="checkbox" value="acceptsPayment" name="acceptsPayment" />
+ Accepts Payments</label>
+ </div>
+ 
+ 
+ <div class="checkbox">
+ <label><input id="payUpsAccount" type="checkbox" value="payUpsAccount" name="payUpsAccount" />
+ Pay using My UPS account</label>
+ </div> 
+ 
+ </div>
+ 
+ 
+ 
+ <h2><a data-toggle="collapse" data-target="#other-services" class="collapsed">Other Services</a></h2>
+ <div class="collapse" id="other-services">
+ 
+ <div class="checkbox">
+ <label><input id="packagingSupplies" type="checkbox" value="packagingSupplies" name="packagingSupplies" />
+ Packaging services</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="upsReturns" type="checkbox" value="upsReturns" name="upsReturns" />
+ UPS Returns&reg;</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="mailboxRentals" type="checkbox" value="mailboxRentals" name="mailboxRentals" />
+ Mail box rentals</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="officeSupplies" type="checkbox" value="officeSupplies" name="officeSupplies" />
+ Office supplies and services</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="notaryPublicService" type="checkbox" value="notaryPublicService" name="notaryPublicService" />
+ Notary public Service</label>
+ </div>
+ 
+ <div class="checkbox">
+ <label><input id="copyingFaxing" type="checkbox" value="copyingFaxing" name="copyingFaxing" />
+ Copying / Faxing</label>
+ </div>
+ 
+ </div>
+
+ 
+
+ <h2><a data-toggle="collapse" data-target="#sort-by" class="collapsed">Sort By</a></h2>
+ <div class="collapse" id="sort-by">
+ 
+ <div class="custom-select">
+ <select name="sortBy" id="sortBy">
+ <option value="01">Closest location</option>
+ 
+ <option value="02">Deadline for Dropoff by Air</option>
+ 
+ <option value="03" >Deadline for Dropoff by Ground</option>
+ 
+ <option value="04">Latest Close Time</option>
+ <option value="05">Earliest Open Time</option>
+ </select>
+ </div>
+ <div class="search-area">
+ <div class="prefix">Within</div>
+ <div class="custom-select inline">
+ <select name="distanceWithin" id="distanceWithin">
+ <option value="5">5</option>
+ <option value="10">10</option>
+ <option value="25" selected>25</option>
+ <option value="50">50</option>
+ </select>
+ </div>
+ 
+ <div class="suffix">miles</div>
+ 
+ </div>
+
+ </div>
+ </div>
+ 
+ <div class="btn-text-combo">
+ <input name="t" type="hidden" value="t"/>
+ <input name="filter" type="hidden" value="filter"/>
+ <input type="hidden" id="currentTime" name="currentTime" value=""/>
+ <input name="locCountry" type="hidden" value="US"/> 
+
+ <button class="btn btn-aqua" type="submit">Apply Filters</button>
+ <div class="text">
+ <a href="../mobile/locator?loc=en_US&nosearch=nosearch&locCountry=US">Cancel</a>
+ </div>
+ </div>
+ 
+ </div>
+</form>
+
+ 
+ <script src="../javascript/production.min.js"></script>
+
+
+<!-- SearchBodyEnd -->

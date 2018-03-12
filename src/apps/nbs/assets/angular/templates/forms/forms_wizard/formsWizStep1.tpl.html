@@ -1,0 +1,199 @@
+<div [formGroup]="formsWizStep1">
+    <!-- -->
+    <!-- Page level error handling will go here once we complete it -->
+    <!-- -->
+    <div class="row" *ngIf="loggedIn">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="hmc_product_packaged" class="ups-form_label"> Choose Saved Product </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="hmc_product_packaged" 
+                            class="ups-dropdown" 
+                            id="hmc_product_packaged">
+                        <option value="most_recent">Select one</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p *ngIf="orAvailable">&mdash; OR &mdash;</p>
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading"><span *ngIf="withSaved">Add </span>Product {{'{'}}1{{'}'}} Details</h3>
+        </div>
+        <div class="ups-form_group ups-form_required">
+            <label for="hmc_item_desc" class="ups-form_label"> Please describe this item <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+            <p class="ups-form_subheader" id="hmc_item_desc_helpertxt">For customs declaration be as specific as possible.</p>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text"
+                name="hmc_item_desc"
+                class="ups-form_input"
+                id="hmc_item_desc"
+                aria-required="true"
+                require
+                aria-describedby="hmc_item_desc_helpertxt hmc_item_desc_error"
+                formControlName="hmc_item_desc"
+                [ngClass]="{'ups-bodError': (!formsWizStep1.controls['hmc_item_desc'].valid && formsWizStep1.controls['hmc_item_desc'].touched)}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="hmc_product_packaged" class="ups-form_label"> How is this product packaged or sold? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <p class="ups-form_subheader" id="hmc_product_packaged_helpertxt" *ngIf="guest">Unit of Measure</p>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="hmc_product_packaged" 
+                                class="ups-dropdown" 
+                                id="hmc_product_packaged" 
+                                aria-required="true" 
+                                required
+                                aria-describedby="hmc_product_packaged_helpertxt" >
+                            <option value="most_recent">Select one</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required" *ngIf="numShipping">
+                    <label for="hmc_item_num" class="ups-form_label"> 
+                        How many of this item are you shipping? 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                    <p class="ups-form_subheader" id="hmc_item_num_helpertxt" *ngIf="guest">Number of Units: {{'{'}}unit of measure{{'}'}}</p>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                name="hmc_item_num" 
+                                class="ups-form_input" 
+                                id="hmc_item_num"
+                                aria-required="true" 
+                                required
+                                aria-describedby="hmc_item_num_helpertxt hmc_item_num_error"
+                                formControlName="hmc_item_num"
+                                [ngClass]="{'ups-bodError': (!formsWizStep1.controls['hmc_item_num'].valid && formsWizStep1.controls['hmc_item_num'].touched)}">
+                    </div>
+                </div>
+                <div class="ups-form_group ups-form_required" *ngIf="unitType">
+                    <label for="hmc_item_type" class="ups-form_label"> 
+                        Other unit of measure type 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                name="hmc_item_type" 
+                                class="ups-form_input" 
+                                id="hmc_item_type"
+                                aria-required="true" 
+                                required
+                                aria-describedby="hmc_item_type_error"
+                                formControlName="hmc_item_type"
+                                [ngClass]="{'ups-bodError': (!formsWizStep1.controls['hmc_item_type'].valid && formsWizStep1.controls['hmc_item_type'].touched)}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required ups-help_wrapper">
+                    <label for="hmc_item_worth" class="ups-form_label"> What is the value of a single unit, as packaged? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-help">
+                        <button type="button"
+                                class="ups-help_link icon ups-icon-questioncircle"
+                                (click)="hmc_item_worth_help = !hmc_item_worth_help">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topright" *ngIf="hmc_item_worth_help">
+                            <button type="button" class="ups-help_close" (click)="hmc_item_worth_help = false">
+                                <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p><strong>Customs Value</strong> is a reasonable amount that would be charged for the items if sold, regardless of whether a sale is involved.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                name="hmc_item_worth" 
+                                class="ups-form_input" 
+                                id="hmc_item_worth" 
+                                aria-required="true" 
+                                required
+                                aria-describedby="hmc_item_worth_error"
+                                formControlName="hmc_item_worth"
+                                [ngClass]="{'ups-bodError': (!formsWizStep1.controls['hmc_item_worth'].valid && formsWizStep1.controls['hmc_item_worth'].touched)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ups-form_group">
+                    <label for="hmc_item_worth_currency" class="ups-form_label"> Currency <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="hmc_item_worth_currency" 
+                                class="ups-dropdown" 
+                                id="hmc_item_worth_currency" 
+                                aria-required="true" 
+                                required>
+                            <option value="most_recent">USD</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="hmc_item_made" class="ups-form_label"> Where was this product made or assembled? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="hmc_item_made" 
+                                class="ups-dropdown" 
+                                id="hmc_item_made" 
+                                aria-required="true" 
+                                required>
+                            <option value="most_recent">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="loggedIn">
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label class="ups-lever" onclick="" for="hmc_save_item">
+                        <input type="checkbox"
+                                id="hmc_save_item"
+                                name="hmc_save_item"
+                                class="ups-lever_checkbox"
+                                [(ngModel)]="hmc_save_item"
+                                [ngModelOptions]="{'standalone': true}">
+                        <strong class="ups-form_label ups-lever_label">Save to Product List</strong>
+                        <!-- if checked then yes -->
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="hmc_save_item">
+                <div class="ups-form_group">
+                    <label for="hmc_save_as" class="ups-form_label">Save to Product list as</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" 
+                                name="hmc_save_as" 
+                                class="ups-form_input" 
+                                id="hmc_save_as">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_tertiary" type="button">Back</button>
+        <button class="ups-cta ups-cta_primary" type="button">Next</button>
+    </div>
+</div>
+
+<div class="ups-cms-demo">
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="wizStep1ToggleDemo('guest')">Guest Used</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="wizStep1ToggleDemo('logAddNew')">Logged in w/ saved items + add new</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="wizStep1ToggleDemo('logSavSel')">Logged in w/ saved items + saved items selected</button>
+</div>
+

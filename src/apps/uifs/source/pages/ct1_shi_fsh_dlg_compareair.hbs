@@ -1,0 +1,109 @@
+---
+title: Services Comparison Dialog - US/PR Origin
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIFS
+appCSS: ups.legacy_overrideUIFS
+dir: ltr
+lang: en
+---
+<div id="main"> 
+    {{> background_modal_content }}
+    <div class="appLvl mod modal dialog">
+        <div class="appHead clearfix">
+            <h2>{{title}}</h2>
+            <ul>
+                <li>
+                    <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+                </li>
+            </ul>
+        </div>
+        <div class="appBody">
+            <p class="error">[user alert or sevice messaging (ups: 0000)]</p>
+            <dl class="outHozFixed1">
+                <dt><span class="label">{ship from:}</span></dt>
+                <dd>{city, ZIP/Postaal County}</dd>
+            </dl>
+            <dl class="outHozFixed1">
+                <dt><span class="label">{ship to:}</span></dt>
+                <dd>roswell, ga 30076 us</dd>
+            </dl>
+            <dl class="outHozFixed1">
+                <dt><span class="label">number of pieces</span></dt>
+                <dd>1</dd>
+            </dl>
+            <table class="dataTable full">
+                <tr>
+                    <th scope="col">service</th>
+                    <th scope="col">ship date</th>
+                    <th scope="col">estimated delivery*</th>
+                    <th scope="col">estimated cost*</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+                <tr class="odd">
+                    <td scope="row">[ups air freight service]</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+                <tr>
+                    <td scope="row">[ups air freight service]<br>
+                        (non-guaranteed)</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+                <tr class="odd">
+                    <td scope="row">[ups service]<br>
+                        (guaranteed)&dagger;</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+                <tr>
+                    <td scope="row">[ups service]</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+                <tr class="odd">
+                    <td scope="row">[ups service]</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+                <tr>
+                    <td scope="row">[ups service]</td>
+                    <td>{weekday, mm/dd/yyyy}</td>
+                    <td>{hh:mm a.m., monday, mm/dd/yyyy}</td>
+                    <td>{0000.00 usd}</td>
+                    <td CLASS="alignCenter"><input type="button" class="btn" value="pick me!" name="repl_name"></td>
+                </tr>
+            </table>
+            <p>* The estimated cost of the hsipment as well as estimated delivery date and time.</p>
+            <p>&dagger; The Customs Clearance accessorial must be selected for services to be Guaranteed by UPS.</p>
+        </div>
+        <div class="appFooter">
+            <div class="btnBar alignCenter">
+                <input type="button" class="btn" value="close" name="repl_name">
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+		
+$(document).ready(function(){
+
+	$('.modal').dialog({modal:true,dialogClass:'modal', width:870});
+	$('#modalClose').click(function(e){
+		$('.modal').dialog('close');
+	});	
+});
+
+</script>
+</div>

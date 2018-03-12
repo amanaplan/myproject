@@ -1,0 +1,165 @@
+<div class="ngdialog-message">
+	<div class="appLvl mod modal dialog">
+		<div class="appHead clearfix">
+			<h2>Inbound Alerts - Step 2 of 2</h2> </div>
+		<div class="appBody">
+			<div class="secLvl step clearfix">
+				<div class="secBody">
+					<!-- content -->
+					<div class="flexFirst clearfix qvmbottom">
+						<p> Enter the alert settings below and select <span class="qvbold">Save</span> to save the alert. </p>
+					</div>
+					<div class="clear"></div>
+					<div class="flexFirst clearfix">
+						<dl>
+							<label> <dt>
+										Custom Alert Name:
+									</dt> </label>
+							<dd>
+								<input type="text" class="formcol6" /> </dd>
+							<dd> 35 characters max </dd>
+						</dl>
+					</div>
+					<div class="flexAfter clearfix">
+						<dl>
+							<label> <dt>&nbsp;
+										
+									</dt> </label>
+							<dd>
+								<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+									<tbody>
+										<tr>
+											<td class="sel" scope="row">
+												<input name="repl_name" type="checkbox" value="" id="chxbox1"> </td>
+											<td>
+												<label for="chxbox1" class="sel">Activate this alert</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</dd>
+						</dl>
+					</div>
+					<div class="clear"></div>
+					<dl>
+						<label> <dt>
+									Send Exception Alerts
+								</dt>
+						</label>
+						<dd>
+							<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+								<tbody>
+									<tr>
+										<td class="sel" scope="row">
+											<input name="repl_name" type="radio" value="" id="radio1"> </td>
+										<td>
+											<label for="radio1" class="sel">Only when scheduled delivery date changes</label>
+										</td>
+									</tr>
+									<tr>
+										<td class="sel" scope="row">
+											<input name="repl_name" type="radio" value="" id="radio2"> </td>
+										<td>
+											<label for="radio2" class="sel">Send all exception alerts</label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</dd>
+					</dl>
+					<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+						<tbody>
+							<tr>
+								<td class="sel" scope="row">
+									<input name="repl_name" type="checkbox" value="" id="chxbox1" ng-model="selectedAll" ng-click="checkAll()"> </td>
+								<td><a href="#">Select All</a>
+								</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td class="sel" scope="row">
+									<input name="repl_name" type="button" class="btn btnclear" value="" id="" ng-model="selectedAll" ng-click="clearAll()"> </td>
+								<td><a href="">Clear All</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+						<tbody>
+							<tr ng-repeat="item in Items">
+								<td class="sel" scope="row">
+									<input name="repl_name" type="checkbox" value="" id="" ng-model="item.Selected"> </td>
+								<td>
+									<label for="chxbox1" class="sel">{{item.Name}}</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="clear"></div>
+					<div class="outHozFixed qvmbottom">
+						<dl> <dt>
+									<label>Email Information:</label>
+								</dt>
+							<dd>&nbsp;  </dd> <dt>
+									<label>Recipient E-mail:</label>
+								</dt>
+							<dd>
+								<label>Country or Territory and Language:</label>
+							</dd> <dt>
+									<input type="text" class="formcol5" />
+								</dt>
+							<dd>
+								<select ng-model="selectedState" class="formcol6" ng-options="state.name for state in states"></select>
+							</dd> <dt>
+									<input type="text" class="formcol5" />
+								</dt>
+							<dd>
+								<select ng-model="selectedState" class="formcol6" ng-options="state.name for state in states"></select>
+							</dd> <dt>
+									<input type="text" class="formcol5" />
+								</dt>
+							<dd>
+								<select ng-model="selectedState" class="formcol6" ng-options="state.name for state in states"></select>
+							</dd> <dt>
+									<input type="text" class="formcol5" />
+								</dt>
+							<dd>
+								<select ng-model="selectedState" class="formcol6" ng-options="state.name for state in states"></select>
+							</dd> <dt>
+									<input type="text" class="formcol5" />
+								</dt>
+							<dd>
+								<select ng-model="selectedState" class="formcol6" ng-options="state.name for state in states"></select>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<dl>
+				<label> <dt>
+								Failure Notification
+							</dt>
+				</label>
+				<dd>
+					<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+						<tbody>
+							<tr>
+								<td class="sel" scope="row">
+									<input name="repl_name" type="checkbox" value="" id="chxbox22" checked=""> </td>
+								<td>
+									<label for="chxbox1" class="sel">Note: UPS will notify you by e-mail if there is a problem sending any of these notifications.</label>
+									<input type="text" class="formcol4" value="rpiccoine@ups.com" /> </td>
+							</tr>
+						</tbody>
+					</table>
+				</dd>
+			</dl>
+			<div class="clear"></div>
+			<div class="alignCenter clearfix"> <span class="visually-hidden">Click to view prefrences</span>
+				<input type="button" class="btn" value="Cancel" /> <span class="visually-hidden">Click to view prefrences</span>
+				<input type="button" class="btn" value="Delete" />
+				<input type="button" class="btn" value="Save" /> </div>
+		</div>
+	</div>
+</div>

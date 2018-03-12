@@ -1,0 +1,475 @@
+<div class="ups-form_wrap" [formGroup]="coForm">
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Certificate of Origin      //// -->
+    <!-- ////////////////////////////////////////// -->
+
+    <!-- //// Begin Section lvl error handling //// -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid() && apwi)">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+
+        <ul class="ups-icons-error">
+            <ng-container *ngIf="coreForm.length > 0">
+                <li *ngFor="let error of coreForm.first.coreFormError();">
+                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}} is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern) ? 'invalid'
+                    : '' }}</a>
+                </li>
+            </ng-container>
+            <li *ngIf="coForm.controls['packagesContainID0'].hasError('required') && apwi">
+                <a href="#ups-packagesContainID0" class="ups-invalid_color" pointIdClick>Number of packages is required</a>
+            </li>
+            <li *ngIf="coForm.controls['grossWeightContainID0'].hasError('required') && apwi">
+                <a href="#ups-grossWeightContainID0" class="ups-invalid_color" pointIdClick>Gross weight is required</a>
+            </li>
+            <li *ngIf="coForm.controls['packagesContainID'].hasError('required') && (setPkgType && waci)">
+                <a href="#ups-packagesContainID" class="ups-invalid_color" pointIdClick>{{'{'}}Product Name{{'}'}} Number of packages is required</a>
+            </li>
+            <li *ngIf="coForm.controls['grossWeightContainID'].hasError('required') && (setPkgType && waci)">
+                <a href="#ups-grossWeightContainID" class="ups-invalid_color" pointIdClick>{{'{'}}Product Name{{'}'}} Gross weight is required</a>
+            </li>
+            <li *ngIf="coForm.controls['packagesContainID2'].hasError('required') && (setPkgType2 && waci)">
+                <a href="#ups-packagesContainID2" class="ups-invalid_color" pointIdClick>{{'{'}}Product Name{{'}'}} Number of packages is required</a>
+            </li>
+            <li *ngIf="coForm.controls['grossWeightContainID2'].hasError('required') && (setPkgType2 && waci)">
+                <a href="#ups-grossWeightContainID2" class="ups-invalid_color" pointIdClick>{{'{'}}Product Name{{'}'}} Gross weight is required</a>
+            </li>
+        </ul>
+    </div>
+    <!-- Products - w/0 items -->
+    <div *ngIf="noitems">
+        <p><span aria-hidden="true" class="icon ups-icon-alert"></span> Your International shipment contains 0 products.</p>
+        <p><button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button"><span aria-hidden="true" class="icon ups-icon-plus"></span>Add Product</button></p>
+    </div>
+
+    <!-- Products - Add Product w/0 items -->
+    <div *ngIf="apwi">
+        <!-- //////////////////////////////////// -->
+        <!-- //// BEGEN Core Form Component ///// -->
+        <!-- //////////////////////////////////// -->
+            <ups-coreForm #coreForm></ups-coreForm>
+        <!-- //////////////////////////////////// -->
+        <!-- //// END Core Form Component   ///// -->
+        <!-- //////////////////////////////////// -->
+
+        <div class="row">
+            <hr>
+            <div class="col-md-7">
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="ups-packagesContainID0"> 
+                        How many of your packages contain this item? 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                <div class="ups-help" upsHelpBtn="">
+                    <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft" style="display: none;">
+                        <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Count the number shipping containers holding at least one of this commodity.</p>
+                    </div>
+                </div>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input aria-describedby="packagesContainID0_error"
+                            aria-required="true"
+                            class="ups-form_input"
+                            id="ups-packagesContainID0"
+                            name="ups-packagesContainID0"
+                            required=""
+                            type="text"
+                            formControlName="packagesContainID0"
+                            [ngClass]="{'ups-bodError': (!coForm.controls['packagesContainID0'].valid && coForm.controls['packagesContainID0'].touched)}">
+                    <div *ngIf="coForm.controls['packagesContainID0'].valid">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-packagesContainID0_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!coForm.controls['packagesContainID'].valid && coForm.controls['packagesContainID'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span *ngIf="coForm.controls['packagesContainID'].hasError('required')">
+                            Number of packages is required.
+                        </span>
+                    </span>
+                </span>
+                </div>
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="ups-grossWeightContainID0"> 
+                        What is the gross weight of this item? 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                    <div class="ups-help" upsHelpBtn="">
+                        <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft" style="display: none;">
+                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Add up what this item weighs, in its retail packaginig, in the quantity you are shippingit. Then include the weight of the shipping containers they are in.  If a package contains only that commodity, <em>gross weight</em> is the same as package weight.</p>
+                        </div>
+                    </div>
+
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input aria-describedby="ups-grossWeightContainID0_error"
+                        aria-required="true"
+                        class="ups-form_input"
+                        formControlName="grossWeightContainID0"
+                        id="ups-grossWeightContainID0"
+                        name="ups-grossWeightContainID0"
+                        required=""
+                        type="text"
+                        [ngClass]="{'ups-bodError': (!coForm.controls['grossWeightContainID0'].valid && coForm.controls['grossWeightContainID0'].touched)}">
+                        <div *ngIf="coForm.controls['grossWeightContainID0'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                        <span class="ups-input_unit_measure">[lbs/kg]</span>
+                    </div>
+                    <span class="ups-icons-error" id="ups-grossWeightContainID0_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!coForm.controls['grossWeightContainID0'].valid && coForm.controls['grossWeightContainID0'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span *ngIf="coForm.controls['grossWeightContainID0'].hasError('required')">
+                                Gross weight is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <p>
+            <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button">
+                <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                Add Product
+            </button>
+        </p>
+    </div>
+
+    <!-- Edit - Products - w/ 2 items Added -->
+    <fieldset class="ups-form_group" *ngIf="wia">
+        <legend class="ups-form_label">Select products to include with US Certificate of Origin</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-setPkgType" class="ups-checkbox-custom" name="ups-setPkgType" type="checkbox" checked="true">
+            <label for="ups-setPkgType" class="ups-checkbox-custom-label">1. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details page{{'}'}}</label>
+        </div>
+        <div class="ups-group ups-indent_with_input">
+            <p>in {{'{'}}n{{'}'}} Packages</p>
+            <p>Gross Weight {{'{'}}n{{'}'}} {{'{'}}lbs/kgs{{'}'}}
+        </div>
+        <hr>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-setPkgType2" class="ups-checkbox-custom" name="ups-setPkgType2" type="checkbox" checked="true">
+            <label for="ups-setPkgType2" class="ups-checkbox-custom-label">2. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details page{{'}'}}</label>
+        </div>
+        <div class="ups-group ups-indent_with_input">
+            <p>in {{'{'}}n{{'}'}} Packages</p>
+            <p>Gross Weight {{'{'}}n{{'}'}} {{'{'}}lbs/kgs{{'}'}}
+        </div>
+        <hr>
+        <p><button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button"><span aria-hidden="true" class="icon ups-icon-plus"></span>Add Product</button></p>
+    </fieldset>
+     <!-- Edit - Products - w/2 items Added in CI (Incomplete) - #2 unselected -->
+    <fieldset class="ups-form_group" *ngIf="waci">
+        <legend class="ups-form_label">Select products to include with US Certificate of Origin</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-setPkgType" 
+                    class="ups-checkbox-custom" 
+                    name="ups-setPkgType" 
+                    type="checkbox" 
+                    checked="true"
+                    [(ngModel)]="setPkgType"
+                    [ngModelOptions]="{'standalone': true}">
+            <label for="ups-setPkgType" class="ups-checkbox-custom-label">1. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details page{{'}'}}</label>
+        </div>
+        <div class="row" *ngIf="setPkgType">
+            <div class="col-md-7">
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="packagesContainID">How many of your packages contain this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-help" upsHelpBtn="">
+                        <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft" style="display: none;">
+                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Count the number shipping containers holding at least one of this commodity.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input aria-describedby="co_item_num_error"
+                             aria-required="true"
+                             class="ups-form_input"
+                             id="ups-packagesContainID"
+                             name="packagesContainID"
+                             required=""
+                             type="text"
+                             formControlName="packagesContainID"
+                             [ngClass]="{'ups-bodError': (!coForm.controls['packagesContainID'].valid && coForm.controls['packagesContainID'].touched)}">
+                        <div *ngIf="coForm.controls['packagesContainID'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-packagesContainID_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!coForm.controls['packagesContainID'].valid && coForm.controls['packagesContainID'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span *ngIf="coForm.controls['packagesContainID'].hasError('required')">
+                                Number of packages is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="co_item_weight">What is the gross weight of this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-help" upsHelpBtn="">
+                        <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft" style="display: none;">
+                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Add up what this item weighs, in its retail packaginig, in the quantity you are shippingit. Then include the weight of the shipping containers they are in.  If a package contains only that commodity, gross weight is the same as package weight.</p>
+                        </div>
+                    </div>
+
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input aria-describedby="ups-grossWeightContainID_error"
+                        aria-required="true"
+                        class="ups-form_input"
+                        formControlName="grossWeightContainID"
+                        id="ups-grossWeightContainID"
+                        name="ups-grossWeightContainID"
+                        required=""
+                        type="text"
+                        [ngClass]="{'ups-bodError': (!coForm.controls['grossWeightContainID'].valid && coForm.controls['grossWeightContainID'].touched)}">
+                        <div *ngIf="coForm.controls['grossWeightContainID'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                        <span class="ups-input_unit_measure">[lbs/kg]</span>
+                    </div>
+                    <span class="ups-icons-error" id="ups-grossWeightContainID_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!coForm.controls['grossWeightContainID'].valid && coForm.controls['grossWeightContainID'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span *ngIf="coForm.controls['grossWeightContainID'].hasError('required')">
+                                Gross weight is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-setPkgType2" 
+                    class="ups-checkbox-custom" 
+                    name="ups-setPkgType2" 
+                    type="checkbox" 
+                    checked="true"
+                    [(ngModel)]="setPkgType2"
+                    [ngModelOptions]="{'standalone': true}">
+            <label for="ups-setPkgType2" class="ups-checkbox-custom-label">2. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details page{{'}'}}</label>
+        </div>
+        <div class="row" *ngIf="setPkgType2">
+            <div class="col-md-7">
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="packagesContainID2">How many of your packages contain this item? 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                    <div class="ups-help" upsHelpBtn="">
+                        <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft" style="display: none;">
+                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Count the number shipping containers holding at least one of this commodity.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input aria-describedby="ups-packagesContainID2_error"
+                             aria-required="true"
+                             class="ups-form_input"
+                             id="ups-packagesContainID2"
+                             name="packagesContainID2"
+                             required=""
+                             type="text"
+                             formControlName="packagesContainID2"
+                             [ngClass]="{'ups-bodError': (!coForm.controls['packagesContainID2'].valid && coForm.controls['packagesContainID2'].touched)}">
+                        <div *ngIf="coForm.controls['packagesContainID2'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-packagesContainID2_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!coForm.controls['packagesContainID2'].valid && coForm.controls['packagesContainID2'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span *ngIf="coForm.controls['packagesContainID2'].hasError('required')">
+                                Number of packages is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                    <label class="ups-form_label" for="ups-grossWeightContainID2">
+                        What is the gross weight of this item? 
+                        <span aria-hidden="true" class="ups-required_indicator"></span> 
+                    </label>
+                    <div class="ups-help" upsHelpBtn="">
+                        <button class="ups-help_link icon ups-icon-questioncircle" id="ups-internalShip-help" type="button">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button class="ups-help_close icon ups-icon-x ups-iconAlone" type="button">
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Add up what this item weighs, in its retail packaginig, in the quantity you are shippingit. Then include the weight of the shipping containers they are in.  If a package contains only that commodity, gross weight is the same as package weight.</p>
+                        </div>
+                    </div>
+
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input aria-describedby="ups-grossWeightContainID2_error"
+                        aria-required="true"
+                        class="ups-form_input"
+                        formControlName="grossWeightContainID2"
+                        id="ups-grossWeightContainID2"
+                        name="ups-grossWeightContainID2"
+                        required=""
+                        type="text"
+                        [ngClass]="{'ups-bodError': (!coForm.controls['grossWeightContainID2'].valid && coForm.controls['grossWeightContainID2'].touched)}">
+                        <div *ngIf="coForm.controls['grossWeightContainID2'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                        <span class="ups-input_unit_measure">[lbs/kg]</span>
+                    </div>
+                    <span class="ups-icons-error" id="ups-grossWeightContainID2_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!coForm.controls['grossWeightContainID2'].valid && coForm.controls['grossWeightContainID2'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span *ngIf="coForm.controls['grossWeightContainID2'].hasError('required')">
+                                Gross weight is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p><button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button"><span aria-hidden="true" class="icon ups-icon-plus"></span>Add Product</button></p>
+    </fieldset>
+     <!-- View - In Progress / Ready To Go States -->
+     <div class="ups-section" *ngIf="(ipmp || ipmcoi || ready)">
+         <div class="ups-group ups-faux-drawer">
+             <div class="ups-drawer-header">
+                 <span  [ngClass]="{'ups-icon-checkcircle h3' : rtg,
+                                 'ups-empty_circle' : !rtg }"
+                 class="icon ups-drawer_left_icon"></span>
+                 <span *ngIf="!rtg">In Progress</span>
+                 <span *ngIf="rtg" class="h3">Ready to go</span>
+                 <em class="pull-right">
+                     <span *ngIf="!rtg">Some information is required to complete this form.</span>
+                     <span *ngIf="rtg">All required fields have been entered in this form.<br>
+                         You may add addiontal information if you wish.</span>
+                 </em>
+             </div>
+         </div>
+         <div class="ups-section">
+             <div class="ups-group">
+                 <p>The Undersigned:</p>
+                 <p><em>(Owner or Agent)</em></p>
+                 <p><strong>[Contact Name]</strong></p>
+             </div>
+
+             <div class="ups-group">
+                 <p>Ship From:</p>
+                 <p><em>(Name and Address of Shipper)</em></p>
+                 <p><strong>[Company Name], [Street Address], [Address 2], [Address 3], [City], [State], [Zip]</strong></p>
+             </div>
+
+             <div class="ups-group">Declares that the following mentioned goods shipped on United Parcel Service on the date [mm/dd/yy] consigned to: <br><strong>[Company Name], [Street Address], [Address 2], [Address 3], [City], [State], [Zip]</strong> are the product of the United States of America.</div>
+             <div class="ups-group">Bill of lading/Air WayBill Number{{'{'}}00X00000XXX.{{'}'}}</div>
+         </div>
+
+         <div class="ups-section-header">
+             <h3 class="ups-section_heading">
+                 Products
+                 <button *ngIf="!addBtn && !editProd"
+                     class="ups-link"
+                     type="button"
+                     (click)="editProd = false">
+                     <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                     <span class="hidden-xs">Edit</span>
+                     <span class="ups-readerTxt"> section</span>
+                 </button>
+             </h3>
+         </div>
+         <!-- View - In Progress - Missing Products -->
+         <p class="ups-invalid_color" *ngIf="ipmp"><span class="icon ups-icon-alert" aria-hidden="true"></span> Your International shipment contains 0 products</p>
+         <!-- View - Ready to go - Missing C/O Information -->  
+         <div *ngIf="ipmcoi">
+            <div class="ups-group ups-group_condensed">
+                <p><strong>1. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description Information{{'}'}}</strong></p>
+                <p class="ups-invalid_color"><span class="icon ups-icon-alert" aria-hidden="true"></span> Missing required information.</p>
+            </div>
+            <div class="ups-group ups-group_condensed">
+                <p><strong>2. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description Information{{'}'}}</strong></p>
+                <p class="ups-invalid_color"><span class="icon ups-icon-alert" aria-hidden="true"></span> Missing required information.</p>
+            </div>
+         </div>
+         <!-- View - Ready to Go - All Required Fields -->
+         <div *ngIf="ready">
+            <div class="ups-section">
+                <p><strong>1. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description Information{{'}'}}</strong></p>
+                <div class="ups-group">
+                    <p>{{'{'}}Tariff Code{{'}'}}</p>
+                    <p>in {{'{'}}n{{'}'}} Packages</p>
+                    <p>Gross Weight {{'{'}}n{{'}'}} {{'{'}}lbs/kgs{{'}'}}
+                </div>
+            </div>
+            <div class="ups-section">
+                <p><strong>2. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description Information{{'}'}}</strong></p>
+                <div class="ups-group">
+                    <p>{{'{'}}Tariff Code{{'}'}}</p>
+                    <p>in {{'{'}}n{{'}'}} Packages</p>
+                    <p>Gross Weight {{'{'}}n{{'}'}} {{'{'}}lbs/kgs{{'}'}}
+                </div>
+            </div>
+         </div>
+     </div>
+
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Modal Lvl Footer Btns      //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()" *ngIf="closeBtn">Close</button>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="formSave()" *ngIf="saveBtn">Save and Close</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Modal Lvl Footer Btns        //// -->
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Demo Btns                  //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeNoItems('noitems')">Products - w/0 items</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeAddProduct('apwi')">Add Product w/0 items</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeItemsAdded('wia')">w/2 items Added</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeItemsAddedCI('waci')">w/2 items Added in CI(Incomplete)-#2 unselected</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeMissingProducts('ipmp')">In Progress - Missing Products</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeCOInformation('ipmcoi')">Ready To Go - Missing C/O Information</button>
+        <br><br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="changeReadyToGo('ready')">Ready To Go - All Required Fields</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End  Demo Btns                   //// -->
+</div>

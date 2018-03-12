@@ -1,0 +1,168 @@
+<div class="ups-application_wrapper ups-app_onboarding ups-pref-import_Control_Options"
+	data-ng-controller="prefImportControlOptions">
+    <ng-form name="ups_importControlOptionsform" data-novalidate>
+    <!-- //////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-importControlOptions //// -->
+    <!-- //////////////////////////////////////////// -->
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-Service-type"> Import Service</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-Service-type" class="ups-dropdown"
+						name="ups-Service-type" data-ng-model="formObj.ServiceType"
+						data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="type in ServiceType" value="{{type.type}}">{{type.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-del-method">Label Delivery Method</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-del-method" class="ups-dropdown"
+						name="ups-del-method" data-ng-model="formObj.delMethod"
+						data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="type in delMethod" value="{{type.name}}">{{type.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-package-type">Packaging </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-package-type" class="ups-dropdown"
+						name="ups-package-type" data-ng-model="formObj.packageType"
+						data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="type in packageType" value="{{type.type}}">{{type.type}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group"
+				ng-class="{ 'has-error' : ups_importControlOptionsform.merchandiseDescp.$invalid && !ups_importControlOptionsform.merchandiseDescp.$pristine }">
+                    <label for="ups-merchandise_input" class="ups-form_label">Merchandise Description</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="merchandiseDescp"
+						class="ups-form_input" id="ups-merchandise_input" value=""
+						data-ng-model="formObj.merchandiseDescp" maxlength="35">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                <!-- ups-form_group ups-form_required -->
+            </div>
+        </div>
+                
+        <p>If you frequently create similar shipments, save processing
+           time by adding default reference information.</p> 
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group"
+				ng-class="{ 'has-error' : ups_importControlOptionsform.refImport.$invalid && !ups_importControlOptionsform.refImport.$pristine }">
+                    <label for="ups-refImport_input" class="ups-form_label">Reference
+                        #1</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="refImport"
+						class="ups-form_input" id="ups-refImport_input" value=""
+						data-ng-model="formObj.refImport" maxlength="35">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                <!-- ups-form_group ups-form_required --> 
+                <div class="ups-form_group">
+                    <label class="ups-form_label" for="ups-ref-type-import">Reference
+                        #1 Type for Imports</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups-ref-type-import" class="ups-dropdown"
+                        name="ups-ref-type-import" data-ng-model="formObj.refTypeImport"
+                        data-ng-change="calculateTimings('early',formObj.pickup.earlyTime,'weekday')">
+                            <option data-ng-repeat="item in refTypeImport"
+                            value="{{item.type}}">{{item.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper "
+                    data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                <input check-verify id="ups-print_Ref" class="ups-checkbox-custom"
+                        name="ups-print_Ref" value="1" type="checkbox"
+                        data-ng-model="formObj.printRef"
+                        data-ng-checked="formObj.printRef">
+                <label for="ups-print_Ref"
+                        class="ups-form_label ups-checkbox-custom-label"> Create a
+                    bar code for <strong>Reference #1</strong> when printing return
+                    labels. </label>
+            </div>
+        </div>
+        <!-- ups-checkbox ups-input_wrapper -->
+        
+        <div class="ups-form_group ups-checkbox_group">
+            <div class="ups-checkbox ups-input_wrapper "
+            data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                <input check-verify id="ups-make_Ref" class="ups-checkbox-custom"
+                name="ups-make_Ref" value="1" type="checkbox"
+                data-ng-model="formObj.makeRef" data-ng-checked="formObj.make_Ref">
+                <label for="ups-make_Ref"
+                class="ups-form_label ups-checkbox-custom-label"> Make <strong>Reference
+                    #1</strong> required for all imports. </label>
+            </div>
+        </div>
+        <!-- ups-checkbox ups-input_wrapper --> 
+
+        <hr>
+        
+        <p>Because UPS Worldwide Express Freight shipments are so heavy,
+            you may want to set separate pickup and delivery preferences.</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-help_wrapper">
+                    <label for="ups-pickupOptionImport" class="ups-form_label">Pickup
+                        Options</label>
+                    <div class="ups-help"> <a href="#" onclick="return false;"
+							class="ups-help_link icon ups-form_link-noDecoration"
+							data-ng-click="openTermsAndConditions('http://www.ups.com/content/us/en/shipping/exp_freight_pickup.html')">Help <span
+										class="ups-icon-newwindow" aria-hidden="true"></span><span
+							class="ups-readerTxt">This will open a new window</span></a> </div>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-pickupOptionImport" id="ups-pickupOptionImport"
+							class="ups-dropdown" data-ng-model="formObj.pickupOptionImport">
+                            <option data-ng-repeat="pickupOption in pickupOption"
+								value="{{pickupOption.type}}">{{pickupOption.type}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <div class="ups-form_group ups-help_wrapper">
+                    <label for="ups-deliveryAddressImport" class="ups-form_label">Delivery
+                        Options</label>
+                    <div class="ups-help"> <a href="#" onclick="return false;"
+							class="ups-help_link icon ups-form_link-noDecoration"
+							data-ng-click="openTermsAndConditions('http://www.ups.com/content/us/en/shipping/exp_freight_dropoff.html')">Help <span
+										class="ups-icon-newwindow" aria-hidden="true"></span><span
+							class="ups-readerTxt">This will open a new window</span></a> </div>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-deliveryAddressImport"
+							id="ups-deliveryAddressImport" class="ups-dropdown"
+							data-ng-model="formObj.deliveryAddressImport">
+                            <option data-ng-repeat="deliveryAddr in deliveryOption"
+								value="{{deliveryAddr.type}}">{{deliveryAddr.type}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveImportControlOptionsData()"> Save </button>
+            <!-- data-ng-disabled="!(ups_importControlOptionsform.$dirty)" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+    <!-- //////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-importControlOptions   //// -->
+    <!-- //////////////////////////////////////////// -->
+    </ng-form>
+</div>

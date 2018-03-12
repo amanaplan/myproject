@@ -1,0 +1,972 @@
+// FORMS
+// ----------------------------------
+input[readonly]:focus {
+	outline-color: $ups_gold;
+	outline-style: auto;
+}
+
+.ups-text_scroll {
+	width: 100%;
+	padding: $margin_4;
+	border: 1px solid $black_s1;
+	max-height: $max_ht_lg;
+	overflow-y: scroll;
+	margin-bottom: $margin_3;
+
+	@media #{$media-mediumMid} {
+		max-height: $max_ht_md;
+	}
+
+	@media #{$media-small} {
+		max-height: $max_ht_sm;
+	}
+}
+
+.ups-form_ctaGroupVertical {
+	.ups-cta {
+		width: 100%;
+		margin-bottom: $margin_4;
+
+		@media #{$media-small} {
+			&:last-of-type {
+				margin: inherit;
+			}
+		}
+	}
+}
+
+// Disabled cta styles
+.ups-cta:disabled {
+	background: $stone_60;
+	color: $black_s1;
+	cursor: not-allowed;
+}
+
+// Reset form control widths for use in multi-column bs grid
+.ups-form_input { width: 100%; }
+.ups-form_wrap {
+    .ups-form_group {
+        &.ups-help_wrapper {
+            &.ups-help_textWrapper{
+                .ups-help_tooltip {
+                    #{$default-float} : auto;
+				}
+			}
+		}
+	}
+}
+
+.ups-form_group, .ups-input_wrapper { max-width: 100%; }
+
+.ups-form_group.ups-buttonList_inline {
+	.ups-input_wrapper.ups-buttonList_wrapper {
+		display: inline-block;
+		max-width: 50%;
+
+		@media #{$media-medium} {
+			display: block;
+			max-width: 100%;
+		}
+	}
+}
+
+.ups-time.ups-form_group.ups-buttonList_inline {
+	.ups-input_wrapper.ups-buttonList_wrapper {
+		display: inline-block;
+		max-width: 50%;
+
+		@media #{$media-small} {
+			display: block;
+			max-width: 100%;
+		}
+	}
+}
+.ups-component_inner {
+	width: auto;
+	padding: 0;
+}
+
+@media #{$not-mobile_or_tablet} {
+	.ups-component_inner {
+		width: 60%;
+		margin: 0 auto;
+	}
+}
+/***********************************************
+**                                            **
+**	UPS Input Modifiers                       **
+**                                            **
+***********************************************/
+.ups-input_has_unit {
+	&.ups-help_wrapper .ups-help_link { right: 50px; }
+
+	&.ups-help_wrapper .ups-help_tooltip { right: 50px; }
+
+	.ups-input_wrapper {
+		padding-#{$opposite-direction}: 50px;
+		position: relative;
+	}
+
+	.ups-dropdown_wrapper:before { #{$opposite-direction}: 50px; }
+}
+
+.ups-input_unit_measure {
+	position: absolute;
+    #{$opposite-direction}: 0;
+    line-height: 35px;
+    top: 0;
+    display: block;
+    width: 40px;
+}
+
+.ups-noTxt { margin-top: 25px; }
+
+.ups-tags_label {
+	width: 55%
+}
+
+.ups-text_wrapper.ups-has_calendar_icon .ups-form_input {
+    padding-#{$opposite-direction}: 42px;
+}
+
+.ups-input_has_unit_left {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    .ups-input_group_addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1;
+        color: $black;
+        text-align: center;
+        background-color: $stone_40;
+        //border: 1px solid #ccc;
+        border: 1px solid $stone_s3;
+        //border-radius: 4px; commenting this out to get rid of the curve in the border
+        border-radius: 0px;
+        width: 1%;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: table-cell;
+        &:nth-child(1) {
+            border-right: 0;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+}
+
+.ups-form_input_unit.ups-form_input {
+    margin-bottom: 0;
+}
+/***********************************************
+**	End UPS Input Modifiers                   **
+***********************************************/
+
+.ups-input_side_link_wrapper {
+	@media #{$media-small} {
+		margin-bottom: $margin_2 + (2 * $margin_4); //button height plus gutters above & below button
+	}
+	.ups-input_side_link {
+		position: absolute;
+		top: 0;
+		//#{$default-float}: 75%;
+		#{$default-float}: 100%;
+
+		@media #{$media-small} {
+			position: initial;
+			margin-top: $margin_4;
+		}
+	}
+}
+
+/*a {
+	color: $black_s3;
+	text-decoration: underline;
+	font-family: $sans-bd;
+	@include transition-property(all);
+	@include transition-duration($main-transition-speed);
+
+	&:hover {
+		color: $black_s1;
+		text-decoration: underline;
+	}
+}*/
+
+.ups-boxed_radioGroup,
+.ups-boxed_checkboxGroup,
+.ups-boxed_tileGroup {
+    clear:both;
+    width:100%;
+    @include pie-clearfix;
+}
+
+.ups-boxed_radio,
+.ups-boxed_checkbox,
+.ups-boxed_tile{
+    border: 1px solid $stone_s3;
+    width: 29%;
+    float: $default-float;
+    margin: 0 1.7% 3%;
+    cursor: pointer;
+    height: 145px;
+    padding: 0 0 0 0;
+    text-align: center;
+
+    .ups-radio-custom-label,
+    .ups-checkbox-custom-label,
+    .ups-tile-custom-label {
+        width:100%;
+        height:100%;
+        font-weight:bold;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin:0;
+        padding-top: 30px;
+        padding-#{$default-float}:0;
+
+        &:before { display: none; }
+
+        span {
+            display:block;
+            margin:0 0 10px;
+        }
+    }
+
+    .ups-radio-custom:checked + .ups-radio-custom-label,
+    .ups-checkbox-custom:checked + .ups-checkbox-custom-label,
+    .ups-tile-custom:checked + .ups-tile-custom-label{
+    	// background: $ups_gold;
+    }
+
+    .ups-radio-custom:focus + .ups-radio-custom-label,
+    .ups-checkbox-custom:focus + .ups-checkbox-custom-label,
+    .ups-tile-custom:focus + .ups-tile-custom-label {
+        outline: 5px auto $ups_gold;
+        outline-offset: 0;
+    }
+
+    @media screen and (max-width: #{$screen-sm - 1}) {
+        width:100%;
+        margin: 3% 0;
+        text-align: $default-float;
+
+        .ups-radio-custom-label,
+        .ups-checkbox-custom-label,
+        .ups-tile-custom-label {
+            padding-#{$default-float}: 32px;
+        }
+    }
+}
+
+.ups-reqMsg {
+    clear: both;
+    margin-bottom: 30px;
+}
+
+
+.ups-checkbox-help-link {
+	width: 85%;
+}
+/***********************************************
+**                                            **
+**	Begin UPS Error States                    **
+**                                            **
+***********************************************/
+
+/* error text and notification styles */
+.ups-invalid_color { color:$red; }
+.ups-icons-error {
+	/* margin: $margin_4 0px; */
+	padding: 0;
+	li {
+		margin-#{$default-float}: 55px;
+		margin-bottom:10px;
+	}
+	li, a {
+		color:$red;
+		font-weight:bold;
+		&.ups-invalid_color-list{
+			list-style: none;
+			margin-#{$default-float}: 0;
+			font-size: 1.1em;
+		}
+	}
+	/*.ups-invalid_color {
+		font-size: 0.93em;
+		font-weight: normal;
+	}*/
+}
+h3 {
+	.ups-invalid_color {
+		font-size: 0.86em;
+	}
+}
+.ups-invalid_color-list {
+	color: $red;
+	padding-#{$default-float}: 40px;
+	position: relative;
+}
+.ups-clearfix { clear: both; }
+/*.ups-error_alert-list:before {
+	font-size: 25px;
+	position: absolute;
+	top: -7px;
+	#{$default-float}: 0;
+}*/
+
+.ups-error_alert-list {
+    .ups-icon-exclamation {
+        font-size: 25px;
+	    position: absolute;
+	    top: -7px;
+	    #{$default-float}: 0;
+    }
+}
+
+/*.ups-bodError + .ups-checkbox-custom-label,
+.ups-bodError + .ups-radio-custom-label{
+    padding-#{$default-float}: 40px;
+    &:before {
+        border-color:$red;
+    }
+}*/
+
+.ups-error_exclamation {
+	float: $opposite-direction;
+	margin-top: -30px;
+	margin-#{$opposite-direction}: 10px;
+	position: absolute;
+	#{$opposite-direction}: 0;
+	/*&.ups-unit_push_error {
+		margin-#{$opposite-direction}: 60px;
+	}*/
+}
+
+.ups-checkbox, .ups-radio {
+	.ups-invalid_color {
+		display:block;
+	}
+	/*.ups-error_exclamation {
+		position: absolute;
+		#{$default-float}: 24px;
+		margin-top: -70px;
+	}*/
+}
+
+.selectbox.icon {
+    margin-#{$opposite-direction}: 40px;
+    pointer-events: none;
+}
+
+.ups-dropdown_wrapper .ups-dropdown.ng-valid {
+    padding-#{$opposite-direction}: 70px;
+
+    &.ups-no_validation {
+        padding-#{$opposite-direction}: 30px;
+    }
+}
+/*.push.icon {
+	margin-#{$opposite-direction}: 40px;
+} */
+
+/* radio button selector for error message */
+.ups-radio_group span.icon.ups-error_exclamation {
+    position: static;
+    float: $default-float;
+    margin: 0;
+    padding-right: 5px;
+}
+
+/* need to re-assess after markup change for error location */
+.ups-form_group .ups-dropdown_wrapper ~ .ups-icons-error .ups-error_exclamation,
+.ups-form_group .ups-dropdown_wrapper ~ .error-list-wrapper .ups-icon-exclamation {
+	margin-#{$opposite-direction}: 40px;
+}
+
+/* need to re-assess after markup change for error location */
+.ups-form_group .ups-dropdown_wrapper ~ .ups-invalid_color .ups-error_exclamation,
+.ups-form_group .ups-dropdown_wrapper ~ .error-list-wrapper .ups-icon-exclamation {
+	margin-#{$opposite-direction}: 40px;
+}
+
+.ups-form_group .ups-dropdown_wrapper .ups-icons-error .ups-error_exclamation,
+.ups-form_group .ups-dropdown_wrapper .ups-invalid_color .ups-error_exclamation,
+.ups-form_group .ups-dropdown_wrapper .error-list-wrapper .ups-icons-exclamation {
+	margin-#{$opposite-direction}: 40px;
+}
+
+.ups-form_group .ups-has_calendar_icon ~ .ups-icons-error .ups-error_exclamation,
+.ups-form_group .ups-has_calendar_icon ~ .error-list-wrapper .ups-icon-exclamation,
+.ups-form_group .ups-has_calendar_icon .ups-icons-error .ups-error_exclamation,
+.ups-form_group .ups-has_calendar_icon .error-list-wrapper .ups-error_exclamation {
+	margin-#{$opposite-direction}: 40px;
+}
+
+.ups-form_group.ups-input_has_unit .ups-icons-error .ups-error_exclamation {
+	margin-#{$opposite-direction}: 60px;
+}
+
+.ups-textarea-error { margin-top: -59px; }
+
+/***********************************************
+**	UPS Angular Error Classes                 **
+***********************************************/
+.ng-invalid.ng-dirty, .ng-invalid.ng-dirty.ng-touched, .ups-bodError {
+    border-color: $red;
+    outline-color: $red;
+}
+
+.ng-invalid.ng-dirty + .ups-checkbox-custom-label,
+.ups-bodError + .ups-checkbox-custom-label,
+.ng-invalid.ng-dirty + .ups-radio-custom-label,
+.ups-bodError + .ups-radio-custom-label {
+    padding-#{$default-float}: 40px;
+    &:before {
+        border-color:$red;
+    }
+}
+
+.ups-buttonList_wrapper .ng-invalid.ng-dirty + .ups-checkbox-custom-label,
+.ups-buttonList_wrapper .ups-bodError + .ups-checkbox-custom-label,
+.ups-buttonList_wrapper .ng-invalid.ng-dirty + .ups-radio-custom-label,
+.ups-buttonList_wrapper .ups-bodError + .ups-radio-custom-label {
+    padding-#{$default-float}: 32px;
+}
+
+.ups-text_wrapper .ups-form_input.ng-invalid.ng-dirty.ng-touched,
+.ups-text_wrapper .ups-form_input.ng-invalid.ng-dirty,
+.ups-text_wrapper .ups-form_input.ups-bodError {
+    padding-#{$opposite-direction}: 25px;
+}
+
+.ups-text_wrapper.ups-has_calendar_icon .ups-form_input.ng-invalid.ng-dirty.ng-touched,
+.ups-text_wrapper.ups-has_calendar_icon .ups-form_input.ups-bodError {
+    padding-#{$opposite-direction}: 52px;
+}
+
+.ups-text_wrapper.ups-has_calendar_icon .ups-check .icon {
+    #{$opposite-direction}: 44px;
+}
+
+.ups-text_wrapper.ups-has_calendar_icon .ups-form_input {
+    padding-#{$opposite-direction}: 70px;
+}
+
+.ups-textArea.ng-invalid.ng-dirty, .ups-textArea.ups-bodError {
+    padding-#{$opposite-direction}: 25px;
+}
+
+.ups-dropdown.ng-invalid.ng-dirty,
+.ups-dropdown.ups-bodError {
+    padding-#{$opposite-direction}: 55px;
+}
+
+fieldset + .ups-icons-error .ups-error_exclamation {
+    position: static;
+    float: none;
+    margin: 0;
+}
+
+.ups-checkbox {
+    position: relative;
+}
+
+.ups-checkbox .ups-error_exclamation {
+    position: absolute;
+    #{$default-float}: 25px;
+    top: 8px;
+    margin-top: 0;
+    #{$opposite-direction}: auto;
+}
+
+.ups-textArea_wrapper .ups-icons-error .ups-error_exclamation {
+    position: absolute;
+    top: 5px;
+    #{$opposite-direction}: 5px;
+    margin: 0;
+}
+/***********************************************
+**                                            **
+**	End UPS Error States                      **
+**                                            **
+***********************************************/
+
+/*******************************************************************
+**  Adds Padding-Right to inputs when a checkmark appears (or when the input is valid)
+**  Change Due to TFS Defect #409397
+********************************************************************/
+.ups-text_wrapper.ups-input_wrapper .ups-form_input.ng-valid {
+    padding-#{$opposite-direction}: 33px;
+}
+
+.ups-questions_showhide {
+	float: $opposite-direction;
+	margin-top: -40px;
+	width: initial;
+	padding-#{$opposite-direction}: 45px;
+	position: absolute;
+	#{$opposite-direction}: 0;
+}
+
+.ups-icon-check {
+	position: absolute;
+	top: 10px;
+	#{$opposite-direction}: 10px;
+	display: block;
+	&:before {
+		color: $ups_grass;
+		//font-size: 1.5em;
+		font-size: 1.1em;
+	}
+}
+
+.modal-body {
+	.ups-modal_subtitle {
+		float: $opposite-direction;
+		width: 100%;
+		text-align: $opposite-direction;
+		@media screen and (min-width: #{$screen-md}){
+			position: relative;
+			top: -70px;
+		}
+	}
+}
+.ups-forgetPass {
+	float: $opposite-direction;
+	line-height: 44px;
+}
+
+
+/* Begin Card OrderList */
+.ups-cardOrder_list {
+	padding: 0;
+	margin: 0;
+	padding: 0 0 20px 0;
+	li {
+		padding: 0;
+		margin: 0;
+		height: 25px;
+		float: $default-float;
+		text-indent: -9999px;
+		display: inline-block;
+		/*background-position: 0 0;*/
+        background-repeat: no-repeat;
+        background-position-y: center;
+		margin-#{$opposite-direction}: 1px;
+		&.ups-visa {
+			background-image: url('/assets/resources/images/paymentMethods/visa_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+				//background-position: 0 -28px;
+                background-image: url('/assets/resources/images/paymentMethods/visa.svg');
+			}
+		}
+		&.ups-mastercard {
+			background-image: url('/assets/resources/images/paymentMethods/mc_grayscale.svg');
+			width: 35px;
+            background-size: 35px;
+			&.ups-active {
+				//background-position: 0 -28px;
+                background-image: url('/assets/resources/images/paymentMethods/mc.svg');
+			}
+		}
+		&.ups-americanexpress {
+			background-image: url('/assets/resources/images/paymentMethods/amex_grayscale.svg');
+			width: 25px;
+            background-size: 25px;
+			&.ups-active {
+				//background-position: 0 -28px;
+                background-image: url('/assets/resources/images/paymentMethods/amex.svg');
+			}
+		}
+		&.ups-discover {
+			background-image: url('/assets/resources/images/paymentMethods/discover_grayscale.svg');
+			width: 38px;
+            background-size: 38px;
+			&.ups-active {
+				//background-position: 0 -28px;
+                background-image: url('/assets/resources/images/paymentMethods/discover.svg');
+			}
+		}
+        &.ups-alipay {
+            background-image: url('/assets/resources/images/paymentMethods/alipay_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/alipay.svg');
+			}
+        }
+        &.ups-bancontactmistercash {
+            background-image: url('/assets/resources/images/paymentMethods/bancontact_mistercash_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/bancontact_mistercash.svg');
+			}
+        }
+        &.ups-cartebleue {
+            background-image: url('/assets/resources/images/paymentMethods/carte_bleue_grayscale.svg');
+			width: 33px;
+            background-size: 33px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/carte_bleue.svg');
+			}
+        }
+        &.ups-dankort {
+            background-image: url('/assets/resources/images/paymentMethods/dankort_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/dankort.svg');
+			}
+        }
+        &.ups-dotpay {
+            background-image: url('/assets/resources/images/paymentMethods/dotpay_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/dotpay.svg');
+			}
+        }
+        &.ups-eft {
+            background-image: url('/assets/resources/images/paymentMethods/eft_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/eft.svg');
+			}
+        }
+        &.ups-giropay {
+            background-image: url('/assets/resources/images/paymentMethods/giropay_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/giropay.svg');
+			}
+        }
+        &.ups-ideal {
+            background-image: url('/assets/resources/images/paymentMethods/ideal_grayscale.svg');
+			width: 30px;
+            background-size: 30px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/ideal.svg');
+			}
+        }
+        &.ups-jcb {
+            background-image: url('/assets/resources/images/paymentMethods/jcb_grayscale.svg');
+			width: 38px;
+            background-size: 38px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/jcb.svg');
+			}
+        }
+        &.ups-maestro {
+            background-image: url('/assets/resources/images/paymentMethods/maestro_grayscale.svg');
+			width: 33px;
+            background-size: 33px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/maestro.svg');
+			}
+        }
+        &.ups-paypal {
+            background-image: url('/assets/resources/images/paymentMethods/paypal_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/paypal.svg');
+			}
+        }
+        &.ups-postepay {
+            background-image: url('/assets/resources/images/paymentMethods/postepay_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/postepay.svg');
+			}
+        }
+        &.ups-safetypay {
+            background-image: url('/assets/resources/images/paymentMethods/safetypay_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/safetypay.svg');
+			}
+        }
+
+        &.ups-sepa {
+            background-image: url('/assets/resources/images/paymentMethods/sepa_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/sepa.svg');
+			}
+        }
+        &.ups-sofort {
+            background-image: url('/assets/resources/images/paymentMethods/sofort_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/sofort.svg');
+			}
+        }
+        &.ups-unionpay {
+            background-image: url('/assets/resources/images/paymentMethods/upop_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/upop.svg');
+			}
+        }
+        &.ups-visaelectron {
+            background-image: url('/assets/resources/images/paymentMethods/visa_electron_grayscale.svg');
+			width: 40px;
+            background-size: 40px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/visa_electron.svg');
+			}
+        }
+        &.ups-vpay {
+            background-image: url('/assets/resources/images/paymentMethods/vpay_grayscale.svg');
+			width: 23px;
+            background-size: 23px;
+			&.ups-active {
+                background-image: url('/assets/resources/images/paymentMethods/vpay.svg');
+			}
+        }
+	}
+	.ups-no-card {
+		background: $stone_s3;
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-ms-border-radius: 10px;
+		border-radius: 10px;
+	}
+
+	&.ups-card_visible{
+	@media screen and (max-width: #{$screen-sm - 1}) {
+		padding: 0;
+	}
+	}
+	&.ups-card_visible + span{
+		margin-#{$default-float}: 10px;
+	}
+}
+/* End Card OrderList */
+
+
+//Date Picker Input
+//----------------------------------
+.ups-date_picker_button {
+	@include unbutton;
+	position: absolute;
+	#{$opposite-direction}: 0;
+	top: 0;
+	padding: 4px 8px 0;
+	height: 35px;
+	border-#{$default-float}: 1px solid $stone_s3;
+	.ups-icon-calendar {
+		font-size: 1.5em;
+		color: $ups_grass;
+		line-height: 1em;
+	}
+
+}
+.ups-scope-1 {
+	padding-#{$opposite-direction}: 15px;
+	padding-#{$default-float}: 15px;
+}
+@media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md - 1}) {
+	.ups-offset-none {
+		margin-#{$default-float}: $margin_0;
+	}
+	.ups-max_width {
+		max-width: 95%;
+	}
+}
+.ups-calendar-icon {
+	position: absolute;
+	#{$opposite-direction}: 0;
+}
+/***********************************************
+**	End UPS Forms Box                         **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS show/hide button classes              **
+**                                            **
+***********************************************/
+
+.ups-form_group .ups-text_wrapper .ups-form_input.ng-invalid.ng-dirty.ups-has_showhide_icon, .ups-has_showhide_icon {
+	padding-#{$opposite-direction}: 96px;
+}
+
+/***********************************************
+**	End how/hide button classes               **
+***********************************************/
+
+/***********************************************
+**	                                          **
+**	Begin Datepicker                          **
+**	                                          **
+***********************************************/
+
+@media #{$media-small} {
+	ul.uib-datepicker-popup.dropdown-menu {
+		/*width: 110%; commented out by Andrew on mar 17, 2017 */
+		width: 100%; /* added by Andrew to prevent calendar from being cut off */
+		margin-bottom: 30px;
+		.uib-button-bar {
+			padding: 10px 15px 0;
+			.btn-group {
+				width: 100%;
+			}
+			button {
+				margin: 10px 0;
+			}
+		}
+	}
+}
+//@media #{$media-medium} and #{$not-mobile} {
+	/* ul.uib-datepicker-popup.dropdown-menu {
+		width: 110%;
+	} */
+//}
+
+@media #{$media-medium} {
+    .uib-datepicker {
+        .ups-table-responsive {
+            table {
+                tbody {
+                    border: none;
+                }
+
+                tr {
+                    td {
+                        .btn {
+                            padding: 10px 5px;
+                        }
+                    }
+
+                    td.ups-date-start {
+                        padding: 0 !important;
+                    }
+
+                    th {
+                        padding: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+/***********************************************
+**	                                          **
+**	End Datepicker                            **
+**	                                          **
+***********************************************/
+
+
+/***********************************************
+**	                                          **
+**	Inputs with buttons on the end            **
+**	                                          **
+***********************************************/
+.ups-form_group .ups-input_has_action {
+    input {
+        padding-#{$opposite-direction}: 70px;
+    }
+
+
+    .ups-input_action {
+        -webkit-appearance: none;
+        border-radius: 0;
+        background: none;
+        border: none;
+        color: $water_s3;
+        padding: 4px 8px 0;
+        height: 35px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-left: 1px solid $stone_s3;
+
+        .icon {
+            font-size: 1.5em;
+
+            &.ups-icon-locator {
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        &.ups-input_action_invert {
+            background-color: $water_s3;
+            color: $white;
+        }
+    }
+}
+/***********************************************
+**	                                          **
+**	End Inputs with buttons on the end        **
+**	                                          **
+***********************************************/
+
+/***********************************************
+**	                                          **
+**	Removes Padding-Left of Btns for icons    **
+**	                                          **
+***********************************************/
+
+.ups-input_btn_action {
+	padding-#{$default-float}:0;
+}
+
+
+/************************************************
+TFS Defect: 333264 - Removes the 'X' that appears
+in email inputs on IE - Added by Afftene T. (RFX0YCF)
+**************************************************/
+.ups-form_input::-ms-clear {
+	display: none;
+}
+
+/*****************************************************
+**	                                                **
+**	Select Boxes with the label to the left         **
+**	                                                **
+*****************************************************/
+.ups-form_group.ups-form_group_inline {
+    .ups-form_label {
+        width: auto;
+        margin-#{$opposite-direction}: 10px;
+        vertical-align: middle;
+    }
+
+    .ups-input_wrapper {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+
+    .ups-dropdown_wrapper {
+        vertical-align: middle;
+
+        .ups-dropdown {
+            padding-#{$opposite-direction}: 35px;
+        }
+    }
+}
+/*****************************************************
+**	                                                **
+**	Select Boxes with the label to the left         **
+**	                                                **
+*****************************************************/

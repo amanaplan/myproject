@@ -1,0 +1,54 @@
+<div data-ng-controller="openAccountDocs">
+<!--<div data-ng-controller="openAccountDocs" class="ups-document-table">-->
+	<!-- //// begin ups.doa-uploadRequiredDocs //// -->
+    <p>US requires you to upload the documents below. You have three
+        attempts to upload the files. After three unsuccessful attempts, we
+        will cancel your request.</p>
+	<div class="row ups-table ups-table-responsive">
+		<table class="table table-striped">
+			<caption class="ups-readerTxt">Upload Documents table</caption>
+			<tbody>
+				<tr class="ups-gray-ng text-center">
+					<td class="col-xs-2 ups-no_border">Document Name</td>
+					<td class="col-xs-2 ups-no_border">Upload Status</td>
+					<td class="col-xs-2 ups-no_border">Actions</td>
+				</tr>
+				<tr data-ng-repeat="data in documents">
+					<td class="col-xs-2 ups-no_border">{{data.name}}</td>
+					<td class="col-xs-2 ups-no_border text-center" aria-live="assertive">
+						<div tabindex="0" data-ng-if="data.isUpload" aria-describedby="upload-success">
+                            <span class="icon ups-icon-check ups-docCheck ups-docCheck-upload" aria-hidden="true"></span>
+                            <span id="upload-success" class="ups-readerTxt">{{data.name}} uploaded successfully</span>
+						</div>
+						<div tabindex="0" data-ng-if="data.isError" class="icon text-center ups-error_message" aria-describedby="upload-fail">
+							<span class="ups-icon-x" aria-hidden="true"></span>
+                            <span id="upload-fail" class="ups-readerTxt">{{data.name}} was not uploaded</span>
+						</div>
+						<div data-ng-if="data.isPercent" class="ups-progress" data-ng-show="f[$index].progress >= 0">
+							<div data-ng-style="{ 'width': f[$index].progress + '%' }" data-ng-bind="f[$index].progress + '%'"></div>
+						</div>
+					</td>
+					<td class="col-xs-2 ups-no_border text-center">
+						<div class="ups-regularText-wrap">
+							<input type="file"
+								data-ngf-select="uploadFiles($file, $invalidFiles,$index)"
+								data-accept="*" data-ngf-max-height="maxHeight"
+								data-ngf-max-size="maxSize" class="ups-upload"> <span
+								class="ups-readerTxt">{{data.name}}</span> <span
+								class="ups-regularText">Upload</span>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+    <div class="ups-form_ctaGroup text-center">
+        <button type="submit" class="ups-cta ups-cta_tertiary"
+            data-ng-click="ModalService.back()">Back</button>
+        <button type="submit"
+            class="ups-cta ups-cta_primary" data-ng-click="nextUpload()">Next</button>
+        <button type="submit" class="ups-cta ups-cta_secondary"
+            data-ng-click="ModalService.dismiss()">Cancel</button>
+    </div>
+	<!-- //// end ups.doa-uploadRequiredDocs //// -->
+</div>

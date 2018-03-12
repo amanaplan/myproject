@@ -1,0 +1,74 @@
+<div class="ups-group">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group ups-help_wrapper">
+                <label for="importChooseFile" class="ups-form_label">Import .dat or .csv file</label>
+                <div class="ups-help">
+                    <button class="ups-help_link" id="ups-formHelpTrkReference" type="button">
+                        <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                        Help
+                    </button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                        <button class="ups-help_close" type="button">
+                            <span aria-hidden="true" class="icon ups-icon-x ups-iconAlone"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Lorem ipsum.</p>
+                    </div>
+                </div>
+                <div class="ups-input_wrapper">
+                    <input type="file">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<fieldset class="ups-form_group">
+    <legend class="ups-form_label">
+        Choose how you want to receive your results.
+    </legend>
+    <div class="ups-group ups-group_condensed ups-group_slim">
+        <p>
+            This feature is not available for freight shipment tracking.
+        </p>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input type="radio"
+            id="importResultsFile"
+            name="importResults"
+            class="ups-radio-custom"
+            value="0"
+            [(ngModel)]="importResults">
+        <label for="importResultsFile"
+            class="ups-radio-custom-label">CSV file</label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input type="radio"
+            id="importResultsEmail"
+            name="importResults"
+            class="ups-radio-custom"
+            value="1"
+            [(ngModel)]="importResults">
+        <label for="importResultsEmail"
+            class="ups-radio-custom-label">Email the results to me</label>
+    </div>
+    <div class="row" *ngIf="importResults == '1'">
+        <div class="col-md-6">
+            <div class="ups-indent_with_input">
+                <label for="importEmailTxt" class="ups-readerTxt">Email address</label>
+                <div class="ups-input_wrapper ups-text_wrapper">
+                    <input type="text"
+                        name="importEmailTxt"
+                        id="importEmailTxt"
+                        class="ups-form_input">
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="ups-form_ctaGroup text-center">
+    <button class="ups-cta ups-cta_primary">Import</button>
+    <button class="ups-cta ups-cta_secondary" (click)="closeBtn()">Cancel</button>
+</div>

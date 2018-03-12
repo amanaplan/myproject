@@ -1,0 +1,385 @@
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////         DATE: 03-16-17          ////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<!--
+    INITIATIVE: TFS327500
+    UPDATE:
+    - Updated the dom structure across the page
+    - label class removed from page.
+    - Unless otherwise mentioned secLvl |secHead | secBodyhave been replaced with
+        - panel panel-default | panel-body | panel-heading
+    - buttons
+        - <input class="button btnGroup6 arrowIconRight" name=“repl_name" type=“[submit | button]" value=“repl_value”>
+        - <button class="button btnGroup7 btnGradient btnGradient7 arrowIconRight">repl_value</button>
+            These have been replaced with
+        - <button class="ups-cta ups-cta_primary extended" type="submit" value="">repl_value</button>
+        - The stacked buttons in Sub Module “Status” also have a the class extended added to them
+    - Tracking Search Bar
+        - The entire structure was redesigned
+        - This is now a panel
+        - marginBegin/End have been replaced with row/col
+        - the input and button have been restructured and are in a row/col as well as the select box
+    - The tracking number has been moved to the appHeader
+    - The secHead for Main Section Module has been removed
+    - The Main Right column classing is seccol6 marginBegin
+    - The Main Left column classing is seccol18 marginBegin
+    - Unless other wise mentioned dl | dt | dd have been replaced with row/col
+    - Unless other wise mentioned floatBegin | floatEnd have been replaced with row/col
+    - Unless other wise mentioned marginBegin | marginEnd have been replaced with row/col
+    - Sub Module “Status”
+        - the stacked buttons in Sub Module “Status” are in a ups-form_ctaGroup
+        - the buttons have also been updated as mentioned above
+        - the classing for the stacked buttons should be "ups-cta ups-cta_primary ups-extended"
+    - Additional Information panel
+        - <h4> has been replaced with <span class="btnlnkL collapseIcon" aria-hidden="true"></span>Additional Information
+        - dl | dt | dd are now row/col
+    - Shipment Progress panel
+        - <h4> has been replaced with <span class="btnlnkL collapseIcon" aria-hidden="true"></span>Shipment Progress
+        - class=“pull-right" added to <ul>
+        - class=“indent” removed from <ul>
+        - Next Scheduled Event: monday, mm/dd/yyyy, by hh:mm [a.m./p.m.] is now in a <p> instead of a <dl>
+    - packages/pallets panel
+        - <h4> has been replaced with <span class="btnlnkL collapseIcon" aria-hidden="true"></span>packages/pallets
+        - ups quantum view now has class=“ups-link_light”
+        - the input and select are updated as mentioned above
+    - Flight Information panel
+        - <h4> has been replaced with <span class="btnlnkL collapseIcon" aria-hidden="true"></span>Flight Information
+    - MAIN RIGHT COLUMN
+        - The panel “UPS Live Chat” has been recalled and the tagging was changed
+            - Shipping Info
+            - dl | dt | dd are now row/col
+        - Service
+            - added class=“ups-link_light to <a>
+            - placed &reg in <sup> and moved outside the <a>
+        - UPS My Choice
+            - dl | dt | dd are now <p>
+            - for/id are used
+-->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////// -->
+
+<!-- Style for the icdev display control box, not to be used on UPS.com -->
+<style type="text/css">
+    .ctrl_box {
+        z-index: 2001;
+        margin: 10px;
+        padding: 10px;
+        background-color: #FFF2AC;
+        border: 1px solid #FF7800;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .ctrl_box .btn {
+        background-color: #F31A12;
+        border-color: #FF7800 #850600 #850600 #FF7800;
+    }
+</style>
+<!-- End Style for the icdev display control box -->
+
+<form action="repl_fname">
+	<!-- Begin Tracking Bar Module -->
+    {{!-- BEGIN _trk_bar_partial --}}
+	{{> "ct1_tra_tra(3det)_trk_bar_partial" }}
+    {{!-- END _trk_bar_partial --}}
+	<!-- End Tracking Bar Module -->
+
+	<!-- Begin Application Module -->
+    {{#if my_choice_enrollment_status}}
+        <div class="appLvl appLvlGradient appLvlGradientGroup2 MyC col24 clearfix">
+            <!-- Begin Application Header -->
+            <div class="appHead clearfix">
+            	<div class="floatBegin"><img src="/img/logo_mychoice_heart.png" width="30" height="30" alt="$" /></div>
+            	<h2>UPS My Choice Enrollment status: NOT ENROLLED!</h2>
+            	<ul class="clearfix">
+            		<li><a href="repl_href" class="btnlnkL closeIconL">don't show this to me again</a></li>
+            	</ul>
+            </div>
+            <!-- End Application Header -->
+            <!-- Begin Application Body -->
+            <div class="appBody clearfix">
+
+            	<!-- Begin Section Module -->
+            	<div class="secLvl clearfix">
+
+            		<!-- Begin Section Body -->
+            		<div class="secBody clearfix">
+
+            			<!-- Begin Column -->
+            			<div class="subcol18 marginBegin">
+            				<h3>with a
+            					<select name="repl_name" id="">
+            						<option value="" selected>FREE</option>
+            						<option value="">PREMIUM</option>
+            					</select>
+            					ups my choice<sup>tm</sup> membership, you can:</h3>
+            				<div class="flexFirst seccol9">
+            					<ul class="lstBullet">
+            						<li>get delivery alerts</li>
+            						<li>view estimated delivey time</li>
+            						<li>authorize shipment release</li>
+            						<li>hold for will call</li>
+            					</ul>
+            				</div>
+            				<div class="flexAfter seccol9">
+            					<ul class="lstBullet">
+            						<li>reroute shipments to ups retail locations <img src="/img/icon_money.png" width="10" height="14" alt="$" /></li>
+            						<li>reschedule delivery <img src="/img/icon_money.png" width="10" height="14" alt="$" /></li>
+            						<li>reroute shipments to other address <img src="/img/icon_money.png" width="10" height="14" alt="$" /></li>
+            					</ul>
+            				</div>
+            			</div>
+            			<!-- End Column -->
+
+            			<!-- Begin Column -->
+            			<div class="subcol6 marginEnd">
+            				<div class="alignCenter group" style="font-size:1.25em">
+            					<p>Get <b  class="highlight">FREE</b> delivery alearts for this package and more!</p>
+            					<button class="buttonArwGroup2" type="submit" value="">Next</button>
+            				</div>
+            			</div>
+            			<!-- End Column -->
+
+            		</div>
+            		<!-- End Section Body -->
+
+            	</div>
+            	<!-- End Section Module -->
+
+            </div>
+            <!-- End Application Body -->
+        </div>
+    {{/if}}
+	<!-- End Application Module -->
+
+	<!-- Begin Application Module -->
+	<div class="appLvl appLvlGradient appLvlGradientGroup7 col24 clearfix" id="fontControl">
+
+		<!-- Begin Application Header -->
+		<div class="appHead clearfix">
+            <div class="row">
+                <div class="col-xs-8">
+                    {{#if trking_number_default}}
+                        <h3><a onclick="repl_href">{1z123456789012345}</a> <span class="indent"><a href="">(Add Description)</a></span> </h3>
+                    {{/if}}
+
+                    {{#if trking_number_masked_nonauthenticated_user}}
+                        <h3><a onclick="repl_href">{xxxxxxxxxxxxxx3456}</a></h3>
+                    {{/if}}
+                    {{#if trking_number_user_has_added_description}}
+                        <h3><a onclick="repl_href">{description up to 35 characters}</a></h3>
+                    {{/if}}
+                </div>
+                <div class="col-xs-4">
+                    <ul id="fontControlButtons" class="clearfix">
+                        <li class="indent">
+                            <a href="javascript:void(0);" class="fontSmall" title="Small Font">A</a>
+                            <a href="javascript:void(0);" class="fontMedium" title="Medium Font">A</a>
+                            <a href="javascript:void(0);" class="fontLarge" title="Large Font">A</a>
+                        </li>
+                        <li><span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span> <a href="repl_href">Help</a></li>
+                        <li><span class="icon ups-icon-print" aria-hidden="true"></span> <a href="repl_href">Print</a></li>
+                    </ul>
+                </div>
+            </div>
+            {{#if trking_number_user_has_added_description}}
+                <p>
+                    <span class="label">1z1234567890123456</span>
+                    <a href="#" class="ups-link_label indent">(Change Description)</a>
+                </p>
+            {{/if}}
+		</div>
+		<!-- End Application Header -->
+
+		<!-- Begin Application Body -->
+		<div class="appBody clearfix fontControlBody">
+
+			<!-- Begin MAIN Section Module -->
+			<div class="secLvl detail clearfix">
+				<!-- Begin Section Body -->
+				<div class="secBody clearfix">
+                    {{> "ct1_tra_tra(3det)_tracking_number_alternate_partial" }}
+					<!-- Begin Main Left Column -->
+					<div class="seccol18 marginBegin">
+
+						<!-- Begin Sub Module "Status" -->
+                        {{!-- BEGIN _status_partial --}}
+						{{>"ct1_tra_tra(3det)_status_partial" }}
+                        {{!-- END _status_partial --}}
+						<!-- End Sub Module "Status" -->
+
+						<div class="alignEnd">
+							<p><a href="" >I'm already a UPS My Choice member</a></p>
+							<p><a href="" >Don't show this to me again</a></p>
+						</div>
+
+						<!-- Begin Sub Module "Additional Information" -->
+                        {{!-- BEGIN _additional_information_partial --}}
+						{{> "ct1_tra_tra(3det)_additional_information_partial" }}
+                        {{!-- END _additional_information_partial --}}
+						<!-- End Sub Module "Additional Information" -->
+
+						<!-- Begin Sub Module "Shipment Progress" -->
+                        {{!-- BEGIN _shipment_progress_partial --}}
+						{{>"ct1_tra_tra(3det)_shipment_progress_partial" }}
+                        {{!-- END _shipment_progress_partial --}}
+						<!-- End Sub Module "Shipment Progress" -->
+
+						<!-- Begin Sub Module "Packages/Pallets in this Shipment" -->
+                        {{!-- BEGIN _additional_packages_partial --}}
+						{{>"ct1_tra_tra(3det)_additional_packages_partial" }}
+                        {{!-- END _additional_packages_partial --}}
+						<!-- End Sub Module "Packages/Pallets in this Shipment" -->
+
+						<!-- Begin Sub Module "Flight Information" -->
+                        {{!-- BEGIN _flight_information_partial --}}
+						{{>"ct1_tra_tra(3det)_flight_information_partial" }}
+                        {{!-- END _flight_information_partial --}}
+						<!-- End Sub Module "Flight Information" -->
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <img src="assets/resources/images/placeholder-icon.jpg" alt="Promotion" width="100" height="100">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <p><strong>Package Level Promotion Header Text</strong></p>
+                                        <p>
+                                            Package level promotion detail description. Includes the price associated with the promotion. Lorem ipsum doler sit amet, Lorem ipsum doler sit amet.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                        </div>
+
+					</div>
+					<!-- End Main Left Column -->
+
+					<!-- Begin Main Right Column -->
+					<div class="seccol6 marginEnd">
+
+                        <div class="panel panel-default text-center">
+                            <!-- Begin Sub Body -->
+                            <div class="panel-body">
+                                <a title="Place holder hover text" class="display_none" href="repl_href">
+                                <h4>
+                                    <img alt="" border="0" height="32" width="32" src="/img/E032_chat_dk_sky32.png" data-pin-nopin="true">
+                                    UPS Live Chat
+                                </h4>
+                                <button type="button" class="ups-cta ups-cta_primary">Chat Now</button>
+                                </a>
+                            </div>
+                            <!-- End Sub Body -->
+                        </div>
+                        <!-- End Sub Module -->
+
+                        <!-- Begin Sub Module -->
+                        {{!-- BEGIN _shipping_information_partial --}}
+                        {{>"ct1_tra_tra(3det)_shipping_information_partial" }}
+                        {{!-- END _shipping_information_partial --}}
+                        <!-- End Sub Module -->
+
+                        <!-- Begin Sub Module -->
+                        {{!-- BEGIN _service_partial --}}
+                        {{>"ct1_tra_tra(3det)_service_partial" }}
+                        {{!-- END _service_partial --}}
+                        <!-- End Sub Module -->
+
+                        <!-- Begin Sub Module -->
+                        {{!-- BEGIN _ups_my_choice_options_partial --}}
+                        {{>"ct1_tra_tra(3det)_ups_my_choice_options_partial"}}
+                        {{!-- END _ups_my_choice_options_partial --}}
+                        <!-- End Sub Module -->
+
+                        <!-- Upsell messaging for premium delivery or QVM, etc. -->
+                        <div class="seccol6 marginEnd">
+                            <img src="/img_fpo/other/fpo-400x200.gif" alt="Promotion" height="216" width="216">
+                        </div>
+                        <!-- End Upsell messaging for premium delivery or QVM, etc. -->
+
+					</div>
+					<!-- End Main Right Column -->
+
+				</div>
+				<!-- End MAIN Section Body -->
+
+			</div>
+			<!-- End MAIN Section Module -->
+
+		</div>
+		<!-- End Application Module -->
+
+	</div>
+</form>
+
+<script type="text/javascript" src="assets/resources/scripts/legacy_app_ent/tracking/master.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	   $('#collapse1 h4').click(function(){
+			 $('.module1 div.secBody').toggle();
+			 $('#collapse1 h4').toggleClass('collapseIcon').toggleClass('expandIcon');
+			 $('#collapse1').toggleClass('collapsed').toggleClass('');
+	   });
+
+	   $('#collapse2 h4').click(function(){
+		 $('.module2 div.secBody').toggle();
+			 $('#collapse2 h4').toggleClass('collapseIcon').toggleClass('expandIcon');
+			 $('#collapse3').toggleClass('collapsed').toggleClass('');
+	   });
+
+	   $('#collapse3 h4').click(function(){
+		 $('.module3 div.secBody').toggle();
+			 $('#collapse3 h4').toggleClass('collapseIcon').toggleClass('expandIcon');
+			 $('#collapse3').toggleClass('collapsed').toggleClass('');
+	   });
+
+		 $('#collapse4 h4').click(function(){
+		 $('.module4 div.secBody').toggle();
+			 $('#collapse4 h4').toggleClass('collapseIcon').toggleClass('expandIcon');
+			 $('#collapse4').toggleClass('collapsed').toggleClass('');
+	   });
+	 });
+</script>
+<script type="text/javascript">
+	$('#fontControl ul').icfontcontrol();
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.btnGradient').hover(function(){
+			$(this).css("background-position","0 -10px");
+			//$(this).animate( { backgroundPositionY: "-30px" }, 10 );
+		},function(){
+			//$(this).animate( { backgroundPositionY: "-4px" }, 1000 );
+			$(this).css("background-position","0 0px");
+		});
+
+	});
+</script>
+
+<!-- Begin ER JUL13 7310 -->
+<div id="ttc_bullpenA" class="hidden "> </div>
+<!--<div id="ttc_bullpenA" class="hidden"></div>-->
+
+<script type="text/javascript">
+	function buildhint1()
+	{
+			$('#ttc_bullpenA').append("<div id=\"ttc_tt_0\"></div>");
+			//$('#ttc_bullpenA').append("<div id=\"ttc_tt_0\"><div class=\"appLvl noHead\"><div class=\"appBody\"><p><strong>Hint:</strong> password must contain 2 of the following:</p><ul class=\"imageType\"><li>8-26 characters</li><li class=\"success\">lowercase letters</li><li>uppercase letters</li><li>numbers</li><li>special characters or spaces</li></ul></div></div></div>");
+		}
+
+	$(document).ready(function(){
+		buildhint1();
+		$('.hintAnchor').ictooltip($("#ttc_tt_0").load("/app_ent/common_components/sept14/tooltips/tt_id_hint3.html"));
+		//$('.hintAnchor').ichint();
+	});
+
+
+</script>

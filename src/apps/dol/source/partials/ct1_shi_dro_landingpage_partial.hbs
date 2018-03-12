@@ -1,0 +1,483 @@
+
+<form action="repl_fname2" method="repl_method" name="repl_name2">
+	<div class="appBody">
+		<div id="searchCol" class="seccol8 marginBegin">
+			<div class="secLvl step noHead clearfix">
+				<div class="secBody">
+					<div class="floatEnd clearfix">
+						<p><a href="repl_href" class="btnlnkL currentLocationIcon">use my current location</a></p>
+					</div>
+					<dl>
+						<dt>
+							<label for="repl_id">near:</label>
+						</dt>
+						<dd>
+							<select id="repl_id" class="ui-combobox">
+								<option value="">902 Main Street, Houston, TX 12345</option>
+								<option value="">902 Mall Blvd., Houston, TX 12345</option>
+								<option value="">Saved Locations</option>
+								<option value="">Near home</option>
+								<option value="">Near work</option>
+								<option value="">Work2</option>
+								<option value="">The UPS Store 128050 Highway 9...</option>
+								<option value="">Near dad's house</option>
+								<option value="">Recent Searches</option>
+								<option value="">30005</option>
+								<option value="">Houston, TX</option>
+								<option value="">128050 Highway 9 N, S-600, Aplh...</option>
+								<option value="">12380 Morris Road, GA</option>
+								<option value="">90210</option>
+							</select>
+							<br>
+							<label for="repl_id" class="visually-hidden">country or territory</label>
+							<select id="repl_id" class="formcol6">
+								<option value="">united states</option>
+							</select>
+						</dd>
+					</dl>
+					<!-- This is an example of what should be output by the JQuery autocomplete --> 
+					<!-- Actual location should be set dynamically based on input's location -->
+					<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; display: none; width: 238px;">
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">902 Main Street, Houston, TX 12345</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">902 Mall Blvd., Houston, TX 12345</a></li>
+						<li class="ui-menu-item-category" role="menuitem">
+							<hr>
+						</li>
+						<li class="ui-menu-item-category" role="menuitem">Saved Locations</li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near home</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near work</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Work2</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">The UPS Store 128050 Highway 9...</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near dad's house</a></li>
+						<li class="ui-menu-item-category" role="menuitem">
+							<hr>
+						</li>
+						<li class="ui-menu-item-category" role="menuitem">Recent Searches</li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">30005</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Houston, TX</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">128050 Highway 9 N, S-600, Aplh...</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">12380 Morris Road, GA</a></li>
+						<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">90210</a></li>
+					</ul>
+
+					<!-- Begin Geocode Candidate List -->
+					<p>there are {xx} possible matches for the search criteria you entered.  select one to continue or search again.</p>
+					<div class="resultsDiv" style="height:150px;">
+						<ul>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+							<li><a href="repl_href">{City, State}</a></li>
+						</ul>
+					</div>
+					<p><a href="repl_href" class="btnlnkL arrowBackIcon">modify starting address</a></p>
+					<!-- End Geocode Candidate List -->
+
+					<dl>
+						<dt>
+							<span class="label">narrow your search</span>
+						</dt>
+						<dd>
+							<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+								<tbody>
+									<tr>
+										<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"></td>
+										<td><label for="chxbox1" class="sel"><a href="repl_href" class="btnlnkR helpIconR">find a dropoff location</a></label></td>
+									</tr>
+									<tr>
+										<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox2"></td>
+										<td><label for="chxbox2" class="sel"><a href="repl_href" class="btnlnkR helpIconR">pay for a ups shipping label</a></label></td>
+									</tr>
+									<tr>
+										<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox3"></td>
+										<td><label for="chxbox3" class="sel"><a href="repl_href" class="btnlnkR helpIconR">help with packaging my shipment</a></label></td>
+									</tr>
+								</tbody>
+							</table>
+						</dd>
+					</dl>
+					<div id="filters">
+						<dl>
+							<dt>
+								<span class="label">filter by:</span>
+							</dt>
+							<dd>
+								<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+									<tbody>
+										<tr>
+											<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+											<td><label for="repl_id" class="sel"><a href="repl_href" class="btnlnkR helpIconR">ups worldwide express freight centers</a></label></td>
+										</tr>
+									</tbody>
+								</table>
+								<dl>
+									<dt>
+										<span class="label"><a href="repl_href" class="btnlnkL plusMini"></a><a href="repl_href" class="btnlnkL minusMini"></a> <a href="repl_href" class="btnlnkR helpIconR">location type</a></span>
+									</dt>
+									<dd>
+										<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+											<tbody>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">the ups store &reg;</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups access point<sup>&trade;</sup></label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups access point<sup>&trade;</sup> locker</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups customer centers</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups drop boxes</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">Retail Chains</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">authorized shipping outlets*</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups authorized service providers</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups express</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">ups alliance locations</label></td>
+												</tr>
+											</tbody>
+										</table>
+										<p class="reqTxtInst">* Retail rates may apply</p>
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<span class="label"> <a href="repl_href" class="btnlnkL plusMini"></a><a href="repl_href" class="btnlnkL minusMini"></a> <a href="repl_href" class="btnlnkR helpIconR">other services</a> </span>
+									</dt>
+									<dd>
+										<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+											<tbody>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id" checked="checked"></td>
+													<td><label for="repl_id" class="sel">purchase packaging supplies</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">office supplies and services</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">copying/faxing</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">mail box rentals</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">notary public service</label></td>
+												</tr>
+											</tbody>
+										</table>
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<span class="label"> <a href="repl_href" class="btnlnkL plusMini"></a><a href="repl_href" class="btnlnkL minusMini"></a> <a href="repl_href" class="btnlnkR helpIconR">specialized services and programs</a> </span>
+									</dt>
+									<dd>
+										<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+											<tbody>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id" checked="checked"></td>
+													<td><label for="repl_id" class="sel">pack & ship guarantee</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">international shipping expert</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">apple returns program</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">saturday will call</label></td>
+												</tr>
+											</tbody>
+										</table>
+									</dd>
+								</dl>
+								<dl>
+									<dt>
+										<span class="label"> <a href="repl_href" class="btnlnkL plusMini"></a><a href="repl_href" class="btnlnkL minusMini"></a> <a href="repl_href" class="btnlnkR helpIconR">location filters</a> </span>
+									</dt>
+									<dd>
+										<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+											<tbody>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">Staffed Locations</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">Scans Mobile Barcodes</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">bill my account</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">accept shipping tickets</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">accept restricted articles</label></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">only show locations within:</label>
+														<br>
+														<label for="repl_id" class="visually-hidden">distance</label>
+														<select id="repl_id" class="formcol6">
+															<option value="">200 mi / 200 km</option>
+														</select></td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">only show locations with drop-off times by:</label>
+														<br>
+														<label for="repl_id" class="visually-hidden">service</label>
+														<select id="repl_id" class="formcol6">
+															<option value="" selected>select service</option>
+															<option value="">another service option</option>
+															<option value="">another much longer service option</option>
+														</select>
+														<br>
+														<label for="repl_id" class="visually-hidden">day of week</label>
+														<select id="repl_id" class="formcol6">
+															<option value="">select day of week</option>
+														</select>
+														<br>
+														<label for="repl_id" class="visually-hidden">time of day</label>
+														<select id="repl_id" class="formcol6">
+															<option value="">select time of day</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id"></td>
+													<td><label for="repl_id" class="sel">
+														only show locations open:</label><br>
+														<select id="repl_id" class="formcol6">
+															<option value="">select day of week</option>
+														</select>
+														<br>
+														<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+															<tbody>
+																<tr>
+																	<td><label for="repl_id" class="sel">from:</label></td>
+																	<td><select id="repl_id" class="formcol4">
+																			<option value="">select time</option>
+																		</select></td>
+																</tr>
+																<tr>
+																	<td><label for="repl_id" class="sel">to:</label></td>
+																	<td><select id="repl_id" class="formcol4">
+																			<option value="">select time</option>
+																		</select></td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</dd>
+								</dl>
+							</dd>
+						</dl>
+					</div>
+					<p><a href="repl_href" class="btnlnkL plusMini"></a><a href="repl_href" class="btnlnkR helpIconR">see all options</a></p>
+					<p><a href="repl_href" class="btnlnkL minusMini"></a><a href="repl_href" class="btnlnkR helpIconR">hide all options</a></p>
+				</div>
+				<div class="secFooter">
+					<div class="btnBar">
+						<div class="floatLeft clearfix"> <a href="repl_href">clear filters</a> </div>
+						<input class="btn" type="button" value="Find">
+					</div>
+				</div>
+			</div>
+			<div class="locator_tip">
+				<div class="cmsMsg"> 
+					<!--#include virtual="/app_ent/cms_fragments/jan17/locator_tip.html" --> 
+				</div>
+			</div>
+		</div>
+
+		<!-- begin display area -->
+
+		<div class="seccol16 marginEnd">
+			<div id="msveMap">
+				<p>Map Element Placeholder</p>
+			</div>
+
+			<!-- Begin Non Targeted Countries or Territories version --> 
+			<!-- May be CMS content?  Not sure -->
+			<div id="staticContent"> 
+				<!-- Start: Page Header --> 
+				<!--<table border="0" cellpadding="0" cellspacing="0" width="566">
+					<tbody>
+						<tr>
+							<td><img alt="" height="15" src="https://www.ups.com/img/1.gif" width="1"></td>
+						</tr>
+						<tr>
+							<td valign="middle" width="100%"><span class="header">Tanzania</span></td>
+						</tr>
+						<tr>
+							<td><img alt="" height="15" src="https://www.ups.com/img/1.gif" width="1"></td>
+						</tr>
+					</tbody>
+				</table>--> 
+				<!-- End: Page Header --> 
+				<!-- Start: Module (Not Intro) Header -->
+				<table border="0" cellpadding="0" cellspacing="0" width="566">
+					<tbody>
+						<tr>
+							<td width="566" valign="top"><!-- START CONTACT MODULE -->
+
+								<table cellspacing="0" cellpadding="0" border="0" width="566">
+									<tbody>
+										<tr>
+											<td width="278" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+													<tbody>
+														<tr>
+															<td><div class="standardheader">Proxy courier Services</div>
+
+																<!--<span class="subhd1">Freight in Time Group</span><br>--> 
+																Caribbean Commercial Center, Suite 17<br>
+																The Valley A-I 2640<br>
+																Anguilla W.I.<br>
+																Tel: 264-584-7769</td>
+														</tr>
+													</tbody>
+												</table></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<!-- END CONTACT MODULE --></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p><a href="repl_href" class="btnlnkR backToTopIconR">back to top</a></p>
+			<!-- End Non Targeted Countries or Territories version --> 
+		</div>
+
+		<!-- end display area -->
+		<div class="clear"></div>
+		<div class="locator_banner_1">
+			<div class="cmsMsg"> 
+				<!--#include virtual="/app_ent/cms_fragments/jan17/locator_banner_1.html" --> 
+			</div>
+		</div>
+	</div>
+</form>
+		
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+<!-- /contentArea --> 
+
+
+<script type="text/javascript">
+// set the persist behavior for the map legend infotip (causes the infotip to be added as a child of the event target)
+var hoverPersist = true;
+// set the space between the map legend items and the infotip
+var spacer = -2;
+$(document).ready(function(){
+	$('#searchResultsDiv').css("height",$('#searchResultsDiv dl.upperThree').height());
+	// hiding the closed panels on via JavaScript instead of through CSS class assignment
+	//$('.secLvl .sliderPanelHeader:not(.openPanelHeader)').siblings('.secBody, .secFooter').hide();
+	// the 3 panel behaviors for the primary interactions
+	$('#map_exp').click(function(el){
+		if(!$(this).hasClass('openPanelHeader')){
+			$showSpeed = $('#searchCol').height();
+			$showSpeed = $showSpeed > 500 ? 500 : $showSpeed < 100 ? 250 : $showSpeed;
+			$hideSpeed = $('#searchCol').height();
+			$hideSpeed = $hideSpeed > 500 ? 500 : $hideSpeed < 100 ? 250 : $hideSpeed;
+			// UNCOMMENT THE NEXT TWO LINES FOR TRUE ACCORDION
+			//$('.sliderPanelHeader').removeClass('openPanelHeader');
+			//$('.sliderPanelContent').hide($hideSpeed);
+			$('#searchCol').addClass('openPanelHeader').show($showSpeed);
+		} // REMOVE THE "else" BLOCK BELOW FOR TRUE ACCORDION
+			else {
+			$hideSpeed = $('#searchCol').height();
+			$hideSpeed = $hideSpeed > 500 ? 500 : $hideSpeed < 100 ? 250 : $hideSpeed;
+			$('#searchCol').removeClass('openPanelHeader');
+			$('#searchCol').hide($hideSpeed);
+		}
+	});
+	// the highlighting for the items in the results list
+	$('.resultsDiv li').click(function(){
+		if(!$(this).hasClass('selected')){
+			$(this).parents('.resultsDiv').find('li.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+	// the show/hide behavior for the checkbox lists
+	$('.showHideDT input').click(function(el){
+		$(this).parent('dt').next('dd').toggle();
+		$(this).toggleClass("minusMini");
+	});
+	// the infotip boxes for the map legend
+	$('.mapLegend dd').hover(
+		function(el){
+			var targetOffset = $(this).offset();
+			var targetWidth = $(this).width();
+			var pokeFactor = targetOffset.left + $('#legendInfotip').width() - $(window).width();
+			pokeFactor -= pokeFactor > 0 ? 0 : pokeFactor;
+
+			if(hoverPersist){
+				$(this).prepend($('#legendInfotip'));
+				$('#legendInfotipDropSpace').css({left: pokeFactor,width: $(this).outerWidth()});
+				spacer = 3;
+				$('#legendInfotipBody').css("padding-bottom","0");
+			}
+
+			$('#legendInfotip').css({
+				left: targetOffset.left-pokeFactor-2,
+				top: targetOffset.top-$('#legendInfotip').height()-$(this).outerHeight()/2 + spacer,
+				display: "block"
+			});
+			$('#legendInfotipPointer').css("left",(targetWidth/2));
+		},
+		function(el){
+			$('#legendInfotip').hide();
+		}
+	);
+});
+</script>

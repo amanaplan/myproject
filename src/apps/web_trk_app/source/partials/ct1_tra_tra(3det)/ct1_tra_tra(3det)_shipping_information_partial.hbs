@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <!-- Begin Sub Header -->
+    <div class="panel-heading">Shipping Information</div>
+    <!-- End Sub Header -->
+
+    <!-- Begin Sub Body -->
+    <div class="panel-body">
+
+        {{#if shipping_information_default}}
+            <div class="ups-group">
+            	<p class="ups-group_label"><strong>To</strong></p>
+            	<div class="ups-group_value">
+                    <p>John Smith</p>
+                    <address>
+                        <p>2010 Warsaw Rd.</p>
+                		<p>Roswell, GA 30076, US</p>
+                    </address>
+                </div>
+            </div>
+        {{/if}}
+        {{#if shipping_information_user_is_not_shipper_or_receiver}}
+            <div class="ups-group">
+            	<p class="ups-group_label"><strong>To</strong></p>
+            	<p class="ups-group_value">Roswell, GA 30076</p>
+            </div>
+        {{/if}}
+        {{#if shipping_information_my_choice_user}}
+            <div class="ups-group">
+            	<p class="ups-group_label"><strong>To</strong></p>
+            	<div class="ups-group_value">
+                    <p>John Smith</p>
+                    <address>
+                        <p>2010 Warsaw Rd.</p>
+            		    <p>Roswell, GA 30076, US</p>
+                    </address>
+                </div>
+            </div>
+            <div class="ups-group">
+            	<p class="ups-group_label"><strong>From</strong></p>
+            	<div class="ups-group_value">
+                    <p>ABC Company</p>
+            		<p>Atlanta, GA, US</p>
+                </div>
+            </div>
+        {{/if}}
+
+    </div>
+    <!-- End Sub Body -->
+</div>

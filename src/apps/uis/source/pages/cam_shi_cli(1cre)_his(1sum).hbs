@@ -1,0 +1,252 @@
+---
+title: View Package History or Void Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+      <form action="repl_fname">
+        
+        <!-- Begin SubTabs -->
+        <ul class="subTab clearfix">
+          <li class="tab-on">Package</li>
+        </ul>
+        <!-- End SubTabs --> 
+        <!-- Begin Application Module -->
+        <div class="appLvl col18 tab clearfix"> 
+          <!-- Begin Application Header -->
+          <div class="appHead step clearfix">
+            <h2>History Selections</h2>
+            <ul>
+              <li><a href="repl_href" class="btnlnkR helpiconR">Help</a></li>
+            </ul>
+          </div>
+          <!-- End Application Header --> 
+          <!-- Begin Application Body -->
+          <div class="appBody clearfix">
+            <div class="secLvl clearfix">
+              <div class="secBody noHead">
+                <p class="error">{error message}</p>
+                <p class="criticalMessage">{user alerts}</p>
+                <p>use this history to review a shipment, reprint a label, or void a previous shipment.</p>
+                <p>you can change or liit how much history is displayed by using the <strong>show history for the last</strong> date list or the <strong>shipments per page</strong> list.  it may take several minutes for your data to display, depending upon server volume.  please do not select the <strong>go</strong>button again until the data for this request has been received.</p>
+                <dl class="flexFirstPad">
+                  <dt>
+                    <label>show history for the last:</label>
+                  </dt>
+                  <dd>
+                    <select>
+                      <option>1 day</option>
+                      <option>2 days</option>
+                      <option>3 days</option>
+                      <option>4 days</option>
+                      <option>5 days</option>
+                      <option>6 days</option>
+                      <option>7 days</option>
+                      <option>8 days</option>
+                      <option>9 days</option>
+                      <option>10 days</option>
+                    </select>
+                  </dd>
+                </dl>
+                <dl class="flexAfter">
+                  <dt>
+                    <label>shipments per page</label>
+                  </dt>
+                  <dd>
+                    <select>
+                      <option>25 shipments</option>
+                      <option>50 shipments</option>
+                      <option>75 shipments</option>
+                      <option>100 shipments</option>
+                    </select>
+                  </dd>
+                </dl>
+                <div class="clear"></div>
+                <dl class="flexFirst">
+                  <dt>
+                    <label>Date Range:</label>
+                  </dt>
+                  <dd>
+                    <input name="text" type="text" id="datepicker" size="15" value="01/01/2010">
+                    &nbsp;&nbsp; to</dd>
+                </dl>
+                <dl class="flexAfter">
+                  <dt>
+                    <label>End Date:</label>
+                  </dt>
+                  <dd>
+                    <input name="text" type="text" id="datepicker2" size="15" value="01/01/2010">
+                  </dd>
+                </dl>
+                <div class="clear"></div>
+                <p>(maximum range is 90 days)</p>
+              </div>
+              <div class="secFooter">
+                <div class="btnBar">
+                  <input name="repl_name5" type="button" id="repl_btn_id01" value="{retreive shipments}" class="btn">
+                </div>
+              </div>
+            </div>
+            <div class="secLvl clearfix">
+              <div class="secHead step clearfix">
+                <h3>previous shipments</h3>
+              </div>
+              <div class="secBody clearfix">
+                <p>you can review or void a previous shipment.  labels may be reprinted for the first 24 hours after creating a shipment.  select a shipment using the radio button and select the appropriate button.</p>
+                <br>
+                <label>shipments 1 through 20 out of 20 in the last 7 days</label>
+                <!-- end record count --> 
+                
+                <br>
+                <div align="right">
+                  <input value="view detail" class="btn" type="button">
+                  <input value="Void" class="btn" type="button">
+                </div>
+                <table bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" width="100%">
+                  <!-- Begin Row: Header Rows with vertical spacing -->
+                  <tr>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="4" src="/img/xln_spacer.gif" width="18"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="119"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="119"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="119"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="119"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="50"></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#cccccc" valign="top">&nbsp;</td>
+                    <td bgcolor="#cccccc" valign="top"><div class="modulepad"><a href="repl_href">{shipped date}</a><img alt="" height="10" src="/img/xln_arrow_black_down.gif" width="10"></div></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><div class="modulepad"><a href="repl_href">{clinical trial number}</a></div></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><div class="modulepad"><a href="repl_href">{service}</a></div></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><div class="modulepad"><a href="repl_href">{shipment tracking number}</a></div></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><div class="modulepad"><a href="repl_href">Voided</a></div></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="4" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#ffffff" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td bgcolor="#cccccc" valign="top"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <!-- End Row: Header Rows with vertical spacing --> 
+                  <!-- Begin Row: Odd Row with vertical spacing -->
+                  <tr bgcolor="#ffffff">
+                    <td colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <tr bgcolor="#ffffff">
+                    <td><input name="Shipment83Select3" type="radio" value="1"></td>
+                    <td><div class="modulepad">[mm/dd/yyyy]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]<br>
+                        <a href="repl_href">reprint commercial invoice</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnnn]<br>
+                        <a href="">reprint label</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad" align="center"><img src="/img/icn_void_partial.gif" alt="Partial Void" width="12" height="12"></div></td>
+                  </tr>
+                  <tr bgcolor="#ffffff">
+                    <td colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <!-- End Row: Odd Row with vertical spacing --> 
+                  <!-- Begin Row: Even Row with vertical spacing -->
+                  <tr bgcolor="#cccccc">
+                    <td colspan="12" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <tr bgcolor="#cccccc">
+                    <td><input name="Shipment83Select3" type="radio" value="1"></td>
+                    <td><div class="modulepad">[mm/dd/yyyy]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]<br>
+                        <a href="repl_href">reprint commercial invoice</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnnn]<br>
+                        <a href="">reprint label</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad" align="center"><img src="/img/icn_void.gif" alt="Voided" width="12" height="12"></div></td>
+                  </tr>
+                  <tr bgcolor="#cccccc">
+                    <td colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                    </tr>
+                  
+                  <tr bgcolor="#ffffff">
+                    <td colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <tr bgcolor="#ffffff">
+                    <td><input name="Shipment83Select3" type="radio" value="1"></td>
+                    <td><div class="modulepad">[mm/dd/yyyy]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]<br>
+                        <a href="repl_href">reprint commercial invoice</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnnn]<br>
+                        <a href="">reprint label</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad" align="center"><img src="/img/icn_void_partial.gif" alt="Partial Void" width="12" height="12"></div></td>
+                  </tr>
+                  <tr bgcolor="#ffffff">
+                    <td colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <tr bgcolor="#cccccc">
+                    <td bgcolor="#cccccc" colspan="10" valign="top"><img alt="" border="0" height="8" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                  <tr bgcolor="#cccccc">
+                    <td><input name="Shipment83Select3" type="radio" value="1"></td>
+                    <td><div class="modulepad">[mm/dd/yyyy]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]<br>
+                        <a href="repl_href">reprint commercial invoice</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnn]</div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad">[nnnnnnnnnnnnn]<br>
+                        <a href="">reprint label</a></div></td>
+                    <td><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                    <td><div class="modulepad" align="center"><img src="/img/icn_void.gif" alt="Voided" width="12" height="12"></div></td>
+                  </tr>
+                  <!-- End Row: Even Row with vertical spacing -->
+                  <tr bgcolor="#cccccc">
+                    <td colspan="10"><img alt="" border="0" height="1" src="/img/xln_spacer.gif" width="1"></td>
+                  </tr>
+                </table>
+                <label>shipments 1 through 20 out of 20 in the last 7 days</label>
+                <div align="right">
+                  <input value="view detail" class="btn" type="button">
+                  <input value="Void" class="btn" type="button">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div align="center">Company Support: 4105604203 <a href="mailto:test@ups.com">test@ups.com</a></div>
+      </form>
+    </div>

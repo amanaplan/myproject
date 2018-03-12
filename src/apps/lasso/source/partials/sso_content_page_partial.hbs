@@ -1,0 +1,80 @@
+
+{{{simple_pg_lvl_copy}}}
+
+{{#if rfc_landing}}
+<!-- //// begin ct1_reg_frd(3con)_landing //// -->
+<p>Alert us to any changes made to your profile information without your knowledge. We'll investigate and contact you within one business day. Issues are typically resolved during this conversation.</p>
+<p><strong>For security purposes, you cannot use your ups.com ID during the investigation.</strong></p>
+<p>This means you won't be able to access services that require you to log into ups.com.</p>
+
+<!--<p>Changes to your profile information will be sent to UPS for investigation. You will be contacted within one business day, and issues are typically resolved while speaking with UPS.</p>
+<p><strong>For security purposes, your ID will be unavailable for use during this review.</strong></p>
+<p>You will not be able to access certain features or services such as shipping, utilizing UPS My Choice, or viewing tracking history.</p>
+<p>To skip reporting suspected unathorized activity electroncally, select the <strong>Cancel</strong> button.</p>-->
+<!-- //// end ct1_reg_frd(3con)_landing //// -->
+{{/if}}
+{{#if evr_default_link}}
+<p><a href="repl_href" class="ups-link">Resend My Confirmation Email</a></p>
+<!-- //// end ct1_reg_log(1ema)_default //// -->
+{{/if}}
+
+{{#if agreement_checkbox}}
+<div class="ups-form_group">
+    <div class="ups-checkbox ups-input_wrapper">
+        <input check-verify="" id="ups-offers_checkbox_non-US" class="ups-checkbox-custom" name="ups-offers_checkbox" value="1" type="checkbox">
+        <label for="ups-offers_checkbox_non-US" class="ups-form_label ups-checkbox-custom-label">
+            {{#if email_checkbox}}Remember my user ID.{{/if}}
+            {{#if tech_service_agreement}}
+            I agree to the <a href="#" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span> <span class=" icon ups-icon-newwindow" target=“_blank” aria-hidden="true"></span></a> and the <a href="#" class="ups-link ups-new-window">UPS My Choice Service Terms. <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true" target=“_blank” ></span></a>
+            {{/if}}
+        </label>
+    </div>
+</div>
+<!-- end checkbox -->
+{{/if}}
+
+{{#if tech_agreement}}
+<p>By logging in, I agree to the <a href="#" onclick="return false;" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span>.<span class=" icon ups-icon-newwindow" target=“_blank” aria-hidden="true"></span></a> </p>
+{{/if}}
+
+{{#if tech_agreement_inc_privacy}}
+<div class="ups-form_group">
+    <div class="ups-checkbox ups-input_wrapper">
+        <input id="acceptAgreement" class="ups-checkbox-custom" name="acceptAgreement" value="1" type="checkbox">
+        <label for="acceptAgreement" class="ups-form_label ups-checkbox-custom-label">
+            By selecting this checkbox and the <strong>Accept</strong> button, I agree to the <a href="#" onclick="return false;" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a>, the <a href="#" onclick="return false;" class="ups-link ups-new-window">UPS My Choice Service Terms <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a> and the <a href="#" onclick="return false;" class="ups-link ups-new-window">Privacy Notice <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a>.
+        </label>
+    </div>
+</div>
+{{/if}}
+
+{{#if tech_agreement_nonus}}
+<div class="ups-text_scroll">
+    <div class="ups-group">
+        <p>UPS Technology Agreement</p>
+        <p>[PUT UTA CONTENT HERE]</p>
+    </div>
+
+    <div class="ups-group">
+        <p>UPS My Choice Service Terms</p>
+        <p>[PUT MY CHOICE SERVICE TERMS CONTENT HERE]</p>
+    </div>
+</div>
+
+<div class="ups-form_group">
+    <div class="ups-checkbox ups-input_wrapper">
+        <input id="acceptAgreement" class="ups-checkbox-custom" name="acceptAgreement" value="1" type="checkbox">
+        <label for="acceptAgreement" class="ups-form_label ups-checkbox-custom-label">
+            By selecting this checkbox and the <strong>Accept</strong> button, I agree to the <a href="#" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span> <span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a> {{#unless nonus_inc_privacy }}and {{/unless}}the <a href="#" class="ups-link ups-new-window">UPS My Choice Service Terms <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a>{{#if nonus_inc_privacy }} and the <a href="#" onclick="return false;" class="ups-link ups-new-window">Privacy Notice <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true"></span></a>{{/if}}.
+        </label>
+    </div>
+</div>
+{{/if}}
+
+<!-- begin button group -->
+<div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}"> 
+	{{#each button}}
+    <button type="{{button_type}}" class="ups-cta ups-cta_{{button_class}}">{{button_copy}}</button>
+    {{/each}}
+</div>
+<!-- end button group -->

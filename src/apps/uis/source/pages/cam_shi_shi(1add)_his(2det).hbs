@@ -1,0 +1,894 @@
+---
+title: View Package History or Void Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+          <form action="repl_fname">
+            
+            <!-- Begin SubTabs -->
+            <ul class="subTab clearfix">
+              <li class="tab-on">Package</li>
+              <li class="tab-off"><a href="repl_href">Freight</a></li>
+              <!-- added to match page specification; not marked as impact -->
+              <li class="tab-off"><a href="repl_href">International Forms</a></li>
+            </ul>
+            <!-- End SubTabs --> 
+            <!-- Begin Application Module -->
+            <div class="appLvl col18 tab"> 
+              <!-- Begin Application Header -->
+              <div class="appHead clearfix">
+                <h2>Shipment Details</h2>
+                <ul>
+                  <li><a href="repl_href" class="btnlnkR helpiconR">Help</a></li>
+                </ul>
+              </div>
+              <!-- End Application Header --> 
+              <!-- Begin Application Body -->
+              <div class="appBody clearfix">
+                <p>This page shows the shipment history details for the shipment you selected.</p>
+                <p class="criticalMessage">{Voided Shipment text.}</p>
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// Begin Panel 1 Address Info                              //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">1</span> </div>
+                    <h3>Address Information</h3>
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody inline4col clearfix">
+                    <div class="floatBegin">
+                      <dl>
+                        <dt> <span class="label">{ship to:}</span></dt>
+                        <dd>{contact name}<br>
+                          {company name}<br>
+                          {address 1}<br>
+                          {city}, {other}<br>
+                          {country or territory}<br>
+                          telephone: {number}</dd>
+                      </dl>
+                    </div>
+                    
+                    <!--** ER1401 Alternate Address **-->
+                    <div class="floatBegin">
+                      <dl>
+                        <dt> <span class="label">{Alternate Address:}</span></dt>
+                        <dd>{contact name}<br>
+                          {company name}<br>
+                          {address 1}<br>
+                          {city}, {other}<br>
+                          {country or territory}<br>
+                          telephone: {number}<br>
+                          Notifications:<br>
+                          Receiver - [jsmith@email.com]<br>
+                          Shipper - [jsmith@email.com]<br>
+                        </dd>
+                      </dl>
+                    </div>
+                    <!--** End ER1401 Alternate Address **-->
+                    
+                    <div class="floatBegin">
+                      <dl>
+                        <dt> <span class="label">{ship from:}</span></dt>
+                        <dd>{contact name}<br>
+                          {company name}<br>
+                          {address 1}<br>
+                          {city}, {other}<br>
+                          {country or territory}<br>
+                          telephone: {number}</dd>
+                      </dl>
+                    </div>
+                    <div class="floatBegin">
+                      <dl>
+                        <dt> <span class="label">{return address:}</span></dt>
+                        <dd>{contact name}<br>
+                          {company name}<br>
+                          {address 1}<br>
+                          {city}, {other}<br>
+                          {country or territory}<br>
+                          telephone: {number}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <!-- End Section Body --> 
+                  
+                  <!-- Begin Section Footer --><!-- End Section Footer --> 
+                </div>
+                <!-- End Section Module --> 
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// End Panel 1 Address Info                                //// -->
+                <!-- //// Begin Panel 2 Package Info                              //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- <div class="secLvl step tableonly"> --> 
+                  <!-- {MUST add class(tableonly) at beginning of section module (<div class="secLvl step tableonly">) When Shipment Information is removed and table is display ALONE in secLvl div} --> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">2</span> </div>
+                    <h3>Package Information</h3>
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody"> 
+                    
+                    <!-- Shipment Information --> 
+                    
+                    <!-- Begin Sub Module -->
+                    <div class="secLvl secLvlPlain"> 
+                      <!-- Begin Sub Header -->
+                      <div class="secHead clearfix">
+                        <h4>General Shipment Information</h4>
+                      </div>
+                      <!-- End Sub Header --> 
+                      
+                      <!-- Begin Sub Body -->
+                      <div class="secBody">
+                        <dl class="outHozFixed1 clearfix">
+                          <dt><span class="label">Shipment ID:</span></dt>
+                          <dd>{Shipment ID}</dd>
+                          <dt><span class="label">Actual Weight:</span></dt>
+                          <dd>nn.n {lbs/kg}</dd>
+                          <dt><span class="label"><a href="repl_href" class="btnlnkR helpIconR">Total Billable Weight:</a></span></dt>
+                          <dd>nn.n {lbs/kg}</dd>
+                          <dt><span class="label"><a href="repl_href" class="btnlnkR helpIconR">Total Number of Pieces on all Pallets:</a></span></dt>
+                          <dd>[00]</dd>
+                          <dt><span class="label">Description of Goods:</span></dt>
+                          <dd>{Description of Goods}</dd>
+                        </dl>
+                        <div class="clear"> </div>
+                        <dl>
+                          <dt>Shipment was processed with UPS Paperless<sup>SM</sup> Invoice.</dt>
+                          <dd>Shipment was processed with UPS Paperless NAFTA.</dd>
+                        </dl>
+                      </div>
+                      <!-- End Sub Body --> 
+                      
+                      <!-- Begin Sub Footer --><!-- End Sub Footer --> 
+                    </div>
+                    <!-- End Sub Module --> 
+                    
+                    <!-- END Shipment Information --> 
+                    
+                    <!-- Shipment Information --> 
+
+					<!-- --------------------------------------------------------- --> 
+					<!-- Handling Information --> 
+					<!-- --------------------------------------------------------- --> 
+					<!-- Begin Sub Module -->
+					<div class="secLvl secLvlPlain"> 
+						<!-- Begin Sub Header -->
+						<div class="secHead clearfix">
+							<h4 id="repl_id">Handling Units in this Shipment</h4>
+						</div>
+						<!-- End Sub Header --> 
+						
+						<!-- Begin Sub Body -->
+						<div class="secBody">
+							<table border="0" cellpadding="0" cellspacing="0" class="dataTable full">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Handling Unit Type</th>
+										<th scope="col">Number of<br>Handling Units:</th>
+										<th scope="col">Length</th>
+										<th scope="col">Width</th>
+										<th scope="col">Height</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="odd">
+										<td scope="row">1</td>
+										<td>[Hand Unit Type]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00] [in]</td>
+									</tr>
+									<tr>
+										<td scope="row">2</td>
+										<td>[Hand Unit Type]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00] [in]</td>
+									</tr>
+									<tr class="odd">
+										<td scope="row">3</td>
+										<td>[Hand Unit Type]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00]</td>
+										<td>[00] [in]</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- End Sub Body --> 
+						
+						<!-- Begin Sub Footer --><!-- End Sub Footer --> 
+					</div>
+					<!-- End Sub Module --> 
+					<!-- --------------------------------------------------------- --> 
+					<!-- END Handling Information --> 
+					<!-- --------------------------------------------------------- --> 
+					
+                    <!-- Begin Sub Module -->
+                    <div class="secLvl secLvlPlain"> 
+                      
+                      <!-- Begin Sub Header -->
+                      <div class="secHead clearfix">
+                        <h4>{Package}{Pallet} Information</h4>
+                        <!--<ul>
+															<li><a href="repl_href" class="btnlnkL editMini">edit</a></li>
+														</ul>--> 
+                      </div>
+                      <!-- End Sub Header --> 
+                      
+                      <!-- Begin Sub Body -->
+                      <div> 
+                        
+                        <!-- Default (Section Body in a sub secLvl does not use class="secBody" if body contents include only a table) --> 
+                        <!-- -->
+                        <table summary="repl_summery" title="repl_title" class="dataTable full">
+                          <tr>
+                            <th class="sel alignCenter">&nbsp;</th>
+                            <th><span class="label">{tracking number}</span></th>
+                            <th><span class="label">{weight}</span></th>
+                            <th class="nowrap"><span class="label">{dimensions/<br>
+                              packaging}</span></th>
+                            <th><span class="label">{declared value}</span></th>
+                            <th class="nowrap"><span class="label">{reference label - <br>
+                              reference value}</span></th>
+                            <th><span class="label">{details}</span></th>
+                          </tr>
+                          <tr class="odd">
+                            <td class="sel alignCenter">1.</td>
+                            <td>{1Znnnnnnnnnnnnnnnn}</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                            <td>{}</td>
+                          </tr>
+                          <tr>
+                            <td class="sel alignCenter">2.</td>
+                            <td>{1Znnnnnnnnnnnnnnnn}</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                            <td>{}</td>
+                          </tr>
+                          <tr class="odd">
+                            <td class="sel alignCenter">3.</td>
+                            <td>{1Znnnnnnnnnnnnnnnn}</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                            <td>{}</td>
+                          </tr>
+                        </table>
+                        <!-- Default --> 
+                        
+                        <!-- 1304 ECS - Shipment Information - WW Express Freight -->
+                        <table summary="repl_summery" title="repl_title" class="dataTable full">
+                          <tr>
+                            <th class="sel alignCenter">&nbsp;</th>
+                            <th><span class="label"><a href="repl_href" class="btnlnkR helpIconR">Weight</a></span></th>
+                            <th><span class="label">Dimensions/<br>
+                              Packaging</span></th>
+                            <th><span class="label">Declared<br>
+                              Value</span></th>
+                            <th><span class="label"><a href="repl_href" class="btnlnkR helpIconR">Reference<br>
+                              Numbers</a></span></th>
+                          </tr>
+                          <tr class="odd">
+                            <td class="sel alignCenter">1.</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                          </tr>
+                          <tr>
+                            <td class="sel alignCenter">2.</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                          </tr>
+                          <tr class="odd">
+                            <td class="sel alignCenter">3.</td>
+                            <td nowrap>{nn.n} {lbs/kg}<br>
+                              ([000][lb/kg] billable)</td>
+                            <td nowrap>{nn}x{nn}x{nn} {in.}<br>
+                              {packaging type}</td>
+                            <td nowrap>{nn.nn usd}</td>
+                            <td nowrap>{reference label - <br>
+                              reference value}</td>
+                          </tr>
+                        </table>
+                        <p>Review the <a href="repl_href" class="btnlnkR newWindowIconR">Raw Wood Guidelines</a> to see if they apply to your pallet.</p>
+                        
+                        <!-- END 1304 ECS - Shipment Information - WW Express Freight --> 
+                        
+                      </div>
+                      <!-- End Sub Body --> 
+                      
+                      <!-- Begin Sub Footer --><!-- End Sub Footer --> 
+                    </div>
+                    <!-- End Sub Module --> 
+                    
+                    <!-- END Shipment Information --> 
+                    
+                  </div>
+                  <!-- End Section Body --> 
+                  
+                  <!-- Begin Section Footer --><!-- End Section Footer --> 
+                </div>
+                <!-- End Section Module --> 
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// End Panel 2 Package Info                                //// -->
+                <!-- //// Begin Panel 3 UPS Shipping Service and Shipping Options //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">3</span> </div>
+                    <h3>UPS Shipping Service and Shipping Options</h3>
+                    <!--										<ul>
+											<li><a id="repl_id2" href="repl_href" class="btnlnkL editMini">{edit link}</a></li>
+										</ul>
+--> 
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody">
+                    <dl>
+                      <dt><span class="label">{service:}</span></dt>
+                      <dd>{service type}</dd>
+                      <dt><span class="label">{label delivey method:}</span></dt>
+                      <dd>{electronic return label}</dd>
+                      <dt><span class="label">{guaranteed by}:<sup>1</sup></span></dt>
+                      <dd>{end of day}, {weekday}, {mm/dd/yyyy}</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix totals">
+                      <dt><span class="label">{shipping fees subtotal:}</span></dt>
+                      <dd>{nn.nn usd}</dd>
+                    </dl>
+                    
+                    <!-- Shipping Fees Subtotal Collapsed (Default) -->
+                    
+                    <div>
+                      <input onClick="javascript void(0);" name="repl_name3" type="button" class="btnlnkL expandIcon" value="{show shipping fees subtotal details}">
+                    </div>
+                    
+                    <!-- END Shipping Fees Subtotal Collapsed (Default) --> 
+                    
+                    <!-- begin ER JAN 12 --> 
+                    <!-- Shipping Fees Subtotal Expanded --> 
+                    <!-- Shipping Fees Subtotal - DE to DE Forward, Package Processing -->
+                    <div>
+                      <input onClick="javascript void(0);" name="repl_name4" type="button" class="btnlnkL collapseIcon" value="{hide shipping fees subtotal details}">
+                    </div>
+                    <dl class="outHozLedger indent clearfix">
+                      <dt><span class="label">{transportation}</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                    </dl>
+                    <div class="clearfix"></div>
+                    <dl class="outHozFixed indent clearfix">
+                      <dt><span class="label">Density Rated</span><br>
+                          (rated as pounds per cubic foot)</dt>
+                      <dd>[nnn]</dd>
+                    </dl>
+                    <div class="clearfix"></div>
+                    <dl class="outHozLedger indent clearfix">
+                      <dt><span class="label">[nn%] Discounted Amount<br>
+                          &nbsp;&nbsp;&nbsp;(Ground with Freight Pricing)</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">Amount After Discount</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">{delivery area - rural}</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">{C.O.D. Amount}</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt class="indent">Package 1:C.O.D. Amount: 25.00 USD, Cashier's Chk/M.O. Only</dt>
+                      <dt><span class="label">{extended area - ship from}<br>
+                        [geo-type]</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">{extended area - ship to}<br>
+                        [geo-type]</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">{fuel surcharge}</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <!--** Begin ER1406 **-->
+                      <dt><span class="label">EEI Filing Surcharge</span></dt>
+                      <dd>{nnn.nn} usd</dd>
+                      <dt><span class="label">State Department License Filing Surcharge</span></dt>
+                      <dd>{nnn.nn} usd</dd>
+                      <!--** End ER1406 **--> 
+                      
+                      <!-- //////////////////////////////////////////////// --> 
+                      <!-- Begin Shipping Fees Subtotal - WW Freight (1304) -->
+                      <dt><span class="label">pallet surcharge</span></dt>
+                      <dd>&nbsp;</dd>
+                      <dt class="indent">pallet n</dt>
+                      <dd>nnn.nn usd</dd>
+                      <!-- End Shipping Fees Subtotal - WW Freight (1304) --> 
+                      <!-- ////////////////////////////////////////////// -->
+                      
+                      <dt><span class="label">{saturday processing fee}</span></dt>
+                      <dd>{nn.dd usd}</dd>
+                      <dt><span class="label">{additional handing label}</span></dt>
+                      <dd>&nbsp;</dd>
+                      <dt class="indent">{package {n}}</dt>
+                      <dd>{nnn,nn eur}</dd>
+                      <dt class="indent">{package {n}}</dt>
+                      <dd>{nnn,nn eur}</dd>
+                      <dt class="indent">{package {n}}</dt>
+                      <dd>{nnn,nn eur}</dd>
+                      <dt><span class="label">{large package surcharge label}</span></dt>
+                      <dd>&nbsp;</dd>
+                      <dt class="indent">{package {n}}</dt>
+                      <dd>{nnn,nn eur}</dd>
+                      <dt><span class="label">{declared value label}</span></dt>
+                      <dd>{no charge}</dd>
+                      <dt><span class="label">{declared value label}</span></dt>
+                      <dd>&nbsp;</dd>
+                      <dt><span class="label">{package {n}}</span></dt>
+                      <dd>{nn.dd} usd</dd>
+                      <dt><span class="label">{residential surcharge}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      <dt><span class="label">{Deliver to Addressee Only}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      <dt><span class="label">{direct delivery only}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      <dt><span class="label">{collect proof of identity}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      
+                      <!-- //////////////////////////////////////////////// --> 
+                      <!-- Begin Shipping Fees Subtotal - WW Freight (1304) -->
+                      <dt><span class="label">[other freight] surcharge</span></dt>
+                      <dd>nnn.nn usd</dd>
+                      <!-- End Shipping Fees Subtotal - WW Freight (1304) --> 
+                      <!-- ////////////////////////////////////////////// -->
+                      
+                      <dt><span class="label">{security surcharge}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      <dt><span class="label">{seasonal surcharge}</span></dt>
+                      <dd>{nnn.nn usd}</dd>
+                      <dt><span class="label">{extended area surcharge}</span></dt>
+                      <dd>{nnn,nn eur}</dd>
+                      <dt><span class="label">{large package surcharge}</span></dt>
+                      <dd>{no charge}</dd>
+                      <dt class="indent">{package {n}}</dt>
+                      <dd>{nnn.nn usd}</dd>
+                    </dl>
+                    <div class="hr"> <img src="/img/1.gif" alt="" width="1" height="1"> </div>
+                    <!-- Shipping Fees Subtotal - DE to DE Forward, Package Processing --> 
+                    <!-- Shipping Fees Subtotal Expanded --> 
+                    <!-- end ER JAN 12 -->
+                    
+                    <h4>Additional Shipping Options:</h4>
+                    <span class="label">International Special Commodity on Shipment</span><br>
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">{e-mail notifications:}</span> <a href="repl_href">{edit link</a> <a href="repl_href">cancel link}</a></dt>
+                      <dd>{no charge}</dd>
+                    </dl>
+                    <dl class="outHozFlex clearfix">
+                      <dt class="indent">{1.}{e-mail address}:</dt>
+                      <dd>{label created, ship, exception, delivery}</dd>
+                      <dt class="indent">{e-mail failure notification}:</dt>
+                      <dd>{email address}</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt><span class="label"><a href="repl_href" class="btnlnkR helpIconR">ups premium care</a></span></dt>
+                      <dd></dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt class="indent">package 1: <a href="repl_href">cancel</a></dt>
+                      <dd>{nnn.nn cad}</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt> <span class="label">{ups carbon neutral label:}</span> <a href="repl_href">{cancel link}</a></dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">{UPS Proactive Response<sup>SM</sup>}{Refrigeration} label:</span> <a href="repl_href">{cancel link}</a></dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <p class="indent">Refrigeration needed.</p>
+                    
+                    <!-- /////////////////////////////////////////////// --> 
+                    <!-- Begin Services and Shipping - WW freight (1304) -->
+                    <dl>
+                      <dt><span class="label">dry ice (shipped under iata regulations)</span></dt>
+                      <dd class="indent">pallet [0]</dd>
+                      <dd class="indent">dry ice weight: [00.0][lb/kg]</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt><span class="label">saturday pickup</span> <a href="repl_href" class="btnlnk">edit</a></dt>
+                      <dd>nnn.nn usd</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt><span class="label">liftgate on pickup</span> <a href="repl_href" class="btnlnk">cancel</a></dt>
+                      <dd>nnn.nn usd</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix">
+                      <dt><span class="label">liftgate on delivery</span> <a href="repl_href" class="btnlnk">cancel</a></dt>
+                      <dd>nnn.nn usd</dd>
+                    </dl>
+                    <div class="clear"> </div>
+                    <!-- End Services and Shipping - WW freight (1304) --> 
+                    <!-- ///////////////////////////////////////////// -->
+                    
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">{saturday delivery:}</span> <a href="repl_href">{cancel link}</a></dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <!--** Begin ER1401 Alt delivery address **-->
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">{deliver to addressee only:}</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                      <dt> <span class="label">{direct delivery only:}</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                      <dt> <span class="label">{Collect Proof of Identity:}</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">{Pkg exempt from Alt Delivery Address}</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <!--** End ER1401 Alt delivery address **-->
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">Total Shipping Charges:</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <p class="indent"><b>note:</b> {ups carbon neutral text}</p>
+                    
+                    <!--** Begin ER7502  **-->
+                    
+                    <dl class="outHozLedger clearfix group">
+                      <dt> <span class="label">Electronic Package Release Authorization:</span> </dt>
+                      <dd>{nnn.}{nn} {usd}</dd>
+                    </dl>
+                    <p class="indent">EPRA Code: 123456</p>
+                    
+                    <!--** End ER7502**-->
+                    
+                    <p><strong>Note: </strong>Pallet and other surcharges may be included in shipping charges.</p>
+                  </div>
+                  <!-- End Section Body --> 
+                  
+                  <!-- Begin Section Footer --><!-- End Section Footer --> 
+                </div>
+                <!-- End Section Module --> 
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// End Panel 3 UPS Shipping Service and Shipping Options   //// -->
+                <!-- //// Begin Panel 4 Pickup / Dropoff Info                     //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">4</span> </div>
+                    <h3>[Pickup][/Dropoff] Information</h3>
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody"> 
+                    
+                    <!-- Begin Sub Module -->
+                    <div class="secLvl secLvlPlain"> 
+                      <!-- Begin Sub Header -->
+                      <div class="secHead clearfix">
+                        <h4>General Shipment Information</h4>
+                      </div>
+                      <!-- End Sub Header --> 
+                      
+                      <!-- Begin Sub Body --> 
+                      <!-- Begin Section Level - Pickup Module -->
+                      <div class="secLvl secLvlPlain clearfix">
+                        <div class="secBody">
+                          <div class="subcol9 marginBegin clearfix"> 
+                            
+                            <!-- pickup preferences -->
+                            <dl>
+                              <dt><span class="label">Pickup Preference:</span></dt>
+                              <dd>UPS will pickup this shipment.</dd>
+                            </dl>
+                            <dl>
+                              <dt><span class="label">Pickup Address:</span></dt>
+                              <dd> [Contact Name]<br>
+                                [Company Name]<br>
+                                [Address 1]<br>
+                                [City], [Other]<br>
+                                [Country or Territory]<br>
+                                Telephone: [Number]<br>
+                                <br>
+                                {Residential Address} </dd>
+                            </dl>
+                            
+                            <!-- drop off preferences -->
+                            <dl>
+                              <dt><span class="label">Drop-Off Preference:</span></dt>
+                              <dd>Customer selected to drop off this shipment.</dd>
+                            </dl>
+                            <dl>
+                              <dt><span class="label">Drop-off Date:</span></dt>
+                              <dd class="indent"> [Location/Facility Name]<br>
+                                [Address 1]<br>
+                                [City], [Other], [State] [ZIP/Postal Code]<br>
+                                [Country or Territory]<br>
+                                Telephone: [Number]<br>
+                                Fax: [Number]<br>
+                              </dd>
+                              <dt class="indent"><span class="label">Hours of Operation:</span></dt>
+                              <dd class="indent">[Weekday] hh:mm AM to hh:mm PM</dd>
+                            </dl>
+                            <dl class="outHozFlex">
+                              <dt> <span class="label"> <a href="repl_href" class="btnlnkR helpIconR">Location Cut-off Time:</a> </span> </dt>
+                              <dd>hh:mm PM</dd>
+                            </dl>
+                            <div class="clear"> </div>
+                          </div>
+                          <div class="subcol9 marginEnd clearfix">
+                            <dl>
+                              <dt><span class="label">Pickup Request Number:</span></dt>
+                              <dd><a href="repl_href" class="btnlnkR helpIconR">123456789AB1</a></dd>
+                            </dl>
+                            <dl>
+                              <dt><span class="label">Earliest Pickup Time:</span></dt>
+                              <dd>{earliest pickup time}</dd>
+                              <dt><span class="label">Latest Pickup Time:</span></dt>
+                              <dd>{latest pickup time}</dd>
+                              <dt><span class="label">Pickup Reference:</span></dt>
+                              <dd>{reference number for pickup}</dd>
+                            </dl>
+                          </div>
+                          <div class="clear"> </div>
+                          
+                          <!-- Start 1304 -->
+                          <div class="clearfix">
+                            <dl class="outHozLedger clearfix group">
+                              <dt> <span class="label">Schedule a Pickup</span> </dt>
+                              <dd>{nnn.}{nn} {usd}</dd>
+                              <dt> <span class="indent">{Various Pickup Fees}</span> </dt>
+                              <dd>{nnn.}{nn} {usd}</dd>
+                              <dt> <span class="label">Total Pickup Charges</span> </dt>
+                              <dd>{nnn.}{nn} {usd}</dd>
+                            </dl>
+                            <!-- End 1304 --> 
+                            
+                            <br>
+                            <hr class="hr">
+                            <div class="clearfix">
+                              <dl>
+                                <dt><span class="label">Delivery Preference</span></dt>
+                                <dd>This shipment will be held at destination UPS Location for customer pickup.</dd>
+                              </dl>
+                              <dl>
+                                <dt class="indent"><span class="label">[Location/Facility Name]</span></dt>
+                                <dd class="indent"> [Address 1]<br>
+                                  [City], [Other], [State] [ZIP/Postal Code]<br>
+                                  [Country or Territory]<br>
+                                  Telephone: [Number]<br>
+                                  Fax: [Number]<br>
+                                </dd>
+                                <dt class="indent"><span class="label">Hours of Operation:</span></dt>
+                                <dd class="indent">[Weekday] hh:mm AM to hh:mm PM</dd>
+                                <dd class="indent">[Weekday] hh:mm AM to hh:mm PM</dd>
+                                <dd class="indent">[Weekday] hh:mm AM to hh:mm PM</dd>
+                                <dd class="indent">[Sunday][Closed]</dd>
+                              </dl>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Section level --> 
+                        <!-- End Sub Body --> 
+                        
+                        <!-- Begin Sub Footer --><!-- End Sub Footer --> 
+                      </div>
+                      <!-- End Sub Module --> 
+                      
+                    </div>
+                    
+                    <!-- Begin Section Footer --><!-- End Section Footer --> 
+                  </div>
+                  <!-- End Section Body --> 
+                </div>
+                <!-- End Section Module --> 
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// End Panel 4 Pickup / Dropoff Info                       //// -->
+                <!-- //// Begin Panel 5 Payment Info                              //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">5</span> </div>
+                    <h3>Payment Information</h3>
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody">
+                    <dl class="outHozFixed clearfix">
+                      <dt> <span class="label">{bill shipping {and pickup} charges to:}</span> </dt>
+                      <dd>{payment method}{exemple:PayPal}{Card Name:xxxxxxxxxxxxnnnn}</dd>
+                      <dt> <span class="label">{bill duties and taxes to:}</span> </dt>
+                      <dd>{account nnnnnn}</dd>
+                      <dt> <span class="label">{email shipping ticket to:}</span> </dt>
+                      <dd>{jsmith@email.com, United States - English}</dd>
+                      <dt> <span class="label">{Promotion Code:}</span> </dt>
+                      <dd>{SHIPTOUS48}</dd>
+                      <dt></dt>
+                      <dd class="indent">{recieve 40% off a ground shipment within the continental United States.}</dd>
+                      <dt></dt>
+                      <dd><a href="">read promotion terms and conditions</a></dd>
+                      <dt> <span class="label">Associated Shipper's Account:</span> </dt>
+                      <dd>XNNXNN</dd>
+                    </dl>
+                    
+                    <!-- Begin Section Module -->
+                    <div class="secLvl message"> 
+                      <!-- Begin Section Header --><!-- End Section Header --> 
+                      
+                      <!-- Begin Section Body -->
+                      <div class="secBody">
+                        <p>{rate name} rate was applied to this shipment</p>
+                        <p>{message placeholder for not showing total charges</p>
+                        <dl class="outHozLedger clearfix totals">
+                          <dt><span class="label">{total cost:}</span></dt>
+                          <dd>{nnnn.nn usd}</dd>
+                          <dt><span class="label">{negotiated totla cost:}</span></dt>
+                          <dd>{nnnn.nn usd}</dd>
+                          <dt><span class="label">{total ups charges:}</span></dt>
+                          <dd>{nnnn.nn usd}</dd>
+                          <dt class="indent">{Tax 1}</dt>
+                          <dd>nnn.nn cur</dd>
+                          <dt class="indent">{Tax 2}</dt>
+                          <dd>nnn.nn cur</dd>
+                          <dt class="indent">{Tax 3}</dt>
+                          <dd>nnn.nn cur</dd>
+                          <dt><span class="label">{total cost:}</span></dt>
+                          <dd>{nnnn.nn usd}</dd>
+                        </dl>
+                      </div>
+                      <!-- End Section Body --> 
+                      
+                      <!-- Begin Section Footer --><!-- End Section Footer --> 
+                    </div>
+                    <!-- End Section Module --> 
+                    
+                  </div>
+                  <!-- End Section Body --> 
+                  
+                  <!-- Begin Section Footer --><!-- End Section Footer --> 
+                </div>
+                <!-- End Section Module -->  
+                
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                <!-- //// End Panel 5 Payment Info                                //// -->
+                <!-- //// Begin Panel 6 Printing Preferences                      //// -->
+                <!-- ///////////////////////////////////////////////////////////////// -->
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step"> 
+                  <!-- Begin Section Header -->
+                  <div class="secHead clearfix">
+                    <div class="stepNumberDiv"> <span class="stepNumber">6</span> </div>
+                    <h3>Printing Preferences {for View/Print Receipt}</h3>
+                  </div>
+                  <!-- End Section Header --> 
+                  
+                  <!-- Begin Section Body -->
+                  <div class="secBody">
+                    <table>
+                      <tr>
+                        <td scope="row"><input name="repl_name01" type="checkbox" value="" id="repl_id14"></td>
+                        <td class="alignTop"><label for="repl_id14" class="sel">{print instructions selection}</label></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td><table>
+                            <tr>
+                              <td scope="row"><input name="repl_name02" type="radio" value="" id="repl_id15"></td>
+                              <td><label for="repl_id15" class="sel">{on each selection}</label></td>
+                            </tr>
+                            <tr>
+                              <td scope="row" class="alignTop"><input name="repl_id16" type="radio" value="" id="repl_id16"></td>
+                              <td><label for="repl_id16" class="sel">{on first selection}</label>
+                                <div class="reqTxtInst"> {international instructional text} </div></td>
+                            </tr>
+                          </table></td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="alignTop"><input name="repl_name03" type="checkbox" value="" id="repl_id17"></td>
+                        <td><label for="repl_id17" class="sel">{use my thermal to print labels selection}</label></td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="alignTop"><input name="repl_name04" type="checkbox" value="" id="repl_id18"></td>
+                        <td><label for="repl_id18" class="sel">{use my thermal to print receipts selection}</label></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- End Section Body --> 
+                  
+                  <!-- Begin Section Footer --><!-- End Section Footer --> 
+                </div>
+                <!-- End Section Module --> 
+                
+              </div>
+              <!-- End Application Body --> 
+              <!-- Begin Application Footer -->
+              <div class="appFooter"> 
+                <!-- Begin Button Bar Row -->
+                <div class="btnBar">
+                  <input name="repl_name5" type="button" id="repl_btn_id01" value="{back to shipping history}" class="btn">
+                  <input name="repl_name6" type="submit" id="repl_btn_id02" value="{view/print receipt}" class="btn">
+                  <input name="repl_name6" type="submit" id="repl_btn_id02" value="{view/print label}" class="btn">
+                </div>
+                <!-- End Button Bar Row --> 
+              </div>
+              <!-- End Application Footer --> 
+            </div>
+            <!-- End Application Module -->
+            <div class="note">
+              <p>United Parcel Service Cnanada Ltd GST 105453328 RT0001</p>
+              <p>United Parcel Service Cnanada Ltd GST 1000858915 TQ0003</p>
+              <p>{1507 disclaimer placeholder}</p>
+              <p><b>{note:}</b> {note text.}</p>
+              <p><b>{1*}</b> {note text. <a id="repl_id21" href="repl_href" class="btnlnkR newwindowIconR">ups service guide</a>.}</p>
+              <p>{note text, select <b>contact ups</b> below.}</p>
+            </div>
+            <div align="center" class="cobrand"> <br>
+              Company Support: &nbsp;&nbsp; 678-585-1321 &nbsp;&nbsp;<a id="repl_id22" href="mailto:test@ups.com">test@ups.com</a> </div>
+          </form>
+        </div>
+        <!-- /applicationArea --> 

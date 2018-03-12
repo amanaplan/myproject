@@ -1,0 +1,456 @@
+<!-- //// start ups.ppc-editCommunicationPref //// -->
+<div class="ups-editCommunicationPref" data-ng-controller="editCommunicationPrefCtrl">
+    <form error-on-submit name="ups_editCommunicationsForm" novalidate>
+        <!-- Previous Link Starts -->
+        <a point-focus="" href="#/informationPage" class="ups-previous_page">
+        	<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+        	Back to Commmunication Preferences
+        </a>
+        <!-- Previous Link End -->
+
+        <h2>Edit My Subscriptions</h2>
+
+
+        <div class="ups-group">
+            <p>
+                <a href="#" class="ups-link">Unsubscribe from All Topics</a>
+            </p>
+        </div>
+
+
+        <!-- Start News and Insights Section -->
+        <div class="ups-section">
+            <div class="ups-section-header">
+                <h3 class="ups-section_heading">News and Insights</h3>
+                <p>
+                    Get customized content to help you ship smarter.
+                </p>
+            </div>
+
+            <!-- Start Email Lever -->
+            <div class="ups-form_group">
+                 <label class="ups-lever" onclick="" for="emailLever">
+                    <input type="checkbox" id="emailLever" name="emailLever" class="ups-lever_checkbox" data-ng-click="toggleEmailChanges($index)">
+                    <!-- if checked then yes -->
+                    <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                    </span>
+                    <div class="ups-lever_rlabel">
+                       <strong class="ups-form_label ups-lever_label">Email</strong>
+                    </div>
+                 </label>
+            </div>
+            <!-- End Email Lever -->
+
+            <!-- Start Toggled Content from Email Lever -->
+            <div data-ng-if="makeEmailChanges">
+                <!-- Start Email Address/Button Group -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                        <div class="ups-group ups-group_condensed">
+                			<p>jsmith@gmail.com</p>
+                		</div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+                        <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Unsubscribe</button>
+                    </div>
+                </div>
+                <!-- End Address/Button Group -->
+                <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span>Add Email Address</button>
+                <hr />
+                <!-- Start Radio Button Group -->
+                <fieldset class="ups-form_group">
+                    <legend class="ups-form_label">
+                        How often would you like us to send you information about News and Insights?
+                    </legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper "
+                        data-ng-repeat="i in frequencyTypes">
+                        <input id="ups-{{i.type}}-button" class="ups-radio-custom"
+                            name="ups-frequencyTypes-button" value="ups-{{i.type}}-button" type="radio"
+                            data-ng-model="formObj.pres"
+                            data-ng-checked="{{i.isSelected}}"/>
+                        <label for="ups-{{i.type}}-button"
+                            class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.label}}
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- End Radio Button Group -->
+                <hr />
+            </div>
+            <!-- End Toggled Content from Email Lever -->
+        </div>
+        <!-- End News and Insights Section -->
+
+        <!-- Start Service Updates Section -->
+        <div class="ups-section">
+            <div class="ups-section-header">
+                <h3 class="ups-section_heading">Service Updates</h3>
+                <p>
+                    Request alerts for severe weather or other service interruptions that may impact you.
+                </p>
+            </div>
+            <!-- Start Levers -->
+            <div class="ups-form_group" data-ng-repeat="i in alertTypes">
+                 <label class="ups-lever" onclick="" for="ups-{{i.type}}-lever">
+                    <input value="{{i.type}}" type="checkbox" id="ups-{{i.type}}-lever" name="ups-{{i.type}}-lever" class="ups-lever_checkbox"
+                    data-ng-model="serviceUpdates[i.type]">
+                    <!-- if checked then yes -->
+                    <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                    </span>
+                    <div class="ups-lever_rlabel">
+                       <strong class="ups-form_label ups-lever_label">{{i.label}}</strong>
+                    </div>
+                 </label>
+            </div>
+            <!-- End Levers -->
+
+            <!-- Start Toggled Content from Mail Lever -->
+            <div data-ng-if="serviceUpdates.mail">
+                <!-- Start Address/Button Group -->
+                <div class="row" data-ng-repeat="i in serviceUpdatesAddresses">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                        <div class="ups-group">
+                			<address class="ups-address_condensed">
+                            {{i.addressName1}} <br/> {{i.addressName2}}
+                			</address>
+                		</div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+                        <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>{{i.buttonName}}</button>
+                    </div>
+                </div>
+                <!-- End Address/Button Group -->
+                <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span>Add Mailing Address</button>
+                <hr />
+            </div>
+            <!-- End Toggled Content from Mail Lever -->
+
+            <p class="h5">
+                We will send an alert each time we publish a service update.
+            </p>
+        </div>
+        <!-- End Service Updates Section -->
+
+
+        <!-- Start Discounts and Offers Section -->
+        <div class="ups-section">
+            <!-- Start Heading -->
+            <div class="ups-section-header">
+                <h3 class="ups-section_heading">Discounts and Offers</h3>
+                <p>
+                    Save money with the latest UPS promotional offers.
+                </p>
+            </div>
+            <!-- End Heading -->
+
+            <!-- Start Page Level Error Handling -->
+            <div data-ng-if="clicked && checkFormErrors()">
+            	<h3 class="ups-invalid_color-list ups-error_alert-list ng-scope">
+            		<span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            		Please correct the following errors
+            	</h3>
+            	<ul class="ups-icons-error">
+                    <li data-ng-if="clicked && ups_editCommunicationsForm.upsEmailAddress.$invalid"><span> <a
+                        focus-attr="upsEmailAddress" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Email Address </a> is required. </span></li>
+
+                    <li data-ng-if="clicked && ups_editCommunicationsForm.upsPhoneNumberInput.$invalid"><span> <a
+                        focus-attr="upsPhoneNumberInput" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Phone Number </a> is <span ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$error.required">required.</span><span ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$error.pattern">invalid.</span> </span></li>
+
+                    <li data-ng-if="clicked && ups_editDiscounts.ups_phoneType.id == '0' && voiceLeverDiscount"><span> <a
+                            focus-attr="ups_phoneType" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Type </a> is required. </span></li>
+
+                    <li data-ng-if="clicked && ups_editCommunicationsForm.address0.$invalid"><span
+                        data-ng-show="ups_editCommunicationsForm.address0.$invalid && clicked"> <a
+                            focus-attr="ups-address" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address </a> is
+    					required. </span></li>
+
+    				<li data-ng-if="clicked && ups_editCommunicationsForm.city.$invalid"><span
+                        data-ng-show="ups_editCommunicationsForm.city.$invalid && clicked"> <a
+                            focus-attr="ups-city" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> City </a> is required. </span></li>
+
+    				<li data-ng-if="clicked && ups_editCommunicationsForm.state.$invalid"><span
+                        data-ng-show="ups_editCommunicationsForm.state.$invalid && clicked && setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> State </a> is
+    					required. </span> <span
+                        data-ng-show="ups_editCommunicationsForm.state.$invalid && clicked && !setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address
+    					Information </a> is required. </span></li>
+
+    				<li data-ng-if="clicked && ups_editCommunicationsForm.zipCode.$invalid"><span
+                        data-ng-show="ups_editCommunicationsForm.zipCode.$invalid && clicked"> <a
+                        focus-attr="ups-zipcode" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Zip Code </a> is
+    					required. </span></li>
+            	</ul>
+            </div>
+            <!-- End Page Level Error Handling -->
+
+
+
+            <!-- Start Email Lever -->
+            <div class="ups-form_group">
+                 <label class="ups-lever" onclick="" for="ups-emailLeverDiscount">
+                    <input type="checkbox" id="ups-emailLeverDiscount" name="ups-emailLeverDiscount" class="ups-lever_checkbox" data-ng-model="emailLeverDiscount">
+                    <!-- if checked then yes -->
+                    <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                    </span>
+                    <div class="ups-lever_rlabel">
+                       <strong class="ups-form_label ups-lever_label">Email</strong>
+                    </div>
+                 </label>
+            </div>
+            <!-- End Email Lever -->
+
+            <!-- Start Toggled Content from Email Lever -->
+            <div data-ng-if="emailLeverDiscount">
+                <!-- Start Email Address/Button Group -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                        <div class="ups-group">
+                			<p>jsmith@gmail.com</p>
+                		</div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+                        <button type="button" data-ng-class="" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Unsubscribe</button>
+                    </div>
+                </div>
+                <!-- <div class="row" data-ng-if="ups_editCommunicationsForm.upsEmailAddress.$valid && clicked">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                        <div class="ups-group">
+                			<p>{{ups_editDiscounts.ups_EmailAddress_Input}}</p>
+                		</div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+                        <button type="button" data-ng-class="" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Unsubscribe</button>
+                    </div>
+                </div> -->
+
+                <!-- End Address/Button Group -->
+                <!-- Start Email Address Input -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="upsEmailAddress" class="ups-form_label">
+                                        Email Address
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="upsEmailAddress" class="ups-form_input" id="upsEmailAddress" aria-required="true" required data-ng-model="ups_editDiscounts.ups_EmailAddress_Input"
+                                        data-ng-class="{'ups-bodError' : (ups_editCommunicationsForm.upsEmailAddress.$invalid && clicked)}" aria-describedby="upsEmailAddress-error" maxlength="50" title="address@domain.com">
+                                        <div data-ng-if="ups_editCommunicationsForm.upsEmailAddress.$valid">
+                                            <!-- @Note: screen reader text needs to be translated as well -->
+                                            <span class="ups-icon-check" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Check</span>
+                                        </div>
+                                        <span id="upsEmailAddress-error" role="alert">
+                                            <span class="ups-invalid_color"
+                                                data-ng-show="(!ups_editCommunicationsForm.upsEmailAddress.$pristine && ups_editCommunicationsForm.upsEmailAddress.$invalid) || (ups_editCommunicationsForm.upsEmailAddress.$invalid && clicked)">
+                                                <span class="icon ups-error_exclamation">
+                                                    <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                                </span>
+                                                <span class="ups-readerTxt">Invalid</span> <span
+                                                data-ng-if="ups_editCommunicationsForm.upsEmailAddress.$error.required">Email Address is required.</span>
+                                            </span>
+                                            <span data-ng-if="ups_editCommunicationsForm.upsEmailAddress.$valid">
+                                                <span class="ups-readerTxt">Check</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <!-- Start CTA Button Group -->
+                                <div class="ups-form_ctaGroup ups-no_label">
+                                    <button type="button" class="ups-cta ups-cta_primary" data-ng-click="clicked=true;proceedToEmailConfirmation(ups_editCommunicationsForm.$valid);">Add</button>
+                                </div>
+                                <!-- End CTA Button Group -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Email Address Input -->
+                <hr />
+            </div>
+            <!-- End Toggled Content from Email Lever -->
+
+            <!-- Start Voice Lever -->
+            <div class="ups-form_group">
+                 <label class="ups-lever" onclick="" for="ups-voiceLeverDiscount">
+                    <input type="checkbox" id="ups-voiceLeverDiscount" name="ups-voiceLeverDiscount" class="ups-lever_checkbox" data-ng-model="voiceLeverDiscount">
+                    <!-- if checked then yes -->
+                    <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                    </span>
+                    <div class="ups-lever_rlabel">
+                       <strong class="ups-form_label ups-lever_label">Voice</strong>
+                    </div>
+                 </label>
+            </div>
+            <!-- End Voice Lever -->
+
+            <!-- Start Toggled Content from Voice Lever -->
+            <div data-ng-if="voiceLeverDiscount">
+                <p>No Phone Number Added</p>
+                <!-- Start Phone Number Row  -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                    <div class="col-sm-4">
+                        <!-- Start Phone Number Input -->
+                        <div class="ups-form_group ups-form_required" data-errormsg="This field is required">
+                            <label for="upsPhoneNumberInput" class="ups-form_label">
+                                Phone Number
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="upsPhoneNumberInput" class="ups-form_input" id="upsPhoneNumberInput" aria-required="true" required maxlength="15" data-ng-pattern="/^[0-9|\s|\-|(|)]+$/" data-ng-model="ups_editDiscounts.ups_PhoneNumber"
+                                data-ng-class="{'ups-bodError' : (ups_editCommunicationsForm.upsPhoneNumberInput.$invalid && clicked)}" aria-describedby="upsPhoneNumberInput-error">
+                                <div data-ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$valid">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                                <span id="upsPhoneNumberInput-error" role="alert">
+                                    <span class="ups-invalid_color"
+                                        data-ng-show="(!ups_editCommunicationsForm.upsPhoneNumberInput.$pristine && ups_editCommunicationsForm.upsPhoneNumberInput.$invalid) || (ups_editCommunicationsForm.upsPhoneNumberInput.$invalid && clicked)">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span> <span
+                                        data-ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$error.required">Phone Number is required.</span>
+                                        <span
+                                        data-ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$error.pattern">Phone Number is invalid.</span>
+                                    </span>
+                                    <span data-ng-if="ups_editCommunicationsForm.upsPhoneNumberInput.$valid">
+                                        <span class="ups-readerTxt">Check</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Phone Number Input -->
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- Start Phone Number Type Dropdown -->
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups_phoneType" class="ups-form_label">Type <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select name="ups_phoneType" class="ups-dropdown" id="ups_phoneType"
+                                error-on-blur data-ng-model="ups_editDiscounts.ups_phoneType"
+                                data-ng-class="{'ups-bodError' : (ups_editDiscounts.ups_phoneType.id == '0' && clicked)}"
+                                aria-describedby="ups_phoneType-error" data-ng-options="option.name for option in phoneTypeOptions.availableOptions track by option.id" aria-required="true" required>
+                                </select>
+                            </div>
+                            <!-- Start Error Field Level Handling -->
+                            <span id="ups_phoneType-error" class="ups-invalid_color"
+                                  data-ng-show="(!ups_editCommunicationsForm.ups_phoneType.$pristine && ups_editDiscounts.ups_phoneType.id == '0')||(ups_editDiscounts.ups_phoneType.id == '0' && clicked) " role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_editDiscounts.ups_phoneType.id == '0'">Type is required.</span> </span>
+                            <!-- End Error Field Level Handing -->
+                        </div>
+                        <!-- End Phone Number Type Dropdown -->
+                    </div>
+                    <div class="col-sm-5">
+                        <!-- Start CTA Button Group -->
+                        <div class="ups-form_ctaGroup ups-no_label">
+                            <button type="button" class="ups-cta ups-cta_primary" data-ng-click="proceedToPhoneConfirmation(ups_editDiscounts.$valid);">Add</button>
+                        </div>
+                        <!-- End CTA Button Group -->
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <!-- End Phone Number Row -->
+                <hr />
+            </div>
+            <!-- End Toggled Content from Voice Lever -->
+
+
+            <!-- Start Mail Lever -->
+            <div class="ups-form_group">
+                 <label class="ups-lever" onclick="" for="ups-mailLeverDiscount">
+                    <input type="checkbox" id="ups-mailLeverDiscount" name="ups-mailLeverDiscount" class="ups-lever_checkbox" data-ng-model="mailLeverDiscount">
+                    <!-- if checked then yes -->
+                    <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                    </span>
+                    <div class="ups-lever_rlabel">
+                       <strong class="ups-form_label ups-lever_label">Mail</strong>
+                    </div>
+                 </label>
+            </div>
+            <!-- End Mail Lever -->
+
+            <!-- Start Toggled Content from Mail Lever -->
+            <div data-ng-if="mailLeverDiscount">
+                <!-- Start Address/Button Group -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+                        <div class="ups-group">
+                			<address class="ups-address_condensed">
+                            101 Main Street <br /> Anytown, IL 12121 US
+                			</address>
+                		</div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+                        <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Unsubscribe</button>
+                    </div>
+                </div>
+                <!-- End Address/Button Group -->
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <!-- Start Common Address Component -->
+                            <ups-cac></ups-cac>
+                            <!-- End Common Address Component -->
+
+                            <!-- Start CTA Button Group -->
+                            <div class="ups-form_ctaGroup">
+                                <button type="button" class="ups-cta ups-cta_primary" data-ng-click="clicked=true;proceedToMailConfirmation(ups_editCommunicationsForm.$valid);">Add</button>
+                            </div>
+                            <!-- End CTA Button Group -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Radio Button Group -->
+                <fieldset class="ups-form_group">
+                    <legend class="ups-form_label">
+                        How often would you like us to send you information about Discounts and Offers?
+                    </legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper "
+                        data-ng-repeat="i in frequencyTypesDO">
+                        <input id="ups-{{i.type}}-button_DO" class="ups-radio-custom"
+                            name="ups-frequencyTypes-button_DO" value="ups-{{i.type}}-button_DO" type="radio"
+                            data-ng-model="formObj.pres"
+                            data-ng-checked="{{i.isSelected}}"/>
+                        <label for="ups-{{i.type}}-button_DO"
+                            class="ups-form_label ups-radio-custom-label">{{i.label}}
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- End Radio Button Group -->
+            </div>
+            <!-- End Toggled Content from Mail Lever -->
+
+        </div>
+        <!-- End Discounts and Offers Section -->
+
+        <!-- Start CTA Button Group -->
+        <div class="ups-form_ctaGroup">
+            <button type="button" class="ups-cta ups-cta_primary">Save</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+        </div>
+        <!-- End CTA Button Group -->
+    </form>
+</div>
+<!-- //// end ups.ppc-editCommunicationPref //// -->

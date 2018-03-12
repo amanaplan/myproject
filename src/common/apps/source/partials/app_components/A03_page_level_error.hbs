@@ -1,0 +1,39 @@
+<!-- ************************************************************************************ -->
+<!-- A03 Page Level Error                                                                 -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+A03 Page Level Error - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    custom_header				= string	/ NO			/ Non standard error header
+    header						= string	/ NO			/ User not found in our system
+    non-header_content			= string	/ NO			/ Add <p> content
+    content						= string	/ NO			/ There is an error, but we don't want ot use the header
+    error_option				= loop		/ NO			/ List of errors on the page
+    link						= string	/ NO*			/ must match field id 
+    field_name					= string	/ NO*           / First Name (must match the field name it is linked to)
+
+********************************************************************************
+--}}
+
+
+<!-- documentation ../source/module/A03_page_level_error.hbs -->
+<div class="" id="{{this.id}}">
+	<h3 class="ups-invalid_color-list ups-error_alert-list">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+		{{#if custom_header}}{{{header}}}{{else}}Please correct the following errors{{/if}}
+    </h3>
+    {{#if non-header_content}}<p>{{{content}}}</p>{{/if}}
+    <ul class="ups-icons-error">
+        {{#each error_option}}
+        <li class="">
+            <a href="#{{link}}" class="ups-invalid_color">{{this.field_name}} <span class="ups-readerTxt">field</span></a> is required
+        </li>
+        {{/each}} 
+    </ul>
+</div>

@@ -1,0 +1,324 @@
+// ----------------------------------------------------
+// MAIN NAV - ALERTS
+// ----------------------------------------------------
+
+@media (min-width: 841px) and (max-width: 992px) {
+    .touch .ups-hasAlerts.ups-offCanvas.ups-navOpen #ups-headerWrap {
+        margin-top: -30px !important;
+    }
+}
+#ups-alertsWrap {
+    background: $ups_gold;
+    padding: 0 $page-margin;
+    //margin-bottom: -$head_line; removed to fix TFS-288431
+    max-height: 0;
+    position: relative;
+    width: 100%;
+    z-index: $zTop + 10;
+    overflow: hidden;
+    @include transition-property(max-height);
+    @include transition-duration(0.3s);
+
+    .ups-hasAlerts & {
+        max-height: $alerts-hgt;
+    }
+    
+    /*& ~ #ups-skipNav:focus  {
+        z-index:105;
+        top:42px;
+    }*/
+
+    .touch .ups-headFixed & {
+        /*z-index: 0;*/
+        & ~ #ups-headerWrap {
+            height: 140px;
+            padding-top: 8px;
+             @media all and (min-width: 993px){
+                height: 140px;
+                padding-top: 8px;
+                position: fixed;
+                top: -37px;
+                &.ups-header-campusShip{
+                    height: 173px;
+                    top: -67px;
+                }
+            }
+            @media #{$media-medium} {
+                height: auto;
+                padding-top: 0;
+            }
+            
+            
+           
+
+
+        }
+    }
+
+    .touch & ~ #ups-headerWrap {
+        height: 182px;
+        padding-top: 50px;
+        @media all and (min-width: 993px){
+            height: 140px;
+        	  padding-top: 8px;
+            position:relative;
+            &.ups-header-campusShip{
+              height:166px;
+            }
+        }
+        @media #{$media-medium} {
+            height: auto;
+            z-index: 1000;
+            padding-top:0;
+        }
+        /*
+        @media #{$media-medLarge} {
+            height: auto;
+            padding-top: 10px;
+            position:relative;
+        } */
+    }
+
+
+}
+
+#ups-alerts {
+    height: $alerts_hgt;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    max-width: $screen-lg;
+    margin: 0 auto;
+
+    .ups-icon-exclamationcircle {
+        background: $white;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        #{$default-float}: 110px;
+        top: 50%;
+        margin-top: -12px;
+        border-radius: 20px;
+    }
+
+    .ups-alerts_list {
+        @include unlist;
+        margin-#{$default-float}: 140px;
+        margin-#{$opposite-direction}: 80px;
+
+        .ups-alert_msg {
+            font-size: 12px;
+            font-size: 1.15em;
+            line-height: $alerts_hgt;
+
+            span {
+                display: block;
+                height: $alerts_hgt;
+                overflow: hidden;
+                float: #{$default-float};
+                max-width: 85%;
+                font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+
+            .ups-alerts_link {
+                float: #{$default-float};
+                color: $ups_brown;
+                text-decoration: underline;
+                font-weight: 700;
+                margin-#{$default-float}: 6px;
+            }
+        }
+    }
+
+    .ups-alerts_controls {
+        position: absolute;
+        top: 0;
+        margin-left: 1px; 
+        //#{$default-float}: -20px;
+        height: $alerts_hgt;
+        line-height: $alerts_hgt;
+        font-family: $sans-bd;
+        font-size: 1.1em;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .slick-prev,
+        .slick-next {
+            @include unbutton;
+            width: 48px;
+            height: 0;
+            padding: $alerts_hgt 0 0;
+            position: relative;
+            overflow: hidden;
+
+            .icon:before {
+                @include ups-icons;
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: $alerts_hgt;
+                top: 0;
+                left: 0;
+                color: $ups_brown;
+                font-size: 16px;
+                line-height: $alerts_hgt - 4px;
+            }
+
+            &.slick-disabled {
+                &:before {
+                    color: darken($ups_gold, 10%);
+                }
+            }
+        }
+
+        .slick-next {
+            float: $opposite-direction;
+
+            .icon:before {
+                content: '\e629';
+                .ups-rtl & { content: '\e627'; }
+            }
+        }
+
+        .slick-prev {
+            float: $default-float;
+
+            .icon:before {
+                content: '\e627';
+                .ups-rtl & { content: '\e629'; }
+            }
+        }
+    }
+
+    .ups-alerts_close {
+        @include unbutton;
+        width: 40px;
+        height: $alerts_hgt;
+        position: absolute;
+        top: 0;
+        margin-right: 1px;
+        #{$opposite-direction}: 0;
+        i {
+            font-size: 20px;
+            display: block;
+            color: $ups_brown;
+
+            .ie9 &:before {
+                position: relative;
+                top: -4px;
+            }
+        }
+    }
+    a:focus, button:focus {
+        outline-color: $black_s4;
+        z-index:20;
+    }
+}
+body.ups-hasAlerts {
+    #ups-skipNav {
+        display: inline-block;
+        @media #{$media-small} {
+            position: relative;
+            top:-500px;
+            z-index:105;
+            /*&:focus {
+                top: 8px;
+            }*/
+        }
+        &:focus {
+            top: 42px;
+        }
+        @media #{$media-medium} {
+            &:focus {
+                top: 0 !important;
+                z-index: 1001;
+            }
+        }       
+    }
+    &.ups-native{
+      #ups-skipNav {
+        @media #{$media-small} {
+             position: absolute;
+           }
+        }
+     }
+}
+@media #{$media-medium} {
+    #ups-alertsWrap {
+        position: fixed;
+        top: 0;
+        max-height: 0;
+        overflow: hidden;
+        @include transition-property(max-height);
+        @include transition-duration(0.3s);
+
+        .ups-hasAlerts & {
+            max-height: 500px;
+            z-index: $zTop + 1;
+        }
+            #ups-alerts {
+                height: auto;
+
+                .ups-icon-exclamationcircle {
+                    top: 12px;
+                    margin: 0;
+                }
+
+                .ups-alerts_list {
+                    .ups-alert_msg {
+                        height: auto;
+                        line-height: 1.25;
+                        padding: 15px 0 8px;
+
+                        span {
+                            display: inline;
+                            height: auto;
+                            float: none;
+                        }
+
+                        .ups-alerts_link {
+                            float: none;
+                        }
+                    }
+                }
+            }
+           ~ #ups-headerWrap{
+                 z-index: 1000
+           }
+      }
+}
+
+@media #{$media-small} {
+    #ups-alertsWrap {
+        // margin: 0 (-$page-margin-sm);
+        padding: 0 $page-margin-sm;
+        position: relative;
+    }
+
+    #ups-alerts {
+        padding: 50px 0 20px;
+        overflow: visible;
+
+        .ups-alerts_list {
+            margin: 0;
+        }
+
+        .ups-alerts_close { top: 8px; }
+        .ups-alerts_controls {
+            top: 8px;
+            //#{$default-float}: -20px;
+            #{$opposite-direction}: auto;
+        }
+        .ups-icon-exclamationcircle { display: none; }
+    }
+
+}

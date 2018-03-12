@@ -1,0 +1,3650 @@
+
+//NEED TO CHANGE **/*assets/resources/images/legacyAppImages*/** path to **/*img*/** for Snatlanta builds
+
+#ups-headerWrap {
+	border-top: none;
+}
+
+#main {
+
+	h2, h3, h4, h5, h6 {
+		color: $black_s4;
+	}
+
+//UPSAccessPoint is col24 contenttype, crt_main from cwt rate tool
+    &.ccacmpad1 {
+        input[type="text"] {
+            width: auto;
+            display: inline;
+        }
+    }
+
+    div {
+        font-family: $sans;
+    }
+
+    h1, .pg-head, .blueboldHead, .blueBoldHead, .blueboldhead, span.header {
+        @include ups-serifHeader;
+    }
+
+    button, input, a, textarea, select[multiple] {
+        &:focus {
+            outline: 5px auto $ups_gold;
+        }
+    }
+
+    // aligns btn bars to left(default), due to WEM guidelines, list of classes to target
+    .btnBar, .pi-m-button, .btn-bar, .btn-bar .btn-colFull {
+    	text-align: $default-float;
+    }
+
+    .blueboldSubHead, .modsubheader, .subhd1 {
+        font : {
+            family: $sans-bd;
+            weight: normal;
+            size: 16.38px;
+        }
+        color: $black_s4;
+    }
+
+    span.bold, .bold {
+        font : {
+            family: $sans-bd;
+            weight: bold;
+        }
+    }
+
+    //like secHead but can't change color of table so make like header with gold line.
+    .whiteBoldHead, .whitesubheadbold, .standardheader {
+        font-family: $serif;
+        font-weight: normal;
+        font-size: 26.6px;
+        color: $black_s4;
+        position: relative;
+        padding-#{$default-float}: 0;
+        margin-top: 0;
+        display: inline-block;
+        text-decoration: none;
+
+        span {
+            font-family: $serif;
+        }
+    }
+
+    tr[bgcolor="#666699"] { //in ecsAdmin
+        background-color: $white;
+        td {
+            @include ups-serifHeaderSmaller;
+        }
+    }
+
+    .mod {
+        background-color: $white;
+    }
+
+    .appLvl.progressBar {
+        float: none;
+        padding: 0;
+        margin: 0;
+        .secLvl {
+            @include ups-legacy_colorHeader($sky_s3);
+            border: 1px solid $sky_s3 !important;
+            padding-bottom: 0 !important;
+			width: 100%;
+
+            .secHead {
+                margin-top: 0;
+            }
+        }
+
+        input.arrowmini {
+            background-image: url(/assets/resources/images/legacyAppImages/arrowmini.gif);
+            background-position: 1px 1px;
+        }
+
+        .secBody {
+            ul.lstProgress {
+                .number, .title {
+                    color: $black_s4 !important; //must override
+                }
+
+                .number {
+                    font-size: 30px;
+                }
+
+                .step {
+                    background-color: $stone_40;
+                    border: none;
+                }
+
+                li:not(.start) {
+                    .step {
+						color: $black_s1;
+
+                        .number {
+                            background-image: none;
+
+                            &:before {
+                                @include ups-iconFont("\e203");
+                                font-size: 25px;
+                                top: 2px;
+                            }
+                        }
+                    }
+
+					.next {
+						opacity: 1;
+					}
+                }
+            }
+        }
+    }
+
+    .appLvl {
+        padding: 10px 0;
+        background-color: $white;
+        border: none;
+
+        &.mod {
+            padding: 0;
+            background-color: $white;
+            border: none;
+
+            .appHead {
+                padding: 0;
+            }
+        }
+
+        &.tab {
+            .appHead {
+                background-color: $white;
+                padding: 0;
+            }
+        }
+
+        span {
+            font-family: $sans;
+
+            &.bold {
+                font : {
+                    family: $sans-bd;
+                    weight: normal;
+                }
+            }
+        }
+
+        &.appLvlGradientGroup1, &.appLvlGradientGroup2, &.appLvlGradientGroup3,
+        &.appLvlGradientGroup4, &.appLvlGradientGroup5, &.appLvlGradientGroup6, &.appLvlGradientGroup7,  &.ui-dialog-content.dialog.mod.modal {
+            .appHead {
+                background-image: none;
+                background-color: $white;
+                padding: 10px 15px 0 15px;
+
+
+                h2 {
+                    font-family: $serif;
+                    font-size: 1.9em;
+                    color: $black_s4;
+                    position: relative;
+                }
+
+
+            }
+        }
+    }
+    .appHead,
+    .appBody {
+        padding: 0;
+        background-color: $white;
+        font-family: $sans;
+
+        a, div, li, span, h1, h2, h3, h4 {
+            color: $black_s4;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 0 0 5px 0;
+        }
+
+        b, strong {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+        p, li, dd, span {
+            font-family: $sans;
+        }
+
+        .secHead {
+            span, div {
+                font-family: $sans;
+            }
+            a, a span {
+                color: $black_s4;
+                font-family: $sans-bd;
+                font-weight: normal;
+                text-decoration: underline;
+                &:hover, &:focus {
+                    color: $black_s4;
+                }
+                &.anchor.fc-state-active {
+                    & span {
+                        text-decoration: none;
+                        font-family: $sans;
+                    }
+                    text-decoration: none;
+                    font-family: $sans;
+                    &:hover, &:focus, & span:hover, & span:focus {
+                        color: $black_s4;
+                    }
+                }
+            }
+            ul {
+                margin-bottom: 0;
+                li {
+                    input {
+                        margin-bottom: 0;
+                        &.btnlnkL, &.btnlnkR {
+                            &:hover, &:focus {
+                                color: $black_s4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .appHead {
+        @include ups-serifHeaderSmaller;
+
+        ul li {
+            margin-top: 5px;
+        }
+
+        li.helpmini {
+            background-image: none;
+
+            a {
+                &:after {
+                    @include ups-iconFont("\e325");
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .secLvl:not(.gradient) {
+        border-color: $black_s1;
+    }
+
+
+    //bullet lists
+    .cmsMsg {
+        .cmsMsg {
+            ul {
+                li {
+                    background-image: none;
+                    list-style: none;
+
+                    &:before {
+                        @include ups-iconFont("\f308");
+                        font-size: 7px;
+                        line-height: 14px;
+                        vertical-align: top;
+                        padding-#{$opposite-direction}: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .indent {
+        //lstBullet styling with li is in eMA
+        ul.lstBullet {
+            font-family: $sans;
+            background-image: none;
+            list-style: none;
+
+            &:before {
+                @include ups-iconFont("\f308");
+                font-size: 7px;
+                line-height: 14px;
+                vertical-align: top;
+                padding-#{$opposite-direction}: 5px;
+            }
+        }
+    }
+
+    ul.bullet li, ul.lstBullet li {
+        font-family: $sans;
+        background-image: none;
+        padding: 0;
+        &:before {
+            @include ups-iconFont("\f308");
+            font-size: 7px;
+            line-height: 14px;
+            vertical-align: top;
+            padding-#{$opposite-direction}: 5px;
+        }
+    }
+
+    dl.lstBullet {
+        dt:first-of-type {
+            background-image: none;
+
+            &:before {
+                @include ups-iconFont("\f308");
+                font-size: 7px;
+                line-height: 14px;
+                vertical-align: top;
+                padding-#{$opposite-direction}: 5px;
+            }
+        }
+    }
+
+    .modpadbullet {
+        &:before {
+            @include ups-iconFont("\f308");
+            padding-#{$opposite-direction}: 5px;
+            font-size: 7px;
+            line-height: 14px;
+            vertical-align: top;
+        }
+        img {
+            display: none;
+        }
+    }
+
+    .secLvl {
+        color: $black;
+        text-align: $default-float;
+        margin-bottom: 10px;
+        position: relative;
+        font-family: $sans;
+        dl {
+            dd {
+                font-family: $sans;
+            }
+        }
+        ul {
+            li {
+                font-family: $sans;
+            }
+        }
+        strong {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+        &.moduleContent {
+            background-color: $white;
+        }
+
+
+        &.group2.message {
+            @include ups-legacy_colorHeader($sun_s3);
+            background-color: $white;
+
+            .secHead {
+                h3, h4 {
+                    color: $white !important;
+                }
+            }
+        }
+
+        &.stacked {
+            background-color: $white;
+        }
+
+        //in access point shipping
+        // &.group5.cmsMsgGradient5 {
+        //     background-image: none !important;
+
+        // }
+
+        // Default Banner changes
+        &.cmsMsg.seccol24 {
+            padding: 30px;
+            // width: 100%!important;
+            .secHead {
+                background: none;
+                padding:0;
+                h3{
+                    color: #fff!important;
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                }
+                a {
+                     &:hover, &:focus {
+                        color: darken($black_s4, 5%);
+                    }
+                }
+            }
+            .secBody {
+                h4{
+                    color: #fff!important;
+                    font-family: $sans;
+                    font-weight: normal;
+                    font-size: 1.1em;
+                }
+            }
+
+            .secFooter {
+                float: $default-float;
+                width:auto;
+                border: 0!important;
+                margin: 0;
+                .btnBar {
+                    @include ups-legacy_cta($water_s3);
+                    a {
+                        line-height: 35px;
+                    }
+                }
+            }
+        }
+
+        &.cmsMsgGradient1, &.cmsMsgGradient2, &.cmsMsgGradient3, &.cmsMsgGradient4, &.cmsMsgGradient5, &.cmsMsgGradient6, &.cmsMsgGradient7 {
+            border-color: $black_s1 !important;
+            background-color: #404040!important;
+            background-image: none!important;
+        }
+        &.cmsMsgMediaOnly {
+            padding: 0;
+        }
+
+        //messages at top of ctc small package
+        &.message {
+            @include ups-legacy_colorHeader($sky_s3);
+            .btnBar {
+                background-color: $stone_40;
+            }
+        }
+
+
+
+        .secHead {
+            background: $stone_s3;
+            padding: 12px 15px;
+            text-transform: uppercase;
+            position: relative;
+            margin: 0 0 10px 0; //uncommented in merge from app_css 5/24
+            border: 0;
+            display: block;
+            width: 100%;
+            .stepNumberDiv {
+                background: none;
+                border: 0;
+                margin: 0px 10px 0 0;
+                display: inline-block;
+                float: $default-float;
+                .stepNumber {
+                    background: none;
+                    font-family: $sans;
+                    display: block;
+                    height: 22px;
+                    width: 22px; //26
+                    line-height: 20px; //24
+                    border: 1px solid $black_s1;
+                    @include border_radius(50%);
+                    color: $black_s4;
+                    text-align: center;
+                    font-size: 12px;
+                }
+                & + h2, & + h3, & + h4 {
+                    position: relative;
+                    word-wrap: break-word;
+                    margin: 0;
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                    font-size: 1.17em;
+                    color: $black_s4;
+                    float: none;
+                    line-height: 26px;
+                    display: inline;
+                    width: 100%; // maybe maybe not
+                }
+
+               & ~ ul, & ~ span.indent {
+                    display: inline;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            //headers with no number padding, nicluding no number but right link
+            h2, h3, h4 {
+                position: relative;
+                word-wrap: break-word;
+                margin: 0;
+                font-family: $sans-bd;
+                font-weight: normal;
+                font-size: 1.17em;
+                color: $black_s4;
+                float: none;
+                line-height: 26px;
+                display: inline;
+                width: 100%;
+            }
+
+            ul, span.indent {
+                display: inline;
+                // float: $opposite-direction;
+                margin: 0;
+            }
+
+
+            a {
+                 &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+            }
+
+
+
+        }//end sechead
+
+
+
+        &:not(.cmsMsg) {
+            .secBody {
+                font-family: $sans;
+                /*padding: 10px 10px 0;*/ //commented out in merge from app_css 5/24
+                p,
+                span, div, ol {
+                    font: 14px/1.25 $sans;
+                    color: $black_s4;
+                }
+                label span {
+                    font-family: $sans-bd;
+                }
+                sup {
+                    font-family: $sans;
+                }
+                span.error, .error, label.error {
+                    color: $red;
+					font-weight: bold;
+
+					a {
+						color: $red !important;
+					}
+
+                    span {
+                       	color: $red !important; // the >>>> for the error messages are a different red
+                    }
+                }
+                .redErrorBold, .redErrorBold span {
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                    color: $red !important;
+
+					label {
+						color: inherit;
+					}
+                }
+                span.label {
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                    &.sel {
+                        font : {
+                            family: $sans;
+                        }
+                    }
+                }
+                p.error {
+                    display: inline-block;
+                }
+                dl {
+                    margin-bottom: 10px;
+                    padding-bottom: 0;
+
+                    dt {
+                        font-family: $sans;
+                        font-weight: normal;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+
+                        b {
+                            font-family: $sans-bd;
+                            font-weight: normal;
+                        }
+                    }
+
+                    dd {
+                        position: relative;
+                        // margin-bottom: 0;
+                        // padding-bottom: 0;
+                        font-family: $sans;
+
+                        strong {
+                            font-family: $sans-bd;
+                            font-weight: normal;
+                        }
+                    }
+                }
+
+                .mod {
+                    background-color: $white;
+                }
+
+                //message in tracking details
+                .marginBegin {
+                    .secLvl.gradient.gradientGroup6 {
+                        border-color: $sun_s3;
+
+                        .secHead {
+                            background: $sun_s3 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .appLvl:not(.progressBar) {
+        .secLvl.secLvlPlain, .secLvl.cmsMsgPlain {
+            border: none;
+            & > .secHead {
+                background-color: $white;
+                padding: 0;
+            }
+        }
+    }
+
+    .secFooter {
+        margin: 0 0 10px 0;
+    }
+
+    .appFooter {
+        .btnBar {
+            .btn, input[type="button"], input[type="submit"] {
+                margin-#{$opposite-direction}: 5px;
+            }
+        }
+    }
+
+    //V3 secLvl-like
+    table.tab {
+        border: 1px solid $black_s1;
+    }
+
+    .head-colFull, .head-col4 {
+        li.helpmini {
+            background-image: none;
+
+            a {
+                &:after {
+                    @include ups-iconFont("\e325");
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    table.tab {
+        th {
+            background-color: $white;
+
+            .head-col4, .head-colFull {
+                @include ups-serifHeaderSmaller;
+                padding: 10px 15px 0 15px;
+
+                ul {
+                    li {
+                        margin-top: 10px;
+
+                        a {
+                            color: $black_s4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    table.mod {
+        th {
+            @include ups-serifHeaderSmaller;
+        }
+
+        .appHead {
+            @include ups-serifHeaderSmaller; // shipping and rating pref 7/15
+        }
+
+        td.btn-bar {
+            padding: 15px;
+        }
+    }
+
+    div.hr {
+        background-color: $black_s1;
+    }
+
+    .modbordercolor, .modbordercolor2, .modbordercolor3 {
+        background-color: $white;
+    }
+
+    .stepModHead {
+            background-color: $stone_s3;
+            padding: 12px 15px;
+            text-transform: uppercase;
+            position: relative;
+            margin: 0 0 15px 0; //uncommented in merge from app_css 5/24
+            border: 0;
+            display: block;
+            width: 100%;
+
+            .stepNumberDiv {
+                background: none;
+                border: 0;
+                margin: 0px 10px 0 0;
+                display: inline-block;
+                float: $default-float;
+
+                .stepNumber {
+                     background: none;
+                    font-family: $sans;
+                    display: block;
+                    height: 22px;
+                    width: 22px; //26
+                    line-height: 20px; //24
+                    border: 1px solid $black_s1;
+                    @include border_radius(50%);
+                    color: $black_s4;
+                    text-align: center;
+                    font-size: 12px;
+                }
+
+                & + h2, & + h3, & + h4 {
+                    position: relative;
+                    word-wrap: break-word;
+                    margin: 0;
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                    font-size: 1.17em;
+                    color: $black_s4;
+                    padding-#{$default-float}: 20px;
+                    top: 2px;
+                    float: none;
+                    line-height: 26px;
+                    display: inline-block;
+                    width: 100%; // maybe maybe not
+                }
+
+                & ~ ul, & ~ span.indent {
+                    display: inline;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            //headers with no number padding, nicluding no number but right link
+            h2, h3, h4 {
+                position: relative;
+                word-wrap: break-word;
+                margin: 0;
+                font-family: $sans-bd;
+                font-weight: normal;
+                font-size: 1.17em;
+                color: $black_s4;
+                top: 2px;
+                float: none;
+                line-height: 26px;
+                display: inline-block;
+                width: 100%;
+            }
+
+            ul, span.indent {
+                display: inline;
+                float: $opposite-direction;
+                margin: 0;
+            }
+
+
+            a, .btnlnkL, .btnlnkR {
+                margin-bottom: 0;
+                 &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+            }
+
+    }//end stepmodhead
+
+
+    //icdev step headers
+    .uis-head-step {
+        background: $stone_s3;
+        padding: 12px 15px;
+        text-transform: uppercase;
+        position: relative;
+        margin: 0 0 15px 0;
+        font-family: $sans-bd;
+        font-size: 16.38px;//1.17em;
+        font-weight: normal;
+        color: $black_s4;
+        text-indent: 0;
+
+        a {
+             &:hover, &:focus {
+                color: darken($black_s4, 5%);
+            }
+        }
+    }
+
+    .stepModFlex, .steModFixed4col {
+        border: 1px solid $black_s1;
+        margin-bottom: 10px;
+
+        .stepModHead {
+            background-color: $stone_s3;
+
+            h3 {
+                font-family: $sans-bd;
+                color: $black_s4;
+            }
+
+        }
+    }
+
+    .modColFlex, .stepModFixed4col, .stepModFixed2col {
+        margin: 0px 5px 10px 5px;
+        border: 1px solid $black_s1;
+    }
+
+    .stepModColR {
+        margin: 0;
+        padding: 0;
+    }
+
+    .mod-pad {
+        .container {
+            padding: 0;
+        }
+    }
+
+    .stepModContent {
+        background: $white;
+        // padding: $margin_3;
+        padding: 5px;
+        margin-top: 10px;
+
+        p,
+        span {
+            font: 14px/1.25 $sans;
+            color: $black_s4;
+        }
+        label span, h4, .fldLbl {
+            font: 14px/1.25 $sans-bd;
+            font-weight: normal;
+        }
+
+        .colR,.colL {
+            width: 50%;
+        }
+        input[type="text"] {
+            display: inline-block;
+        }
+
+        .dataTable {
+            @include ups-dataTable;
+            .sec-head {
+                background-color: $stone_40;
+                border-bottom: 1px solid $black_s1;
+            }
+        }
+
+    }
+
+    .modHead {
+        h3 {
+            font-family: $sans-bd;
+            color: $black_s4;
+            font-weight: normal;
+            font-size: 1.17em;
+        }
+    }
+
+    .modColFlex {
+        border: 1px solid $black_s1;
+        margin-bottom: 15px;
+    }
+
+    .btn-bar {
+        input {
+            margin-#{$opposite-direction}: 5px;
+        }
+    }
+
+    //Tabs
+    .subTab,#subTab, .sideTab, #tabHeader {
+        color: $stone_40;
+        border-bottom: none;
+        float: none;
+        width: 100%;
+        li {
+            height: 60px;
+            padding: 5px 15px;
+            text-align: center;
+            float: $default-float;
+            background: $stone_40;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid $black_s1;
+            border-#{$opposite-direction}: 0;
+            margin:0;
+            bottom: -1px;
+            line-height: 52px;
+            font-weight: normal;
+            font-family: $sans;
+            font-size: 14px;
+            color: $black_s4;
+            text-transform: uppercase;
+            a {
+                text-decoration: none;
+            }
+            &.tab-on{
+                background: $white;
+                border-bottom: none;
+                border-top: 5px solid;
+                padding-bottom: 5px;
+                z-index: 0;
+                &:nth-child(4n+1) {
+                    border-top-color: $ups_sun;
+                }
+                &:nth-child(4n+2) {
+                    border-top-color: $ups_sky;
+                }
+                &:nth-child(4n+3) {
+                    border-top-color: $ups_gold;
+                }
+                &:nth-child(4n+4) {
+                    border-top-color: $ups_grass;
+                }
+            }
+            &.tab-off {
+                a {
+                    font-family: $sans;
+                    color: $black_s4;
+                }
+            }
+            &:last-of-type{
+                border-#{$opposite-direction}: 1px solid $black_s1;
+            }
+        }
+    }
+
+    #tabHeader {
+        border-bottom: 1px solid $black_s1;
+
+        .tab-off {
+            border-bottom: 1px solid $black_s1;
+        }
+        li {
+            bottom: 0;
+        }
+    }
+
+    .tab {
+        background: $white;
+        border: 1px solid $black_s1;
+        padding: 15px 10px 15px;
+        // width:100%;
+
+        p {
+            font-family: $sans;
+        }
+
+        .tabPanel {
+            height: auto;
+        }
+    }
+
+    //v1 tables
+    table {
+        color: $black_s4;
+        text-align: $default-float;
+        position: relative;
+        border-spacing: inherit;
+
+        &.sel {
+            td {
+                vertical-align: middle;
+                padding: 0;
+            }
+        }
+
+        //ex global advisor
+        &.note {
+            .colL, .colR {
+                .modCall {
+                    background-color: $sky_s3;
+                    color: $white;
+                    border: 1px solid $sky_s3;
+                    margin-bottom: 0;
+                    background-image: none;
+                    padding: 12px 15px;
+
+                    h3 {
+                        margin: 0;
+                        padding: 0;
+                        font-weight: normal;
+                        font-family: $sans;
+                        font-size: 1em;
+                    }
+                }
+
+                .modCallBase {
+                    border: 1px solid $sky_s3;
+                    border-top-width: 0;
+                    background: $white;
+                }
+            }
+
+        }
+
+
+        th, th div {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+
+        th u {
+            font-family: $sans-bd;
+            font-weight: normal;
+            text-decoration: none;
+        }
+        td[bgcolor] {
+            background-color: $white;
+        }
+
+        .mod-clr {
+            background-color: $white;
+        }
+
+        ///////TEXT HEADERS/////////
+        .pi-h1, .pg-head {
+            @include ups-serifHeader;
+        }
+
+        .pi-h2 {
+            @include ups-serifHeaderSmaller;
+            color: $black_s4;
+        }
+
+        .pi-h3 {
+            font: 16.38px $sans-bd;
+            font-weight: normal;
+            color: $black_s4;
+            text-decoration: none;
+        }
+
+        .pi-h4 {
+            font: 14px/1.25 $sans-bd;
+            font-weight: normal;
+            color: $black_s4;
+            display: inline-block;
+            margin-bottom: 5px;
+            padding-bottom: 0;
+
+             &.sel {
+                        // padding-top: 3px;
+                        font-family: $sans;
+                        font-weight: normal;
+            }
+
+            .pi-h4 {
+                margin-bottom: 0;
+            }
+        }
+
+        .pi-m-txt-title, .mod-head-clr {
+            border: 0;
+            padding: 12px 15px;
+            margin: 0;
+            font-family: $sans-bd;
+            font-size: 1.17em;
+            background-color: $stone_s3;
+            color: $black_s4;
+            float: none;
+
+			&.mod-head-clr {
+				border: 1px solid $black_s1;
+				border-bottom: none;
+				border-#{$default-float}: none;
+				border-#{$opposite-direction}: none;
+
+				&:first-child {
+					border-#{$default-float}: 1px solid $black_s1;
+				}
+
+				&:last-child {
+					border-#{$opposite-direction}: 1px solid $black_s1;
+				}
+			}
+
+            a {
+                 &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+            }
+
+            & + .pi-m-txt-title-link {
+                border: 0;
+                padding: 12px 15px;
+                margin: 0;
+                font-family: $sans-bd;
+                font-size: 1.17em;
+                background-color: $stone_s3;
+                color: $black_s4;
+                float: none;
+                &:hover, &:focus {
+                    color: $black_s4;
+                }
+            }
+
+            & + .pi-m-txt-title-link a {
+                &:hover, &:focus {
+                    color: $black_s4;
+                }
+            }
+        }
+
+        .grey2 {
+            color: $black_s4;
+        }
+
+        td {
+            font: 14px/1.25 $sans;
+            color: $black_s4;
+
+            p {
+                font-family: $sans;
+            }
+
+            &.sel {
+                padding-top: 0;
+            }
+
+			&.mod-line-wht {
+				@include ups-dataTable;
+
+				td.top-pad:not(:last-child) {
+					border-#{$opposite-direction}-color: transparent;
+				}
+			}
+
+            .sel, .sel span {
+                margin-bottom: 0;
+                font-family: $sans;
+                font-weight: normal;
+            }
+
+            label span {
+                font-family: $sans-bd;
+                font-weight: normal;
+            }
+
+            .pi-mA4-line, .pi-r1-rwe, .pi-r1-b, .butbarbgcolor2, .pi-mA1, .pi-mA1-c,
+            .pi-mA2, .pi-mA2-t, .pi-mA2-line, .pi-mA3, .pi-mA3-t, .pi-mA3-line, .pi-mA4 {
+                background: $white;
+            }
+            .pi-m-pad {
+                font: 14px/1.25 $sans;
+                color: $black_s4;
+                padding: 0;
+            }
+            &.pi-mA1-t {// &.pi-mA2-t
+                background: $stone_s3;
+                border: 1px solid $black_s1;
+                border-bottom: none;
+                // padding: 12px 15px;
+                position: relative;
+                // margin: 0 0 15px 0;
+            }
+            &.pi-mA1-c-t-spc, &.pi-mA1-c-b-spc, &.pi-mA1-line {
+           // &.pi-mA2-c-t-spc, &.pi-mA2-c-b-spc, &.pi-mA2-line {
+            //            display: none;
+                border-#{$default-float}: 1px solid $black_s1;
+                border-#{$opposite-direction}: 1px solid $black_s1;
+                background: $white;
+            }
+            &.pi-mA1-c, .mod-msg-pad  { //&.pi-mA2-c
+                background: $white;
+                padding: $margin_4;
+                border-#{$default-float}: 1px solid $black_s1;
+                border-#{$opposite-direction}: 1px solid $black_s1;
+            }
+            &.pi-mA4-t {
+                border: 1px solid $black_s1;
+                border-bottom: none;
+                padding: $margin_4;
+                padding-bottom: 0;
+                font-family: $sans-bd;
+            }
+            &.pi-mA4-c-t-spc {
+                border-#{$default-float}: 1px solid $black_s1;
+                border-#{$opposite-direction}: 1px solid $black_s1;
+                padding: 0 $margin_4;
+                background: $white;
+            }
+
+            &.pi-mA4-c {
+                border: 1px solid $black_s1;
+                border-top: none;
+                padding: $margin_4;
+                padding-top: 0;
+            }
+
+            &.pi-mA1-b {
+                border: 1px solid $black_s1;
+                border-top: none;
+                background: $white;
+                .pi-m-button{
+                    padding: $margin_4;
+                    margin-top: 0px;
+                }
+            }
+            &.sec-pad {
+                vertical-align: middle;
+            }
+
+			&.mod-msg-pad {
+				border-bottom: 1px solid $black_s1;
+
+				.mod-msg-pad {
+					border: none;
+				}
+			}
+
+            strong, b {
+                font-family: $sans-bd;
+                font-weight: normal;
+            }
+
+            ul ol, ol, li, div, span, dd {
+                font-family: $sans;
+            }
+
+            div.brownbold, span.brownbold, .brownboldSubHead {
+                color: $black_s4;
+                font-weight: normal;
+                font-family: $sans-bd;
+                font-size: 16.38px;
+            }
+
+            a, h4 {
+                color: $black_s4;
+            }
+
+            a:hover, a:focus {
+                color: $black_s1;
+            }
+
+            dl {
+                margin-bottom: 10px;
+                dd {
+                    margin-bottom: 0;
+                }
+                dt {
+                    margin-bottom: 0;
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                }
+
+                dt label span {
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+
+     //as in ctcsmallpackage and tracking details logged in
+    .dataTable:not(.sel) {
+        @include ups-dataTable;
+    }
+
+    .dataTable.sel {
+        td.sel {
+            padding-top: 0;
+
+            & + td {
+                label, .sel, .sel span {
+                    font-family: $sans;
+                    font-weight: normal;
+                }
+            }
+        }
+
+        td {
+            padding: 0;
+            vertical-align: middle;
+
+            .sel, .sel span {
+                margin: 0;
+            }
+        }
+    }
+
+    .RIF_Address {
+        .RIF_Field, .RIF_Csp1, .RIF_Csp2, .RIF_Csp3 {
+            margin-bottom: 15px;
+        }
+    }
+
+    //forms
+    label,
+    span.label {
+        font: 14px/1.25 $sans-bd;
+        font-weight: normal;
+        color: $black_s4;
+        display: inline-block;
+        margin-bottom: 5px;
+        padding-bottom: 0;
+
+        &.reqTxtInst {
+            font: 14px/1.25 $sans;
+            color: $black_s4;
+            font-style: italic;
+        }
+         &.sel {
+			font-family: $sans;
+			font-weight: normal;
+        }
+
+    }
+	fieldset .reqTxtInst {
+		font: 14px/1.25 $sans;
+		color: $black_s4;
+		font-style: italic;
+	}
+    span.error, .error, label.error {
+        color: $red;
+		font-weight: bold;
+    }
+    p.error, p {
+        margin-bottom: 5px;
+        padding-bottom: 0px;
+    }
+    .redErrorBold, .redErrorBold span, .redErrorBold label, .pi-m-txt-error, .error {
+        font : {
+            family: $sans-bd;
+            weight: bold; //normal;
+        }
+        color: $red !important;
+    }
+    textarea {
+        border: 1px solid $stone_s3;
+        &.full {
+            width: 100%;
+        }
+    }
+    input[type=radio],
+    input[type=checkbox] {
+        margin: 5px;
+        & + label, & + label span, & + span.label {
+            font : {
+                family: $sans;
+                weight: normal;
+            }
+            margin-bottom: 0;
+        }
+    }
+
+    input[type=checkbox] {
+        @include ups-checkbox;
+    }
+
+    input[type="radio"] {
+        @include ups-radio;
+
+    }
+
+
+    input[type="text"], input[type="password"] {
+        @include ups-textbox;
+		font-weight: normal;
+        &.modTxtSmall {
+            max-width: 100px;
+        }
+    }
+    textarea {
+        font: 14px/1.25 $sans;
+        padding: 5px;
+    }
+    select:not([multiple]) {
+        @include ups-selectDD;
+        .modSelSmall {}
+        .modSelMedium {}
+    }
+    select[multiple] {
+        option {
+            height: 16px;
+            padding-top: 2px;
+        }
+    }
+    input:disabled,
+    textarea:disabled,
+    select:disabled {
+        @include ups-legacy_inputDisabled;
+    }
+    button:disabled {
+        cursor: not-allowed;
+        background: $stone_60;
+        color: $black_s1 !important;
+    }
+
+    div.btnBar, .btn-bar, .btn-col4, .mod-bar {
+        background: $white;
+        border: none;
+        //margin: 5px;
+    }
+
+    .mod-line {
+        background-color: $black_s1;
+    }
+
+    div.note {
+        // @include ups-colorHeader($sky_s3);
+        padding: 15px;
+
+        p {
+            font-family: $sans;
+        }
+
+        b {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+
+    }
+
+    .ui-accordion {
+        border-bottom: 1px solid #e8e8e6;
+        .ui-accordion-header, .acc_handle {
+            border-radius: 0;
+            background: $white;
+            border: none;
+            border-top: 1px solid #e8e8e6;
+            width: 100%;
+            display: block;
+            margin: 0;
+            padding: 12px 15px;
+            line-height: 1.5;
+            font-family: $sans-bd;
+            font-size: 1.12em;
+            cursor: pointer;
+
+            .ui-accordion-header-icon {
+                display: none;
+            }
+
+            a {
+                padding: 0;
+                margin: 0;
+                text-decoration: none;
+                font-size: 14px;
+                cursor: pointer;
+                display: inline-block;
+                width: 100%;
+				padding-#{$opposite-direction}: 15px;
+
+                &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+
+                &:after {
+                    content: "\e316";
+                    font-family: "UPSicons" !important;
+                    font-style: normal !important;
+                    font-weight: normal !important;
+                    font-variant: normal !important;
+                    text-transform: none !important;
+                    speak: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    position: absolute;
+                    height: 16px;
+                    top: 50%;
+                    line-height: 16px;
+                    margin-top: -8px;
+                    overflow: hidden;
+                    #{$opposite-direction}: 0px;
+                }
+
+                &:hover {
+                    color: $black_s4;
+                }
+            }
+            &.ui-accordion-header-active, &.selected {
+                background: #e8e8e6;
+                a:after{
+                    content: "\e319";
+                }
+
+                &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+            }
+        }
+        .ui-accordion-content, .acc_content {
+            background: $white;
+            padding: 15px;
+            border: 0;
+            .secLvl {
+                border: 0;
+                dl {
+                    // margin:0;
+                }
+            }
+        }
+    }
+
+
+    // PANELS
+    // ----------------------------------
+    .modMsg {
+        border-radius: 0px;
+        margin-bottom: $margin_4;
+        border-top-width: $head_line;
+        border-color: $black_s1;
+        padding: 0;
+
+        > h3 {
+            padding: $margin_4;
+            border-radius: 0px;
+            margin-top: -$head_line;
+            color: $white;
+            background-color: $sky_s3;
+            border-color: $sky_s3;
+            border-bottom-#{$default-float}-radius: 0;
+            border-bottom-#{$opposite-direction}-radius: 0;
+        }
+
+        > .modMsgBase {
+            padding: 10px;
+            border: 0;
+            border-radius: 0px;
+            background-color: $stone_40;
+        }
+
+        &.blu {
+            border-color: $sky_s3;
+
+            h3 {
+                font-weight: normal;
+            }
+        }
+    }
+
+
+    //live chat button
+    a.chat {
+        color: $white;
+
+        .secLvl {
+          background-color: $water_s3;
+          background-image: none;
+
+          &:before {
+            @include ups-iconFont("\e02a");
+            color: $white;
+            display: inline-block;
+            position: absolute;
+            #{$default-float}: 6px;
+            top: 3px;
+            font-size: 36px;
+          }
+
+          .secHead {
+            background-color: $water_s3;
+            margin: 0;
+            padding: 8px 8px 0 10px;
+
+            h3, h4 {
+              color: $white !important;
+            }
+          }
+
+          .secBody {
+            background-color: $water_s3;
+            padding: 0 10px;
+
+            p {
+              color: $white;
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        &:hover {
+          .secLvl, .secHead, .secBody {
+            background-color: darken($water_s3, 5%);
+          }
+
+        }
+  }
+
+	@media #{$media-medium} {
+		padding: 0;
+	}
+
+}// end main id wrapper
+
+
+legend {
+    display: none;
+    &.show {
+        display: block;
+    }
+}
+
+.cobrand {
+    color: $black_s4;
+    font : {
+        family: $sans-bd;
+        weight: normal;
+    }
+    td {
+        color: $black_s4;
+        font : {
+            family: $sans;
+            weight: normal;
+        }
+    }
+}
+
+
+/////// Banners ///////////
+#ups-fw_legacy_app_wrap {
+    .cmsMsg {
+        &.cmsMsgGradient1, &.cmsMsgGradient2, &.cmsMsgGradient3, &.cmsMsgGradient4, &.cmsMsgGradient5, &.cmsMsgGradient6, &.cmsMsgGradient7 {
+            border-color: $black_s1 !important;
+            background-color: #404040!important;
+            background-image: none!important;
+            padding: 15px;
+            // width: 100%!important;
+            .secHead {
+                background: none;
+                padding:0;
+                h3{
+                    color: #fff !important;
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                    float: $default-float;
+                }
+                a {
+                     &:hover, &:focus {
+                        color: darken($black_s4, 5%);
+                    }
+                }
+            }
+            .secBody {
+                h4{
+                    color: #fff!important;
+                    font-family: $sans;
+                    font-weight: normal;
+                    font-size: 1.1em;
+                }
+            }
+
+            .secFooter {
+                float: $default-float;
+                width:auto;
+                border: 0!important;
+                margin: 0;
+                div.btnBar {
+                    @include ups-legacy_cta($water_s3);
+                    a {
+                        line-height: 35px;
+                        color: $white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Link And Icon styling apps dekstop
+#ups-fw_legacy_app_wrap, #ups-rr_legacy_app_wrap {
+	a:not(.NavBar_button):not(.NavBar_compass):not(.locationPin), .anchor,
+	.btnlnkR, .btnlnkL, a.btnlnkL, button.btnlnkL,
+	input.btnlnkL, input.btnlnk, .btnLnkL, button.btnLnkL, .sec-head a {
+
+		color: $black_s4 !important;
+		text-decoration: underline;
+		margin: 0; //0 0 15px;
+		position: relative;
+		font-family: $sans-bd;
+		font-weight: normal;
+		&:not(#recalculateId):not(#removeId):not(#getAnotherId):not(#LocateMeButton):not(#ZoomInButton):not(#ZoomOutButton) {
+			background-image: none;
+		}
+
+		&:before,
+		&:after {
+			text-decoration: none;
+			display: inline-block;
+		}
+
+		&:before,
+		&:after {
+			height: 14px;
+			/* TFS394032 - Removed by Quest overflow: hidden; */
+		}
+
+		&:hover,
+		&:focus {
+			color: $black_s1;
+		}
+
+		&.fc-state-active {
+			text-decoration: none;
+		}
+
+		//spans inside anchors
+		span:not(.standardheader) {
+			color: $black_s4;
+			text-decoration: underline;
+			font-family: $sans-bd;
+			font-weight: normal;
+			&:hover, &:focus {
+				color: $black_s1;
+			}
+		}
+    }
+
+    input[type=button][disabled=disabled].btnlnkL {
+        background-color: $white;
+    }
+
+
+    ////// Icons /////////
+    img.ui-datepicker-trigger {
+    	width: 30px;
+    }
+
+    .arrow-blue {
+        background-image: none;
+        padding-#{$default-float}: 0;
+        a {
+            &:before {
+                @include ups-iconFont("\f214");
+                font-size: 1em;
+                display: inline-block;
+                top: 2px;
+                margin-#{$opposite-direction}: 3px;
+            }
+        }
+    }
+
+	.sortDownIconR.btnlnkR, .sortDownIconR.btnLnkR {
+		background-image: none;
+		display: inline-block;
+		width: 0px;
+
+        &:after {
+            @include ups-iconFont("\e210");
+//            padding-#{$default-float}: 5px;
+//            top: 2px;
+        }
+	}
+
+	.sortDownIcon.btnlnkL, .sortDownIcon.btnLnkL {
+		background-image: none;
+		display: inline-block;
+		width: 0px;
+
+        &:before {
+            @include ups-iconFont("\e210");
+//            padding-#{$default-float}: 5px;
+//            top: 2px;
+        }
+	}
+
+
+	.sortUpIconR.btnlnkR, .sortUpIconR.btnLnkR {
+		background-image: none;
+		display: inline-block;
+		width: 0px;
+
+        &:after {
+            @include ups-iconFont("\e208");
+//            padding-#{$default-float}: 5px;
+//            top: 2px;
+        }
+	}
+
+	.sortUpIcon.btnlnkL, .sortUpIcon.btnLnkL {
+		background-image: none;
+		display: inline-block;
+		width: 0px;
+
+        &:before {
+            @include ups-iconFont("\e208");
+//            padding-#{$default-float}: 5px;
+//            top: 2px;
+        }
+	}
+
+	.lockIconR.btnlnkR, .lockIconR.btnLnkR {
+		background-image: none;
+
+        &:after {
+            @include ups-iconFont("\e011");
+            padding-#{$default-float}: 5px;
+        }
+	}
+
+	.requireIcon {
+		background-position: -3px -2346px; // -2344px
+	}
+
+    .arrowIconR.btnlnkR, .arrowIconR.btnLnkR {
+        background-image: none;
+
+        &:after {
+            @include ups-iconFont("\f214");
+            padding-#{$default-float}: 5px;
+            top: 2px;
+        }
+    }
+
+    .arrowIcon.btnlnkL, .arrowMini.btnlnkL, .arrowmini {
+        background-image: none;
+        &:before {
+            @include ups-iconFont("\f214");
+            font-size: 1em;
+            top: 2px;
+            margin-#{$opposite-direction}: 3px;
+        }
+    }
+
+    .arrowBackIcon.btnlnkL {
+        background-image: none;
+        padding-#{$default-float}: 0;
+
+        &:before {
+            @include ups-iconFont("\f218");
+            padding-#{$opposite-direction}: 3px;
+        }
+    }
+
+    .collapseIcon.btnlnkL:not(input) {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\e210");
+            top: 2px;
+            padding-#{$opposite-direction}: 5px;
+        }
+    }
+
+    .closeIcon.btnlnkR {
+        background-image: none;
+
+        &:after {
+            @include ups-iconFont("\e315");
+            font-size: 20px;
+        }
+    }
+
+    .crossMini, .crossMini.btnlnkL {
+
+		&:not(#removeId) {
+			background-image: none;
+			padding-#{$default-float}: 18px;
+
+			&:before {
+				@include ups-iconFont("\e315");
+			}
+		}
+    }
+
+
+    .editMini.btnlnkL:not(input) {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\e014");
+            top: 2px;
+            #{$opposite-direction}: 5px;
+            // display: inline-block;
+        }
+    }
+
+    .expandIcon.btnlnkL:not(input) {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\e209");
+            top: 2px;
+            padding-#{$opposite-direction}: 5px;
+        }
+    }
+
+    .helpIconR, .helpIcon.btnlnkR, .helpicon.btnlnkR, .helpiconR.btnlnkR, .helpIconR.btnlnkR {
+        background-image: none;
+        padding-#{$opposite-direction}: 0;
+
+		img {
+			display: none;
+		}
+
+        &:after {
+          @include ups-iconFont("\e325");
+          line-height: 1.1;
+          margin-#{$default-float}: 3px;
+		  top: 2px;
+          // height: 14px;
+          // overflow: hidden;
+        }
+    }
+
+	// defect 269282
+//	img[src="/img/icn_help_blue.gif"] {
+//		width: 0px;
+//
+//		&:after {
+//			@include ups-iconFont("\e325");
+//			margin-#{$default-float}: 3px;
+//			display: inline-block;
+//		}
+//	}
+
+    .helpIcon.btnIconL {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\e325");
+            font-size: 1.1em;
+            line-height: 1.1em;
+            top: 3px;
+			margin-#{$opposite-direction}: 2px;
+        }
+    }
+
+    .linkForwardIconR {
+        background-image: none;
+
+        &:after {
+            @include ups-iconFont("\23f5");
+            top: 2px;
+        }
+
+    }
+
+    .linkBackIcon.btnlnkL {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\23f4");
+            top: 2px;
+        }
+    }
+
+    .newWindowIconR.btnlnkR, .newwindowicon.btnlnkR, .newwindowicon.btnLnkR, .newwindowIconR {
+        background-image: none;
+        padding-#{$opposite-direction}: 0;
+
+        &:after {
+            @include ups-iconFont("\22a0");
+            top: 2px;
+            font-size: 1em;
+            margin-#{$default-float}: 4px;
+        }
+
+    }
+
+    .popuppage-blue {
+        background-image: none;
+
+        &:after {
+            @include ups-iconFont("\22a0");
+            top: 2px;
+            font-size: 1em;
+            margin-#{$default-float}: 0px;
+        }
+    }
+
+    .minusMini.btnlnkL, .minusMini, .minusmini {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\e319");
+            top: 2px;
+            font-size: 1em;
+        }
+    }
+
+    .plusMini.btnlnkL, .btnlnkL.plusmini {
+
+		&:not(#getAnotherId) {
+			background-image: none;
+
+			&:before {
+				@include ups-iconFont("\e316");
+				top: 2px;
+				font-size: 1em;
+			}
+		}
+    }
+
+    .saveMini.btnlnkL {
+      	background: none;
+		padding: 0;
+
+		  &:before {
+			@include ups-iconFont("\29ea");
+			font-size: 16px;
+			top: 3px;
+			#{$opposite-direction}: 5px;
+		  }
+    }
+
+    .printIconR {
+      background: none;
+      bottom: 1px;
+      padding-#{$opposite-direction}: 0;
+      text-transform: none;
+
+      &:after {
+        @include ups-iconFont("\e016");
+        font-size: 1.1em;
+        margin-#{$default-float}: 5px;
+      }
+    }
+
+    .printIcon.btnIconL {
+        background: none;
+        text-transform: none;
+
+        &:before {
+            @include ups-iconFont("\e016");
+            margin-#{$default-float}: -18px;
+            position: absolute;
+            font-size: 1.1em;
+            line-height: 1.1em;
+            top: -1px;
+        }
+    }
+
+    .updatedIcon.btnlnkL {
+        background-image: none;
+
+        &:before {
+            @include ups-iconFont("\2714");
+
+        }
+    }
+// }
+
+
+input.collapseIcon.btnlnkL {
+    background-position: initial;
+    background-image: url(/assets/resources/images/legacyAppImages/collapseIcon.gif) !important;
+    background-repeat: no-repeat;
+}
+
+input.expandIcon.btnlnkL {
+    background-image: url(/assets/resources/images/legacyAppImages/expandIcon.gif) !important;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+}
+
+input[type=button].editMini.btnlnkL {
+    background-image: url(/assets/resources/images/legacyAppImages/editMini.gif) !important;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+}
+
+input.printmini.btnlnkR, input.printMini.btnlnkR {
+    background-image: url(/assets/resources/images/legacyAppImages/printIcon.gif) !important;
+    background-position: 97px 1px;
+    background-repeat: no-repeat;
+    padding-#{$opposite-direction}: 18px;
+}
+
+input.saveMini.btnlnkL {
+    background-image: url(/assets/resources/images/legacyAppImages/saveMini.gif) !important;
+    background-position: 0px 2px;
+    background-repeat: no-repeat;
+}
+
+input.checkMini.btnlnkL, input.checkmini.btnlnkL, a.checkmini.btnlnkL, a.checkMini.btnlnkL {
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/checkmini.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+    }
+    padding-#{$default-float}: 23px;
+
+}
+
+input.clearmini.btnlnkL, a.clearmini.btnlnkL, input.clearMini.btnlnkL, a.clearMini.btnlnkL {
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/crossmini.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+    }
+    padding-#{$default-float}: 18px;
+
+}
+
+input.crossmini, input.crossMini {
+    padding-#{$default-float}: 18px;
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/crossmini.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+    }
+}
+
+input.btnlnkL.minusmini, input.btnlnkL.minusMini {
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/minusIcon.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+        size: 14px 14px;
+    }
+    padding-#{$default-float}: 17px;
+}
+
+input.plusmini.btnlnkL, input.btnlnkL.plusMini {
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/plusIcon.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+        size: 14px 14px;
+    }
+    padding-#{$default-float}: 17px;
+}
+
+input.viewmini.btnlnkL, input.btnlnkL.viewMini {
+    background : {
+        image: url(/assets/resources/images/legacyAppImages/viewMini.gif) !important;
+        position: 1px 1px;
+        repeat: no-repeat;
+        size: 14px 14px;
+    }
+    padding-#{$default-float}: 17px;
+}
+
+input.closeIcon.btnlnkL, input.closeIcon.btnlnkR {
+    background-image: url(/assets/resources/images/legacyAppImages/crossmini.gif) !important;
+    background-position: 1px 1px;
+}
+
+img[src="/img/1.gif"].newWindowIcon.btnlnk {
+    background-image: url(/assets/resources/images/legacyAppImages/newWindow.gif);
+    background-position: 1px 1px;
+    background-size: 9px 9px;
+}
+
+img[src="/img/1.gif"].updatedIcon.btnlnk, img[src="/img/1.gif"].checkMini {
+    background-image: url(/assets/resources/images/legacyAppImages/checkmini.gif);
+    background-position: 1px 1px;
+    background-size: 9px 9px;
+}
+
+.backarrow-blue {
+    background-image: none;
+
+    a {
+        &:before {
+            @include ups-iconFont("\f218");
+            display: inline-block;
+            margin-#{$opposite-direction}: 4px;
+        }
+    }
+}
+
+.bgxlnrellinksbglg, .bgxlnrellinksfoot {
+    background-image: none;
+    background-color: $sky_s3;
+    span {
+        color: $white;
+        font-family: $sans-bd;
+        font-weight: normal;
+    }
+}
+
+}//end ids and main
+
+
+
+//list arrow inside ul
+ul.lstArrow {
+    li, li.back {
+        background-image: none;
+        padding-#{$default-float}: 0;
+
+        a {
+            &:before {
+                @include ups-iconFont("\f218");//14
+                display: inline-block;
+                top: 2px;
+                margin-#{$opposite-direction}: 3px;
+            }
+        }
+    }
+}
+
+
+//cta
+// //
+.button,.btnArwSingle, a.button, .btn:not(.btn-facebook), .btn_bak_a, .btn_a, .btnGroup1, .btnGroup2, .btnGroup3, .btnGroup4,
+    .btnGroup5, .btnGroup6, .btnGroup7, .btnGradient,
+    input.btnArw, input.btnBackArw, input.btn_a, input.btn {
+        // @include ups-cta($water_s3);
+   @include ups-legacy_cta($water_s3);
+   text-decoration: none !important;
+   font-family: $sans-bd !important;
+   font-weight: 400 !important;
+
+   &.arrowIconRight {
+    &:after {
+        display: none !important;
+    }
+   }
+}
+
+.btn.btn-facebook {
+    text-decoration: none;
+    color: $white;
+    padding: 12px 15px;
+
+    &:hover, &:focus {
+        background: #3d5d96;
+    }
+}
+
+.secLvl.step, .secBody.step {
+    background: $white;
+}
+
+.appLvlGradient {
+    .secLvl.gradient {
+        &.gradientGroup4 {
+            border-color: $grass_s3;
+        }
+    }
+}
+
+span.label {
+    font : {
+        family: $sans-bd;
+        weight: normal;
+    }
+    &.sel {
+        font : {
+            family: $sans;
+        }
+    }
+}
+
+//bullet
+
+
+
+
+// Widgets
+.ui-widget-content {
+    background: $white;
+}
+
+.ui-widget-overlay {
+	background: $white;
+	opacity: 0.5;
+}
+
+
+ // ------------------
+// modals
+.ui-dialog.ui-widget, .mod.modal.dialog.col12 { //, .ngdialog-content { //, .mod.modal.dialog.appLvl { //all modals should have these two
+    border: none !important;
+    background-color: $white;
+    border-radius: 0;
+    border-top: 8px solid $ups_gold !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    padding: 10px 10px;
+
+    .ui-dialog-titlebar.ui-widget-header {
+        display: none;//insert because jquery ui was handling this
+    }
+
+    // .ui-dialog-titlebar.ui-widget-header {
+        // background : {
+        //     color: $white;
+        //     image: none;
+        // }
+        // border: none;
+
+        // .ui-dialog-title {
+        //     font : {
+        //         size: 2em;
+        //         family: $serif;
+        //         weight: normal;
+        //     }
+        //     line-height: inherit;
+        //     margin-top: 0;
+        //     margin-bottom: 0;
+        //     padding-bottom: 0;
+        //     padding-#{$opposite-direction}: 25px;
+        //     color: $black_s4;
+
+        //     &:after {
+        //         display: none;
+        //     }
+        // }
+    // }
+
+    .iDiv {
+        font : {
+            family: $sans;
+            weight: normal;
+        }
+        border-color: $black_s1;
+    }
+
+    button { //for ctas
+        // background: $white none 1px 1px !important;
+        // border: none !important;
+        /* color: $white; commented out to prevent white close buttons on modals */
+
+        &:hover {
+            // background-color: $white !important;
+        }
+
+        span {
+            font-family: $sans-bd;
+            font-weight: normal;
+            padding: 0;
+        }
+
+        .ui-icon-closethick {
+            background : {
+                image: url(/assets/resources/images/legacyAppImages/crossmini.gif);
+                color: $white;
+                position: 1px 1px;
+            }
+            position: absolute;
+            top: 0;
+            #{$default-float}: 0;
+        }
+
+        &.ui-button-text-only {
+            @include ups-legacy_cta($water_s3);
+        }
+    }
+
+    &.modal {
+        bottom: auto !important;
+        z-index: 135;
+    }
+
+    .modal {
+        display: block;
+        position: relative;
+        background-color: $white;
+        border: none;
+
+        .secLvl {
+            .secHead {
+                background-color: $stone_s3;
+                padding: 12px 15px;
+            }
+        }
+
+		a.helpIconR {
+            background-image: none;
+            padding-#{$opposite-direction}: 0;
+
+            &:after {
+                @include ups-iconFont("\e325");
+                margin-#{$default-float}: 3px;
+                display: inline-block;
+            }
+        }
+
+        .dataTable:not(.sel) {
+            @include ups-dataTable;
+
+            td {
+                font-family: $sans;
+            }
+
+            th {
+                color: $black_s4;
+            }
+        }
+    }
+
+    .appLvl {
+        padding: 0;
+
+        &.appLvlGradientGroup1, &.appLvlGradientGroup2, &.appLvlGradientGroup3,
+        &.appLvlGradientGroup4, &.appLvlGradientGroup5, &.appLvlGradientGroup6, &.appLvlGradientGroup7,  &.modal {
+            .appHead {
+                @include ups-serifHeaderSmaller;
+            }
+        }
+
+        .mod .secLvl {
+            border: none;
+        }
+
+        .mod .secLvl {
+            &.group4 {
+                border-color: $black_s1;
+
+                .secBody {
+                    padding: 0 5px;
+                }
+            }
+        }
+    }
+
+
+
+    .modal .appHead {
+        padding: 0;
+        background-color: $white;
+
+        li {
+            position: relative;
+        }
+        ul {
+            margin-bottom: 0;
+            position: absolute;
+            #{$opposite-direction}: 0;
+        }
+
+
+        a.btnlnkR {
+            color: $black_s4;
+            padding-#{$opposite-direction}: 0;
+        }
+
+        input.helpIconR {
+            background : {
+                position: 1px 1px;
+                image: url(/assets/resources/images/legacyAppImages/helpIcon.gif);
+            }
+        }
+
+        input.closeIcon {
+            background : {
+                position: 1px 1px !important; /* added important to override cs_master since a different image is used */
+                image: url(/assets/resources/images/legacyAppImages/crossmini.gif);
+            }
+
+            height: 20px;
+            width: 20px; /* added width since a different image is used */
+        }
+
+
+        h2 {
+            font-size: 2em;
+            line-height: inherit;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-#{$opposite-direction}: 25px;
+            color: $black_s4;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    //Shipper initiated intercept styling
+    table.tab {
+        background-color: $white;
+        border: 1px solid $black_s1;
+
+        .modHead {
+            h3 {
+                color: $black_s4;
+                font-weight: normal;
+            }
+
+        }
+
+        input.modTxtMedium {
+            @include ups-textbox;
+        }
+
+        dt label {
+            color: $black_s4;
+            font : {
+                family: $sans-bd;
+                weight: normal;
+            }
+
+            &.sel {
+                font : {
+                    family: $sans;
+                    weight: normal;
+                }
+            }
+        }
+
+        dd select {
+            @include ups-selectDD;
+        }
+    }
+    table.mod {
+        background-color: $white;
+    }
+
+    .mod {
+        table, tr, th, td, div, h2, h4 {
+            color: $black_s4;
+        }
+
+        .sec-pad {
+            font-family: $sans;
+        }
+
+        .stepModFlex {
+            border: 1px solid $black_s1;
+            margin-bottom: 10px;
+
+            .stepModHead {
+                background-color: $stone_s3;
+                padding: 12px 15px;
+
+
+                h3 {
+                    font-family: $sans-bd;
+                    font-weight: normal;
+                    color: $black_s4;
+                    text-transform: uppercase;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+
+        }
+
+        input[type="radio"] {
+            @include ups-radio;
+        }
+
+        input[type="checkbox"] {
+            @include ups-checkbox;
+        }
+
+        input[type="text"] {
+            @include ups-textbox;
+        }
+
+        // PANELS
+        // ----------------------------------
+        .modMsg {
+            border-radius: 0px;
+            margin-bottom: $margin_4;
+            border-top-width: $head_line;
+            border-color: $black_s1;
+            padding: 0;
+
+            > h3 {
+                padding: $margin_4;
+                border-radius: 0px;
+                margin-top: -$head_line;
+                color: $white;
+                background-color: $sky_s3;
+                border-color: $sky_s3;
+                border-bottom-#{$default-float}-radius: 0;
+                border-bottom-#{$opposite-direction}-radius: 0;
+            }
+
+            > .modMsgBase {
+                padding: 10px;
+                border: 0;
+                border-radius: 0px;
+                background-color: $stone_40;
+            }
+
+            &.blu {
+                border-color: $sky_s3;
+
+                h3 {
+                    font-weight: normal;
+                }
+            }
+        }
+
+
+        th {
+            background-color: $white;
+
+            .head-colFull {
+                h2 {
+                     @include ups-serifHeader;
+                 }
+            }
+        }
+
+        td.mod-line {
+            background-color: $white;
+        }
+
+        .mod-clr {
+            background-color: $white;
+
+            .pi-h3 {
+                font: 16.38px $sans-bd;
+                font-weight: normal;
+                color: $black_s4;
+                text-decoration: none;
+            }
+
+            table.modline {
+                background-color: $white;
+            }
+        }
+
+        .stepModContent {
+            h4 {
+                font-family: $sans-bd;
+                font-weight: normal;
+            }
+        }
+
+        .mod-bar, .btn-bar {
+            background-color: $white;
+        }
+    }
+
+
+.mod-clr {
+	background: $white;
+
+	.mod-head-clr {
+		background: blue;
+		color: $white;
+	}
+
+	.btn-bar {
+		padding: 5px;
+	}
+}
+
+
+
+    .appBody {
+        padding: 0;
+        font-family: $sans;
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            @include ups-textbox;
+        }
+
+        p {
+            padding: 0;
+            margin-bottom: 5px;
+        }
+
+         span.label {
+            font : {
+                family: $sans-bd;
+                weight: normal;
+            }
+
+            &.sel {
+                font : {
+                    family: $sans;
+                    weight: normal;
+                }
+            }
+        }
+
+
+         label {
+            font-family: $sans-bd;
+            color: $black_s4;
+            font-weight: normal;
+            display: inherit;
+
+            &.sel {
+                padding-top: 3px;
+                font-family: $sans;
+                font-weight: normal;
+            }
+        }
+
+        select {
+            @include ups-selectDD;
+        }
+
+        dl {
+            margin-bottom: 0;
+        }
+
+        input:disabled,
+        textarea:disabled,
+        select:disabled {
+            @include ups-legacy_inputDisabled;
+        }
+
+        input[type=checkbox] {
+            @include ups-checkbox;
+        }
+
+        input[type=radio] {
+            @include ups-radio;
+            line-height: 16px;
+        }
+
+        .secLvl {
+//            background : {
+//                color: $white;
+//            }
+
+            .secBody {
+                padding: 0 10px;
+            }
+
+            &.step {
+                .secBody {
+                    padding: 0 10px;
+                }
+            }
+
+            &.message {
+                @include ups-legacy_colorHeader($sky_s3);
+				color: $white !important;
+                .secBody {
+                    padding-top: 10px;
+                }
+            }
+
+            &.group4 {
+                border-color: $black_s1;
+            }
+        }
+
+        table {
+            margin-bottom: 0;
+        }
+    }
+
+    .appFooter {
+        background: $white;
+
+        .btnBar {
+            background: $white;
+        }
+
+        input.btn, input.btnArw {
+            @include ups-legacy_cta($water_s3);
+            margin-#{$default-float}: 5px;
+        }
+    }
+
+    .ui-dialog-buttonpane {
+        background-color: $white;
+        border: none;
+    }
+
+    a, a span {
+        color: $black_s4;
+        font-family: $sans-bd;
+        font-weight: normal;
+        text-decoration: underline;
+
+        &:hover, &:focus {
+            color: $black_s1;
+        }
+    }
+
+    .secLvl {
+        margin: 10px 0;
+
+        .secHead {
+            margin: 0 0 10px 0;
+            border: 0;
+            padding: 12px 15px;
+
+            h1, h2, h3, h4 {
+                margin: 0;
+                font-family: $sans-bd;
+                font-size: 1.17em;
+                color: $black_s4;
+                float: none;
+
+            }
+
+            p {
+                display: inline;
+            }
+
+            br {
+                display: none;
+            }
+
+            input[type="button"] {
+                margin: 0;
+                padding: 0;
+            }
+
+            a {
+                 &:hover, &:focus {
+                    color: darken($black_s4, 5%);
+                }
+            }
+        }
+
+        .seccol8 {
+            .secHead {
+                background-color: $white;
+                color: $black_s4;
+                padding: 0;
+                margin-bottom: 5px;
+
+                label {
+                    font-family: $sans-bd;
+                }
+                a {
+                    &:hover, &:focus {
+                        color: darken($black_s4, 5%);
+                    }
+                }
+            }
+            .secBody {
+                padding: 0;
+            }
+        }
+
+
+    }
+
+    p, .secBody {
+        font-family: $sans;
+        margin-bottom: 0;
+
+        dd, li, td {
+            font-family: $sans;
+        }
+
+        strong, b {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+        a.helpIconR {
+            background-image: none;
+            padding-#{$opposite-direction}: 0;
+
+            &:after {
+                @include ups-iconFont("\e325");
+                margin-#{$default-float}: 3px;
+                display: inline-block;
+            }
+        }
+    }
+
+    dd {
+        font-family: $sans;
+    }
+    .secBody {
+        padding: 0;
+    }
+
+}//close modals and widgets
+
+
+// Calendar - Datepicker popup
+#ui-datepicker-div {
+    background-color: $white;
+    border: 1px solid $black_s1;
+    padding: 0;
+	z-index: 50 !important;
+
+    a, div, span {
+        font-family: $sans-bd;
+        font-weight: normal;
+        color: $black_s4;
+    }
+
+    .ui-datepicker-group-first {
+        .ui-datepicker-calendar {
+            margin-#{$default-float}: 0;
+        }
+    }
+
+    .ui-datepicker-group-last {
+        .ui-datepicker-calendar {
+            margin-#{$opposite-direction}: 0;
+        }
+    }
+
+    .ui-datepicker-header {
+        background-color: $ups-gold;
+        background-image: none;
+        border: none;
+        border-bottom-#{$opposite-direction}-radius: 0;
+        border-bottom-#{$default-float}-radius: 0;
+
+        span.ui-icon {
+            color: $black_s4;
+            background-image: none;
+            height: 20px;
+            text-indent: 0px !important; //initial;
+            width: 15px;
+
+
+            &.ui-icon-circle-triangle-w:before {
+                @include ups-iconFont("\e211");
+                font-size: 18px;
+            }
+
+            &.ui-icon-circle-triangle-e:before {
+                @include ups-iconFont("\e209");
+                font-size: 18px;
+            }
+        }
+        .ui-datepicker-title {
+            padding-top: 3px;
+        }
+        .ui-datepicker-prev, .ui-datepicker-next {
+            width: 20px;
+            position: absolute;
+        }
+    }
+
+    .ui-datepicker-calendar {
+        background-color: $ups_stone;
+
+        th {
+            background-color: $gold_60;
+
+            span {
+                color: $black_s4;
+            }
+        }
+
+        .ui-state-default {
+            border: 1px solid $stone_60;
+            background-color: $white;
+            margin: 0;
+        }
+
+        .ui-datepicker-week-end {
+            .ui-state-default {
+                background-color: $stone_40;
+                border: 1px solid $stone_60;
+            }
+        }
+    }
+
+    .ui-datepicker-buttonpane {
+        button.ui-state-default {
+            @include ups-ctaLink;
+        }
+    }
+}
+
+
+
+.subhead {
+  font-family: $serif;
+  padding: 10px 0;
+
+  h1, h2 {
+    margin: 0;
+    font-size: 28px;
+	  color: $ups_gold !important;
+  }
+
+  .subtask {
+    font-family: $sans;
+    color: $white;
+    button, a {
+        font-family: $sans-bd;
+        font-weight: normal;
+        margin-top: 4px;
+        color: $white !important;
+        text-decoration: underline;
+
+        &:hover, &:focus {
+            color: $white !important;
+        }
+    }
+  }
+
+  .back {
+    a {
+      background: none;
+      color: transparent !important;
+      padding-#{$default-float}: 20px;
+      text-indent: 0;
+      margin-bottom: 0;
+
+      &:before {
+        color: $white;
+        display: inline-block;
+        @include ups-iconFont("\e201");
+        font-size: 1.5em;
+        margin-top: 14px;
+      }
+    }
+  }
+
+  .country-selector {
+    .custom-select {
+        &:before {
+          background-image: none;
+          // background-color: $water_s3;
+          color: $white;
+          @include ups-iconFont("\e210");
+          position: absolute;
+          font-size: 1em;
+          line-height: 40px;
+          padding-#{$default-float}: 30px;
+          padding-#{$opposite-direction}: 5px;
+          top: 6px;
+        }
+    }
+  }
+}
+
+//////////////// Mobile Pages /////////////////////
+.content {
+    //link styling mobile
+    a,.anchor, .btnlnkR, .btnlnkL, a.btnlnkL, button.btnlnkL, input.btnlnkL, input.btnlnk, .btnLnkL, button.btnLnkL, .sec-head a {
+        color: $black_s4;
+        text-decoration: underline;
+        position: relative;
+        font-family: $sans-bd;
+        font-weight: normal;
+        background-image: none;
+
+        &:before, &:after {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            &:hover, &:focus {
+                color: $black_s1;
+            }
+            &.fc-state-active {
+                text-decoration: none;
+            }
+
+            //spans inside anchors
+            span {
+                color: $black_s4;
+                text-decoration: underline;
+                font-family: $sans-bd;
+                font-weight: normal;
+
+                &:hover, &:focus {
+                    color: $black_s1;
+                }
+            }
+    }
+
+    >* {
+        margin: 0 10px;
+        padding: 20px 0;
+    }
+
+    h2.grey-header {
+        background: $stone_s3;
+        padding: 20px 15px;
+        margin: 0;
+        text-transform: uppercase;
+        border: 0;
+        font : {
+            family: $sans-bd;
+            weight: normal;
+            size: 1.17em;
+        }
+    }
+
+    .error-content {
+        margin: 0;
+        padding: 20px 15px;
+        background-color: $white;
+        border-color: $red;
+    }
+
+    label, dl dt {
+        font : {
+            family: $sans-bd;
+            weight: normal;
+        }
+    }
+
+    .input-content {
+        p {
+            font-family: $sans;
+        }
+    }
+
+    section {
+      margin: 0;
+    }
+
+    section>* {
+        margin: 0 10px;
+        padding: 20px 0;
+    }
+
+    .no-pad-vert {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .full-width {
+        margin-#{$default-float}: 0;
+        margin-#{$opposite-direction}: 0;
+        padding-#{$default-float}: 0;
+        padding-#{$opposite-direction}: 0;
+
+		&.pad-horiz {
+			padding-#{$default-float}: 10px;
+       		padding-#{$opposite-direction}: 10px;
+		}
+    }
+
+    .pad-horiz {
+        padding-#{$default-float}: 10px;
+        padding-#{$opposite-direction}: 10px;
+    }
+
+    button.btn.btn-aqua, a.btn.btn-aqua {
+      @include ups-legacy_cta($water_s3);
+      color: $white !important;
+      text-decoration: none !important;
+      line-height: 35px;
+    }
+
+    .btn-text-combo {
+        width: auto;
+    }
+
+    input[type=text], input[type=search], input[type=password] {
+        @include ups-textbox;
+    }
+
+    input[type=radio] {
+        @include ups-radio;
+    }
+
+    a  {
+      color: $black_s4;
+      text-decoration: underline;
+      font : {
+        family: $sans-bd;
+        weight: normal;
+      }
+    }
+
+    a.help {
+        &:before {
+          position: absolute;
+          top: 0;
+        }
+    }
+
+    a.btn-facebook {
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: $white !important;
+    }
+
+    strong {
+        background: $white;
+      }
+
+    ul {
+        list-style-type: none;
+    }
+
+    strong {
+        font: {
+            family: $sans-bd;
+            weight: normal;
+        }
+    }
+
+    label.required:before {
+        display: none;
+        content: '';
+    }
+
+    label.required:after {
+        content: ' *';
+    }
+
+    input[type=checkbox] {
+        @include ups-checkbox;
+        #{$default-float}: 0;
+
+        &:before {
+            #{$default-float}: 0;
+        }
+    }
+
+    .checkbox {
+        label {
+            font-family: $sans;
+        }
+    }
+
+    .list-group-selectors .list-group-item a {
+        background-image: none;
+        &:after {
+            @include ups-iconFont("\e203");
+            display: inline-block;
+            position: absolute;
+            #{$opposite-direction}: 26px;
+            top: 22px;
+        }
+
+        &:hover, &:focus {
+            color: $black_s4;
+            div {
+                color: $black_s4;
+            }
+            &:after {
+                color: $black_s4;
+            }
+        }
+
+        div {
+            padding-#{$default-float}: 0;
+
+            &:hover, &:focus {
+                color: $black_s4;
+            }
+
+        }
+    }
+
+    a.help {
+        background-image: none;
+        text-indent: 0;
+        width: auto;
+        visibility: hidden;
+
+        &:before {
+            @include ups-iconFont("\e325");
+            visibility: visible;
+            display: inline-block;
+        }
+    }
+
+    .btn-text-combo .text a {
+      text-decoration: underline;
+    }
+
+    select, .RIF_Address .RIF_State>span select, .RIF_Address>div>.RIF_Country>span select {
+        @include ups-selectDD;
+        width: 100%;
+    }
+
+    .custom-select, .RIF_Address .RIF_State>span, .RIF_Address>div>.RIF_Country>span {
+        border: none;
+        width: auto;
+        &:before {
+            padding: 0;
+        }
+
+    }
+
+    .accordion {
+      .collapse {
+        padding-#{$default-float}: 30px;
+        padding-#{$opposite-direction}: 30px;
+      }
+
+      .custom-select {
+        background-image: none;
+
+        &:before {
+          background-image: none;
+          background-color: $water_s3;
+          color: $white;
+          @include ups-iconFont("\e210");
+          font-size: 1em;
+          line-height: 40px;
+          padding-#{$default-float}: 15px;
+          padding-#{$opposite-direction}: 15px;
+        }
+      }
+    }
+
+     @media (max-width: $screen-xs-max) {
+         .btn {
+            width: auto;
+         }
+     }
+}
+
+@media (max-width: 1200px) {
+	width: 200px;
+	max-width: 200px;
+	float: $opposite-direction;
+
+	.ups-accordion_item, .ups-accordion_toggle {
+		word-wrap: break-word;
+		max-width: 200px;
+	}
+}
+
+@media #{$media-medium} {
+	width: 230px;
+	max-width: 230px;
+	float: $opposite-direction;
+
+	.ups-accordion_item, .ups-accordion_toggle {
+		word-wrap: break-word;
+		max-width: 230px;
+	}
+}
+
+@-moz-document url-prefix() {
+	#main {
+		select:not([multiple]) {
+			text-align: left;
+			option {
+				padding-#{$default-float}: 15px;
+			}
+		}
+	}
+	.RIF_Address .RIF_Country :-moz-any(span)::before,
+	.RIF_Address .RIF_State :-moz-any(span)::before,
+	.RIF_Address > div :-moz-any(span)::before {
+		background-color: transparent;
+	}
+}
+
+@media screen\9 {
+	#main, .ui-dialog.ui-widget {
+		select:not([multiple]) {
+			background-image: none !important;
+			min-width: 70px;
+			padding-#{$opposite-direction}: 5px;
+		}
+	}
+
+    .btnlnkR:after {
+        overflow:!important;
+    }
+
+	#ups-fw_legacy_app_wrap, #ups-rr_legacy_app_wrap {
+		a:not(.NavBar_button):not(.NavBar_compass):not(.locationPin), .anchor,
+		.btnlnkR, .btnlnkL, a.btnlnkL, button.btnlnkL,
+		input.btnlnkL, input.btnlnk, .btnLnkL, button.btnLnkL, .sec-head a {
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:before {
+				text-decoration: underline;
+			}
+
+			&:before {
+				text-decoration: none;
+			}
+
+			&:hover:before {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+@media screen\0 {
+	#main, .ui-dialog.ui-widget {
+		select:not([multiple]) {
+			background-image: none !important;
+			min-width: 70px;
+			padding-#{$opposite-direction}: 5px;
+		}
+	}
+    .btnlnkR:after {
+        overflow:hidden!important;
+    }
+
+	#ups-fw_legacy_app_wrap, #ups-rr_legacy_app_wrap {
+		a:not(.NavBar_button):not(.NavBar_compass):not(.locationPin), .anchor,
+		.btnlnkR, .btnlnkL, a.btnlnkL, button.btnlnkL,
+		input.btnlnkL, input.btnlnk, .btnLnkL, button.btnLnkL, .sec-head a {
+			&:hover {
+				text-decoration: underline;
+			}
+
+			&:before {
+				text-decoration: underline;
+			}
+
+			&:before {
+				text-decoration: none;
+			}
+
+			&:hover:before {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+body.ups-printPreview {
+   	#ups-navContainer, #ups-footerWrap { //, [class^="ups-"] {
+		display: none;
+	}
+}
+#main button:focus, #main input:focus, #main textarea:focus, #main select[multiple]:focus {
+    outline:1px auto #ffb500!important;
+}
+
+ #main a:focus {
+    outline:none!important;
+ }
+
+
+@media(min-width:840px){
+    #main form[name="EnrollRequestForm"] .container {
+		width:774px!important;
+	}
+}
+
+
+
+
+// FIND A BETTER PLACE FOR THIS ==== JOHN COOMBS //
+.secBody .btn {
+    margin-top:5px;
+}
+
+option {
+    letter-spacing:1px;
+}
+body.ups-appPage {
+    background:#fff!important;
+}
+
+
+// Legacy Tooltip Styling
+.ups-legacy_tooltip {
+    z-index: 2001;
+    border: 1px solid $ups_brown;
+    background-color: $white;
+    padding: 0;
+    margin: 0;
+
+    &.ups-show_tooltip {
+        opacity:1;
+    }
+
+    .appHead {margin-bottom:0px;padding-bottom:5px;padding-left:10px;padding-right:10px;padding-top:5px;}
+    .appLvl{border:none}
+    h3 {margin-top:0}
+    .tipBottom,.tipTop,.tipLeft,.tipRight{margin:0;padding:0;border:none;position:absolute;background-image:url(/img/hov_glo_arrow_cmp_brn_wht.gif);background-repeat:no-repeat;overflow:hidden;z-index:1010}
+
+    .tipDivBottom{position:absolute;top:100%;display:none}
+    .tipBottom{left:10px;top:-1px;width:21px;height:11px;background-position:0 0}
+    .tipDivTop{position:absolute;bottom:100%;display:none}
+    .tipTop{left:10px;top:-10px;width:21px;height:11px;background-position:0 -32px}
+    .tipDivLeft{position:absolute;right:100%;display:none}
+    .tipLeft{right:0;top:10px;width:11px;height:21px;background-position:-10px -11px}
+    .tipDivRight{position:absolute;left:100%;display:none;}
+    .tipRight{left:0;top:10px;width:11px;height:21px;background-position:0 -11px}
+
+    //.tipDiv {
+    //    div {
+    //        background-color:$white;
+    //    }
+    //}
+    //
+    //.tooltipBody {
+    //    background-color:$white;
+    //}
+}
+#countryRegsForm .modContent .colL , #countryRegsForm .modContent .colR
+{width:50%}
+
+#countryRegsForm .modContent td dl {clear:both}
+td.btn-bar div.btn-col4 {
+    text-align:$default-float;
+}
+#origin_country,#destination_country{width:90%}
+
+#main {
+	// Defect 316981 |  To be applicable to all legacy apps on iOS devices.
+	input[type=checkbox]:before {
+		left: -2px;
+        position:absolute;
+	}
+	input[type=checkbox]:checked:after, input[type=checkbox]:focus:checked:after {
+		left: 6px;
+	}
+
+	// Defect 316338 | To hide autofill safari icon in input field
+	input::-webkit-contacts-auto-fill-button {
+	  visibility: hidden;
+	  display: none !important;
+	  pointer-events: none;
+	  position: absolute;
+	  right: 0;
+	}
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+	border-color: $stone_s3 !important;
+	background-color: $stone_40 !important;
+	box-shadow: none !important;
+	cursor: not-allowed !important;
+}
+
+
+.fldErr {
+    color: $red !important;
+    a, a:hover {
+        color: $red !important;
+    }
+}
+
+//campus login styling
+
+
+#LoginScreen input[type=checkbox] {margin-top:15px}
+#LoginScreen img[src="/img/xln_333366.gif"],
+#LoginScreen img[src="/img/xln_996633.gif"]
+{
+    display:none
+}
+#LoginScreen img[src="/img/icn_help_blue.gif"] {margin-left: 8px;}
+.content .alert.alert-info, span.redError{color:#c91a13!important}
+form[name=inputForm] #telephone{border-radius:0}
+input[name=Ext]{width:80px}
+
+@media print {
+  body {
+    width:100%!important;
+    max-width:100%!important;
+    min-width:100%!important;
+  }
+  style {
+    display:none;
+    height:0;
+  }
+}
+.iw_columns.col-lg-8 .ups-secondaryNav {
+    display: none;
+}
+select[name=StateProvince]{
+width:166px
+}
+
+#honesty_dialog #honesty_modalClose {width: 20px;
+background-position: 0 !important;}
+
+#honesty_dialog .appBody .modulepad {    float: left;
+    width: 90%;
+    padding: 0;}
+#ups-rr_legacy_app_wrap  #main label.error a {color:#c91a13!important;}
+
+form[ action = "/sii/processCancelSubmit" ] div.container {
+    width: auto;
+}
+
+/* TFS405665  add padding-right: 32px */
+.ups-form_wrap .ups-input_wrapper.ups-indent_with_input {
+    padding-right: 32px;
+}
+
+/* TFS430688 */
+#shipFromDisplayAddress2, #shipFromDisplayAddress3, #shipToDisplayAddress2, #shipToDisplayAddress3 {
+    & span {
+        display: block;
+    }
+}
+
+/* TFS414585 */
+#ups-fw_legacy_app_wrap #main .ups-application_wrapper .ups-icons-error a {
+    color: #c91a13 !important;
+    font-weight: bold;
+    text-decoration: none !important;
+    &:hover {
+        text-decoration: underline !important;
+    }
+}
+
+.ups-application_wrapper .ups-invalid_color {
+    color: #c91a13 !important;
+}
+
+.ups-application_wrapper .ups-invalid_color-list {
+    color: #c91a13 !important;
+    padding-left: 40px;
+    position: relative;
+}
+
+.ups-application_wrapper .ng-invalid.ng-dirty, .ups-application_wrapper .ng-invalid.ng-dirty.ng-touched, .ups-application_wrapper .ups-bodError {
+    border-color: #c91a13 !important;
+    outline-color: #c91a13 !important;
+}
+
+.ups-application_wrapper .ups-icons-error li {
+    list-style-type: disc !important;
+}

@@ -1,0 +1,172 @@
+// ----------------------------------------------------
+// W17 Zip Look-up
+// ----------------------------------------------------
+.ups-zip_lookUp {
+    .ups-widget_panel {
+        .ups-zip_lookUp_zipcodes{
+            border-bottom: 1px solid $stone_s3;
+            h2{
+                font-family: $sans;
+                font-size: 30px;
+                margin: 0;
+            }
+            h2, a {
+                margin-bottom: $margin_3;
+            }
+
+            a:hover {
+                color: $black_s1;
+            }
+            .ups-zip_lookUp_zip {
+                margin-bottom: $margin_4;
+                span {
+                    display: inline-block;
+                    padding: 0 5px;
+                    font-family: $sans-bd;
+                    color: $black_s3;
+                    cursor: pointer;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                    &:first-child {
+                        font-size: 13px;
+                        text-decoration: underline;
+                    }
+                    &:last-child {
+                        margin-#{$default-float}:3px;
+                    }
+
+                    &:hover {
+                        color: $black_s1;
+                    }
+                }
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: none;
+                    padding: 10px 15px;
+                    li {
+                        font-size: 13px;
+                        margin:5px 0;
+                    }
+                    &.ups-active {
+                        display: block;
+                    }
+                }
+            }
+
+            button {
+                margin-bottom: $grid-gutter-width;
+            }
+        }
+        .ups-zip_lookUp_search{
+            p {
+                font-family: $sans-bd;
+                margin-bottom: $margin_5;
+                margin-top: $margin_3;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+            form {
+                position: relative;
+                margin-bottom: 40px;
+                .ups-zip_lookUp_input {
+                    display: block;
+                    height: 45px;
+                    width: 100%;
+                    padding: 0 10px;
+                    padding-#{$opposite-direction}: 38px;
+                    line-height: 28px;
+                    font-size: 0.9em;
+                    font-weight: 400;
+                    float: none;
+                    max-width: none;
+                    margin: 0;
+                    color: $ups_brown;
+                }
+                .ups-zip_lookUp_btn {
+                    display: block;
+                    line-height: 16px;
+                    position: absolute;
+                    overflow: hidden;
+                    height: 0;
+                    top: 1px;
+                    #{$opposite-direction}: 1px;
+                    width: 43px;
+                    padding: 43px 0 0;
+                    border: none;
+					@include border_radius(0);
+					
+                    &:before {
+                        @include ups-icons;
+                        content: "\e668";
+                        position: absolute;
+                        display: block;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        text-align: center;
+                        line-height: 43px;
+                    }
+                }
+            }
+            .ups-zip_lookUp_alert,.ups-zip_lookUp_message {
+                display: none;
+                position: relative;
+                background: $stone_40;
+                padding: 20px;
+                padding-#{$default-float}: 45px;
+                margin-bottom: 40px;
+                .ups-zip_lookUp_alertTitle{
+                    font-family: $sans-bd;
+                    margin-bottom: 20px;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                    &:before {
+                        font-size: 20px;
+                        color: $red;
+                        position: absolute;
+                        #{$default-float}: 15px;
+                        margin-top: -5px;
+                    }
+                }
+                p{
+                    font-family: $sans;
+                    font-size: 13px;
+                    margin: 0;
+                }
+            }
+            .ups-zip_lookUp_message {
+                padding: 20px;
+            }
+        }
+        a {
+            display: inline-block;
+            color: $black_s3;
+            margin-bottom: $margin_3;
+            text-decoration: underline;
+            font-family: $sans-bd;
+            font-size: 13px;
+
+            &:hover {
+                color: $black_s1;
+            }
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+    }
+}
+

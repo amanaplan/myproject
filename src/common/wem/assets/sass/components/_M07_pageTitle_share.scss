@@ -1,0 +1,272 @@
+ // ----------------------------------------------------
+ // M07 Page Title and Share & M14 Breadcrumb
+ // ----------------------------------------------------
+
+$pageTitlePad: 5px;
+
+#ups-main{
+	&:focus{
+          /* overflow:hidden; */
+          outline:2px solid $ups_gold;
+        }
+}
+
+.ups-breadcrumb {
+    font-size: 14px;
+    color: $black_s3;
+    padding-top: $pageTitlePad;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    .breadcrumb {
+        float: $default-float;
+        margin-top: $grid-gutter-width / 2;
+        margin-#{$opposite-direction}: 5px;
+        display:block;
+    }
+    .ups-link {
+        font-weight: normal;
+        font-family: $sans;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        &:hover {
+            color: $black_s1;
+        }
+
+    }
+   @media only screen and (max-width:$screen-xs-max) {
+        display: none;
+    }
+}
+
+.ups-page-title {
+    color: $ups_brown;
+    padding-top: $margin_4;
+    padding-bottom: $margin_3;
+    position: relative;
+    h1 {
+        margin: 0;
+        font-size: 2.286em;
+        margin-#{$opposite-direction}: $grid-gutter-width;
+        padding-bottom: $pageTitlePad;
+
+        &:focus{
+          outline:2px solid $ups_gold;
+        }
+
+    }
+    .page-title_table {
+        display: table;
+        width: 100%;
+    }
+    .page-title_cell {
+        display: table-cell;
+        vertical-align: top;
+    }
+    @media #{$media-small} {
+
+        .page-title_cell {
+            display: block;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+    }
+}
+
+@mixin ups_page_share_sm {
+    display: block;
+    position: relative;
+    margin-top: $grid-gutter-width / 2;
+    margin-bottom: $grid-gutter-width / 2;
+    float: $opposite-direction;
+
+    .share_list {
+        margin-top: 5px;
+        padding: 0;
+        padding-left: 15px;
+    }
+
+    .share-btn-container {
+        margin-top: 5px;
+    }
+
+    .share_close {
+        padding-top: 0;
+    }
+
+}
+
+$pageShareBtn: 51px;
+.ups-page-share {
+    height: 44px;
+    overflow: visible;
+    display: inline-block;
+    white-space: nowrap;
+    @include transition-property(all);
+    @include transition-duration($main-transition-speed);
+    text-align: center;
+
+    button {
+        @include unbutton;
+        line-height: 26px;
+        margin-bottom: 2px;
+        margin-left: 8px;
+        margin-top: 3px;
+        padding-left: 0;
+        position: relative;
+        z-index: 0;
+
+        &:active, &:focus {
+            z-index: $zQtr;
+        }
+    }
+
+    a {
+        width: 34px;
+        height: 34px;
+        display: table-cell;
+        padding: 0 15px;
+        position: relative;
+
+        &[class^="ups-share_social-"],
+        &[class*=" ups-share_social-"] {
+            position: relative;
+
+            &:before {
+                content: '';
+                background-image: image-url('../images/social_spritesheet.png');
+                border-radius: 0;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                #{$default-float}: 7px;
+                top: 7px;
+                background-size: 40px 40px;
+
+                @media #{$highres} {
+                    background-image: image-url('../images/social_spritesheet_retina.png');
+                }
+            }
+        }
+
+        &[class^="ups-icon-"],
+        &[class*=" ups-icon-"] {
+            position: relative;
+            color: $black_s3;
+
+            &:before {
+                font-size: 18px;
+                position: absolute;
+                margin-top: -1px;
+            }
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .ups-icon-email{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            #{$default-float}: 5px;
+            top: 8px;
+            font-size: 19px;
+            color: $black_s3;
+        }
+
+        &.ups-share_social-facebook:before { background-position: 0 0; }
+        &.ups-share_social-twitter:before  { background-position: 0 -20px; }
+        &.ups-share_social-linkedin:before { background-position: 20px 0px; }
+        &.ups-share_social-youtube:before  { background-position: 20px -20px; }
+
+
+
+    }
+
+    .share-container {
+        width: auto;
+        float:$opposite-direction;
+        // transition: $main-transition-speed all;
+    }
+
+    .share-btn-container {
+        // float: $default-float;
+        width: auto;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .share_open {
+        width: auto;
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        text-align: $default-float;
+        font-size: 14px;
+        margin-right: 4px;
+        margin-top: 3px;
+        padding-#{$opposite-direction}: 23px;
+
+        .icon:before {
+            font-size: 20px;
+            color: $water_s3;
+            line-height: 30px;
+            position: absolute;
+            #{$opposite-direction}: 0;
+        }
+
+    }
+
+    .share_list {
+        display: inline-block;
+		ul{
+			list-style-type: none;
+			padding: 0;
+			&.list {
+            	display: inline-block;
+        	}
+        	li{
+        		display: inline-block;
+        	}
+        }
+        
+    }
+
+    .share_close {
+        display: inline-block;
+        height: 32px;
+        vertical-align: top;
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 19px;
+        margin-top:5px;
+    }
+
+
+    @media #{$media-small} {
+        @include ups_page_share_sm;
+    }
+}
+
+/*
+Page Title Styles from PPC moved to global
+*/
+
+.ups-page-title h1:focus {
+    outline: none;
+}
+
+.ups-page-title h1 > span {
+    transition: border-bottom .7s;
+    border-bottom: 3px solid transparent;
+}
+
+.ups-page-title h1:focus > span {
+    border-bottom: 3px solid $ups-gold;
+}
+
+/*
+End move from PPC page title styles
+*/

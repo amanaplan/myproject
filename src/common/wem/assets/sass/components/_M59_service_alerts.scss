@@ -1,0 +1,233 @@
+// ----------------------------------------------------
+// M59 SERVICE ALERTS
+// ----------------------------------------------------
+
+.ups-service_alerts{
+	.ups-wrap_inner{
+
+	}
+	.ups-header_panel{
+        position:relative;
+		&.ups-active{
+			display:none;
+		    @media #{$media-small} {
+		    	display:block;
+		    	margin-bottom:0;
+		    	float:none;
+			}
+		}
+
+		background: $ups_gold;
+		width:100%;
+		//margin-bottom: 20px;
+		float:left;
+		h2{
+			margin: 0 auto ;
+			padding:  14px 0 10px;
+			color: $black;
+			text-align : center;
+            width:100%;
+            @media #{$media-small} {
+                width: 44%;
+            }
+		}
+		button{
+			position: absolute;
+      top:0;
+		  z-index: 1;
+		  padding: 0px 0 0;
+			height: 48px;
+			min-width:70px;
+		  border: none;
+		  background: none;
+
+			.icon{
+				//@include ups-icons;
+				position: absolute;
+				display: block;
+				height: 48px;
+				width: 100%;
+				left: 0;
+        top:4px;
+				text-align: center;
+				line-height: 48px;
+				color: $black;
+				font-size: 20px;
+			}
+
+			&.slick-prev{
+                #{$default-float}: 20px;
+                .icon{
+                    #{$default-float}:-28px;
+
+                    @if $text-direction == rtl {
+                        &:before {
+                            content:'\e629';
+                        }
+                    }
+				}
+			}
+			&.slick-next{
+                #{$opposite-direction}: 20px;
+                .icon{
+                    #{$default-float}: 28px;
+
+                    @if $text-direction == rtl {
+                        &:before {
+                            content:'\e627';
+                        }
+                    }
+				}
+			}
+			.ups-btn{
+				color: $black;
+				font-size:16px;
+			}
+
+			&.slick-disabled{
+                .icon {
+                    color: $black_s1;
+                }
+			}
+
+            &:focus {
+                outline-color: $black_s4;
+            }
+
+            @media #{$media-small-sm} {
+                &.slick-prev {
+                    #{$default-float}: 30px;
+                    .icon {
+                        #{$default-float}: -25px;
+                    }
+                }
+                &.slick-next {
+                    #{$opposite-direction}: 30px;
+                    .icon {
+                        #{$default-float}: 25px;
+                    }
+                }
+            }
+		}
+	}
+	.ups-service-scroller{
+		.ups-service-carousel{
+		    -webkit-padding-start: 0px;
+		    padding: 20px 20px 20px;
+		    overflow: hidden;
+		    border: 1px solid #404040;
+        	border-top: 0;
+	    	.ups-service-slick{
+	    		list-style:none;
+	    		display: block;
+	    		width:100%;
+	    		figure{
+	    		  &.image{.align-left{padding-right:20px;padding-bottom:5px;}}
+	    		  &.image{.align-right{padding-left:20px;padding-bottom:5px;}}
+	    		}
+
+	    		.ups-zip-lookup{
+	    			background : $ups_stone;
+	    			padding: 10px;
+	    			margin-bottom: 15px;
+	    			.ups-states-block{
+	    				.ups-states-zip{
+    						margin:0 0 10px;
+	    					.ups-display-states,.ups-showstates{
+	    						text-decoration:underline;
+	    						position: relative;
+	    						color:$black;
+	    						.ups-icon-chevrondown,.ups-icon-chevronup{
+	    							&:before{
+	    								font-size:10px;
+	    							}
+	    						}
+	    					}
+			    			.ups-zip_codes{
+			    				display: none;
+			    				&.ups-active{
+			    					display: block;
+			    				}
+			    				p{
+			    					text-decoration: none;
+			    					display: inline-block;
+			    					cursor: default;
+			    				}
+			    			}
+	    				}
+	    				.ups-affected{
+	    					width:100%;
+	    					min-height:20px;
+	    					position:relative;
+
+	    					.ups-check-affected{
+	    						width:400px;
+	    						text-align:left;
+	    						position:relative;
+	    						input{
+	    							width:60px;
+	    							height:27px;
+	    							border: 1px solid $black_s1;
+	    						}
+	    						.ups-search-affected{
+	    							width:auto;
+	    							position: relative;
+		    						.ups-zip-search{
+		    							cursor:pointer;
+    							      	width: 55px;
+				                        height: 30px;
+				                        padding: 2px 0 0 0;
+				                        margin-left: 3px;
+				                        text-align: center;
+	  							        border: 0;
+	  							        @include border-radius($border_radius);
+				                        //display: block;
+				                        background: $water_s3;
+				                        color: $white;
+				                        font-size: 14px;
+				                        font-weight: 400;
+				                        font-family: $sans-bd;
+				                        display: inline-block;
+				                        text-decoration: none;
+				                        @include transition-property(all);
+				                        @include transition-duration($main-transition-speed);
+		    						}
+	    						}
+	    						& *{
+	    							display: inline-block;
+	    						}
+	    						.ups-zip_lookUp_alert,.ups-zip_lookUp_message{
+	    							display:none;
+	    							&.ups-active{
+	    								display:block;
+	    							}
+	    						}
+	    					}
+    						.ups-download-csv{
+    							position:absolute;
+    							right:10px;
+    							top:5px;
+    							.ups-icon-download{
+    								margin-#{$opposite-direction}:3px;
+    							}
+							    @media #{$media-small} {
+							    	position:relative;
+							    	margin-bottom: 15px;
+							    	margin-left: 10px;
+							    }
+    							a{
+    								color:  $black_s4;
+    								border-bottom: 1px solid $black_s4;
+    								&:hover{
+    									text-decoration:none;
+    								}
+
+    							}
+    						}
+	    				}
+	    			}
+	    		}
+		    }
+		}
+	}
+}

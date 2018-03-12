@@ -1,0 +1,58 @@
+<!-- <div  [formGroup]="modalDutiable"> -->
+    
+    <div class="alert alert-warning " role="alert">
+        <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+        </div>
+
+        <button type="button"
+                class="ups-alert_collapse"
+                aria-expanded="false"
+                (click)="modalDutiableShipTip = !modalDutiableShipTip">
+            <span class="ups-readerTxt">Click to expand</span>
+            <span [ngClass]="{ 'ups-icon-wedgeup' : modalDutiableShipTip, 'ups-icon-wedgedown' : !modalDutiableShipTip }" class="icon " aria-hidden="true"></span>
+        </button>
+
+        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong>  Providing a contact email for the receiver can help prevent customs holds or delivery delays.</p></div>
+        <div class="alert-content ups-alert_has_icon" *ngIf="modalDutiableShipTip">
+            <p>... explain this is for dutiable shipment ...</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <section class="ups-section">
+                <div class="ups-section-header">
+                    <h2 class="ups-section_heading">
+                        Ship To  <span class="ups-readerTxt">address</span>
+                    </h2>
+                </div> 
+                <div class="ups-group ups-group_condensed">
+                    <p>[Name], [Contact Name]</p>
+                    <address class="ups-address_condensed">
+                        [123 Main St., Unit 12], [CITY], [GEORGIA], [00000], [Country or Territory]
+                    </address>
+                </div>
+        
+                <div class="ups-form_group">
+                    <label for="toModalEmail" class="ups-form_label"> Email</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="toModalEmail" class="ups-form_input" id="toModalEmail">
+                    </div>
+                </div>
+
+                <div class="ups-group ups-group_condensed">
+                    <address class="ups-address_condensed">
+                        [Phone] [Ext]
+                    </address>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class="ups-form_ctaGroup text-center">
+            <button class="ups-cta ups-cta_tertiary" type="button" (click)="sendContinueEvent()">Skip</button>
+            <button class="ups-cta ups-cta_primary" type="button" (click)="sendContinueEvent()">Continue</button>
+    </div>
+<!-- </div> -->
+

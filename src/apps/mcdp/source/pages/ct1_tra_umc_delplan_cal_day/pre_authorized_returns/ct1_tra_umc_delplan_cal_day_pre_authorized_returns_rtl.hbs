@@ -1,0 +1,87 @@
+---
+title: ct1_tra_umc_delplan_cal_day
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: rtl
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+ 
+ {{> "ct1_tra_umc_delplan_cal_day_partial" delplan.pre_authorized_returns}} 
+
+<!-- ////////////////////////////// --> 
+<!-- Begin Shipment Details Tooltip --> 
+<script type="text/javascript">
+	
+	function buildExamplePage(){
+		var winWidth = $(window).width();
+		var tempWidth = winWidth;
+		var thisWidth;
+		for(i=1;i<11;i++){
+			if(tempWidth < 400){
+				thisWidth = tempWidth-151;
+				tempWidth = winWidth;
+				cat = true;
+			} else {
+				thisWidth = Math.floor(Math.random()*(300-150+1)) + 150;
+				tempWidth -= thisWidth;
+				cat = false;
+			}
+			$('#ttc_bullpen').append("<div id=\"ttc_tt_" + i + "\"><div class=\"appLvl noHead\"><div class=\"appBody alignBegin\"><h3><strong>[Header]</strong> - [1Z12345677890123456]</h3><div class=\"outHozFixed clearfix\"><dl><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd><dt><label for=\"repl_id\">Label:</label></dt><dd>Value</dd></dl></div><div class=\"clear\"></div></div></div></div>");
+		}
+	}
+	
+$(document).ready(function(){
+		buildExamplePage();	
+		$('.ttAnchor').ictooltip({
+			orientation: "vert",
+			hoverDelay: 450,
+			tooltipID: "tt",
+			tooltipClasses: "col14"
+		});	
+	});	
+	
+</script> 
+<!-- End Shipment Details Tooltip --> 
+<!-- //////////////////////////// --> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.btnGradient7').hover(function(){
+		$(this).css("background-position","0 -20px");
+		//$(this).animate( { backgroundPositionY: "-30px" }, 10 );
+	},function(){
+		//$(this).animate( { backgroundPositionY: "-4px" }, 1000 );
+		$(this).css("background-position","0 0px");
+	});
+});
+
+</script>
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////                                                                          ////// -->
+<!-- //////   *****      DO NOT USE THE FOLLOWING IDs IN PRODUCTION CODE      *****    ///// -->
+<!-- /////                                                                              //// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////                                                                            ///// -->
+<!-- ///////         ****   all id="dyn_pnl_1" through id="dyn_pnl_nn"   ****         ////// -->
+<!-- ////////        ****   all id="pnl_1_1" through id="pnl_nn_nn"      ****        /////// -->
+<!-- /////////                                                                      //////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->

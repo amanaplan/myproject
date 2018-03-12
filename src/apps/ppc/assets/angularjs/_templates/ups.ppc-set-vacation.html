@@ -1,0 +1,217 @@
+<div data-ng-controller="myChoicesetVacationCtrl"
+	class="ups-application_wrapper">
+	<ng-form data-ng-if="(!isEditVacation && isMyChoiceLogin)"
+		name="setAltDelievry" novalidate>
+    	<p>Let us know if you're going to be away for a while, and we'll hold your packages till you return.</p>
+        
+        <div class="ups-group">
+        	<p class="ups-group_label">Delivery Hold Dates:</p>
+        	<p>There are no current requests.</p>
+        </div>
+        
+        <p>We can hold your packages for up to seven days and deliver them within three days of your return. Just tell us if you'd like us to deliver to your home or a nearby UPS location.</p>
+        
+        <p>This request takes priority over other delivery options, like setting an alternate delivery location.</p>
+        
+        <div class="ups-form_ctaGroup">
+            <button type="button" data-ng-click="addVacationPage('add')"
+                class="ups-cta ups-cta_primary">Request a Hold</button>
+        </div>
+    
+	</ng-form>
+	<ng-form data-ng-if="!isMyChoiceLogin" name="setAltDelievry" novalidate>
+        <p>Let us know if you're going to be away for a while, and we'll hold your packages till you return.</p>
+        
+        <p data-ng-if="(countryCode == 'us' || countryCode == 'ca' || countryCode == 'pr' || countryCode == 'mx')">We can hold your packages for up to seven days and deliver them within three days of your return. Just tell us if you'd like us to deliver to your home or a nearby UPS location.</p>
+        <p data-ng-if="(countryCode == 'at' || countryCode == 'be' || countryCode == 'dk' || countryCode == 'fr' || countryCode == 'de' || countryCode == 'it' || countryCode == 'nl' || countryCode == 'pl' || countryCode == 'es' || countryCode == 'se' || countryCode == 'ch' || countryCode == 'gb')">We can hold your packages for up to 14 days and deliver them within three days of your return.</p>
+        
+        <p>In order to gain full access to this feature, please complete your enrollment.</p>
+        <a href="#/preferencePage/mychoice/authenticate" data-ng-if="!nonUsMember" class="ups-link">Verify Now</a>
+        <a href="#/preferencePage/mychoice/authenticate_mailverify" data-ng-if="nonUsMember" class="ups-link">Activate My Membership</a>
+	</ng-form>
+
+	<ng-form id="ups-setVac-Ctrl"
+		data-ng-if="(isEditVacation && isMyChoiceLogin && !decidePickUp)"
+		name="setAltDelievry" novalidate>
+        <div class="ups-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Delivery Hold Dates:</strong>
+                </div>
+                <div class="col-md-5">
+                    <p>
+                        <span>{{formObj.strdateFrom}} </span>-<span>
+                            {{formObj.strdateTo}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Hold Details:</strong>
+                </div>
+                <div class="col-md-5">
+                    <p>Reschedule delivery for {{formObj.deliveryDate}}</p>
+                </div>
+            </div>
+            <div class="ups-form_ctaGroup">
+                <button type="button" data-ng-click="addVacationPage('edit')"
+                    class="ups-cta ups-cta_primary">Edit</button>
+        
+                <button type="button" class="ups-cta ups-cta_secondary"
+                    data-ng-click="removeVacation()">Cancel</button>
+            </div>
+        </div>
+    
+        <p>Would you like an email confirmation of this request?</p>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="ups-form_group">
+                    <label for="ups-email_input" class="ups-form_label">Email
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur validate-email type="email" name="email_input"
+                            class="ups-form_input" id="ups-email_input" value=""
+                            maxlength="50" data-ng-model="formObj.email"
+                            title="address@domail.com"
+                            data-ng-model-options="{updateOn: 'blur'}"
+                            aria-describedby="email-error"> <span
+                            id="email-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!setAltDelievry.email_input.$pristine && setAltDelievry.email_input.$invalid">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="setAltDelievry.email_input.$error.required">Email
+                                    is required.</span> <span
+                                data-ng-hide="setAltDelievry.email_input.$error.required">Please
+                                    enter a valid email address.</span>
+                        </span> <span data-ng-if="usetAltDelievry.email_input.$valid"> <span
+                                class="ups-readerTxt">Check</span>
+                        </span> </span>
+    
+                        <div data-ng-if="(setAltDelievry.email_input.$valid)">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ups-no_label">
+                <button type="button"
+                    class="ups-cta ups-cta_primary">Send</button>
+                    <!-- data-ng-disabled="!setAltDelievry.$valid" -->
+            </div>
+        </div>
+		<button data-ng-click="printInformation()" href="#" onclick="return false;" class="ups-cta ups-cta_secondary ups-link">Print My Delivery Hold Request</button>
+	</ng-form>
+	<ng-form id="ups-setVac-Ctrl"
+		data-ng-if="(isEditVacation && isMyChoiceLogin && decidePickUp)"
+		name="setAltDelievry" novalidate>
+        <div class="ups-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Delivery Hold Dates:</strong>
+                </div>
+                <div class="col-md-5">
+                    <p>
+                        <span>{{formObj.strdateFrom}} </span>-<span>
+                            {{formObj.strdateTo}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Hold Details:</strong>
+                </div>
+                <div class="col-md-3">
+                    <p>I'll pick up my packages at a UPS location.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Pickup Location:</strong>
+                </div>
+                <div class="col-md-6">
+                    <address>
+                        The UPS Store<br> 4321 Hill Street<br> Suite A<br>
+                        Rosewell, GA, US 30076<br> Telephone:555-123-4567<br>
+                        store1422@theupsstore.com
+                    </address>
+                    <p>{Additional information about
+                        locker bay size, the parcel locker, and package restrictions is displayed here...final content TBD}</p>
+                    <p>
+                        [+] <a href="#" class="ups-link">Show Map and Driving Directions to Store</a>
+                    </p>
+        
+                </div>
+            </div>
+		
+            <div class="ups-form_ctaGroup">
+                <button type="button" data-ng-click="addVacationPage('edit')"
+                    class="ups-cta ups-cta_primary">Edit</button>
+        
+                <button type="button" class="ups-cta ups-cta_secondary"
+                    data-ng-click="removeVacation()">Cancel</button>
+            </div>
+        </div>
+    
+        <p class="ups-form_label">Would you like an email confirmation of this request?</p>
+		<div class="row">
+			<div class="col-md-4">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-email_input" class="ups-form_label">Email
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur validate-email type="email" name="email_input"
+                            class="ups-form_input" id="ups-email_input" value=""
+                            maxlength="50" required data-ng-model="formObj.email"
+                            title="address@domail.com"
+                            data-ng-model-options="{updateOn: 'blur'}"
+                            aria-describedby="email-error" aria-required="true"> <span
+                            id="email-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!setAltDelievry.email_input.$pristine && setAltDelievry.email_input.$invalid">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="setAltDelievry.email_input.$error.required">Email
+                                    is required.</span> <span
+                                data-ng-hide="setAltDelievry.email_input.$error.required">Please
+                                    enter a valid email address.</span>
+                        </span> <span data-ng-if="setAltDelievry.email_input.$valid"> <span
+                                class="ups-readerTxt">Check</span>
+                        </span> </span>
+    
+                        <div data-ng-if="(setAltDelievry.email_input.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ups-no_label">
+                <button type="button"
+                    class="ups-cta ups-cta_primary">Send</button>
+                    <!-- data-ng-disabled="!setAltDelievry.$valid" -->
+            </div>
+		</div>
+		<button data-ng-click="printInformation()" href="#" onclick="return false;" class="ups-cta ups-cta_secondary ups-link">Print My Hold Request</button>
+	</ng-form>
+    
+    
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons in production. 									  --
+    --																			  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+    	<button class="ups-cta ups-cta_secondary" ng-click="isMyChoiceLogin = false">Not a My Choice member</button><button class="ups-cta ups-cta_secondary" ng-click="isMyChoiceLogin = true">Is a My Choice member</button>
+    </div>
+    <!------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    
+    
+</div>

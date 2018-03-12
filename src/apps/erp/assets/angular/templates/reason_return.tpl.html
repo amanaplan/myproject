@@ -1,0 +1,264 @@
+<div class="ups-wrap" [pageTitle]="'Return Your Package'">
+    <div class="ups-wrap_inner">
+
+        <a class="ups-previous_page" href="#">
+            <span aria-hidden="true" class="icon ups-icon-chevronleft"></span>
+            Back to Overview
+        </a>
+        <p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+        <div class="ups-group">
+            <p>
+                If you have any questions about your return, please access the <a href="#" class="ups-link">Merchant Policy</a> from your retailer's website for further details about this return.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">Tell us the main reason for your return</h2>
+                    </div>
+                    <fieldset class="ups-form_group" [attr.aria-busy]="(itemsLoading) ? 'true' : 'false'">
+                        <legend class="ups-form_label">
+                            Please select one from the following list:
+                        </legend>
+                        <div *ngIf="!itemsLoading">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonDamaged"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonDamaged" class="ups-radio-custom-label">
+                                Product was damaged upon arrival</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonMatch"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonMatch" class="ups-radio-custom-label">
+                                The product did not match the description on the website or in the catalog</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonIncorrect"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonIncorrect" class="ups-radio-custom-label">
+                                The company shipped the incorrect product, size, or color</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonChangedMind"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonChangedMind" class="ups-radio-custom-label">
+                                Changed Mind</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonQuality"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonQuality" class="ups-radio-custom-label">
+                                Expected better quality</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonStyle"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonStyle" class="ups-radio-custom-label">
+                                Dislike style</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonWrongSize"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonWrongSize" class="ups-radio-custom-label">
+                                The wrong size was ordered</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonCondition"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonCondition" class="ups-radio-custom-label">
+                                Item is not in the condition ordered</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="returnReasonNone"
+                                    class="ups-radio-custom"
+                                    name="returnReason"
+                                    value="1"
+                                    type="radio">
+                                <label for="returnReasonNone" class="ups-radio-custom-label">
+                                No reason for return</label>
+                            </div>
+                        </div>
+                        <div *ngIf="itemsLoading" class="text-center">
+                            <img src="/assets/resources/images/ajax-loader.gif" alt="Loading...">
+                            <p class="h3">
+                                Loading
+                            </p>
+                        </div>
+                    </fieldset>
+
+                    <div class="ups-form_group">
+                        <label for="additionalComments" class="ups-form_label">
+                            Additional Comments
+                        </label>
+                        <p class="ups-form_subheader">
+                            (Max of 500 characters)
+                        </p>
+                        <div class="ups-textArea_wrapper ups-input_wrapper">
+                            <textarea class="ups-textArea"
+                                id="additionalComments"
+                                rows="8"
+                                maxlength="500"
+                                name="additionalComments"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">Please confirm your package weight and dimensions</h2>
+                    </div>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ups-form_group ups-input_has_unit">
+                                <label for="weightInput" class="ups-form_label"> Weight </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="weightInput" class="ups-form_input" id="weightInput">
+                                    <span class="ups-input_unit_measure"><strong>lbs</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-form_group">
+                        <p><strong>Dimensions</strong></p>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="ups-form_group ups-input_has_unit ups-input_has_unit_SVP">
+                                    <label for="ups-lengthInput" class="ups-form_label ups-readerTxt_LVP">
+                                        Length
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <span class="ups-icon-x hidden-xs hidden-sm" aria-hidden="true"></span>
+                                            <input type="text" name="ups-lengthInput" class="ups-form_input" id="ups-lengthInput">
+                                            <span class="ups-input_unit_measure visible-sm visible-xs"><strong>in</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="ups-form_group ups-input_has_unit ups-input_has_unit_SVP">
+                                    <label for="ups-widthInput" class="ups-form_label ups-readerTxt_LVP">
+                                    	 Width
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <span class="ups-icon-x hidden-xs hidden-sm" aria-hidden="true"></span>
+                                            <input type="text" name="ups-widthInput" class="ups-form_input" id="ups-widthInput">
+                                            <span class="ups-input_unit_measure visible-xs visible-sm"><strong>in</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="ups-form_group ups-input_has_unit">
+                                    <label for="ups-heightInput" class="ups-form_label ups-readerTxt_LVP">
+                                    	Height
+                                    </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="ups-heightInput" class="ups-form_input" id="ups-heightInput">
+                                            <span class="ups-input_unit_measure"><strong>in</strong></span>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="ups-section ups-section_slim">
+                    <div class="ups-section-header">
+                        <h2 class="ups-section_heading">Get notified on the status of your return</h2>
+                    </div>
+                    <p> Enter your email address to receive notifications on the progress of your return shipment.</p>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ups-form_group">
+                                <label for="returnEmail">
+                                    Email Address
+                                </label>
+                                <p class="ups-form_subheader">myname@myemail.com</p>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input name="returnEmail"
+                                        class="ups-form_input"
+                                        id="returnEmail"
+                                        type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="ups-tile">
+                    <div class="ups-icon_side_big">
+                        <span class="icon ups-icon-exclamationcircle ups-icon_big" aria-hidden="true"></span>
+                    </div>
+                    <div class="ups-content_side_big">
+                        <h3 class="ups-header_slim">Get notified on the status of your return</h3>
+                        <p>
+                            Enter your email address to receive notifications on the progress of your return shipment.
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ups-form_group">
+                                <label for="returnEmail" class="ups-readerTxt">
+                                    Email Address
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input name="returnEmail"
+                                        class="ups-form_input"
+                                        id="returnEmail"
+                                        type="text"
+                                        placeholder="Enter your email address here">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+
+            </div>
+        </div>
+
+        <div class="ups-form_ctaGroup">
+            <button class="ups-cta ups-cta_primary" (click)="pgLoading = true" [attr.aria-busy]="(pgLoading) ? 'true' : 'false'">Submit</button>
+            <img src="/assets/resources/images/ajax-loader.gif" alt="Loading..." *ngIf="pgLoading" class="ups-btn_loading">
+            <button class="ups-cta ups-cta_secondary" *ngIf="!allowSkip">Cancel</button>
+            <button class="ups-cta ups-cta_primary" *ngIf="allowSkip">Skip</button>
+        </div>
+
+        <div class="ups-cms-demo">
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="itemsLoading = true">Return Items Loading</button><br><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="itemsLoading = false">Return Items Done Loading</button>
+        </div>
+    </div>
+</div>

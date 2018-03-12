@@ -1,0 +1,60 @@
+{{!--------------------------------------------
+===============================================
+W17 Zip Look-up
+===============================================
+---------------------------------------------}}
+<div class="ups-wrap ups-zip_lookUp_wrap">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-zip_lookUp ups-widget ">
+            <div class="ups-widget_header">
+                <h2>{{title}}</h2>
+                {{#if this.help}}
+                <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+                {{/if}}
+            </div>
+            <div class="ups-widget_panel">
+                {{#if this.help}}
+                    <div class="ups-help_panel"><p>{{this.help}}</p></div>
+                {{/if}}
+                <div class="ups-zip_lookUp_zipcodes">
+                    <h2>ZIP Codes Affected</h2>
+                    <div class="ups-zip_lookUp_zipList">
+                        {{#each states}}
+                            <div class="ups-zip_lookUp_zip">
+                                <span tabindex="0">{{this.state}}</span><span>[{{length this.zip}}]</span>
+                                <ul>
+                                    {{#each this.zip}}
+                                    <li>{{this}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        {{/each}}
+                        <div class="ups-form_ctaGroup">
+                            <button class="ups-cta ups-form_button">Show ZIP Codes</button>
+                        </div>
+                        <a href="#more">Download ZIP Code, CSV File</a>
+                    </div>
+                </div>
+                <div class="ups-zip_lookUp_search">
+                   <p>Is your ZIP Code affected?</p>
+                    <form id="ups-trackingSearch" method="post" action="#TBD">
+                        <label for="ups-zipSearch" class="ups-readerTxt">Zip Code</label>
+                        <input type="search" id="ups-zipSearch" class="ups-zip_lookUp_input ups-form_input">
+                        <button class="ups-zip_lookUp_btn ups-cta" type="submit">Track Selected</button>
+                    </form>
+                    <div class="ups-zip_lookUp_alert">
+                        <div class="ups-zip_lookUp_alertTitle"><span class="ups-icon-exclamationcircle" aria-hidden="true"></span>Yes, ZIP Code <span></span> appears to be affected.</div>
+                        <p>Please check the latest Service Updates or the <a href="#page_title">Page Title</a>.</p>
+                    </div>
+                    <div class="ups-zip_lookUp_message">
+                        <div class="ups-zip_lookUp_alertTitle">No, ZIP Code <span></span> is not affected.</div>
+                        <p>Please check the latest Service Updates or the <a href="#page_title">Page Title</a>.</p>
+                    </div>
+                    <a href="#trackNum">Have a Tracking Number to track?</a>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- @end .ups-wrap_inner -->
+</div> <!-- @end .ups-wrap.ups-zip_lookUp_wrap -->

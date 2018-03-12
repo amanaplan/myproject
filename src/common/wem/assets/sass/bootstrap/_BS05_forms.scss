@@ -1,0 +1,152 @@
+// BUTTON/INPUT GROUP
+// ----------------------------------
+.input-group {
+	.input-group-btn {
+		font: 14px/1.25 $sans;
+	}
+
+	&.ups-group_wrapper {
+		.input-group-btn:last-child > .btn:last-child {
+			@media #{$media-small} {
+				width: auto;
+			}
+		}
+	}
+}
+input[type=text]::-ms-clear {
+   display: none;
+}
+
+// BUTTONS
+// ----------------------------------
+//groups
+.input-group-btn:last-child > .btn:last-child {
+	@media #{$media-small} {
+
+	}
+}
+
+.btn {
+    @include unbutton;
+    display: block;
+    //background: $black_s1;
+	background: $water_s3;
+    color: $white;
+    font-size: 1.1em;
+    line-height: 1;
+    padding: 16px 30px 14px;
+    text-align: center;
+    font-weight: 400;
+    font-family: $sans-bd;
+    display: inline-block;
+    text-decoration: none;
+    @include transition-property(all);
+    @include transition-duration($main-transition-speed);
+
+	@if $text-direction == ltr {
+		//@include border_left_radius($border_radius);
+	} @else {
+		//@include border_right_radius($border_radius);
+	}
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    &:hover,
+    &:focus {
+        //background: darken($black_s1, 5%);
+		background: darken($water_s3, 5%);
+        color: $white;
+        text-decoration: none;
+    }
+
+	&:focus {
+		@include focus;
+	}
+
+    &.btn-default {
+        background: none;
+        color:$black_s3;
+        text-decoration: underline;
+        font-family: $sans-bd;
+
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .no-touch &:hover, .no-touch &:focus {
+            background: none;
+            color:$black_s1;
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$media-small} {
+        width: 100%;
+    }
+
+	// override default bs style for dropdown button
+	&.btn-primary:active {
+		background: darken($water_s3, 5%);
+        color: $white;
+		border: none;
+	}
+}
+
+
+// DROPDOWN
+// ----------------------------------
+.open {
+	> .btn-primary.dropdown-toggle {
+		background: darken($water_s3, 5%);
+		color: $white;
+		border: none;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background: darken($water_s3, 5%);
+        	color: $white;
+			border: none;
+		}
+	}
+}
+.dropdown-toggle {
+	padding: 0;
+	width: 46px;
+	height: $margin_2;
+
+	.ups-icon-wedgedown:before {
+		position: relative;
+		top: 2px;
+	}
+}
+.dropdown-menu {
+	@include border_radius(0);
+	z-index: $zMid;
+
+	@media #{$media-small} {
+		> li, > li > a {
+			white-space: normal;
+		}
+	}
+
+	> li > a:hover,
+	> li > a:focus {
+		background-color: $white;
+	}
+
+	.divider {
+		background-color: $stone_s3;
+	}
+}
+.dropdown-header {
+	color: $black_s1;
+	font-size: 14px;
+    font-family: $sans;
+    font-weight: 700;
+}

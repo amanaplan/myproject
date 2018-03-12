@@ -1,0 +1,124 @@
+<div
+	class="ups-application_wrapper ups-app_onboarding ups-notification-pref"
+	data-ng-controller='notificationOptionCtrl'>
+	<ng-form name="ups_NotificationOption" id="ups_NotificationOption"
+		data-novalidate>
+
+	
+			<p>You can request notifications for as many as five email addresses. Choose which notifications you'd like to receive for each address.</p>
+
+<div class="row">
+	<div class="ups-table ups-table-responsive ups-tableScroll">
+		<table class="table table-striped ">
+			<tbody>
+				<tr>
+					<th scope="col" class="col-md-3">Send To</th>
+					<th scope="col" class="col-md-3">Email</th>
+					<th scope="col" class="col-md-3">Alert Type</th>
+					<th scope="col" class="col-md-3">Actions</th>
+
+				</tr>
+				<tr data-ng-repeat="notificationValues in form.notification">
+					<td class="col-md-3">{{notificationValues.send_To}}</td>
+					<td class="col-md-3 ups-no_transform">{{notificationValues.email}}</td>
+					<td class="col-md-3">{{notificationValues.type_string}}</td>
+					<td class="col-md-3"><a point-focus
+						class="ups-text-underline ups-editCardpointCls"
+						data-ng-click="editNotification($index)" href="#" onclick="return false;">Edit <span
+							class="ups-readerTxt">{{notificationValues.send_To}}</span></a>| <a
+						class="ups-text-underline"
+						data-ng-click="deleteNotification($index)" href="#" onclick="return false;">Delete <span
+							class="ups-readerTxt">{{notificationValues.send_To}}</span></a></td>
+				</tr>
+				<tr data-ng-if="novalue">
+					<td class="col-md-5" colspan="4">You haven't added any
+						notification yet.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="row ">
+		<div class="col-md-5">
+			<span class="ups-form_ctaGroup"><button
+					type="button" class="ups-cta ups-cta_primary"
+					data-ng-click="addNotification()">Add</button></span>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-5">
+			<h3>To customize your notifications, give us a few extra
+				details.</h3>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-default_Subject" class="ups-form_label">Subject
+					Line Information</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+
+					<select data-ng-model="defaultSubjectLine"
+						data-ng-init="defaultSubjectLine" class="ups-dropdown"
+						name="ups-defaultSubjectLine"
+						data-ng-options="defaultSub for defaultSub in formObj.defaultSubjectLine"
+						id="ups-default_Subject">
+					</select>
+
+
+
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-email-message" class="ups-form_label"> Email
+					Message<span class="ups-readerTxt">Accepts Up to 150
+						Characters</span>
+				</label>
+				<textarea name="message" data-form="ups_NotificationOption"
+					id="ups-email-message" class="ups-bleed-full" rows="5" cols="100"
+					row-fluid maxlength="150"></textarea>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+				<em><span>Up to 150 Characters.</span></em>
+			</div>
+		</div>
+	</div>
+
+
+	<h3>Alert me if any of these emails are undeliverable.</h3>
+
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group ">
+				<label for="ups-notification_undelivered" class="ups-form_label">Email
+				</label>
+				<div class="ups-text_wrapper ups-input_wrapper">
+					<input type="text" name="upsIfUndeiverable" class="ups-form_input"
+						id="ups-notification_undelivered" maxlength="50" data-ng-model="formObj.undeliverable">
+				</div>
+				<!-- ups-text_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_ctaGroup ">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveNotification()">Save</button>
+                    <!-- data-ng-disabled="!(ups_NotificationOption.$dirty)" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	</ng-form>
+</div>

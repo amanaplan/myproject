@@ -1,0 +1,108 @@
+// ----------------------------------------------------
+// W16 Simple Track
+// ----------------------------------------------------
+
+
+.ups-simpleTrack {
+    form {
+        margin-bottom: $margin_3;
+    }
+    .ups-widget_header {
+        .icon {
+            //display:none;
+            text-decoration:none;
+            &:hover{
+              text-decoration:none;
+            }
+        }
+    }
+}
+.ups-simpleTrack_wrap {
+    @include ups-component_margin;
+}
+
+.ups-simpleTrack_input {
+    float: $default-float;
+    max-width: 70%;
+    margin-bottom: $margin_3;
+    height: 45px;
+    line-height: 43px;
+    @include transition-property(all);
+    @include transition-duration($main-transition-speed);
+}
+
+.subsection_main,
+.iw_columns.col-lg-8{
+  .ups-simpleTrack_input{
+    max-width: 93%;
+    @media #{$media-medLarge} {
+      max-width: 90%;
+    }
+    @media #{$media-medium} {
+      max-width: 86%;
+    }
+    @media #{$media-mediumMid} {
+      //max-width: 86%;
+    }
+    @media #{$media-small} {
+      max-width: 88%;
+    }
+    @media #{$media-small-sm} {
+      max-width: 82%;
+    }
+  }
+}
+
+.subsection_aside,
+.iw_columns.col-lg-4{
+  .ups-simpleTrack_input{
+    max-width: 230px;
+    
+    @media #{$media-mediumMid} {
+      max-width: 86%;
+    }
+    @media #{$media-small} {
+      max-width: 88%;
+    }
+    @media #{$media-small-sm} {
+      max-width: 82%;
+    }
+  }
+}
+.ups-simpleTrack_btn {
+    float: $default-float;
+    width: auto;
+    padding: 0 14px;
+    height: 45px;
+    // padding: 11px 14px 11px;
+    border: 0px solid $stone_s3;
+    border-#{$default_float}: none;
+	@include border_radius(0);
+
+    i:before{
+        @include ups-icons;
+        content: "\e629";
+        font-size: 12px;
+        line-height: 23px;
+
+        .ups-rtl & {
+            content: "\e627";
+        }
+    }
+
+    aside & {
+        width: auto;
+    }
+}
+
+.subsection_aside .ups-simpleTrack_wrap,
+.iw_columns.col-lg-4 .ups-simpleTrack_wrap {
+    @include aside-pad_sm;
+}
+
+// Adding a new tag for Help Icon Text in widget to fix an underline defect in IE11
+.ups-helpicon-text{
+      &:hover{
+        text-decoration:underline;
+      }
+    }

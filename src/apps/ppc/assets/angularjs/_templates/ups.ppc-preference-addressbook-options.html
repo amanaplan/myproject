@@ -1,0 +1,30 @@
+<div data-ng-controller="prefrenceAddressBookCtrl"
+	class="ups-application_wrapper">
+	<ng-form name="ups_addressbookform" data-novalidate>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<div class="ups-checkbox ups-input_wrapper  "
+					data-ng-repeat="item in addressOptions">
+					<input check-verify id="{{'ups-address'+$index}}"
+						class="ups-checkbox-custom" name="{{'ups-address'+$index}}"
+						type="checkbox" data-ng-model="formObj['ups-address'+$index]">
+					<label for="{{'ups-address'+$index}}"
+						class="ups-form_label ups-checkbox-custom-label">{{item.title}}</label>
+				</div>
+			</div>
+			<div class="ups-form_group">
+				<a href="#" onclick="return false;" data-ng-click="openNewWindow()" class="ups-link ups-new-window">Install
+					External Address Book Plugin<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+			</div>
+			<div class="ups-form_ctaGroup ">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="save()">Save</button>
+                    <!-- data-ng-disabled="!ups_addressbookform.$dirty" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	</ng-form>
+</div>

@@ -1,0 +1,99 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewAdminEditAccountPrivileges">
+    <!--Previous Link Starts-->
+	<a point-focus="" href="#/preferencePage/quantumView/userAdministration" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to User Administration
+	</a>
+	<!--Previous Link Ends-->
+    <h2>Edit Account Privileges</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-xs-3 col-sm-2 col-md-2">
+                    <p><strong>Name:</strong></p>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <p>
+                        Abigail Smith
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-2 col-md-2">
+                    <p><strong>User ID:</strong></p>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <p>
+                        asmith
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        This user will be able to view [outbound/third party/import] shipment information for the selected accounts.
+    </p>
+
+    <p>
+        Displaying 1-nnn of nnnn
+    </p>
+    <!-- Table -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-table table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="col-xs-1 text-center"><input check-verify
+                                id="ups-selectBox" class="ups-checkbox-custom" name="ups-selectBox"
+                                type="checkbox" data-ng-model="selectedAll"
+                                data-ng-click="checkAll()"> <label
+                                for="ups-selectBox" class="ups-checkbox-custom-label ups-table-checkbox-first-column "><span
+                                    class="ups-readerTxt">Select All</span></label>
+                            </th>
+                            <th scope="col" class="ups-table_header_tertiary">
+                                <span data-ng-if="(!thirdPartyAccount) && (!importAccount)">Account</span><span data-ng-if="thirdPartyAccount">Third Party Account</span><span data-ng-if="importAccount">Import Account</span>
+                            </th>
+                            <th scope="col" class="ups-table_header_tertiary" data-ng-if="importAccount">Nickname</th>
+                            <th scope="col" class="ups-table_header_tertiary">Country</th>
+                            <th scope="col" class="ups-table_header_tertiary">Status</th>
+                        </tr>
+                        <tr data-ng-repeat="account in editAccountPrivileges">
+                            <td class="text-center"><input check-verify
+                                id="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom"
+                                name="ups-selectBox" type="checkbox" ng-model="account.Selected"> <label
+                                for="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom-label ups-table-checkbox-first-column"><span
+                                    class="ups-readerTxt">Select {{account.editAccountLabel}}</span></label></td>
+                            <th scope="row">{{account.editAccountLabel}}</th>
+                            <td data-ng-if="importAccount">
+                                {{account.nicknameLabel}}
+                            </td>
+                            <td>{{account.countryLabel}}</td>
+                            <td>
+                                Active
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Table -->
+
+    <div class="ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_primary" data-ng-click="saveButton();">Save</button>
+        <a href="#/preferencePage/quantumView/userAdministration" class="ups-cta ups-cta_secondary">Cancel</a>
+    </div>
+
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-cms-demo">
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="thirdPartyAccount = false;importAccount=false">Default</button>
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="thirdPartyAccount = true;importAccount=false">Third Party</button>
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="importAccount = true;thirdPartyAccount = false">Import Account</button>
+            </div>
+        </div>
+    </div>
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+</div>

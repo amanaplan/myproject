@@ -1,0 +1,1219 @@
+<!--
+    getNbsInSinglePg() = true
+        adds classes specific to SPA version
+    getNbsInSinglePg() = false
+        adds classes specific to Guided Flow version
+-->
+<div [formGroup]="nbsSpaSectionWhen">
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// Begin section Will you pick up your shipment? //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+    <section class="ups-section">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">
+                Would you like us to pick up your shipment?
+                <button *ngIf="whenReviewSwitch && !whenPickupEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenPickupEdit = true">
+                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                    <span aria-hidden="true" class="hidden-xs">Edit</span>
+                    <span class="ups-readerTxt"> section</span>
+                </button>
+                <button *ngIf="whenReviewSwitch && whenPickupEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenPickupEdit = false">
+                    <span aria-hidden="true" class="hidden-xs">Cancel</span>
+                    <span class="ups-readerTxt"> Editing this section</span>
+                </button>
+            </h3>
+        </div>
+
+        <div *ngIf="whenReviewSwitch && !whenPickupEdit">
+            <div class="ups-group" *ngIf="whenReviewPickupYes">
+                <p><span class="confirmYes">YES</span> pick up my shipment.</p>
+                <p class="ups-indent">{{'{'}}{{'{'}}UPS Account FOO100{{'}'}} is a {{'{'}}Daily Pickup{{'}'}} Account{{'}'}}. Your pickups occur {{'{'}}once each business day{{'}'}}.</p>
+                <p class="ups-indent">Pickup Location {{'{'}}Address Line 1{{'}'}}, {{'{'}}City{{'}'}}, {{'{'}}State{{'}'}}, {{'{'}}ZIP Code{{'}'}}, {{'{'}}Country or Territory{{'}'}}</p>
+            </div>
+            <div class="ups-group" *ngIf="whenReviewPickupYesSmart">
+                <p><span class="confirmYes">YES</span> pick up my shipment.</p>
+                <p class="ups-indent">{{'{'}}{{'{'}}UPS Account FOO100{{'}'}} is a {{'{'}}Smart Pickup{{'}'}} Account{{'}'}}. Your pickups are automatically scheduled when you create the shipping label.</p>
+                <p class="ups-indent">Pickup Location {{'{'}}Address Line 1{{'}'}}, {{'{'}}City{{'}'}}, {{'{'}}State{{'}'}}, {{'{'}}ZIP Code{{'}'}}, {{'{'}}Country or Territory{{'}'}}</p>
+            </div>
+            <div *ngIf="whenReviewPickupNo">
+                <p><span class="confirmNo">No</span>, I'll drop it off {{'{'}}today{{'}'}}.</p>
+                <ul>
+                    <li>{{'{'}}Nearest UPS dropoff location is {{'{'}}5.1mi{{'}'}}{{'}'}}.</li>
+                    <li>{{'{'}}16{{'}'}} UPS dropoff locations within {{'{'}}10.0 mi{{'}'}} of your ship location.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div *ngIf="!whenReviewSwitch || whenPickupEdit">
+            <fieldset [ngClass]="{'ups-toggle_view': !nbsBase.getNbsInSinglePg()}"  class="ups-form_group" id="whenShipmentEntranceOptions">
+                <legend class="ups-readerTxt">Shipment Drop Off or Pickup Options</legend>
+                <div [ngClass]="{'ups-toggle_view_selection': !nbsBase.getNbsInSinglePg()}" class="ups-input_wrapper">
+                    <input type="radio"
+                            id="whenShipmentEntranceDroppedOff"
+                            name="whenShipmentEntrance"
+                            value="0"
+                            class="ups-radio-custom"
+                            [(ngModel)]="whenShipmentEntrance"
+                            [ngModelOptions]="{standalone:true}">
+                    <label for="whenShipmentEntranceDroppedOff" [ngClass]= "{'ups-radio-custom-label':nbsBase.getNbsInSinglePg(),'ups-form_label':!nbsBase.getNbsInSinglePg()}" class="text-center">No, I'll drop it off.</label>
+                </div><div class="ups-toggle_view_or text-center" id="whenShipmentEntranceOrTxt">
+                    <p *ngIf="whenPickupAvailable && !nbsBase.getNbsInSinglePg()">--OR--</p>
+                </div><div class="ups-toggle_view_selection ups-input_wrapper" *ngIf="whenPickupAvailable">
+                    <input type="radio"
+                            id="whenShipmentEntrancePickup"
+                            name="whenShipmentEntrance"
+                            value="1"
+                            class="ups-radio-custom"
+                            [(ngModel)]="whenShipmentEntrance"
+                            [ngModelOptions]="{standalone:true}">
+                    <label for="whenShipmentEntrancePickup" [ngClass]= "{'ups-radio-custom-label':nbsBase.getNbsInSinglePg(),'ups-form_label':!nbsBase.getNbsInSinglePg()}" class="text-center">Yes, pick up my shipment.</label>
+                </div><div [ngClass]="{'ups-toggle_view_selection': !nbsBase.getNbsInSinglePg()}" class="ups-toggle_view_selection_unavailable" *ngIf="!whenPickupAvailable">
+                    <p>Pickup service is currently unavailable.</p>
+                </div>
+            </fieldset>
+
+            <!-- Begin Depricated Comment -->
+            <h3 *ngIf="whenDepricated">This section is depricated</h3>
+            <!-- End Depricated Comment -->
+
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// Begin displays if pickup NOT available //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-toggle_view_state" [ngClass]="{'ups-toggle_view_left': !nbsBase.getNbsInSinglePg()}" *ngIf="whenShipmentEntrance =='0'">
+                <!-- Begin Dropoff not available -->
+                <div *ngIf="whenDropoffnAvailable">
+                    <p><strong>
+                        <span class="icon ups-icon-alert"><span class="ups-readerTxt">Alert</span></span>
+                        No UPS Worldwide Express Freight dropoff locations were found in your area.
+                    </strong></p>
+                    <p>Please schedule a pickup or contact us for other options. <a href="repl_href" class="ups-link">Contact UPS</a></p>
+                </div>
+                <!-- End Dropoff not available -->
+                <div *ngIf="whenDropoffCal || whenDropoffInfo">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <!-- Begin Dropoff Date Calendar -->
+                            <div class="ups-form_group" *ngIf="whenDropoffCal">
+                                <label for="packageDropoffDate" class="ups-form_label">Dropoff Date</label>
+                                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                    <input type="text" name="packageDropoffDate" class="ups-form_input" id="packageDropoffDate" aria-required="true" required="" aria-label="Please enter date in mm/dd/yyyy format">
+                                    <button type="button" class="ups-date_picker_button">
+                                        <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Select date from a calendar</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Dropoff Date Calendar -->
+
+                    <!-- Begin Dropoff Info -->
+                    <div *ngIf="whenDropoffInfo">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group">
+                                    <label for="wwxfDropoffLoc2" class="ups-form_label">Available Dropoff Locations</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="wwxfDropoffLoc2" class="ups-dropdown" id="wwxfDropoffLoc2" aria-required="true" required="">
+                                            <option value="0">[UPS Location Name], [City], [000][mi/km]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ups-group ups-group_condensed">
+                            <p class="ups-group_label">[Location/Facility Name]</p>
+                            <p>[Address], [City], [Other], [State], [ZIP Code], [Country or Territory]</p>
+                            <p>Telephone: [Number]</p>
+                            <p>Fax: [Number]</p>
+                        </div>
+                        <p><a href="#" class="ups-link">Directions to Loading/Unloading Area</a>
+                            <span class="icon ups-icon-newwindow"></span></p>
+                        <div class="ups-group ups-group_condensed">
+                            <p class="ups-group_label">Hours of Operation</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                            <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                        </div>
+                        <div class="ups-group ups-group_condensed">
+                            <p class="ups-group_label">Latest Drop-Off Time</p>
+                            <p>hh:mm PM</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group">
+                                    <label for="wwxfDropoffTime2" class="ups-form_label">
+                                        What time will you drop off your shipment?
+                                    </label>
+                                    <p class="ups-form_subheader" id="wwxfDropOfflocalTime2HelperTxt">local time</p>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="wwxfDropoffTime2" class="ups-dropdown" id="wwxfDropoffTime2" aria-describedby="wwxfDropOfflocalTime2HelperTxt">
+                                            <option value="0">[nn:nn am]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Dropoff Info -->
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// End displays if pickup NOT available   //// -->
+            <!-- //// Begin displays if pickup IS available  //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-toggle_view_state" [ngClass]="{'ups-toggle_view_right': !nbsBase.getNbsInSinglePg()}" *ngIf="whenShipmentEntrance =='1'">
+                <!-- Begin Hold for Pickup -->
+                <div *ngIf="whenHold4Pkup" [ngClass]="{'ups-toggle_view_state':nbsBase.getNbsInSinglePg()}">
+                    <p><strong>
+                    <span class="icon ups-icon-alert"><span class="ups-readerTxt">Alert</span></span>
+                    Shipments with a total weight of more than 4400lbs/2000kg must be approved before pickup.
+                    </strong></p>
+                    <p>Contact UPS Customer Service at 1-800-782-7892 to schedule a pickup.</p>
+                </div>
+                <!-- End Hold for Pickup -->
+
+                <h4 *ngIf="whenSmartYesHeader">The Smart Pickup for this account was requested with a shipment earlier today.</h4>
+
+                <!-- Begin Liftgate Switch -->
+                <div class="ups-form_group" *ngIf="whenLiftgateContent">
+                    <label class="ups-lever" onclick="" for="whenLiftgateSwitch">
+
+                        <input type="checkbox"
+                                id="whenLiftgateSwitch"
+                                name="whenLiftgateSwitch"
+                                class="ups-lever_checkbox"
+                                [(ngModel)]="fromSawhenLiftgateSwitchveEdits"
+                                [ngModelOptions]="{'standalone': true}">
+
+                        <strong class="ups-form_label ups-lever_label">Do you need a truck with a liftgate?</strong>
+                        <p class="ups-form_subheader ups-lever_subheader">Select NO if you have a loading dock or raised offload area.</p>
+
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                </div>
+                <!-- End Liftgate Switch -->
+
+                <!-- Begin Pickup w/ Other Available Accounts -->
+                <div *ngIf="whenPkupOtherAvailableContent">
+                    <!-- <h4 class="h4">You have pickup options!</h4> -->
+                    <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                            <div [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg()}">
+                            <div class="ups-form_group">
+                                <label for="smartPreviouslyforAccountSelection" class="ups-form_label">
+                                    Select Pickup Options by Account
+                                </label>
+                                <p class="ups-form_subheader" id="smartPreviouslyforAccountSelection_helpertxt">Select an account to view contract based pickup services</p>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="pickupOtherAvailableNotSelectedSB"
+                                            class="ups-dropdown"
+                                            name="pickupOtherAvailableNotSelectedSB"
+                                            aria-describedby="smartPreviouslyforAccountSelection_helpertxt">
+                                        <option>{{'{'}}FOO103{{'}'}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pickup w/ Other Available Accounts -->
+
+                <!-- Begin Prepopulated Package Info -->
+                <p *ngIf="whenDaily">{{'{'}}(UPS Account FOO1030) is a {{'{'}}Daily Pickup{{'}'}} Account{{'}'}}. Your pickups occur {{'{'}}once each business day{{'}'}}.</p>
+                <p *ngIf="whenSmart">{{'{'}}(UPS Account FOO1030) is a {{'{'}}Smart Pickup{{'}'}} Account{{'}'}}. Your pickups are automatically scheduled when you create the shipping label.</p>
+                <!-- End Prepopulated Package Info -->
+
+                <!-- Begin Pickup Address NOT editable -->
+                <div class="ups-group ups-group_condensed" *ngIf="whenPkupLocationContent">
+                    <p class="ups-group_label">Pickup Location</p>
+                    <p>{{'{'}}Company or Name{{'}'}}</p>
+                    <address>
+                        {{'{'}}Address Line 1{{'}'}}, {{'{'}}City{{'}'}}, {{'{'}}State{{'}'}}, {{'{'}}ZIP Code{{'}'}}, {{'{'}}Country or Territory{{'}'}}
+                    </address>
+                </div>
+                <!-- End Pickup Address NOT editable -->
+
+                <!-- Begin Account Info w/ pending pickups -->
+                <div class="ups-group" *ngIf="whenOnCallContent">
+                    <p class="ups-group_label">Account {{'{'}}XNXNXN{{'}'}} has pickup service currently scheduled for:</p>
+                    <ul>
+                        <li>{{'{'}}today{{'}'}} at {{'{'}}Address Line 1, city, state{{'}'}}</li>
+                        <li>{{'{'}}tomorrow{{'}'}} at {{'{'}}address Line 1, city, state{{'}'}}</li>
+                        <li>{{'{'}}mm/dd/yyy{{'}'}} at {{'{'}}Address Line 1, city, state{{'}'}}</li>
+                    </ul>
+                </div>
+                <!-- End Account Info w/ pending pickups -->
+
+                <!-- Begin Account Info w/ pending pickups -->
+                <div class="ups-group" *ngIf="whenPendingOnCallPickups">
+                    <p class="ups-group_label">Account {{'{'}}XNXNXN{{'}'}} has pickup service currently scheduled for:</p>
+                    <ul>
+                        <li>{{'{'}}today{{'}'}} at {{'{'}}Address Line 1, city, state{{'}'}}</li>
+                    </ul>
+                </div>
+                <!-- End Account Info w/ pending pickups -->
+
+                <!-- Begin Ship Tip: UPS may have already visited your location -->
+                <div class="alert alert-warning " role="alert" *ngIf="whenSmartPickupShipTip">
+                    <div class="alert-icon pull-left">
+                        <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                    </div>
+
+                    <button type="button"
+                            class="ups-alert_collapse"
+                            aria-expanded="false"
+                            (click)="whenShipTip1 = !whenShipTip1">
+                        <span class="ups-readerTxt">Click to expand</span>
+                        <span [ngClass]="{ 'ups-icon-wedgeup' : whenShipTip1, 'ups-icon-wedgedown' : !whenShipTip1 }" class="icon " aria-hidden="true"></span>
+                    </button>
+
+                    <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> UPS may have already visited your location</p></div>
+                    <div class="alert-content ups-alert_has_icon" *ngIf="whenShipTip1">
+                        <p>We cannot confirm the status of an upcoming pickup once the scheduled pickup window time has begun. You may want to see if your driver has already come to your location.</p>
+                    </div>
+                </div>
+                <!-- End Ship Tip: UPS may have already visited your location -->
+
+                <!-- Begin Ship Tip: Too late to schedule a Smart Pickup today -->
+                <div class="alert alert-warning " role="alert" *ngIf="whenSmartPickupTooLateShipTip">
+                    <div class="alert-icon pull-left">
+                        <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                    </div>
+
+                    <button type="button"
+                            class="ups-alert_collapse"
+                            aria-expanded="false"
+                            (click)="whenShipTip1 = !whenShipTip1">
+                        <span class="ups-readerTxt">Click to expand</span>
+                        <span [ngClass]="{ 'ups-icon-wedgeup' : whenShipTip1, 'ups-icon-wedgedown' : !whenShipTip1 }" class="icon " aria-hidden="true"></span>
+                    </button>
+
+                    <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> Why can't I schedule a Smart Pickup for today?</p></div>
+                    <div class="alert-content ups-alert_has_icon" *ngIf="whenShipTip1">
+                        <p>Smart Pickups are made on a set window of time each day, when a driver is sure to be in your area. Shipments created after that time can be collected on your next available Smart Pickup date. You may still request an on-call pickup today for a fee, or visit a UPS location to drop off your packages.</p>
+                    </div>
+                </div>
+                <!-- End Ship Tip: Too late to schedule a Smart Pickup today -->
+
+                <!-- Begin "What would you like to do?" radio group -->
+                <fieldset class="ups-form_group" *ngIf="whenLike2DoContent">
+                    <legend class="ups-form_label">What would you like to do?</legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenPendingPickup">
+                        <input id="shipmentPickupIncludeNextPickup0" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="0" type="radio">
+                        <label for="shipmentPickupIncludeNextPickup0" class="ups-radio-custom-label">
+                            Include this shipment in a pending pickup.
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenScheduleOnCall">
+                        <input id="shipmentPickupScheduleAdditional1" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="1" type="radio">
+                        <label for="shipmentPickupScheduleAdditional1" class="ups-radio-custom-label">
+                            Schedule an additional pickup.
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenSmartPickupToday">
+                        <input id="shipmentPickupIncludeNextPickup2" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="2" type="radio">
+                        <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+                            <span *ngIf="!smartRequest">[Include in] today's Smart Pickup.</span>
+                            <span *ngIf="smartRequest">[Request] today's Smart Pickup.</span>
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenSmartPickupTomorrow">
+                        <input id="shipmentPickupScheduleAdditional3" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="3" type="radio">
+                        <label for="shipmentPickupScheduleAdditional3" class="ups-radio-custom-label">
+                            <span *ngIf="!smartRequest">[Include in] tomorrow's Smart Pickup.</span>
+                            <span *ngIf="smartRequest">[Request] tomorrow's Smart Pickup.</span>
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenIncludeSmartPickup">
+                        <input id="shipmentPickupScheduleAdditional4" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="4" type="radio">
+                        <label for="shipmentPickupScheduleAdditional4" class="ups-radio-custom-label">
+                            Include this shipment in a pending pickup.
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="whenPendingOnCall">
+                        <input id="shipmentPickupScheduleAdditional5" class="ups-radio-custom" name="shipmentPickupScheduleOption0" value="5" type="radio">
+                        <label for="shipmentPickupScheduleAdditional5" class="ups-radio-custom-label">
+                            Schedule an additional pickup.
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- End "What would you like to do?" radio group -->
+
+                <!-- Begin Pickup date calendar -->
+                <div class="row" *ngIf="whenPickupDateContent">
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <label for="packagePickupDate" class="ups-form_label">
+                                Pickup Date
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input type="text" name="packagePickupDate" class="ups-form_input" id="packagePickupDate" aria-required="true" value="{Today}" aria-label="Please enter date in mm/dd/yyyy format">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pickup date calendar -->
+
+                <!-- Begin Pickup Add Address / includes CAC-->
+                <div class="ups-section ups-section_condensed" *ngIf="whenpkupAddContent">
+                    <div class="ups-section-header">
+                        <p class="ups-subsection_heading ups-section_heading_label">
+                            Pickup Address
+                            <!-- Edit Button spans are for translations & reader text -->
+                            <button type="button" class="ups-link pull-right" (click)="whenEditAdd = !whenEditAdd">
+                                <span *ngIf="whenEditAdd">Cancel</span>
+                                <span aria-hidden="true" class="icon ups-icon-edit" *ngIf="!whenEditAdd"></span>
+                                <span class="hidden-xs" *ngIf="!whenEditAdd">Edit</span>
+                                <span class="ups-readerTxt"> Pickup Address</span>
+                            </button>
+                        </p>
+                    </div>
+                    <div *ngIf="!whenEditAdd">
+                        {{'{'}}Company or Name{{'}'}}
+                        <address class="ups-address_condensed">
+                            {{'{'}}Address Line 1{{'}'}}, {{'{'}}City{{'}'}},{{'{'}}State{{'}'}}, {{'{'}}ZIP Code{{'}'}}, {{'{'}}Country or Territory{{'}'}}
+                        </address>
+                    </div>
+                    <p *ngIf="district && whenEditAdd">
+                        <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                        Changing the pickup location will also change your origin (ship from) address. This may affect total shipping cost.
+                    </p>
+                    <!-- //// Begin CAC //// -->
+                    <!-- Contains the following fields -->
+                    <!-- Country or Territory -->
+                    <!-- Contact Company -->
+                    <!-- Contact Name -->
+                    <!-- Address -->
+                    <!-- City -->
+                    <!-- State -->
+                    <!-- ZIP Code -->
+                    <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                            <ups-cac #NBSWhenCAC *ngIf="whenEditAdd"></ups-cac>
+                        </div>
+                    </div>
+                    <!-- //// End CAC //// -->
+                </div>
+                <!-- End Pickup Add Address / includes CAC-->
+                <!-- Begin District Dropdown -->
+                <div class="row" *ngIf="district">
+                    <div class="col-sm-4 col-xs-6">
+                        <div class="ups-form_group">
+                            <label for="district" class="ups-form_label">
+                                District
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select id="district" name="district" class="ups-dropdown">
+                                    <option>DK</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End District Dropdown -->
+                <!-- Begin Pickup Details / includes editable details -->
+                <div class="ups-section" *ngIf="whenPkupDetailsContent">
+                    <div class="ups-section-header">
+                        <p class="ups-subsection_heading ups-section_heading_label">
+                            Pickup Details
+                            <!-- Edit Button spans are for translations & reader text -->
+                            <button type="button" class="ups-link pull-right" (click)="whenEditPkupDetails = !whenEditPkupDetails">
+                                <span *ngIf="whenEditPkupDetails">Cancel</span>
+                                <span aria-hidden="true" class="icon ups-icon-edit" *ngIf="!whenEditPkupDetails"></span>
+                                <span class="hidden-xs" *ngIf="!whenEditPkupDetails">Edit</span>
+                                <span class="ups-readerTxt"> Pickup Details</span>
+                            </button>
+                        </p>
+                    </div>
+                    <div class="row" *ngIf="!whenEditPkupDetails">
+                        <div class="col-md-4">
+                            <div class="ups-group">
+                                <p class="ups-group_label">
+                                Your Pickup Window
+                                </p>
+                                <p class="ups-group_value">
+                                    8:00AM - 6:00PM
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-group">
+                                <p class="ups-group_label">
+                                    Pickup Location
+                                </p>
+                                <p class="ups-group_value">
+                                    Front Door
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-group">
+                                <p class="ups-group_label">
+                                    {{'{'}}Pickup Reference{{'}'}}
+                                </p>
+                                <p class="ups-group_value">
+                                    {{'{'}}pickup reference{{'}'}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="whenEditPkupDetails">
+                        <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                            <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group">
+                                            <label for="pickupEarliestTime" class="ups-form_label">
+                                                Earliest Arrival Time
+                                            </label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select id="pickupEarliestTime" name="pickupEarliestTime" class="ups-dropdown">
+                                                    <option>8:00 AM</option>
+                                                    <option>8:30 AM</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group">
+                                            <label for="pickupLatestTime" class="ups-form_label">
+                                                Latest Arrival Time
+                                            </label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select id="pickupLatestTime" name="pickupLatestTime" class="ups-dropdown">
+                                                    <option>6:00 PM</option>
+                                                    <option>6:30 PM</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group">
+                                            <label for="pickupPreferredLoc" class="ups-form_label">
+                                                Preferred Pickup Location
+                                            </label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select id="pickupPreferredLoc" name="pickupPreferredLoc" class="ups-dropdown">
+                                                    <option>Front Door</option>
+                                                    <option>Roof Door</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group ups-help_wrapper">
+                                            <label for="pickupReference" class="ups-form_label">
+                                                Pickup Reference
+                                            </label>
+                                            <div class="ups-help" upsHelpBtn>
+                                                <button type="button" id="ups-pickupReferenceHelp1" class="ups-help_link">
+                                                    <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                                    Help
+                                                </button>
+                                                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                                    <button type="button" class="ups-help_close">
+                                                        <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                                        <span class="ups-readerTxt">Close</span>
+                                                    </button>
+                                                    <p>Any combination of numbers and letters you can use to track and identify your shipment. You can use a purchase order number, customer name, or phrase like "10 crates" or "gift for Mom".</p>
+                                                </div>
+                                            </div>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="pickupReference" class="ups-form_input" id="pickupReference">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pickup Details / includes editable details -->
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// End displays if pickup IS available    //// -->
+            <!-- //////////////////////////////////////////////// -->
+        </div>
+    </section>
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// End section Will you pick up your shipment?   //// -->
+    <!-- //// Begin section Hold for pickup?                //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+    <section class="ups-section">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">
+                <span *ngIf="whenHeaderDefault">Hold for customer pickup at a UPS Access Point<sup>&trade;</sup> location?</span>
+                <span *ngIf="!whenHeaderDefault">Would you like us to hold at an alternate location?</span>
+
+                <button *ngIf="whenReviewSwitch && !whenRecieverEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenRecieverEdit = true">
+                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                    <span aria-hidden="true" class="hidden-xs">Edit</span>
+                    <span class="ups-readerTxt"> section</span>
+                </button>
+                <button *ngIf="whenReviewSwitch && whenRecieverEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenRecieverEdit = false">
+                    <span aria-hidden="true" class="hidden-xs">Cancel</span>
+                    <span class="ups-readerTxt"> Editing this section</span>
+                </button>
+            </h3>
+        </div>
+        <div class="ups-group" *ngIf="!whenRecieverEdit">
+            <!-- <p><span class="confirmYes">Yes</span> hold at a UPS location.</p>
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-group_label">Hold Location:</p>
+                <p><strong>[UPS ccess Point <sup>&trade;</sup>]</strong>, [2.28k]</p>
+                <p>[store name], [location ID]</p>
+                <p>[1 Street], [00000], [City]</p>
+            </div> -->
+            <p *ngIf="whenReviewSwitch"><span class="confirmNo">No</span> deliver to receiver.</p>
+        </div>
+
+        <div *ngIf="!whenReviewSwitch || whenRecieverEdit">
+            <fieldset [ngClass]="{'ups-toggle_view':!nbsBase.getNbsInSinglePg()}" class="ups-form_group">
+                <legend class="ups-readerTxt">Delivery Options</legend>
+                <div class="ups-toggle_view_selection ups-input_wrapper">
+                    <input type="radio"
+                            id="whenShipmentDeliveryReceiver"
+                            value="0"
+                            name="whenShipmentDelivery"
+                            class="ups-radio-custom"
+                            [(ngModel)]="whenShipmentDelivery"
+                            [ngModelOptions]="{standalone:true}">
+                    <label for="whenShipmentDeliveryReceiver" [ngClass]="{'ups-form_label':!nbsBase.getNbsInSinglePg(),'ups-radio-custom-label':nbsBase.getNbsInSinglePg()}" class="text-center">No, deliver to receiver.</label>
+                </div><div class="ups-toggle_view_or text-center" *ngIf="!nbsBase.getNbsInSinglePg()">
+                        --OR--
+                </div><div class="ups-toggle_view_selection ups-input_wrapper" *ngIf="whenDeliveryAvailable">
+                    <input type="radio"
+                            id="whenShipmentDeliveryAltLocation"
+                            value="1"
+                            name="whenShipmentDelivery"
+                            class="ups-radio-custom"
+                            [(ngModel)]="whenShipmentDelivery"
+                            [ngModelOptions]="{standalone:true}">
+                    <label for="whenShipmentDeliveryAltLocation" [ngClass]="{'ups-form_label':!nbsBase.getNbsInSinglePg(),'ups-radio-custom-label':nbsBase.getNbsInSinglePg()}" class="text-center">Yes, hold at a UPS location.</label>
+                </div><div class="ups-toggle_view_selection ups-toggle_view_selection_unavailable" *ngIf="!whenDeliveryAvailable">
+                    <p>Pickup service is currently unavailable.</p>
+                </div>
+            </fieldset>
+            <!-- BEGIN too heavy -->
+            <div class="alert alert-warning " role="alert" *ngIf="toHeavyShipTip">
+                <div class="alert-icon pull-left">
+                    <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                </div>
+
+                <button type="button"
+                        class="ups-alert_collapse"
+                        aria-expanded="false"
+                        (click)="whenShipTip1 = !whenShipTip1">
+                    <span class="ups-readerTxt">Click to expand</span>
+                    <span [ngClass]="{ 'ups-icon-wedgeup' : whenShipTip1, 'ups-icon-wedgedown' : !whenShipTip1 }" class="icon " aria-hidden="true"></span>
+                </button>
+
+                <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong>  Shipment is too large or too heavy to be held at a UPS Access Point Location.<sup>&reg;</sup>.</p></div>
+                <div class="alert-content ups-alert_has_icon" *ngIf="whenShipTip1">
+                    <ul>
+                        <li>The maximum per package weight is {{'{'}}20{{'}'}}kg.</li>
+                        <li>The maximum length of longest side is {{'{'}}nnn{{'}'}} cm.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END too heavy -->
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// Begin deliver to receiver              //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-toggle_view_state" [ngClass]="{'ups-toggle_view_left': !nbsBase.getNbsInSinglePg()}" *ngIf="whenShipmentDelivery =='0' && whenNoDeliverHasContent">
+                <!-- Begin Loading Dock Switch -->
+                <div class="ups-form_group" *ngIf="whenLoadingDockContent">
+                    <label class="ups-lever" onclick="" for="whenLoadingDockSwitch">
+
+                        <input type="checkbox"
+                                id="whenLoadingDockSwitch"
+                                name="whenLoadingDockSwitch"
+                                class="ups-lever_checkbox"
+                                [(ngModel)]="whenLoadingDockSwitch"
+                                [ngModelOptions]="{'standalone': true}">
+
+                        <strong class="ups-form_label ups-lever_label">Is there a loading dock at the receiver's address?</strong>
+                        <p class="ups-form_subheader ups-lever_subheader">Select NO if you don't know for sure.</p>
+
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                </div>
+                <!-- End Loading Dock Switch -->
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// End deliver to receiver                //// -->
+            <!-- //// Begin hold at a UPS location           //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-toggle_view_state" [ngClass]="{'ups-toggle_view_right': !nbsBase.getNbsInSinglePg()}" *ngIf="whenShipmentDelivery =='1'">
+                <div *ngIf="whenHoldAtLocation">
+                    <div *ngIf="locationError">
+                        <!-- ////////////////////////////////////////// -->
+                        <!-- //// Begin Page Level error messaging //// -->
+                        <!-- ////////////////////////////////////////// -->
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Location ID not found. Please try again.
+                        </h3>
+
+                        <ul class="ups-icons-error">
+                            <li>
+                                <a href="#" class="ups-invalid_color" pointIdClick>Location ID</a>
+                            </li>
+                        </ul>
+                        <!-- ////////////////////////////////////////// -->
+                        <!-- //// End Page Level error messaging   //// -->
+                        <!-- //// Begin Accordian                  //// -->
+                        <!-- ////////////////////////////////////////// -->
+                    </div>
+                    <div *ngIf="whenHoldLocSwitch">
+                        <p><strong>Currently Selected:</strong></p>
+                        <div class="ups-group ups-group_condensed">
+                            <p>[UPS Access Point &trade;], [2.28 KM]</p>
+                            <p>[NEW Store Name], [NEW Location ID]</p>
+                            <p>[1 Broad St.], [00000], [City]</p>
+                        </div>
+                    </div>
+                    <div class="ups-locationSection">
+                        <div class="ups-section ups-section_condensed ups-bottomBorder1"
+                            [ngClass]="{'ups-bottomBorder1' : whenSelectByLocation}"
+                            *ngIf="!defaultHold">
+                            <div class="ups-section-header">
+                                <!-- Edit Button spans are for translations & reader text -->
+                                <button type="button"
+                                        class="ups-link ups-btn_has_icon ups-sectionHeader"
+                                        [attr.aria-expanded]= "whenSelectByLocation"
+                                        (click)="whenSelectByLocation = !whenSelectByLocation">
+                                    Select a different location
+                                    <span [ngClass]="{'ups-icon-wedgedown' : !whenSelectByLocation,
+                                                    'ups-icon-wedgeup' : whenSelectByLocation}"
+                                            class="icon " aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="ups-bottomBorder1" *ngIf="defaultHold">No UPS locations found within {{'{'}}15.0 miles{{'}'}} of receiver's address. Nearest UPS location: {{'{'}}25.1 miles{{'}'}}</p>
+                        <div *ngIf="whenSelectByLocation">
+                            <div class="row">
+                                <!-- Select a location from map -->
+                                <div class="col-md-6 ups-rightBorder1">
+                                    <fieldset class="ups-form_group">
+                                        <legend class="ups-form_label">Select a Location From Map</legend>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="allLocationMap"
+                                                class="ups-radio-custom"
+                                                name="locationMap"
+                                                value="0"
+                                                type="radio">
+                                            <label for="allLocationMap" class="ups-radio-custom-label">Search all locations</label>
+                                        </div>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="someLocationMap"
+                                                class="ups-radio-custom"
+                                                name="locationMap"
+                                                value="1"
+                                                type="radio">
+                                            <label for="someLocationMap" class="ups-radio-custom-label">Search only locations that accept C.O.D. payments</label>
+                                        </div>
+                                        <button type="button" class="ups-cta ups-cta_primary">Search</button>
+                                    </fieldset>
+                                </div>
+                                <!-- Select by location ID -->
+                                <div class="col-md-6">
+                                    <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                                        <div [ngClass]="{'col-md-8' : nbsBase.getNbsInSinglePg()}">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label class="ups-form_label" for="ups-paymentType">Search By Location ID
+                                                <span aria-hidden="true"></span>
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input id="ups-paymentType"
+                                                        type="text"
+                                                        name="search"
+                                                        class="ups-form_input ng-pristine ng-valid ng-valid-maxlength ng-touched"
+                                                        value=""
+                                                        maxlength="35">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ups-form_ctaGroup">
+                                        <button id="locationFoundSelectedBtn" type="submit" class="ups-cta ups-cta_primary">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-cms-demo">
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="demoHold4Pickup('open')">Has a UPS location been selected?</button><br><br>
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="demoHold4Pickup('notFound')">No Location Found</button><br><br>
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="demoHold4Pickup('outRadius')">Location Out of Radius</button>
+                    </div>
+                </div>
+
+                <div class="ups-group ups-group_condensed" *ngIf="whenHoldLocName">
+                    <p class="ups-group_label">[Location/Facility Name]</p>
+                    <p>[Address], [City], [Other], [State], [ZIP], [Country or Territory]</p>
+                    <p>Telephone: [Number]</p>
+                    <p>Fax: [Number]</p>
+                </div>
+
+                <div class="ups-group ups-group_condensed" *ngIf="whenHoldHours">
+                    <p class="ups-group_label">Hours of Operation</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                    <p>[Weekday] hh:mm AM to hh:mm PM</p>
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// End hold at a UPS location             //// -->
+            <!-- //////////////////////////////////////////////// -->
+        </div>
+    </section>
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// End section Hold for pickup?                  //// -->
+    <!-- //// Begin section Shipping schedule               //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+    <section class="ups-section">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">
+                <div class="row">
+                    <div class="col-xs-9">
+                        When would you like it delivered?
+                    </div>
+                <!-- When would you like it delivered? -->
+
+                    <div class="col-xs-3">
+                        <fieldset class="ups-btn_group_fieldset" *ngIf="!whenReviewSwitch && nbsBase.getNbsInSinglePg()">
+                            <legend class="ups-readerTxt">View</legend>
+                            <div class="ups-btn_group">
+                                <div class="ups-btn_group_inner">
+                                    <div class="ups-btn_group_action_inner">
+                                        <input type="radio"
+                                            value="0"
+                                            id="schedListView"
+                                            name="schedView"
+                                            class="ups-btn_group_radio"
+                                            formControlName="schedView"
+                                            (change)="whenSchecListViewBtn('list')">
+                                        <label for="schedListView" class="ups-btn_group_label">
+                                            <span class="ups-readerTxt">List View</span>
+                                            <span class="icon ups-icon-list" aria-hidden="true"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ups-btn_group_action_inner">
+                                        <input type="radio"
+                                            value="1"
+                                            id="schedGridView"
+                                            name="schedView"
+                                            class="ups-btn_group_radio"
+                                            formControlName="schedView"
+                                            (change)="whenSchecListViewBtn('grid')">
+                                        <label for="schedGridView" class="ups-btn_group_label">
+                                            <span class="ups-readerTxt">Grid View</span>
+                                            <span class="icon ups-icon-grid" aria-hidden="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button *ngIf="whenReviewSwitch && !whenScheduleEdit"
+                            class="ups-link"
+                            type="button"
+                            (click)="whenScheduleEdit = true">
+                            <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                            <span aria-hidden="true" class="hidden-xs">Edit</span>
+                            <span class="ups-readerTxt"> section</span>
+                        </button>
+                        <button *ngIf="whenReviewSwitch && whenScheduleEdit"
+                            class="ups-link"
+                            type="button"
+                            (click)="whenScheduleEdit = false">
+                            <span aria-hidden="true" class="hidden-xs">Cancel</span>
+                            <span class="ups-readerTxt"> Editing this section</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- <button *ngIf="whenReviewSwitch && !whenScheduleEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenScheduleEdit = true">
+                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                    <span aria-hidden="true" class="hidden-xs">Edit</span>
+                    <span class="ups-readerTxt"> section</span>
+                </button>
+                <button *ngIf="whenReviewSwitch && whenScheduleEdit"
+                    class="ups-link"
+                    type="button"
+                    (click)="whenScheduleEdit = false">
+                    <span aria-hidden="true" class="hidden-xs">Cancel</span>
+                    <span class="ups-readerTxt"> Editing this section</span>
+                </button> -->
+
+                <!-- <div class="ups-grid_list">
+                    <div class="ups-grid_list_row">
+                        <div class="ups-grid_list_cell">When would you like it delivered?</div>
+                        <fieldset class="ups-btn_group_fieldset ups-grid_list_cell" *ngIf="!whenReviewSwitch && nbsBase.getNbsInSinglePg()">
+                            <legend class="ups-readerTxt">View</legend>
+                            <div class="ups-btn_group">
+                                <div class="ups-btn_group_inner">
+                                    <div class="ups-btn_group_action_inner">
+                                        <input type="radio"
+                                            value="0"
+                                            id="schedListView"
+                                            name="schedView"
+                                            class="ups-btn_group_radio"
+                                            formControlName="schedView"
+                                            (change)="whenSchecListViewBtn('list')">
+                                        <label for="schedListView" class="ups-btn_group_label">
+                                            <span class="ups-readerTxt">List View</span>
+                                            <span class="icon ups-icon-list" aria-hidden="true"></span>
+                                        </label>
+                                    </div>
+                                    <div class="ups-btn_group_action_inner">
+                                        <input type="radio"
+                                            value="1"
+                                            id="schedGridView"
+                                            name="schedView"
+                                            class="ups-btn_group_radio"
+                                            formControlName="schedView"
+                                            (change)="whenSchecListViewBtn('grid')">
+                                        <label for="schedGridView" class="ups-btn_group_label">
+                                            <span class="ups-readerTxt">Grid View</span>
+                                            <span class="icon ups-icon-grid" aria-hidden="true"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div> -->
+            </h3>
+        </div>
+        <p *ngIf="whenReviewSwitch && !whenScheduleEdit">{{'{'}}Tue, Oct 18 by end of day{{'}'}} - {{'{'}}UPS 2nd Day Air{{'}'}}.</p>
+
+        <ups-nbs-schedule #whenSchedule *ngIf="whenScheduleEdit || !whenReviewSwitch"></ups-nbs-schedule>
+    </section>
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// End section Hold for pickup?                  //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+    <section class="ups-section" *ngIf="accessPoint">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">
+                Contact for UPS Access Point<sup>&trade;</sup> pickup notification
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Receiver's Notification Language -->
+                <div class="ups-form_group">
+                    <label for="recLang" class="ups-form_label"> Receiver's Notification Language </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="recLang"
+                                name="recLang"
+                                class="ups-dropdown">
+                            <option value="{{ optionList.val }}" *ngFor="let optionList of language">{{ optionList.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-md-4' : !nbsBase.getNbsInSinglePg(), 'col-md-2' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-group">
+                    <p class="ups-group_label">Notify by</p>
+                    <p class="ups-group_value">Email</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Receiver's Email -->
+                <div class="ups-form_group">
+                    <label for="recEmail" class="ups-form_label"> Receiver Email </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                                name="recEmail"
+                                class="ups-form_input"
+                                id="recEmail"
+                                placeholder="{{'{'}}if email entered on address page{{'}'}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Shipper's Notification Language selectbox -->
+                <div class="ups-form_group">
+                    <label for="shipLang" class="ups-form_label"> Shipper's Notification Language </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="shipLang"
+                                name="shipLang"
+                                class="ups-dropdown">
+                            <option value="{{ optionList.val }}" *ngFor="let optionList of language">{{ optionList.name }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-md-4' : !nbsBase.getNbsInSinglePg(), 'col-md-2' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group">
+                    <label for="shipNote" class="ups-form_label"> Notify by </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="shipNote"
+                                name="shipNote"
+                                class="ups-dropdown"
+                                [(ngModel)]="shipNote"
+                                [ngModelOptions]="{'standalone': true}">
+                            <option value="email">Email</option>
+                            <option value="sms">SMS (Text)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="shipNote == 'email'">
+                <!-- Shipper's Email -->
+                <div class="ups-form_group">
+                    <label for="shipEmail" class="ups-form_label"> Shipper Email </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                                name="shipEmail"
+                                class="ups-form_input"
+                                id="shipEmail"
+                                placeholder="{{'{'}}if email entered on address page{{'}'}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="shipNote == 'sms'">
+            <div class="col-md-4">
+                <!-- Country or Territory Code -->
+                <div class="ups-form_group">
+                    <label for="countryCode" class="ups-form_label"> Country or Territory Code </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="countryCode"
+                                name="countryCode"
+                                class="ups-dropdown">
+                            <option value="spain">Spain - 34</option>
+                            <option value="us">United States - 61</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-md-4' : !nbsBase.getNbsInSinglePg(), 'col-md-2' : nbsBase.getNbsInSinglePg()}">
+                <!-- Mobile Number -->
+                <div class="ups-form_group">
+                    <label for="mobileNum" class="ups-form_label"> Mobile Number </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                                name="mobileNum"
+                                class="ups-form_input"
+                                id="mobileNum">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input id="enterAlertEmail"
+                        class="ups-checkbox-custom"
+                        name="enterAlertEmail"
+                        type="checkbox"
+                        [(ngModel)]="enterAlertEmail"
+                        [ngModelOptions]="{'standalone': true}">
+                <label for="enterAlertEmail" class="ups-checkbox-custom-label">
+                    Tell me if an alert cannot be delivered.
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div [ngClass]="{'col-md-6' : !nbsBase.getNbsInSinglePg(), 'col-md-4' : nbsBase.getNbsInSinglePg()}">
+                <div class="ups-form_group ups-indent" *ngIf="enterAlertEmail">
+                    <label for="alertEmail" class="ups-form_label">
+                        Email
+                        <span class="ups-readerTxt">used to alert you.</span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                                name="alertEmail"
+                                class="ups-form_input"
+                                id="alertEmail">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// Begin section Access Point Review             //// -->
+        <!-- /////////////////////////////////////////////////////// -->
+    <section class="ups-section" *ngIf="nbsBase.getNbsInSinglePg() && accessPointReview && whenReviewSwitch">
+        <div class="ups-section-header">
+            <h3 class="ups-section_heading">
+                Contact for UPS Access Point
+                <sup>&trade;</sup> pickup notification
+            </h3>
+        </div>
+        
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-group_label">Receiver Email</p>
+            <p>[United States - English] - {{'{'}}email{{'}'}}.</p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-group_label">
+                Shipper Email
+            </p>
+            <p>[United States - English] - {{'{'}}email{{'}'}}.</p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-group_label">
+                Shipper SMS
+            </p>
+            <p>[United States - English] - {{'{'}}Spain +34{{'}'}} - {{'{'}}Phone Number{{'}'}}.</p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-group_label">
+                If delivery issues notify
+            </p>
+            <p>{{'{'}}email{{'}'}}.</p>
+        </div>
+    </section>
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// Begin section Demo Buttons                    //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+    
+    <section class="ups-cms-demo">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label class="ups-lever" onclick="" for="whenReviewSwitch">
+
+                        <input type="checkbox"
+                                id="whenReviewSwitch"
+                                name="whenReviewSwitch"
+                                class="ups-lever_checkbox"
+                                [(ngModel)]="whenReviewSwitch"
+                                [ngModelOptions]="{'standalone': true}"
+                                (change)="whenPickupEdit = !whenPickupEdit">
+
+                        <strong class="ups-form_label ups-lever_label">View Review States</strong>
+
+                        <span aria-hidden="true" class="ups-lever_switch">
+                            <span class="ups-lever_switch_yes">Yes</span>
+                            <span class="ups-lever_switch_bg"></span>
+                            <span class="ups-lever_switch_no">No</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="ups-cta ups-cta_secondary" (click)="whenToggleAccessPoint('point')">Access Point</button>
+                <button type="button" class="ups-cta ups-cta_secondary" (click)="whenToggleAccessPoint('review')" *ngIf="nbsBase.getNbsInSinglePg()">Access Point Review</button>
+            </div>
+        </div>
+        <div *ngIf="whenReviewSwitch">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Sender Section</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenReviewPickupYesBtn()">Pickup section (Yes)</button><br>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenReviewPickupYesSmartBtn()">Pickup section (Yes) Smart</button><br>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenReviewPickupNoBtn()">Pickup section (No)</button>
+                </div>
+                <div class="col-md-6">
+                    <p>Receiver Section</p>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenHeaderDefault = !whenHeaderDefault">Default/Alt Header</button><br>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenReviewRecieverBtn('yes')">Receiver section (Yes)</button><br>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="whenReviewRecieverBtn('no')">Receiver section (No)</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!whenReviewSwitch">
+            <p><strong>To view a given state:</strong></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group">
+                        <label for="demoSelect" class="ups-form_label">Shipping Summary</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="demoShipSomary"
+                                    class="ups-dropdown"
+                                    id="demoSelect"
+                                    [(ngModel)]="demoSelect"
+                                    [ngModelOptions]="{'standalone': true}"
+                                    (change)="demoBtn()">
+                                <option value="" disabled>**** Default ****</option>
+                                <option value="defPicknAv" selected>Pickup not Available</option>
+                                <option value="defAddPick">Add Pickup</option>
+                                <option value="defOnCall">On Call - Scheduled</option>
+                                <option value="defAddPickOnCall">Add Pickup &amp; On Call</option>
+                                <option value="defPickDaily">Pickup Daily</option>
+                                <option value="defPickDailyOnCall">Pickup Daily  On Call</option>
+                                <option value="defOther">Other Available - Not Selected</option>
+                                <option value="" disabled>**** WWEF ****</option>
+                                <option value="wwefDel">UPS Delivery</option>
+                                <option value="wwefHold">Hold for Pickup</option>
+                                <option value="wwefDrop">Dropoff</option>
+                                <option value="wwefDropAv">Dropoff not Available</option>
+                                <option value="wwef2Heavy">Too Heavy</option>
+                                <option value="" disabled>**** Smart Service ****</option>
+                                <option value="smartInclude">Requested - Include</option>
+                                <option value="smartPend">Requested - w/ Pending On Call</option>
+                                <option value="smartOnCall">Requested - Add On Call</option>
+                                <option value="smartAddPickOnCall">Requested - Add Pickup On Call</option>
+                                <option value="smartPast">Requested - Past Notify Time</option>
+                                <option value="smartReqTooLate">Requested - Past Pickup Window</option>
+                                <option value="smartTooLate">Cannot Schedule - Past Pickup Window</option>
+                                <option value="smartNotReq">Not Requested</option>
+                                <option value="smartAccount">Account in Profile Not Selected</option>
+                                <option value="" disabled>**** Day Specific Service ****</option>
+                                <option value="daySpecOnCall">Add On Call</option>
+                                <option value="daySpecOnCallDistReq">On Call - District Req</option>
+                                <option value="daySpecPending">One Pending Pickup</option>
+                                <option value="" disabled>**** Alternate Location ****</option>
+                                <option value="altDefault">Default / With Ship Tip</option>
+                                <option value="alt2Large">Too Large to Deliver</option>
+                                <option *ngFor="let demoDD of demoDropDown;"
+                                        value="{{demoDD.val}}" 
+                                        [disabled]="demoDD.disabled" 
+                                        [selected]="demoDD.selected">{{demoDD.copy}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- //// End section Demo Buttons                      //// -->
+    <!-- /////////////////////////////////////////////////////// -->
+</div>

@@ -1,0 +1,111 @@
+<!-- ************************************************************************************ -->
+<!-- M44 Content Block                                                                    -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M44 Content Block - Notes
+********************************************************************************
+
+ - Targetable.
+ - Dynamic or Defined.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M44 Content Block - Data
+********************************************************************************
+
+CONFIGS:
+
+Available Variations via class names:
+
+    Applied to div.ups-contentBlock
+        .last-gray                       Displays gray background
+
+    CONTENT BLOCK TYPES
+
+        .contentBlock_landing_gray       Displays gray landing version
+
+        .ups-helper                      Displays helper version of content block
+
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    type                       = string     / NO            / contentBlock_landing_gray
+    heading                    = object     / NO            / {"text", "align"}
+    heading.text               = string     / NO            / Example title
+    heading.align              = string     / NO            / left
+    copy                       = string     / NO            / Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    body                       = RTE        / NO            / <h2>Example body content</h2><p>example text</p>
+    cta                        = string     / NO            / Button CTA
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M44 Content Block - Layout
+********************************************************************************
+
+-content block-
+| 60px
+
+********************************************************************************
+--}}
+
+
+<div class="ups-contentBlock ups-wrap {{type}}{{#if lastGray}} last-gray{{/if}}">
+    <div class="ups-wrap_inner">
+        {{#compare type '==' "contentBlock_landing_gray"}}
+        <div class='landing_container'>
+        {{/compare}}
+
+        {{#compare type '==' "helper"}}
+        <div class='ups-helper'>
+        {{/compare}}
+
+        {{#if heading.text}}
+        <h2 class=" {{heading.align}}">{{heading.text}}</h2>
+        {{/if}}
+
+        {{#if body}}
+        <div class='ups-contentBlock_wrap clearfix'>{{{body}}}</div>
+        {{/if}}
+
+        {{#if this.cta}}
+        <a class="ups-cta" href="{{this.cta.link}}">{{this.cta.label}}</a>
+        {{/if}}
+
+        {{#if cta-list}}
+            <div class="ups-link-list">
+                <ul>
+                    {{#each cta-list}}
+                        <li><a class="ups-link" href="{{this.link}}">{{this.label}} {{#if this.sup}}<sup>&reg;</sup>{{/if}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+
+        {{#if for}}
+        <div class="ups-simplemsg_subnoteWrap">
+            <h3>Who's It For:</h3>
+            <div class="ups-simplemsg_subnote">
+                <p class="{{for.icon}}">{{for.txt}}</p>
+                <img src="/assets/resources/images/services/tabs/{{for.img}}" alt="Who It's For">
+            </div>
+        </div>
+        {{/if}}
+
+        {{#compare type '==' "contentBlock_landing_gray"}}
+        </div>
+        {{/compare}}
+
+        {{#compare type '==' "helper"}}
+        </div>
+        {{/compare}}
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<!-- ************************************************************************************ -->
+<!-- W5 Manage Home Delivieres, Quickstart                                                -->
+<!-- ************************************************************************************ -->
+
+<div class="ups-widget ups-manage-deliveries ups-wrap">
+   <div class="ups-wrap_inner">
+        <div class="ups-widget_header">
+            <h2>Manage Home Deliveries</h2>
+            {{#if this.help}}
+               <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+            {{/if}}
+        </div>
+        <div class="ups-widget_panel">
+            {{#if this.help}}
+                <div class="ups-help_panel"><p>{{this.help}}</p></div>
+            {{/if}}
+            <div class="manage-deliveries_header clearfix ups-sm_hide">
+                <div class="manage-deliveries_header_qs {{#compare accounts.length '==' 1}}single_account{{/compare}}">
+                    {{#compare accounts.length ">" 1}}<label for="manage_account_select_address" class="ups-form_label">Pick a Delivery Address:</label>{{/compare}}
+                    <div class="header-qs-container clearfix">
+                        {{#compare accounts.length ">" 1}}
+                        <div class="ups-dropdown_wrapper">
+                            <select id="manage_account_select_address" name="manage_account_filter" class="ups-dropdown">
+                                {{#each accounts}}
+                                <option value="{{name}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{/compare}}
+                        {{#each accounts}}
+                        <div class="package-total" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                            <div class="total-text">Your Packages</div>
+                            <div class="package-notification">
+                                <div>{{total}}</div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+            {{#compare accounts.length ">" 1}}
+            <div class="manage-deliveries_accounts clearfix">
+                <label for="manage_account_select_view" class="ups-form_label">Pick a Delivery Address</label>
+                <div class="ups-dropdown_wrapper">
+                    <select id="manage_account_select_view" name="manage_account_filter" class="ups-dropdown">
+                        {{#each accounts}}
+                        <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            {{/compare}}
+            
+            {{#each accounts}}
+            <div class="manage-deliveries_quickstart" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                {{#compare total "==" 0}}
+                <div class="no-deliveries-container">
+                    There are no deliveries scheduled for the upcoming week.
+                </div>
+                {{/compare}}
+                {{#compare total ">" 0}}
+                <table class="ups-table">
+                    <thead>
+                        <tr>
+                            <th scope='col'>Delivery Date/Time</th>
+                            <th scope='col'>Ship From/Tracking #</th>
+                            <th scope='col' class="col-status">Status/Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each upcoming}}
+
+                        <tr>
+                            <td>
+                                <div class="delivery-date">Thu, Apr 09</div>
+                                <div class="delivery-time">10:00 AM - 2:00 PM</div>
+                            </td>
+                            <td>
+                                <div class="delivery-carrier">Amazon</div>
+                                <div class="delivery-tracking-num"><a class="ups-link" tabindex="0">1ZA652F40402733762</a></div>
+                            </td>
+                            <td>
+                                {{#if @first}}
+                                <div class="delivery-status">Delivered</div>
+                                {{else}}
+                                    {{#if @last}}
+                                    <div class="delivery-status">Order Processed: </div>
+                                    <div class="delivery-status">Ready for UPS</div>
+                                    <div class="delivery-change"><a tabindex="0" href="#changeDel" class="ups-link">Change Delivery</a></div>
+                                    {{else}}
+                                    <div class="delivery-status">In Transit</div>
+                                    <div class="delivery-change"><a href="#changeDel" tabindex="0" class="ups-link">Change Delivery</a></div>
+                                    {{/if}}
+                                {{/if}}
+                            </td>
+                        </tr>
+
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/compare}}
+            </div>
+            {{/each}}
+            
+            {{#each accounts}}
+                {{#compare total ">" 3}}
+                    <div class="manage-deliveries_cta clearfix" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                        <a href="#see-all-shipments" class="ups-cta">See All Shipments</a>
+                    </div>
+                {{/compare}}
+            {{/each}}
+
+        </div>
+        <!-- @end .ups-widget_panel -->
+   </div>
+   <script type="text/javascript">
+            var mhd_url='/assets/resources/ajax/mhd.json';
+            var multilingual={
+                dayEnd:'Manage Home Deliveries is unavailable at this time.',
+                today:'Today',
+                changeDelivery:'Change Delivery',
+                view:'Pick a Delivery Address',  
+                yourPackage:'Your Packages',
+                deliveryDay:'Delivery Day',
+                deliveryDate:'Delivery Date and Time',
+                shipFrom:'Sender and Tracking #',
+                statusAction:'Status/Manage',
+                deliveryScheduler:'No Upcoming Deliveries',
+                deliverySchedulerWeek:'There are no deliveries scheduled for the upcoming week.',
+                deliverySchedulerToday:'There are no deliveries scheduled for today.'
+            };
+            var seeShipment={
+                url:'https://wwwapps.ups.com/mcdp?loc=en_US&data-content-block-id=W5',
+                title:'See All My Shipments',
+                contentBlock:'templatedata/structure/widget/data/en_US/widget.dcr'
+            };
+        </script>
+</div>
+<!-- @end .ups-widget -->

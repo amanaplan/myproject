@@ -1,0 +1,151 @@
+<!-- ************************************************************************************ -->
+<!-- M55 Ship By                                                                          -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M08 TABS: -LAYOUT-
+********************************************************************************
+
+| 60px
+| 30px
+-calendar-
+| 30px
+-table layout-
+| 60px
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+M55 Ship By: Desktop to Mobile
+********************************************************************************
+
+plugin 'ups.shipby.js' converts M55 Ship By into accordion layout. it takes
+the table detail and adds content / astericks to the the 'Service Expectations'
+
+********************************************************************************
+--}}
+
+<div class="ups-ship-by ups-wrap">
+    <div class="ups-wrap_inner">
+
+        {{#if mainHeader}}<h2 class="ups-article-header">{{mainHeader}}</h2>{{/if}}
+
+        <div class="ups-table" data-accordion="{{behavior}}">
+            <div class="ship-by_header clearfix {{#if bgColor}} {{bgColor}} {{/if}} ">
+                {{#compare upcomingDate "==" "valentines"}}
+                <img class="header-img" src="/assets/resources/images/components/ship-by/heart.png" alt="Valentines Day"/>
+                <span class="ship-by_title">Get it there in Time for Valentine's Day</span>
+                {{/compare}}
+                {{#compare upcomingDate "==" "mothers"}}
+                <img class="header-img" src="/assets/resources/images/components/ship-by/mothers.png" alt="Mother's Day"/>
+                <span class="ship-by_title">Get it there in Time for Mother's Day</span>
+                {{/compare}}
+                {{#compare upcomingDate "==" "christmas"}}
+                <img class="header-img" src="/assets/resources/images/components/ship-by/christmas.png" alt="Christmas"/>
+                <span class="ship-by_title">Get it there in Time for Christmas</span>
+                {{/compare}}
+
+                {{#if calendar}}
+                <div class="ship-by_calendar ups-text_wrapper" data-date-range="{{calendar.dateRange}}">
+                    <div class="ship-by_calendar_dropdowns clearfix">
+                        <label for="ship-by_month_dropdown" class="ship-by_calendar_label">Deliver my shipment by: </label>
+                        <div class="ship-by_year_dropdown ups-dropdown_wrapper ups-input_wrapper dropdown_year">
+                            <select name="calendar_year" class="ups-dropdown">
+                                <option value="jan2015">Friday, January 12</option>
+                                <option value="feb2015">Thursday, February 14</option>
+                                <option value="mar2015">Tuesday, March 21</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            {{#each calendarMonth}}
+            <div class="ship-by_container" {{#compare active "==" true}}data-active="true"{{/compare}} {{#compare open "!=" true}}data-active="false"{{/compare}} {{#if name}}data-name="{{name}}"{{/if}}>
+                {{#each serviceDates}}
+                    <table class="ship-by_primary" role="presentation">
+                        <thead {{#compare open "==" true}}data-open="true"{{/compare}}{{#compare open "!=" true}}data-open="false"{{/compare}}>
+                            <tr>
+                                <td class="ship-by_accordion" colspan="2">
+                                    <div class="header">{{header}}</div>
+                                    {{#if deliveryType}}
+                                    <span class='ship-by_delivery'>{{deliveryType}} Delivery</span>
+                                    {{/if}}
+                                    <button class='ups-sm_show ups-iconAlone'><span class="icon {{#compare open "==" true}}ups-icon-minus{{/compare}}{{#compare open "!=" true}}ups-icon-plus{{/compare}}" aria-hidden="true"></span><span class ="ups-readerTxt" data-lang-expand="expand" data-lang-collapse="collapse">expand</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='mobile-list-container'>
+                                    <div class='mobile-list'></div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Suggested Service</th>
+                                <th>Service Expectations</th>
+                            </tr>
+                            {{#each option}}
+                            <tr data-name="{{name}}">
+                                <td>
+                                    <!-- alt="Service name (Object)"-->
+                                    <span class="ups-shipping-icon ups-icon-{{icon}}" aria-hidden="true"></span>
+                                        <a class="ups-link" href="{{url}}">{{name}}</a>
+                                </td>
+                                {{#if exception}}
+                                <td class="exception">
+                                    {{exception}} <a class="ups-link shipby-popup" href="{{url}}" >Read More</a>
+                                </td>
+                                {{else}}
+                                <td>
+                                    &nbsp;
+                                </td>
+                                {{/if}}
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    {{/each}}
+
+
+                    <table class="ship-by_secondary table_sm_show" role="presentation">
+                        <thead {{#compare open "==" true}}data-open="true"{{/compare}}{{#compare open "!=" true}}data-open="false"{{/compare}}>
+                            <tr>
+                                <td class="ship-by_accordion">
+                                    <div>SERVICE EXCEPTIONS</div>
+                                    <button class='ups-sm_show  ups-iconAlone'><span class="icon {{#compare open "==" true}}ups-icon-minus{{/compare}}{{#compare open "!=" true}}ups-icon-plus{{/compare}}" aria-hidden="true"></span><span class ="ups-readerTxt" data-lang-expand="expand" data-lang-collapse="collapse">expand</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class='mobile-list-container'>
+                                    <div class='mobile-list'></div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    </div>
+                    {{/each}}
+        </div>
+
+        {{#if disclaimer}}
+        <div class="disclaimer">
+            {{#if disclaimer.text}}
+                {{disclaimer.text}}
+            {{/if}}
+            {{#if disclaimer.link}}
+                <a class="ups-link" href="{{disclaimer.link.url}}">{{disclaimer.link.text}}</a>
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+</div>

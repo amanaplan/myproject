@@ -1,0 +1,65 @@
+<!-- ************************************************************************************ -->
+<!-- M57 Featured Glossary Carousel                                                       -->
+<!-- ************************************************************************************ -->
+
+
+{{!--
+********************************************************************************
+M57 Featured Glossary Carousel: -LAYOUT-
+********************************************************************************
+
+| 60px
+-glossary header-
+| 15px
+| 30px
+-term header-
+| 5px
+-term text-
+| 15px
+-term cta-
+| ~ 30px
+-carousel btns-
+| ~ 30px
+| 60px 
+
+********************************************************************************
+--}}
+
+<div class="ups-glossary">
+
+    
+{{!--
+********************************************************************************
+M57 FEATURED GLOSSARY CAROUSEL: HEADER
+********************************************************************************
+
+M57 has a header for the group of glossary terms
+
+********************************************************************************
+--}}
+
+    <h3>{{this.title}}</h3>
+
+    
+{{!--
+********************************************************************************
+M57 FEATURED GLOSSARY CAROUSEL: SLIDES
+********************************************************************************
+
+M57 has a maximum of three glossary terms, with a header, text, and cta link
+
+********************************************************************************
+--}}
+    
+    <div class="ups-glossary_carousel ups-carousel_sm">
+    <a class="ups-skipNav_carousel" href="#" tabindex="0">{{autoplay}}</a>
+        {{#each this.slides}}
+        <div class="ups-glossary_slide" tabindex="0">
+            <h2>{{{this.heading}}}</h2>
+            <p>{{{this.copy}}}</p>
+            <a href="{{this.link}}">Link to Full Glossary</a>
+        </div>
+        {{/each}}
+        <div class="ups-carousel-navbuttons"></div> 
+    </div>
+</div>

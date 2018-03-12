@@ -1,0 +1,62 @@
+<!-- Notes for Quest: -->
+<!-- To find controller, go to line 1014 on file src/apps/ppc/assets/angularjs/controllers/ups.ppc.quantumView.controller.js -->
+<div data-ng-controller="quantumViewAdministrationUserInfoCtrl">
+    <form error-on-submit name="ups_quantumViewUserInformationForm" novalidate>
+        <!-- Page Level Errors -->
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors
+            </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="clicked && upsCACForm.address0.$invalid"><span> <a
+                    focus-attr="ups-address" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.city.$invalid"><span> <a
+                    focus-attr="ups-city" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> City is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.state.$invalid"><span> <a
+                    focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> <span data-ng-if="(upsCACForm.country.$viewValue != 'us')">Address Information</span><span data-ng-if="(upsCACForm.country.$viewValue == 'us')">State</span> is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.zipCode.$invalid"><span> <a
+                    focus-attr="ups-zipcode" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"><span data-ng-if="(upsCACForm.country.$viewValue != 'us')">Postal Code</span><span data-ng-if="(upsCACForm.country.$viewValue == 'us')">Zip Code</span> is required.</a></span></li>
+            </ul>
+        </div>
+        <!-- Page Level Errors -->
+        <div class="ups-group">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups_name" class="ups-form_label">Name</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" id="ups_name" class="ups-form_input" name="ups_name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups_user_id" class="ups-form_label">User ID</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" id="ups_user_id" class="ups-form_input" name="ups_user_id" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <ups-cac></ups-cac>
+                </div>
+            </div>
+
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">User Access</legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-repeat="option in userAccessOptions">
+                     <input id="{{option.userAccessName}}" class="ups-checkbox-custom" name=" {{option.userAccessName}}" type="checkbox" value="{{option.userAccessValue}}">
+                     <label for="{{option.userAccessName}}" class="ups-checkbox-custom-label">{{option.userAccessLabel}}</label><button type="button" class="ups-indent ups-link" data-ng-if="option.suspendButton">Suspend</button>
+                 </div>
+             </fieldset>
+             <div class="ups-form_ctaGroup">
+                <button type="submit" class="ups-cta ups-cta_primary" data-ng-click=" saveUserInformationButton(upsCACForm.$valid);">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

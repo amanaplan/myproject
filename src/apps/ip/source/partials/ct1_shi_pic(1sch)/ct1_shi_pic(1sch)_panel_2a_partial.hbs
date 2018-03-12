@@ -1,0 +1,148 @@
+<div class="secLvl step"> 
+	
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber">{{#unless pic_info_show_msg }}1{{/unless}}{{#if pic_info_show_msg }}2{{/if}}</span></div>
+		<h3>{{#unless pic_info_show_msg }}Pickup Information and Location{{/unless}}{{#if pic_info_show_msg }}Pickup Address Information{{/if}}</h3>
+	</div>
+	
+	<div class="secBody clearfix"> {{#unless pic_info_show_msg }}
+		<p>The <strong>Ship From address</strong> entered in UPS Internet Shipping will be used as your <strong>Pickup Address</strong>.</p>
+		{{/unless}}
+		<div class="ups-group">
+			<p><span class="ups-group_label">Pickup Address:</span> <a href="repl_href" class="ups-link">Use a different address</a></p>
+		</div>
+		<div class="ups-group ups-group_condensed">
+			<p>{Company or Name}</p>
+			<address>
+			{Address Line 1}<br>
+			{City}, {State} {ZIP Code}<br>
+			{Country or Territory}
+			</p>
+			</address>
+			<p>E-mail Address: nnnnnnnnnnnn@nnnn.com</p>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="ups-form_group">
+					<label for="contactName" class="ups-form_label">Contact Name</span></label>
+					<div class=" ups-text_wrapper ups-input_wrapper ">
+						<input type="text" name="contactName" class="ups-form_input" id="contactName">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="ups-form_group ups-form_required">
+					<label for="telephone" class="ups-form_label">Telephone <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></label>
+					<div class=" ups-text_wrapper ups-input_wrapper ">
+						<input type="text" name="telephone" class="ups-form_input" id="telephone">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="ups-form_group">
+					<label for="ext" class="ups-form_label">Ext</span></label>
+					<div class="ups-text_wrapper ups-input_wrapper ">
+						<input type="text" name="ext" class="ups-form_input" id="ext">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="ups-form_group">
+					<label for="suiteRoom" class="ups-form_label">Suite/Room</span></label>
+					<div class=" ups-text_wrapper ups-input_wrapper ">
+						<input type="text" name="suiteRoom" class="ups-form_input" id="suiteRoom">
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div class="ups-form_group">
+					<label for="floor" class="ups-form_label">Floor</span></label>
+					<div class=" ups-text_wrapper ups-input_wrapper ">
+						<input type="text" name="floor" class="ups-form_input" id="floor">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ups-form_group">
+			<div class="ups-checkbox ups-input_wrapper">
+				<input id="residentialAddress" class="ups-checkbox-custom" name="residentialAddress" type="checkbox">
+				<label for="residentialAddress" value="1" class="ups-checkbox-custom-label">Residential Address</label>
+			</div>
+		</div>
+		{{#if pic_info_show_msg }}
+		<section class="panel panel-primary">
+			<div class="panel-body">
+				<p>Drop off your package for free at a nearby UPS Access Point&trade; or another UPS location. <a href="repl_href" class="btnlnkR newWindowIconR">Find Locations <span class="ups-readerTxt">This will open a new window</span></a></p>
+			</div>
+		</section>
+		{{/if}} 
+		
+		<!-- ------------------------- --> 
+		<!-- Old Legacy Implementation --> 
+		<!-- ------------------------- --> 
+		
+		<!--<p><span class="label">Pickup Address:</span> <a href="repl_href">Use a different address</a></p>
+                    <p>{Company or Name}<br>
+                    {Address Line 1}<br>
+                    {City}, {State} {ZIP Code}<br>
+                    {Country or Territory}</p>
+                    <p>E-mail Address: nnnnnnnnnnnn@nnnn.com</p>
+                    <div class="marginBegin subcol5 clearfix">
+                        <dl role="presentation">
+                            <dt><label for="txtbox">Contact Name:</label></dt>
+                            <dd><input type="text" name="repl_name" id="txtbox" class="formcol5"></dd>
+                        </dl>
+                    </div>
+                    <div class="subcol6 clearfix">
+                        <dl role="presentation">
+                            <dt><label for="txtbox">Telephone:</label></dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                                <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="marginEnd subcol4 clearfix">
+                        <dl role="presentation">
+                            <dt><label for="txtbox">Ext:</label></dt>
+                            <dd><input type="text" name="repl_name" id="txtbox" class="formcol4"></dd>
+                        </dl>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <div class="marginBegin subcol5 clearfix">
+                        <dl role="presentation">
+                            <dt><label for="txtbox">Suite/Room:</label></dt>
+                            <dd><input type="text" name="repl_name" id="txtbox" class="formcol5"></dd>
+                        </dl>
+                    </div>
+                    <div class="marginEnd subcol6 clearfix">
+                        <dl role="presentation">
+                            <dt><label for="txtbox">Floor:</label></dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                        <tbody>
+                            <tr>
+                                <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+                                <td><label for="chxbox1" class="sel">Residential address</label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    {{#if pic_info_show_msg }}
+                        <div class="secLvl message clearfix">
+                            <div class="secBody">
+                                <p>Drop off your package for free at a nearby UPS Access Point&trade; or another UPS location. <a href="repl_href" class="btnlnkR newWindowIconR">Find Locations</a></p>
+                            </div>
+                          </div>
+                    {{/if}}--> 
+	</div>
+</div>

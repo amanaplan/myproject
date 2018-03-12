@@ -1,0 +1,62 @@
+
+<div data-ng-controller="paymentCtrl"
+	class="ups-payment ups-wrap ups-form_wrap ups-application_wrapper">
+	<form name="ups_PaypalAdd" class="ups-cardPayment  ups-offset-0"
+		error-on-submit novalidate>
+		<p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-card_input" class="ups-form_label">
+                    	Nickname
+                    	<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur id="ups-card_input" type="text"
+							name="nickname" class="ups-form_input" maxlength="35"
+							data-ng-model="form.nickname" aria-required="true" required> <span
+							class="ups-invalid_color"
+							data-ng-show="!ups_PaypalAdd.nickname.$pristine && ups_PaypalAdd.nickname.$invalid" role="alert">
+							<span class="icon ups-error_exclamation"><span
+								class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_PaypalAdd.nickname.$error.required">This
+								field is required.</span>
+						</span>
+						<div data-ng-if="(ups_PaypalAdd.nickname.$valid)">
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-icon-check" aria-hidden="true"></span> <span
+								class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+			</div>
+		</div>
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper  "
+                data-errormsg="Remember Me">
+                <input check-verify id="ups-offers_checkbox_non-US"
+                    class="ups-checkbox-custom" type="checkbox" name="makeDefault"
+                    data-ng-pattern="" data-ng-model="form.makeDefault"
+                    data-ng-checked="form.makeDefault"> <label
+                    for="ups-offers_checkbox_non-US" class="ups-checkbox-custom-label">
+                    Make this my default payment method.</label>
+            </div>
+            <!-- ups-form_group ups-form_required -->
+        </div>
+		<div class="ups-form_ctaGroup">
+            <button type="button" data-ng-click="cancelEdit()"
+                class="ups-cta ups-cta_secondary">Cancel</button>
+            <button type="button" data-ng-click="savePaypal()"
+                class="ups-cta ups-cta_primary">Save My Changes</button>
+                <!-- data-ng-disabled="!ups_PaypalAdd.$valid || invalidCard || invalidCode" -->
+		</div>
+	</form>
+</div>

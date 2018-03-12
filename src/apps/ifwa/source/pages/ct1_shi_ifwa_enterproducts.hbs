@@ -1,0 +1,303 @@
+---
+title: create a shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.IntForms
+appCSS: ups.legacy_overrideIF
+dir: ltr
+lang: en
+---
+
+<!-- VISE CLAMP -->
+<!--<div id="ccGtrMod">
+
+
+<div id="cssnav"></div>
+<div class="navMod"></div>
+<div style="clear:both"></div>
+
+<div class="navMod"></div>
+<div style="clear:both"></div>
+
+</div>-->
+
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+
+
+
+
+	<!-- applicationArea -->
+	<div id="main">
+
+        <h1>{create a shipment}</h1>
+
+        <!-- BEGIN Progress Bar -->
+        	<!--#include virtual="../../common_components/jan14/progressbar_va/progressbar_4_minify.html" -->
+        <!-- END Progress Bar -->
+
+
+
+
+		<form action="repl_fname">
+        <!-- /application area begin -->
+
+            <!-- Begin Application Module -->
+            <div class="appLvl mod clearfix">
+            <fieldset>
+
+                <!-- Begin Application Header -->
+                <div class="appHead clearfix">
+                    <h2>Enter Product Information</h2>
+                    <ul class="clearfix">
+                        <li><a href="repl_href" class="btnlnkR helpIconR">Help</a></li>
+                    </ul>
+                </div>
+                <!-- End Application Header -->
+
+                <!-- Begin Application Body -->
+                <div class="appBody clearfix">
+
+                    <p>information about the products added to your shipment is displayed below. you must have at least one product in your shipment, and a maximum of 50.</p>
+
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- Begin Section Module - Products Added Summary -->
+                    <div class="secLvl secLvlPlain clearfix">
+                    <fieldset>
+
+                        <!-- Begin Section Header -->
+                        <div class="secHead clearfix">
+                            <h3>Products Added Summary</h3>
+                        </div>
+                        <!-- End Section Header -->
+
+                        <!-- Begin Section Body -->
+                        <div class="secBody">
+
+                            <div class="clearfix">
+
+
+                                <!-- Begin Default - No Products -->
+                                <table summary="repl_summary" title="repl_title" class="dataTable full">
+                                <!--<caption>repl_caption</caption>-->
+                                    <thead>
+                                        <tr>
+                                            <th>product name</th>
+                                            <th>product description</th>
+                                            <th>unit of measure</th>
+                                            <th>number of units</th>
+                                            <th>price per unit</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5"><strong>no products included in shipment; add a product to continue.</strong></td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <!-- End Default - No Products -->
+
+
+                                <!-- Begin Products Added -->
+                                <table summary="repl_summary" title="repl_title" class="dataTable full">
+                                <!--<caption>repl_caption</caption>-->
+                                    <thead>
+                                        <tr>
+                                            <th class="sel"><input type="checkbox" id="repl_id" width="10px"></th>
+                                            <th><a href="repl_href" class="btnlnkR sortDownIconR">product name <!--[if lte IE 7]><img src="/img/icn_sort_down.gif" width="10" height="10" alt=""><![endif]--></a></th>
+                                            <th>product description</th>
+                                            <th>unit of measure</th>
+                                            <th class="nowrap alignCenter">number of units</th>
+                                            <th class="nowrap alignCenter">price per unit</th>
+											<th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td class="sel"><input type="checkbox" id="repl_id" width="10px"></td>
+                                            <td>[product name3]</td>
+                                            <td>[product description content ... product description content ... product description content ... product description content ... product description content ...]</td>
+                                            <td>[bag]</td>
+                                            <td class="nowrap alignEnd">[nnnnnn]</td>
+                                            <td class="nowrap alignEnd">[nnnn.00][ccc]</td>
+											<td><a href="repl_href" class="btnlnk">edit</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sel"><input type="checkbox" id="repl_id" width="10px" checked="checked"></td>
+                                            <td>[product name2]</td>
+                                            <td>[product description content ...]</td>
+                                            <td>[box]</td>
+                                            <td class="nowrap alignEnd">[nn]</td>
+                                            <td class="nowrap alignEnd">[nn.00][ccc]</td>
+											<td><a href="repl_href" class="btnlnk">edit</a></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td class="sel"><input type="checkbox" id="repl_id" width="10px"></td>
+                                            <td>[product name1 product name1 product name1]</td>
+                                            <td>[product description content ...]</td>
+                                            <td>[number]</td>
+                                            <td class="nowrap alignEnd">[nnn]</td>
+                                            <td class="nowrap alignEnd">[nnn.00][ccc]</td>
+											<td><a href="repl_href" class="btnlnk">edit</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7"><input name="repl_name" type="button" value="Remove Selected" class="btn"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- End Products Added -->
+                                	<p>
+                                        <a href="repl_name" class="btnlnk">Add Product</a>
+                                    </p>
+
+                                    <div>
+                                    	<p class="error">
+                                        	{&gt;&gt;&gt;Error message for $0000 warning; select EEI filing method or edit product values to continue.}
+                                        </p>
+                                        <dl>
+                                        	<dt><label><a href="repl_href" class="btnlnkR helpIconR" >Select EEI Filing Method:</a></label></dt>
+                                            <dd>
+                                            	<select class="formcol8" name="repl_name" id="repl_name">
+                                                	<option value="">Select One
+                                                    </option>
+                                                </select>
+                                            </dd>
+                                        </dl>
+                                        <p class="note"><strong>Note:</strong> Tofile your EEI electronically, you must first register at <a href="http://www.aesdirect.gov" alt="">www.aesdirect.gov</a>.<br>If you elect to have UPS file your EEI, a USD $10 fee will appear on your shipment charges.
+
+                                        </p>
+                                    </div>
+
+                                    <p>
+                                        <a href="repl_name" class="btnlnkL saveMini">Save your forms and finish them later</a>
+                                    </p>
+
+                            </div>
+
+                        </div>
+                        <!-- End Section Body -->
+
+                    </fieldset>
+                    </div>
+                    <!-- End Section Module - Product Added Summary -->
+                    <!-- ////////////////////////////////////////// -->
+
+
+                </div>
+                <!-- End Application Body -->
+
+                <!-- Begin Application Footer -->
+                <div class="appFooter">
+                    <!-- Begin Button Bar Row -->
+                    <div class="btnBar">
+                        <input name="" type="button" value="cancel" class="btn">
+                        <input name="" type="button" value="next" class="btnArw openModal">
+                        <input name="" type="submit" value="next" class="btnArw disabled" >
+                    </div>
+                    <!-- End Button Bar Row -->
+                </div>
+                <!-- End Application Footer -->
+
+            </fieldset>
+            </div>
+            <!-- End Application Module -->
+
+
+        <!-- /application area end -->
+        </form>
+
+    </div>
+	<!-- /applicationArea -->
+
+
+
+
+
+
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+			<!-- /contentArea -->
+
+<!--*** Dialog SUbmit Alert ***-->
+<div class="appLvl mod modal dialog" style="display:none;">
+
+    <div class="appHead clearfix">
+        <h2>SDL or EEI Value Alert</h2>
+    </div>
+
+    <div class="appBody">
+        <p class="note">
+        	<strong>Single Commodity or Total Commodities value over $0000 Warning:</strong><br>
+        	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        </p>
+    </div>
+
+    <div class="appFooter">
+        <div class="btnBar alignCenter">
+            <input name="repl_btnname" type="button" value="Okay" class="modalClose btn">
+        </div>
+    </div>
+
+</div>
+<!--*** End Dialog ***-->
+
+<!------------- -- -------------->
+<!--   IC DEV Display Module   -->
+<!------------- -- -------------->
+<script type="text/javascript">
+var htmlcobrand;
+$(document).ready(function(){
+	/* Modal Dialog */
+	$('.openModal').click(function(e){
+		$('.modal').dialog({modal:true,dialogClass:'modal', width:710});
+	});
+	$('.modalClose').click(function(e){
+		$('.modal').dialog('close');
+	});
+	/* Prepend Control Box */
+	/*$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="CampusShip" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Internet Shipping" class="btn"></div></div>');*/
+	/* Set default container and stylesheet to Internet Shipping */
+	/*$('.switchContainer').removeClass('ccacmpad1')
+	$('.switchContainer').attr('id', 'ccCntMod');
+	chooseStyle('Internet Shipping', 60);
+	htmlcobrand = $('.cobrand').html();
+	$('.cobrand').remove();*/
+
+});
+/* function to switch views */
+/*function switchContainer(container) {
+	if(container == 'ccCntMod') {
+		$('.switchContainer').removeClass('ccacmpad1');
+		$('.switchContainer').attr('id', container);
+		chooseStyle('Internet Shipping', 60);
+		$('.cobrand').remove();
+
+		$('.switchContainer').append('');
+
+
+	}
+	if(container == 'ccacmpad1') {
+		$('.switchContainer').attr('id', '');
+		$('.switchContainer').addClass(container);
+		chooseStyle('CampusShip', 60);
+		$('.cobrand').remove();
+		$('.switchWrapper').wrapInner('<table class="legacy" cellspacing="0" cellpadding="0" border="0" width="740"><tr class="legacyTR"><td></td></tr></table>');
+		$('.legacyTR').prepend('<td valign="top" colspan="2"><div id="cssnav"></div></td><td valign="top">');
+
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+	}
+}*/
+
+</script>

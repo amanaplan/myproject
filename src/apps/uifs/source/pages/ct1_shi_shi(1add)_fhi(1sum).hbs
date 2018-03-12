@@ -1,0 +1,271 @@
+---
+title: Create a Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIFS
+appCSS: ups.legacy_overrideUIFS
+dir: ltr
+lang: en
+---
+<div id="main">
+    
+    <form action="repl_fname">
+        
+        <!-- Begin SubTabs -->
+        <ul id="subTab">
+            <li class="tab-off">
+                <a href="repl_href">
+                    Package
+                </a>
+            </li>
+            <li class="tab-on">Freight</li>
+            <li class="tab-off">
+                <a href="repl_href">
+                    International Forms
+                </a>
+            </li>
+        </ul>
+        <!-- End SubTabs -->
+        
+        <div style="clear:both;"></div>
+        <table width="566" border="0" cellspacing="0" cellpadding="0" class="tab">
+            <tr>
+                <th><div class="head-colFull">
+                        <h2>View Freight History</h2>
+                        <ul>
+                            <li class="helpmini">
+                                <a href="">
+                                    Help
+                                </a>
+                            </li>
+                        </ul>
+                        <div style="clear:both;"></div>
+                    </div></th>
+            </tr>
+            <tr>
+                <td><div class="introMod">
+                        <!-- Begin: Exception Error Message -->
+                        <!--<p class="error">&gt;&gt;&gt; Error Message </p>-->
+                        <!-- End: Error Message -->
+                        
+                        <p>Use this history to view and track previous freight shipments. Up to 25 freight shipments can be tracked by marking the desired checkboxes and selecting the <strong>Track</strong> button. Ground Freight shipments can schedule a pickup, ship again, or be marked for deletion in this history view.</p>
+                        <p>To <strong>cancel or inquire about an LTL Freight Pickup Request</strong> call: <strong>1-800-333-7400</strong>.
+                        <ul class="lstArrow">
+                            <li>
+                                <a href="repl_href">
+                                    View Freight Pickup Request History
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Begin Module -->
+                    
+                    <div class="modFlex">
+                        <div class="modContent">
+                            <fieldset>
+                                <legend></legend>
+                                
+                                <!-- Begin Left Column -->
+                                <div class="colL">
+                                    <dl role="presentation">
+                                        <dt>
+                                            <label for="per_page">Display per page:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="" id="per_page">
+                                                <option selected>25</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Left Column -->
+                                
+                                <!-- Begin Right Column -->
+                                <div class="colR">
+                                    <h4>Export Ground Freight History</h4>
+                                    <table class="dataTable" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <th nowrap>Number of<br>
+                                                Days</th>
+                                            <th nowrap>Select View <img src="/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></th>
+                                            <th nowrap>&nbsp;</th>
+                                        </tr>
+                                        <tr>
+                                            <td><select name="select" id="num_days">
+                                                    <option selected>30</option>
+                                                </select></td>
+                                            <td nowrap><select name="select" id="export_view">
+                                                    <option selected>Basic</option>
+                                                </select></td>
+                                            <td><input name="input" type="button" value="Go" class="btn"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="clear:both"></div>
+                                <!-- End Right Coloumn -->
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- Begin Module -->
+                    
+                    <div style="padding:10px;">
+                        <hr>
+                    </div>
+                    <div class="modFlex">
+                        <div class="modContent">
+                            <fieldset>
+                                <legend></legend>
+                                <div id="dyn_pnl_1">
+                                    <!--Results Table - With Records-->
+                                    <div id="pnl_1_1">
+                                        <p>
+                                            <span class="label">Displaying shipment history in the last 90 days.</span></p>
+                                        <p><span class="label">Displaying results [1] through [2] of [2]</span>
+                                        </p>
+                                        <div class="marginEnd">
+                                            <input name="show detail" type="button" value="Show Detail" class="btn">
+                                            <input name="track" type="button" value="Track" class="btn">
+                                            <input name="ship again" type="button" value="Ship Again" class="btn">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        <table class="dataTable" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <th nowrap>&nbsp;</th>
+                                                <th nowrap>Shipment<br>
+                                                    Creation Date</th>
+                                                <th nowrap>Shipped To</th>
+                                                <th nowrap>Freight Service;<br>
+                                                    Reference Account</th>
+                                                <th nowrap>Pickup Number<br>
+                                                    and Date</th>
+                                                <th nowrap>Tracking Number /<br>
+                                                    PRO Number</th>
+                                            </tr>
+                                            <tr>
+                                                <td><input name="temp2" type="checkbox" value="repl_value"></td>
+                                                <td>[mm/dd/yyyy]<br>
+                                                    <a href="repl_href">
+                                                        Remove
+                                                    </a></td>
+                                                <td nowrap>[User data]
+                                                    </a></td>
+                                                <td>[UPS Freight Service]</td>
+                                                <td><a href="repl_name">
+                                                        Request a Pickup
+                                                    </a></td>
+                                                <td>[123456789] <br>
+                                                    <a href="repl_href">
+                                                        View BOL
+                                                    </a></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td><input name="temp2" type="checkbox" value="repl_value"></td>
+                                                <td>[mm/dd/yyyy]</td>
+                                                <td nowrap>[User data] <br>
+                                                    <a href="repl_name">
+                                                        International Forms
+                                                    </a></td>
+                                                <td>[Air Freight Service]</td>
+                                                <td>[nnnnnnnnnnnnn]<br>
+                                                    [mm/dd/yyyy]</td>
+                                                <td>[nnnnnnnnnnnnn] <br>
+                                                    <a href="repl_href">
+                                                        View Waybill
+                                                    </a>
+                                                    <br></td>
+                                            </tr>
+                                        </table>
+                                        <dl role="presentation" class="flexFirst">
+                                            <dt>
+                                                <label>Displaying results [1] through [2] of [2]</label>
+                                            </dt>
+                                        </dl>
+                                        <div class="marginEnd">
+                                            <input name="show detail" type="button" value="Show Detail" class="btn">
+                                            <input name="track" type="button" value="Track" class="btn">
+                                            <input name="ship again" type="button" value="Ship Again" class="btn">
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    <!--Results Table - No Records -->
+                                    <div id="pnl_1_2">
+                                        <table class="dataTable" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <th nowrap>&nbsp;</th>
+                                                <th nowrap>Shipment<br>
+                                                    Creation Date</th>
+                                                <th nowrap>Shipped To</th>
+                                                <th nowrap>Freight Service;<br>
+                                                    Reference Account</th>
+                                                <th nowrap>Pickup Number<br>
+                                                    and Date</th>
+                                                <th nowrap>Tracking Number /<br>
+                                                    PRO Number</th>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>&nbsp;</td>
+                                                <td nowrap>No freight shipments for the <br>
+                                                    past 90 days</td>
+                                                <td nowrap>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div style="padding:10px;">
+                        <hr>
+                    </div>
+                    
+                    <!-- End Module -->
+                    
+                    <!-- Begin Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Download, View and Print</h3>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>legend header</legend>
+                                <p><strong>Adobe Reader</strong></p>
+                                <p>If you have not already installed and configured the Adobe Reader® or plug-in, select the "Get Adobe Reader®" icon for further instructions. <br>
+                                    <a href="repl_href">
+                                        <img src="/img/icn_arrow_blue_nav.gif" alt="" width="11" height="8" border="0"><img alt="" border="0" height="8" src="/img/1.gif" width="1">Get Adobe Reader
+                                    </a>
+                                </p>
+                                <br>
+                                <p class="reqTxtInst">Adobe, Adobe Reader and the Acrobat logo are trademarks of Adobe Systems incorporated. <br>
+                                    <img src="/img/btn_get_reader.gif" height="31" width="88" alt="Get Adobe Reader"></p>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End Module --></td>
+            </tr>
+        </table>
+    </form>
+    <!--Dynamic Panel-->
+    <!-- Section 1 -->
+    <div id="select_pnl_1">
+        <dl role="presentation">
+            <dt>
+                <label for="dyn_pnl_select_1">Results Table</label>
+            </dt>
+            <dd>
+                <select id="dyn_pnl_select_1" class="formcol5">
+                    <option value="1">1 With Records</option>
+                    <option value="2">2 No Records</option>
+                </select>
+            </dd>
+        </dl>
+    </div>
+</div>

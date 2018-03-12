@@ -1,0 +1,23 @@
+<div class="modal fade ups-application_wrapper in" role="dialog" tabindex="-1" aria-hidden="false" id="upsAng2Modal" aria-labelledby="upsAng2ModalLabel" *ngIf="modalShown" style="display:block;">
+	<!-- MODAL CONTENT -->
+	<div class="modal-dialog modal-lg" role="document">
+		<div aria-labelledBy="ups-modal-title" class="modal-content">
+			<div class="modal-header">
+				<button class="close"
+					(click)="closePopup($event);"
+					(keypress)="$event.keyCode == 13 ? closePopup($event) : null"
+					data-dismiss="modal">
+					<span class="ups-icon-x" aria-hidden="true"></span>
+					<span class="ups-readerTxt">Close</span>
+				</button>
+				<h2 id="upsAng2ModalLabel" class="modal-title">{{ getModalTitle() }}</h2>
+			</div>
+			<div class="modal-body ups-form_wrap ">
+                <ng-content *ngIf="!modalComponent"></ng-content>
+                <ng-template *ngIf="modalComponent" #modalComp></ng-template>
+				<!--<div data-ng-include="url"></div>-->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-backdrop fade in" *ngIf="modalShown"></div>

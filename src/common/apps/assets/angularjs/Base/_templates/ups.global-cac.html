@@ -1,0 +1,411 @@
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// Begin UPS CAC form                            //// -->
+<!-- /////////////////////////////////////////////////////// -->
+<ng-form name="upsCACForm">
+	<!-- ////////////////////////// -->
+    <!-- //// Begin Country    //// -->
+	<!-- ////////////////////////// -->
+	<!--<div class="row">
+		<div class="col-md-5">-->
+			<div class="ups-form_group ups-form_required" data-ng-hide="addressFormObj.countryTxt">
+				<label for="ups-country" class="ups-form_label">
+					Country
+					<span aria-hidden="true" class="ups-required_indicator"></span>
+				</label>
+				<div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+					<select id="ups-country"
+						data-ng-change="selectCountry(form.country)"
+						class="ups-dropdown"
+						name="country"
+						data-ng-model="addressFormObj.country"
+						required
+						aria-required="true">
+						<option data-ng-repeat="countries in countryList track by $index"
+							value="{{countries.code}}">{{countries.country}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="ups-group ups-group_condensed" data-ng-show="addressFormObj.countryTxt">
+				<label for="ups-country" class="ups-form_label">
+					Country
+					<span aria-hidden="true" class="ups-required_indicator"></span>
+				</label>
+				<p>{{addressFormObj.countryName}}</p>
+			</div>
+		<!--</div>
+	</div>-->
+	<!-- ////////////////////////// -->
+    <!-- //// End Country      //// -->
+    <!-- //// Begin Address    //// -->
+	<!-- ////////////////////////// -->
+	<!--<div class="row">
+		<div class="col-md-5">-->
+			<div class="ups-form_group ups-form_required">
+			<div class="ups-form_group">
+				<label for="ups-address" class="ups-form_label">
+					Address
+					<span aria-hidden="true" class="ups-required_indicator"></span>
+				</label>
+				<p id="streetHelperTxt" class="ups-form_subheader">Street</p>
+				<div class="ups-text_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+					<input data-ng-class="{'ups-bodError':(upsCACForm.address0.$invalid && clicked)}"
+						error-on-blur
+						id="ups-address"
+						type="text"
+						name="address0"
+						data-ng-pattern=""
+						class="ups-form_input"
+						maxlength="35"
+						required
+						aria-required="true"
+						data-ng-model="addressFormObj.address0"
+						data-ng-model-options="{updateOn: 'blur'}"
+						aria-describedby="ups-payment-card-address-error streetHelperTxt">
+					<div data-ng-if="upsCACForm.address0.$valid">
+						<!-- @Note: screen reader text needs to be translated as well -->
+						<span class="ups-icon-check" aria-hidden="true"></span>
+						<span class="ups-readerTxt">Check</span>
+					</div>
+					<span id="ups-payment-card-address-error" role="alert">
+						<span class="ups-invalid_color"
+							data-ng-show="(!upsCACForm.address0.$pristine && upsCACForm.address0.$invalid) || (upsCACForm.address0.$invalid && clicked)">
+							<span class="icon ups-error_exclamation">
+								<span class="ups-icon-exclamation" aria-hidden="true"></span>
+							</span>
+						</span>
+						<span data-ng-if="upsCACForm.address0.$valid">
+							<span class="ups-readerTxt">Check</span>
+						</span>
+					</span>
+				</div>
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-address1" class="ups-readerTxt">
+					Address line 1
+				</label>
+				<p id="address1HelperTxt" class="ups-form_subheader">Apt., Suite, Unit</p>
+				<div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+					<input id="ups-address1"
+						type="text"
+						name="address1"
+						data-ng-pattern=""
+						class="ups-form_input"
+						maxlength="35"
+						data-ng-model="addressFormObj.address1" aria-describedby="address1HelperTxt">
+				</div>
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-address2" class="ups-readerTxt">
+					Address line 2
+				</label>
+				<p id="address2HelperTxt" class="ups-form_subheader">Dept.,c/o,etc.</p>
+				<div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+					<input id="ups-address2"
+						type="text"
+						name="address2"
+						data-ng-pattern=""
+						class="ups-form_input"
+						maxlength="35"
+						data-ng-model="addressFormObj.address2" aria-describedby="address2HelperTxt">
+				</div>
+			</div>
+			<div data-ng-show="(!upsCACForm.address0.$pristine && upsCACForm.address0.$invalid) || (upsCACForm.address0.$invalid && clicked)">
+                <span class="ups-invalid_color">Address is required.</span>
+                <!-- ----------------------------------------------------------- -->
+                <!-- Note: Commenting out Address Suggestions Code for TFS #459162 -->
+                <!-- ----------------------------------------------------------- -->
+
+				<!-- <span class="ups-invalid_color">Please select a valid address or entering one of your own.</span> -->
+				<!--<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify=""
+						id="ups-prefilled_city"
+						class="ups-checkbox-custom"
+						name="ups-upsAuthorize"
+						type="checkbox"
+						value="1"
+						data-ng-click="check()"
+						data-ng-model="upsCACForm.addressOptions">
+					<label for="ups-prefilled_city" class="ups-checkbox-custom-label">
+						Use one of the following address.
+					</label>
+					<fieldset class="ups-form_group ups-form_required ups-indent"
+						data-ng-disabled="!upsCACForm.addressOptions">
+						<legend class="ups-form_label ups-readerTxt">Two pre-filled street addresses.</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper"
+							data-errormsg="Custom error message">
+							<input id="ups-uid-form_title-yes"
+								class="ups-radio-custom"
+								name="ups-uid-form_title-radio_group2"
+								type="radio"
+								value="yes">
+							<label for="ups-uid-form_title-yes" class="ups-radio-custom-label">7130 Mansell Rd</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="ups-uid-form_title-no"
+							class="ups-radio-custom"
+							name="ups-uid-form_title-radio_group2"
+							type="radio"
+							value="no">
+							<label for="ups-uid-form_title-no" class="ups-radio-custom-label">685 Alpharetta Hwy</label>
+						</div>
+					</fieldset>
+				</div>-->
+			</div>
+		</div>
+		<!--</div>
+	</div>-->
+	<!-- ////////////////////////// -->
+    <!-- //// End Address      //// -->
+    <!-- //// Begin City       //// -->
+	<!-- ////////////////////////// -->
+	<!--<div class="row">
+		<div class="col-md-5">-->
+  			<div class="ups-form_group ups-form_required">
+                <label for="ups-city" class="ups-form_label">
+                    City
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+                    <input data-ng-class="{'ups-bodError':(upsCACForm.city.$invalid && clicked)}"
+                        error-on-blur
+                        id="ups-city"
+                        type="text"
+                        name="city"
+                        data-ng-pattern="/^[a-zA-Z- ]+$/"
+                        class="ups-form_input"
+                        maxlength="35"
+                        required
+                        aria-required="true"
+                        data-ng-model="addressFormObj.city"
+                        data-ng-model-options="{updateOn: 'blur'}"
+                        aria-describedby="ups-payment-card-city-error">
+                    <div data-ng-if="upsCACForm.city.$valid">
+                        <!-- @Note: screen reader text needs to be translated as well -->
+                        <span class="ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                    <span id="ups-payment-card-city-error" role="alert">
+                        <span class=""
+                            data-ng-show="(!upsCACForm.city.$pristine && upsCACForm.city.$invalid) || (upsCACForm.city.$invalid && clicked)">
+                            <span class="ups-invalid_color icon ups-error_exclamation">
+                                <span class=" ups-icon-exclamation" aria-hidden="true"></span>
+                            </span>
+                            <div data-ng-show="upsCACForm.city.$error.required">
+                                <span class="ups-invalid_color">City is required.</span>
+                                <!-- ----------------------------------------------------------- -->
+                                <!-- Note: Commenting out Address Suggestions Code for TFS #459162 -->
+                                <!-- ----------------------------------------------------------- -->
+
+                                <!-- <span class="ups-invalid_color">Please select a valid city below or try entering your own.</span> -->
+                                <!--<div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input check-verify=""
+                                        id="ups-prefilled_city"
+                                        class="ups-checkbox-custom"
+                                        name="ups-upsAuthorize"
+                                        type="checkbox"
+                                        value="1"
+                                        data-ng-click="check()"
+                                        data-ng-model="upsCACForm.cityOptions">
+                                    <label for="ups-prefilled_city" class="ups-checkbox-custom-label">
+                                        Use one of the following cities.
+                                    </label>
+                                    <fieldset class="ups-form_group ups-form_required ups-indent"
+                                        data-ng-disabled="!upsCACForm.cityOptions">
+                                        <legend class="ups-form_label ups-readerTxt">Two pre-filled cities.</legend>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper"
+                                            data-errormsg="Custom error message">
+                                            <input id="ups-uid-form_title-yes"
+                                                class="ups-radio-custom"
+                                                name="ups-uid-form_title-radio_group2"
+                                                type="radio"
+                                                value="yes">
+                                            <label for="ups-uid-form_title-yes" class="ups-radio-custom-label">Roswell</label>
+                                        </div>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="ups-uid-form_title-no"
+                                            class="ups-radio-custom"
+                                            name="ups-uid-form_title-radio_group2"
+                                            type="radio"
+                                            value="no">
+                                            <label for="ups-uid-form_title-no" class="ups-radio-custom-label">Alpharetta</label>
+                                        </div>
+                                    </fieldset>
+                                </div>-->
+                            </div>
+                            <span class="ups-invalid_color" data-ng-hide="upsCACForm.city.$error.required">
+                                Invalid City.
+                            </span>
+                        </span>
+                        <span data-ng-if="upsCACForm.city.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                    </span>
+                </div>
+
+            </div>
+		<!--</div>
+	</div>-->
+	<!-- ////////////////////////// -->
+    <!-- //// End City         //// -->
+    <!-- //// Begin State      //// -->
+	<!-- ////////////////////////// -->
+	<!--<div class="row">
+		<div class="col-md-5">-->
+			<div class="ups-form_group ups-form_required">
+			<label for="ups-state" data-ng-if="(upsCACForm.country.$viewValue == 'us')" data-ng-show="!province" class="ups-form_label">
+				State
+				<span aria-hidden="true" class="ups-required_indicator"></span>
+			</label>
+			<label data-ng-if="(upsCACForm.country.$viewValue != 'us')" class="ups-form_label">
+				Other Address Information
+				<span aria-hidden="true" class="ups-required_indicator"></span>
+			</label>
+			<label data-ng-if="province" class="ups-form_label">
+				Province
+				<span aria-hidden="true" class="ups-required_indicator"></span>
+			</label>
+            <div data-ng-if="(upsCACForm.country.$viewValue == 'us')">
+			<div class="ups-dropdown_wrapper ups-input_wrapper ups-text_wrapper"
+				data-errormsg="This field is required">
+				<select error-on-blur
+					id="ups-state"
+					class="ups-dropdown"
+					data-ng-class="{'ups-bodError':(upsCACForm.state.$invalid && clicked)}"
+					name="state"
+					data-ng-model="addressFormObj.state"
+					required>
+					<option value="" selected>Select One</option>
+					<option data-ng-repeat="states in statesList track by $index" value="{{states.code}}">
+						{{states.state}}
+					</option>
+				</select>
+			</div>
+			<span class="ups-invalid_color"
+					data-ng-show="(!upsCACForm.state.$pristine && upsCACForm.state.$invalid) || (upsCACForm.state.$invalid && clicked)" role="alert">
+					<span class="icon ups-error_exclamation">
+						<span class="ups-icon-exclamation" aria-hidden="true"></span>
+					</span>
+					<span data-ng-if="(upsCACForm.country.$viewValue == 'us')"
+						data-ng-show="upsCACForm.state.$error.required">
+						State is required.
+					</span>
+					<span data-ng-if="(upsCACForm.country.$viewValue != 'us')"
+						data-ng-show="upsCACForm.state.$error.required">
+						Address Information is required.
+					</span>
+				</span>
+            </div>
+            <div data-ng-if="(upsCACForm.country.$viewValue != 'us')">
+			<div class="ups-text_wrapper ups-input_wrapper ups-drop_exclamation"
+				data-errormsg="This field is required">
+				<input data-ng-class="{'ups-bodError':(upsCACForm.state.$invalid && clicked)}"
+					error-on-blur
+					id="ups-state"
+					required
+					aria-required="true"
+					type="text"
+					name="state"
+					class="ups-form_input"
+					maxlength="35"
+					data-ng-model="addressFormObj.state"
+					data-ng-model-options="{updateOn: 'blur'}">
+				<div data-ng-if="(upsCACForm.country.$viewValue != 'us') && upsCACForm.state.$valid">
+					<span class="ups-icon-check" aria-hidden="true"></span>
+					<!-- @Note: screen reader text needs to be translated as well -->
+					<span class="ups-readerTxt">Check</span>
+				</div>
+			</div>
+			<span class="ups-invalid_color"
+					data-ng-show="(!upsCACForm.state.$pristine && upsCACForm.state.$invalid) || (upsCACForm.state.$invalid && clicked)" role="alert">
+					<span class="icon ups-error_exclamation">
+						<span class="ups-icon-exclamation" aria-hidden="true"></span>
+					</span>
+					<span data-ng-if="(upsCACForm.country.$viewValue == 'us')"
+						data-ng-show="upsCACForm.state.$error.required">
+						State is required.
+					</span>
+					<span data-ng-if="(upsCACForm.country.$viewValue != 'us')"
+						data-ng-show="upsCACForm.state.$error.required">
+						Address Information is required.
+					</span>
+				</span>
+         </div>
+		</div>
+		<!--</div>
+	</div>-->
+	<!-- ////////////////////////// -->
+    <!-- //// End State        //// -->
+    <!-- //// Begin Zip        //// -->
+	<!-- ////////////////////////// -->
+	<!--<div class="row">
+		<div class="col-md-5">-->
+    		<div class="ups-form_group ups-form_required">
+        <label for="ups-zipcode" data-ng-if="(upsCACForm.country.$viewValue == 'us')" class="ups-form_label">
+            ZIP Code
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+        </label>
+        <label data-ng-if="(upsCACForm.country.$viewValue != 'us')" class="ups-form_label">
+            Postal Code
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+        </label>
+        <div class="ups-text_wrapper ups-input_wrapper"
+            data-errormsg="This field is required">
+            <input data-ng-class="{'ups-bodError' : (upsCACForm.zipCode.$invalid && clicked)}"
+			 	data-ng-hide="(addressFormObj.countryTxt) || (addressFormObj.zipTxt)"
+                error-on-blur
+                id="ups-zipcode"
+                type="text"
+                name="zipCode"
+                data-ng-pattern="/^[a-zA-Z0-9-]*$/"
+                class="ups-form_input"
+                maxlength="15"
+                required
+                aria-required="true"
+                data-ng-model="addressFormObj.zipCode"
+                data-ng-model-options="{updateOn: 'blur'}"
+                aria-describedby="ups-payment-card-zip-error">
+			<div data-ng-show="addressFormObj.countryTxt || addressFormObj.zipTxt">
+				<p>{{addressFormObj.zipCode}}</p>
+			</div>
+            <div data-ng-if="(upsCACForm.zipCode.$valid && !addressFormObj.countryTxt)">
+                <!-- @Note: screen reader text needs to be translated as well -->
+                <span class="ups-icon-check" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Check</span>
+            </div>
+            <span id="ups-payment-card-zip-error" role="alert">
+                <span class="ups-invalid_color"
+                data-ng-show="(!upsCACForm.zipCode.$pristine && upsCACForm.zipCode.$invalid) || (upsCACForm.zipCode.$invalid && clicked)">
+                    <span class="icon ups-error_exclamation">
+                        <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                    </span>
+                    <span data-ng-if="(upsCACForm.country.$viewValue == 'us')" data-ng-show="upsCACForm.zipCode.$error.required">
+                        ZIP Code is required.
+                    </span>
+                    <span data-ng-if="(upsCACForm.country.$viewValue == 'us')" data-ng-hide="upsCACForm.zipCode.$error.required">
+                        Invalid Zip Code.
+                    </span>
+                    <span data-ng-if="(upsCACForm.country.$viewValue != 'us')" data-ng-hide="upsCACForm.zipCode.$error.required">
+                        Invalid Postal Code.
+                    </span>
+                    <span data-ng-if="(upsCACForm.country.$viewValue != 'us')" data-ng-show="upsCACForm.zipCode.$error.required">
+                        Postal Code is required.
+                    </span>
+                </span>
+                <span data-ng-if="upsCACForm.zipCode.$valid">
+                    <span class="ups-readerTxt">Check</span>
+                </span>
+            </span>
+        </div>
+
+    </div>
+		<!--</div>
+	</div>-->
+	<!-- ////////////////////////// -->
+    <!-- //// End Zip          //// -->
+	<!-- ////////////////////////// -->
+</ng-form>
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// End UPS CAC form                              //// -->
+<!-- /////////////////////////////////////////////////////// -->

@@ -1,0 +1,477 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+
+#main {
+    #ajaxErrors {
+        display: none;
+    }
+
+    .mod {
+        background: $white;
+    }
+
+    .secBody {
+        background: $white;
+        padding: $margin_4;
+        input[type=password] {
+            @include ups-textbox;
+        }
+    }
+
+    #completeMemberDetails {
+        .secBody {
+            padding: 0;
+        }
+    }
+
+    #completeDeliveryPreferences {
+        .secBody {
+            padding: 0;
+        }
+
+        input#noAttempt {
+            margin: 10px 0;
+        }
+    }
+
+    #membershipModule {
+        padding: 15px;
+    }
+
+    .secHead {
+        ul.clearfix {
+            display: inline-block;
+            float: $opposite-direction;
+            top: 3px;
+            margin-bottom: 0;
+        }
+    }
+
+    #ProfileInformation {
+        p:nth-child(1), p:nth-child(2), p:nth-child(3)  {
+            display: none;
+        }
+        #addressDynamic {
+            div, u {
+                font-family: $sans;
+            }
+
+
+
+            #addressFields {
+                div {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+
+    #loginInfoFields {
+        fieldset {
+            .secBody {
+                .secLvl.clearfix {
+                    border: none;
+                    #havePromoLink {
+                        margin-top: 15px;
+                        margin-#{$default-float}: 15px;
+                        padding-#{$default-float}: 0;
+                    }
+
+                    dd {
+                        &:after {
+                            content: none;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+    .slider .secFooter {
+        background-color: $white;
+    }
+
+    //---------------------
+    //Confirmation after Enrollment
+    //---------------------
+    #BasicConfirmationForm {
+        button {
+            @include ups-legacy_cta($water_s3);
+        }
+
+        .secLvl.seccol18.marginBegin {
+            padding: $margin_4;
+
+            p:nth-of-type(2) {
+                display: none;
+            }
+        }
+
+        .secLvl.seccol6.marginEnd {
+            border: none;
+            .critical {
+                h4 {
+                    color: $black_s4 !important;
+                }
+                .secFooter {
+                    margin-top: 15px;
+                    background-color: $white;
+                }
+            }
+
+            .cmsMsg.callToAction {
+                .message.critical {
+                    .secFooter {
+                        background-color: $stone_40;
+
+                        div div {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        .secLvl.cmsMsg {
+            border: none;
+            padding: 0;
+
+            ul {
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        .cmsMsg {
+            margin-top: 20px;
+            &:nth-of-type(1) {
+                margin-top: 0;
+            }
+        }
+    }
+
+    //---------------------
+    //Settings
+    //---------------------
+    .appHead {
+        padding: 0;
+    }
+
+    .appBody {
+        p.error {
+            display: none;
+        }
+        //left hand accordion on settings for Navigation
+        .ui-accordion {
+            margin-bottom: 20px;
+            .acc_handle {
+                &:after {
+                    font-family: "UPSicons" !important;
+                    content: "\e65b";
+                    position: relative;
+                    display: inline-block;
+                    position: absolute;
+                    #{$opposite-direction}: 15px;
+                }
+            }
+            .acc_handle.selected {
+                &:after {
+                    font-family: "UPSicons" !important;
+                    content: "\e653";
+                    position: relative;
+                    display: inline-block;
+                    position: absolute;
+                    #{$opposite-direction}: 15px;
+                }
+            }
+        }
+
+        .secLvl.seccol7.noHead {
+            padding-top: 0 !important;
+            @include ups-legacy_colorHeader($sky_s3);
+        }
+
+        table {
+            margin-bottom: 0;
+        }
+    }
+
+    //---------------------
+    // Update Name or Address - and Input
+    //---------------------
+    #memberDetails {
+        ul {
+            margin: 0;
+        }
+    }
+
+    #nameAndAddress_input {
+        input {
+            margin-bottom: 5px;
+        }
+
+        .secHead {
+            margin: 15px 0;
+        }
+
+        .RIF_Address {
+            div {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .secLvl.moduleContent {
+        //---------------------
+        // Add First Name Variations
+        //---------------------
+        #firstNameVariations {
+            dl {
+                padding: 15px 15px 0 15px;
+            }
+
+            #addNicknameDiv {
+                dt:before {
+                    font-family: "UPSicons" !important;
+                    content: "\e65b";
+                    position: relative;
+                    top: 2px;
+                    font-size: 1em;
+                }
+            }
+            #nicknameLinkText {
+                padding-#{$default-float}: 0;
+            }
+
+            .btnBar {
+                padding: 0 15px 15px 15px;
+            }
+        }
+    }
+
+    //---------------------
+    // Add Household Member
+    //---------------------
+    //before Edit
+    #otherNames_static {
+        padding: 15px;
+    }
+
+    #dlHeaderTable {
+        margin: 0 10px;
+    }
+
+    //after edit
+    #additionalNamesContent {
+        tr {
+            td:first-of-type {
+                .crossMini {
+                    &:before {
+                        position: absolute;
+
+                    }
+                }
+            }
+
+            td:last-of-type {
+                input {
+                    padding: 0;
+                }
+                a:before {
+                    font-family: "UPSicons" !important;
+                    content: "\e65b";
+                    position: relative;
+                    top: 2px;
+                    margin-#{$opposite-direction}: 3px;
+                    font-size: 1em;
+                    display: inline-block;
+                }
+            }
+        }
+
+        tr.odd {
+            td {
+                background-color: $white;
+            }
+        }
+
+        tr.even {
+            td {
+                background-color: $stone_40;
+                border-#{$default-float}: none;
+
+                &:not(:last-of-type) {
+                    border-#{$opposite-direction}: 1px solid $ups_brown;
+                }
+            }
+        }
+    }
+
+    #otherNames_input {
+        .dataTable + p {
+            padding: 15px 15px 0 15px;
+
+            &:before {
+                font-family: "UPSicons" !important;
+                content: "\e65b";
+                position: relative;
+                top: 2px;
+                font-size: 1em;
+                display: inline-block;
+                padding-#{$opposite-direction}: 5px;
+            }
+
+            .plusMini {
+                padding-#{$default-float}: 0;
+            }
+        }
+
+        .btnBar {
+            padding: 0 15px 15px 15px;
+            margin: 0;
+        }
+    }
+
+    //---------------------
+    // Set Payment Options
+    //---------------------
+    #paymentOptions_static {
+        padding: 15px;
+    }
+
+    #newPaymentCard {
+        dl.group:nth-of-type(2) {
+            dd {
+                img {
+                    @include ups-reqImg;
+                }
+            }
+        }
+        dl.group:nth-of-type(3) {
+            dd {
+                img {
+                    @include ups-reqImg;
+                }
+            }
+        }
+        dl.group:nth-of-type(4) {
+            dd {
+                img {
+                    @include ups-reqImg;
+                }
+            }
+        }
+         dl.group:nth-of-type(5) {
+            dd {
+                img {
+                    @include ups-reqImg;
+                }
+            }
+        }
+    }
+
+    //---------------------
+    // Manage Membership
+    //---------------------
+    #manageDeliveryAddress {
+        div:nth-child(3):not(.clear) {
+            padding: 15px;
+        }
+    }
+
+    //no padding sec body of manage membership
+    #completeMemberDetails {
+        #manageDeliveryAddress {
+            .secHead {
+                .flexAfter {
+                    padding: 0;
+                }
+                .clear {
+                    display: none;
+                }
+                .plusmini {
+                    &:before {
+                        #{$opposite-direction}: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    #SecurityCode {
+        .secBody {
+            padding: 0 15px;
+        }
+
+        dl {
+            margin-bottom: 0;
+        }
+
+        dt:nth-of-type(2n) {
+            display: none;
+        }
+
+        dd:last-of-type {
+            display: none;
+        }
+    }
+
+    //---------------------
+    // Leave instructions for driver
+    //---------------------
+    #driverInstructions_static {
+        padding: 15px 15px 0 15px;
+    }
+
+    //---------------------
+    // Alternate Location for Delivery
+    //---------------------
+    .secBody#deliveryOptions_dynamic {
+        padding: 15px;
+
+        .secBody {
+            padding: 15px;
+        }
+
+            //Location Map Pins
+        .locationPin {
+          color: $white;
+          padding-top: 5px;
+          margin-#{$default-float}: -27px;
+          }
+
+          #primaryButtons {
+            padding: 15px;
+          }
+    }
+
+
+    //---------------------
+    // Upgrade Sure Post
+    //---------------------
+    #surepostAlertOptions_static {
+        p {
+            padding: 10px;
+        }
+    }
+    #surepostAlertOptions_input {
+        .secBody {
+            table {
+                td.sel {
+                    margin: 0 10px 0 0;
+                }
+                label, p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        #surePostOrBasicPackageNotifySendToOther {
+            input.modTxtMedium {
+                width: 400px;
+            }
+        }
+    }
+}

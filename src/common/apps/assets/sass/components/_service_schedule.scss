@@ -1,0 +1,191 @@
+
+.ups-service_schedule {
+	margin: 30px auto;
+}
+
+.ups-shipping_schedule_when .ups-schedule_title {
+	margin-bottom: 20px;
+	font-size: $standard_font;
+	border-bottom: 1px solid #ffb500;
+
+	@media #{$media-small} {
+		padding-bottom: 5px;
+		border-bottom: none;
+	}
+}
+
+.ups-shipping_schedule_when .ups-radio-custom-label {
+	display: block;
+
+	.row {
+		display: block;
+
+		.col-md-1,
+		.col-md-2,
+		.col-md-3,
+		.col-md-4,
+		.col-md-5,
+		.col-md-6,
+		.col-md-7,
+		.col-md-8,
+		.col-md-9,
+		.col-md-10,
+		.col-md-11,
+		.col-md-12, {
+			display: block;
+		}
+	}
+}
+
+.ups-shipping_schedule_tile {
+	margin-bottom: 30px;
+}
+
+.ups-shipping_schedule_when {
+	margin-bottom: 15px;
+
+	//use this classing for list view
+	.ups-shipping_schedule_list {
+		.ups-shipping_schedule_header_wrap {
+			margin: 5px $margin_0 10px;
+			padding: 5px;
+			font-size: $large_font;
+			text-align: center;
+
+			.col-md-4 {
+				padding-#{$default-float}: 25px;
+			}
+
+		}
+	}
+
+	//use this classing for grid view
+	.ups-shipping_schedule_grid {
+		.ups-shipping_schedule_header_wrap {
+			/*border-bottom: 1px solid $ups_gold;
+			//background-color: transparent;
+			//padding-#{$opposite-direction}: 10px;
+			//padding-#{$default-float}: 0;
+			padding-bottom: $margin_5;
+			@include ups-serif();
+			font-size: 16px;*/
+
+			background-color: $ups_brown;
+			color: white;
+			border-radius: 5px;
+			padding: 6px 8px;
+			margin-bottom: 10px;
+			text-align: center;
+
+			@media #{$media-small} {
+				&.ups-shipping_schedule_surepost6 {
+					clear: both;
+				}
+			}
+		}
+
+		.ups-shipping_schedule_row {
+			margin: 0 -5px;
+
+			> div {
+				padding: 0 5px;
+
+			}
+
+			.row {
+				margin: 0 -5px;
+
+				> div {
+					padding: 0 5px;
+				}
+			}
+		}
+
+		.ups-shipping_schedule_col5 {
+			width: 20%;
+			float: #{$default-float};
+		}
+
+		.ups-shipping_schedule_col4 {
+			width: 25%;
+			float: $default-float;
+		}
+
+		.ups-shipping_schedule_day {
+			display: block;
+		}
+	}
+
+    @media #{$media-small} {
+		.ups-shipping_schedule_list {
+
+		}
+
+		.ups-shipping_schedule_grid {
+			.ups-shipping_schedule_col5, .col-sm-3, .col-sm-6 {
+				width: 100%;
+				clear: both;
+			}
+
+			.ups-shipping_schedule_day {
+				display: inline;
+			}
+		}
+    }
+
+    .ups-day_rate {
+        /*border-bottom: 1px solid $stone_s3;
+        padding: 10px 0;*/
+
+        position: relative;
+        margin-bottom: 10px;
+
+        &.ups-shipping_schedule_surepost label {
+            min-height: auto;
+        }
+
+        .ups-radio-custom:checked + label {
+            background-color: $water_s3;
+            color: white;
+
+            button.ups-link {
+                color: white;
+            }
+        }
+
+        .ups-radio-custom:focus + label, .ups-radio-custom:active + label {
+            outline: 5px auto $ups-gold;
+        }
+
+        label {
+            padding: 15px 5px;
+            font-weight: normal;
+            cursor: pointer;
+            margin: 0;
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid $ups_stone;
+
+            /*&:focus, &:active {
+                outline:
+            }*/
+
+            p {
+                margin: 0;
+            }
+
+            button.ups-link {
+                margin-bottom: 15px;
+                text-align: $default-float;
+            }
+        }
+    }
+
+    @media #{$media-small} {
+        .ups-day_rate {
+            width: 50%;
+            float: #{$default-float};
+            padding: 0 5px;
+        }
+    }
+}

@@ -1,0 +1,304 @@
+<div class="ups-plugin_container">
+    <h2>Plug-In: <span class="ups-indent">{{'<'}}Plug-In Name{{'>'}}</span></h2>
+</div>
+<div class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Universal Return Rules</h2>
+    </div>
+    <h3>Select a category</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="ups_set_universal_rule" class="ups-form_label">What would you like to set a universal rule for?</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="ups_set_universal_rule" class="ups-dropdown" name="ups_set_universal_rule" [(ngModel)]="iHaveSelectedACategory">
+                        <option value="0" selected>Select One</option>
+                        <option value="1">Customer Location</option>
+                        <option value="2">Product Category</option>
+                        <option value="3">Reason for Return</option>
+                        <option value="4">Lorem Ipsum</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="iHaveSelectedACategory == '1' || iHaveSelectedACategory == '2' || iHaveSelectedACategory == '3' || iHaveSelectedACategory == '4'">
+        <h3>Specify</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label *ngIf="iHaveSelectedACategory == '1'" for="ups_specify_universal_rule" class="ups-form_label">Which customer location would you like to set a universal rule for?</label>
+                    <label *ngIf="iHaveSelectedACategory == '3'" for="ups_specify_universal_rule" class="ups-form_label">Which reason for return would you like to set a universal rule for?</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="ups_specify_universal_rule" class="ups-dropdown" name="ups_specify_universal_rule" [(ngModel)]="iHaveSpecified">
+                            <option value="0">Select One</option>
+                            <option value="1" *ngIf="iHaveSelectedACategory == '3'">Item did not match description</option>
+                            <option value="2" *ngIf="iHaveSelectedACategory == '3'">Product is faulty/does not work</option>
+                            <option value="3" *ngIf="iHaveSelectedACategory == '3'">Not what I ordered</option>
+                            <option value="4" *ngIf="iHaveSelectedACategory == '3'">Changed my mind</option>
+                            <option value="1" *ngIf="iHaveSelectedACategory == '1'">Billing Information</option>
+                            <option value="2" *ngIf="iHaveSelectedACategory == '1'">Return to Address</option>
+                            <option value="3" *ngIf="iHaveSelectedACategory == '1'">Lorem Ipsum</option>
+                            <option value="4" *ngIf="iHaveSelectedACategory == '1'">Lorem Ipsum</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="iHaveSpecified == 1 || iHaveSpecified == 2 || iHaveSpecified == 3 || iHaveSpecified == 4">
+            <h3>Set Up</h3>
+            <p>
+                What would you like to apply to the rule? (You must complete at least one section)
+            </p>
+            <!-- Beginning of Drawer -->
+            <ul class="ups-drawer" upsDrawerList>
+
+                <!-- Shipping Drawer -->
+                <li class="ups-drawer_list_item" *ngIf="iHaveSelectedACategory == '1' || iHaveSelectedACategory == '3'">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01">
+                        <span class="ups-drawer_left_icon ups-empty_circle"></span>
+                        Shipping
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer01">
+                        <div class="ups-section" *ngIf="iHaveSelectedACategory == '1'">
+                            <div class="ups-section-header">
+                                <h4 class="ups-section_heading">Select State</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <label for="ups_select_state" class="ups-readerTxt">Select Your State From the Dropdown Menu</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="ups_select_state" class="ups-dropdown" name="ups_select_state">
+                                                <option value="0" selected>Select One</option>
+                                                <option value="1">Oregon</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ups-cta ups-cta_secondary ups-input_btn_action" type="button">Create a Custom Grouping
+                            </button>
+                        </div>
+                        <div class="ups-section" *ngIf="iHaveSelectedACategory == '1' || iHaveSelectedACategory == '3'">
+                            <div class="ups-section-header">
+                                <h4 class="ups-section_heading">Shipping Address</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <p>
+                                            Where would you like return shipments for this policy to go?
+                                        </p>
+                                        <label for="ups-contact_list" class="ups-form_label">Contact List</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="ups-contact_list" class="ups-dropdown" name="ups-contact_list">
+                                                <option>Select from Contact List</option>
+                                                <option>
+                                                    1811 Main Street, Portland
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="ups-cta ups-cta_secondary ups-input_btn_action">Use a different address</button>
+                            <div class="ups-form_ctaGroup" *ngIf="iHaveSelectedACategory == '1'">
+                                <button [attr.aria-expanded]="!addAnotherRegionalRule ? true: false" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-link" type="button" (click)="addAnotherRegionalRule = !addAnotherRegionalRule"><span class="icon ups-icon-plus" aria-hidden="true"></span>Add Another Regional Rule
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ups-section" *ngIf="addAnotherRegionalRule">
+                            <div class="ups-section-header">
+                                <h4 class="ups-section_heading">Select State</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <label for="ups_select_state2" class="ups-readerTxt">Select Your State From the Dropdown Menu</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="ups_select_state2" class="ups-dropdown" name="ups_select_state2">
+                                                <option value="0" selected>Select One</option>
+                                                <option value="1">Oregon</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ups-cta ups-cta_secondary ups-input_btn_action" type="button" *ngIf="addAnotherRegionalRule">Create a Custom Grouping
+                            </button>
+                        </div>
+                        <div class="ups-section" *ngIf="addAnotherRegionalRule">
+                            <div class="ups-section-header">
+                                <h4 class="ups-section_heading">Shipping Address</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <p>
+                                            Where would you like return shipments for this policy to go?
+                                        </p>
+                                        <label for="ups-contact_list2" class="ups-form_label">Contact List</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select id="ups-contact_list2" class="ups-dropdown" name="ups-contact_list2">
+                                                <option>Select from Contact List</option>
+                                                <option>
+                                                    1811 Main Street, Portland
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="ups-cta ups-cta_secondary ups-input_btn_action">Use a different address</button>
+                        </div>
+                        <div class="ups-section" *ngIf="iHaveSelectedACategory == '3'">
+                            <div class="ups-section-header">
+                                <h4 class="ups-section_heading">Shipping Service</h4>
+                                <div class="ups-form_group">
+                                    <label class="ups-lever" onclick="" for="shippingService">
+                                    <input type="checkbox" id="shippingService" name="shippingService" [(ngModel)]="shippingServiceYes">
+                                    <!-- if checked then yes -->
+                                    <div><strong class="ups-form_label">Would you like to specify a different method for shipping?</strong>
+                                    </div>
+                                    <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <fieldset class="ups-form_group" *ngIf="shippingServiceYes">
+                                <legend class="ups-readerTxt">Lorem Ipsum Dolor</legend>
+                                <div class="ups-checkbox_button_wrap">
+                                    <div class="ups-checkbox_button" *ngFor="let altMethodShipping of [0,1,2,3,4,5]">
+                                        <input type="radio" name="altMethodShippingSelection" id="altMethodShippingSelection{{altMethodShipping}}" class="ups-radio-custom">
+                                        <label for="altMethodShippingSelection{{altMethodShipping}}" class="ups-radio-custom-label">Lorem Ipsum Dolor</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </li>
+                <!-- End of Shipping Drawer -->
+
+                <!-- Billing Drawer-->
+                <li class="ups-drawer_list_item" *ngIf="iHaveSelectedACategory == '3'">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02">
+                        <span class="ups-drawer_left_icon ups-empty_circle"></span>
+                        Billing
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer02">
+                        <fieldset class="ups-form_group ups-form_required">
+                            <legend class="ups-form_label">
+                                Which account would you like to bill your return shipments to? <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </legend>
+                            <div class="ups-checkbox_button_wrap">
+                                <div class="ups-checkbox_button" *ngFor="let account of returnShipmentAccounts;let i = index">
+                                    <input type="radio" name="returnShipmentAccounts" id="returnShipmentAccounts{{i}}" class="ups-radio-custom" value="{{i}}"
+                                    aria-describedby="returnShipmentAccount_error" aria-required="true" required>
+                                    <!-- [(ngModel)]="returnShipmentAccountOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" -->
+                                    <label for="returnShipmentAccounts{{i}}" class="ups-radio-custom-label">{{account.returnShipmentAccountsLabel}}</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- <div class="ups-icons-error" id="returnShipmentAccount_error" role="alert">
+                            <div class="ups-invalid_color ups-group"
+                                *ngIf="(!checkShippingService() && returnPolicyCreateSubmitAttempt)">
+                                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                A Shipping Service must be chosen.
+                            </div>
+                        </div> -->
+                    </div>
+                </li>
+                <!-- End of Billing Drawer -->
+
+                <!-- Rule Priority Drawer -->
+                <li class="ups-drawer_list_item" *ngIf="iHaveSelectedACategory == '1'">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03">
+                        <span class="ups-drawer_left_icon ups-empty_circle"></span>
+                        Rule Priority
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+
+                    <!-- Beginning of Drawer Content -->
+                    <div class="ups-drawer-content" id="upsDrawer03">
+
+                        <!-- Rule Priority Section -->
+                        <div class="ups-group">
+                            <p *ngIf="!bothRulesApply">
+                                Put rules in order of priority. When multiple rules apply to a scenario, which rule should be the default? (For example: "1" will be applied first).
+                            </p>
+                            <p *ngIf="bothRulesApply">
+                                If both rules apply, which rule should take more priority?
+                            </p>
+                        </div>
+                        <ul class="ups-list_style_none">
+                            <ng-container *ngFor="let rule of priorityOptions; let r = index; last as isLast">
+                                <li class="ups-group" *ngIf="!bothRulesApply == r<4 || bothRulesApply == r<2">
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-2">
+                                            <div class="ups-form_group">
+                                                <label class="ups-readerTxt" for="ups-priority_number{{r}}">Choose a priority number for this rule</label>
+                                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                    <select class="ups-dropdown ups-no_validation" id="ups-priority_number{{r}}" name="ups-priority_number{{r}}"
+                                                    [(ngModel)]="priorityOptionsSelect"
+                                                    [attr.aria-describedby]="'ups-priority_statement'+r">
+                                                        <option value="0">1</option>
+                                                        <option value="1">2</option>
+                                                        <option value="2">3</option>
+                                                        <option value="3">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ups-group" id="ups-priority_statement{{r}}">
+                                        <p>
+                                            {{rule.reason}}
+                                        </p>
+                                        <div class="ups-indent">
+                                            <ul>
+                                                <li>
+                                                    {{rule.shipToOrRegion}}
+                                                </li>
+                                                <li>
+                                                    Bill to: {{rule.billToLocation}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr aria-hidden="true" *ngIf="!isLast"/>
+                                </li>
+                            </ng-container>
+                        </ul>
+                        <!-- CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->
+                        <div class="ups-cms-demo">
+                            <button type="button" class="ups-cta ups-cta_secondary" (click)="bothRulesApply = !bothRulesApply;">Do Multiple Rules Apply?</button>
+                        </div>
+                        <!-- CMS DEMO: DO NOT INCLUDE IN PRODUCTION -->
+                        <!-- End of Rule Priority Section -->
+
+                    </div>
+                    <!-- End of Drawer Content -->
+                </li>
+                <!-- End Rule Priority Drawer -->
+            </ul>
+            <!-- End of Drawer -->
+        </div>
+    </div>
+    <div class="ups-form_ctaGroup">
+        <button type="submit" class="ups-cta ups-cta_primary" (click)="saveURRPolicy();">Save & Finish</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+    </div>
+</div>

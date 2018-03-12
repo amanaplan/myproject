@@ -1,0 +1,84 @@
+---
+title: Bootstrap Panel Example
+dir: rtl
+lang: ar
+---
+
+<!-- ************************************************************************************ -->
+<!-- BS01 Example                                                                          -->
+<!-- For full documentation partials/app_component/BS01_panel.hbs                       -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+OPTIONS
+********************************************************************************
+
+    DATUM		            TYPE          REQUIRED          EXAMPLE
+    skin					= string	/ YES				/ panel-default
+    heading_copy			= HTML		/ NO				/ Panel Header
+	title 					= BOOL		/ YES (if heading)	/ True
+	heading_level			= int		/ YES (if title)	/ 4
+    body_copy				= HTML 		/ YES				/ <p>This is a test</p>
+	footer_copy				= HTML 		/ NO				/ <p>Panel Footer</p>
+
+
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+BS01 Example
+********************************************************************************
+--}}
+
+<main id="ups-main">
+	<div class="ups-form_wrap ups-wrap ups-application_wrapper">  
+		<div class="ups-wrap_inner">
+			<div class="row">
+				<div class="col-md-6">
+					<h2 class="ups-article-header">Panels</h2>
+					<p>The <a href="http://getbootstrap.com/components/#panels" class="ups-link">Bootstrap Panel</a> component has been reskinned for use on UPS.com.  Each contextual alternative from the Bootstrap library has been reskinned based on the UPS palette.</p>
+					<p>The Panel component is used for callout blocks of information that need to be sectioned off from the rest of the page content.  The various skins of the component should be used in a consistent context, with the default skin being used for generic messaging.</p>
+					
+					{{> BS01_panel BS01_panel.default }}
+					
+					<h2 class="ups-article-header">Panel with Heading</h2>
+					<p>Panels can optionally have title text.  This can be displayed as normal text or as an HTML heading.  The heading level can be configured when using the component.</p>
+					
+					<h3>Normal Text</h3>
+					{{> BS01_panel BS01_panel.heading_text }}
+					<hr>
+					
+					<h3>HTML Heading</h3>
+					{{> BS01_panel BS01_panel.heading_h4 }}
+					
+					<h2 class="ups-article-header">Panel with Footer</h2>
+					<p>Panels also have an optional footer.  Use of a panel footer has not yet been defined in any page context.  Footer styling is not finalized.</p>
+					{{> BS01_panel BS01_panel.footer }}
+					
+					<h2 class="ups-article-header">Panel Skins</h2>
+					<p>Using the contextual classing from the Bootstrap library, you can change the visual skin of the panel.</p>
+					
+					<h3>UPS Sky</h3>
+					<p>The UPS Sky skin should be used when the message contains information relevant to the user's primary task at hand and needs to have more visual draw than the default skin.</p>
+					{{> BS01_panel BS01_panel.primary }}
+					
+					<h3>UPS Grass</h3>
+					<p>The UPS Grass skin should be used when the message contains information about green initiatives such as UPS Carbon Neutral.</p>
+					{{> BS01_panel BS01_panel.success }}
+					
+					<h3>UPS Brown</h3>
+					<p>The UPS Brown skin should be used when the message contains information about UPS or UPS services.</p>
+					{{> BS01_panel BS01_panel.info }}
+					
+					<h3>UPS Sun</h3>
+					<p>The UPS Sun skin should be used when the message contains critical information that the user needs to be informed of in that moment such as a potential monetary impact to their decision.</p>
+					{{> BS01_panel BS01_panel.warning }}
+				</div> <!-- .col-md-6 -->
+			</div> <!-- .row -->
+		</div> <!-- .ups-wrap_inner -->
+	</div> <!-- .ups-form_wrap.ups-wrap.ups-application_wrapper -->
+</main>

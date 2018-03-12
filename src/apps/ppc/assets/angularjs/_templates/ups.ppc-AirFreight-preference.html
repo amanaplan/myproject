@@ -1,0 +1,47 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+	<ng-form name="ups_airFreightform" data-novalidate>
+		<p><strong>You can select a default payment account for prepaid air-freight shipments.</strong></p>
+
+		<p><strong>Note: </strong>If you've selected a default payment method in your Shipping Preferences, that choice will override your selection below.</p>
+		
+        <div class="row">
+			<div class="col-md-5">
+            	<div class="ups-group" data-ng-if="!AccountsPresent">
+                    <!--<p for="ups-defaultAccntNumAfr" class="ups-group_label">Account Number</p>-->
+					<p>You have no Air Freight accounts saved to your profile.</p>
+                </div>
+				    
+                <div class="ups-form_group" data-ng-if="AccountsPresent">
+                    <label for="ups-defaultAccntNumAfr" class="ups-form_label">Account Number</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select error-on-blur name="ups-defaultAccntNumAfr"
+                            id="ups-defaultAccntNumAfr" class="ups-dropdown"
+                            data-ng-model="formObj.defaultAccntNumAfr">
+                            <option value="" selected>Select One</option>
+                            <option data-ng-repeat="defaultAccNumAfr in freightAccnt"
+                                value="{{defaultAccNumAfr}}">{{defaultAccNumAfr}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+			</div>
+			<div class="col-md-5">
+        		<p data-ng-class="{'ups-no_label': AccountsPresent}"><a href="#" onclick="return false;" data-ng-click="addAirFrieghtAccount()" class="ups-link">Add an Existing Air Freight Account</a></p>
+			</div>
+		</div>
+        
+        <div class="row">
+			<div class="col-md-5">
+                <div class="ups-form_ctaGroup ">
+                    <button type="submit"
+                        class="ups-cta ups-cta_primary ups-form-offset"
+                        data-ng-click="saveChangesAirFreight()">Save
+                        </button>
+                        <!-- data-ng-disabled="!ups_airFreightform.$dirty" -->
+                </div>
+                <!-- ups-form_ctaGroup -->
+			</div>
+		</div>
+	</ng-form>
+</div>

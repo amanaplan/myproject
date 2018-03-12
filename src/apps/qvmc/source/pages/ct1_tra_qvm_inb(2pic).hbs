@@ -1,0 +1,231 @@
+---
+title: "Quantum View Manage"
+layout: legacy.hbs
+version: v4
+appID: com.ups.CVA
+appCSS: ups.legacy_overrideQVMC
+legacyangularID: qvmc
+dir: ltr
+lang: en
+---
+
+<div id="main">
+    <h1>{{title}}</h1>
+
+    <div class="appLvl ups-application_wrapper ups-form_wrap" ng-app="pickupPointHistoryApp">
+        <div class="appHead">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button type="button" class="ups-link">
+                        <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                        Back to Previous Page
+                    </button>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <p>
+                        Last Updated: mm/dd/yyyy hh:mm AM
+                    </p>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <button class="ups-link">
+                        Print
+                        <span class="icon ups-icon-print" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="appBody" ng-controller="pickupPointCtrl">
+
+            <div class="secLvl step">
+                <div class="secHead">
+                    <h2>Summary of my UPS Pickup Points</h2>
+                </div>
+                <div class="secBody">
+                    <div class="flexFirst">
+                        <div class="ups-form_group ups-has_calendar_icon">
+                            <label for="summaryDatePick">Date</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="packagePickupDate"
+                                    class="ups-form_input"
+                                    id="packagePickupDate"
+                                    aria-label="Please enter date in mm/dd/yyyy format">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexAfter">
+                        <button type="button" class="ups-cta ups-cta_secondary ups-no_label">Refresh</button>
+                    </div>
+                    <div class="clear"></div>
+                    <p ng-if="gridSummaryOptions.data.length">
+                        Displaying XX-XX of XXXX
+                    </p>
+                    <section class="ups-search_support" ng-if="gridSummaryOptions.data.length">
+                        <div class="ups-search_results active">
+                            <div class="ups-wrap_inner">
+                                <div class="results-footer clearfix">
+
+                                    <div class="row">
+                                        <div class="col-xs-9">
+                                            <div class="footer-container">
+                                                <button class="first">First</button>
+                                                <button class="prev">&lt; Previous</button>
+                                                <div class="pagination-container">
+                                                    <button class="pag">1</button>
+                                                    <button class="pag active">2</button>
+                                                    <button class="pag" data-prev-selected="true">3</button>
+                                                    <button class="pag">4</button>
+                                                    <button class="pag">5</button>
+                                                    <button class="pag">6</button>
+                                                    <button class="pag">7</button>
+                                                    <button class="pag">8</button>
+                                                    <button class="pag">9</button>
+                                                    <button class="pag">10</button>
+                                                    <button class="pag ups-inactive">11</button>
+                                                    <button class="pag ups-inactive">12</button>
+                                                    <button class="pag ups-inactive">13</button>
+                                                    <button class="pag ups-inactive">14</button>
+                                                    <button class="pag ups-inactive">15</button>
+                                                </div>
+                                                <button class="next">Next &gt;</button>
+                                                <button class="last">Last</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <!--<a href="#" class="ups-cta ups-cta_secondary">Subscription Details</a>-->
+                                            <button type="button" class="ups-cta ups-cta_secondary">
+                                                Subscription Details
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div ui-grid="gridSummaryOptions" class="grid">
+                        <div class="grid-no-rows" ng-show="!gridSummaryOptions.data.length">
+                            <div class="msg">
+                                <span>No Pickup Points are selected / saved.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secLvl step">
+                <div class="secHead">
+                    <h2>Select from UPS Pickup Points</h2>
+                </div>
+                <div class="secBody">
+                    <p>
+                        Select from UPS Pickup Points to build a list pickup points you want to monitor for inbound packages.
+                    </p>
+
+                    <div class="flexFirst">
+                        <div class="ups-form_group ups-has_calendar_icon">
+                            <label for="searchPoints" class="ups-readerTxt">Search</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="searchPoints"
+                                    class="ups-form_input"
+                                    id="searchPoints"
+                                    placeholder="Enter search text">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-x" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Clear Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexAfter">
+                        <div class="ups-form_group">
+                            <label for="searchTypePoints" class="ups-readerTxt">Search Type</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select name="searchTypePoints"
+                                    class="ups-dropdown"
+                                    id="searchTypePoints"
+                                    aria-required="true"
+                                    required>
+                                    <option value="1">
+                                        Search All Fields
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexAfter">
+                        <button type="button" class="ups-cta ups-cta_secondary">Search</button>
+                    </div>
+                    <div class="clear"></div>
+                    <p>
+                        Displaying XX-XX of XXXX
+                    </p>
+                    <section class="ups-search_support">
+                        <div class="ups-search_results active">
+                            <div class="ups-wrap_inner">
+                                <div class="results-footer clearfix">
+
+                                    <div class="row">
+                                        <div class="col-xs-9">
+                                            <div class="footer-container">
+                                                <button class="first">First</button>
+                                                <button class="prev">&lt; Previous</button>
+                                                <div class="pagination-container">
+                                                    <button class="pag">1</button>
+                                                    <button class="pag active">2</button>
+                                                    <button class="pag" data-prev-selected="true">3</button>
+                                                    <button class="pag">4</button>
+                                                    <button class="pag">5</button>
+                                                    <button class="pag">6</button>
+                                                    <button class="pag">7</button>
+                                                    <button class="pag">8</button>
+                                                    <button class="pag">9</button>
+                                                    <button class="pag">10</button>
+                                                    <button class="pag ups-inactive">11</button>
+                                                    <button class="pag ups-inactive">12</button>
+                                                    <button class="pag ups-inactive">13</button>
+                                                    <button class="pag ups-inactive">14</button>
+                                                    <button class="pag ups-inactive">15</button>
+                                                </div>
+                                                <button class="next">Next &gt;</button>
+                                                <button class="last">Last</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <button type="button" class="ups-cta ups-cta_secondary">
+                                                Save Selected
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div ui-grid="gridSelectOptions" class="grid"></div>
+                </div>
+            </div>
+
+            <div class="ups-cms-demo">
+                <button type="button"
+                    class="ups-cta ups-cta_secondary"
+                    ng-click="gridSummaryOptions.data = testData">
+                    Summary Table filled in
+                </button>
+                <button type="button"
+                    class="ups-cta ups-cta_secondary"
+                    ng-click="gridSummaryOptions.data = testBlankData">
+                    Summary Table empty
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

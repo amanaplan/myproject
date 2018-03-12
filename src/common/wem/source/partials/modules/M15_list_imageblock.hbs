@@ -1,0 +1,78 @@
+<!-- ************************************************************************************ -->
+<!-- M15 List Imageblock                                                                  -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M15 LIST IMAGEBLOCK: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 45px
+-introductory-
+| 30px
+-imageblock- |30px| -imageblock-
+| 30px
+-imageblock- |30px| -imageblock-
+| 30px
+-explanatory-
+| 60px
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+M15 LIST IMAGEBLOCK: LINK
+********************************************************************************
+
+M15 List Imageblock can have a link, it can be external or internal
+
+********************************************************************************
+--}}
+
+<a {{#if this.link}}href="{{this.link.src}}"{{/if}}>
+
+    {{#compare detail.symbol '===' "video"}}<span class="icon ups-icon-play" aria-hidden="true"></span>{{/compare}}
+    {{#compare detail.symbol '===' "document"}}<span class="icon ups-icon-document" aria-hidden="true"></span>{{/compare}}
+    <div class="ups-imageblock_image">
+
+
+{{!--
+********************************************************************************
+M15 LIST IMAGEBLOCK: IMAGE
+********************************************************************************
+
+M15 List Imageblock must have an image [;)]
+
+********************************************************************************
+--}}
+
+        <img src="{{image.src}}" alt="{{#if image.alt}}{{image.alt}}{{else}}{{/if}}" title="{{#if image.title}}{{image.title}}{{else}}{{/if}}" />
+
+
+{{!--
+********************************************************************************
+M15 LIST IMAGEBLOCK: TEXTBLOCK
+********************************************************************************
+
+M15 List Imageblock can have a text block, a white box that appears at
+the bottom of the image. Textblocks due to plugin imageblock.js keep
+consistent height of the largest textblock in the entries
+
+********************************************************************************
+--}}
+
+        <div class="ups-imageblock_text">
+        {{#if detail.header}}
+            <h3 {{#if detail.desc}}class="ups-desc-title"{{/if}}>{{detail.header}}</h3>
+        {{/if}}
+        {{#if detail.desc}}
+            <div>{{detail.desc}}</div>
+        {{/if}}
+            <span class="icon ups-imageblock-arrow" aria-hidden="true"></span>
+        </div>
+    </div>
+</a>

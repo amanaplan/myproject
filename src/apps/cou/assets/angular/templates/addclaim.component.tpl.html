@@ -1,0 +1,584 @@
+<div class="ups-wrap" [pageTitle]="'Start a new claim'">
+    <div class="ups-wrap_inner">
+        <form [formGroup]="addClaimForm" novalidate>
+            <div *ngIf="(!formValid() && submitBtnClicked)"
+                #errorList>
+                <h3 class="ups-invalid_color-list ups-error_alert-list">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    Please correct the following errors
+                </h3>
+                <ul class="ups-icons-error">
+                    <li *ngIf="!addClaimForm.controls['claimNewTrkNum'].valid && claimNewBatchType == '1'">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewTrkNum" pointIdClick>UPS Tracking Number <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="claimNewRelationship == '0' && viewPkgRelationship">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewRelationshipShipper" pointIdClick>A relationship to the package must be chosen.</a>
+                    </li>
+                    <li *ngIf="!addClaimForm.controls['claimNewAcctNumberSel'].valid && viewShippingNumSel">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewAcctNumberSel" pointIdClick>UPS Shipping Account Number Selection <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimForm.controls['claimNewAcctNumber'].valid && viewShippingNumSel && (claimNewAcctNumberSel == -1)">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewAcctNumber" pointIdClick>UPS Shipping Account Number <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimForm.controls['claimNewAcctPostal'].valid && viewShippingNumSel && (claimNewAcctNumberSel == -1)">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewAcctPostal" pointIdClick>UPS Shipping Account Postal Code <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="claimNewReport == '0' && viewProblemReport && claimNewBatchType == '1'">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimNewReportLost" pointIdClick>A problem with the package must be chosen.</a>
+                    </li>
+                </ul>
+            </div>
+
+            <p>
+                Use the fields below to tell us about your package.
+            </p>
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+            <fieldset class="ups-form_group" *ngIf="viewBatchClaims">
+                <legend class="ups-form_label">
+                    What sort of claim would you like to submit?
+                </legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewBatchTypeSingle"
+                        name="claimNewBatchType"
+                        value="1"
+                        [(ngModel)]="claimNewBatchType"
+                        [ngModelOptions]="{standalone : true}">
+                    <label class="ups-radio-custom-label" for="claimNewBatchTypeSingle">
+                        Single Claim
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewBatchTypeMultiple"
+                        name="claimNewBatchType"
+                        value="2"
+                        [(ngModel)]="claimNewBatchType"
+                        [ngModelOptions]="{standalone : true}">
+                    <label class="ups-radio-custom-label" for="claimNewBatchTypeMultiple">
+                        Batch file of multiple claims (minimum of 10, maximum of 100)
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="row" *ngIf="claimNewBatchType == '1'">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimNewTrkNum" class="ups-form_label">
+                            UPS Tracking Number
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimNewTrkNum"
+                                name="claimNewTrkNum"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimNewTrkNum_error"
+                                formControlName="claimNewTrkNum"
+                                [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewTrkNum'].valid && addClaimForm.controls['claimNewTrkNum'].touched)}">
+                            <div *ngIf="addClaimForm.controls['claimNewTrkNum'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimNewTrkNum_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimForm.controls['claimNewTrkNum'].valid && addClaimForm.controls['claimNewTrkNum'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>UPS Tracking Number is required.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ups-cms-demo" *ngIf="viewFreightPgkMsg">
+                This tracking number is a [freight package]. Guidance about what to do should go in this space.
+            </div>
+
+            <ng-container *ngIf="viewMultiPieceSel">
+                <p>
+                    The tracking number you entered is part of a multi-piece shipment. Please select any other tracking numbers you would like to include in your claim. If you are submitting a claim for an unpaid C.O.D., please do not select multiple tracking numbers.
+                </p>
+
+                <div class="ups-multi_select_view">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset class="ups-form_group">
+                                <legend class="ups-form_label">
+                                    Select from all available tracking numbers.
+                                </legend>
+                                <div class="ups-text_scroll">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngFor="let trkNum of multiSelTrkNums; let n = index">
+                                        <input type="checkbox"
+                                            class="ups-checkbox-custom"
+                                            [id]="'claimNewAvailableTrkNum' + n"
+                                            [name]="'claimNewAvailableTrkNum' + n"
+                                            [value]="trkNum.trkNum"
+                                            [(ngModel)]="trkNum.selected"
+                                            (ngModelChange)="claimNewAvailableCheckSelAll();"
+                                            [ngModelOptions]="{standalone : true}">
+                                        <label class="ups-checkbox-custom-label"
+                                            [for]="'claimNewAvailableTrkNum' + n">
+                                            {{ trkNum.trkNum }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input type="checkbox"
+                                        class="ups-checkbox-custom"
+                                        id="claimNewAvailableSelAll"
+                                        name="claimNewAvailableSelAll"
+                                        value="trkNum.trkNum"
+                                        [ngModel]="claimNewAvailableSelAll"
+                                        (ngModelChange)="claimNewAvailableSelAllChange()"
+                                        [ngModelOptions]="{standalone : true}">
+                                    <label class="ups-checkbox-custom-label"
+                                        for="claimNewAvailableSelAll">
+                                        Select all
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset class="ups-form_group">
+                                <legend class="ups-form_label">
+                                    Tracking numbers you have selected
+                                </legend>
+                                <div class="ups-text_scroll">
+                                    <ul class="ups-multi_select_list">
+                                        <ng-container *ngFor="let trkNum of multiSelTrkNums; let n = index">
+                                            <li class="ups-multi_select_option" *ngIf="trkNum.selected">
+                                                <button type="button"
+                                                    class="icon ups-icon-x ups-iconAlone ups-multi_select_list_btn"
+                                                    (click)="trkNum.selected = false; claimNewAvailableCheckSelAll();">
+                                                    <span class="ups-readerTxt">Remove {{ trkNum.trkNum }}</span>
+                                                </button>
+                                                <span aria-hidden="true">{{ trkNum.trkNum }}</span>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-container>
+
+            <fieldset class="ups-form_group ups-form_required ups-help_wrapper ups-fieldset_has_helpbtn" *ngIf="viewPkgRelationship">
+                <legend class="ups-form_label">
+                    What is your relationship to this <ng-container *ngIf="claimNewBatchType == '1'">package</ng-container><ng-container *ngIf="claimNewBatchType == '2'">batch of claims</ng-container>?
+                    <span class="ups-readerTxt">Required</span>
+                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                </legend>
+
+                <div class="ups-help" upsHelpBtn>
+                    <button class="ups-help_link" id="ups-formHelpTrkReference" type="button">
+                        <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                        Help
+                    </button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                        <button class="ups-help_close" type="button">
+                            <span aria-hidden="true" class="icon ups-icon-x ups-iconAlone"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Lorem ipsum.</p>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewRelationshipShipper"
+                        name="claimNewRelationship"
+                        value="1"
+                        aria-describedby="claimNewRelationship_error"
+                        formControlName="claimNewRelationship"
+                        [(ngModel)]="claimNewRelationship"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewRelationship'].valid && addClaimForm.controls['claimNewRelationship'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewRelationshipShipper">
+                        I am the shipper of <ng-container *ngIf="claimNewBatchType == '1'">this package</ng-container><ng-container *ngIf="claimNewBatchType == '2'">these packages</ng-container>
+                    </label>
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="claimNewBatchType == '1'">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewRelationshipRecipient"
+                        name="claimNewRelationship"
+                        value="2"
+                        aria-describedby="claimNewRelationship_error"
+                        formControlName="claimNewRelationship"
+                        [(ngModel)]="claimNewRelationship"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewRelationship'].valid && addClaimForm.controls['claimNewRelationship'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewRelationshipRecipient">
+                        I am the recipient of this package
+                    </label>
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewRelationshipAppointedRepresentative"
+                        name="claimNewRelationship"
+                        value="3"
+                        aria-describedby="claimNewRelationship_error"
+                        formControlName="claimNewRelationship"
+                        [(ngModel)]="claimNewRelationship"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewRelationship'].valid && addClaimForm.controls['claimNewRelationship'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewRelationshipAppointedRepresentative">
+                        I am the shipper's appointed representative
+                    </label>
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="claimNewBatchType == '1'">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewRelationshipThirdParty"
+                        name="claimNewRelationship"
+                        value="4"
+                        aria-describedby="claimNewRelationship_error"
+                        formControlName="claimNewRelationship"
+                        [(ngModel)]="claimNewRelationship"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewRelationship'].valid && addClaimForm.controls['claimNewRelationship'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewRelationshipThirdParty">
+                        I am a 3rd party
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="ups-icons-error"
+                id="claimNewRelationship_error"
+                role="alert"
+                *ngIf="viewPkgRelationship">
+                <div class="ups-invalid_color ups-group" *ngIf="(!addClaimForm.controls['claimNewRelationship'].valid && addClaimForm.controls['claimNewRelationship'].touched)">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    A relationship to the package must be chosen.
+                </div>
+            </div>
+
+            <div class="ups-group" *ngIf="viewPrepopulatedTxt">
+                <p>
+                    To have the shipment information prepopulated, please <a href="#" class="ups-link">add an existing UPS account</a> to your ups profile.
+                </p>
+            </div>
+
+            <div class="row" *ngIf="viewShippingNumSel">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimNewAcctNumberSel" class="ups-form_label">
+                            UPS Shipping Account Number
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="claimNewAcctNumberSel"
+                                class="ups-dropdown"
+                                id="claimNewAcctNumberSel"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimNewAcctNumberSel_error"
+                                formControlName="claimNewAcctNumberSel"
+                                [(ngModel)]="claimNewAcctNumberSel"
+                                [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewAcctNumberSel'].valid && addClaimForm.controls['claimNewAcctNumberSel'].touched)}">
+                                <option [value]="0">Select One</option>
+                                <option [value]="-1">Add a different account number</option>
+                                <option [value]="1">123467889</option>
+                            </select>
+                            <div *ngIf="addClaimForm.controls['claimNewAcctNumberSel'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check selectbox"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimNewAcctNumberSel_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimForm.controls['claimNewAcctNumberSel'].valid && addClaimForm.controls['claimNewAcctNumberSel'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>UPS Shipping Account Numberr is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required" *ngIf="(claimNewAcctNumberSel == -1)">
+                        <label for="claimNewAcctNumber" class="ups-form_label">
+                            UPS Shipping Account Number
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimNewAcctNumber"
+                                name="claimNewAcctNumber"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimNewAcctNumber_error"
+                                formControlName="claimNewAcctNumber"
+                                [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewAcctNumber'].valid && addClaimForm.controls['claimNewAcctNumber'].touched)}">
+                            <div *ngIf="addClaimForm.controls['claimNewAcctNumber'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimNewAcctNumber_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimForm.controls['claimNewAcctNumber'].valid && addClaimForm.controls['claimNewAcctNumber'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>UPS Shipping Account Number is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required" *ngIf="(claimNewAcctNumberSel == -1)">
+                        <label for="claimNewAcctPostal" class="ups-form_label">
+                            UPS Shipping Account Postal Code
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimNewAcctPostal"
+                                name="claimNewAcctPostal"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimNewAcctPostal_error"
+                                formControlName="claimNewAcctPostal"
+                                [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewAcctPostal'].valid && addClaimForm.controls['claimNewAcctPostal'].touched)}">
+                            <div *ngIf="addClaimForm.controls['claimNewAcctPostal'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimNewAcctPostal_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimForm.controls['claimNewAcctPostal'].valid && addClaimForm.controls['claimNewAcctPostal'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>UPS Shipping Account Postal Code is required.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="ups-form_group ups-form_required" *ngIf="viewProblemReport && claimNewBatchType == '1'">
+                <legend class="ups-form_label">
+                    What problem are you trying to report?
+                    <span class="ups-readerTxt">Required</span>
+                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                </legend>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewReportLost"
+                        name="claimNewReport"
+                        value="1"
+                        aria-describedby="claimNewReport_error"
+                        formControlName="claimNewReport"
+                        [(ngModel)]="claimNewReport"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewReport'].valid && addClaimForm.controls['claimNewReport'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewReportLost">
+                        This package is lost.
+                    </label>
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewReportDamage"
+                        name="claimNewReport"
+                        value="2"
+                        aria-describedby="claimNewReport_error"
+                        formControlName="claimNewReport"
+                        [(ngModel)]="claimNewReport"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewReport'].valid && addClaimForm.controls['claimNewReport'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewReportDamage">
+                        This package is damage.
+                    </label>
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="radio"
+                        class="ups-radio-custom"
+                        id="claimNewReportCODNotPaid"
+                        name="claimNewReport"
+                        value="3"
+                        aria-describedby="claimNewReport_error"
+                        formControlName="claimNewReport"
+                        [(ngModel)]="claimNewReport"
+                        [ngClass]="{'ups-bodError' : (!addClaimForm.controls['claimNewReport'].valid && addClaimForm.controls['claimNewReport'].touched)}">
+                    <label class="ups-radio-custom-label" for="claimNewReportCODNotPaid">
+                        Collect on Delivery (C.O.D.) was not paid.
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="ups-icons-error"
+                id="claimNewRelationship_error"
+                role="alert"
+                *ngIf="viewProblemReport && claimNewBatchType == '1'">
+                <div class="ups-invalid_color ups-group" *ngIf="(!addClaimForm.controls['claimNewReport'].valid && addClaimForm.controls['claimNewReport'].touched)">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    A problem with the package must be chosen.
+                </div>
+            </div>
+
+            <ng-container *ngIf="claimNewBatchType == '2'">
+                <!--<div class="row">
+                    <div class="col-md-5">-->
+                        <div class="ups-group">
+                            <p>
+                                [Instructional text regarding sorting the file, file type, etc.]
+                            </p>
+                        </div>
+                        <div class="ups-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <!--<label for="claimNewBatchFileTxt" class="ups-form_label">
+                                        Select the batch file to upload.
+                                    </label>-->
+                                    <div class="ups-group_label">
+                                        Select the batch file to upload.
+                                    </div>
+                                    <div>
+                                        <input type="file"
+                                            id="claimNewBatchFile"
+                                            name="claimNewBatchFile"
+                                            class="ups-file_input_hidden"
+                                            aria-describedby="claimNewBatchFile_error"
+                                            (change)="claimBatchFileChange($event)"
+                                            #claimNewBatchFile>
+                                        <!--<input type="text"
+                                            id="claimNewBatchFileTxt"
+                                            name="claimNewBatchFileTxt"
+                                            class="ups-form_input"
+                                            aria-describedby="claimNewBatchFile_error"
+                                            readonly
+                                            [ngModel]="getClaimBatchFilePath()"
+                                            [ngModelOptions]="{'standalone' : true}"
+                                            [ngClass]="{'ups-bodError' : batchFileError}">-->
+                                        <span id="claimNewBatchFileTxt">{{ getClaimBatchFilePath() }}</span>
+                                        <button class="ups-cta ups-cta_secondary"
+                                            aria-describedby="claimNewBatchFileTxt"
+                                            (click)="clearClaimBatchFile()"
+                                            *ngIf="claimBatchFileAttached()">
+                                            Remove File
+                                        </button>
+                                        <button class="ups-cta ups-cta_secondary ups-input_btn_action"
+                                            (click)="openClaimBatchFileDialog()"
+                                            *ngIf="!claimBatchFileAttached()">
+                                            Browse for File
+                                        </button>
+                                    </div>
+                                    <span class="ups-icons-error" id="claimNewBatchFile_error" role="alert">
+                                        <span class="ups-invalid_color ups-group" *ngIf="batchFileError">
+                                            <span class="icon ups-icon-exclamation"></span>
+                                            <span>File type is invalid</span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="col-md-5">
+                                    <!--<button class="ups-no_label ups-cta ups-cta_secondary ups-input_btn_action"
+                                        (click)="clearClaimBatchFile()"
+                                        *ngIf="claimBatchFileAttached()">Remove</button>
+                                    <button class="ups-no_label ups-cta ups-cta_secondary ups-input_btn_action"
+                                        (click)="openClaimBatchFileDialog()"
+                                        *ngIf="!claimBatchFileAttached()">Browse</button>-->
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--<div class="ups-group">
+                            <button class="ups-link">Remove File</button>
+                        </div>-->
+                    <!--</div>
+                </div>-->
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <label for="claimNewEmail" class="ups-form_label">
+                                Email field label
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    class="ups-form_input"
+                                    id="claimNewEmail"
+                                    name="claimNewEmail">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+            <div class="ups-form_ctaGroup">
+                <button type="button"
+                    class="ups-cta ups-cta_primary"
+                    (click)="submitForm()"
+                    *ngIf="viewNextBtnShown">Next</button>
+                <button type="button"
+                    class="ups-cta"
+                    [ngClass]="{'ups-cta_secondary' : viewNextBtnShown, 'ups-cta_primary' : !viewNextBtnShown}">Cancel</button>
+            </div>
+        </form>
+
+        <div class="ups-cms-demo">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="demoPgView" class="ups-form_label">
+                            View
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="demoPgView"
+                                class="ups-dropdown"
+                                id="demoPgView"
+                                [(ngModel)]="demoPgView"
+                                [ngModelOptions]="{standalone : true}"
+                                (ngModelChange)="demoViewChange()">
+                                <option [value]="1">Default</option>
+                                <option [value]="2">Multi-piece Shipment</option>
+                                <option [value]="3">Freight Package</option>
+                                <option [value]="4">Batch Claims</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p>
+                        Must be on Batch Claims view with Batch file of multiple claim selected for buttons below to show the error.
+                    </p>
+                    <button class="ups-cta ups-cta_secondary" (click)="batchFileError = true">Batch File has error</button>
+                    <button class="ups-cta ups-cta_secondary" (click)="batchFileError = false">Batch File does not have error</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

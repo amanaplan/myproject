@@ -1,0 +1,2944 @@
+<div data-ng-app="upsApp">
+	<script type="text/ng-template" id="forms_wizard_popover.html">
+		<div class="ups-hintPopover" id="forms_wizard_popover" role="tooltip">
+			<span>Use 1-5 words. For best results, give general description first,
+			followed by materials and any other relevant details. For example:</span>
+			<span class="ups-readerTxt">Basketball</span>
+			<span class="ups-readerTxt">T-shirts, cotton, men's</span>
+			<span class="ups-readerTxt">Table, wood, antique</span>
+			<span class="ups-readerTxt">Ball Bearings, steel</span>
+			<ul class="ups-credential_hint" aria-hidden="true">
+				<li>Basketball</li>
+				<li>T-shirts, cotton, men's</li>
+				<li>table, wood, antique</li>
+				<li>ball bearings, steel</li>
+			</ul>
+		</div>
+	</script>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// Begin Step 1 - Product Detail (guest)              //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step1_guest_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step1_guest_label">
+		<div class="modal-dialog modal-lg" role="document" data-ng-controller="formsCtrl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step1_guest_label">What are you shipping?</h2>
+					<div class="ups-clear">Detail the contents of your shipment one item at a time.</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+					<div class="ups-section">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product Details</h3>
+						</div>
+						{{#if error}}
+						{{> A03_page_level_error this.s1_guest }}
+						{{/if}}
+						<div class="ups-form_group ups-form_required">
+							<label for="hmc_item_desc" class="ups-form_label"> Please describe this item <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+							<p class="ups-form_subheader" id="hmc_item_desc_helpertxt">For customs declaration be as specific as possible.</p>
+							<div class="ups-text_wrapper ups-input_wrapper">
+								<input type="text"
+                                name="hmc_item_desc"
+                                class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                id="hmc_item_desc"
+                                aria-required="true"
+                                required=""
+                                aria-describedby="hmc_item_desc_helpertxt{{#if error}} hmc_item_desc_error{{/if}} forms_wizard_popover"
+								data-uib-popover-template="tags.templateUrl"
+							    data-popover-placement="top"
+                                popover-trigger="focus">
+							</div>
+                            <!-- begin update 04/07/17 -->
+                            {{#if non_error}}
+                                {{> A12_field_lvl_success }}
+                            {{/if}}
+                            <!-- end update 04/07/17 -->
+							{{#if error}}
+							{{>A11_field_lvl_error error_hmc_item_desc }}
+							{{/if}} </div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_product_packaged" class="ups-form_label"> How is this product packaged or sold? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_product_packaged" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_product_packaged" {{#if error}}aria-describedby="hmc_product_packaged_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Select one</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_product_packaged }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_item_num" class="ups-form_label"> How many of this item are you shipping? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_item_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_num" {{#if error}}aria-describedby="hmc_item_num_error"{{/if}} aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_num }}
+									{{/if}} </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required ups-help_wrapper">
+									<label for="hmc_item_worth" class="ups-form_label"> What is the value of a single unit, as packaged? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-help">
+										<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+										<div class="ups-help_tooltip ups-help_tooltip_topright">
+											<button type="button" class="ups-help_close">
+												<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+												<span class="ups-readerTxt">Close</span>
+                                    		</button>
+											<p><strong>Customs Value</strong> is a reasonable amount that would be charged for the items if sold, regardless of whether a sale is involved.</p>
+										</div>
+									</div>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_item_worth" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_worth" {{#if error}}aria-describedby="hmc_item_worth_error"{{/if}} aria-required="true" required="">
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_worth }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-3">
+								<div class="ups-form_group">
+									<label for="hmc_item_worth_currency" class="ups-form_label"> Currency <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_item_worth_currency" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_worth_currency" aria-required="true" required>
+											<option value="most_recent">USD</option>
+										</select>
+									</div>
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_worth_currency }}
+									{{/if}} </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_item_made" class="ups-form_label"> Where was this product made or assembled? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_item_made" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_made"{{#if error}}aria-describedby="hmc_item_made_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Select One</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_made }}
+									{{/if}} </div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 1 - Product Detail (guest)                //// -->
+	<!-- //// Begin Step 1 - Product Detail (logged in) add      //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step1_loggedin_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step1_loggedin_label" data-ng-controller="formsCtrl">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step1_loggedin_label">What are you shipping?</h2>
+					<div class="ups-clear">Detail the contents of your shipment one item at a time.</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="ups-form_group">
+									<label for="hmc_product_packaged" class="ups-form_label"> Choose Saved Products </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_product_packaged" class="ups-dropdown" id="hmc_product_packaged">
+											<option value="most_recent" selected>Select one</option>
+											<option value="Titlest_Golf_Balls" id="Titlest_Golf_Balls">Titlest Golf Balls</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p>OR</p>
+						<!--<button type="button" class="ups-cta ups-cta_secondary" id="hmc_new_item_btn"> <span class="icon ups-icon-plus" aria-hidden="true"></span> Add New Item </button>-->
+					<div class="ups-section">
+							<div class="ups-section-header">
+								<h3 class="ups-section_heading">Add Product {1} Details</h3>
+							</div>
+							{{#if error}}
+							{{> A03_page_level_error this.s1_logedin }}
+							{{/if}}
+							<div class="row">
+								<div class="col-md-6">
+									<div class="ups-form_group">
+										<label for="hmc_product_name" class="ups-form_label"> Product Name </label>
+										<div class="ups-text_wrapper ups-input_wrapper">
+											<input type="text" name="hmc_product_name" class="ups-form_input ups-error" id="hmc_product_name">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="ups-form_group"> {{> A05_switch_lever hmcSaveProductListLever }} </div>
+								</div>
+							</div>
+
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_item_desc" class="ups-form_label"> Please describe this item. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader" id="hmc_item_desc2_helpertxt">For customs declaration be as specific as possible.</p>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text"
+								name="hmc_item_desc"
+								class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+								id="hmc_item_desc"
+								aria-required="true"
+								required=""
+								aria-describedby="hmc_item_desc2_helpertxt{{#if error}} hmc_item_desc_error{{/if}} forms_wizard_popover"
+								data-uib-popover-template="tags.templateUrl"
+								data-popover-placement="top"
+								popover-trigger="focus">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_item_desc }}
+								{{/if}} </div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="ups-form_group ups-form_required">
+										<label for="hmc_product_packaged" class="ups-form_label"> How is this product packaged or sold? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+										<div class="ups-dropdown_wrapper ups-input_wrapper">
+											<select name="hmc_product_packaged" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_product_packaged" {{#if error}}aria-describedby="hmc_product_packaged_error"{{/if}} aria-required="true" required>
+												<option value="most_recent">Select one</option>
+											</select>
+										</div>
+    									<!-- begin update 04/07/17 -->
+                                        {{#if non_error}}
+                                            {{> A12_field_lvl_success }}
+    									{{/if}}
+    									<!-- end update 04/07/17 -->
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_product_packaged }}
+										{{/if}} </div>
+								</div>
+								<div class="col-md-6">
+									<div class="ups-form_group ups-form_required">
+										<label for="hmc_item_num" class="ups-form_label"> How many of this are you shipping? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+										<div class="ups-text_wrapper ups-input_wrapper">
+											<input type="text" name="hmc_item_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_num" {{#if error}}aria-describedby="hmc_item_num_error"{{/if}} aria-required="true" required="">
+										</div>
+    									<!-- begin update 04/07/17 -->
+                                        {{#if non_error}}
+                                            {{> A12_field_lvl_success }}
+    									{{/if}}
+    									<!-- end update 04/07/17 -->
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_item_num }}
+										{{/if}} </div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="ups-form_group ups-form_required ups-help_wrapper">
+										<label for="hmc_item_worth" class="ups-form_label"> What is the value of a single unit, as packaged? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+										<div class="ups-help">
+											<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+											<div class="ups-help_tooltip ups-help_tooltip_topright">
+												<button type="button" class="ups-help_close">
+													<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+													<span class="ups-readerTxt">Close</span>
+												</button>
+												<p><strong>Customs Value</strong> is a reasonable amount that would be charged for the items if sold, regardless of whether a sale is involved.</p>
+											</div>
+										</div>
+										<div class="ups-text_wrapper ups-input_wrapper">
+											<input type="text" name="hmc_item_worth" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_worth" {{#if error}}aria-describedby="hmc_item_worth_error"{{/if}} aria-required="true" required="">
+										</div>
+    									<!-- begin update 04/07/17 -->
+                                        {{#if non_error}}
+                                            {{> A12_field_lvl_success }}
+    									{{/if}}
+    									<!-- end update 04/07/17 -->
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_item_worth }}
+										{{/if}} </div>
+								</div>
+								<div class="col-md-3">
+									<div class="ups-form_group">
+										<label for="hmc_item_worth_currency" class="ups-form_label"> Currency <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+										<div class="ups-dropdown_wrapper ups-input_wrapper">
+											<select name="hmc_item_worth_currency" class="ups-dropdown" id="hmc_item_worth_currency" aria-required="true" required>
+												<option value="most_recent">USD</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="ups-form_group ups-form_required">
+										<label for="hmc_item_made" class="ups-form_label"> Where was this product made or assembled? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+										<div class="ups-dropdown_wrapper ups-input_wrapper">
+											<select name="hmc_item_made" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_made" {{#if error}}aria-describedby="hmc_item_made_error"{{/if}} aria-required="true" required>
+												<option value="most_recent">Select One</option>
+											</select>
+										</div>
+    									<!-- begin update 04/07/17 -->
+                                        {{#if non_error}}
+                                            {{> A12_field_lvl_success }}
+    									{{/if}}
+    									<!-- end update 04/07/17 -->
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_item_made }}
+										{{/if}} </div>
+								</div>
+							</div>
+						</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- /////////////////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 1 - Product Detail (logged in) add                   //// -->
+	<!-- //// Begin Step 1 - Product Detail (logged in saved item selected  //// -->
+	<!-- /////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step1_loggedin_saved_selected_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step1_loggedin_saved_selected_label" data-ng-controller="formsCtrl">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step1_loggedin_saved_selected_label">What are you shipping?</h2>
+					<div class="ups-clear">Detail the contents of your shipment one item at a time.</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="ups-form_group">
+									<label for="hmc_product_packaged" class="ups-form_label"> Choose Saved Products </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_product_packaged" class="ups-dropdown" id="hmc_product_packaged">
+											<option value="0">Select one</option>
+											<option value="1" id="Titlest_Golf_Balls" selected>Titlest Golf Balls</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<p>OR</p>-->
+						<!--<button type="button" class="ups-cta ups-cta_secondary"> <span class="icon ups-icon-plus" aria-hidden="true"></span> Add New Item </button>-->
+					<div class="ups-section">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product {1} Details</h3>
+						</div>
+						{{#if error}}
+						{{> A03_page_level_error this.s1_logedin2 }}
+						{{/if}}
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group">
+									<label for="hmc_product_name" class="ups-form_label"> Product Name </label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_product_name" class="ups-form_input ups-error" id="hmc_product_name" value="{Titlest Golf Balls}">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="ups-form_group"> {{> A05_switch_lever hmcSaveProductListLever2 }} </div>
+							</div>
+						</div>
+
+						<div class="ups-form_group ups-form_required">
+									<label for="hmc_item_desc" class="ups-form_label"> Please describe this item. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="hmc_item_desc2_helpertxt">For customs declaration be as specific as possible.</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text"
+										name="hmc_item_desc"
+										class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+										id="hmc_item_desc"
+										aria-required="true"
+										required=""
+										aria-describedby="hmc_item_desc2_helpertxt{{#if error}} hmc_item_desc_error{{/if}} forms_wizard_popover"
+										data-uib-popover-template="tags.templateUrl"
+							   			data-popover-placement="top"
+                                		popover-trigger="focus"
+										value="{Pro V titlest Golf Balls}">
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_desc }}
+									{{/if}} </div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_product_packaged" class="ups-form_label"> How is this product packaged or sold? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_product_packaged" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_product_packaged" {{#if error}}aria-describedby="hmc_product_packaged_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Select one</option>
+											<option value="most_recent" selected>{Box}</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_product_packaged }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_item_num" class="ups-form_label"> How many of this are you shipping? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_item_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_num" {{#if error}}aria-describedby="hmc_item_num_error"{{/if}} aria-required="true" required="" value="{30}">
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_num }}
+									{{/if}} </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required ups-help_wrapper">
+									<label for="hmc_item_worth" class="ups-form_label"> What is the value of a single unit, as packaged? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-help">
+										<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+										<div class="ups-help_tooltip ups-help_tooltip_topright">
+											<button type="button" class="ups-help_close">
+												<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+												<span class="ups-readerTxt">Close</span>
+                                    		</button>
+											<p><strong>Customs Value</strong> is a reasonable amount that would be charged for the items if sold, regardless of whether a sale is involved.</p>
+										</div>
+									</div>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_item_worth" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_worth" {{#if error}}aria-describedby="hmc_item_worth_error"{{/if}} aria-required="true" required="" value="{55.00}">
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_worth }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-3">
+								<div class="ups-form_group">
+									<label for="hmc_item_worth_currency" class="ups-form_label"> Currency <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_item_worth_currency" class="ups-dropdown" id="hmc_item_worth_currency" aria-required="true" required>
+											<option value="most_recent">{USD}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_item_made" class="ups-form_label"> Where was this product made or assembled? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_item_made" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_made" {{#if error}}aria-describedby="hmc_item_made_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Select One</option>
+											<option value="most_recent" selected>{United States}</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_item_made }}
+									{{/if}} </div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- ///////////////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - Product Detail (logged in saved item selected  //// -->
+	<!-- //// Begin Step 2 - Cert of Origin                               //// -->
+	<!-- ///////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_coo_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_coo_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_coo_label">U.S. Certificate of Origin</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_cert_of_origin }}
+					{{/if}}
+					<p>A U.S. Certificate of Origin may be necessary for your item, <strong>{Item Description,}{valued at {nn}{USD}}</strong> when shipping to <strong>{Ship To Country or Territory}</strong></p>
+					<p><strong>{Optional display of tariff code definition when code is known}</strong></p>
+					{{>BS02_alert whereWouldINeedThisFormTip}}
+					<div class="row">
+						<div class="col-md-8">
+							<div class="ups-form_group"> {{> A05_switch_lever completeNowFormLever }} </div>
+							<div class="ups-form_group ups-form_required ups-input_has_unit" id="hmc_num_pack_input">
+								<label for="hmc_item_num" class="ups-form_label"> How many of your packages contain this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-help">
+									<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+									<div class="ups-help_tooltip ups-help_tooltip_topright">
+										<button type="button" class="ups-help_close">
+											<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+											<span class="ups-readerTxt">Close</span>
+										</button>
+										<p>Count the number of shipping containers holding one or more of this commodity.</p>
+									</div>
+								</div>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_item_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_item_num" aria-describedby="numPackagesHelperTxt{{#if error}} hmc_item_num_error{{/if}}" aria-required="true" required="">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_item_num }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="row" id="hmc_item_gross_weight_input">
+						<div class="col-md-8">
+							<div class="ups-form_group ups-input_has_unit">
+								<label for="hmc_item_gross_weight" class="ups-form_label"> What is the gross weight of this item? </label>
+								<div class="ups-help">
+									<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+									<div class="ups-help_tooltip ups-help_tooltip_topright">
+										<button type="button" class="ups-help_close">
+											<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+											<span class="ups-readerTxt">Close</span>
+                                    	</button>
+										<p>Add up what this item weighs, in its retail packaging, in the quantity you are shipping it. Then include the weight of the shipping containers they are in. If a package contains only that commodity, <em>gross weight</em> is the same as package weight.</p>
+									</div>
+								</div>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_item_gross_weight" class="ups-form_input ups-error" id="hmc_item_gross_weight" aria-describedby="grossWeight4HelperTxt">
+									<span class="ups-input_unit_measure">{lbs}</span> </div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - Cert of Origin                        //// -->
+	<!-- //// Begin Step 2 - NAFTA Cert of Origin                //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_coo_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_nafta_coo_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_coo_label">NAFTA Certificate of Origin</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+					<p>Your item, <strong>{Item Description}</strong>, may be eligible for reduced duties. Items shipped from <strong>{U.S.A.}</strong> to <strong>{Mexico}</strong> need a NAFTA Certificate of Origin to qualify when the <em>total</em> value of that item in a shipment is above <strong>{nn}{USD}</strong>.</p>
+					{{>BS02_alert naftaCertofOriginTip}}
+					<div class="ups-form_group"> {{> A05_switch_lever applyNAFTADutiesLever }} </div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - NAFTA Cert of Origin                  //// -->
+	<!-- //// Begin Step 2 - NAFTA Question 1 **DEPRECATED**     //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_1_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_nafta_1_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_1_label">North American Free Trade Agreement</h2>
+					<div class="ups-clear">NAFTA Question 1 of 4</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_nfta_q1 }}
+					{{/if}}
+					<div class="ups-form_group"> {{> A05_switch_toggle hmcShipmentPartToggle }} </div>
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label"> Add Blanket Time Period <span aria-hidden="true" class="ups-required_indicator"></span> <span class="ups-readerTxt">Required</span> </legend>
+						<p class="ups-form_subheader">Tell us the time period that you want this certificate to be considered active (this can be no longer than one year).</p>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="ups-form_group">
+									<label for="hmc_from_blanket_time" class="ups-form_label">From</label>
+									<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="hmc_from_blanket_time" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_from_blanket_time" value="" aria-label="Please enter date in mm/dd/yyyy format" aria-required="true" required>
+										<button type="button" class="ups-date_picker_button"> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_from_blanket_time }}
+										{{/if}} </div>
+								</div>
+							</div>
+							<div class="col-md-5 col-md-offset-1">
+								<div class="ups-form_group">
+									<label for="hmc_to_blanket_time" class="ups-form_label">To</label>
+									<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="hmc_to_blanket_time" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_to_blanket_time" value="" aria-label="Please enter date in mm/dd/yyyy format" aria-required="true" required>
+										<button type="button" class="ups-date_picker_button "> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+										{{#if error}}
+										{{>A11_field_lvl_error error_hmc_to_blanket_time }}
+										{{/if}} </div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - NAFTA Question 1                      //// -->
+	<!-- //// Begin Step 2 - NAFTA Question 2   **DEPRECATED**   //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_2_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_nafta_2_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_2_label">North American Free Trade Agreement</h2>
+					<div class="ups-clear">NAFTA Question 2 of 4: Producer</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+					<div class="ups-form_group"> {{> A05_switch_lever hmcProducerLever }} </div>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcCertificateLever }} </div>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcDocumentLever }} </div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - NAFTA Question 2                      //// -->
+	<!-- //// Begin Step 2 - NAFTA Question 3 **DEPRECATED**     //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_3_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_nafta_3_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_3_label">North American Free Trade Agreement</h2>
+					<div class="ups-clear">NAFTA Question 3 of 4: Country or Territory of Origin</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_nfta_q3 }}
+					{{/if}}
+					<div class="ups-form_group"> {{> A05_switch_toggle hmcItemOriginatingToggle }} </div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="toCountryDropdown" class="ups-form_label"> Preference Criterion for {item name}? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader" id="countryOfOriginHelperTxt">Identify country or territory of origin.</p>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select id="toCountryDropdown" name="toCountryDropdown" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required aria-describedby="countryOfOriginHelperTxt">
+										<option>Criterion A</option>
+										<option>Criterion B</option>
+										<option>Criterion C</option>
+										<option>Criterion D</option>
+										<option>Criterion E</option>
+										<option>Criterion F</option>
+									</select>
+								</div>
+								{{#if error}}
+								{{>A11_field_lvl_error error_toCountryDropdown }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<ul class="list-unstyled">
+						<li><strong aria-hidden="true">A</strong> <span class="ups-readerTxt">Criterion A</span> - The goods are wholly obtained or produced in any one of the NAFTA countries or territories, e.g., Natural resources</li>
+						<li><strong aria-hidden="true">B</strong> <span class="ups-readerTxt">Criterion B</span> - Item contains foreign parts, components or raw materials transformed in manufacturing, e.g., Manufactured goods</li>
+						<li><strong aria-hidden="true">C</strong> <span class="ups-readerTxt">Criterion C</span> - Goods manufactured exclusively with NAFTA originating parts or components.</li>
+						<li><strong aria-hidden="true">D</strong> <span class="ups-readerTxt">Criterion D</span> - Item is imported in an unassembled or disassembled form, but is classified as assembled.  Parts from non-originating country or territory are classified in the same subheading of the complete article being imported</li>
+						<li><strong aria-hidden="true">E</strong> <span class="ups-readerTxt">Criterion E</span> - Harmonized System code-specific Automatic Data Processing equipment and their parts</li>
+						<li><strong aria-hidden="true">F</strong> <span class="ups-readerTxt">Criterion F</span> - Certain "agriculture" products exported only to Mexico from Canada</li>
+					</ul>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - NAFTA Question 3                      //// -->
+	<!-- //// Begin Step 2 - NAFTA Question 4  **DEPRECATED**     //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_4_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_nafta_4_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_4_label">North American Free Trade Agreement</h2>
+					<div class="ups-clear">NAFTA Question 4 of 4: Net Cost</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_nfta_q4 }}
+					{{/if}}
+					<div class="ups-form_group"> {{> A05_switch_lever hmcRVCRequirementLever }} </div>
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label"> Is the RVC calculate according to the net cost method of Transaction Value? <span aria-hidden="true" class="ups-required_indicator"></span> <span class="ups-readerTxt">Required</span> </legend>
+						<p class="ups-form_subheader">Text</p>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="hmc_rvc_net_cost_radio" class="ups-radio-custom" name="hmc_rvc_value" type="radio" value="yes" checked="">
+							<label for="hmc_rvc_net_cost_radio" class="ups-radio-custom-label">Net Cost</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="hmc_rvc_transactional" class="ups-radio-custom" name="hmc_rvc_value" type="radio" value="yes">
+							<label for="hmc_rvc_transactional" class="ups-radio-custom-label">Transactional</label>
+						</div>
+					</fieldset>
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label"> What are the beginning and end dates for the transactional cost period? <span aria-hidden="true" class="ups-required_indicator"></span> <span class="ups-readerTxt">Required</span> </legend>
+						<p class="ups-form_subheader">The period should be no more than one year.</p>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="ups-form_group">
+									<label for="hmc_from_transactional_cost" class="ups-form_label">Start Date</label>
+									<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="hmc_from_transactional_cost" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_from_transactional_cost" value="" aria-label="Please enter date in mm/dd/yyyy format" {{#if error}}aria-describedby="hmc_from_transactional_cost_error"{{/if}} aria-required="true" required>
+										<button type="button" class="ups-date_picker_button"> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_from_transactional_cost }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-5 col-md-offset-1">
+								<div class="ups-form_group">
+									<label for="hmc_to_transactional_cost" class="ups-form_label">End Date</label>
+									<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="hmc_to_transactional_cost" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_to_transactional_cost" value="" aria-label="Please enter date in mm/dd/yyyy format" {{#if error}}aria-describedby="hmc_from_transactional_cost_error"{{/if}} aria-required="true" required>
+										<button type="button" class="ups-date_picker_button"> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_to_transactional_cost }}
+									{{/if}} </div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - NAFTA Question 4                      //// -->
+	<!-- //// Begin Step 2 - Tariff Link         				///// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_tariff_link_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_tariff_link_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_tariff_link_modal_label">Find or enter a tariff code.</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_tariff }}
+					{{/if}}
+					<p>The Harmonized Tariff Code is a standardized list of product numbers used worldwide for import and export of goods. Tariff codes can significantly speed customs clearance.</p>
+					<p>Based on your description, product categories matching your item are listed below. Choose a category to get started, or search the full list if you don't find what you need.</p>
+					<div class="ups-group">
+						<p> <span class="ups-group_label">Product #{1} Description:</span> <span class="ups-group_value">{Product Description from Step 1}</span></p>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_tariff_code" class="ups-form_label"> Harmonized Tariff Code Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader" id="tariffCodeHelperTxt">{Or Schedule B number}</p>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_tariff_code" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_tariff_code" aria-required="true" required="" aria-describedby="tariffCodeHelperTxt{{#if error}} hmc_tariff_code_error{{/if}}">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_tariff_code }}
+								{{/if}} </div>
+							<a href="#" class="ups-link ups-new-window">Harmonized Tariff Code Lookup Tool <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> </div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - Tariff Link         				///// -->
+	<!-- //// Begin Step 2 - Tariff Table of Contents           //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_tariff_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_tariff_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_tariff_label">Find or enter a tariff code.</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_tariff_table_of_contents }}
+					{{/if}}
+					<p>The Harmonized Tariff Code is a standardized list of product numbers used worldwide for import and export of goods. Tariff codes can significantly speed customs clearance.</p>
+					<p>Based on your description, product categories matching your item are listed below. Choose a category to get started, or search the full list if you don't find what you need.</p>
+					<div class="ups-group">
+						<p> <span class="ups-group_label">Product #{1} Description:</span> <span class="ups-group_value">{Product Description from Step 1}</span></p>
+					</div>
+					<div class="ups-cms-demo">
+						<h3 class="text-center">TARIFF CODE DEMO</h3>
+					</div>
+
+					<!--	<div class="ups-accordion_slim">
+                    <section class="ups-accordion_list ups-accordion_normal">
+                        <div class="ups-wrap_inner">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content" role="tablist">
+                                    <!-- /////////////////////////////////////////////////// -->
+					<!-- //// begin {select a} product category 1      //// -->
+					<!-- ///////////////////////////////////////////////// --
+                                    <li class="ups-accordion_item">
+                                        <a href="#" class="ups-accordion_toggle" role="tab" aria-controls="ups-accordionPanel_1" aria-selected="false" aria-expanded="false">{Select A} Product Category<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i></a>
+                                        <div class="ups-accordion_expand" id="ups-accordionPanel_1" role="tabpanel" aria-hidden="true">
+                                            <div class="ups-contentBlock ups-wrap">
+                                                <div class="ups-wrap_inner">
+                                                   <p>94. Furniture; bedding, mattreses, mattress supports, cushions and similar stuffed furnishings; lamps and lighting
+												   fittings, not elsewhere specified or included; illuminated signs, illuminated name-plates and the like; prefabricated...</p>
+												   <p>95. Toys, games and sports requisites; parts and accessories thereof</p>
+												   <p>96. Miscellaneous manufactured articles</p>
+												   <p>97. Works of art, collectors' pieces and antiques</p>
+												   <p>98. Special Classification Provisions</p>
+                                                </div>
+
+                                            </div>
+                                            <!-- end .ups-contentBlock --
+
+                                        </div>
+                                    </li>
+                                    <!-- ///////////////////////////////////////////////////// -->
+					<!-- //// end {select a} product category 1           //// -->
+					<!-- //// begin {select a} product category 2        //// -->
+					<!-- //////////////////////////////////////////////////// --
+                                    <li class="ups-accordion_item">
+                                        <a class="ups-accordion_toggle" role="tab" aria-controls="ups-accordionPanel_2" aria-selected="false" aria-expanded="false">{Select A}Product Category<i class="icon ups-icon-plus"> <span class="ups-readerTxt">expand</span> </i></a>
+                                        <div class="ups-accordion_expand" id="ups-accordionPanel_2" role="tabpanel" aria-hidden="true">
+                                            <div class="ups-contentBlock ups-wrap">
+                                                <div class="ups-wrap_inner">
+												   <p>03 Tricycles</p>
+												   <p>03 scooters</p>
+												   <p>03 pedal cars and similar wheeled toys</p>
+												   <p>03 dolls' carriages; dolls</p>
+												   <p>03 other toys;</p>
+                                                </div>
+                                            </div>
+                                            <!-- end .ups-contentBlock --
+                                        </div>
+                                    </li>
+                                    <!-- /////////////////////////////////////////////////// -->
+					<!-- //// end {select a} product category   2      //// -->
+					<!-- //// begin {select a} product category 3     //// -->
+					<!-- //////////////////////////////////////////////// --
+                                    <li class="ups-accordion_item">
+                                        <a href="#" class="ups-accordion_toggle" role="tab" aria-controls="ups-accordionPanel_3" aria-selected="false" aria-expanded="false">{Select A} Product Item<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i></a>
+                                        <div class="ups-accordion_expand" id="ups-accordionPanel_3" role="tabpanel" aria-hidden="true">
+                                            <div class="ups-contentBlock ups-wrap">
+                                                <div class="ups-wrap_inner">
+                                                </div>
+                                            </div>
+                                            <!-- end .ups-contentBlock --
+                                        </div>
+                                    </li>
+                                    <!-- /////////////////////////////////////////////// -->
+					<!-- //// end {select a} product category 3     //// -->
+					<!-- //// begin {select a} product category 4   //// -->
+					<!-- /////////////////////////////////////////////// --
+                                    <li class="ups-accordion_item">
+                                        <a href="#" class="ups-accordion_toggle" role="tab" aria-controls="ups-accordionPanel_4" aria-selected="false" aria-expanded="false">{Select A} Product Item<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i></a>
+                                        <div class="ups-accordion_expand" id="ups-accordionPanel_4" role="tabpanel" aria-hidden="true">
+                                            <div class="ups-contentBlock ups-wrap">
+                                                <div class="ups-wrap_inner">
+
+                                                </div>
+                                            </div>
+                                            <!-- end .ups-contentBlock --
+                                        </div>
+                                    </li>
+                                    <!-- ////////////////////////////////////////////// -->
+					<!-- //// end {select a} product category 4     /// -->
+					<!-- //// begin {select a} product category 5  //// -->
+					<!-- //////////////////////////////////////////// --
+						            <li class="ups-accordion_item">
+                                        <a href="#" class="ups-accordion_toggle" role="tab" aria-controls="ups-accordionPanel_5" aria-selected="false" aria-expanded="false">{Select A} Product Item<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i></a>
+                                        <div class="ups-accordion_expand" id="ups-accordionPanel_5" role="tabpanel" aria-hidden="true">
+                                            <div class="ups-contentBlock ups-wrap">
+                                                <div class="ups-wrap_inner">
+
+                                                </div>
+                                            </div>
+                                            <!-- end .ups-contentBlock --
+                                        </div>
+                                    </li>
+								    <!-- ////////////////////////////////////////////// -->
+					<!-- //// end {select a} product category 5     /// -->
+					<!-- ////////////////////////////////////////////// --
+                                </ul>
+                            </div>
+                            <!-- end .ups-accordion_wrapper --
+                        </div>
+                        <!-- end .ups-wrap_inner --
+                    </section></div> -->
+
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_tariff_code" class="ups-form_label"> Harmonized Tariff Code Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader" id="tariffCodeHelperTxt">{Or Schedule B number}</p>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_tariff_code" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_tariff_code" aria-required="true" required="" aria-describedby="tariffCodeHelperTxt{{#if error}} hmc_tariff_code_error{{/if}}">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_tariff_code }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - Tariff Table of Contents              //// -->
+	<!-- //// Begin Step 2 - I need EEI/Don't need EEI           //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_itn_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_itm_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_itn_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+					{{> BS02_alert  whenAmIRequiredToFileAnEEITip }}
+					<div class="ups-form_group"> {{> A05_switch_lever hmcfileAnEEILever }} </div>
+
+                <div class="row" id="hmc_exemption_citation_container">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_exemption_citation" class="ups-form_label"> Exemption Citation <span class="ups-required_indicator" aria-hidden="true"></span> </label>
+								<div class="ups-help">
+									<button type="button" id="ups-formHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+									<div class="ups-help_tooltip">
+										<button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+										<p>Lorem to the ipsum</p>
+									</div>
+								</div>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_exemption_citation" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_exemption_citation" {{#if error}}aria-describedby="hmc_exemption_citation_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_exemption_citation }}
+								{{/if}} </div>
+						</div>
+					</div>
+
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - I need EEI/Don't need EEI             //// -->
+	<!-- //// Begin Step 2 - EEI No ITN          **DEPRECATED**     //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_no_itn_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_no_itm_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_no_itn_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN2Lever }} </div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_file_eei" class="ups-form_label"> How would you like to file your EEI for this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader">You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.</p>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_file_eei" class="ups-dropdown" id="hmc_file_eei">
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN                            //// -->
+	<!-- //// Begin Step 2 - EEI No ITN (Ship Lvl) - ask once per ship //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_no_itn_ask_once_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_no_itn_ask_once_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_no_itn_ask_once_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_no_itn_ask_once }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN3Lever }} </div>
+
+					<div class="ups-form_group ups-form_required">
+						<label for="hmc_file_eei" class="ups-form_label"> How would you like to file your EEI for this item?  <span aria-hidden="true" class="ups-required_indicator"></span></label>
+						<p class="ups-form_subheader">You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.</p>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="hmc_file_eei" class="ups-dropdown" id="hmc_file_eei">
+								<option value="most_recent">I Don't Need an EEI</option>
+							</select>
+						</div>
+                        {{#if non_error}}
+                        <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                        {{/if}}
+                        {{#if error}}
+                        {{>A11_field_lvl_error error_hmc_file_eei }}
+                        {{/if}}
+					</div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required ups-help_wrapper">
+        						<label for="hmc_file_eei_exemption_code" class="ups-form_label">
+                                    License Exemption Code
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-help">
+                                    <button type="button" id="hmc_file_eei_exemption_code_helpbtn" class="ups-help_link"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+                                    <div class="ups-help_tooltip">
+                                        <button type="button" class="ups-help_close">
+                                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+                                    </div>
+                                </div>
+        						<div class="ups-dropdown_wrapper ups-input_wrapper">
+        							<select name="hmc_file_eei_exemption_code" class="ups-dropdown" id="hmc_file_eei_exemption_code" aria-describedby="hmc_file_eei_exemption_code_error" aria-required="true" required>
+        								<option value="most_recent">Select One</option>
+        							</select>
+        						</div>
+                                {{#if non_error}}
+                                <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                                {{/if}}
+                                {{#if error}}
+                                {{>A11_field_lvl_error error_hmc_file_eei_exemption_code }}
+                                {{/if}}
+        					</div>
+
+                            <div class="ups-form_group">
+                                {{> A05_switch_lever hmcShipDirectLever }}
+                            </div>
+                            <div class="ups-form_group">
+                                <div class="ups-form_group ups-form_required">
+            						<label for="hmc_file_eei_ultimate_recipient" class="ups-form_label">
+                                        Ultimate Recipient Type
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+            							<select name="hmc_file_eei_ultimate_recipient" class="ups-dropdown" id="hmc_file_eei_ultimate_recipient">
+            								<option value="most_recent">Select One</option>
+            							</select>
+            						</div>
+                                    {{#if non_error}}
+                                    <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                                    {{/if}}
+                                    {{#if error}}
+                                    {{>A11_field_lvl_error error_hmc_file_eei_ultimate_recipient }}
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN  EEI No ITN (Ship Lvl) - ask once per ship //// -->
+	<!-- //// Begin Step 2 - EEI No ITN - UPS File                              //// -->
+	<!-- ////////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_no_upsfile_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_no_upsfile_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_no_upsfile_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_no_int_ups_file }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+                    <!-- begin 04/07/17 update -->
+                    {{> BS02_alert  whenAmIRequiredToFileAnEEITip }}
+                    <!-- end 04/07/17 update   -->
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN4Lever }} </div>
+
+					<div class="ups-form_group">
+						<label for="hmc_file_eei" class="ups-form_label"> How would you like to file your EEI for this item? </label>
+						<p class="ups-form_subheader">You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.</p>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="hmc_file_eei" class="ups-dropdown" id="hmc_file_eei">
+								<option value="most_recent">UPS file it for me (10.00)</option>
+							</select>
+						</div>
+					</div>
+					<p class="ups-form_label">Please review the authorization below and choose an option to file your EEI through UPS.</p>
+					<div class="ups-text_scroll">
+						<p>I hereby authorize UPS Worldwide Forwarding, Inc. and its affiliates (Forwarding Agent), its successors or assigns, to act for and on its behalf as a true and lawful agent and attorney for me/the organization associated with tihs account as the U.S. Principal Part in Interest (USPPI), from this date, in the United States either in writing, electronically, or by other authorized means to:</p>
+						<p>Act as Forwarding Agent for export control, Bureau of the Census reporting, and customs purposes, and to make, endorse, sign or file Electronic Export Information (EEI) through the Automated Export System (AES) or to perform any act which may be required by law in connection with the exportation or transportation of any merchandise shipped or consigned by or to the USPPI and to receive or ship any merchandise on behalf of the USPPL.</p>
+						<p>The USPPI hereby certifies that all statements and information contained in the documentation provided to the...</p>
+					</div>
+                    <!-- begin 06/09/17 update
+						 removed POA radio button group, added POA Checkbox, added POA button, added conditional text -->
+					<!--<fieldset class="ups-form_group">
+						<legend class="ups-readerTxt">Select whether your authorize UPS for future shipments or this shipment.</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="hmc_authorize_file_future" class="ups-radio-custom" name="hmc_authorize_file" type="radio" value="yes" checked>
+							<label for="hmc_authorize_file_future" class="ups-radio-custom-label">I authorize UPS power of attorney for this and future shipments.</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="hmc_authorize_file_once" class="ups-radio-custom" name="hmc_authorize_file" type="radio" value="yes">
+							<label for="hmc_authorize_file_once" class="ups-radio-custom-label">I authorize UPS one time power of attorney for this shipment only.</label>
+						</div>
+					</fieldset>-->
+					<div ng-show="eeiHasPOA" class="ups-form_group ups-form_required ups-checkbox_group">
+						<div class="ups-checkbox ups-input_wrapper">
+							<input id="hmc_authorize_file" class="ups-checkbox-custom{{#if error}} ng-invalid ng-dirty{{/if}}" name="hmc_authorize_file" value="1" type="checkbox"  aria-required="true" required="required">
+							<label for="hmc_authorize_file" class="ups-form_label ups-checkbox-custom-label">I authorize UPS one time power of attorney for this shipment only. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+						</div>
+						{{#if error}}
+							{{>A11_field_lvl_error }}
+						{{/if}}
+						<button type="button" class="ups-link">Print power of attorney form</button>
+					</div>
+					<p ng-show="!eeiHasPOA">UPS has a Power of Attorney on file for this account number.</p>
+
+                    <!-- end 06/97/17 update   -->
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_email" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_eei_email" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_email" {{#if error}}aria-describedby="hmc_eei_email_error"{{/if}} aria-required="true" required="" value="{prepop ship from email}">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_email }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_group">
+						<div class="ups-checkbox ups-input_wrapper">
+							<input id="hmc_eei_notify_filing" class="ups-checkbox-custom" name="hmc_eei_notify_filing" value="1" type="checkbox" checked>
+							<label for="hmc_eei_notify_filing" class="ups-form_label ups-checkbox-custom-label"> Notify me when updates occur to transportation information on my EEI filing. </label>
+						</div>
+					</div>
+                    <!-- begin 06/09/17 update
+						 Moved lever and selectbox from above radio to below email input -->
+					<div class="ups-form_group"> {{> A05_switch_lever hmcShipDirectReceiver2Lever }} </div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ultimate_recipient_type" class="ups-form_label"> Ultimate Recipient Type <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_ultimate_recipient_type" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_recipient_type" {{#if error}}aria-describedby="hmc_ultimate_recipient_type_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_recipient_type }}
+								{{/if}}
+							</div>
+						</div>
+					</div>
+                    <!-- end 06/09/17 update   -->
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+					<div class="ups-cms-demo">
+						<button type="button" class="ups-cta ups-cta_primary" onclick="" data-ng-click="eeiHasPOA = !eeiHasPOA">Toggle POA</button>
+					</div>
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN - UPS File                 //// -->
+	<!-- //// Begin Step 2 - EEI No ITN - Self File              //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_self_file_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_self_file_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_self_file_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_no_int_self_file }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+                    <!-- begin update 04/07/17 -->
+					{{> BS02_alert  whenAmIRequiredToFileAnEEITip }}
+                    <!-- end update 04/07/17   -->
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN5Lever }} </div>
+
+					<div class="ups-form_group ups-form_required">
+						<label for="hmc_file_eei" class="ups-form_label"> How would you like to file your EEI for this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+						<p class="ups-form_subheader">You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.</p>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="hmc_file_eei" class="ups-dropdown {{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_file_eei" {{#if error}}aria-describedby="hmc_file_eei_error"{{/if}} aria-required="true" required>
+								<option value="most_recent">Self file with U.S. Customs through ACE</option>
+							</select>
+						</div>
+                        <!-- begin update 04/07/17 -->
+                        {{#if non_error}}
+                            {{> A12_field_lvl_success }}
+                        {{/if}}
+                        <!-- end update 04/07/17 -->
+						{{#if error}}
+						{{>A11_field_lvl_error error_hmc_file_eei_preference }}
+						{{/if}}
+					</div>
+					<p><span class="ups-icon-alert"></span> File your EEI with U.S. Customs through the Automated Commercial Environment (ACE) at <a href="#" class="ups-link">www.cpb.gov/ace</a>. Then enter the Internal Transaction Number (ITN) for your EEI below to continue with this shipment.</p>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_int_num" class="ups-form_label"> What is your ITN? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_int_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_int_num" {{#if error}}aria-describedby="hmc_int_num_error"{{/if}} aria-required="true" required="">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_int_num }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcShipDirectReceiver5Lever }} </div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ultimate_recipient_type" class="ups-form_label"> Ultimate Recipient Type <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_ultimate_recipient_type" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_recipient_type" {{#if error}}aria-describedby="hmc_ultimate_recipient_type_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_recipient_type }}
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN -Self file                   //// -->
+	<!-- //// Begin Step 2 - EEI No ITN - Post Departure USPPI    //// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_opt4_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_opt4_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_opt4_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_no_int_post_departure_usppi }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN6Lever }} </div>
+
+					<div class="ups-form_group ups-form_required">
+						<label for="hmc_file_eei" class="ups-form_label"> How would you like to file your EEI for this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="hmc_file_eei" class="ups-dropdown {{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_file_eei" {{#if error}}aria-describedby="hmc_file_eei_error2"{{/if}} aria-required="true" required>
+								<option value="most_recent">File post departure as approved USPPI</option>
+							</select>
+						</div>
+                        <!-- begin update 04/07/17 -->
+                        {{#if non_error}}
+                            {{> A12_field_lvl_success }}
+                        {{/if}}
+                        <!-- end update 04/07/17 -->
+						{{#if error}}
+						{{>A11_field_lvl_error error_hmc_file_eei_preference2 }}
+						{{/if}}
+					</div>
+
+					<p><span class="ups-icon-alert"></span> Note: You may only file your EEI post-departure if you are pre-approved as a qualifying USPPI (U.S. Principal Party of Interest) by U.S. Customs.</p>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-group">
+								<p class="ups-group_label">Reference Number Type *</p>
+								<p class="ups-group_value">Shipment reference number</p>
+							</div>
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ship_reference" class="ups-form_label"> Shipment Reference Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ship_reference" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ship_reference" {{#if error}}aria-describedby="hmc_ship_reference_error"{{/if}} aria-required="true" required value="{CZ01QNWDMRBFFD5TG}">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ship_reference }}
+								{{/if}} </div>
+							</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_email" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_eei_email" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_email" {{#if error}}aria-describedby="hmc_eei_email_error"{{/if}} aria-required="true" required="" value="{prepop ship from email}">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_email }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_group">
+						<div class="ups-checkbox ups-input_wrapper">
+							<input id="hmc_eei_notify_filing2" class="ups-checkbox-custom" name="hmc_eei_notify_filing2" value="1" type="checkbox" checked>
+							<label for="hmc_eei_notify_filing2" class="ups-form_label ups-checkbox-custom-label"> Notify me when updates occur to transportation information on my EEI filing. </label>
+						</div>
+					</div>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcShipDirectReceiver3Lever }} </div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ultimate_recipient_type" class="ups-form_label"> Ultimate Recipient Type <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_ultimate_recipient_type" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_recipient_type2" {{#if error}}aria-describedby="hmc_ultimate_recipient_type_error2"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_recipient_type2 }}
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN - Post Departure USPPI     //// -->
+	<!-- Begin Step 2 - EEI No ITN - Ultimate or Intermediate Address -->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_uaddress_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_uaddress_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_uaddress_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+					<p>According to your information, your item, <strong>{item description { {tariff code #nnn.nn.nnnn}},}{</strong> has atotal customs value of <strong>{nnnn.nn} {USD} and}</strong> requires an EEI.
+						{{#if error}}
+						{{> A03_page_level_error this.s2_eei_no_int_ult_int }}
+						{{/if}}
+					<h3>Add Ultimate Receiver</h3>
+					<p>If you are shipping to a forwarder or intermediate party to take over final shipmeny of this item, enter the final destination of this item.</p>
+					<div class="ups-form_group ups-form_required">
+						<label for="hmc_ultimate_country" class="ups-form_label"> Country or Territory <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select name="hmc_ultimate_country" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_country" {{#if error}}aria-describedby="hmc_ultimate_country_error"{{/if}} aria-required="true" required>
+								<option value="most_recent">Select One</option>
+							</select>
+						</div>
+                        <!-- begin update 04/07/17 -->
+                        {{#if non_error}}
+                            {{> A12_field_lvl_success }}
+                        {{/if}}
+                        <!-- end update 04/07/17 -->
+						{{#if error}}
+						{{>A11_field_lvl_error error_hmc_ultimate_country }}
+						{{/if}} </div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ultimate_name" class="ups-form_label"> Name <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_name" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_name" {{#if error}}aria-describedby="hmc_ultimate_name_error"{{/if}} aria-required="true" required="">
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_name }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-6">
+							<div class="ups-form_group">
+								<label for="hmc_ultimate_contact_name" class="ups-form_label"> Contact Name </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_contact_name" class="ups-form_input" id="hmc_ultimate_contact_name">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_group ups-form_required">
+						<label for="hmc_ultimate_address1" class="ups-form_label"> Street Address <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input type="text" name="hmc_ultimate_address1" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_address1" {{#if error}}aria-describedby="hmc_ultimate_address1_error"{{/if}} aria-required="true" required="" placeholder="Street Address">
+						</div>
+                        <!-- begin update 04/07/17 -->
+                        {{#if non_error}}
+                            {{> A12_field_lvl_success }}
+                        {{/if}}
+                        <!-- end update 04/07/17 -->
+						{{#if error}}
+						{{>A11_field_lvl_error error_hmc_ultimate_address1 }}
+						{{/if}} </div>
+					<div class="ups-form_group">
+						<label for="hmc_ultimate_address2" class="ups-form_label ups-readerTxt"> Address 2 </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input type="text" name="hmc_ultimate_address2" class="ups-form_input" id="hmc_ultimate_address2" placeholder="Apt., Suite, Unit">
+						</div>
+					</div>
+					<div class="ups-form_group">
+						<label for="hmc_ultimate_address3" class="ups-form_label ups-readerTxt"> Address 3 </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input type="text" name="hmc_ultimate_address3" class="ups-form_input" id="hmc_ultimate_address3" placeholder="Dept., c/o, etc">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="ups-form_group ups-group_required">
+								<label for="hmc_ultimate_city" class="ups-form_label"> City <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_city" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_city" {{#if error}}aria-describedby="hmc_ultimate_city_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_city }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-4">
+							<div class="ups-form_group ups-group_required">
+								<label for="hmc_ultimate_state" class="ups-form_label"> State <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_state" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_state" {{#if error}}aria-describedby="hmc_ultimate_state_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_state }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-2">
+							<div class="ups-form_group ups-group_required">
+								<label for="hmc_ultimate_zip" class="ups-form_label"> ZIP Code <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_zip" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_zip" {{#if error}}aria-describedby="hmc_ultimate_zip_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_zip }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="ups-form_group ups-group_required">
+								<label for="hmc_ultimate_email" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_email" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_email" {{#if error}}aria-describedby="hmc_ultimate_email_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_email }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-4">
+							<div class="ups-form_group ups-group_required">
+								<label for="hmc_ultimate_phone" class="ups-form_label"> Phone <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_phone" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_phone" {{#if error}}aria-describedby="hmc_ultimate_phone_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_phone }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-2">
+							<div class="ups-form_group">
+								<label for="hmc_ultimate_ext" class="ups-form_label"> Extension </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_ultimate_ext" class="ups-form_input" id="hmc_ultimate_ext">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- ///////////////////////////////////////////////////////////////////////////// -->
+	<!-- / End Step 2 - EEI No ITN - Ultimate or Intermediate Address            /////-->
+	<!-- //// Begin Step 2 - EEI No ITN - Shipment Details    **DEPRECATED**     //// -->
+	<!-- /////////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_shipdetails_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_shipdetails_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_shipdetails_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_no_int_ship_detail }}
+					{{/if}}
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_employer_id" class="ups-form_label"> Do you have an Employer ID Number (EIN/Tax ID)? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<p class="ups-form_subheader" id="employerIdHelperTxt">Employer ID Number (EIN/Tax ID)</p>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_employer_id" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_employer_id" aria-describedby="employerIdHelperTxt{{#if error}} hmc_employer_id_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_employer_id }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-5 col-md-offset-1">
+							<fieldset class="ups-form_group ups-form_required">
+								<legend class="ups-form_label"> Is the number you entered Employer Identification Number (EIN) or DUN &amp; Bradstreet Number (DUNS)? <span aria-hidden="true" class="ups-required_indicator"></span> <span class="ups-readerTxt">Required</span> </legend>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="hmc_num_type_eins" class="ups-radio-custom" name="hmc_num_type_eins-duns" type="radio" value="yes" checked="">
+									<label for="hmc_num_type_eins" class="ups-radio-custom-label">EINS</label>
+								</div>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="hmc_num_type_duns" class="ups-radio-custom" name="hmc_num_type_eins-duns" type="radio" value="no">
+									<label for="hmc_num_type_duns" class="ups-radio-custom-label">DUNS</label>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_point_origin" class="ups-form_label"> Point of Origin or FTZ Location ID <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_point_origin" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_point_origin" {{#if error}}aria-describedby="hmc_point_origin_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">State of Origin</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_point_origin }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-5 col-md-offset-1">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_state" class="ups-form_label"> {State} <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_eei_state" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_state" {{#if error}}aria-describedby="hmc_eei_state_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_state }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_transportation" class="ups-form_label"> Method of Transportation (Specify) <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_eei_transportation" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_transportation" {{#if error}}aria-describedby="hmc_eei_transportation_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_transportation }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-5 col-md-offset-1">
+                            <div class="ups-form_group ups-help_wrapper">
+                                {{> A05_switch_lever hmcDangerousGoodsLever }}
+                            </div>
+                        </div>
+					</div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_inbond_num" class="ups-form_label"> In Bond Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_eei_inbond_num" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_inbond_num" {{#if error}}aria-describedby="hmc_eei_inbond_num_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_inbond_num }}
+								{{/if}} </div>
+						</div>
+						<div class="col-md-5 col-md-offset-1">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_eei_inbond_type" class="ups-form_label"> In Bond Type <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_eei_inbond_type" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_inbond_type" {{#if error}}aria-describedby="hmc_eei_inbond_type_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_eei_inbond_type }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- ///////////////////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN - Shipment Details                        //// -->
+	<!-- //// Begin Step 2 - EEI No ITN - Product Details    **DEPRECATED**     //// -->
+	<!-- //////////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_productdetails_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_productdetails_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_productdetails_label">Electronic Export Information Form</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">
+                    {{#if error}}
+					    {{> A03_page_level_error this.s2_eei_no_int_prod_detail }}
+					{{/if}}
+					<p>The Electronic Export Information (EEI) needs to be filed when the value of the commodity classified under each individual Schedule B number is over $2,500 or if a validated export license is required to export the commodity.</p>
+					<div class="ups-section">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">{Product name}</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_eei_product1_number" class="ups-form_label"> Schedule B Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="scheduleBHelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product1_number" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product1_number" aria-describedby="scheduleBHelperTxt{{#if error}} hmc_eei_product1_number_error{{/if}}" aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_product1_number }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required ups-input_has_unit">
+									<label for="hmc_eei_product1_weight" class="ups-form_label"> Gross Weight <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="grossWeightHelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product1_weight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product1_weight" aria-describedby="grossWeightHelperTxt{{#if error}} hmc_eei_product1_weight_error{{/if}}" aria-required="true" required>
+										<span class="ups-input_unit_measure">kgs</span>
+                                    </div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									    {{>A11_field_lvl_error error_hmc_eei_product1_weight }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<fieldset class="ups-form_group">
+									<legend class="ups-form_label"> The exports are Domestic or Foreign? </legend>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product1_domestic" class="ups-radio-custom" name="hmc_eei_product1_type" type="radio" value="yes" checked="">
+										<label for="hmc_eei_product1_domestic" class="ups-radio-custom-label">Domestic</label>
+									</div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product1_foreign" class="ups-radio-custom" name="hmc_eei_product1_type" type="radio" value="no">
+										<label for="hmc_eei_product1_foreign" class="ups-radio-custom-label">Foreign</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+					<div class="ups-section">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">{Product name}</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_eei_product2_number" class="ups-form_label"> Schedule B Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="scheduleB2HelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product2_number" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product2_number" aria-describedby="scheduleB2HelperTxt{{#if error}} hmc_eei_product2_number_error{{/if}}" aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_product2_number }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required ups-input_has_unit">
+									<label for="hmc_eei_product2_weight" class="ups-form_label"> Gross Weight <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="grossWeight2HelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product2_weight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product2_weight" aria-describedby="grossWeight2HelperTxt{{#if error}} hmc_eei_product2_weight_error{{/if}}" aria-required="true" required>
+										<span class="ups-input_unit_measure">kgs</span>
+                                    </div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_product2_weight }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<fieldset class="ups-form_group">
+									<legend class="ups-form_label"> The exports are Domestic or Foreign? </legend>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product2_domestic" class="ups-radio-custom" name="hmc_eei_product2_type" type="radio" value="yes" checked="">
+										<label for="hmc_eei_product2_domestic" class="ups-radio-custom-label">Domestic</label>
+									</div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product2_foreign" class="ups-radio-custom" name="hmc_eei_product2_type" type="radio" value="no">
+										<label for="hmc_eei_product2_foreign" class="ups-radio-custom-label">Foreign</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+					<div class="ups-section">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">{Product name}</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_eei_product3_number" class="ups-form_label"> Schedule B Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="scheduleB3HelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product3_number" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product3_number" aria-describedby="scheduleB3HelperTxt{{#if error}} hmc_eei_product3_number_error{{/if}}" aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_product3_number }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<div class="ups-form_group ups-form_required ups-input_has_unit">
+									<label for="hmc_eei_product3_weight" class="ups-form_label"> Gross Weight <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="grossWeight3HelperTxt">place holder</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_product3_weight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_product3_weight" aria-required="true" required aria-describedby="grossWeight3HelperTxt{{#if error}} hmc_eei_product3_weight_error{{/if}}">
+										<span class="ups-input_unit_measure">kgs</span>
+                                    </div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_product3_weight }}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-4">
+								<fieldset class="ups-form_group">
+									<legend class="ups-form_label"> The exports are Domestic or Foreign? </legend>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product3_domestic" class="ups-radio-custom" name="hmc_eei_product3_type" type="radio" value="yes" checked="">
+										<label for="hmc_eei_product3_domestic" class="ups-radio-custom-label">Domestic</label>
+									</div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="hmc_eei_product3_foreign" class="ups-radio-custom" name="hmc_eei_product3_type" type="radio" value="no">
+										<label for="hmc_eei_product3_foreign" class="ups-radio-custom-label">Foreign</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+					<p>{ACE/ASE place holder text}</p>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Continue</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End Step 2 - EEI No ITN - Product Details          //// -->
+	<!-- //// Begin NAFTA Producer Yes/No	 					 //// --->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_prod" tabindex="-1" role="dialog" aria-labelledby="ups-commercial_invoice_multiple_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-commercial_invoice_multiple_label">NAFTA Certificate of Origin</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product {1}</h3>
+						</div>
+						<p>{Product Description from Product Details page}</p>
+						<div class="ups-form_group"> {{> A05_switch_lever hmcProducerLever2 }} </div>
+						<div class="ups-form_group" id="hmc_nafta_prod2_cb">
+							<div class="ups-checkbox ups-input_wrapper">
+								<input id="hmc_nafta_prod_signed_cert" class="ups-checkbox-custom" name="hmc_nafta_prod_signed_cert" value="1" type="checkbox" checked="">
+								<label for="hmc_nafta_prod_signed_cert" class="ups-form_label ups-checkbox-custom-label"> I can produce a signed certificate or origin or other document showing the origin of this product and the materials
+									comprising it upon request. </label>
+							</div>
+						</div>
+						<p id="yourProductNotEligibleNafta"><span class="icon ups-icon-alert"></span> Based on your information, your product is not eligible for reduced duties under NAFTA.</p>
+					</div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End NAFTA Producer Yes/No	 						///// -->
+	<!-- //// Begin NAFTA Made Complete all NAFTA org Not Mined //// --->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_not_mined" tabindex="-1" role="dialog" aria-labelledby="ups-commercial_invoice_multiple_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_not_mined_label">NAFTA Certificate of Origin</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product {1}</h3>
+						</div>
+						<p>{Product Description from Product Details page}</p>
+						<div class="ups-form_group"> {{> A05_switch_lever hmcMaterialsCAMXUSLever }} </div>
+						<div class="ups-form_group"> {{> A05_switch_lever hmcMinedLever }} </div>
+					</div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End NAFTA Made Complete all NAFTA org  Not Mined  //// --->
+	<!-- //// Begin NAFTA Mixed Parts all NAFTA org 			 //// --->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_mixed_parts_all_nafta" tabindex="-1" role="dialog" aria-labelledby="ups-commercial_invoice_multiple_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_mixed_parts_all_nafta_label">NAFTA Certificate of Origin</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product {1}</h3>
+						</div>
+						<p>{Product Description from Product Details page}</p>
+						<div class="ups-form_group"> {{> A05_switch_lever hmcMaterialsCAMXUSLever2 }} </div>
+						<div class="ups-form_group" id="hmcMaterialsCAMXUSLever3_container"> {{> A05_switch_lever hmcMaterialsCAMXUSLever3 }} </div>
+						<p id="limitedSetProductsParagraph">There is a limited set of products which may also qualify for NAFTA exemption. The full list of exempted items can be found in Annex 308.1 of NAFTA: <a href="#" class="ups-link ups-new-window">http://tcc.export.gov/Trade_Agreements/All_Trade_Agreements/NAFTA_Part2_Chapter3.asp<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+						<fieldset class="ups-form_group" id="hmc_chooseAPref">
+							<legend class="ups-form_label"> Choose one of the following: </legend>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_preferenceE" class="ups-radio-custom" name="hmc_preferenceE" type="radio" value="yes">
+								<label for="hmc_preferenceE" class="ups-radio-custom-label"><strong>Preference Criterion E</strong> covers a specific list of Automated Data Processing equipment.</label>
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_preferenceF" class="ups-radio-custom" name="hmc_preferenceE" type="radio" value="yes">
+								<label for="hmc_preferenceF" class="ups-radio-custom-label"><strong>{Preference Criterion F</strong> covers a specific list of Automated Data Processing equipment.<strong>}</strong></label>
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_no_provision" class="ups-radio-custom" name="hmc_preferenceE" type="radio" value="yes" checked="">
+								<label for="hmc_no_provision" class="ups-radio-custom-label">My product does not meet these provisions.</label>
+							</div>
+						</fieldset>
+						<p id="yourProductNotEligibleNafta2"><span class="icon ups-icon-alert"></span> Based on your information, your product is not eligible for reduced duties under NAFTA.</p>
+					</div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //////////////////////////////////////////////////////////// -->
+	<!-- //// End NAFTA Mixed Parts all NAFTA org 				 //// --->
+	<!-- //// Begin NAFTA Mixed parts - Parts outside NAFTA org //// --->
+	<!-- //////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_nafta_mixed_parts_outside_nafta" tabindex="-1" role="dialog" aria-labelledby="ups-commercial_invoice_multiple_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_nafta_mixed_parts_outside_nafta_label">NAFTA Certificate of Origin</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Product {1}</h3>
+						</div>
+						<p>{Product Description from Product Details page}</p>
+						<div class="ups-form_group"> {{> A05_switch_lever hmcMaterialsCAMXUSLever5 }} </div>
+						<div class="ups-form_group" id="hmcMaterialsCAMXUSLever6_container"> {{> A05_switch_lever hmcMaterialsCAMXUSLever6 }} </div>
+						<div class="ups-form_group" id="hmcDifferentKindOfProductLever_container"> {{> A05_switch_lever hmcDifferentKindOfProductLever }} </div>
+						<p id="NAFTA_eligibility">For items with a mix of originating and foreign materials, NAFTA eligibility can be established by how much of the item's cost or value comes from NAFTA-region parts.</p>
+						<div id="costofMaterialsTip"> {{>BS02_alert costofMaterialsTip}} </div>
+						<fieldset class="ups-form_group" id="hmc_chooseACost">
+							<legend class="ups-form_label"> Choose one of the following statements to describe your product: </legend>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_RetailCost" class="ups-radio-custom" name="hmc_cost" type="radio" value="yes">
+								<label for="hmc_RetailCost" class="ups-radio-custom-label">At least <strong>60%</strong> of the <strong>retail cost</strong> of the item comes from Canada, Mexico, and U.S.-originating materials.</label>
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_NetCost" class="ups-radio-custom" name="hmc_cost" type="radio" value="yes">
+								<label for="hmc_NetCost" class="ups-radio-custom-label">At least <strong>50%</strong> of the <strong>net cost</strong> of the item comes from Canada, Mexico, and U.S.-originating materials</label>
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="hmc_neither_statement" class="ups-radio-custom" name="hmc_cost" type="radio" value="yes" checked="">
+								<label for="hmc_neither_statement" class="ups-radio-custom-label">Neither of these statements applies.</label>
+							</div>
+						</fieldset>
+						<p id="NAFTA_eligibility2"><span class="ups-icon-alert"></span> Based on your information, your product is not eligible for reduced duties under NAFTA</p>
+					</div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- //// End NAFTA Mixed parts - Parts outside NAFTA org                                         //// --->
+	<!-- //// Begin EEI - Ship Details - Yes Bonded - Yes FTZ - (shipment lvl) - ask once per shipment //// --->
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_ship_details_yes_bonded_yes_ftz" tabindex="-1" role="dialog" aria-labelledby="ups-commercial_invoice_multiple_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_ship_details_yes_bonded_yes_ftz_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_ship_details_yes_bonded_yes_ftz }}
+					{{/if}}
+					<div class="ups-section ups-clear">
+						<p>According to your information, your item, <strong>{Item Description {tariff code #nnn.nn.nnn}},}{ </strong>has a total customs value of <strong>{nnnnn.nn} {USD}</strong> and requires an EEI.</p>
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">U.S. Principal Party of Interest (USPPI)</h3>
+						</div>
+						<p class="ups-form_subheader">The person or company exporting this item is the U.S. Principal Party of Interest. If you are sending this shipment as an individual, you are the USPPI. If this is a business
+							or commercial shipment, that business is the USPPI.</p>
+						<hr>
+						<div class="row">
+							<div class="col-md-5">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_usppi_id_number" class="ups-form_label"> USPPI ID Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader">Tax ID of business or person filing EEI</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_usppi_id_number" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_usppi_id_number" aria-describedby="hmc_usppi_id_numberHelperTxt{{#if error}} hmc_usppi_id_number_error{{/if}}" aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_usppi_id_number}}
+									{{/if}} </div>
+							</div>
+							<div class="col-md-3 ups-no_label">
+								<div class="ups-form_group ups-form_required">
+									<label for="hmc_type_of_id" class="ups-form_label"> Type of ID <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_type_of_id" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_type_of_id" {{#if error}}aria-describedby="hmc_type_of_id_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Foreign Entity</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error hmc_type_of_id_error }}
+									{{/if}} </div>
+							</div>
+						</div>
+						{{>BS02_alert validIDsTip}}
+						<div class="ups-section-header">
+							<h3 class="ups-section_heading">Shipment Information</h3>
+						</div>
+
+								<div class="ups-form_group ups-help_wrapper"> {{> A05_switch_lever hmcInternalShipLever }} </div>
+								<div class="ups-form_group ups-help_wrapper"> {{> A05_switch_lever hmcBondedGoodsLever }} </div>
+								<div class="ups-form_group ups-form_required" id="hmc_inbond_type_code_input">
+									<label for="hmc_inbond_type_code" class="ups-form_label"> Inbond Type Code <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_inbond_type_code" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_inbond_type_code" {{#if error}}aria-describedby="hmc_inbond_type_code_error"{{/if}} aria-required="true" required>
+											<option value="most_recent">Select One</option>
+										</select>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error hmc_inbond_type_code_origin }}
+									{{/if}}
+                                </div>
+								<div class="ups-form_group ups-help_wrapper"> {{> A05_switch_lever hmcShipFTZLever }} </div>
+								<div class="ups-form_group ups-form_required" id="hmc_ftz_id_input">
+									<label for="hmc_ftz_id" class="ups-form_label"> Foreign Trade Zone (FTZ) ID <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_ftz_id" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ftz_id" aria-describedby="hmc_ftz_id_HelperTxt{{#if error}} hmc_ftz_id_error{{/if}}" aria-required="true" required>
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_ftz_id }}
+									{{/if}} </div>
+								<div class="ups-form_group ups-help_wrapper"> {{> A05_switch_lever hmcDangerousGoodsLever2 }} </div>
+
+					</div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- //// End EEI - Ship Details - Yes Bonded - Yes FTZ - (shipment lvl) - ask once per shipment //// --->
+	<!-- //// Begin EEI - Product Details 															//// --->
+	<!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_product_details2" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_product_details2_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_product_details2_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<div class="modal-body"> {{#if error}}
+					{{> A03_page_level_error this.s2_eei_product_details2 }}
+					{{/if}}
+					<div class="ups-section ups-clear">
+						<p>According to your information, your item, <strong>{Item Description {tariff code #nnn.nn.nnn}},}{ </strong>has a total customs value of <strong>{nnnnn.nn} {USD}</strong> and requires an EEI.</p>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required ups-input_has_unit">
+									<label for="hmc_eei_sch_b_harmonized_number" class="ups-form_label"> Schedule B or Harmonized Tariff Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<p class="ups-form_subheader" id="scheduleBHelperTxt">6 or 10 digits</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_sch_b_harmonized_number" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_sch_b_harmonized_number" aria-describedby="scheduleBHelperTxt{{#if error}} hmc_eei_product1_number_error{{/if}}" aria-required="true" required="" value="{Pre Pop/Tariff Code}">
+									</div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_sch_b_harmonized_number }}
+									{{/if}}
+									<p><a href="#" class="ups-link ups-new-window">Find your tariff code number <span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span></a></p> </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ups-form_group ups-form_required ups-input_has_unit ups-help_wrapper">
+									<label for="hmc_eei_gross_weight" class="ups-form_label"> Gross weight in shipment <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+									<div class="ups-help">
+										<button type="button" id="ups-grossHelp" class="ups-help_link icon ups-icon-questioncircle ups-active">Help</button>
+										<div class="ups-help_tooltip ups-help_tooltip_topright">
+											<button type="button" class="ups-help_close">
+												<span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+												<span class="ups-readerTxt">Close</span>
+                                    		</button>
+											<p>Add up what this item weighs, in its retail packaging, in the quantity you are shipping it. Then include the weight of the shipping containers they are in. If a package contains only that commodity, <em>gross weight</em> is the same as package weight.</p>
+										</div>
+									</div>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_eei_gross_weight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_eei_gross_weight" aria-describedby="hmc_eei_gross_weightHelperTxt{{#if error}} hmc_eei_gross_weight_error{{/if}}" aria-required="true" required="" value="{Pre Pop/If NAFTA}">
+										<span class="ups-input_unit_measure">{lbs}</span>
+                                    </div>
+                                    <!-- begin update 04/07/17 -->
+                                    {{#if non_error}}
+                                        {{> A12_field_lvl_success }}
+                                    {{/if}}
+                                    <!-- end update 04/07/17 -->
+									{{#if error}}
+									{{>A11_field_lvl_error error_hmc_eei_gross_weight }}
+									{{/if}} </div>
+							</div>
+						</div>
+						<div class="ups-form_group">
+                            {{> A05_switch_lever hmcRequireExportLicenseExemptionLever }}
+                        </div>
+
+                        {{>BS02_alert exportLicenseTip}}
+
+                        <div id="requireLicenseYesContainer">
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="hmc_license_type_code" class="ups-form_label">
+                                            License Type Code
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="hmc_license_type_code"
+                                                class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                                id="hmc_license_type_code"
+                                                {{#if error}}aria-describedby="hmc_license_type_code_error"{{/if}}
+                                                aria-required="true"
+                                                required>
+                                                <option value="most_recent">C35 - Limited Value Shipments (LVS)</option>
+                                            </select>
+                                        </div>
+                                        {{#if non_error}}
+                                            <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                                        {{/if}}
+                                        {{#if error}}
+                                            {{>A11_field_lvl_error error_hmc_license_type_code_origin }}
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="hmc_export_info_code" class="ups-form_label">
+                                            Export Information Code
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-help">
+                                            <button type="button" id="ups-grossHelp" class="ups-help_link icon ups-icon-questioncircle ups-active">Help</button>
+                                            <div class="ups-help_tooltip ups-help_tooltip_topright">
+                                                <button type="button" class="ups-help_close">
+                                                    <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <p>Lorem ipsum text</p>
+                                            </div>
+                                        </div>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="hmc_export_info_code"
+                                                class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                                id="hmc_export_info_code"
+                                                {{#if error}}aria-describedby="hmc_export_info_code_error"{{/if}}
+                                                aria-required="true"
+                                                required>
+                                                <option value="most_recent">05</option>
+                                            </select>
+                                        </div>
+                                        {{#if non_error}}
+                                            <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                                        {{/if}}
+                                        {{#if error}}
+                                            {{>A11_field_lvl_error error_hmc_export_info_code }}
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="ups-form_group">
+                                        <label for="hmc_eccn" class="ups-form_label">
+                                            ECCN
+                                        </label>
+                                        <div class="ups-help">
+                                            <button type="button" id="ups-grossHelp" class="ups-help_link icon ups-icon-questioncircle ups-active">Help</button>
+                                            <div class="ups-help_tooltip ups-help_tooltip_topright">
+                                                <button type="button" class="ups-help_close">
+                                                    <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <p>Lorem ipsum text</p>
+                                            </div>
+                                        </div>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text"
+                                                name="hmc_eei_gross_weight"
+                                                class="ups-form_input"
+                                                id="hmc_eei_gross_weight">
+                                        </div>
+                                    </div>
+
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="hmc_export_license_number" class="ups-form_label">
+                                            Export License Number
+                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                        </label>
+                                        <div class="ups-help">
+                                            <button type="button" id="ups-grossHelp" class="ups-help_link icon ups-icon-questioncircle ups-active">Help</button>
+                                            <div class="ups-help_tooltip ups-help_tooltip_topright">
+                                                <button type="button" class="ups-help_close">
+                                                    <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <p>Lorem ipsum text</p>
+                                            </div>
+                                        </div>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text"
+                                                name="hmc_export_license_number"
+                                                class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}"
+                                                id="hmc_export_license_number"
+                                                aria-required=""
+                                                required
+                                                {{#if error}} aria-describedby="hmc_export_license_number_error"{{/if}}>
+                                        </div>
+                                        {{#if non_error}}
+                                            <div class="ups-check ups-active"> <span class="push icon ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                                        {{/if}}
+                                        {{#if error}}
+                                            {{>A11_field_lvl_error error_hmc_export_license_number }}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /////////////////////////////////////////////////// -->
+	<!-- //// End EEI - Product Details 	            //// --->
+	<!-- //// Begin Review Products - Single Piece Ship /// -->
+	<!-- ///////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step3_eei_review_products_single" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step3_eei_review_products_single_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step3_eei_review_products_single_label">Review Products</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="row">
+							<div class="col-sm-9">
+								<p>{Product name -} {Product Description Information</p>
+								<p>{Tariff Code}</p>
+								<p> {n} {unit}, <span class="ups-indent">{Price/Unit}{CUR} per {Units of Measurements}</span></p>
+								<p>Country or Territory of Origin {country or territory}</p>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="ups-cta ups-cta_secondary pull-right">Edit/View</button>
+								<div class="ups-clear">
+									<button type="button" class="ups-cta ups-cta_secondary pull-right">Remove</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon">
+					<div class="icon ups-icon-plus" aria-hidden="true"></div>
+					Add Product </button>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">I'm Done</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /////////////////////////////////////////////////// -->
+	<!-- //// End Review Products - Single Piece Ship /// -->
+	<!-- //// Begin Review Products - Multi piece ship /// -->
+	<!-- ///////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step3_eei_review_products_multi" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step3_eei_review_products_multi_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step3_eei_review_products_multi_label">Review Products</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="row">
+							<div class="col-sm-9">
+								<div class="ups-group">
+								<p>{Product name -} {Product Description Information</p>
+								<p>{Tariff Code}</p>
+								<p> {n} {unit}, <span class="ups-indent">{Price/Unit}{CUR} per {Units of Measurements}</span></p>
+								<p>Country or Territory of Origin {country or territory}</p>
+									<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon">
+									<div class="icon ups-icon-plus" aria-hidden="true"></div>
+									Assign Items to Create Packing List </button>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="ups-cta ups-cta_secondary pull-right">Edit/View</button>
+								<div class="ups-clear">
+									<button type="button" class="ups-cta ups-cta_secondary pull-right">Remove</button>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-9">
+								<div class="ups-group">
+									<p>{Product name -} {Product Description Information</p>
+								<p>{Tariff Code}</p>
+								<p> {n} {unit}, <span class="ups-indent">{Price/Unit}{CUR} per {Units of Measurements}</span></p>
+								<p>Country or Territory of Origin {country or territory}</p>
+									<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon" id="hmc_assign_item_btn">
+									<div class="icon ups-icon-plus" aria-hidden="true"></div>
+									Assign Items to Create Packing List </button>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="ups-cta ups-cta_secondary pull-right">Edit/View</button>
+								<div class="ups-clear">
+									<button type="button" class="ups-cta ups-cta_secondary pull-right">Remove</button>
+								</div>
+							</div>
+						</div>
+						<div class="row" id="hmc_assign_to_packing_list">
+							<div class="col-md-6">
+								<div class="ups-form_group">
+									<label for="hmc_select_a_package" class="ups-form_label"> Select a Package </label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="hmc_select_a_package" class="ups-dropdown" id="hmc_select_a_package">
+											<option value="most_recent">{nn}</option>
+										</select>
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="hmc_number_unit_package" class="ups-form_label"> How many of this unit are in package {pn}? </label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="hmc_number_unit_package" class="ups-form_input" id="hmc_number_unit_package" aria-describedby="hmc_number_unit_packageHelperTxt">
+									</div>
+								</div>
+							<button type="button" class="ups-cta ups-cta_tertiary" id="hmc_assign_btn">Assign</button>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon">
+					<div class="icon ups-icon-plus" aria-hidden="true"></div>
+					Add Product </button>
+					<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+						<button type="button" class="ups-cta ups-cta_primary">I'm Done</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ///////////////////////////////////////////////// -->
+	<!-- //// End Review Products - Multi piece ship /// -->
+	<!-- //// Begin HMC - I need EEI - YES ITN      ////// -->
+	<!-- ///////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step2_eei_yes_itn_modal" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step2_eei_yes_itn_label">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step2_eei_yes_itn_label">Electronic Export Information (EEI)</h2>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body">{{#if error}}
+					{{> A03_page_level_error this.s2_need_eei_yes_itn }}
+					{{/if}}
+					<p>According to your information, your item<strong>{, Item Description {(tariff code #nnnn.nn.nnnn)},}</strong>{has a total customs value of <strong>{nnnn.nn}{USD}</strong> and} requires an EEI.</p>
+                    <!-- begin update 04/07/17 -->
+					{{> BS02_alert  whenAmIRequiredToFileAnEEITip }}
+                    <!-- end update 04/07/17   -->
+					<div class="ups-form_group"> {{> A05_switch_lever hmcITN7Lever }} </div>
+					<div class="row" id="hmc_itn_input_container">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ship_reference" class="ups-form_label"> What is your ITN? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="hmc_itn_input" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_itn_input" {{#if error}}aria-describedby="hmc_itn_input_error"{{/if}} aria-required="true" required>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_itn_input }}
+								{{/if}} </div>
+						</div>
+					</div>
+					<div class="ups-form_group"> {{> A05_switch_lever hmcShipDirectReceiver4Lever }} </div>
+					<div class="row">
+						<div class="col-md-5">
+							<div class="ups-form_group ups-form_required">
+								<label for="hmc_ultimate_recipient_type" class="ups-form_label"> Ultimate Recipient Type <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="hmc_ultimate_recipient_type" class="ups-dropdown {{#if error}} ng-invalid ng-dirty{{/if}}" id="hmc_ultimate_recipient_type" {{#if error}}aria-describedby="hmc_ultimate_recipient_type_error"{{/if}} aria-required="true" required>
+										<option value="most_recent">Select One</option>
+									</select>
+								</div>
+                                <!-- begin update 04/07/17 -->
+                                {{#if non_error}}
+                                    {{> A12_field_lvl_success }}
+                                {{/if}}
+                                <!-- end update 04/07/17 -->
+								{{#if error}}
+								{{>A11_field_lvl_error error_hmc_ultimate_recipient_type }}
+								{{/if}}
+							</div>
+						</div>
+					</div>
+					<div class="ups-form_ctaGroup text-center ups-group">
+						<button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+						<button type="button" class="ups-cta ups-cta_primary">Next</button>
+					</div>
+					<!-- ups-form_ctaGroup -->
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- modal-content -->
+		</div>
+		<!-- modal-dialog modal-lg -->
+	</div>
+	<!-- ////////////////////////////////////////////////////////////////// -->
+	<!-- //// End HMC - I need EEI - YES ITN                        ////// -->
+	<!-- //// Begin Review Products - Multi piece ship - units assigned/// -->
+	<!-- ////////////////////////////////////////////////////////////////// -->
+	<div aria-hidden="false" class="modal fade ups-form_wrap in" id="ups-hmc_step3_eei_review_products_multi_units_assigned" tabindex="-1" role="dialog" aria-labelledby="ups-hmc_step3_eei_review_products_multi_units_assigned">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+					<h2 class="modal-title" id="ups-hmc_step3_eei_review_products_multi_units_assigned_label">Review Products</h2>
+				</div>
+				<div class="modal-body">
+					<div class="ups-section ups-clear">
+						<div class="row">
+							<div class="col-sm-9">
+								<p>{Product name -} {Product Description Information</p>
+								<p>{Tariff Code}</p>
+								<p> {n} {unit}, <span class="ups-indent">{Price/Unit}{CUR} per {Units of Measurements}</span></p>
+								<p>Country or Territory of Origin {country or territory}</p>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="ups-cta ups-cta_secondary pull-right">Edit/View</button>
+								<div class="ups-clear">
+									<button type="button" class="ups-cta ups-cta_secondary pull-right">Remove</button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="ups-group">
+								<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon">
+								<div class="icon ups-icon-plus" aria-hidden="true"></div>
+								Assign Items to Create Packing List </button>
+								</div>
+							</div>
+							<p><span class="ups-indent">{nn} {unit} in package {nn}.</span></p>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-9">
+								<p>{Product name -} {Product Description Information</p>
+								<p>{Tariff Code}</p>
+								<p> {n} {unit}, <span class="ups-indent">{Price/Unit}{CUR} per {Units of Measurements}</span></p>
+								<p>Country or Territory of Origin {country or territory}</p>
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="ups-cta ups-cta_secondary pull-right">Edit/View</button>
+								<div class="ups-clear">
+									<button type="button" class="ups-cta ups-cta_secondary pull-right">Remove</button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="ups-group">
+									<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon" id="hmc_assign_item_btn2">
+									<div class="icon ups-icon-plus" aria-hidden="true"></div>
+									Assign Items to Create Packing List </button>
+								</div>
+							</div>
+							<p><span class="ups-indent">{nn} {unit} in package {nn}.</span></p>
+						</div>
+						<p class="ups-indent" id="hmc_package_details">{nn} {unit} in package {nn}. <button type="button" class="ups-link ups-btn_has_icon ups-remove_action" id="hmc_remove_pkg_btn"><span class="ups-readerTxt">Close</span> <span class="icon ups-icon-minuscircle" aria-hidden="true"></span> </button></p>
+						<hr>
+						<div class="row">
+							<div class="col-sm-5">
+								<button type="button" class="ups-cta ups-link ups-cta_secondary ups-btn_has_icon">
+							<div class="icon ups-icon-plus" aria-hidden="true"></div>
+							Add Product </button>
+							</div>
+						</div>
+						<div class="ups-clear ups-form_ctaGroup text-center ups-group">
+							<button type="button" class="ups-cta ups-cta_tertiary">Back</button>
+							<button type="button" class="ups-cta ups-cta_primary">I'm Done</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ////////////////////////////////////////////////////////////// -->
+	<!-- //// End Review Products - Multi piece ship units assigned/// -->
+	<!-- //////////////////////////////////////////////////////////// -->
+</div>
+
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ////// NON PRODUCTION CODE                  ///// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<div class="ups-cms-demo">
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step1_guest_modal">Help Me Complete - Step 1 (Guest)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step1_loggedin_modal">Help Me Complete - Step 1 (Logged In)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step1_loggedin_saved_selected_modal">Help Me Complete - Step 1 (Logged In) Saved Selected</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_coo_modal">Help Me Complete - (Certificate of Origin)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_coo_modal">Help Me Complete - (NAFTA Certificate of Origin)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_prod">Help Me Complete - (OPTIONAL) NAFTA - Producer - Yes/No</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_not_mined">Help Me Complete - (OPTIONAL) NAFTA - Made Complete all NAFTA org - Not Mined</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_mixed_parts_all_nafta">Help Me Complete - (OPTIONAL) NAFTA - Mixed parts - all NAFTA org</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_mixed_parts_outside_nafta">Help Me Complete - (OPTIONAL) NAFTA - Mixed parts - parts outside NAFTA org</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_tariff_link_modal">Help Me Complete - (Tariff Code TradeAbility Lookup - Link)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_tariff_modal">Help Me Complete - (Tariff Code Table of Contents)</button>
+	<br>
+	<br>
+	 <button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_itn_modal">Help Me Complete - I need EEI/Don't need EEI</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_no_itn_ask_once_modal">Help Me Complete - (Need EEI No ITN  Ship Lvl Ask Once)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_no_upsfile_modal">Help Me Complete - (EEI No ITN - UPS File)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_self_file_modal">Help Me Complete - (EEI No ITN) Self-file</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_opt4_modal">Help Me Complete - (EEI No ITN - Post Departure USPPI) - Shipment Lvl - Ask Once Per Shipment</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_yes_itn_modal">Help Me Complete - I need EEI - YES ITN </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_uaddress_modal">Help Me Complete - (EEI No ITN - Ultimate or Intermediate Address)</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_ship_details_yes_bonded_yes_ftz">Help Me Complete - (OPTIONAL) EEI - Shipment Details - YES Bonded - YES FTZ - (Shipment Lvl) - ask once per shipment</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_product_details2">Help Me Complete - (OPTIONAL) EEI - Product Details</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step3_eei_review_products_single">Help Me Complete - Review Products - Single Piece Shipment</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step3_eei_review_products_multi">Help Me Complete - Review Products - Multiple Piece Shipment</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step3_eei_review_products_multi_units_assigned">Help Me Complete - Review Products - Multiple Piece Shipment - Units Assigned to Packaged</button>
+	<br>
+	<br>
+	<div class="ups-cms-demo">
+		<h3>Deprecated</h3>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_1_modal">Help Me Complete - (NAFTA Question 1 of 4)</button>
+		<br>
+		<br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_2_modal">Help Me Complete - (NAFTA Question 2 of 4)</button>
+		<br>
+		<br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_3_modal">Help Me Complete - (NAFTA Question 3 of 4)</button>
+		<br>
+		<br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_nafta_4_modal">Help Me Complete - (NAFTA Question 4 of 4)</button>
+		<br>
+		<br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_no_itn_modal">Help Me Complete - (EEI No ITN)</button>
+		<br><br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_productdetails_modal">Help Me Complete - (EEI No ITN - Product Details)</button>
+		<br>
+		<br>
+		<button type="button" class="ups-cta ups-cta_primary" onclick="" data-toggle="modal" data-target="#ups-hmc_step2_eei_shipdetails_modal">Help Me Complete - (EEI No ITN - Ship Details)</button>
+		<br>
+		<br>
+	</div>
+</div>
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ////// NON PRODUCTION CODE                  ///// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////// -->

@@ -1,0 +1,574 @@
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+        <!--
+            MVP & LVP Part of template
+        -->
+        <ng-container *ngIf="vpSize.isGtXSVP">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <a href="#" class="ups-link">Back to Claims Landing Page</a>
+                    </p>
+                    <p>
+                        <a href="#" class="ups-link">Preferences</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <div class="ups-form_group">
+                        <label for="layoutSel" class="ups-form_label">
+                            Layout
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select class="ups-dropdown"
+                                id="layoutSel"
+                                name="layoutSel">
+                                <option>Default</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ups-text-md-right">
+                        <p>
+                            <a href="#" class="ups-link">Manage layouts</a>
+                        </p>
+                        <p>
+                            <a href="#" class="ups-link">Export Data</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ups-large_btn_group_holder">
+                <div class="ups-large_btn_group" #claimsAggregateGroup>
+                    <fieldset class="ups-large_btn_group_fieldset">
+                        <legend class="ups-readerTxt">
+                            Filter
+                        </legend>
+                        <div class="ups-large_btn_group_item">
+                            <div class="ups-tile_button">
+                                <input type="radio"
+                                    value="1"
+                                    class="ups-radio-custom ng-valid ng-dirty ng-touched"
+                                    id="claimsFilterViewTotal"
+                                    name="claimsFilterView"
+                                    checked>
+                                <label class="ups-tile_button_content"
+                                    for="claimsFilterViewTotal">
+                                    <div class="ups-tile_button_inner">
+                                        <span class="ups-large_btn_group_btn_total">13</span>
+                                        <span class="ups-large_btn_group_btn_subtxt">Total Claims</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <!--<button class="ups-claims_aggregate_btn">
+                                <span class="ups-claims_aggregate_btn_total">13</span>
+                                <span class="ups-claims_aggregate_btn_subtxt">Total Claims</span>
+                            </button>-->
+                        </div>
+                        <div class="ups-large_btn_group_item">
+                            <div class="ups-tile_button">
+                                <input type="radio"
+                                    value="1"
+                                    class="ups-radio-custom ng-valid ng-dirty ng-touched"
+                                    id="claimsFilterViewInProgress"
+                                    name="claimsFilterView">
+                                <label class="ups-tile_button_content"
+                                    for="claimsFilterViewInProgress">
+                                    <div class="ups-tile_button_inner">
+                                        <span class="ups-large_btn_group_btn_total">10</span>
+                                        <span class="ups-large_btn_group_btn_subtxt">In Progress</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <!--<button class="ups-claims_aggregate_btn">
+                                <span class="ups-claims_aggregate_btn_total">10</span>
+                                <span class="ups-claims_aggregate_btn_subtxt">In Progress</span>
+                            </button>-->
+                        </div>
+                        <div class="ups-large_btn_group_item">
+                            <div class="ups-tile_button">
+                                <input type="radio"
+                                    value="1"
+                                    class="ups-radio-custom ng-valid ng-dirty ng-touched"
+                                    id="claimsFilterViewClosed"
+                                    name="claimsFilterView">
+                                <label class="ups-tile_button_content"
+                                    for="claimsFilterViewClosed">
+                                    <div class="ups-tile_button_inner">
+                                        <span class="ups-large_btn_group_btn_total">3</span>
+                                        <span class="ups-large_btn_group_btn_subtxt">Closed</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <!--<button class="ups-claims_aggregate_btn">
+                                <span class="ups-claims_aggregate_btn_total">3</span>
+                                <span class="ups-claims_aggregate_btn_subtxt">Closed</span>
+                            </button>-->
+                        </div>
+                        <div class="ups-large_btn_group_item">
+                            <div class="ups-tile_button">
+                                <input type="radio"
+                                    value="1"
+                                    class="ups-radio-custom ng-valid ng-dirty ng-touched"
+                                    id="claimsFilterViewApproved"
+                                    name="claimsFilterView">
+                                <label class="ups-tile_button_content"
+                                    for="claimsFilterViewApproved">
+                                    <div class="ups-tile_button_inner">
+                                        <span class="ups-large_btn_group_btn_total">0</span>
+                                        <span class="ups-large_btn_group_btn_subtxt">Approved</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <!--<button class="ups-claims_aggregate_btn">
+                                <span class="ups-claims_aggregate_btn_total">0</span>
+                                <span class="ups-claims_aggregate_btn_subtxt">Approved</span>
+                            </button>-->
+                        </div>
+                    </fieldset>
+                    <div class="ups-large_btn_group_item">
+                        <button class="ups-large_btn_group_btn">
+                            <span class="ups-large_btn_group_btn_total">4</span>
+                            <span class="ups-large_btn_group_btn_subtxt">Batch Summary</span>
+                        </button>
+                    </div>
+                    <div class="ups-large_btn_group_item">
+                        <button class="ups-large_btn_group_btn">
+                            <span class="ups-large_btn_group_btn_total"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span></span>
+                            <span class="ups-large_btn_group_btn_subtxt">Submit Payment Documents</span>
+                        </button>
+                    </div>
+                    <div class="ups-large_btn_group_item">
+                        <a href="#" class="ups-large_btn_group_btn">
+                            <span class="ups-large_btn_group_btn_inner">
+                                <span class="ups-large_btn_group_btn_total"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span></span>
+                                <span class="ups-large_btn_group_btn_subtxt">Add New Claim</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row ups-tbl_ctrls">
+                <div class="col-md-3">
+                    <div class="ups-form_group">
+                        <label for="claimTblSearch" class="ups-form_label">
+                            Search
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimTblSearch"
+                                name="claimTblSearch">
+                            <button class="ups-input_action ups-input_action_invert">
+                                <span aria-hidden="true" class="icon ups-icon-search ups-claims_search_icon"></span>
+                                <span class="ups-readerTxt">Start Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div [ngClass]="{'ups-group' : vpSize.isSMVP}">
+                        <div [ngClass]="{'ups-no_label' : vpSize.isGtSMVP}">
+                            <button class="ups-cta ups-cta_secondary ups-input_btn_action">Clear</button>
+                            <button class="ups-cta ups-cta_secondary ups-input_btn_action">Advanced Filter</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <div class="ups-date_range_group">
+                        <div class="ups-date_range_input">
+                            <div class="ups-form_group">
+                                <label for="claimTblStartDate" class="ups-form_label">
+                                    Start Date
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                    <input type="text"
+                                        class="ups-form_input"
+                                        id="claimTblStartDate"
+                                        name="claimTblStartDate"
+                                        [(ngModel)]="claimTblStartDate">
+                                    <button class="ups-date_picker_button"
+                                        id="claimTblStartDateDpToggleBtn"
+                                        type="button"
+                                        (click)="claimTblStartDatepicker.toggle()">
+                                        <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                        <span class="ups-readerTxt">Select date from a calendar</span>
+                                    </button>
+                                </div>
+                                <ups-offical-datepicker [ngClass]="{'ups-datepicker_top_right' : vpSize.isGtSMVP}"
+                                    [(ngModel)]="claimTblStartDate"
+                                    #claimTblStartDatepicker></ups-offical-datepicker>
+                            </div>
+                        </div>
+                        <div class="ups-date_range_txt">
+                            <div class="ups-no_label ups-no_label_plus">
+                                to
+                            </div>
+                        </div>
+                        <div class="ups-date_range_input">
+                            <div class="ups-form_group">
+                                <label for="claimTblEndDate" class="ups-form_label">
+                                    End Date
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                    <input type="text"
+                                        class="ups-form_input"
+                                        id="claimTblEndDate"
+                                        name="claimTblEndDate"
+                                        [(ngModel)]="claimTblEndDate">
+                                    <button class="ups-date_picker_button"
+                                        id="claimTblEndDateDpToggleBtn"
+                                        type="button"
+                                        (click)="claimTblEndDatepicker.toggle()">
+                                        <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                        <span class="ups-readerTxt">Select date from a calendar</span>
+                                    </button>
+                                </div>
+                                <ups-offical-datepicker class="ups-datepicker_top_right"
+                                    [(ngModel)]="claimTblEndDate"
+                                    #claimTblEndDatepicker></ups-offical-datepicker>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="ups-claims_tbl_container">
+                <div class="ups-claims_tbl_container_inner">
+                    <table class="ups-table ups-claims_tbl">
+                        <thead>
+                            <tr>
+                                <th class="ups-claims_tbl_header_claim" scope="col">
+                                    <button class="ups-link">Claim #</button>
+                                </th>
+                                <th class="ups-claims_tbl_tracking_claim" scope="col">
+                                    <button class="ups-link">Tracking #</button>
+                                </th>
+                                <th class="ups-claims_tbl_acctnum_claim" scope="col">
+                                    <button class="ups-link">UPS Account Number</button>
+                                </th>
+                                <th class="ups-claims_tbl_inquiry_claim" scope="col">
+                                    <button class="ups-link">Inquiry Date</button>
+                                </th>
+                                <th class="ups-claims_tbl_status_claim" scope="col">
+                                    <button class="ups-link">Status</button>
+                                </th>
+                                <th class="ups-claims_tbl_statusdetail_claim" scope="col">
+                                    <button class="ups-link">Status Detail</button>
+                                </th>
+                                <th class="ups-claims_tbl_actions_claim" scope="col">
+                                    <button class="ups-link">Actions</button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="claims.length > 0">
+                                <tr *ngFor="let claim of claims">
+                                    <th scope="row">
+                                        {{ claim.claimNum }}
+                                    </th>
+                                    <td>
+                                        {{ claim.trackingNum }}
+                                    </td>
+                                    <td>
+                                        {{ claim.acctNum }}
+                                    </td>
+                                    <td>
+                                        {{ claim.inquiry }}
+                                    </td>
+                                    <td>
+                                        {{ claim.status }}
+                                    </td>
+                                    <td>
+                                        {{ claim.statusDetail }}
+                                    </td>
+                                    <td>
+                                        <a href="#" class="ups-link ups-btn_has_icon">
+                                            view detail
+                                            <span class="icon ups-icon-alert"
+                                                aria-hidden="true"
+                                                *ngIf="claim.alert"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="claims.length == 0">
+                                <tr>
+                                    <td colspan="7">
+                                        There are no results for the the date range you have selected.
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ups-cms-demo">
+                <button class="ups-cta ups-cta_secondary" (click)="demoNoClaims()">No Claims</button>
+                <button class="ups-cta ups-cta_secondary" (click)="demoAllClaims()">All Claims</button>
+            </div>
+        </ng-container>
+
+        <!--
+            SVP Part of template
+        -->
+        <ng-container *ngIf="vpSize.isXSVP">
+            <h2 class="ups-claims_header" tabindex="-1" id="myClaimsHeader" *ngIf="!viewingClaim">
+                My Claims
+            </h2>
+            <div *ngIf="viewingClaim">
+                <a href="#" class="ups-previous_page" id="backClaimsLink" (click)="backToClaims()">
+                    <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">Back to</span>
+                    My Claims
+                </a>
+            </div>
+            <div class="ups-group">
+                <!--<div class="row">
+                    <div class="col-xs-7">-->
+                        <div class="ups-form_group" *ngIf="!viewingClaim">
+                            <label for="claimTblSearch" class="ups-form_label">
+                                Search
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                                <input type="text"
+                                    class="ups-form_input"
+                                    id="claimTblSearch"
+                                    name="claimTblSearch">
+                                <button class="ups-input_action ups-input_action_invert">
+                                    <span aria-hidden="true" class="icon ups-icon-search ups-claims_search_icon"></span>
+                                    <span class="ups-readerTxt">Start Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    <!--</div>
+                    <div class="col-xs-5">-->
+                        <div class="ups-group ups-menu_btn_container" *ngIf="!viewingClaim">
+                            <button class="ups-cta ups-cta_secondary ups-input_btn_action ups-btn_has_icon ups-menu_btn"
+                                aria-controls="claimsMenuContainer"
+                                [attr.aria-expanded]="(menuOpen) ? 'true' : 'false'"
+                                (click)="menuOpen = !menuOpen">
+                                Menu
+                                <span class="icon"
+                                    aria-hidden="true"
+                                    [ngClass]="{'ups-icon-chevrondown' : !menuOpen, 'ups-icon-chevronup' : menuOpen}"></span>
+                            </button>
+                        </div>
+
+                        <div id="claimsMenuContainer">
+                            <div class="ups-toggle_view_state ups-toggle_view_left ups-toggle_view_btn_dropdown" *ngIf="menuOpen">
+                                <div class="ups-side_menu ups-group">
+                                    <ul>
+                                        <li class="ups-drawer ups-drawer_slim ups-side_menu_list" upsDrawer>
+                                            <button type="button"
+                                                class="ups-link ups-drawer-btn"
+                                                aria-controls="claimsSubMenuStatus"
+                                                aria-expanded="false"
+                                                data-opened="false">
+                                                Filter by Status
+                                                <span class="pull-right">
+                                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                                </span>
+                                            </button>
+                                            <div class="ups-drawer-content ups-side_menu_drawer_content"
+                                                id="claimsSubMenuStatus">
+                                                <fieldset class="ups-form_group">
+                                                    <legend class="ups-readerTxt">
+                                                        Status Condition
+                                                    </legend>
+                                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                        <input type="radio"
+                                                            class="ups-radio-custom"
+                                                            id="filterStatusInProgress"
+                                                            name="filterStatus"
+                                                            value="yes">
+                                                        <label for="filterStatusInProgress"
+                                                            class="ups-radio-custom-label">In Progress</label>
+                                                    </div>
+                                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                        <input type="radio"
+                                                            class="ups-radio-custom"
+                                                            id="filterStatusApproved"
+                                                            name="filterStatus"
+                                                            value="yes">
+                                                        <label for="filterStatusApproved"
+                                                            class="ups-radio-custom-label">Approved</label>
+                                                    </div>
+                                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                        <input type="radio"
+                                                            class="ups-radio-custom"
+                                                            id="filterStatusClosed"
+                                                            name="filterStatus"
+                                                            value="yes">
+                                                        <label for="filterStatusClosed"
+                                                            class="ups-radio-custom-label">Closed</label>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <!--<ul class="ups-drawer-content ups-side_sub_menu" id="viewAdministrationList" style="display: block;">
+                                                <li class="ups-side_sub_menu_list" routerlinkactive="ups-side_sub_menu_active">
+                                                    <a class="ups-link" routerlink="/administration/accounts" href="#/administration/accounts">Accounts</a>
+                                                </li>
+                                                <li class="ups-side_sub_menu_list ups-side_sub_menu_active" routerlinkactive="ups-side_sub_menu_active">
+                                                    <a class="ups-link" routerlink="/administration/users" href="#/administration/users">Users</a>
+                                                </li>
+                                            </ul>-->
+                                        </li>
+                                        <li class="ups-drawer ups-drawer_slim ups-side_menu_list" upsDrawer>
+                                            <button type="button"
+                                                class="ups-link ups-drawer-btn"
+                                                aria-controls="claimsSubMenuDate"
+                                                aria-expanded="false"
+                                                data-opened="false">
+                                                Filter by Date
+                                                <span class="pull-right">
+                                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                                </span>
+                                            </button>
+                                            <div class="ups-drawer-content ups-side_menu_drawer_content"
+                                                id="claimsSubMenuDate">
+                                                <div class="ups-form_group">
+                                                    <div class="row">
+                                                        <div class="col-xs-9">
+                                                            <label for="claimTblStartDate" class="ups-form_label">
+                                                                Start Date
+                                                            </label>
+                                                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                                                <input type="text"
+                                                                    class="ups-form_input"
+                                                                    id="claimTblStartDate"
+                                                                    name="claimTblStartDate"
+                                                                    [(ngModel)]="claimTblStartDate">
+                                                                <button class="ups-date_picker_button"
+                                                                    id="claimTblStartDateDpToggleBtn"
+                                                                    type="button"
+                                                                    (click)="claimTblStartDatepicker.toggle()">
+                                                                    <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="ups-no_label ups-no_label_plus">
+                                                                to
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ups-offical-datepicker [(ngModel)]="claimTblStartDate"
+                                                        #claimTblStartDatepicker></ups-offical-datepicker>
+                                                </div>
+
+                                                <div class="ups-form_group">
+                                                    <div class="row">
+                                                        <div class="col-xs-9">
+                                                            <label for="claimTblEndDate" class="ups-form_label">
+                                                                End Date
+                                                            </label>
+                                                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon ups-input_has_unit">
+                                                                <input type="text"
+                                                                    class="ups-form_input"
+                                                                    id="claimTblEndDate"
+                                                                    name="claimTblEndDate"
+                                                                    [(ngModel)]="claimTblEndDate">
+                                                                <button class="ups-date_picker_button"
+                                                                    id="claimTblEndDateDpToggleBtn"
+                                                                    type="button"
+                                                                    (click)="claimTblEndDatepicker.toggle()">
+                                                                    <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ups-offical-datepicker [(ngModel)]="claimTblEndDate"
+                                                        #claimTblEndDatepicker></ups-offical-datepicker>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="ups-side_menu_list">
+                                            <a href="#" class="ups-link">New Claim</a>
+                                        </li>
+                                        <li class="ups-side_menu_list">
+                                            <a href="#" class="ups-link">Batch Summary</a>
+                                        </li>
+                                        <li class="ups-side_menu_list">
+                                            <a href="#" class="ups-link">Payment Documents</a>
+                                        </li>
+                                        <li class="ups-side_menu_list">
+                                            <a href="#" class="ups-link">Export Data</a>
+                                        </li>
+                                        <li class="ups-side_menu_list">
+                                            <a href="#" class="ups-link">Preferences</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!--</div>
+                </div>-->
+            </div>
+            <ul class="ups-claims_list"
+                *ngIf="claims.length > 0 && !viewingClaim">
+                <li *ngFor="let claim of claims; let i = index;">
+                    <p>
+                        <a href="#" class="ups-link" (click)="viewClaim(i)">Claim {{ claim.claimNum }}</a>
+                    </p>
+                    <p>
+                        {{ claim.trackingNum }}
+                    </p>
+                </li>
+            </ul>
+            <div *ngIf="viewingClaim">
+                <h2>
+                    Claim {{ claims[claimId].claimNum }}
+                </h2>
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Tracking Number
+                    </p>
+                    <p>
+                        {{ claims[claimId].trackingNum }}
+                    </p>
+                </div>
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Inquiry Date
+                    </p>
+                    <p>
+                        {{ claims[claimId].inquiry }}
+                    </p>
+                </div>
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Status
+                    </p>
+                    <p>
+                        {{ claims[claimId].status }}
+                    </p>
+                </div>
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Status Detail
+                    </p>
+                    <p>
+                        {{ claims[claimId].statusDetail }}
+                    </p>
+                </div>
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Actions
+                    </p>
+                    <p>
+                        <a href="#" class="ups-link">View Details</a>
+                    </p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

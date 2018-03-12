@@ -1,0 +1,55 @@
+<div class="ups-activationCode ups-form_wrap ups-application_wrapper"
+	data-ng-controller="activationCodeCtrl">
+    <p> Welcome back. You have multiple UPS My Choice enrollments that are
+        currently pending. Please select the enrollment address below, enter
+        the activation code for that address, and select <strong>Verify
+        Your Membership Now.</strong> </p>
+    <form name="ups_pendingActivation" error-on-submit novalidate>
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Select Enrollment </legend>
+            <div data-ng-repeat="enroll in enrollment"
+                 class="ups-checkbox ups-input_wrapper ups-signup_check-in ups-display-inline">
+                <div class="ups-radio_column">
+                    <input id="{{$index}}" class="ups-radio-custom" type="radio"
+                        name="enroll" value="$index"
+                        data-ng-model="formObj.enroll_$index" />
+                    <label
+                        for="{{$index}}"
+                        class="ups-form_label ups-radio-custom-label ups-width_auto">{{enroll}} </label>
+                    <p>{{address[$index].AddressLine1}}</p>
+                    <p>{{address[$index].AddressLine2}}</p>
+                    <p>{{address[$index].AddressLine3}}</p>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-activationCode" class="ups-form_label">Enter
+                        Activation code: <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <input type="text" name="upsActivationCode" class="ups-form_input"
+							id="ups-activationCode" data-ng-pattern="/^[a-zA-Z0-9]+$/"
+							maxlength="8" data-ng-model="Activation_Code" aria-required="true" required>
+                    </div>
+                    
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="ups-form_ctaGroup">
+                    <button type="submit" class="ups-cta ups-cta_primary"
+						data-ng-click="VerifyCode()">Verify
+                    Your Membership Now</button>
+                </div>
+                <!-- ups-form_ctaGroup --> 
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary"
+                data-ng-click="confirmActivation()">Next</button>
+            <!-- data-ng-disabled="!(ups_pendingActivation.$valid)" --> 
+        </div>
+    </form>
+</div>

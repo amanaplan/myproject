@@ -1,0 +1,63 @@
+.ups-tracking_options_toggle_view_wrapper {
+    overflow: hidden;
+    //padding-top: 14px;
+    position: relative;
+    top: -14px;
+
+    //below rules prevent drop shadow from being cut off
+    padding: 14px 7px 0;
+    margin: 0 -7px -14px;
+    //margin-bottom: -14px;
+
+    &.ups-tracking_options_toggle_view_has_popup {
+        overflow: visible;
+    }
+
+    @media #{$media-medium} {
+        top: -75px;
+        margin-bottom: -75px;
+
+        /*position: absolute;
+        #{$default-float}: 0;
+        #{$opposite-direction}: 0;
+        z-index: 50;
+
+        .ups-tracking_options_toggle_view {
+            box-shadow: 1px 1px 7px 2px rgba(0, 0, 0, 0.2); // still correct for LTR and RTL
+        }*/
+    }
+}
+
+.ups-tracking_options_toggle_view.ups-toggle_view_state.ups-toggle_view_left {
+    background-color: $white;
+    border: 1px solid $stone_s3;
+    margin-top: 0;
+
+    &:before {
+        content: normal;
+        border: none;
+        transform: none;
+        position: static;
+    }
+
+    .ups-toggle_view_arrow_wrapper {
+        overflow: hidden;
+        width: 26px;
+        height: 14px;
+        position: absolute;
+        #{$default-float}: 50px;
+        top: -14px;
+
+        .ups-toggle_view_arrow {
+            position: relative;
+            #{$default-float}: 2px;
+            top: 4px;
+            border-#{$default-float}: 1px solid silver;
+            border-top: 1px solid silver;
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+    }
+}

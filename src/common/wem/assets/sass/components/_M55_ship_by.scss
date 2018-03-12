@@ -1,0 +1,360 @@
+// ----------------------------------------------------
+// M55 Ship By
+// ----------------------------------------------------
+
+@mixin ups_ship_by_sm {
+    table {
+
+        .header {
+            float: none !important;
+        }
+    }
+
+    .ship-by_header {
+        padding-#{$default-float}: $page-margin-sm;
+        padding-#{$opposite-direction}: $page-margin-sm;
+    }
+
+    .ship-by_accordion {
+        cursor: pointer;
+    }
+
+    .disclaimer {
+        margin-#{$default-float}: -$page-margin-sm;
+        margin-#{$opposite-direction}: -$page-margin-sm;
+        padding-#{$default-float}: $page-margin-sm;
+        padding-#{$opposite-direction}: $page-margin-sm;
+    }
+
+    thead[data-open="true"] .mobile-list-container {
+        display: table-cell;
+    }
+}
+
+@mixin ups_ship_by_header {
+    .ship-by_header {
+        .header-img {
+            float: $default-float;
+        }
+        .ship-by_title{
+              float:$default-float;
+              width:74%;
+              margin-bottom:10px;
+        }
+    }
+
+    .ship-by_calendar {
+        margin-top: $page-margin-sm;
+        float: $default-float;
+        width:100%;
+
+        .ship-by_calendar_datepicker {
+            display: block;
+
+            &.inactive {
+                display: none;
+            }
+        }
+
+
+        .ship-by_calendar_dropdowns, .ship-by_calendar_dropdowns.active {
+            display: block;
+        }
+
+        .ship-by_calendar_input, .calendar-btn {
+            margin-top: $margin_5;
+        }
+
+        .ups-dropdown_wrapper {
+            margin-top: $margin_5;
+            margin-#{$opposite-direction}: 0px;
+            margin-bottom: $margin_4;
+            float: none;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@mixin ups_ship_by_aside {
+    table {
+
+        .header {
+            float: none !important;
+        }
+    }
+
+    thead[data-open="true"] .mobile-list-container {
+        display: table-cell;
+    }
+
+    .table_sm_show {
+        display: table;
+    }
+
+    .ups-sm_show, .mobile-list {
+        display: block;
+    }
+
+    .ship-by_accordion {
+        cursor: pointer;
+    }
+
+    .table_sm_hide, .ups-sm_hide {
+        display: none;
+    }
+
+    .ups-dropdown_wrapper {
+        float: none;
+    }
+
+    button {
+        #{$opposite-direction}: 5px !important;
+    }
+}
+
+.ups-ship-by {
+    width: 100%;
+    @include ups-component_margin;
+
+    .ups-shipping-icon {
+        font-size: 24px;
+        line-height: 14px;
+        margin-#{$opposite-direction}: $margin_2;
+        position: relative;
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            #{$default-float}:0;
+        }
+
+    }
+
+    .ship-by_header {
+        width: 100%;
+        padding: $grid-gutter-width ($grid-gutter-width / 2);
+
+        .header-img {
+            float: $default-float;
+        }
+        .ship-by_title{
+          font-family:$serif-fallback;
+          font-size: 23px;
+          display: inline-block;
+          padding-#{$default-float}: 5px;
+          padding-top:8px;
+        }
+    }
+
+    .ship-by_calendar {
+        height: 100%;
+        float: $opposite-direction;
+        padding: 0;
+        width: auto;
+        max-width: none;
+        display: table;
+
+        .ship-by_calendar_datepicker {
+            display: none;
+
+            &.inactive {
+                display: none;
+            }
+        }
+
+        .ship-by_calendar_dropdowns {
+            display: table;
+
+            &.active {
+                display: table;
+            }
+        }
+
+        .ship-by_calendar_label {
+            display: table-cell;
+            vertical-align: middle;
+            font-weight: normal;
+            padding-#{$opposite-direction}: 10px;
+        }
+
+        input {
+            width: 200px;
+            height: 43px;
+            padding: 0 10px;
+            float: $default-float;
+        }
+
+        .ups-dropdown_wrapper {
+            width: 95px;
+            float: $default-float;
+            margin-#{$opposite-direction}: 15px;
+
+            &:last-child {
+                margin-#{$opposite-direction}: 0;
+            }
+
+            &.dropdown_year {
+                width: 190px;
+            }
+        }
+
+        input[type="date"]:before{
+            color:lightgray;
+            content:attr(placeholder);
+        }
+
+        .calendar-btn {
+            width: 43px;
+            height: 43px;
+            background: $water_s3;
+            float: $default-float;
+            border: none;
+            position: relative;
+
+            .ups-icon-calendar {
+                font-size: 25px;
+                color: $white;
+
+                &:before {
+                    margin-top: -1px;
+                    @include center-align();
+                    position: absolute;
+                }
+            }
+        }
+    }
+
+    .mobile-list-container {
+        display: none;
+    }
+
+    thead {
+        &[data-open="true"] .mobile-list {
+            max-height: 2000px;
+            margin-top: 0;
+        }
+
+        &[data-open="false"] .mobile-list {
+            display: none;
+        }
+
+        .ship-by_delivery {
+            text-transform: capitalize;
+            font-weight: normal;
+            font-style: italic;
+            float: $default-float;
+        }
+    }
+
+    .ship-by_primary {
+        table-layout: auto;
+
+        .header {
+            float: $default-float;
+            margin-#{$opposite-direction}: 10px;
+        }
+
+        th, td {
+            &:first-child {
+                width: 300px;
+            }
+        }
+
+        tbody th {
+            background: #ECECEC;
+            text-transform: uppercase;
+        }
+
+        tbody td {
+            vertical-align: middle;
+        }
+
+        img {
+            width: 25px;
+            margin-#{$opposite-direction}: $grid-gutter-width / 2;
+        }
+
+    }
+
+    .ship-by_secondary {
+        background: $white;
+
+        thead, td {
+            background: $white;
+        }
+    }
+
+    .ship-by_asterick {
+        margin-#{$opposite-direction}: 5px;
+    }
+
+    .ups-link {
+        text-decoration: underline;
+        font-family: $sans;
+        color: $black_s3;
+        font-weight: 700;
+
+        &:hover {
+            color: $black_s1;
+        }
+
+    }
+
+    .mobile-list-container {
+        background: $white;
+        padding: 0 20px;
+
+        .mobile-list_item {
+            font-weight: normal;
+            padding: ($grid-gutter-width / 2) 0;
+        }
+
+        .ship-by_type {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    .disclaimer {
+        background: #ECECEC;
+        padding: 20px;
+    }
+
+    @media #{$media-medLarge} {
+        ~ .ups-subsection,
+        ~ .iw_columns.col-lg-12 {
+            @include ups_ship_by_header;
+        }
+    }
+
+    @media #{$media-small} {
+        @include ups_ship_by_sm;
+        @include ups_ship_by_header;
+    }
+    
+    .ship-by_container[data-active="true"]{
+      display:block;
+    }
+    .ship-by_container[data-active="false"]{
+      display:none;
+    }
+}
+
+.subsection_main .ups-ship-by,
+.iw_columns.col-lg-8 .ups-ship-by {
+    @include ups_ship_by_header;
+}
+
+.subsection_aside .ups-ship-by,
+.iw_columns.col-lg-4 .ups-ship-by {
+    @include aside-pad-sm;
+    @include ups_ship_by_header;
+    @include ups_ship_by_aside;
+}

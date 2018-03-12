@@ -1,0 +1,100 @@
+{{!--------------------------------------------
+===============================================
+HTML HEADER
+===============================================
+---------------------------------------------}}
+<!doctype html>
+<!--[if IE 9]>         <html class="{{#is dir "rtl"}}ups-rtl {{/is}}no-js ie9" dir="{{dir}}" lang="{{lang}}"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="{{#is dir "rtl"}}ups-rtl {{/is}}no-js" dir="{{dir}}" lang="{{lang}}"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}} | {{site.title}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/assets/resources/favicon.ico?v=2" />
+
+
+    {{#compare layout "==" "ls_down.hbs"}}
+        <!--LSDownAppCSSStart-->
+    {{/compare}}
+
+
+
+
+    <!-- build:css(.tmp) /assets/resources/styles/ups.vendor{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="/assets/resources/styles/ups.vendor{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) /assets/resources/styles/ups.styles{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="/assets/resources/styles/ups.styles{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) /assets/resources/styles/ups.modules{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="/assets/resources/styles/ups.modules{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) /assets/resources/styles/ups.widgets{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="/assets/resources/styles/ups.widgets{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+
+    {{#compare layout "==" "ls_down.hbs"}}
+        <!--LSDownAppCSSEnd-->
+    {{/compare}}
+
+    {{#if appId}}
+        <!-- build:css(.tmp) /assets/resources/styles/ups.apps-{{appId}}{{#is dir "rtl"}}-rtl{{/is}}.css -->
+        <link rel="stylesheet" href="/assets/resources/styles/ups.apps-{{appId}}{{#is dir "rtl"}}-rtl{{/is}}.css">
+        <!-- endbuild -->
+    {{/if}}
+
+
+
+    <!-- build:js /assets/resources/scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js /assets/resources/scripts/vendor/ups.vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/jquery-cookie/jquery.cookie.js"></script>
+    <script src="bower_components/h5f/h5f.min.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+    <script src="bower_components/parsleyjs/dist/parsley.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/ng-idle/angular-idle.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <!-- endbuild -->
+
+    {{#compare layout "==" "ls_down.hbs"}}
+        <script src="/assets/resources/scripts/ups.header.js"></script>
+    {{/compare}}
+
+    {{#if ang2}}
+        <!-- build:js /assets/resources/scripts/vendor/ups.angular2.js -->
+        <script src="node_modules/core-js/client/shim.min.js"></script>
+        <script src="node_modules/zone.js/dist/zone.js"></script>
+        <!-- endbuild -->
+
+    {{/if}}
+
+
+    <script type="text/javascript">
+        var $location;
+        var expand ='expand';
+        var collapse = 'Collapse';
+        var wems_country='US';
+        var wems_locale='en_US';
+        var wems_ext_locale='en_US';
+        var wems_ts = '';
+    </script>
+</head>
+
+<body{{#if app}} class="ups-appPage"{{/if}}>

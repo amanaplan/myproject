@@ -1,0 +1,116 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M04 CAROUSEL
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Available Variations via class names:
+
+    HOMEPAGE HERO
+        Applied to div.ups-carousel
+        .ups-carousel-homeHero       Displays larger hero
+
+    LANDING PAGE HERO
+        Applied to div.ups-carousel
+        .ups-carousel-landing        Displays standard hero
+
+    ARTICLE HERO
+        Applied to div.ups-carousel
+        .ups-carousel-article        Displays article hero
+
+    THUMBNAIL CAROUSEL
+        Applied to ul.ups-carousel_list:
+        .ups-carousel-hasThumbs      Displays pagination as images with title
+        .ups-carousel_thumb-s[1,2,3] Number of thumbnails
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE         TYPE        DEFAULT
+    data-prevTxt         = string   /  "Previous"    translation text
+    data-nextTxt         = string   /  "Next"        translation text
+    data-thumbs          = boolean  /  false         is thumbnail carousel
+
+------------------------------------------------------------------------------
+
+IMAGES:
+
+The hero carousel utilizes responsive images to allow for optimized images for
+the user's viewport. We are using 3 different sized images with the smallest
+set as the default (for performance).
+
+The image paths need to be listed in two different places to allow for cross
+browser support and progressive enhancements for the browsers that support
+the 'srcset' attribute.
+
+Data Attributes on 'picture' element:
+    data-sm     path to small image
+    data-md     path to medium image
+    data-lg     path to large image
+
+SRCSET values:
+    Path to Large      on 'source' with media="(min-width: 992px)"
+    Path to Medium     on 'source' with media="(min-width: 480px)"
+    Path to Small      on 'img'
+
+If the browser supports the 'srcset' attribute, the images will be switched out
+automatically depending on the viewport. If the browser does not support 'srcset',
+Javascript will switch out the images as background images of the container.
+
+------------------------------------------------------------------------------
+
+LAYOUT:
+
+-slide-header
+| 5px
+-sub-header-
+| 15px
+-cta
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M04 Carousel -->
+<!-- For full documentation app/source/partials/modules/M04_carousel.hbs -->
+<div class="ups-carousel{{#if class}} {{class}}{{/if}}">
+	<a class="ups-skipNav_carousel" href="javascript:void(0)" tabindex="0">{{autoplay}}</a>
+    <div class="ups-carousel_list{{#if thumbs}} ups-carousel-hasThumbs ups-carousel_thumb-s{{slides.length}}{{/if}}"
+        data-prevTxt="{{prevTxt}}"
+        data-nextTxt="{{nextTxt}}"
+        {{#if thumbs}} data-thumbs="true"{{/if}}
+        >
+        {{#each slides}}
+        <div class="ups-carousel_item" tabindex="0"{{#if thumbnail}} data-thumbnail={{thumbnail}}{{/if}}>
+            {{#if image}}
+            {{#if ../../parallax}}<div class="ups-paraFrame">{{/if}}
+            <picture class="ups-imgFrame" data-sm="{{image.small}}" data-md="{{image.medium}}" data-lg="{{image.large}}" >
+                <source srcset="{{image.large}}" media="(min-width: 992px)">
+                <source srcset="{{image.medium}}" media="(min-width: 768px)">
+                <img srcset="{{image.small}}" src="{{image.small}}" alt="{{image.alt}}">
+            </picture> <!-- @end .ups-imgFrame -->
+            {{#if ../../parallax}}</div> <!-- @end .ups-paraFrame -->{{/if}}
+            {{/if}}
+
+            {{#if headline}}
+            <div class="ups-carousel_contentWrap">
+                <div class="ups-carousel_content">
+                    <div class="ups-carousel_msg">
+                        {{#if headline}}<h2>{{{headline}}}</h2>{{/if}}
+                        {{#if subhead}}<p>{{{subhead}}}</p>{{/if}}
+                    </div> <!-- @end .ups-carousel_msg -->
+                    {{#compare cta1 '||' cta2}}
+                        <div class="ups-carousel_ctas">
+                            {{#if cta1}}<a class="ups-cta" href="{{cta1.link}}">{{{cta1.label}}}</a>{{/if}}
+                            {{#if cta2}}<a class="ups-cta ups-cta-secondary" href="{{cta1.link}}">{{{cta2.label}}}</a>{{/if}}
+                        </div> <!-- @end .ups-carousel_ctas -->
+                    {{/compare}}
+                </div> <!-- @end .ups-carousel_content -->
+            </div> <!-- @end .ups-carousel_contentWrap -->
+            {{/if}}
+        </div> <!-- @end .ups-carousel_item -->
+        {{/each}}
+        {{#compare class "!=" "ups-carousel-sidebar"}}
+        	<div class="ups-carousel-navbuttons"></div>
+        {{/compare}}
+    </div> <!-- @end .ups-carousel_list -->
+</div> <!-- @end .ups-carousel -->

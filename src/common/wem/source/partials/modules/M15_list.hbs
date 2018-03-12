@@ -1,0 +1,125 @@
+<!-- ************************************************************************************ -->
+<!-- M15 List                                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M15 LIST: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 45px
+-introductory-
+| 30px
+-list entry-
+| 45px
+-list entry-
+| 30px
+-explanatory-
+| 60px
+
+********************************************************************************
+--}}
+
+
+<div class="ups-list ups-wrap{{#compare type "===" "list-black"}} bg-gray{{/compare}}">
+    <div class="ups-wrap_inner">
+
+
+{{!--
+********************************************************************************
+M15 LIST: HEADER
+********************************************************************************
+
+M15 List can have a header, it can be left, centered or right aligned.
+
+********************************************************************************
+--}}
+        {{#if title}}
+            <h2 class="ups-article-header">
+                {{title.text}}
+            </h2>
+        {{/if}}
+
+
+{{!--
+********************************************************************************
+M15 LIST: INTRODUCTORY
+********************************************************************************
+
+M15 List can have an introductory paragraph
+
+********************************************************************************
+--}}
+
+        {{#if introductory}}
+        <div class="ups-list_introductory">
+            <p>{{introductory}}</p>
+        </div>
+        {{/if}}
+
+
+{{!--
+********************************************************************************
+M15 LIST: LIST ENTRIES
+********************************************************************************
+
+Depending on rule, we use the correct partial, then add M15_list_detail.hbs
+
+********************************************************************************
+--}}
+
+        <div class="ups-list_component">
+            {{#compare type '===' "col-multi"}}
+                {{> M15_list_multi list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "col-multi-centered"}}
+                {{> M15_list_multi_centered list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "col-single"}}
+                {{> M15_list_single list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "links"}}
+                {{> M15_list_links list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "bullets"}}
+                {{> M15_list_bullets list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "list_help"}}
+                {{> M15_list_help list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "list-black"}}
+                {{> M15_list_black list_items}}
+            {{/compare}}
+
+            {{#compare type '===' "list-alt"}}
+                {{> M15_list_alt list_items}}
+            {{/compare}}
+        </div>
+
+
+{{!--
+********************************************************************************
+M15 LIST: EXPLANATORY
+********************************************************************************
+
+M15 List can have an explanatory paragraph
+
+********************************************************************************
+--}}
+
+        {{#if explanatory}}
+        <div class="ups-list_explanatory">
+            <p>{{explanatory}}</p>
+        </div>
+        {{/if}}
+
+    </div>
+</div>

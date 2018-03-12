@@ -1,0 +1,46 @@
+<div data-ng-controller="quantumViewAdministrationCompanyServicesCtrl">
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-3">
+            <p><strong>Company Name:</strong></p>
+        </div>
+        <div class="col-xs-5 col-sm-3 col-md-4">
+            <p>
+                ABC Company, Inc.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-3">
+            <p><strong>Company Nickname:</strong></p>
+        </div>
+        <div class="col-xs-5 col-sm-3 col-md-4">
+            <p>
+                abcco
+            </p>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-table table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="ups-table_header_tertiary">Service</th>
+                            <th scope="col" class="ups-table_header_tertiary">Status</th>
+                            <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                        </tr>
+                        <tr data-ng-repeat="service in companyServices">
+                            <th scope="row">{{service.serviceLabel}}</th>
+                            <td>Active</td>
+                            <td>
+                                <a href="{{service.viewLink}}" data-ng-if="service.viewButton">View<span class="ups-readerTxt">{{service.serviceLabel}}</span></a><span data-ng-if="service.createButton">|</span> <a href="#" data-ng-if="service.createButton">Create <span class="ups-readerTxt">{{service.serviceLabel}}</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Table -->
+</div>

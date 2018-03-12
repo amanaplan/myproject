@@ -1,0 +1,36 @@
+<div class="ups-application_wrapper ups-form_wrap ups-service-Terms"
+	data-ng-controller="prefServiceTermsDialogCtrl">
+    <p>In order to gain access to all features, you must accept the terms of service.</p>
+    <h3> <span
+			class="ups-error_alert ups-invalid_color"
+			data-ng-if="isType==='error'"><span class="ups-icon-exclamation" aria-hidden="true"></span>To continue you must agree to
+        the UPS My Choice Service Terms. </span> </h3>
+    <form name="ups_service_terms" error-on-submit novalidate>
+        <div class="ups-form_group ups-checkbox_group ups-form_required">
+            <div class="ups-checkbox ups-input_wrapper "
+						data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                <input check-verify id="ups-terms-conditions"
+							class="ups-checkbox-custom" name="ups-terms-conditions" value="1"
+							type="checkbox" data-ng-model="formObj.TNC"
+							data-ng-checked="formObj.TNC"
+							data-ng-click="saveNewStatement(formObj.TNC)"
+                            aria-required="true" required>
+                <label
+							for="ups-terms-conditions"
+							class="ups-form_label ups-checkbox-custom-label">I
+                    agree to the UPS My Choice Service Terms. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+            </div>
+        </div>
+        <a href="#" onclick="return false;" data-ng-click="helpLink()" class="ups-link ups-new-window">Download the UPS My Choice Service Terms<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> 
+        <!-- ups-checkbox ups-input_wrapper -->
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit"
+						class="ups-cta ups-cta_primary" data-dismiss="modal"
+						data-ng-click="ok()">Next</button>
+            <!-- data-ng-disabled="!formObj.TNC" -->
+            <button type="submit" class="ups-cta ups-cta_secondary "
+						data-ng-click="cancel()" data-dismiss="modal">Cancel</button>
+        </div>
+        <!-- ups-form_ctaGroup -->
+    </form>
+</div>

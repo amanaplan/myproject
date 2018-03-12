@@ -1,0 +1,842 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_reskin";
+
+ul.ui-autocomplete {
+	max-height: 173px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+#main {
+
+    select{
+   		width: 100%;
+    }
+
+	.btnlnkL.closeIconBrn{
+		background-image: url(/img/icn_cmp_blue.gif) !important;
+	}
+
+
+	strong {
+        font-family: $sans-bd;
+    }
+
+    //set prefs banner at top (logged in only?)
+    .appLvl.appLvlPlain {
+        padding: 0;
+
+        p {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    //tabs work differently than elsewhere
+    .subTab.clearfix {
+        float: $default-float;
+    }
+
+	.RIF_Address {
+		position: relative;
+		z-index: 10;
+	}
+
+    //main tab for small package
+    .appLvl.tab.col24 {
+
+        //left sidebar
+		.appHead {
+			color: $black_s1;
+		}
+
+        .menuPanel {
+            .secHead .clearfix {
+                    margin-bottom: 0;
+            }
+
+            #module1_edit {
+                margin-top: 4px;
+            }
+
+			#module2edit {
+				padding: 0 15px;
+			}
+
+            #origCountryReqdImg, #origCityReqdImg, #origPostalReqdImg,
+            #destCountryReqdImg, #destCityReqdImg, #destPostalReqdImg {
+                margin-#{$default-float}: 10px;
+            }
+
+            .RIF_Postal {
+            }
+
+            .RIF_Country, .RIF_Cp1, .RIF_Cp2 {
+                margin-bottom: 15px;
+            }
+
+            #origCityValue, #destCityValue {
+                width: 197px;
+            }
+
+            .RIF_AddressSearch {
+                @include ups-tealSearchBtn;
+								position: relative;
+								display: inline-block;
+								vertical-align: bottom;
+
+                img {
+                    display: none;
+                }
+            }
+
+            #origType {
+                table {
+                    a {
+                        &:after {
+                            content: "\e660";
+                            display: inline-block;
+                            font-family: "UPSicons" !important;
+                            line-height: inherit;
+                            margin-#{$default-float}: 5px;
+                            position: relative;
+                        }
+
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            dt, dl, dd, dd div {
+                font-family: $sans;
+            }
+
+            .secBody, .secbody {
+                padding: 10px;
+            }
+
+
+            .secBody {
+                .group {
+                    dd:nth-child(6) {
+                        img {
+                            display: none;
+                        }
+                    }
+
+					img[src="/img/1.gif"] {
+						display: none;
+					}
+                }
+            }
+
+            #lblForLinkDestType {
+                 a:after {
+                    content: "\e660";
+                    display: inline-block;
+                    font-family: "UPSicons" !important;
+                    line-height: inherit;
+                    margin-#{$default-float}: 3px;
+                    position: relative;
+                }
+                img {
+                    display: none;
+                }
+            }
+
+            #destResidential, #determineDestRadio {
+                label {
+                    font-family: $sans;
+                    margin-top: 1px;
+                    margin-#{$default-float}: 5px;
+                }
+
+                input {
+                    margin: 0;
+                }
+
+            }
+
+            #ship_picker_id {
+                /* &:after {
+					@include ups-iconFont("\e007");
+					position: relative;
+					#{$opposite-direction}: 29px;
+					top: 5px;
+					z-index: 0;
+                } */
+                img.ui-datepicker-trigger {
+                    opacity: 0;
+                    margin-top: 10px;
+					position: relative;
+					z-index: 10;
+					cursor: pointer;
+                }
+				/* input#ctcDatePicker {
+					width: 138px !important;
+				} */
+            }
+
+            #clear_button_id {
+                @include ups-legacy_cta($stone_40);
+            }
+
+        }//end menuPanel
+
+        .menuPanel2 {
+            #incompleteMod {
+                padding: 15px;
+            }
+
+            .secLvl.step {
+                border-top: 1px solid $black_s1;
+            }
+
+            #secondModuleDim {
+                label {
+                    img {
+                        display: none;
+                    }
+                }
+            }
+
+			#module2static.secbody {
+				padding: 0 15px 15px;
+			}
+
+            #accessorialModule {
+                .mod {
+                    dd:first-of-type {
+                        margin-bottom: 0;
+                        table {
+                            margin-bottom: 0;
+                        }
+                    }
+                    dd table {
+                        tr {
+                            td {
+                                padding-bottom: 10px;
+                                // line-height: 30px;
+
+                                label.sel {
+                                    // position: relative;
+                                    // top: 2px;
+                                }
+
+                                a:nth-of-type(2) {
+                                    &:after {
+                                        font-family: "UPSicons" !important;
+                                        content: "\e656";
+                                        position: relative;
+                                        top: 2px;
+                                        font-size: 1em;
+                                        display: inline-block;
+                                        margin-#{$default-float}: 4px;
+                                    }
+                                    img:only-child {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    dd:nth-of-type(1) {
+                        #acc_conf_select {
+                            margin: 10px 0 5px 0;
+                        }
+                    }
+                    #return_label {
+                        margin-bottom: 8px;
+                    }
+
+                    .ddoTableClass {
+                        td {
+                            line-height: 30px;
+                        }
+                    }
+                }
+            }//end accessorialModule
+
+            #dropOffLabel {
+                font-family: $sans-bd;
+                margin: 10px 0;
+            }
+
+            #international {
+                tr td:nth-of-type(2) {
+                    padding-top: 5px;
+                }
+
+                td {
+                    padding-bottom: 10px;
+
+                    label {
+                        font-family: $sans;
+                    }
+
+                    img {
+                        display: none;
+                    }
+                    .helpIconR {
+                        &:after {
+                            margin-#{$default-float}: 0;
+                        }
+                    }
+                    .helpTerm {
+                        &:after {
+                            content: "\e660";
+                            display: inline-block;
+                            font-family: "UPSicons" !important;
+                            line-height: 1.1;
+                            margin-#{$default-float}: 0;
+                            position: relative;
+                        }
+                    }
+                }
+            }
+
+            #accountNumberSelect {
+                margin-bottom: 10px;
+            }
+
+            #pickupMethod {
+                margin-top: 10px;
+            }
+
+            #clear_button_id_sec {
+                @include ups-legacy_cta($stone_40);
+            }
+        }// end manuPanel2
+
+        .seccol8.marginBegin {
+            .clearfix {
+                ul {
+                    span.label {
+                        font-size: 1.17em;
+                    }
+                }
+            }
+
+        }
+
+        //main table
+        .secLvl.tableonly {
+            .secHead {
+                // background-color: $ups_gold;
+                border: none;
+                h3 {
+                    span, label {
+                        color: $black_s4;
+                        font-family: $sans-bd;
+                        // background-color: $ups_gold;
+                    }
+                }
+            }
+
+            .secBody {
+                border: none;
+                .dataTable {
+                    thead tr {
+                        border-top: 3px solid $ups_brown;
+                    }
+
+                    tr {
+                        th:nth-child(-n+2), td:nth-child(-n+2) {
+                            border-#{$opposite-direction}: 1px solid $ups-brown;
+                        }
+                    }
+
+					tr .label {
+						padding: 0;
+					}
+
+                    tr span.label a {
+                        white-space: normal;
+                    }
+
+                    tr:last-of-type {
+                        border-top: 1px solid $ups_brown;
+
+                        div.subcol6.marginEnd p {
+                            // white-space: nowrap;
+                        }
+
+                        .reqTxtInst {
+                            .helpTerm {
+                                &:after {
+                                    content: "\e660";
+                                    display: inline-block;
+                                    font-family: "UPSicons" !important;
+                                    line-height: 1.1;
+                                    margin-#{$default-float}: 0;
+                                    position: relative;
+                                }
+                            }
+                            img {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    #downTime {
+                        a {
+                           /* &:after {
+                                font-family: "UPSicons" !important;
+                                content: "\e677";
+                                position: relative;
+                            } */
+                            img {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    #upTime {
+                        a {
+                           /* &:after {
+                                font-family: "UPSicons" !important;
+                                content: "\e67a";
+                                position: relative;
+                            } */
+                            img {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }//end tableonly
+
+    }
+		#div_btnsUAPLocation button.btn {
+		  max-width: 200px;
+		  white-space: normal;
+		}
+}
+
+
+// modal-specific styling
+#ups-main {
+    .ui-dialog.ui-widget {
+        .secBody {
+            div {
+                margin-bottom: 15px;
+            }
+
+            #casuiAscLink, #pasuiAscLink {
+                @include ups-legacy_cta($water_s3);
+            }
+        }
+
+		.appBody span.label {
+			color: inherit;
+		}
+
+		.appBody .btnBar {
+			text-align: $default-float;
+		}
+    }
+}
+
+#origRIFDialog, #destRIFDialog {
+  br {
+    display: none;
+  }
+
+  .RIF_Field, .RIF_Cs1, .RIF_Cs2 , .RIF_Csp1, .RIF_Csp2, .RIF_Csp3  {
+    margin-bottom: 15px;
+  }
+
+  #pasuiCs2 , #casuiCsp2{
+  margin-top: 8px;
+
+  }
+
+}
+.CTC_Dialog {
+    .secHead {
+        ul {
+            float:$opposite-direction;
+        }
+    }
+    .secBody {
+        dt {
+            span.label {
+                color: #000;
+                font-size: 100%;
+            }
+        }
+    }
+}
+
+.error {
+    span {
+        color:$red !important;
+        font-weight:bold !important;
+    }
+}
+
+.dataTable span.label{
+    color:$black_s4;
+}
+
+#collapse2 .secLvl .secHead {
+    cursor: auto;
+}
+
+#casuiCountryValue{
+background-color:#e8e8e6!important;
+color:#6e6e6e!important;
+cursor:not-allowed;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar .ui-state-active {
+    background-color: $gold_60 !important;
+    border-color: $gold_60 !important;
+}
+
+#pkgDetailAll,#pkgDetailLess {width:100%!important}
+/* #length , #width , #height , #weightValueSec,#dec_val_sec{width:65px} */
+/* #packagingTypeList {width:260px!important} */
+
+#enter_dimensions {
+    display: block;
+    position: relative;
+}
+#enter_dimensions .flexFirst , #enter_dimensions  .flexAfter{padding-#{$opposite-direction}: 5px;}
+#enter_dimensions dl:last-of-type {
+    float: $default-float;
+    top: 10px;
+    position: relative;}
+#enter_dimensions .label {
+    float: $opposite-direction;
+    position: relative;
+    top: -42px;}
+.ui-autocomplete{z-index:10000}
+html[lang=es] #inStatic {    width: 33px;
+    font-size: 12px!important;}
+html[lang=es] #sameLabelSec span.label {white-space: pre-line;
+    text-align: $default-float;}
+
+    #promoMessageDiv .cmsMsg .secFooter .btnBar a {color:#fff!important}
+
+html[lang=en]  .ups-input_unit_measure{#{$opposite-direction}: -15px;}
+/***********************************
+************************************
+Redesign CSS Edits for Jul 17
+************************************
+***********************************/
+#main .appLvl.tab.col24 .appHead p {
+    color: $black;
+}
+
+.secHead div.pull-right {
+    margin-top: 2px;
+}
+
+#main .appLvl.tab.col24 .menuPanel .secBody {
+    padding-top: 0;
+}
+
+.ups-form_wrap {
+    margin-bottom: 0;
+}
+
+#main .appLvl.tab.col24 .secBody .secLvl .secBody {
+    padding: 0;
+}
+
+.ups-btn_spacing {
+    margin-#{$opposite-direction}: 20px;
+}
+
+.seccol8 .secLvl select {
+    max-width: none;
+}
+
+#main .secLvl .secHead {
+    padding: 5px 5px;
+}
+/*fieldset legend {
+    display: block;
+}
+
+fieldset.ups-form_group {
+    display: table;
+}
+
+fieldset legend.ups-form_label {
+    border-bottom: none;
+    font-size: 14px;
+}
+
+#main .ups-form_group {
+    .ups-buttonList_wrapper {
+        clear: $default-float;
+    }
+
+    input[type=radio] {
+        float: $default-float;
+
+        &+ label {
+            padding-#{$default-float}: 34px;
+            display: block;
+            margin: 5px 0;
+            line-height: 25px;
+        }
+    }
+}*/
+
+/*#main .ups-form_group {
+    input[type=radio] {
+        position: absolute;
+        width: 0;
+        height: 0;
+
+        &+ label {
+            margin: 5px 0;
+            line-height: 25px;
+        }
+    }
+}*/
+
+
+//Afftene Addition: Don't put this in until July. This corrects label margin to 5px in relation to the input
+label.ups-form_label {
+	margin-bottom: 5px;
+}
+
+//Afftene Addition: Don't put this in until July. This adds a 15px margin to the bottom of a form input
+.ups-form_group {
+	margin-bottom: 15px
+}
+
+//Afftene Addition: Don't put this in until July. This adds a 15px margin to the bottom of a group and gives text a "label" look
+.ups-group {
+	margin-bottom: $margin_4;
+
+	.ups-group_label {
+		font-family: $sans-bd;
+        font-weight: bold;
+        color: $black_s4;
+        font-size: 1em;
+		line-height: inherit;
+		margin: 0 0 $margin_5;
+	}
+}
+
+//Afftene addition: Don't put this in until July. Corrects cta_secondary to WEM standards
+div.ups-form_ctaGroup {
+	//margin:$margin_4 0 0;
+
+	button.ups-cta.ups-cta_secondary {
+        color:$black_s3;
+	}
+}
+//Afftene addition: Don't put this in until July. Moves the required icon asterisk to a more even position next to text
+.requiredIcon {
+	background-position:-3px -2346px;
+	}
+
+//Afftene addition: Don't put this in until July. Places text right next to checkbox.
+label.ups-checkbox-custom-label {
+	display: inline-block !important;
+}
+
+//Afftene addition: Don't put this in until July. Gives scrollable divs WEM standards.
+.appBody {
+	.ups-text_scroll {
+	width: 100%;
+    padding: 15px;
+    border: 1px solid #6e6e6e;
+    max-height: 180px;
+    overflow-y: scroll;
+    margin-bottom: 30px;
+	}
+}
+//Afftene addition: Don't put this in until July. Gives sublabel text italic styling and a little bit of margin.
+.ups-form_subheader {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+//Afftene addition: Don't put this in until July. Eliminates needless scrolling on modal
+.ui-dialog .modal {
+	.container {
+		width: 100%;
+	}
+}
+
+//Afftene addition: Don't put this in until July. Trying to make search icon black
+.ui-dialog.ui-widget button {
+	.ups-icon-search {
+		color:$black_s4;
+	}
+}
+
+
+//Afftene addition: Don't put this in until July. Remove the underline for the new window icon
+.ui-dialog.ui-widget a span.ups-icon-newwindow {
+	text-decoration: none;
+}
+
+//Afftene addition: Don't put this in until July. Remove the border right in tables
+.ui-dialog.ui-widget .modal .ups-application_wrapper table.dataTable tbody td.ups-table_total_row {
+	border-#{$opposite-direction}: none;
+}
+
+.ups-form_wrap .ups-checkbox-custom-label, .ups-form_wrap .ups-radio-custom-label p { line-height: normal; }
+
+fieldset.ups-form_group hr { margin-top: 0; }
+
+.selector .dataTable td {
+    padding-#{$default-float}: 5px;
+    padding-top: 5px;
+}
+
+.selector .dataTable td.active {
+    background-color: #fff !important;
+    padding-#{$default-float}: 5px;
+    padding-top: 5px;
+}
+.selector .dataTable .ups-search_results.active {
+    padding: 0px;
+    margin-top: -5px;
+    margin-#{$default-float}: -5px;
+}
+
+.tableOnly .iDiv .dataTable .active {
+    width: 270px;
+}
+
+// override error coloring
+.ui-dialog.ui-widget .appBody label,
+.mod.modal.dialog.col12 .appBody label,
+.ups-form_wrap .ups-form_label {
+    &.error {
+        color: #f31a12;
+		a {
+			color: #f31a12;
+		}
+    }
+}
+
+// adjust button padding for german language
+html[lang="de"] {
+    #main .appLvl.tab.col24 .menuPanel #clear_button_id,
+    .ups-cta {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+// overwrite visibility properties to make the prev/next buttons visible
+.ups-search_support .ups-search_results {
+    overflow: visible;
+    visibility: visible;
+}
+
+// reduce horizontal padding for prev/next buttons to support non-English translations
+.ups-search_support .ups-search_results .results-footer button {
+    padding: 15px 5px;
+}
+
+
+.ui-dialog.ui-widget.modal,
+.mod.modal.dialog.col12.modal{
+    position: absolute !important;
+    top: 200px !important;
+    left: 50% !important; //must stay left for LTR and RTL
+    right: auto !important; //must stay right for LTR and RTL
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+}
+
+@media #{$media-medLarge} {
+    .ui-dialog.ui-widget.modal,.mod.modal.dialog.col12.modal {
+        #{$default-float}: 50px !important;
+        transform: none;
+        -ms-transform: none;
+    }
+}
+
+.clearfix.secLvl.secLvlPlain.step.btnBar input.btnBackArw {
+    max-width: 100%;
+    white-space: normal;
+    height: auto;
+    padding: 5px 30px !important;
+}
+
+
+// Print styles
+@media print {
+
+    #ups-navContainer,
+    #sectioniov5pt2v,
+    header,
+    footer {
+        display: none !important;
+    }
+
+    .container-fluid.iw_section:nth-child(2),
+    .touch .container-fluid.iw_section:nth-child(2),
+    .ups-headFixed .container-fluid.iw_section:nth-child(2) {
+        border-top: 0 !important;
+    }
+
+    body.ups-appPage .container-fluid.iw_section .row.iw_row #ups-fw_legacy_app_wrap .ups-fw_legacy_app_inner {
+        padding: 0 !important;
+        min-width: 0 !important;
+    }
+
+    .ups-wrap {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .label {
+        border: 0 !important;
+    }
+
+    .seccol8,
+    .seccol16,
+    .col24 {
+        width: 100% !important;
+        float: none !important;
+    }
+
+}
+
+
+/***********************************
+************************************
+End Redesign CSS Edits for Jul 17
+************************************
+************************************/
+
+
+
+/* TFS Defect 505268 commented out by Quest 12/05/17 */
+/* .ups-app_actions {
+    position: relative;
+    float: right;
+} */
+
+
+
+/* UPSO-1387 Fix RIF address spacing */
+.addressToDetails #classifyCACAddress #classify.RIF_Address .RIF_Field {
+    margin-bottom: 20px;
+}
+
+.addressToDetails #classifyCAC_Column2 .RIF_Field {
+    margin-bottom: 20px;
+}
+
+.addressToDetails #classifyCAC_Column2 .col-sm-6 {
+    width: auto;
+}

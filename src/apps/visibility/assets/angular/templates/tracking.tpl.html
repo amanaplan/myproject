@@ -1,0 +1,2028 @@
+<!--
+** Delivery Options Modal **
+-->
+<ups-modal #deliveryOptionsModal>
+    <p>As a UPS My Choice Member®, you can take control of your deliveries at your convenience.</p>
+    <div class="ups-section">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-group">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2">
+                            <span class="icon ups-icon-truck ups-delivery_options_truck" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-xs-9 col-sm-10">
+                            <p>
+                                <strong>Driver Instructions</strong>
+                            </p>
+                            <p>
+                                <em>Tell your UPS driver where to leave your packages if you aren't home.</em>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- #doLeaveInstrSMVPContainer -->
+                    <div class="ups-text-md-center" *ngIf="mychoice">
+                        <button class="ups-cta ups-cta_primary" #doLeaveInstrBtn>Leave Instructions</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <strong>Also Featured</strong>
+                </p>
+                <ul class="ups-ul_aligned">
+                    <li>Pick up at UPS Location</li>
+                    <li>Deliver on Another Day</li>
+                    <li>2 Hour Delivery Window</li>
+                    <li>Deliver to Another Address</li>
+                </ul>
+                <button class="ups-cta ups-cta_primary" *ngIf="mychoice">Change Delivery</button>
+            </div>
+        </div>
+        <!--<div class="row" >
+            <div class="col-md-6" #doLeaveInstrMDVPContainer></div>
+            <div class="col-md-6">
+                <button class="ups-cta ups-cta_primary">Change Delivery</button>
+            </div>
+        </div>-->
+    </div>
+
+    <div class="ups-form_ctaGroup ups-delivery_options_actions text-center" *ngIf="!mychoice">
+        <button class="ups-cta ups-cta_primary">Sign Up</button>
+        Already have an ID?
+        <a href="#" class="ups-link">Log In</a>
+    </div>
+</ups-modal>
+
+<!--
+** Proof of Delivery Modal **
+-->
+<ups-modal #proofDeliveryModal>
+    <div class="ups-group">
+        <p>
+            Dear Customer,
+        </p>
+        <p>
+            This notice serves as proof of delivery for the shipment listed below.
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    <strong>Tracking Number</strong>
+                </p>
+                <p>
+                    1Z07000E0377515363
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    <strong>Weight</strong>
+                </p>
+                <p *ngIf="!uspsDelivery">
+                    10 kg
+                </p>
+                <p *ngIf="uspsDelivery">
+                    15 oz
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-form_label">
+                    <strong>Service</strong>
+                </p>
+                <p *ngIf="!uspsDelivery">
+                    UPS Ground
+                </p>
+                <p class="ups-indent" *ngIf="!uspsDelivery">
+                    with UPS Carbon Neutral
+                    <span aria-hidden="true" class="icon ups-icon-carbonneutral ups-icon_separate"></span>
+                </p>
+                <p *ngIf="uspsDelivery">
+                    UPS Light Weight Service
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    <strong>Shipped/Billed On</strong>
+                </p>
+                <p>
+                    01/01/2018
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!uspsDelivery">
+        <div class="col-md-6">
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-form_label">
+                    <strong>Special Instructions</strong>
+                </p>
+                <p>
+                    Adult Signature Required
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ups-group ups-group_condensed" *ngIf="!uspsDelivery">
+                <p class="ups-form_label">
+                    <strong>UPS Returns
+                        <sup>&reg;</sup> Exchange</strong>
+                </p>
+                <p>
+                    Completed
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-form_label">
+                    <strong>Delivered On</strong>
+                </p>
+                <p>
+                    01/01/2018 00:00 A.M./P.M.
+                </p>
+            </div>
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    <strong>Delivered To</strong>
+                </p>
+                <p>
+                    <span *ngIf="loggedin">
+                        UPS Innoplex
+                        <br> 2010 Warsaw Rd.
+
+                        <br>
+                    </span>
+                    Atlanta, GA,
+                    <span *ngIf="loggedin">30076,</span> US
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6" *ngIf="!uspsDelivery">
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-form_label">
+                    <strong>Received By</strong>
+                </p>
+                <p *ngIf="!diffReceivedBy">
+                    SMITH
+                </p>
+                <div class="ups-group" *ngIf="sigImgShown && loggedin">
+                    <img alt="Signature Picture" height="75" src="/assets/resources/images/placeholder-icon.jpg" width="200">
+                </div>
+                <p *ngIf="diffReceivedBy">
+                    Front Clerk
+                </p>
+            </div>
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    <strong>Left At</strong>
+                </p>
+                <p>
+                    Front Desk
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6" *ngIf="!uspsDelivery && loggedin">
+            <div class="ups-group">
+                <p class="ups-form_label">
+                    C.O.D.
+                </p>
+                <p>
+                    nn.nn USD / [check/cash/money order]
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ups-group" *ngIf="loggedin">
+                <p class="ups-form_label">
+                    <strong>Reference Number(s)</strong>
+                </p>
+                <p>
+                    DH00-06015, KAREN SOH, 9A8690GQYWM
+                </p>
+            </div>
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-form_label">
+                    Alternate Tracking Number(s)
+                </p>
+                <p>
+                    1Z1234567890123456
+                </p>
+                <p>
+                    1Z1234567890123432
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-group">
+        <p>
+            Thank you for giving us this opportunity to serve you.
+        </p>
+        <p>
+            Sincerely,
+        </p>
+        <p>
+            UPS
+        </p>
+        <p>
+            Tracking results provided by UPS: 09/15/2008 9:14 A.M. EST
+        </p>
+    </div>
+
+
+    <p class="hidden-xs">
+        <button class="ups-link">Print this page</button>
+    </p>
+
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" *ngIf="loggedin" (click)="sigImgShown = true; uspsDelivery = false; diffReceivedBy = false;">Signature Shown</button>
+        <button class="ups-cta ups-cta_secondary" (click)="sigImgShown = false; uspsDelivery = false; diffReceivedBy = false;">Default</button>
+        <button class="ups-cta ups-cta_secondary" (click)="sigImgShown = false; uspsDelivery = true; diffReceivedBy = false;">USPS Delivery</button>
+        <button class="ups-cta ups-cta_secondary" (click)="sigImgShown = false; uspsDelivery = false; diffReceivedBy = true;">Different Received by</button>
+    </div>
+</ups-modal>
+
+<ups-modal #sendUpdatesModal></ups-modal>
+
+<ups-modal #notificationCompleteModal></ups-modal>
+
+<ups-modal #sendUpdatesSelectionModal></ups-modal>
+
+<div class="ups-wrap" *ngIf="vpSize.isXSVP">
+    <div class="upw-wrap_inner">
+        <div class="ups-group ups-tracking_banner">
+            <a href="#"><img src="assets/resources/images/NORDSTROM_10020820.png" alt="Affiliate Banner" class="ups-tracking_banner_img"></a>
+        </div>
+    </div>
+</div>
+
+<div class="ups-track_pg_bg">
+
+    <div class="ups-wrap">
+        <div class="ups-wrap_inner">
+
+            <div class="row">
+                <!--
+                ** Tracking Number & Add Description **
+                -->
+                <div class="col-sm-6">
+                    <p class="ups-text_slim">
+                        <span class="ups-text_paragraph ups-text_separate_emphasized">
+                            <span class="ups-readerTxt">Tracking Number:</span>
+                            1Z5E953C0393555555
+                        </span>
+                        <!-- *ngIf="!(descriptionSet && vpSize.isLtSMVP)" -->
+                        <span *ngIf="descriptionSet" class="ups-focus_gold ups-text_atomic ups-text_paragraph" tabindex="-1" id="descriptionSetTxt">
+                            {{ trkAddDescrTxt }}
+                            <button class="ups-link ups-btn_has_icon" (click)="toggleDescription()">
+                                <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Edit Description</span>
+                            </button>
+                        </span>
+                        <button type="button" class="ups-link ups-btn_has_icon ups-text_paragraph" *ngIf="loggedin && !descriptionSet" (click)="toggleDescription()"
+                            [attr.aria-expanded]="descriptionContShown" aria-controls="addDescriptionContainer" id="addDescriptionBtn">
+                            <span class="icon ups-icon-pluscircle" aria-hidden="true"></span>
+                            Add Description
+                        </button>
+                    </p>
+                    <div id="addDescriptionContainer" class="ups-tracking_description_container">
+                        <div class="ups-group" *ngIf="descriptionContShown" [@slideOpen]="addDescription" (@slideOpen.start)="animationStarted($event)"
+                            (@slideOpen.done)="animationDone($event)">
+                            <div class="ups-form_group">
+                                <label for="trkAddDescription" class="ups-readerTxt">Description Title</label>
+                                <div class="ups-input_wrapper ups-text_wrapper" [ngClass]="{ 'ups-input_has_clear' : descriptionSet}">
+                                    <input type="text" class="ups-form_input" id="trkAddDescription" maxlength="35" [(ngModel)]="trkAddDescr">
+                                </div>
+                                <button class="ups-cta ups-cta_secondary ups-input_btn_action ups-btn_has_icon ups-input_clear_btn" *ngIf="descriptionSet"
+                                    (click)="clearDescription()">
+                                    <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Delete Description</span>
+                                </button>
+
+                            </div>
+                            <div class="ups-form_ctaGroup ups-form_ctaGroup_slim">
+                                <button type="button" class="ups-cta ups-cta_primary" (click)="saveDescription()">Save</button>
+                                <button type="button" class="ups-cta ups-cta_secondary" (click)="closeDescription()">Cancel</button>
+                            </div>
+                            <hr class="visible-xs-block">
+                        </div>
+                    </div>
+                    <p>
+                        <a href="#multiPieceShipmentBtn" pointIdClick class="ups-link">1 of N Piece Shipment</a>
+                    </p>
+                    <p *ngIf="demoInfoNotice">
+                        <!--<strong>Infonotice Number</strong> -->5949988638
+                    </p>
+                    <p *ngIf="packageStatusData.returned">
+                        <strong>Return Package:</strong>
+                        <a href="#" class="ups-link">1Z1234567890123432</a>
+                    </p>
+                    <!--<p *ngIf="vpSize.isLtSMVP">
+                        <span class="ups-readerTxt">Tracking Number:</span>
+                        1Z5E953C0393555555
+                    </p>-->
+                </div>
+                <!--
+                ** Updated Date **
+                -->
+                <div class="col-sm-6 ups-text-sm-right">
+                    <p>
+                        <strong>Updated:</strong> 02/24/2017 11:14 A.M. EST
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--
+                ** Tracking Status **
+                -->
+                <div class="col-md-8">
+                    <section class="ups-card">
+                        <div class="ups-card_content ups-text-sm-left text-center">
+                            <h2 class="ups-readerTxt">Tracking Status</h2>
+                            <p class="ups-tracking_status_header">
+                                <!--<strong *ngIf="(demoPkgStatus != '7' && demoPkgStatus != '8' && demoPkgStatus != '6' && demoPkgStatus != '9' && demoPkgStatus != '10')">On Its Way</strong>
+                                <strong *ngIf="demoPkgStatus == '10'">Awaiting Customer Pickup at UPS Access Point&trade;</strong>
+                                <strong *ngIf="demoPkgStatus == '7' || demoPkgStatus == '8'">Exception Status Text</strong>
+                                <strong *ngIf="(demoPkgStatus != '7' && demoPkgStatus != '8' && demoPkgStatus == '6') || demoPkgStatus == '9'">Delivered</strong>-->
+                                <!-- using innerHTML for html entities. -->
+                                <strong [innerHTML]="packageStatusData.packageStatusTxt"></strong>
+
+                            </p>
+                            <!-- [showMore] directive path: directives/char_length.ts -->
+                            <p *ngIf="packageStatusData.exception" class="text-left" [showMore]="'ups-showmore_two_lines'">
+                                Simplified text goes here. This is placeholder text to show position and style of simplified text. Simplified text goes here.
+                            </p>
+
+                            <div class="ups-trackingbar" [ngClass]="{'ups-trackingbar_exception' : packageStatusData.exception, 'ups-trackingbar_unknown' : packageStatusData.progress == 0}"
+                                id="trackingbar_indicator">
+                                <div class="ups-trackingbar_indicator_bg">
+                                    <div class="ups-trackingbar_indicator" [ngClass]="{'ups-trackingbar_indicator_first' : (demoPkgStatus == '1' || demoPkgStatus == '2'), 'ups-trackingbar_indicator_second' : demoPkgStatus == '3', 'ups-trackingbar_indicator_third' : demoPkgStatus == '4', 'ups-trackingbar_indicator_fourth' : demoPkgStatus == '5', 'ups-trackingbar_indicator_fifth' : demoPkgStatus == '10' ,'ups-trackingbar_indicator_last' : (demoPkgStatus == '6' || demoPkgStatus == '9')}">
+                                        <span class="ups-trackingbar_square" aria-hidden="true" *ngIf="(demoPkgStatus == '1' || demoPkgStatus == '2' || demoPkgStatus == '10')"></span>
+                                        <span class="icon ups-icon-alert ups-trackingbar_exclamation" aria-hidden="true" *ngIf="(demoPkgStatus == '7' || demoPkgStatus == '8')"></span>
+                                        <span class="icon ups-icon-chevronright" aria-hidden="true" *ngIf="(demoPkgStatus == '3' || demoPkgStatus == '4' || demoPkgStatus == '5' || demoPkgStatus == '11')"></span>
+                                        <span class="icon ups-icon-check ups-trackingbar_check" aria-hidden="true" *ngIf="(demoPkgStatus == '6' || demoPkgStatus == '9')"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="ups-section">
+                                <p>
+                                    <strong>What's Next</strong>
+                                </p>
+                                <p>
+                                    The shipping address provided is either incorrect or incomplete.
+                                </p>
+                            </div>-->
+
+                            <div class="row" *ngIf="packageStatusData.exceptionAlert">
+                                <div class="col-md-8">
+                                    <section class="panel panel-alert">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title text-left">
+                                                <span class="icon ups-icon-alert ups-panel_alert_icon ups-panel_alert_icon_filled" aria-hidden="true"></span>
+                                                Attention Needed</h3>
+                                        </div>
+                                        <div class="panel-body text-left">
+                                            <p [showMore]="'ups-showmore_two_lines'">
+                                                This is the action required description text. The action required description will be positioned in this box.
+                                            </p>
+                                            <button type="button" class="ups-link">
+                                                Correct My Address
+                                            </button>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <!-- mychoice && -->
+
+                            <div [ngClass]="{'row': (!packageStatusData.exceptionAlert)}">
+                                <!-- mychoice &&  -->
+                                <div [ngClass]="{'col-sm-6': (!packageStatusData.exceptionAlert)}">
+                                    <p>
+                                        <strong *ngIf="vpSize.isGtXSVP">
+                                            <span *ngIf="packageStatusData.delivered || packageStatusData.apPickup">Delivered On</span>
+                                            <span *ngIf="!packageStatusData.delivered && !packageStatusData.apPickup">Scheduled Delivery</span>
+                                            <!--<span *ngIf="(mychoice && vpSize.isGtXSVP && demoPkgStatus != '6')"> Date</span>-->
+                                        </strong>
+                                        <strong *ngIf="vpSize.isXSVP && !packageStatusData.delivered && !packageStatusData.exceptionAlert">Delivery Date/Estimated Time</strong>
+                                        <strong *ngIf="vpSize.isXSVP && packageStatusData.delivered">Delivered on</strong>
+                                        <strong *ngIf="vpSize.isXSVP && packageStatusData.exceptionAlert">Scheduled Delivery</strong>
+                                    </p>
+                                    <p class="ups-tracking_delivery_text" *ngIf="!packageStatusData.exceptionAlert">
+                                        <strong class="ups-text_atomic">
+                                            Wednesday
+                                            <span class="ups-tracking_delivery_text_date">03/01/2018</span>
+                                        </strong>
+                                        <!--<strong class="ups-text_atomic" *ngIf="!mychoice && !packageStatusData.delivered && !packageStatusData.apPickup">by End of Day</strong>
+                                        <strong class="ups-text_atomic" *ngIf="(!mychoice && (packageStatusData.delivered || packageStatusData.apPickup))">at 6:32 P.M.</strong>-->
+                                    </p>
+                                    <p *ngIf="packageStatusData.exceptionAlert">
+                                        Please check back later for scheduled delivery.
+                                    </p>
+                                </div>
+                                <!--  && mychoice -->
+                                <div class="col-sm-6" *ngIf="!packageStatusData.exceptionAlert">
+                                    <!--  && mychoice -->
+                                    <p *ngIf="vpSize.isGtXSVP">
+                                        <strong>
+                                            <span *ngIf="packageStatusData.delivered || packageStatusData.apPickup">Delivery Time</span>
+                                            <span *ngIf="!packageStatusData.delivered && !packageStatusData.apPickup">Estimated Time</span>
+                                        </strong>
+                                    </p>
+                                    <!--  *ngIf="mychoice" -->
+                                    <p class="ups-tracking_delivery_text">
+                                        <strong class="ups-text_atomic" *ngIf="!packageStatusData.delivered && !packageStatusData.apPickup && !mychoice">by End of Day</strong>
+                                        <strong *ngIf="!packageStatusData.delivered && !packageStatusData.apPickup && mychoice">12:00 - 4:00 P.M.</strong>
+                                        <strong *ngIf="packageStatusData.delivered || packageStatusData.apPickup">at 4:32 P.M.</strong>
+                                    </p>
+                                    <div class="ups-aside_icon_container text-left ups-tracking_mychoice_delivery"
+                                        *ngIf="!mychoice">
+                                        <div class="ups-aside_icon">
+                                            <span class="icon ups-icon-time" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="ups-aside_text">
+                                            Find out when with UPS My Choice.
+                                            <a href="#" class="ups-link ups-link_has_icon ups-text_atomic">
+                                                Continue
+                                                <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="ups-tracking_mychoice_delivery"
+                                        *ngIf="mychoice">
+                                        <button class="ups-link ups-tracking_mychoice_delivery_btn">
+                                            <span class="icon ups-icon-time" aria-hidden="true"></span>
+                                            Schedule your delivery
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--<div class="row text-left" *ngIf="demoPkgStatus == '6'">
+                                <div class="col-sm-6 ups-group">
+                                    <p>
+                                        <a href="#" class="ups-link">
+                                            Proof of Delivery
+                                            <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Open the link in a new window</span>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p *ngIf="demoPkgStatusDelivered == '2'">
+                                        The sender has pre-approved the return of this package. Get a return label before [11/21/2016].
+                                    </p>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="ups-card_content ups-card_content_no_separate" *ngIf="packageStatusData.apPickup || packageStatusData.exceptionAlert || (demoSpecInst && packageStatusData.progress == 3) || (demoSpecInst && packageStatusData.progress == 6)">
+                            <div *ngIf="packageStatusData.apPickup" class="ups-group ups-group_condensed">
+                                <p class="ups-form_label">
+                                    <strong>Pickup Package By</strong>
+                                </p>
+                                <p class="ups-tracking_delivery_text">
+                                    <strong>Thursday, 10/16/2017</strong>
+                                </p>
+                                <img src="/assets/resources/images/placeholder-icon.jpg" alt="Barcode" width="200" height="75" *ngIf="!demoSpecInst">
+                            </div>
+
+                            <div class="row" *ngIf="packageStatusData.exceptionAlert || (demoSpecInst && packageStatusData.progress == 3) || (demoSpecInst && packageStatusData.progress == 6)">
+                                <div class="col-md-8">
+                                    <section class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title text-left">
+                                                <!--<span class="icon ups-icon-alert ups-panel_alert_icon" aria-hidden="true"></span>-->
+                                                Special Instructions</h3>
+                                        </div>
+                                        <div class="panel-body text-left" *ngIf="packageStatusData.progress == 3 || packageStatusData.exceptionAlert">
+                                            <div class="ups-group ups-group_condensed">
+                                                <p>
+                                                    This package requires a signature.
+                                                </p>
+                                                <button type="button" class="ups-link">
+                                                    Sign Now
+                                                </button>
+                                            </div>
+                                            C.O.D. due upon delivery - 101.37 USD, Check/Money Order
+                                        </div>
+                                        <div class="panel-body text-left" *ngIf="packageStatusData.progress == 6">
+                                            <strong>Placeholder text</strong> that shipment was created to required an Electronic
+                                            Release Package Authorization (ERPA) input code on pickup at an access point.
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <p *ngIf="(packageStatusData.exception && !packageStatusData.exceptionAlert) || packageStatusData.apPickup" class="text-left">
+                                <strong>What's Next</strong>
+                            </p>
+                            <!-- [showMore] directive path: directives/char_length.ts -->
+                            <p *ngIf="(packageStatusData.exception && !packageStatusData.exceptionAlert) || packageStatusData.apPickup" class="text-left"
+                                [showMore]="'ups-showmore_two_lines'">
+                                Please bring a government-issued or other form of officially recognized ID with you.
+                            </p>
+
+                            <!--<p *ngIf="!loggedin" class="text-left">
+                                <span class="icon ups-icon-time" aria-hidden="true"></span>
+                                Need a shorter delivery window?
+                                <a href="#" class="ups-link">Sign up</a> for UPS My Choice.
+                            </p>-->
+                        </div>
+                        <!--<hr class="ups-card_hr" *ngIf="vpSize.isGtXSVP">-->
+
+                        <div class="ups-card_content ups-card_content_no_separate">
+
+                            <div class="ups-form_ctaGroup ups-form_ctaGroup_slim ups-tracking_actions" *ngIf="!packageStatusData.delivered">
+                                <button class="ups-cta ups-cta_primary"
+                                    (click)="openSendUpdatesModal()"
+                                    #sendUpdatesBtn>
+                                    Send Updates
+                                </button>
+                                <button class="ups-cta ups-cta_tertiary"
+                                    (click)="openDeliveryOptionsModal()"
+                                    #deliveryOptionsBtn>Delivery Options
+                                </button>
+                                <a href="#" class="ups-cta ups-cta_secondary ups-btn_icon_big">
+                                    <span class="icon ups-icon-truck" aria-hidden="true"></span>
+                                    Follow My Delivery
+                                </a>
+                            </div>
+                            <p *ngIf="packageStatusData.delivered">
+                                Get a return label before [11/21/18]
+                            </p>
+                            <div class="ups-form_ctaGroup ups-form_ctaGroup_slim" *ngIf="packageStatusData.delivered">
+                                <button class="ups-cta ups-cta_primary">
+                                    Return This Package
+                                </button>
+                                <button class="ups-cta ups-cta_tertiary" *ngIf="loggedin">
+                                    File a Claim
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!--
+                ** Tracking Status Aside **
+                -->
+                <div class="col-md-4">
+                    <section class="ups-card row ups-card_row">
+                        <div class="ups-card_content col-sm-4 col-md-12">
+                            <ng-container *ngIf="packageStatusData.apPickup">
+                                <h2 class="ups-form_label">
+                                    <strong>UPS Access Point&trade; Location</strong>
+                                </h2>
+                                <div class="ups-group ups-group_condensed">
+                                    <a href="#" class="ups-link">
+                                        UPS Access Point - Parcel Locker
+                                        <br> 4321 Hill Street
+                                        <br> Roswell, GA, US, 30076
+                                    </a>
+                                </div>
+                                <div class="ups-drawer ups-drawer_inline" upsDrawer>
+                                    <button type="button" class="ups-drawer-btn ups-link" aria-controls="apLocationDrawer" aria-expanded="false">
+                                        Location Details
+                                        <span class="pull-right">
+                                            <!--<span class="ups-readerTxt">expand</span>-->
+                                            <span class="icon ups-icon-chevrondown" aria-hidden="true"></span>
+                                        </span>
+                                    </button>
+                                    <div class="ups-drawer-content" id="apLocationDrawer">
+                                        <div class="ups-group ups-group_condensed">
+                                            <p class="ups-form_label">
+                                                <strong>Phone</strong>
+                                            </p>
+                                            <p>
+                                                800-123-4567
+                                            </p>
+                                        </div>
+                                        <div class="ups-group ups-group_slim ups-group_condensed">
+                                            <p class="ups-form_label">
+                                                <strong>Hours of Operation</strong>
+                                            </p>
+                                            <p>
+                                                Monday - Friday 6:00 P.M. - 8:00 P.M.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<p>
+                                    <a href="#" class="ups-link">
+                                        Proof of Delivery
+                                        <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Open the link in a new window</span>
+                                    </a>
+                                </p>-->
+                            </ng-container>
+                            <ng-container *ngIf="!packageStatusData.apPickup">
+                                <h2 class="ups-form_label">
+                                    <strong *ngIf="!packageStatusData.delivered">Ship To</strong>
+                                    <strong *ngIf="packageStatusData.delivered">Delivered To</strong>
+                                </h2>
+                                <div class="ups-group ups-group_slim ups-group_condensed">
+                                    <p *ngIf="mychoice">
+                                        Recipient Name
+                                    </p>
+                                    <p *ngIf="mychoice">
+                                        ATTN: Recipient Name
+                                    </p>
+                                    <p>
+                                        <span *ngIf="loggedin">1234 Fake Street
+                                            <br>
+                                        </span>
+                                        Huntington Beach, CA,
+                                        <span *ngIf="loggedin">90210, </span>US
+                                    </p>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <hr class="ups-card_hr ups-card_hr_pad ups-card_hr_col hidden-sm col-md-12" *ngIf="packageStatusData.delivered || packageStatusData.apPickup">
+                        <div class="ups-card_content col-sm-4 col-md-12" *ngIf="packageStatusData.delivered || packageStatusData.apPickup">
+                            <p *ngIf="packageStatusData.delivered">
+                                <strong>Left At:</strong> Front door
+                            </p>
+                            <p *ngIf="packageStatusData.delivered">
+                                <strong>Received By:</strong> Joe Smith
+                            </p>
+                            <p *ngIf="packageStatusData.delivered">
+                                <img src="/assets/resources/images/placeholder-icon.jpg" alt="Signature Picture" width="200" height="75" *ngIf="demoPkgStatusDelivered == '3'">
+                            </p>
+                            <!--<p class="ups-text_slim">-->
+                                <button type="button" class="ups-link" (click)="openProofDeliveryModal()" #proofDeliveryBtn>
+                                    Proof of Delivery
+                                    <!-- <span class="icon ups-link_newwindow" aria-hidden="true"></span> -->
+                                </button>
+                            <!--</p>-->
+                        </div>
+                        <hr class="ups-card_hr ups-card_hr_pad ups-card_hr_col hidden-sm col-md-12" *ngIf="mychoice">
+                        <div class="ups-card_content col-sm-4 col-md-12" *ngIf="mychoice">
+                            <div class="ups-group ups-group_condensed" *ngIf="packageStatusData.apPickup">
+                                <h2 class="ups-form_label">
+                                    <strong>Original Ship To</strong>
+                                </h2>
+                                <div class="ups-group ups-group_slim ups-group_condensed">
+                                    <p *ngIf="mychoice">
+                                        Recipient Name
+                                    </p>
+                                    <p *ngIf="mychoice">
+                                        ATTN: Recipient Name
+                                    </p>
+                                    <p>
+                                        <span *ngIf="loggedin">9876 Parway Blvd.
+                                            <br>
+                                        </span>
+                                        Swellville, ST,
+                                        <span *ngIf="loggedin">00000, </span>US
+                                    </p>
+                                </div>
+                            </div>
+                            <h2 class="ups-form_label">
+                                <strong>Ship From</strong>
+                            </h2>
+                            <div class="ups-group ups-group_slim ups-group_condensed">
+                                <p>
+                                    Shipper Name
+                                </p>
+                                <p>
+                                    ATTN: Recipient Name
+                                </p>
+                                <p>
+                                    5678 Anywhere Street
+                                    <br> Some Place, GA 78901
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <!--<hr class="ups-card_hr">
+                        <div class="ups-card_content">
+                            <div class="ups-form_group">
+                                <label for="">Track Another Package</label>
+                                <div class="ups-input_wrapper ups-text_wrapper ups-input_has_action">
+                                    <input type="text" class="ups-form_input" placeholder="Tracking Numbers">
+                                    <button class="ups-input_action ups-input_action_invert">
+                                        <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="ups-card_hr">
+                        <div class="ups-card_content">
+                            <button class="ups-cta ups-cta_secondary ups-btn_has_icon ups-btn_slim_separate">
+                                <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                Help
+                            </button>
+                        </div>-->
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+
+        <!-- [ngClass]="{'ups-drawer_dynamic_list' : vpSize.isLtMDVP}" -->
+        <div>
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- [ngClass]="{'ups-section' : vpSize.isGtSMVP}" -->
+                    <div>
+                        <!--<div class="ups-section-header" *ngIf="vpSize.isGtSMVP">
+                            <h2 class="ups-section_heading">Shipment Progress</h2>
+                        </div>-->
+
+                        <!--
+                        ** Shipment Progress Table **
+                        -->
+                        <div upsDrawer class="ups-drawer ups-flat_drawer" [ngClass]="{'ups-drawer_list_item' : vpSize.isLtMDVP, 'ups-progress_table_drawer' : vpSize.isGtSMVP}">
+                            <!--  *ngIf="vpSize.isLtMDVP" -->
+                            <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="progressTableContent" data-opened="false"
+                                (click)="shipProgressDrawerToggle()">
+                                <span role="heading" aria-level="2">Shipment Progress</span>
+                                <span class="pull-right">
+                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                </span>
+                            </button>
+                            <!-- [ngClass]="{'ups-drawer-content' : vpSize.isLtMDVP}" -->
+                            <div id="progressTableContent" class="ups-drawer-content" #shipProgressContent>
+
+                                <div class="row" *ngIf="!packageStatusData.freight">
+                                    <div class="col-sm-6">
+                                        <div class="ups-form_group">
+                                            <fieldset class="ups-toggle_fieldset">
+                                                <legend class="ups-readerTxt">
+                                                    Table View
+                                                </legend>
+                                                <div class="ups-toggle ups-toggle_square">
+                                                    <input id="shipProgressTableViewOverview" name="shipProgressTableView" type="radio" class="ups-toggle_radio" value="0" [(ngModel)]="shipProgressTableView"
+                                                        (ngModelChange)="shipProgressTableViewChange()">
+                                                    <label for="shipProgressTableViewOverview" onclick="" class="ups-toggle_radio_label">Overview</label>
+
+                                                    <input id="shipProgressTableViewDetailed" name="shipProgressTableView" type="radio" class="ups-toggle_radio" value="1" [(ngModel)]="shipProgressTableView"
+                                                        (ngModelChange)="shipProgressTableViewChange()">
+                                                    <label for="shipProgressTableViewDetailed" onclick="" class="ups-toggle_radio_label">Detailed View</label>
+                                                    <div class="ups-toggle_switch_bg"></div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ups-table ups-progress_table"
+                                    [ngClass]="{'ups-progress_is_freight' : packageStatusData.freight}"
+                                    *ngIf="vpSize.isGtXSVP">
+                                    <div class="ups-progress_future_line"
+                                        [ngStyle]="{'opacity' : (!progressTblAni) ? '1' : '0'}"
+                                        *ngIf="!packageStatusData.freight"></div>
+                                    <div class="ups-progress_past_line"
+                                        [ngStyle]="{'opacity' : (!progressTblAni) ? '1' : '0'}"
+                                        *ngIf="!packageStatusData.freight"></div>
+                                    <!-- [attr.aria-busy]="(progressTblAni) ? 'true' : 'false'" -->
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="ups-progress_indicator_column"
+                                                    scope="col"
+                                                    *ngIf="!packageStatusData.freight">
+                                                    <span class="ups-readerTxt">Progress Indicator</span>
+                                                </th>
+                                                <th class="ups-progress_milestone_col"
+                                                    scope="col"
+                                                    *ngIf="!packageStatusData.freight">
+                                                    <span class="ups-readerTxt">Status</span>
+                                                </th>
+                                                <th class="ups-progress_date_col"
+                                                    scope="col">
+                                                    <!--<button class="ups-link ups-btn_has_icon"
+                                                        (click)="demoSortList()"
+                                                        [attr.aria-busy]="(progressTblAni) ? 'true' : 'false'">
+                                                        <span class="ups-readerTxt">Sort By </span>
+                                                        Date
+                                                        <span class="ups-readerTxt" *ngIf="milestoneSortOrder=='desc'">Descending</span>
+                                                        <span class="ups-readerTxt" *ngIf="milestoneSortOrder=='asc'">Ascending</span>
+                                                        <span class="icon ups-icon-chevrondown" aria-hidden="true" *ngIf="milestoneSortOrder=='desc'"></span>
+                                                        <span class="icon ups-icon-chevronup" aria-hidden="true" *ngIf="milestoneSortOrder=='asc'"></span>
+                                                    </button>-->
+                                                    Date
+                                                </th>
+                                                <th class="ups-progress_location_col"
+                                                    scope="col">
+                                                    Location
+                                                </th>
+                                                <th class="ups-progress_activity_col"
+                                                    scope="col">
+                                                    <span class="ups-progress_detail_reveal_txt" [ngClass]="{'ups-progress_detail_reveal_txt_shown' : shipProgressTableView == '1'}">Activity</span>
+                                                </th>
+                                                <th class="ups-progress_trailer_col"
+                                                    scope="col"
+                                                    *ngIf="packageStatusData.trailerShown">
+                                                    Trailer
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ng-container *ngFor="let milestone of (milestoneSortOrder=='asc') ? milestoneRows.slice().reverse() : milestoneRows; let t = index">
+                                                <tr class="ups-progress_row" [ngClass]="getProgressStatusRowClass(t)" [ngStyle]="{'transform' : (this.progressTblAni) ? 'translateY(' + getMilestoneRowTransform(t) + 'px)' : 'none'}"
+                                                *ngIf="(packageStatusData.freight && getProgressStatusIconClass(t) != getConstMilestoneFutureIcon() && milestone.visible) ||  (!packageStatusData.freight && milestone.visible)">
+                                                    <th scope="row"
+                                                        [ngClass]="getProgressStatusCellClass(t)"
+                                                        *ngIf="!packageStatusData.freight">
+                                                        <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneFutureIcon()">Future Event</span>
+                                                        <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon()">Current Event</span>
+                                                        <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestonePastIcon()">Past Event</span>
+                                                        <div [ngClass]="getProgressStatusIconClass(t)">
+                                                            <span *ngIf="getProgressStatusIconClass(t) == getConstMilestonePastIcon() || checkAltProgressStatusIcon(t)"
+                                                                class="icon ups-icon-check"
+                                                                aria-hidden="true"></span>
+                                                            <span *ngIf="getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon() && !checkAltProgressStatusIcon(t)"
+                                                                class="icon ups-icon-chevronup"
+                                                                aria-hidden="true"></span>
+                                                        </div>
+                                                    </th>
+                                                    <td *ngIf="!packageStatusData.freight">
+                                                        {{ milestone.name }}
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="milestone.rowData.date" class="ups-text_atomic ups-text_separate">{{ milestone.rowData.date }}</span>
+                                                        <span *ngIf="milestone.rowData.time" class="ups-text_atomic">{{ milestone.rowData.time }}</span>
+                                                        <span *ngIf="!milestone.rowData.date && !milestone.rowData.time">-</span>
+                                                        <!-- dash means that event has not happened -->
+                                                    </td>
+                                                    <td>
+                                                        {{ (milestone.rowData.location) ? milestone.rowData.location : '-' }}
+                                                        <!-- dash means that event has not happened -->
+                                                    </td>
+                                                    <td>
+                                                        <div [@slideOpen]="progressDetailsAni" (@slideOpen.start)="animationStarted($event)" (@slideOpen.done)="animationDone($event)"
+                                                            [ngClass]="{'ups-slide_open_collapsed' : !shipProgressTableViewDetailsShown}">
+                                                            <p class="ups-progress_detail_reveal_txt" [ngClass]="{'ups-progress_detail_reveal_txt_shown' : shipProgressTableView == '1'}"
+                                                                [attr.aria-hidden]="(shipProgressTableView == '1') ? 'false' : 'true'">{{ (milestone.rowData.activity) ? milestone.rowData.activity
+                                                                : '-' }}
+                                                                <button class="ups-link" (click)="proofDeliveryBtn()" *ngIf="milestone.rowData.pod">
+                                                                    Proof of Delivery
+                                                                    <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                                                    <span class="ups-readerTxt">Open the link in a new window</span>
+                                                                </button>
+                                                            </p>
+                                                            <!--<p class="ups-progress_detail_reveal_txt" [ngClass]="{'ups-progress_detail_reveal_txt_shown' : shipProgressTableView == '1'}" [attr.aria-hidden]="(shipProgressTableView == '1') ? 'false' : 'true'"
+                                                            *ngIf="milestone.rowData?.returnTrkNum">
+                                                                {{ milestone.rowData.activity }}
+                                                            </p>-->
+                                                            <p class="ups-progress_detail_reveal_txt" [ngClass]="{'ups-progress_detail_reveal_txt_shown' : shipProgressTableView == '1'}"
+                                                                [attr.aria-hidden]="(shipProgressTableView == '1') ? 'false' : 'true'"
+                                                                *ngIf="milestone.rowData?.returnTrkNum">
+                                                                Return Package:
+                                                                <a href="#" class="ups-link">
+                                                                    {{ milestone.rowData.returnTrkNum }}
+                                                                </a>
+                                                            </p>
+                                                            <!-- dash means that event has not happened -->
+                                                        </div>
+                                                    </td>
+                                                    <td class="ups-progress_table_trailer_cell"
+                                                        *ngIf="packageStatusData.trailerShown">
+                                                        {{ milestone.rowData.trailer }}
+                                                    </td>
+                                                </tr>
+                                                <ng-container *ngIf="milestone.rowData.addition_scans && !packageStatusData.freight">
+                                                    <tr *ngIf="shipProgressTableViewDetailsShown">
+                                                        <td scope="row">
+                                                            <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneFutureIcon()">Future Event</span>
+                                                            <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon()">Current Event</span>
+                                                            <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestonePastIcon()">Past Event</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="ups-readerTxt">{{ milestone.name }}</span>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <div [@slideOpen]="progressDetailsAni" (@slideOpen.start)="animationStarted($event)" (@slideOpen.done)="animationDone($event)"
+                                                                class="ups-progress_details_container">
+                                                                <div class="row ups-table_bs_row" *ngFor="let additionalMilestone of milestone.rowData.addition_scans">
+                                                                    <div class="col-xs-4 ups-table_bg_col_4">
+                                                                        <span class="ups-text_atomic ups-text_separate">{{ additionalMilestone.date }}</span>
+                                                                        <span class="ups-text_atomic">{{ additionalMilestone.time }}</span>
+                                                                    </div>
+                                                                    <div class="col-xs-4 ups-table_bg_col_4">
+                                                                        <span class="ups-readerTxt">Location</span>
+                                                                        {{ additionalMilestone.location }}
+                                                                    </div>
+                                                                    <div class="col-xs-4 ups-table_bg_col_4">
+                                                                        <span class="ups-readerTxt">Activity</span>
+                                                                        <span>{{ additionalMilestone.activity }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td *ngIf="packageStatusData.freight">
+                                                            <span class="ups-text_atomic ups-text_separate">{{ additionalMilestone.date }}</span>
+                                                            <span class="ups-text_atomic">{{ additionalMilestone.time }}</span>
+                                                        </td>
+                                                        <td *ngIf="packageStatusData.freight">
+                                                            {{ additionalMilestone.location }}
+                                                        </td>
+                                                        <td *ngIf="packageStatusData.freight">
+                                                            {{ additionalMilestone.activity }}
+                                                        </td>
+                                                        <td class="ups-progress_table_trailer_cell"
+                                                            *ngIf="packageStatusData.freight">
+                                                            {{ additionalMilestone.trailer }}
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                                <ng-container *ngIf="milestone.rowData.addition_scans && packageStatusData.freight">
+                                                    <ng-container *ngFor="let additionalMilestone of milestone.rowData.addition_scans">
+                                                        <tr *ngIf="shipProgressTableViewDetailsShown">
+                                                            <td *ngIf="packageStatusData.freight">
+                                                                <span class="ups-text_atomic ups-text_separate">{{ additionalMilestone.date }}</span>
+                                                                <span class="ups-text_atomic">{{ additionalMilestone.time }}</span>
+                                                            </td>
+                                                            <td *ngIf="packageStatusData.freight">
+                                                                {{ additionalMilestone.location }}
+                                                            </td>
+                                                            <td *ngIf="packageStatusData.freight">
+                                                                {{ additionalMilestone.activity }}
+                                                            </td>
+                                                            <td class="ups-progress_table_trailer_cell"
+                                                                *ngIf="packageStatusData.freight && packageStatusData.trailerShown">
+                                                                {{ additionalMilestone.trailer }}
+                                                            </td>
+                                                        </tr>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div *ngIf="vpSize.isLtSMVP">
+                                    <!--<div class="ups-group">
+                                        <button class="ups-cta ups-cta_secondary ups-btn_has_icon text-left"
+                                            (click)="demoSortList()">
+                                            Sort by Date
+                                            <span class="ups-readerTxt" *ngIf="milestoneSortOrder=='desc'">Descending</span>
+                                            <span class="ups-readerTxt" *ngIf="milestoneSortOrder=='asc'">Ascending</span>
+                                            <span class="icon ups-icon-chevrondown" aria-hidden="true" *ngIf="milestoneSortOrder=='desc'"></span>
+                                            <span class="icon ups-icon-chevronup" aria-hidden="true" *ngIf="milestoneSortOrder=='asc'"></span>
+                                        </button>
+
+                                    </div>-->
+
+                                    <div class="ups-progress_display" role="list"
+                                        [ngClass]="{'ups-progress_display_no_milestones' : packageStatusData.freight}">
+                                        <div class="ups-progress_future_line"
+                                            *ngIf="!packageStatusData.freight"></div>
+                                        <div class="ups-progress_past_line"
+                                            *ngIf="!packageStatusData.freight"></div>
+                                        <ng-container *ngFor="let milestone of (milestoneSortOrder=='asc') ? milestoneRows.slice().reverse() : milestoneRows; let t = index">
+                                            <!-- *ngIf="milestone.visible" -->
+                                            <div class="ups-progress_row" [ngClass]="getProgressStatusRowClass(t)" role="listitem" *ngIf="(packageStatusData.freight && getProgressStatusIconClass(t) != getConstMilestoneFutureIcon() && milestone.visible) ||  (!packageStatusData.freight && milestone.visible)">
+                                                <div class="ups-progress_icon"
+                                                    *ngIf="!packageStatusData.freight">
+                                                    <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneFutureIcon()">Future Event</span>
+                                                    <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon()">Current Event</span>
+                                                    <span class="ups-readerTxt" *ngIf="getProgressStatusIconClass(t) == getConstMilestonePastIcon()">Past Event</span>
+                                                    <div [ngClass]="getProgressStatusIconClass(t)">
+                                                        <span *ngIf="getProgressStatusIconClass(t) == getConstMilestonePastIcon() || checkAltProgressStatusIcon(t)" class="icon ups-icon-check"
+                                                            aria-hidden="true"></span>
+                                                        <span *ngIf="getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon() && !checkAltProgressStatusIcon(t)" class="icon ups-icon-chevronup"
+                                                            aria-hidden="true"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="ups-progress_content">
+                                                    <p class="ups-progress_current_row_heading"
+                                                        *ngIf="!packageStatusData.freight">
+                                                        <strong>{{ milestone.name }}</strong>
+                                                    </p>
+                                                    <div class="ups-group ups-group_condensed">
+                                                        <p *ngIf="milestone.rowData.date">
+                                                            <!--<strong>Date</strong>-->
+                                                            {{ milestone.rowData.date }}
+                                                            <span *ngIf="milestone.rowData.time">- {{ milestone.rowData.time }}</span>
+                                                        </p>
+                                                        <!-- shipProgressTableView == '1' && -->
+                                                        <!--<p *ngIf="milestone.rowData.time">-->
+                                                        <!--<strong>Local Time</strong>-->
+
+                                                        <!--</p>
+                                                        <div class="clearfix"></div>-->
+                                                        <!--  && (getProgressStatusIconClass(t) == getConstMilestoneCurrentIcon() || shipProgressTableView == '1') -->
+                                                        <p *ngIf="milestone.rowData.location">
+                                                            <!--<strong>Location</strong>-->
+                                                            {{ milestone.rowData.location }}
+                                                        </p>
+                                                        <div *ngIf="shipProgressTableView == '1' && milestone.rowData.activity" [showMore]="'ups-showmore_two_lines'">
+                                                            <!--<strong>Activity</strong>-->
+                                                            <p *ngIf="milestone.rowData?.returnTrkNum">
+                                                                {{ milestone.rowData.activity }}
+                                                            </p>
+                                                            <p *ngIf="milestone.rowData?.returnTrkNum">
+                                                                Return Package:
+                                                                <a href="#" class="ups-link">
+                                                                    {{ milestone.rowData.returnTrkNum }}
+                                                                </a>
+                                                            </p>
+                                                            <p *ngIf="!milestone.rowData?.returnTrkNum">
+                                                                {{ milestone.rowData.activity }}
+                                                                <button class="ups-link" (click)="proofDeliveryBtn()" *ngIf="milestone.rowData.pod">
+                                                                    Proof of Delivery
+                                                                    <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                                                    <span class="ups-readerTxt">Open the link in a new window</span>
+                                                                </button>
+                                                            </p>
+                                                            <p *ngIf="milestone.rowData?.trailer">
+                                                                Trailer:
+                                                                {{ milestone.rowData.trailer }}
+                                                            </p>
+                                                        </div>
+                                                        <!-- Nothing shows when event has not happened -->
+                                                    </div>
+                                                    <ng-container *ngIf="shipProgressTableView == '1' && milestone.rowData.addition_scans">
+                                                        <ng-container *ngFor="let additionalMilestone of milestone.rowData.addition_scans">
+                                                            <hr *ngIf="packageStatusData.freight">
+                                                            <div class="ups-group ups-group_condensed">
+                                                                <p>
+                                                                    <!--<strong>Date</strong>-->
+                                                                    {{ additionalMilestone.date }}
+                                                                    <span>- {{ additionalMilestone.time }}</span>
+                                                                </p>
+                                                                <!--<p>
+                                                                    <strong>Local Time</strong>
+                                                                    {{ additionalMilestone.time }}
+                                                                </p>-->
+                                                                <p>
+                                                                    <!--<strong>Location</strong>-->
+                                                                    {{ additionalMilestone.location }}
+                                                                </p>
+                                                                <p [showMore]="'ups-showmore_two_lines'">
+                                                                    <!--<strong>Activity</strong>-->
+                                                                    {{ additionalMilestone.activity }}
+                                                                </p>
+                                                                <p *ngIf="additionalMilestone?.trailer">
+                                                                    Trailer:
+                                                                    {{ additionalMilestone.trailer }}
+                                                                </p>
+                                                            </div>
+                                                        </ng-container>
+
+                                                        <!--<div class="ups-group ups-group_condensed">
+                                                            <p>
+                                                                <strong>Date:</strong>
+                                                                4/13/2017
+                                                            </p>
+                                                            <p>
+                                                                <strong>Local Time:</strong>
+                                                                1:17 P.M.
+                                                            </p>
+                                                            <p>
+                                                                <strong>Location:</strong>
+                                                                Atlanta, GA, United States
+                                                            </p>
+                                                            <p [showMore]="'ups-showmore_two_lines'">
+                                                                <strong>Activity:</strong>
+                                                                Arrival Scan
+                                                            </p>
+                                                        </div>
+                                                        <div class="ups-group ups-group_condensed">
+                                                            <p>
+                                                                <strong>Date:</strong>
+                                                                4/12/2017
+                                                            </p>
+                                                            <p>
+                                                                <strong>Local Time:</strong>
+                                                                9:46 A.M.
+                                                            </p>
+                                                            <p>
+                                                                <strong>Location:</strong>
+                                                                Portland, TN, United States
+                                                            </p>
+                                                            <p [showMore]="'ups-showmore_two_lines'">
+                                                                <strong>Activity:</strong>
+                                                                Departure Scan
+                                                            </p>
+                                                        </div>-->
+                                                    </ng-container>
+                                                    <hr>
+                                                </div>
+                                            </div>
+
+
+
+                                        </ng-container>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--
+                        ** Other Packages in shipment Drawer **
+                        -->
+                        <div class="ups-drawer ups-flat_drawer" upsDrawer [ngClass]="{'ups-drawer_list_item' : vpSize.isLtMDVP}">
+                            <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="multiPieceShipmentContent" data-opened="false"
+                                id="multiPieceShipmentBtn" (click)="txtAdjustSvc.recalculateAdjustments()">
+                                <span role="heading" aria-level="2">Other Packages in This Shipment</span>
+                                <span class="pull-right">
+                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                </span>
+                            </button>
+                            <div class="ups-drawer-content" id="multiPieceShipmentContent">
+                                <ups-tracking-additional-packages></ups-tracking-additional-packages>
+                            </div>
+                        </div>
+
+                        <div class="ups-drawer ups-flat_drawer" upsDrawer [ngClass]="{'ups-drawer_list_item' : vpSize.isLtMDVP}" *ngIf="demoFlightInfo">
+                            <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="flightInformationContent" data-opened="false"
+                                id="flightInformationBtn">
+                                <span role="heading" aria-level="2">Flight Information</span>
+                                <span class="pull-right">
+                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                </span>
+                            </button>
+                            <div class="ups-drawer-content" id="flightInformationContent">
+                                <div class="ups-scrollable_table_container">
+                                    <div class="ups-table ups-scrollable_table_container_inner">
+                                        <table class="ups-table_stripe">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">
+                                                        Status
+                                                    </th>
+                                                    <th scope="col">
+                                                        Flight
+                                                    </th>
+                                                    <th scope="col">
+                                                        Description
+                                                    </th>
+                                                    <th scope="col">
+                                                        Departure
+                                                    </th>
+                                                    <th scope="col">
+                                                        Arrival
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Status
+                                                    </td>
+                                                    <th scope="row">
+                                                        Flight #
+                                                    </th>
+                                                    <td>
+                                                        Description
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Status
+                                                    </td>
+                                                    <th scope="row">
+                                                        Flight #
+                                                    </th>
+                                                    <td>
+                                                        Description
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ups-drawer ups-flat_drawer" upsDrawer [ngClass]="{'ups-drawer_list_item' : vpSize.isLtMDVP}" *ngIf="demoVoyageInfo">
+                            <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="voyageInformationContent" data-opened="false"
+                                id="voyageInformationBtn">
+                                <span role="heading" aria-level="2">Voyage Information</span>
+                                <span class="pull-right">
+                                    <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                                </span>
+                            </button>
+                            <div class="ups-drawer-content" id="voyageInformationContent">
+                                <div class="ups-scrollable_table_container">
+                                    <div class="ups-table ups-scrollable_table_container_inner">
+                                        <table class="ups-table_stripe">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">
+                                                        Status
+                                                    </th>
+                                                    <th scope="col">
+                                                        Vessel
+                                                    </th>
+                                                    <th scope="col">
+                                                        Voyage
+                                                    </th>
+                                                    <th scope="col">
+                                                        Description
+                                                    </th>
+                                                    <th scope="col">
+                                                        Departure
+                                                    </th>
+                                                    <th scope="col">
+                                                        Arrival
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Status
+                                                    </td>
+                                                    <td>
+                                                        Vessel Name
+                                                    </td>
+                                                    <th scope="row">
+                                                        Voyage #
+                                                    </th>
+                                                    <td>
+                                                        Description
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Status
+                                                    </td>
+                                                    <td>
+                                                        Vessel Name
+                                                    </td>
+                                                    <th scope="row">
+                                                        Voyage #
+                                                    </th>
+                                                    <td>
+                                                        Description
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="ups-text_atomic">mm/dd/yyyy</span>
+                                                        <span class="ups-text_atomic">hh:mm A.M.</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="ups-drawer" upsDrawer [ngClass]="{'ups-drawer_list_item' : vpSize.isLtMDVP}">
+                            <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="multiPieceShipmentContent" data-opened="false">[00] Piece Shipment <span class="pull-right"><span aria-hidden="true" class="icon ups-icon-chevrondown"></span></span></button>
+                            <div class="ups-drawer-content" id="multiPieceShipmentContent">
+                                <div class="ups-group">
+                                    <p>Your multi-piece shipment contains more tracking results than can be displayed. If you frequently track multi-piece shipments, you should subscribe to <a href="#" class="ups-link">UPS Quantum View</a>.</p>
+                                </div>
+
+                                <ul class="ups-tracking_multi_package_display">
+                                    <li class="ups-tracking_multi_package_item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <a href="#" class="ups-link">1Z1234AA789012345678</a>
+                                                </p>
+                                                <p class="ups-tracking_multi_package_num">
+                                                    x of nnn
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="ups-tracking_icon_group">
+                                                    <div class="ups-tracking_status_icon ups-tracking_status_icon_unavailable">
+                                                        <span aria-hidden="true" class="ups-tracking_icon_square"></span>
+                                                    </div>
+                                                    <div class="ups-tracking_icon_content">
+                                                        <span class="ups-tracking_multi_package_status">
+                                                            <strong>Ready for UPS</strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p class="ups-form_label">
+                                                    <strong>Scheduled Delivery</strong>
+                                                </p>
+                                                <p>
+                                                    will calculate once UPS has possession
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ups-tracking_multi_package_item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <a href="#" class="ups-link">1Z1234AA789012345678</a>
+                                                </p>
+                                                <p class="ups-tracking_multi_package_num">
+                                                    x of nnn
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="ups-tracking_icon_group">
+                                                    <div class="ups-tracking_status_icon ups-tracking_status_icon_transit">
+                                                        <span aria-hidden="true" class="icon ups-icon-chevronright"></span>
+                                                    </div>
+                                                    <div class="ups-tracking_icon_content">
+                                                        <span class="ups-tracking_multi_package_status">
+                                                            <strong>On the way</strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p class="ups-form_label">
+                                                    <strong>Scheduled Delivery</strong>
+                                                </p>
+                                                <p>
+                                                    <span class="ups-text_atomic">Weekday mm/dd</span> <span class="ups-text_atomic">at hh:mm A.M./P.M.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ups-tracking_multi_package_item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <a href="#" class="ups-link">1Z1234AA789012345678</a>
+                                                </p>
+                                                <p class="ups-tracking_multi_package_num">
+                                                    x of nnn
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="ups-tracking_icon_group">
+                                                    <div class="ups-tracking_status_icon ups-tracking_status_icon_delivered">
+                                                        <span aria-hidden="true" class="icon ups-icon-checkcircle"></span>
+                                                    </div>
+                                                    <div class="ups-tracking_icon_content">
+                                                        <span class="ups-tracking_multi_package_status">
+                                                            <strong>Delivered</strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p class="ups-form_label">
+                                                    <strong>Delivered on</strong>
+                                                </p>
+                                                <p>
+                                                    <span class="ups-text_atomic">Friday 09/15</span> <span class="ups-text_atomic">at 12:05 P.M.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="ups-tracking_multi_package_item ups-tracking_multi_package_item_exception">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <a href="#" class="ups-link">1Z1234AA789012345678</a>
+                                                </p>
+                                                <p class="ups-tracking_multi_package_num">
+                                                    x of nnn
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="ups-tracking_icon_group">
+                                                    <div class="ups-tracking_status_icon ups-tracking_status_icon_exception">
+                                                        <span aria-hidden="true" class="icon ups-icon-alert"></span>
+                                                    </div>
+                                                    <div class="ups-tracking_icon_content">
+                                                        <p class="ups-tracking_multi_package_status">
+                                                            <strong>Attention Needed</strong>
+                                                        </p>
+                                                        <p [showMore]="'ups-showmore_two_lines'">
+                                                            Simplified status here. Simplified status here.
+                                                        </p>
+                                                        <button class="ups-link">Exception CTA</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p class="ups-form_label">
+                                                    <strong>Scheduled Delivery</strong>
+                                                </p>
+                                                <p>
+                                                    Please check back later for scheduled delivery.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li><li class="ups-tracking_multi_package_item">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <p>
+                                                    <a href="#" class="ups-link">1Z1234AA789012345678</a>
+                                                </p>
+                                                <p class="ups-tracking_multi_package_num">
+                                                    x of nnn
+                                                </p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="ups-tracking_icon_group">
+                                                    <div class="ups-tracking_status_icon ups-tracking_status_icon_delivered">
+                                                        <span aria-hidden="true" class="icon ups-icon-checkcircle"></span>
+                                                    </div>
+                                                    <div class="ups-tracking_icon_content">
+                                                        <span class="ups-tracking_multi_package_status">
+                                                            <strong>Delivered</strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p class="ups-form_label">
+                                                    <strong>Delivered on</strong>
+                                                </p>
+                                                <p>
+                                                    <span class="ups-text_atomic">Weekday mm/dd</span> <span class="ups-text_atomic">at hh:mm A.M./P.M.</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>-->
+
+
+                    </div>
+                </div>
+                <!--
+                ** Additional Info Aside **
+                -->
+                <div class="col-md-4">
+                    <!-- [ngClass]="{'ups-drawer_list_item ups-flat_drawer' : vpSize.isLtMDVP}" -->
+                    <div class="ups-drawer ups-drawer_list_item ups-flat_drawer" upsDrawer>
+                        <!--<h2 class="ups-module_header" *ngIf="vpSize.isGtSMVP">
+                            Additional Details
+                        </h2>-->
+                        <!-- *ngIf="vpSize.isLtMDVP" -->
+                        <button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="additionInformationContent" data-opened="false">
+                            <span role="heading" aria-level="2">Additional Details</span>
+                            <span class="pull-right">
+                                <span aria-hidden="true" class="icon ups-icon-chevrondown"></span>
+                            </span>
+                        </button>
+                        <!-- [ngClass]="{'ups-drawer-content' : vpSize.isLtMDVP}" [style.display]="{'block' : vpSize.isGtSMVP}" -->
+                        <div id="additionInformationContent" class="ups-drawer-content" #additionalInfoContent>
+                            <!-- [ngClass]="{'ups-list_box' : vpSize.isGtSMVP}" -->
+                            <div>
+                                <div class="ups-list_box_content">
+                                    <div class="ups-group">
+                                        <p class="ups-form_label">
+                                            Service
+                                        </p>
+                                        <div class="ups-group ups-group_condensed">
+                                            <p>
+                                                <a href="#" target="_blank" class="ups-link ups-new-window">
+                                                    UPS Service Name
+                                                    <span class="icon ups-icon-newwindow" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt">Open the link in a new window</span>
+                                                </a>
+                                            </p>
+                                            <p class="ups-indent">
+                                                with UPS Carbon Neutral
+                                                <span class="icon ups-icon-carbonneutral ups-icon_separate" aria-hidden="true"></span>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <div class="ups-group">
+                                        <p class="ups-form_label">
+                                            Weight
+                                        </p>
+                                        <p>
+                                            n.nn {{ '{' }}lbs/oz{{ '}' }}
+                                        </p>
+                                    </div>
+                                    <div class="ups-group ups-help_wrapper">
+                                        <p class="ups-form_label">
+                                            Postal Service Tracking ID
+                                        </p>
+                                        <p>
+                                            1234567890123456789012
+                                        </p>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed">
+                                        <p class="ups-form_label">
+                                            Alternate Tracking Number(s)
+                                        </p>
+                                        <p>
+                                            <a href="#" class="ups-link">1Z1234567890123456</a>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="ups-link">1Z1234567890123432</a>
+                                        </p>
+                                    </div>
+                                    <div class="ups-group ups-group_condensed" *ngIf="loggedin">
+                                        <p class="ups-form_label">
+                                            Reference Number(s)
+                                        </p>
+                                        <p>
+                                            Shipment reference number 1
+                                        </p>
+                                        <p>
+                                            Shipment reference number 2
+                                        </p>
+                                        <p>
+                                            Package reference number 1
+                                        </p>
+                                        <p>
+                                            Package reference number 2
+                                        </p>
+                                        <p>
+                                            Package reference number 3
+                                        </p>
+                                        <p>
+                                            Package reference number 4
+                                        </p>
+                                        <p>
+                                            Package reference number 5
+                                        </p>
+                                    </div>
+                                    <div class="ups-list_box_more" *ngIf="additionalInfoShowMore" [@slideOpen]="additionalInfoAni" (@slideOpen.start)="animationStarted($event)"
+                                        (@slideOpen.done)="animationDone($event)">
+                                        <div class="ups-group ups-help_wrapper" *ngIf="loggedin">
+                                            <p class="ups-form_label">
+                                                C.O.D.
+                                            </p>
+                                            <p>
+                                                nn.nn USD / [check/cash/money order]
+                                            </p>
+                                        </div>
+                                        <div class="ups-group ups-help_wrapper">
+                                            <p class="ups-form_label">
+                                                Shipped / Billed On
+                                            </p>
+                                            <p>
+                                                01/01/2010
+                                            </p>
+                                        </div>
+                                        <div class="ups-group ups-help_wrapper">
+                                            <p class="ups-form_label">
+                                                Placeholder Label
+                                            </p>
+                                            <p>
+                                                [Placeholder value]
+                                            </p>
+                                        </div>
+                                        <div class="ups-group ups-help_wrapper">
+                                            <p class="ups-form_label">
+                                                Other requested services
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    Commercial Invoice Removal
+                                                </li>
+                                                <li>
+                                                    Direct Delivery Only
+                                                </li>
+                                                <li>
+                                                    Hold at UPS Access Point&trade;
+                                                </li>
+                                                <li>
+                                                    Location Assured; Front door
+                                                </li>
+                                                <li>
+                                                    Package Release Code Required
+                                                </li>
+                                                <li>
+                                                    Placeholder service name
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="ups-list_box_show_all ups-btn_has_icon ups-link" (click)="additionalInfoShowMoreLess()" [attr.aria-expanded]="(additionalInfoShowMore) ? 'true' : 'false'"
+                                        *ngIf="vpSize.isGtSMVP">
+                                        <ng-container *ngIf="!additionalInfoShowMore">Show More</ng-container>
+                                        <ng-container *ngIf="additionalInfoShowMore">Show Less</ng-container>
+                                        <span class="icon" aria-hidden="true" [ngClass]="{ 'ups-icon-minus' : additionalInfoShowMore, 'ups-icon-plus' : !additionalInfoShowMore }"></span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--<button type="button" class="ups-drawer-btn" aria-expanded="false" aria-controls="multiPieceShipmentContent" data-opened="false">Additional Information <span class="pull-right"><span aria-hidden="true" class="icon ups-icon-chevrondown"></span></span></button>
+                        <div class="ups-drawer-content">
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Service Name
+                                </p>
+                                <p>
+                                    UPS Service Name
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    C.O.D.
+                                </p>
+                                <p>
+                                    nn.nn USD
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    C.O.D. Payment Method
+                                </p>
+                                <p>
+                                    Check
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Commercial Invoice Removal
+                                </p>
+                                <p>
+                                    Removed
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Direct Delivery Only
+                                </p>
+                                <p>
+                                    Yes
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Hold at UPS Access Point&trade;
+                                </p>
+                                <p>
+                                    Yes
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Location
+                                </p>
+                                <p>
+                                    Front Door
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Location Assured
+                                </p>
+                                <p>
+                                    Yes
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Package Release Code Required
+                                </p>
+                                <p>
+                                    Yes
+                                </p>
+                            </div>
+                            <div class="ups-group ups-help_wrapper">
+                                <p class="ups-form_label">
+                                    Postal Service Tracking ID
+                                </p>
+                                <div class="ups-help">
+                                    <button type="button" id="ups-postalServiceHelp" class="ups-help_link">
+                                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                        Help
+                                    </button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close">
+                                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum</p>
+                                    </div>
+                                </div>
+                                <p>
+                                    1234567890123456789012
+                                </p>
+                            </div>
+                            <div class="ups-group ups-group_condensed">
+                                <p class="ups-form_label">
+                                    Reference Number(s)
+                                </p>
+                                <p>
+                                    Shipment reference number 1
+                                </p>
+                                <p>
+                                    Shipment reference number 2
+                                </p>
+                                <p>
+                                    Package reference number 1
+                                </p>
+                                <p>
+                                    Package reference number 2
+                                </p>
+                                <p>
+                                    Package reference number 3
+                                </p>
+                                <p>
+                                    Package reference number 4
+                                </p>
+                                <p>
+                                    Package reference number 5
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Shipped/Billed On
+                                </p>
+                                <p>
+                                    01/01/2010
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Shipment Category
+                                </p>
+                                <p>
+                                    Package
+                                </p>
+                            </div>
+                            <div class="ups-group">
+                                <p class="ups-form_label">
+                                    Weight
+                                </p>
+                                <p>
+                                    n.nn {{ '{' }}lbs/oz{{ '}' }}
+                                </p>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ups-group ups-tracking_banner" *ngIf="vpSize.isGtXSVP">
+            <a href="#"><img src="assets/resources/images/NORDSTROM_10020820.png" alt="Affiliate Banner" class="ups-tracking_banner_img"></a>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!--
+** Demo Box **
+-->
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+        <div class="ups-cms-demo">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="demoPkgStatus" class="ups-form_label">Package Status</label>
+                        <div class="ups-input_wrapper ups-dropdown_wrapper">
+                            <select id="demoPkgStatus" class="ups-dropdown" [(ngModel)]="demoPkgStatus" (change)="demoPkgStatusChange()">
+                                <option value="1">
+                                    Unavailable
+                                </option>
+                                <option value="2">
+                                    Manifest Upload
+                                </option>
+                                <option value="3">
+                                    In UPS Possession
+                                </option>
+                                <option value="4">
+                                    In Transit
+                                </option>
+                                <option value="11">
+                                    In Transit (FGV or MI)
+                                </option>
+                                <option value="12">
+                                    In Transit (UPGF)
+                                </option>
+                                <option value="5">
+                                    Out for Delivery
+                                </option>
+                                <option value="6">
+                                    Delivered
+                                </option>
+                                <option value="7">
+                                    Exception
+                                </option>
+                                <option value="8">
+                                    Exception with Alert
+                                </option>
+                                <option value="9">
+                                    Return Created
+                                </option>
+                                <option value="10">
+                                    Access Point Pickup
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group" *ngIf="demoPkgStatus == '6'">
+                        <label for="demoPkgStatusDelivered" class="ups-form_label">Delivered State</label>
+                        <div class="ups-input_wrapper ups-dropdown_wrapper">
+                            <select id="demoPkgStatusDelivered" class="ups-dropdown" [(ngModel)]="demoPkgStatusDelivered">
+                                <option value="1">
+                                    Standard
+                                </option>
+                                <option value="3">
+                                    Signature Shown
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group" *ngIf="demoPkgStatus == '4' || demoPkgStatus == '10'">
+                        <label class="ups-lever" for="demoSpecInst" onclick="">
+                            <input class="ups-lever_checkbox" id="demoSpecInst" name="demoSpecInst" type="checkbox" [(ngModel)]="demoSpecInst">
+
+                            <div class="ups-lever_label_container">
+                                <strong class="ups-form_label ups-lever_label">
+                                    Special Instructions shown?
+                                </strong>
+                            </div>
+                            <span aria-hidden="true" class="ups-lever_switch">
+                                <span class="ups-lever_switch_yes">Yes</span>
+                                <span class="ups-lever_switch_bg"></span>
+                                <span class="ups-lever_switch_no">No</span>
+                            </span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="ups-form_group">
+                        <label class="ups-lever" for="demoInfoNotice" onclick="">
+                            <input class="ups-lever_checkbox" id="demoInfoNotice" name="demoInfoNotice" type="checkbox" [(ngModel)]="demoInfoNotice">
+
+                            <div class="ups-lever_label_container">
+                                <strong class="ups-form_label ups-lever_label">
+                                    Infonotice shown?
+                                </strong>
+                            </div>
+                            <span aria-hidden="true" class="ups-lever_switch">
+                                <span class="ups-lever_switch_yes">Yes</span>
+                                <span class="ups-lever_switch_bg"></span>
+                                <span class="ups-lever_switch_no">No</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ups-form_group">
+                <label class="ups-lever" for="demoVoyageInfo" onclick="">
+                    <input class="ups-lever_checkbox" id="demoVoyageInfo" name="demoVoyageInfo" type="checkbox" [(ngModel)]="demoVoyageInfo">
+
+                    <div class="ups-lever_label_container">
+                        <strong class="ups-form_label ups-lever_label">
+                            Voyage Info shown?
+                        </strong>
+                    </div>
+                    <span aria-hidden="true" class="ups-lever_switch">
+                        <span class="ups-lever_switch_yes">Yes</span>
+                        <span class="ups-lever_switch_bg"></span>
+                        <span class="ups-lever_switch_no">No</span>
+                    </span>
+                </label>
+            </div>
+
+            <div class="ups-form_group">
+                <label class="ups-lever" for="demoFlightInfo" onclick="">
+                    <input class="ups-lever_checkbox" id="demoFlightInfo" name="demoFlightInfo" type="checkbox" [(ngModel)]="demoFlightInfo">
+
+                    <div class="ups-lever_label_container">
+                        <strong class="ups-form_label ups-lever_label">
+                            Flight Info shown?
+                        </strong>
+                    </div>
+                    <span aria-hidden="true" class="ups-lever_switch">
+                        <span class="ups-lever_switch_yes">Yes</span>
+                        <span class="ups-lever_switch_bg"></span>
+                        <span class="ups-lever_switch_no">No</span>
+                    </span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    <strong>Shipment Progress</strong>
+                </p>
+                <div class="ups-cms-demo">
+                    FPO
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ups-card">
+                    <div class="ups-card_content">
+                        <p>
+                            <strong>Other Packages in this Shipment:</strong>
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#" class="ups-link">1Z3450S983559F33</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" class="ups-link">1Z3450S983559F33</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="#" class="ups-link">1Z3650S733159F38</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" class="ups-link">1Z3650S733159F38</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-card_header">
+                        <strong>Additional Information</strong>
+                    </div>
+                    <div class="ups-card_content">
+                        <p>
+                            <strong>Service:</strong> <a href="#" class="ups-link">UPS Ground</a>
+                        </p>
+                        <p>
+                            <strong>Category:</strong> Package
+                        </p>
+                        <p>
+                            <strong>Billed On:</strong> 08/02/2017
+                        </p>
+                        <p>
+                            <strong>Weight:</strong> 34.00 lbs
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+-->

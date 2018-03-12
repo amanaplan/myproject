@@ -1,0 +1,175 @@
+<!-- ************************************************************************************ -->
+<!-- W5 Manage Home Delivieres, Main                                                      -->
+<!-- ************************************************************************************ -->
+
+<div class="ups-widget ups-manage-deliveries ups-wrap ups-cont-stone60">
+   <div class="ups-wrap_inner">
+        <div class="ups-widget_header">
+            <h2>Manage Home Deliveries</h2>
+            {{#if this.help}}
+               <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span><span class="ups-helpicon-text">Help</span></button>
+            {{/if}}
+        </div>
+        <div class="ups-widget_panel">
+            {{#if this.help}}
+                <div class="ups-help_panel"><p>{{this.help}}</p></div>
+            {{/if}}
+            <div class="manage-deliveries_header clearfix ups-sm_hide">
+                <div class="clearfix">
+                    <h3>UPS My Choice<sup>&reg;</sup></h3>
+
+                    {{#each accounts}}
+                        <div class="package-total" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                            <div class="total-text">Your Packages</div>
+                            <div class="package-notification">
+                                <div>{{total}}</div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            {{#compare accounts.length ">" 1}}
+            <div class="manage-deliveries_accounts clearfix">
+                <label for="manage_account_select_view" class="ups-form_label">Pick a Delivery Address</label>
+                <div class="ups-dropdown_wrapper">
+                    <select id="manage_account_select_view" name="manage_account_filter" class="ups-dropdown">
+                        {{#each accounts}}
+                        <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            {{/compare}}
+            
+            {{#each accounts}}
+                {{#compare total ">" 3}}
+                    <div class="manage-deliveries_cta clearfix" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                        <a href="#see-all-shipments" class="ups-cta">See All Shipments</a>
+                    </div>
+                {{/compare}}
+            {{/each}}
+
+            {{#each accounts}}
+            <div class="manage-deliveries_packages ups-sm_show" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                {{#compare total "==" 0}}
+                    <div class="no-packages">
+                        <div class="title">No Upcoming Deliveries</div>
+                        There are no deliveries scheduled.
+                    </div>
+                {{/compare}}
+
+                {{#compare total ">" 0}}
+                    <div class="package-total" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                        <div class="total-text">Your Packages</div>
+                        <div class="package-notification">
+                            <div>{{total}}</div>
+                        </div>
+                    </div>
+
+                <!-- COME BACK TO THIS -->
+                    <div class="all-packages">
+                        <div class="package-feed">
+                            {{#each days}}{{#each packages}}
+                            <div class="package-info">
+                                <div class="delivery-date">{{../day}}, {{../date}}</div>
+                                <div class="delivery-time">10:00 AM - 2:00 PM</div>
+                                <div class="delivery-carrier">Amazon</div>
+                                <div class="delivery-tracking-num"><a class="ups-link">1ZA652F40402733762</a></div>
+                                {{#if @first}}
+                                <div class="delivery-status">Delivered</div>
+                                {{else}}
+                                    {{#if @last}}
+                                    <div class="delivery-status">Order Processed: </div>
+                                    <div class="delivery-status">Ready for UPS</div>
+                                    <div class="delivery-change"><a href="#changeDel" tabindex="0" class="ups-link">Change Delivery</a></div>
+                                    {{else}}
+                                    <div class="delivery-status">In Transit</div>
+                                    <div class="delivery-change"><a href="#changeDel" tabindex="0" class="ups-link">Change Delivery</a></div>
+                                    {{/if}}
+                                {{/if}}
+                            </div>
+                            {{/each}}{{/each}}
+                        </div>
+                    </div>
+                {{/compare}}
+            </div>
+            {{/each}}
+
+            {{#each accounts}}
+            <div class="manage-deliveries_calendar ups-sm_hide" data-account="{{name}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                <div class="calendar-dates row" role="tablist" id="manage-deliveries_calendar-tab{{@index}}" >
+                    {{#each days}}
+                    <div class="col-date" role="tab">
+                        <div class="date_toggle" data-day="{{day}}" data-active="{{#if @first}}true{{else}}false{{/if}}" tabindex="0">
+                            <div class="date" aria-label="{{fullDay}}"><span aria-hidden="true">{{day}}</span></div>
+                            {{#compare total ">" 0}}
+                            <div class="package-notification">
+                                <div>{{total}}</div>
+                                <span class="ups-readerTxt" aria-label="deliveries on this day"></span>
+                            </div>
+                            {{/compare}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="calendar-package-info">
+                    {{#each days}}
+                        {{#if packages}}
+                        <div class="package-info" data-day="{{day}}" data-active="{{#if @first}}true{{else}}false{{/if}}" role="tabpanel" aria-labelledby="manage-deliveries_calendar-tab{{@index}}">
+                            <table class="ups-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Delivery Date/Time</th>
+                                        <th scope="col">Ship From/Tracking #</th>
+                                        <th scope="col" class="col-status">Status/Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each packages}}
+                                    <tr>
+                                        <td>
+                                            <div class="delivery-date">{{../day}}, {{../date}}</div>
+                                            <div class="delivery-time">10:00 AM - 2:00 PM</div>
+                                        </td>
+                                        <td>
+                                            <div class="delivery-carrier">Amazon</div>
+                                            <div class="delivery-tracking-num"><a class="ups-link" tabIndex="0">1ZA652F40402733762</a></div>
+                                        </td>
+                                        <td>
+                                            {{#if @first}}
+                                            <div class="delivery-status">Delivered</div>
+                                            {{else}}
+                                                {{#if @last}}
+                                                <div class="delivery-status">Order Processed: </div>
+                                                <div class="delivery-status">Ready for UPS</div>
+                                                <div class="delivery-change"><a href="#changeDel" tabindex="0" class="ups-link">Change Delivery</a></div>
+                                                {{else}}
+                                                <div class="delivery-status">In Transit</div>
+                                                <div class="delivery-change"><a href="#changeDel" tabindex="0" class="ups-link">Change Delivery</a></div>
+                                                {{/if}}
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        {{else}}
+                        <div class="package-info no-deliveries-container" data-day="{{day}}" data-active="{{#if @first}}true{{else}}false{{/if}}">
+                            <div class="no-deliveries">
+                                <span class="info-date">{{day}}, {{date}}</span> There are no deliveries scheduled for today
+                            </div>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+        <!-- @end .ups-widget_panel -->
+   </div>
+</div>
+<!-- @end .ups-widget -->

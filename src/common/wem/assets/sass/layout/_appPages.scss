@@ -1,0 +1,126 @@
+// ----------------------------------------------------
+// APPLICATION PAGES
+// ----------------------------------------------------
+
+
+body.ups-appPage {
+    //full width container should be centered, not aligned the shield
+    //max width 1116 app content
+    //app should never get more than 970px but can use max width 1116px
+    //min width - 970px
+    //but always keep margin with shield in breakpoints
+
+
+    .container-fluid.iw_section {
+        .row.iw_row {
+            //full width
+            #ups-fw_legacy_app_wrap {
+                overflow-x: auto;
+
+                @media #{$media-small} {
+                    .btn {
+                        width: auto; //not 100%
+                    }
+                }
+
+                .ups-fw_legacy_app_inner {
+                    // margin: 0 auto;
+                    //padding: 0 60px;
+                    //max-width: 1116px;
+                    //min-width: 970px;
+
+                    //@media #{$media-small} {
+                    //    padding: 0 20px;
+                    //}
+
+                    @media #{$media-xlarge} {
+                        margin: 0 auto;
+                    }
+                }
+
+                #main {
+                    width: 100%;
+                    padding: 0;
+                    margin: 0 auto;
+                    max-width: 1116px;
+                    position: relative;
+                    float: none;
+                    display: block;
+                }
+            }
+
+            //right rail
+            #ups-rr-legacy_app_container {
+                overflow-x: auto;
+
+                .row.iw_row {
+                    padding: 0 60px;
+                    min-width: 1116px;
+
+                    .iw_columns.col-lg-8 {
+                        width: 796px;
+
+                        #ups-rr_legacy_app_wrap {
+                            max-width: 796px;
+
+                            .ups-rr_legacy_app_inner {
+                                width: 796px;
+                                min-width: 796px;
+                                max-width: 796px;
+                                padding-right: 10px;
+                                padding-left: 0;
+                                float: none;
+
+
+                            }
+                        }
+                    }
+
+                    .iw_columns.col-lg-4 {
+                        width: 100%;
+
+                        .iw_component {
+                            max-width: 320px;
+                            min-width: 200px;
+                            width:100%;
+                            float: $opposite-direction;
+                        }
+
+                    }
+
+                    @media #{$media-medium} {
+                        display: table;
+
+                        //right rail
+                        .iw_columns.col-lg-8 {
+                            display: table-cell;
+                        }
+
+                        .iw_columns.col-lg-4 {
+                            display: table-cell;
+                            padding: 0;
+                        }
+
+                    }
+
+                    @media #{$media-small} {
+                        padding: 0 20px;
+                        min-width: 1036px;
+
+                        .iw_columns.col-lg-4 {
+                            padding: 0;
+                        }
+
+                        .btn {
+                            width: auto; //not 100%
+                        }
+                    }
+                }//end right rail row.iw_row
+
+
+
+            }//end .iw_columns.col-lg-12
+
+        }//row.iw_row in container fluid
+    }
+}

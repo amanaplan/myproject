@@ -1,0 +1,114 @@
+// ----------------------------------------------------
+// CAROUSEL - THUMBNAILS
+// ----------------------------------------------------
+
+.ups-carousel {
+    .ups-carousel-hasThumbs {
+
+        .slick-dots {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0 60px;
+            width: 100%;
+            background: $black_s3;
+            background: rgba($black_s3, 0.9);
+            border-top: 1px solid $white;
+            border-bottom: 1px solid $white;
+
+            li {
+                &.slick-active {
+                    button {
+                        color: $ups_brown;
+
+                        img {
+                            -webkit-filter: grayscale(0);
+                            filter: grayscale(0);
+                        }
+                    }
+                }
+            }
+
+            button {
+                float: $default-float;
+                width: 33.3333%;
+                margin: 0;
+                border-radius: 0;
+                border: 0;
+                background: none;
+                height: 84px;
+                position: relative;
+                text-align: $default-float;
+                border-#{$opposite-direction}: 1px solid $white;
+                padding: 10px 100px;
+                padding-#{$opposite-direction}: 15px;
+                font-size: 14px;
+                line-height: 1.2;
+                font-weight: normal;
+
+                &:first-child {
+                    border-#{$default-float}: 1px solid $white;
+                }
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    #{$default-float}: 0;
+                    border-#{$opposite-direction}: 1px solid $white;
+                    -webkit-filter: grayscale(1);
+                    filter: grayscale(1);
+                }
+            }
+        }
+
+        @media #{$media-small} {
+            .slick-dots {
+                // position: static;
+                // width: 100%;
+                // padding: 19px 60px;
+                // margin-bottom: 15px;
+                border: none;
+                background: none;
+                text-align: center;
+
+                bottom: auto;
+                width: 50%;
+                left: 25%;
+                right: 25%;
+                padding: 0;
+
+                li {
+                    &.slick-active {
+                        button {
+                            color: $ups_gold;
+                        }
+                    }
+                }
+
+                button {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: 12px;
+                    // border: 2px solid $black_s1;
+                    border: 2px solid $white;
+                    margin: 0 10px;
+                    padding: 0;
+                    line-height: 1;
+                    font-size: 0.5em;
+                    text-align: center;
+                    // background: $black_s1;
+                    background: $white;
+                    // color: $black_s1;
+                    color: $white;
+                    float: none;
+                    display: inline-block;
+
+                    &:first-child {
+                        // border-#{$default-float}: 2px solid $black_s1;
+                    }
+                }
+            }
+        }
+
+    }
+}

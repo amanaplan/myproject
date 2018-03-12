@@ -1,0 +1,1100 @@
+---
+title: Legacy Pickup
+dir: ltr
+lang: en
+layout: legacy.hbs
+appCSS: pickUp_freight
+app: true
+original: true
+---
+
+{{> M14_breadcrumb}}
+
+{{> M07_page_title}}
+
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+    
+      <table id="ccGloBdy" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+    
+    <td id="ccCntMod">
+		
+		
+		<!-- SearchBodyStart -->
+
+
+<SCRIPT LANGUAGE="JavaScript1.2" TYPE="text/javascript">
+    $(function(){
+	   $('#addDetailModalDialog').dialog({
+	        autoOpen: false,
+	        width: 630,	        
+	        resizable: false,
+	        modal: true,	        
+	        dialogClass:'modal',
+	        overlay: { opacity: 0.6, background: 'white' },
+	        closeOnEscape: false,    open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); } 
+	    });
+    });
+</SCRIPT>
+
+<div style="display:none">
+	<div id="addDetailModalDialog" class="appLvl mod modal dialog">
+			<div class="appHead clearfix">
+				<h2  id="addDetailModalDialogHeader"></h2>
+				<ul>
+					<li><input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon"></li>
+				</ul> 
+			</div>
+
+			<div class="appBody">
+				<p id="addDetailModalDialogErrMsg" class="error"></p>
+				<p id="addDetailModalDialogMsg"></p>
+				
+				
+				    
+				
+
+				<div class="secLvl seccol8 marginBegin">
+					<fieldset>
+					<legend></legend>
+						<dl>
+							<dt><label id="addDetailModalDialogContactNameLbl"></label></dt>
+							<dd><input type="text" name="aDContact" id="addDetailModalDialogContactName" maxlength="35"></dd>
+							<dt><label id="addDetailModalDialogCompanyLbl"></label></dt>
+							<dd><input type="text" name="aDCompany" id="addDetailModalDialogCompany" maxlength="35"></dd>
+							<dt><label id="addDetailModalDialogAddressLine1Lbl"></label></dt>
+							<dd><input type="text" name="aDAddress1" id="addDetailModalDialogAddressLine1" maxlength="35"></dd>
+							<dt><label id="addDetailModalDialogCityLbl"></label></dt>
+							<dd><input type="text" name="aDCity" id="addDetailModalDialogCity" maxlength="30"></dd>
+						</dl>
+					</fieldset>
+				</div>
+				
+				<div class="secLvl seccol8 marginEnd">
+					<fieldset>
+					<legend></legend>									
+						
+						<div class="clearfix">
+							<dl class="flexFirst">		
+								<dt><label id="addDetailModalDialogTelephoneLbl"></label></dt>
+									<dd><input type="text" name="aDPhone" id="addDetailModalDialogTelephone" maxlength="15"></dd>
+							</dl>
+							<dl class="flexAfter indent">
+								<dt><label id="addDetailModalDialogExtLbl"></label></dt>
+									<dd><input name="aDPhoneExt" type="text" size="5" id="addDetailModalDialogExt" maxlength="4"></dd>
+							</dl>
+						</div>
+								
+						<div style="clear:both"></div>
+								
+						<dl class="clearfix">		
+							<dt><label id="addDetailModalDialogZipLbl"></label></dt>
+								<dd><input type="text" name="aDZip" id="addDetailModalDialogZip" value="" maxlength="10"></dd>
+							<dt><label id="addDetailModalDialogCountryLbl"></label></dt>
+								<dd>	
+									<select id="addDetailModalDialogCountry" name="aDCountry" class="modSelSmall" value="">
+										<option value="PR">PR</option><option value="CA">CA</option><option value="US">US</option><option value="MX">MX</option></select> 
+									</select>							
+								</dd>							
+						</dl>
+					</fieldset>
+				</div>
+					
+				<div style="clear:both;"></div>
+				
+			</div>                              
+
+			<div class="appFooter">
+				<div class="btnBar alignCenter">
+					<input id="addDetailModalDialogOk" type="button" class="btn">					
+				</div>
+			</div>
+		</div>
+</div>
+
+<SCRIPT LANGUAGE="JavaScript1.2" TYPE="text/javascript">
+    $(function(){
+	   $('#comfirmationModalDialog').dialog({
+	        autoOpen: false,
+	        width: 470,
+	        //height: 200,
+	        resizable: false,
+	        modal: true,
+	        bgiframe:true,
+	        dialogClass:'modal',
+	        overlay: { opacity: 0.6, background: 'white' },
+	        closeOnEscape: false,    open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }
+	    });
+            $('#comfirmationModalDialogNo').click(function(e){
+                $('#comfirmationModalDialog').dialog('close');
+            });
+    });
+</SCRIPT>
+<div style="display:none">
+    <div id="comfirmationModalDialog" class="appLvl mod modal dialog">
+        <div class="appHead clearfix">
+            <h2 id="comfirmationModalDialogHeader"></h2>
+            <ul>
+				<li><input id="confmodalClose" type="button" title="Close" class="btnlnkL closeIcon"></li>
+			</ul>            
+        </div>
+        <div class="appBody">
+            <div class="modContent">
+            	<p id="comfirmationModalDialogError" class="error"></p>
+                <p id="comfirmationModalDialogMsg" class="dialogMsg"></p>
+            </div>
+        </div>
+        <div class="appFooter">
+            <div class="btnBar">
+                <div class="alignCenter">
+                    <input id="comfirmationModalDialogYes" type="button" class="btn"/>
+                    <input id="comfirmationModalDialogNo" type="button" class="btn"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<BODY onload="initialize();">
+
+
+
+<script language="JavaScript1.2" type="text/javascript">
+
+var rowNum;
+var isPOM = false;
+var reqName;
+
+function initialize(){
+	initializeAdditionalDetailsDialog();
+	toggleByPOM();
+	submitSearchCommodity('null', 
+					'null', 
+					'null', 
+					'PICKUP_DATE');
+}
+
+function submitSearchCommodity(callingPage, maxCommoditiesAllowed, timeout, focusInput)
+{
+		if (timeout=='true'){
+		}else if(callingPage=='SEARCH_COMMODITIES')
+		{
+		    	var form='standAlonePickupRequest';
+	                document.standAlonePickupRequest.selected.value="StandAlonePickupRequestCommoditySearchAction";
+		   	dml=document.forms[form];
+			popWin1(maxCommoditiesAllowed);
+		}else if (callingPage=='SEARCH_HISTORY'){
+			popWin2('toolbar=0,scrollbars=1,location=0,status=0,menubars=0,resizable=0,width=586,height=475');
+	
+		}else if (focusInput=='PICKUP_DATE') {
+			document.standAlonePickupRequest.PICKUP_DATE.focus();
+		}
+		else if (focusInput=='CONTACT_AND_REQUESTER_SAME'){
+		}
+		else if (focusInput=='ADDITIONAL_ROWS'){
+			document.standAlonePickupRequest.rowsToDisplay.focus();
+		}
+		else if (focusInput=='pieces'){
+			document.standAlonePickupRequest.pieces0.focus();
+		}
+	
+}
+
+function popWin1(numCommodities)
+{
+	if (document.all) {
+		xMax = screen.width, yMax = screen.height;
+	} else {
+		if (document.layers) {
+			xMax = window.outerWidth, yMax = window.outerHeight;
+		} else {
+			xMax = 640, yMax=480;
+		}
+	}
+	var xOffset = (xMax - 586)/2, yOffset = (yMax - 700)/2;
+	var form='standAlonePickupRequest';
+	dml=document.forms[form];
+	if (window.showModalDialog) {
+		var preference1 = 'dialogHeight:475px;dialogWidth:595px;dialogLeft:'+xOffset+'px;dialogTop'+yOffset+
+							'px;resizable:no;status:no;scroll:yes;help:no;maximize:no;minimize:no;';
+		com_ups_uifs_win1 = window.showModalDialog('/uifs/search_commodity?allowedNumCommodities='+numCommodities,
+							"window1",preference1);
+		dml.action = "frpkup?client=uifspkup";
+        	dml.selected.value="StandAlonePickupRequestCommoditySearchAction";
+        	dml.submit();
+	} else {
+
+		var thePreference2 = 'toolbar=0,scrollbars=1,location=0,status=0,menubars=0,resizable=0,width=595,height=475';
+		thePreference2 = thePreference2 + ',screenX='+xOffset+',screenY='+yOffset+',top='+yOffset+',left='+xOffset+',modal=yes';
+		com_ups_uifs_win1 = window.open('/uifs/search_commodity?allowedNumCommodities='+numCommodities,
+							'window1', thePreference2);
+	}
+
+}
+
+function popSearchHistory()
+ {
+	document.standAlonePickupRequest.selected.value="standAlonePickupRequestHistorySearchAction";
+        document.standAlonePickupRequest.submit();
+ }
+
+
+ function popWin2(thePreference)
+{
+   if (document.all) {
+      xMax = screen.width, yMax = screen.height;
+   } else {
+      if (document.layers) {
+         xMax = window.outerWidth, yMax = window.outerHeight;
+      } else {
+         xMax = 640, yMax=480;
+      }
+   }
+   var xOffset = (xMax - 586)/2, yOffset = (yMax - 700)/2;
+   thePreference = thePreference + ',screenX='+xOffset+',screenY='+yOffset+',top='+yOffset+',left='+xOffset;
+   com_ups_uifs_win2 = window.open('/uifs/viewHistoryForPickup?client=uifspkup', 'window1', thePreference);
+}
+
+function selectOnChange(val)
+ {
+     document.standAlonePickupRequest.showRequesterAddress.value=val;
+     document.standAlonePickupRequest.selected.value="standAlonePickupRequestRedisplayAction";
+     document.standAlonePickupRequest.submit();
+ }
+
+function disableCheckBoxes()
+ {
+     document.standAlonePickupRequest.enableCheckBoxes.value="TRUE";
+ }
+
+function submittingRequest(val)
+{
+	if (document.standAlonePickupRequest.submitRequest.value == "FALSE"){
+     		document.standAlonePickupRequest.submitRequest.value="TRUE";
+     		document.standAlonePickupRequest.selected.value=val;
+     		document.standAlonePickupRequest.submit();
+	}
+
+}
+
+function submitOnce(){
+	if (document.standAlonePickupRequest.submitRequest.value == "FALSE"){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function additionalDetailsClicked(rowNumber){	
+	rowNum = rowNumber;
+	setupAdditionalDetailsDialog();
+	$('#addDetailModalDialog').dialog('open');
+}
+
+function setupAdditionalDetailsDialog(){
+	var contactId = "input[name=aDContact" + rowNum + "]";	
+	var companyId = "input[name=aDCompany" + rowNum + "]";
+	var addressId = "input[name=aDAddress1" + rowNum + "]";
+	var cityId = "input[name=aDCity" + rowNum + "]";
+	var phoneId = "input[name=aDPhone" + rowNum + "]";
+	var extId = "input[name=aDPhoneExt" + rowNum + "]";
+	var zipId = "input[name=aDZip" + rowNum + "]";
+	var countryId = "input[name=aDCountry" + rowNum + "]";
+	
+	$('#addDetailModalDialogError').html("");		
+	$('#addDetailModalDialogContactName').val($(contactId).val());	
+	$('#addDetailModalDialogCompany').val($(companyId).val());	
+	$('#addDetailModalDialogAddressLine1').val($(addressId).val());	
+	$('#addDetailModalDialogCity').val($(cityId).val());	
+	$('#addDetailModalDialogTelephone').val($(phoneId).val());	
+	//$('#addDetailModalDialogExtLbl').val($(extId).val());	
+	$('#addDetailModalDialogExt').val($(extId).val());
+
+	var zipInput = $("input[name=postalCode" + rowNum + "]").val();
+	if(zipInput != ""){
+		$('#addDetailModalDialogZip').val(zipInput );
+	}
+	else{
+		$('#addDetailModalDialogZip').val($(zipId).val());
+	}
+
+	var countrySelection = getSelectedCountryOptionByName("destinationCountryCode", rowNum);	
+	if(countrySelection != ""){
+		$('#addDetailModalDialogCountry').val(countrySelection);
+	}
+	else{
+		$('#addDetailModalDialogCountry').val($(countryId).val());
+	}
+}
+
+function getSelectedCountryOptionByName(countryListName, row){
+	var selector = "select[name=" + countryListName + row + "] :selected";
+	return $(selector).text();
+}
+
+function getSelectedCountryOptionById(countryListId, row){
+	//var selector = "#" + countryListId + row + " :selected";
+	var selector = "#" + countryListId + " :selected";
+	return $(selector).text();
+}
+
+function initializeAdditionalDetailsDialog(){
+	$('#addDetailModalDialogHeader').html("Enter Additional Destination Detail");
+	$('#addDetailModalDialogMsg').html('Please enter additional destination detail.  Fields are optional.');
+	$('#addDetailModalDialogContactNameLbl').html('Contact Name:');
+	$('#addDetailModalDialogCompanyLbl').html('Company or Name:');
+	$('#addDetailModalDialogAddressLine1Lbl').html('Address Line 1:');
+	$('#addDetailModalDialogCityLbl').html('City:');
+	$('#addDetailModalDialogTelephoneLbl').html('Telephone:');
+	$('#addDetailModalDialogExtLbl').html('Ext.:');
+	$('#addDetailModalDialogZipLbl').html('Zip/Postal Code:');
+	$('#addDetailModalDialogCountryLbl').html('Country:');
+
+	$('#addDetailModalDialogOk').attr("value", "OK");   
+	$('#addDetailModalDialogOk').click(function(e){
+		storeAddDetail();
+		$('#addDetailModalDialog').dialog('close');
+	});
+	
+	$('#modalClose').click(function(e){
+		$('#addDetailModalDialog').dialog('close');
+	});
+	
+}
+
+function storeAddDetail(){
+	var contactId = "input[name=aDContact" + rowNum + "]";	
+	var companyId = "input[name=aDCompany" + rowNum + "]";
+	var addressId = "input[name=aDAddress1" + rowNum + "]";
+	var cityId = "input[name=aDCity" + rowNum + "]";
+	var phoneId = "input[name=aDPhone" + rowNum + "]";
+	var extId = "input[name=aDPhoneExt" + rowNum + "]";
+	var zipId = "input[name=aDZip" + rowNum + "]";
+	var topLevelZipId = "input[name=postalCode" + rowNum + "]";
+	var countryId = "input[name=aDCountry" + rowNum + "]";
+	//var topLevelCountryId = "input[name=destinationCountryCode" + rowNum + "]";
+	var topLevelCountryId = "select[name=destinationCountryCode" + rowNum + "]";
+	
+	
+	$(contactId).val($('#addDetailModalDialogContactName').val());	
+	$(companyId).val($('#addDetailModalDialogCompany').val());
+	$(addressId).val($('#addDetailModalDialogAddressLine1').val());
+	$(cityId).val($('#addDetailModalDialogCity').val());
+	$(phoneId).val($('#addDetailModalDialogTelephone').val());
+	$(extId).val($('#addDetailModalDialogExt').val());
+	$(zipId).val($('#addDetailModalDialogZip').val());
+	$(topLevelZipId).val($('#addDetailModalDialogZip').val());
+	$(countryId).val($('#addDetailModalDialogCountry').val());
+	$(topLevelCountryId).val(getSelectedCountryOptionById('addDetailModalDialogCountry', rowNum));
+	
+		
+}
+
+function pomAccessorialClicked(){
+	toggleByPOM();
+}
+
+function toggleByPOM(){
+	isPOM = $('#pomCheckBox').is(':checked');
+	if(!isPOM){
+		isPOM = true;
+		$(".nonPOMCol").show();
+		$("#endOfTableLine").attr("colspan",8);
+		$("#addRowsRow").attr("colspan",7);
+		$("#step-6").show();
+		reqName = $("#rName").val();
+        if(reqName.length>22){
+		$("#rName").val(reqName.substring(0,21));
+		}
+		$("#rName").attr("maxlength",22);
+	}
+	else{
+		isPOM = false;
+		$(".nonPOMCol").hide();
+		$("#endOfTableLine").attr("colspan",5);
+		$("#addRowsRow").attr("colspan",4);
+		$("#step-6").hide();
+		$("#rName").attr("maxlength",35);
+	}
+}
+
+function showButtonClicked(){
+	$("#optionsShowBtn").hide();
+	$("#optionsHideBtn").show();
+	$("#optionsDiv").show();
+}
+
+function hideButtonClicked(){
+	$("#optionsShowBtn").show();
+	$("#optionsHideBtn").hide();
+	$("#optionsDiv").hide();
+}
+
+function cancelClicked(){
+	setupCancelDialogConfirmation();
+	$('#comfirmationModalDialog').dialog('open');
+	
+}
+
+function setupCancelDialogConfirmation(){
+	//setup Comfirm Dialog
+    $('#comfirmationModalDialogHeader').html("UPS Internet Freight Shipping");
+    $('#comfirmationModalDialogError').html(">>>Are you sure you want to cancel the ground freight pickup request?");
+    $('#comfirmationModalDialogMsg').html("Select <strong>Yes</strong> to cancel the request, or <strong>No</strong> to quit this action and close this dialog.");
+    $('#comfirmationModalDialogYes').attr("value", "Yes");
+    $('#comfirmationModalDialogNo').attr("value", "No");
+    $('#comfirmationModalDialogYes').click(function(e){
+    	document.standAlonePickupRequest.pickupHistoryRadioGroup.value = 'null';
+        document.standAlonePickupRequest.action="/uifs/frpkup/cancel?loc=en_US";
+        document.standAlonePickupRequest.submit();
+    });
+    
+    $('#confmodalClose').click(function(e){
+		$('#comfirmationModalDialog').dialog('close');
+	});
+}
+
+</script>
+
+
+
+
+
+<form action="/frpkup?loc=en_US" onsubmit="return submitOnce()" METHOD="post" name="standAlonePickupRequest" id="standAlonePickupRequest"  >
+
+<input type="image" name="standAlonePickupRequestNext_img"  height="1" alt="" width="1" src="https://www.ups.com/img/1.gif" border="0">
+<input type="hidden" name="selected" value="" >
+<input type="hidden" name="showRequesterAddress" value="true" >
+<input type="hidden" name="addressBookKey" value="" >
+<input type="hidden" name="enableCheckBoxes" value="FALSE" >
+<input type="hidden" name="submitRequest" value="FALSE" >
+<input type="hidden" name="current_page" value="StandAlonePickupRequestJSP">
+
+
+
+  <div class="pg-head">Schedule a Freight Pickup</div>
+
+  <ul id="subTab">
+	<li class="tab-off"><a href="javascript:confirmGoToIPA(document.standAlonePickupRequest)">Package</a></li>
+    <li class="tab-on">Freight<input type="image" name="FreightStartDetailNext_button" height="1" alt="" width="1" src="https://www.ups.com/img/1.gif" border="0"></li>
+ </ul>
+ 
+ <div style="clear:both;"></div>
+ 
+			<table width="566" border="0" cellpadding="0" cellspacing="0" class="tab">
+				<tr>
+					<th>
+						<div class="head-colFull">
+							<h2>Enter Freight Pickup Information</h2>
+							<ul>
+								<li class="helpmini"><a href="javascript:helpModLvl('/content/{0}/{1}/shipping/create/ltl_pickup_request_help.html')">Help</a></li>
+							</ul>
+							<div style="clear: both;"></div>
+						</div>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<div class="introMod">         
+	             		                   
+	         				<p>Required fields are indicated with<img alt="Required" src="https://www.ups.com/img/icn_dia.gif" width="11" height="9" border="0">.</p>
+				        
+				        
+				        
+				        </div>
+				        
+				        <div id="step-1" class="stepModFixed4col">
+            				<div class="stepModHead">
+               					<h3>Pickup Date and Time</h3>
+               					<div style="clear:both;"></div>
+               				</div>
+               				
+              				<div class="stepModContent">
+              				<fieldset>
+			            		<legend></legend>
+			            		<div class="colL">
+			            			<fieldset>
+			            				<legend></legend>
+			            				<dl>
+			            					<dt class="fldLbl">Pickup Date:
+			            	      			<dd>
+			            	      				<select tabindex="1" name="PICKUP_DATE" class="modSelMedium">
+													<option value="00">Select One</option><option value="Tuesday, 11/17/2015" selected>Tuesday,&nbsp;11/17/2015&nbsp;</option><option value="Wednesday, 11/18/2015">Wednesday,&nbsp;11/18/2015&nbsp;</option><option value="Thursday, 11/19/2015">Thursday,&nbsp;11/19/2015&nbsp;</option><option value="Friday, 11/20/2015">Friday,&nbsp;11/20/2015&nbsp;</option><option value="Saturday, 11/21/2015">Saturday,&nbsp;11/21/2015&nbsp;</option><option value="Sunday, 11/22/2015">Sunday,&nbsp;11/22/2015&nbsp;</option><option value="Monday, 11/23/2015">Monday,&nbsp;11/23/2015&nbsp;</option><option value="Tuesday, 11/24/2015">Tuesday,&nbsp;11/24/2015&nbsp;</option><option value="Wednesday, 11/25/2015">Wednesday,&nbsp;11/25/2015&nbsp;</option><option value="Thursday, 11/26/2015">Thursday,&nbsp;11/26/2015&nbsp;</option><option value="Friday, 11/27/2015">Friday,&nbsp;11/27/2015&nbsp;</option><option value="Saturday, 11/28/2015">Saturday,&nbsp;11/28/2015&nbsp;</option><option value="Sunday, 11/29/2015">Sunday,&nbsp;11/29/2015&nbsp;</option><option value="Monday, 11/30/2015">Monday,&nbsp;11/30/2015&nbsp;</option><option value="Tuesday, 12/01/2015">Tuesday,&nbsp;12/1/2015&nbsp;</option><option value="Wednesday, 12/02/2015">Wednesday,&nbsp;12/2/2015&nbsp;</option><option value="Thursday, 12/03/2015">Thursday,&nbsp;12/3/2015&nbsp;</option><option value="Friday, 12/04/2015">Friday,&nbsp;12/4/2015&nbsp;</option><option value="Saturday, 12/05/2015">Saturday,&nbsp;12/5/2015&nbsp;</option><option value="Sunday, 12/06/2015">Sunday,&nbsp;12/6/2015&nbsp;</option><option value="Monday, 12/07/2015">Monday,&nbsp;12/7/2015&nbsp;</option><option value="Tuesday, 12/08/2015">Tuesday,&nbsp;12/8/2015&nbsp;</option><option value="Wednesday, 12/09/2015">Wednesday,&nbsp;12/9/2015&nbsp;</option><option value="Thursday, 12/10/2015">Thursday,&nbsp;12/10/2015&nbsp;</option><option value="Friday, 12/11/2015">Friday,&nbsp;12/11/2015&nbsp;</option><option value="Saturday, 12/12/2015">Saturday,&nbsp;12/12/2015&nbsp;</option><option value="Sunday, 12/13/2015">Sunday,&nbsp;12/13/2015&nbsp;</option><option value="Monday, 12/14/2015">Monday,&nbsp;12/14/2015&nbsp;</option><option value="Tuesday, 12/15/2015">Tuesday,&nbsp;12/15/2015&nbsp;</option><option value="Wednesday, 12/16/2015">Wednesday,&nbsp;12/16/2015&nbsp;</option>
+												</select>
+											</dd>
+											<dd>
+			            	      				<strong>Note:</strong> To facilitate the timely pickup of your same-day shipment, please submit your request before 3 p.m., local time.<br>There may be additional charges for pickups occurring on weekends and holidays.
+			            	      			</dd>
+			            				</dl>
+			            			</fieldset>
+			            		</div>
+			            		<div class="colR">
+			            			<fieldset>
+										<legend></legend>
+										<div class="modMsg blu">
+											<h3>Air and Ocean Freight</h3>
+											<div class="modMsgBase">
+												<p>Arrange to have your freight shipment picked up by UPS.</p>
+												<ul class="lstNoPad">
+													<li><a href="javascript:newWindow('http://www.ups-scs.com/contact/index.html')">Schedule an Air or Ocean Freight Pickup<img width="3" height="1" border="0" alt="" src="https://www.ups.com/img/1.gif"><img width="9" height="9" src="https://www.ups.com/img/icn_popup_blue.gif"></a></li>
+												</ul>
+												<p>Need international palletized air freight? Try our <a href="javascript:confirmGoToIPA(document.standAlonePickupRequest)">UPS Worldwide Express Freight <sup>SM</sup></a> service.</p>
+											</div>
+										</div>
+									</fieldset>
+			            		</div>
+			            		<div style="clear:both;"></div>
+			            	   	<dl>
+			            	   		<dt><label>When will your freight shipment be ready for UPS to pickup?</label></dt>
+									<dd>
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td>
+													<select tabindex="2" name="READY_BY_HOURS" class="modSelSmall">
+											
+													<option >1</option>
+												
+													<option >2</option>
+												
+													<option >3</option>
+												
+													<option >4</option>
+												
+													<option >5</option>
+												
+													<option >6</option>
+												
+													<option >7</option>
+												
+													<option >8</option>
+												
+										             	           					<option selected>9</option>
+												
+													<option >10</option>
+												
+													<option >11</option>
+												
+													<option >12</option>
+												                              																																
+											</select>
+										</td>
+										<td class="mod-pad">
+											<select tabindex="3" name=READY_BY_MINUTES class="modSelSmall">
+											
+													<option selected>00</option>
+												
+										             	          				
+													<option>15</option>
+												
+										             	          				
+													<option>30</option>
+												
+										             	          				
+													<option>45</option>
+												
+										             	          				
+												</select>
+											</td>
+											
+													<td><input tabindex="4" name=AM_PM type="radio" value="AM"  checked>AM</td>
+													<TD><input tabindex="5" name=AM_PM type="radio" value="PM" >PM</TD>
+											
+										
+												<td class="mod-pad"><span class="reqTxtInst">(Local Time)</span></td>
+											</tr>
+										</table>
+									 </dd>
+									 <dt><label>What is the latest time at which UPS can pickup your freight shipment?</label></dt>
+									 <dd>
+									 	<span class="reqTxtInst">(e.g. closing time)</span>
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td>
+													<select tabindex="6" name=CLOSING_HOURS class="modSelSmall">
+							        	            	
+																<option >1</option>
+															
+																<option >2</option>
+															
+																<option >3</option>
+															
+																<option >4</option>
+															
+																<option selected>5</option>
+															
+																<option >6</option>
+															
+																<option >7</option>
+															
+																<option >8</option>
+															
+																<option >9</option>
+															
+																<option >10</option>
+															
+																<option >11</option>
+															
+																<option >12</option>
+															                            															
+													</select>
+												</td>
+												<td class="mod-pad">
+													<select tabindex="7" name=CLOSING_MINUTES class="modSelSmall">
+	                                	 																								
+																<option selected>00</option>
+															
+																<option >15</option>
+															
+																<option >30</option>
+															
+																<option >45</option>
+															                                 								 			
+													</select>
+												</td>
+												
+	                                	     		<TD><input tabindex="4" name=CLOSE_AM_PM type="radio" value="AM" >AM</TD>
+		                   							<TD><input tabindex="5" name=CLOSE_AM_PM type="radio" value="PM" checked>PM</TD>
+												
+												<td class="mod-pad"><span class="reqTxtInst">(Local Time)</span></td>
+											</tr>
+										</table>
+							  		</dd>
+			               		</dl>
+			               		
+							</fieldset>
+						</div>
+						</div>
+						
+						<div id="step-2" class="stepModFixed4col">
+            				<div class="stepModHead">
+               					<h3>Pickup Location</h3>
+               				<div style="clear:both;"></div>
+               				</div>
+               			
+							
+							   
+				            
+
+
+					<fieldset>
+						<legend></legend>			
+								<div class="stepModContent">
+										
+											
+											
+										  
+										    <!--//|| (!isModify)-->
+											<!-- Begin Left Column -->
+											<div class="colL">
+												<dl>
+													<dt class="fldLbl">Contact Name:
+													<dd>
+														<input tabindex="9" maxlength="35" type="text" maxlength="35" name="LOCATION_CONTACT_NAME" value="" class="modTxtMedium"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+		
+													<dt class="fldLbl">Company or Name:
+													<dd>
+														<input tabindex="10" maxlength="35" type="text" name="LOCATION_COMPANY_NAME" value="" class="modTxtMedium"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>		
+	
+													<dt class="fldLbl">Country:
+													<dd>
+														<select tabindex="11" name="LOCATION_COUNTRY" class="modSelMedium" onChange="javascript:countryOnChangePickup(document.standAlonePickupRequest, '/StandalonePickupRequestCountryOnChangeAction')">
+															<option value="">Select One</option>
+<option value="CA">Canada</option>
+<option value="MX">Mexico</option>
+<option value="PR">Puerto Rico</option>
+<option value="US">United States</option>
+
+														</select>										                   			
+														<img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+	
+		                                           				<dt class="fldLbl">Address Line 1:
+													<dd>
+														<input tabindex="12" maxlength="35" type="text"name="LOCATION_STREET_ADDRESS" value="" class="modTxtMedium"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+
+													<dt class="fldLbl">Address Line 2:
+													<dd>
+														<input tabindex="12" maxlength="35" type="text"name="LOCATION_STREET_ADDRESS_2" value="" class="modTxtMedium">																
+														<br>
+														<span class="reqTxtInst">Apartment, suite, unit, building, floor, etc.</span>
+													</dd>
+
+													<dt class="fldLbl">Address Line 3:
+													<dd>
+														<input tabindex="12" maxlength="35" type="text"name="LOCATION_STREET_ADDRESS_3" value="" class="modTxtMedium">																
+														<br>
+														<span class="reqTxtInst">Department, c/o, etc.</span>
+													</dd>
+												</dl>
+											</div>
+											<!-- End Left Column -->									
+						
+											<!-- Begin Right Column -->													
+											<div class="colR">
+												<dl>									
+													<dt class="fldLbl">City:
+													<dd>
+														<input tabindex="13" maxlength="30" type="text" name="LOCATION_CITY" value="" class="modTxtMedium"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+													
+
+													<dt class="fldLbl">Postal Code:
+													<dd>
+														<input tabindex="15" maxlength="10" type="text" name="LOCATION_POSTAL_CODE" value="" class="modTxtMediumSmall"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">													</dd>
+													</dd>
+												</dl>
+												
+												<dl class="flexFirst">
+													<dt class="fldLbl">Telephone:
+													<dd>
+														<input tabindex="16" maxlength="15" type="text" name="LOCATION_TELEPHONE_NUMBER" value="" class="modTxtMediumSmall"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+												</dl>
+												<dl class="flexAfter">
+													<dt class="fldLbl">Ext:
+													<dd>
+														<input tabindex="17" maxlength="4" name="LOCATION_TELEPHONE_EXTENSION" value="" type="text" class="modTxtSmall" size="5">
+													</dd>
+												</dl>				
+												<div style="clear:both"></div>
+										
+												<dl>
+													<dt class="fldLbl">Fax:
+													<dd>
+														<input tabindex="18" maxlength="15" name="LOCATION_FAX_NUMBER" value="" type="text" class="modTxtMediumSmall">
+													</dd>
+													<dt class="fldLbl">E-mail:
+													<dd>
+														<input tabindex="19" maxlength="50" name="LOCATION_EMAIL" value="" type="text" class="modTxtMedium"><img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+													</dd>
+												</dl>
+										</div>
+										<!-- End Right Column -->
+
+																						
+		
+		                                			
+					            	
+						
+								</div>
+						</fieldset>
+						
+						
+						</div>
+
+			            
+			            <div id="step-3" class="stepModFixed4col">
+            				<div class="stepModHead">
+               					<h3>Requester's Information</h3>
+               				<div style="clear:both;"></div>
+               				</div>
+               			
+	               			<div class="stepModContent">
+	              			<fieldset>
+								<legend></legend>
+
+								<p>Please provide contact information for your pickup request.</p>
+												
+								<div class="clearfix">  
+									<dl> 
+										<dt><label>You are the:</label></dt>
+										<dd>
+											<select tabindex="20" class=modSelMedium name="REQUESTER">
+												<option value="SHIPFROM" selected>Shipper</option><option value="THIRDPARTY">Third Party</option><option value="SHIPTO">Receiver</option>
+											</select>
+											<img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+											<br>
+											<table border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													
+  														<td><input tabindex="21" name="CONTACT_AND_REQUESTER_SAME" type="checkbox"   onClick=selectOnChange("FALSE")></td>
+														<td>Contact information is the same as in Pickup Information</td>
+													
+												</tr>	
+											</table>
+										</dd>
+									</dl>
+								</div> 
+												
+								<div class="colL">
+									<dl>
+										<dt class="fldLbl">Requester Name:
+										<dd>
+											<input tabindex="22" type="text" maxlength="35" name="REQUESTER_CONTACT_NAME"  id="rName" value=""  class="modTxtMedium">
+											<img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+										</dd>
+									</dl>
+									<dl class="flexFirst">
+										<dt class="fldLbl">Telephone:
+										<dd>											
+											<input tabindex="23" type="text" maxlength="15" name="REQUESTER_TELEPHONE_NUMBER" value="" class="modTxtMediumSmall">
+											<img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+										</dd>
+									</dl>
+									<dl class="flexAfter">
+										<dt class="fldLbl">Ext:<br>
+										<dd>
+											<input tabindex="24" maxlength="4" name="REQUESTER_TELEPHONE_EXTENSION" value="" type="text" class="modTxtSmall" size="5">
+										</dd>
+									</dl>
+									<div style="clear:both"></div>
+								</div>
+												
+								<div class="colR">
+									<dl>
+										<dt class="fldLbl">Fax:
+										<dd>
+											<input tabindex="25" maxlength="15" name="REQUESTER_FAX_NUMBER" value="" type="text" class="modTxtMediumSmall">
+										</dd>															
+										<dt class="fldLbl">E-mail:
+										<dd>
+											<input tabindex="26" maxlength="50" name="REQUESTER_EMAIL" value="" type="text" class="modTxtMedium">
+											<img src="https://www.ups.com/img/icn_dia.gif" alt='Required' width="11" height="9">
+										</dd>
+									</dl>
+								</div>
+							</fieldset>
+							</div>
+						</div>
+
+						<!-- Begin UIFS - Freight Pickup - Stand Alone - No POM -->
+						<!-- Begin UIFS - Modify Freight Pickup - Stand Alone - No POM -->					
+						<!-- Begin Module : Other Pickup Services (optional) -->
+						<div id="step-4" class="stepModFixed4col">
+								<div class="stepModHead">
+										<h3>Other Pickup Services (Optional)</h3>
+										<span class="indent"><input id="optionsShowBtn" class="btnlnkL plusmini" type="button" value="show" name="" style="display: none;" onClick="showButtonClicked()"></span>
+										<span class="indent"><input id="optionsHideBtn" class="btnlnkL minusMini" type="button" value="hide" name="" onClick="hideButtonClicked()"></span>																		
+								</div>
+
+								<div class="stepModContent" id="optionsDiv">
+										<fieldset>
+										<legend>other pickup services</legend>
+												<p><a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_weekend_pickup_help.html')" class="helpTerm">Weekend Pickup<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="Pieces" height="9" width="9" border="0"></a> and <a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_holiday_pickup_help.html')" class="helpTerm">Holiday Pickup<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="Pieces" height="9" width="9" border="0"></a> may be available for certain shipments; please call 1-800-333-7400 for assistance.</p>
+												<table width="100%" border="0" cellpadding="0" cellspacing="0">
+														<tr>
+																<td width="10"><input name="insidePk" type="checkbox" value="true"  ></td>
+																<td><label class="sel">&nbsp;<a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_inside_piece_help.html')" class="helpTerm">Inside Pickup<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+																<td width="10"><input name="freezableProt" type="checkbox" value="true"  ></td>
+																<td><label class="sel">&nbsp;<a href="javascript:helpModLvl('/content/{0}/{1}/shipping/create/freezable_protection.html')" class="helpTerm">Freezable Protection<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+														</tr>
+														<tr>
+																<td width="10"><input name="liftPk" type="checkbox" value="true"  ></td>
+																<td><label for="repl_id" class="sel">&nbsp;<a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_lift_gate_pickup_help.html')" class="helpTerm">Liftgate Service<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+																<td width="10"><input name="limAccessPk" type="checkbox" value="true"  ></td>
+																<td><label for="repl_id" class="sel">&nbsp;<a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_construction_site_delivery_help.html')" class="helpTerm">Limited Access<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+														</tr>
+														<tr>
+																<td width="10"><input name="residentialPk" type="checkbox" value="true"  ></td>
+																<td><label for="repl_id" class="sel">&nbsp;<a href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_residential_pickup_help.html')" class="helpTerm">Residential Pickup<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+																<td width="10"><input name="excessiveLength" type="checkbox" value="true"  ></td>
+																<td><label for="repl_id" class="sel">&nbsp;<a href="javascript:helpModLvl('/content/{0}/{1}/shipping/create/extreme_length.html')" class="helpTerm">Extreme Length<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a> (Greater than 15ft.)</label></td>
+														</tr>
+														<tr>
+																<td width="10"><input name="tradeshowPk" type="checkbox" value="true"  ></td>
+																<td colspan="3"><label for="repl_id" class="sel">&nbsp;<a href="javascript:helpModLvl('/content/{0}/{1}/shipping/time/ltl_tradeshow_p.html')" class="helpTerm">Trade Show Pickup<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label></td>
+														</tr>
+												</table>										
+												
+																				
+												
+										
+										</fieldset>
+								</div>
+						</div>
+						<!-- End Module -->
+						<!-- End UIFS - Freight Pickup - Stand Alone - No POM -->				
+						<!-- End UIFS - Modify Freight Pickup - Stand Alone - No POM -->
+						
+						<div id="step-5" class="stepModFlex">
+            				<div class="stepModHead">
+               					<h3>Shipment Commodity Information</h3>
+               				<div style="clear:both;"></div>
+               				</div>
+               			
+	               			<div class="stepModContent">
+	              			<fieldset>
+								<legend></legend>
+
+									
+										<p>
+											Please provide shipment details for your pickup request.<br>
+											<br>
+										</p>
+										<fieldset>
+											<table width="100%" border="0" cellpadding="10" cellspacing="0">
+												<tr>
+	                                            	
+												</tr>
+											</table>
+											<div style="clear:both;"></div>
+											<br>
+										</fieldset>
+										<div class="modFlex">
+                    					<div class="modContent">
+										<fieldset>
+
+										<!-- Commodity Table -->
+										<table class="dataTable" border="0" cellpadding="0" cellspacing="0" width="100%" id="nonPOMCommodityTable">
+											<tr>
+												<th nowrap align="left" class="sec-pad"><label><a tabindex="210" href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_pieces_help.html')" class="helpTerm">
+																<dt>Pieces
+															<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="Pieces" height="9" width="9" border="0"></a></label><img src="https://www.ups.com/img/icn_dia.gif" alt="Required" width="11" height="9"></th>
+
+												<th nowrap align="left" class="sec-pad nonPOMCol"><dt>Destination<br>
+																Postal Code<img src="https://www.ups.com/img/icn_dia.gif" alt="Required" width="11" height="9"></th>
+
+												<th nowrap align="left" class="sec-pad nonPOMCol"><dt>Destination<br>
+																Country</th>
+												<th nowrap align="left" class="sec-pad nonPOMCol"></th>
+												<th nowrap align="left" class="sec-pad"><label><dt>Description or<br>
+																 <a tabindex="211" href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_nmfc_piece.html')" class="helpTerm"><dt class="fldLbl">NMFC<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="NMFC" height="9" width="9" border="0"></a></label><img src="https://www.ups.com/img/icn_dia.gif" alt="Required" width="11" height="9"></th>
+												<th nowrap align="left" class="sec-pad"><dt>Package Type<img src="https://www.ups.com/img/icn_dia.gif" alt="Required" width="11" height="9"></th>
+												<th nowrap align="left" class="sec-pad"><dt>Weight<img src="https://www.ups.com/img/icn_dia.gif" alt="Required" width="11" height="9"></th>
+												<th nowrap align="left" class="sec-pad"><label><a tabindex="212" href="javascript:helpModLvl('/content/us/en/shipping/create/ltl_dangerous_goods_help.html')" class="helpTerm">HazMat<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img src="https://www.ups.com/img/icn_help_blue.gif" alt="HazMat" height="9" width="9" border="0"></a></label></th>
+											</tr>
+                                            					<input type="hidden" name="aDContact0" value="">
+<input type="hidden" name="aDCompany0" value="">
+<input type="hidden" name="aDCountry0" value="">
+<input type="hidden" name="aDAddress10" value="">
+<input type="hidden" name="aDCity0" value="">
+<input type="hidden" name="aDZip0" value="">
+<input type="hidden" name="aDPhone0" value="">
+<input type="hidden" name="aDPhoneExt0" value="">
+<input type="hidden" name="aDContact1" value="">
+<input type="hidden" name="aDCompany1" value="">
+<input type="hidden" name="aDCountry1" value="">
+<input type="hidden" name="aDAddress11" value="">
+<input type="hidden" name="aDCity1" value="">
+<input type="hidden" name="aDZip1" value="">
+<input type="hidden" name="aDPhone1" value="">
+<input type="hidden" name="aDPhoneExt1" value="">
+<input type="hidden" name="aDContact2" value="">
+<input type="hidden" name="aDCompany2" value="">
+<input type="hidden" name="aDCountry2" value="">
+<input type="hidden" name="aDAddress12" value="">
+<input type="hidden" name="aDCity2" value="">
+<input type="hidden" name="aDZip2" value="">
+<input type="hidden" name="aDPhone2" value="">
+<input type="hidden" name="aDPhoneExt2" value="">
+<input type="hidden" name="aDContact3" value="">
+<input type="hidden" name="aDCompany3" value="">
+<input type="hidden" name="aDCountry3" value="">
+<input type="hidden" name="aDAddress13" value="">
+<input type="hidden" name="aDCity3" value="">
+<input type="hidden" name="aDZip3" value="">
+<input type="hidden" name="aDPhone3" value="">
+<input type="hidden" name="aDPhoneExt3" value="">
+<input type="hidden" name="aDContact4" value="">
+<input type="hidden" name="aDCompany4" value="">
+<input type="hidden" name="aDCountry4" value="">
+<input type="hidden" name="aDAddress14" value="">
+<input type="hidden" name="aDCity4" value="">
+<input type="hidden" name="aDZip4" value="">
+<input type="hidden" name="aDPhone4" value="">
+<input type="hidden" name="aDPhoneExt4" value="">
+<tr class="sec-row-od"><td class="sec-pad"><input maxlength="3"  id="pcs0"  name="pieces0" type="text" class="modTxtSmall" onblur="extractNumber(this,2,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td class="sec-pad nonPOMCol"><input maxlength="10" name="postalCode0" type="text" class="modTxtSmall" ></td><td class="sec-pad nonPOMCol"><select name="destinationCountryCode0"  class="modSelSmall"><option value="PR">PR</option><option value="CA">CA</option><option value="US" selected>US</option><option value="MX">MX</option></select> </td><td class="sec-pad nonPOMCol"><span class="nowrap"><a id="pickupAddDetailLink0" href="#" onclick="additionalDetailsClicked(0);return false">enter additional<br>destination detail</a></span></td><td class="sec-pad"><input maxlength="20" name="description0"   type="text" class="modTxtMedium"></td><td class="sec-pad"><select name="pakType0"><option value="00" selected>Select Packaging</option><option value="BAG">Bag</option><option value="BAL">Bale</option><option value="BAR">Barrel</option><option value="BSK">Basket  </option><option value="BIN">Bin</option><option value="BOX">Box</option><option value="BUN">Bunch</option><option value="BDL">Bundle	          </option><option value="CAB">Cabinet   </option><option value="CAN">Can</option><option value="CBY">Carboy  </option><option value="CAR">Carrier   </option><option value="CTN">Carton</option><option value="CAS">Case</option><option value="CSK">Cask  </option><option value="CON">Container</option><option value="CRT">Crate</option><option value="CYL">Cylinder</option><option value="DRM">Drum</option><option value="LOO">Loose </option><option value="OTH">Other </option><option value="PKG">Package</option><option value="PAL">Pail</option><option value="PLT">Pallet</option><option value="PCS">Pieces</option><option value="PLN">Pipe Line    </option><option value="REL">Reel</option><option value="ROL">Roll</option><option value="SKD">Skid</option><option value="SPL">Spool</option><option value="TNK">Tank  </option><option value="TBE">Tube</option><option value="UNT">Unit</option><option value="VPK">Van Pack</option><option value="WRP">Wrapped</option></select> </td><td class="sec-pad"><input maxlength="7" name="weight0"    type="text" class="modTxtSmall" onblur="extractNumber(this,0,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td align="center" class="sec-pad"><input name="hazmat0"    type="checkbox" value=""></td></tr><tr class="sec-row-ev"><td class="sec-pad"><input maxlength="3"  id="pcs1"  name="pieces1" type="text" class="modTxtSmall" onblur="extractNumber(this,2,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td class="sec-pad nonPOMCol"><input maxlength="10" name="postalCode1" type="text" class="modTxtSmall" ></td><td class="sec-pad nonPOMCol"><select name="destinationCountryCode1"  class="modSelSmall"><option value="PR">PR</option><option value="CA">CA</option><option value="US" selected>US</option><option value="MX">MX</option></select> </td><td class="sec-pad nonPOMCol"><span class="nowrap"><a id="pickupAddDetailLink1" href="#" onclick="additionalDetailsClicked(1);return false">enter additional<br>destination detail</a></span></td><td class="sec-pad"><input maxlength="20" name="description1"   type="text" class="modTxtMedium"></td><td class="sec-pad"><select name="pakType1"><option value="00" selected>Select Packaging</option><option value="BAG">Bag</option><option value="BAL">Bale</option><option value="BAR">Barrel</option><option value="BSK">Basket  </option><option value="BIN">Bin</option><option value="BOX">Box</option><option value="BUN">Bunch</option><option value="BDL">Bundle	          </option><option value="CAB">Cabinet   </option><option value="CAN">Can</option><option value="CBY">Carboy  </option><option value="CAR">Carrier   </option><option value="CTN">Carton</option><option value="CAS">Case</option><option value="CSK">Cask  </option><option value="CON">Container</option><option value="CRT">Crate</option><option value="CYL">Cylinder</option><option value="DRM">Drum</option><option value="LOO">Loose </option><option value="OTH">Other </option><option value="PKG">Package</option><option value="PAL">Pail</option><option value="PLT">Pallet</option><option value="PCS">Pieces</option><option value="PLN">Pipe Line    </option><option value="REL">Reel</option><option value="ROL">Roll</option><option value="SKD">Skid</option><option value="SPL">Spool</option><option value="TNK">Tank  </option><option value="TBE">Tube</option><option value="UNT">Unit</option><option value="VPK">Van Pack</option><option value="WRP">Wrapped</option></select> </td><td class="sec-pad"><input maxlength="7" name="weight1"    type="text" class="modTxtSmall" onblur="extractNumber(this,0,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td align="center" class="sec-pad"><input name="hazmat1"    type="checkbox" value=""></td></tr><tr class="sec-row-od"><td class="sec-pad"><input maxlength="3"  id="pcs2"  name="pieces2" type="text" class="modTxtSmall" onblur="extractNumber(this,2,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td class="sec-pad nonPOMCol"><input maxlength="10" name="postalCode2" type="text" class="modTxtSmall" ></td><td class="sec-pad nonPOMCol"><select name="destinationCountryCode2"  class="modSelSmall"><option value="PR">PR</option><option value="CA">CA</option><option value="US" selected>US</option><option value="MX">MX</option></select> </td><td class="sec-pad nonPOMCol"><span class="nowrap"><a id="pickupAddDetailLink2" href="#" onclick="additionalDetailsClicked(2);return false">enter additional<br>destination detail</a></span></td><td class="sec-pad"><input maxlength="20" name="description2"   type="text" class="modTxtMedium"></td><td class="sec-pad"><select name="pakType2"><option value="00" selected>Select Packaging</option><option value="BAG">Bag</option><option value="BAL">Bale</option><option value="BAR">Barrel</option><option value="BSK">Basket  </option><option value="BIN">Bin</option><option value="BOX">Box</option><option value="BUN">Bunch</option><option value="BDL">Bundle	          </option><option value="CAB">Cabinet   </option><option value="CAN">Can</option><option value="CBY">Carboy  </option><option value="CAR">Carrier   </option><option value="CTN">Carton</option><option value="CAS">Case</option><option value="CSK">Cask  </option><option value="CON">Container</option><option value="CRT">Crate</option><option value="CYL">Cylinder</option><option value="DRM">Drum</option><option value="LOO">Loose </option><option value="OTH">Other </option><option value="PKG">Package</option><option value="PAL">Pail</option><option value="PLT">Pallet</option><option value="PCS">Pieces</option><option value="PLN">Pipe Line    </option><option value="REL">Reel</option><option value="ROL">Roll</option><option value="SKD">Skid</option><option value="SPL">Spool</option><option value="TNK">Tank  </option><option value="TBE">Tube</option><option value="UNT">Unit</option><option value="VPK">Van Pack</option><option value="WRP">Wrapped</option></select> </td><td class="sec-pad"><input maxlength="7" name="weight2"    type="text" class="modTxtSmall" onblur="extractNumber(this,0,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td align="center" class="sec-pad"><input name="hazmat2"    type="checkbox" value=""></td></tr><tr class="sec-row-ev"><td class="sec-pad"><input maxlength="3"  id="pcs3"  name="pieces3" type="text" class="modTxtSmall" onblur="extractNumber(this,2,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td class="sec-pad nonPOMCol"><input maxlength="10" name="postalCode3" type="text" class="modTxtSmall" ></td><td class="sec-pad nonPOMCol"><select name="destinationCountryCode3"  class="modSelSmall"><option value="PR">PR</option><option value="CA">CA</option><option value="US" selected>US</option><option value="MX">MX</option></select> </td><td class="sec-pad nonPOMCol"><span class="nowrap"><a id="pickupAddDetailLink3" href="#" onclick="additionalDetailsClicked(3);return false">enter additional<br>destination detail</a></span></td><td class="sec-pad"><input maxlength="20" name="description3"   type="text" class="modTxtMedium"></td><td class="sec-pad"><select name="pakType3"><option value="00" selected>Select Packaging</option><option value="BAG">Bag</option><option value="BAL">Bale</option><option value="BAR">Barrel</option><option value="BSK">Basket  </option><option value="BIN">Bin</option><option value="BOX">Box</option><option value="BUN">Bunch</option><option value="BDL">Bundle	          </option><option value="CAB">Cabinet   </option><option value="CAN">Can</option><option value="CBY">Carboy  </option><option value="CAR">Carrier   </option><option value="CTN">Carton</option><option value="CAS">Case</option><option value="CSK">Cask  </option><option value="CON">Container</option><option value="CRT">Crate</option><option value="CYL">Cylinder</option><option value="DRM">Drum</option><option value="LOO">Loose </option><option value="OTH">Other </option><option value="PKG">Package</option><option value="PAL">Pail</option><option value="PLT">Pallet</option><option value="PCS">Pieces</option><option value="PLN">Pipe Line    </option><option value="REL">Reel</option><option value="ROL">Roll</option><option value="SKD">Skid</option><option value="SPL">Spool</option><option value="TNK">Tank  </option><option value="TBE">Tube</option><option value="UNT">Unit</option><option value="VPK">Van Pack</option><option value="WRP">Wrapped</option></select> </td><td class="sec-pad"><input maxlength="7" name="weight3"    type="text" class="modTxtSmall" onblur="extractNumber(this,0,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td align="center" class="sec-pad"><input name="hazmat3"    type="checkbox" value=""></td></tr><tr class="sec-row-od"><td class="sec-pad"><input maxlength="3"  id="pcs4"  name="pieces4" type="text" class="modTxtSmall" onblur="extractNumber(this,2,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td class="sec-pad nonPOMCol"><input maxlength="10" name="postalCode4" type="text" class="modTxtSmall" ></td><td class="sec-pad nonPOMCol"><select name="destinationCountryCode4"  class="modSelSmall"><option value="PR">PR</option><option value="CA">CA</option><option value="US" selected>US</option><option value="MX">MX</option></select> </td><td class="sec-pad nonPOMCol"><span class="nowrap"><a id="pickupAddDetailLink4" href="#" onclick="additionalDetailsClicked(4);return false">enter additional<br>destination detail</a></span></td><td class="sec-pad"><input maxlength="20" name="description4"   type="text" class="modTxtMedium"></td><td class="sec-pad"><select name="pakType4"><option value="00" selected>Select Packaging</option><option value="BAG">Bag</option><option value="BAL">Bale</option><option value="BAR">Barrel</option><option value="BSK">Basket  </option><option value="BIN">Bin</option><option value="BOX">Box</option><option value="BUN">Bunch</option><option value="BDL">Bundle	          </option><option value="CAB">Cabinet   </option><option value="CAN">Can</option><option value="CBY">Carboy  </option><option value="CAR">Carrier   </option><option value="CTN">Carton</option><option value="CAS">Case</option><option value="CSK">Cask  </option><option value="CON">Container</option><option value="CRT">Crate</option><option value="CYL">Cylinder</option><option value="DRM">Drum</option><option value="LOO">Loose </option><option value="OTH">Other </option><option value="PKG">Package</option><option value="PAL">Pail</option><option value="PLT">Pallet</option><option value="PCS">Pieces</option><option value="PLN">Pipe Line    </option><option value="REL">Reel</option><option value="ROL">Roll</option><option value="SKD">Skid</option><option value="SPL">Spool</option><option value="TNK">Tank  </option><option value="TBE">Tube</option><option value="UNT">Unit</option><option value="VPK">Van Pack</option><option value="WRP">Wrapped</option></select> </td><td class="sec-pad"><input maxlength="7" name="weight4"    type="text" class="modTxtSmall" onblur="extractNumber(this,0,false);" onkeyup="extractNumber(this,0,false);" onkeypress="return blockNonNumbers(this, event, false, false);" ></td><td align="center" class="sec-pad"><input name="hazmat4"    type="checkbox" value=""></td></tr>
+											<tr>
+												<td colspan="8" class="hr" id="endOfTableLine"><img src="https://www.ups.com/img/1.gif" alt="" width="1" height="1"></td>
+											</tr>
+											<tr align="right" class="sec-row-od">
+												<td colspan="7" class="sec-pad" id="addRowsRow">Add <input tabindex="201"maxlength="2" name="rowsToDisplay" type="text" class="modTxtSmall">more table rows.</td>
+												<td class="sec-pad"><input name="standAlonePickupRequestAdditionalRows_button" type="submit" value="Go" class="btn_a"></td>
+											</tr>
+										</table>
+
+										<div style="clear:both;"></div>
+										</fieldset>
+										</div>
+										</div>
+									
+									<dl class="clearboth">
+										<dd>
+											<table width="0%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+												
+													<td><input tabindex="203" type="checkbox" name="GUARANTED_SHIPMENT" value="checkbox"></td>
+												
+													<td>The freight shipment for this pickup request is <a tabindex="212" href="javascript:helpModLvl('/content/{0}/{1}/shipping/create/ltl_guaranteed_help.html')">guaranteed.</a>&nbsp;<a href="javascript:helpModLvl('/content/{0}/{1}/shipping/create/ltl_guaranteed_help.html')"><img alt="guaranteed." border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9"></a></td>
+												</tr>
+											</table>
+										</dd>
+
+										<dt><dt class="fldLbl">Send additional comments or instructions to UPS Freight:</dt>
+										<dd><textarea tabindex="204" rows="3" cols="40" name="ADDITIONAL_COMMENTS" onKeyDown="limitText(this.form.ADDITIONAL_COMMENTS,60);" onKeyUp="limitText(this.form.ADDITIONAL_COMMENTS,60);" class="modTxtAreaLarge"></textarea><br>
+											<span class="reqTxtInst">(60 character maximum)</span>
+										</dd>
+									</dl>
+
+							</fieldset>
+							</div>
+						</div>
+						
+						<div id="step-6" class="stepModFixed4col">
+            				<div class="stepModHead">
+               					<h3>New Pickup Request</h3>
+               				<div style="clear:both;"></div>
+               				</div>
+               			
+	               			<div class="stepModContent">
+	              			<fieldset>
+								<legend></legend>
+								<table width="0%" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+									
+										<td><input tabindex="205" id="REQUEST_ANOTHER_PICKUP" name="REQUEST_ANOTHER_PICKUP" type="checkbox" value="checkbox" checked></td>
+									
+										<td><label class="sel" for="REQUEST_ANOTHER_PICKUP">Make a new Freight Pickup request after submitting this request</label></td>
+									</tr>
+								</table>
+							</fieldset>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+      				<td class="btn-bar">
+      				<div class="btn-col4">
+	  				
+      				
+						<input type="image" name="standAlonePickupRequestNext_button" height="1" alt="" width="1" src="https://www.ups.com/img/1.gif" border="0">
+						<input name="standAlonePickupRequestNext_button" type="submit" value="Next" class="btn_a">
+					
+      				
+      				
+      				</div>
+      				</td>
+   				</tr>
+   			</table>
+			<table border="0" cellpadding="0" cellspacing="0" width="566" class="note">
+			   <tr>
+			   	 <td><p>The terms and conditions (include cargo liability) governing transportation services by UPS Freight are set forth in UPS Freight's Rules &amp; Charges (Tariff UPGF 102), which can be accessed via:<br><br><a href="javascript:newWindow('http://ltl.upsfreight.com/shipping/rules/index.aspx')">http://ltl.upsfreight.com/shipping/rules/index.aspx.<img alt="" border="0" height="1" src="https://www.ups.com/img/1.gif" width="3"><img alt="" border="0" height="9" src="https://www.ups.com/img/icn_popup_blue.gif" width="9"></a></p></td>
+			   </tr>
+			</table>
+</form>
+
+		<!-- SearchBodyEnd -->
+		
+		
+	</td>
+	</tr>
+	</table> 
+   <div style="clear:both"></div>
+    
+
+
+    </div>
+</div>

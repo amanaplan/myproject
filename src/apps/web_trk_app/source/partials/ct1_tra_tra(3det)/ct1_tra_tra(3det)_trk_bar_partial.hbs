@@ -1,0 +1,90 @@
+
+<div class="appLvl appLvlPlain col24 clearfix">
+    <!-- BEGIN Tracking Search Bar -->
+    <div class="appBody clearfix" id="">
+
+    	<!-- Begin Panel Module -->
+    	<div class="panel panel-default">
+
+    		<!-- Begin Panel Body -->
+            <div class="panel-body">
+                {{#if us_auth}}<!-- added class ups-group to div -->{{/if}}
+                <div class="row{{#if us_auth}} ups-group{{/if}}">
+                    <!-- Begin Column -->
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <div class="ups-form_group">
+                                    <label for="trk_bar_trk_num" class="ups-readerTxt">Enter tracking or InfoNotice number</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="trk_bar_trk_num" class="ups-form_input" id="trk_bar_trk_num">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <button class="ups-cta ups-cta_primary" type="submit" value="">Track</button>
+                            </div>
+                        </div>
+                  	</div>
+                    <!-- End Column -->
+
+                    <!-- Begin Column -->
+                    <div class="col-xs-3">
+                        {{#if trking_authenticated_authorized }}
+                                <p><a href="repl_href" class="ups-link_light" onClick="repl_onClick">View Tracking History</a></p>
+                        {{/if}}
+
+                        {{#if trking_non_authenticated }}
+                                <p><a href="repl_href" class="ups-link_light" onClick="repl_onClick">Log in to save this information</a> to your recently tracked shipments.</p>
+                                <p>New to UPS? <a href="repl_href" class="ups-link_light" onClick="repl_onClick">Sign Up</a></p>
+                        {{/if}}
+
+                        {{#if trking_authenticated_non_authorized }}
+                                <p><a href="repl_href" class="ups-link_light" onClick="repl_onClick">{view tracking history}</a></p>
+                        {{/if}}
+
+                        {{#if trking_non_us_authenticated_non_authorized }}
+                                <p><a href="repl_href" class="ups-link_light" onClick="repl_onClick">View Tracking History</a></p>
+                                <p><a href="repl_href" class="ups-link_light" onClick="repl_onClick">Provide account validation</a> information for full tracking details</p>
+                        {{/if}}
+        			</div>
+                    <!-- End Column -->
+
+                    <!-- Begin Column -->
+                    <div class="col-xs-4">
+                        <!-- Begin Structure Added for Non Javascript Users -->
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <!-- End Structure Added for Non Javascript Users -->
+                                <div class="ups-form_group">
+                                    <label for="trk_bar_trk_sel" class="ups-readerTxt">Select other tracking options</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select id="trk_bar_trk_sel" name="trk_bar_trk_sel" class="ups-dropdown">
+                                            <option value="" selected>{other tracking options}</option>
+                                            <option value="">{1234567890 1234567890 1234567890 1234567890}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <!-- Begin Structure Added for Non Javascript Users -->
+                            </div>
+                            <div class="col-xs-3">
+                                <button class="ups-cta ups-cta_primary" type="submit" value="">Go</button>
+                            </div>
+                        </div>
+                        <!-- End Structure Added for Non Javascript Users -->
+        			</div>
+                    <!-- End Column -->
+    			</div>
+                {{#if us_auth}}
+                    <p>To see secure details (like a digital signiture), shippers must verify their payment account information. <a href="#" class="ups-link_light">Quickly access info</a> for just this shipment or <a href="#" class="ups-link_light">add this account to your profile</a> to see details for all packages.</p>
+                {{/if}}
+    		</div>
+            <!-- End Panel Body -->
+
+    	</div>
+    	<!-- End Panel Module -->
+
+    </div>
+    <!-- END Tracking Search Bar -->
+    <div class="clear"></div>
+</div>

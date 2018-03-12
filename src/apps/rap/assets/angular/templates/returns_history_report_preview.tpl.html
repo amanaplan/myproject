@@ -1,0 +1,99 @@
+<!-- Report Preview Component Template -->
+<!-- Beginning of New Angular 2/4 Modal -->
+<ups-modal modal-title="{{emailModalTitle}}" #sendReportByEmail>
+    <form *ngIf="!emailSent"[formGroup]="sendReportByEmailForm" (ngSubmit)="demoSendReportByEmail(sendReportByEmailForm.value)" novalidate>
+        <!-- Beginning of Page Level -->
+        <div *ngIf="(sendReportByEmailFormSubmitAttempt &amp;&amp; !sendReportByEmailForm.valid)">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+                <li *ngIf="(!sendReportByEmailForm.controls['sendReportByEmailInput'].valid && sendReportByEmailForm.controls['sendReportByEmailInput'].hasError('required'))">
+                    <a href="#sendReportByEmailInput" class="ups-invalid_color" pointIdClick>Email Address <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!sendReportByEmailForm.controls['sendReportByEmailInput'].valid && sendReportByEmailForm.controls['sendReportByEmailInput'].hasError('pattern'))">
+                    <a href="#sendReportByEmailInput" class="ups-invalid_color"pointIdClick>Email Address <span class="ups-readerTxt">field</span></a> is invalid.
+                </li>
+            </ul>
+        </div>
+        <!-- End of Page Level -->
+        <!-- Beginning of Email Input -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="sendReportByEmailInput" class="ups-form_label">Email Address <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="sendReportByEmailInput" class="ups-form_input" id="sendReportByEmailInput" aria-describedby="sendReportByEmailInput_error" [ngClass]="{'ups-bodError': (!sendReportByEmailForm.controls['sendReportByEmailInput'].valid &amp;&amp; sendReportByEmailForm.controls['sendReportByEmailInput'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="sendReportByEmailForm.controls['sendReportByEmailInput']" required aria-required="true">
+                        <div *ngIf="sendReportByEmailForm.controls['sendReportByEmailInput'].valid">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="sendReportByEmailInput_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!sendReportByEmailForm.controls['sendReportByEmailInput'].valid &amp;&amp; sendReportByEmailForm.controls['sendReportByEmailInput'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="sendReportByEmailForm.controls['sendReportByEmailInput'].hasError('required')">
+                                Email Address is required.
+                            </span>
+                            <span *ngIf="!sendReportByEmailForm.controls['sendReportByEmailInput'].hasError('required')">
+                                Email Address is invalid.
+                            </span>
+                        </span>
+                    </span>
+                </div>    
+            </div>
+        </div>
+        <!-- End of Email Input -->
+        <div class="ups-group">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+        <div class="ups-cta_formGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary">Send</button>
+            <button type="button" class="ups-cta ups-cta_secondary" #modalClose>Cancel</button>
+        </div>
+    </form>
+    <div *ngIf="emailSent">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="ups-cta_formGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary" #modalClose>Resend</button>
+            <button type="button" class="ups-cta ups-cta_secondary" #modalClose>Close</button>
+        </div>
+    </div>
+</ups-modal>
+<!-- End of New Angular 2/4 Modal -->
+<div class="ups-section">
+    <!-- Report Preview Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Report Preview</h2>
+    </div>
+    <!-- Report Preview Heading -->
+
+    <!-- Button Group -->
+    <div class="ups-app_preview_actions" [ngClass]="{'text-right': viewportSize.isGtXSVP, 'ups-form_ctaGroup': viewportSize.isLtSMVP}">
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon" [ngClass]="{'text-left': viewportSize.isLtSMVP}"><span aria-hidden="true" class="icon ups-icon-download"></span>Download <span class="ups-readerTxt">UPS Returns Report Preview</span></button>
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon" [ngClass]="{'text-left': viewportSize.isLtSMVP}"><span aria-hidden="true" class="icon ups-icon-print"></span>Print <span class="ups-readerTxt">UPS Returns Report Preview</span></button>
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon" [ngClass]="{'text-left': viewportSize.isLtSMVP}" (click)="demoEmailModal();"><span aria-hidden="true" class="icon ups-icon-email"></span>Email <span class="ups-readerTxt">UPS Returns Report Preview</span></button>
+    </div>
+    <!-- Button Group -->
+
+    <div class="ups-group">
+        <!-- Do Not Include In Production -->
+        <div class="ups-cms-demo">
+            Report Preview Demo
+        </div>
+        <!-- Do Not Include In Production -->
+    </div>
+    <!-- CTA Button Group -->
+    <div class="ups-form_ctaGroup">
+        <a class="ups-cta ups-cta_primary" routerLink="/returnsHistory">Back To Returns History</a>
+    </div>
+    <!-- CTA Button Group -->
+</div>
+<!-- Report Preview Component Template -->

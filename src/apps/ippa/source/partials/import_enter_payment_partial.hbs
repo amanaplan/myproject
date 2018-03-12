@@ -1,0 +1,190 @@
+<h3>Total Due [currency]:
+<span class="pull-right">999,999.99</span></h3>
+<hr>
+
+<p>Provide your payment method information below and select Continue. You will have another opportunity to review this information before the payment is processed.</p>
+<p>Required fields indicated by a *</p>
+
+<div class="row">
+	<div class="col-md-6">
+		{{> A21_common_payment_component A21_CPC.default }}
+    </div>
+    <div class="col-md-6">
+    	{{> A20_common_address_component A20_CAC.default }}
+    </div>
+</div>
+
+<!--<div class="row">
+	<div class="col-md-6">
+        <div class="ups-form_group ups-form_required ups-noTxt">
+            <label for="paymentMethod" class="ups-form_label">Payment Method</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="paymentMethod" name="repl_name" class="ups-dropdown" required>
+                    <option>Use a different payment method</option>
+                </select>
+            </div>
+        </div>
+        <div class="ups-form_group ups-form_required">
+            <label for="paymentMethodType" class="ups-form_label">Payment Method Type</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="paymentMethodType" name="repl_name" class="ups-dropdown" required>
+                    <option>Visa</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="ups-form_group ups-form_required">
+            <label for="paymentCardNumber" class="ups-form_label">Payment Card Number</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="repl_name" class="ups-form_input" id="paymentCardNumber" required>
+            </div>
+        </div>
+        
+        <div class="ups-form_group">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="paymentCardMonth" class="ups-form_label">Expiration Month</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="paymentCardMonth" name="repl_name" class="ups-dropdown" required>
+                                <option>Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="paymentCardYear" class="ups-form_label">Expiration Year</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="paymentCardYear" name="repl_name" class="ups-dropdown" required>
+                                <option>Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ups-form_group ups-form_required">
+            <label for="paymentCVC" class="ups-form_label">Verification Code</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="repl_name" class="ups-form_input" id="paymentCVC" required>
+            </div>
+        </div>
+        
+        <fieldset>
+        <legend class="ups-readerTxt">Profile Options</legend>
+        <div class="ups-form_group">
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="saveToProfile" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="1">
+                <label for="saveToProfile" class="ups-checkbox-custom-label">Save to user profile</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                <input id="saveAsDefault" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="1">
+                <label for="saveAsDefault" class="ups-checkbox-custom-label">Save as default payment method</label>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+    <div class="col-md-6">
+    	<div class="ups-form_group ups-noTxt">
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="useBillingAddress" class="ups-radio-custom" name="ups-uid-form_title-unnamed" type="radio" value="1" checked>
+                <label for="useBillingAddress" class="ups-radio-custom-label">Use this address as my Billing Address</label>
+            </div>
+            <div class="ups-label_pad">
+            	2010 Warsaw Rd.<br>
+				Roswell, GA 30076
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                <input id="useOtherAddress" class="ups-radio-custom" name="ups-uid-form_title-unnamed" type="radio" value="2">
+                <label for="useOtherAddress" class="ups-radio-custom-label">Enter a different Billing Address</label>
+            </div>
+            <div class="ups-label_pad">
+            	<div class="ups-form_group ups-form_required">
+                    <label for="otherCountry" class="ups-form_label">Country or Territory</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="otherCountry" name="repl_name" class="ups-dropdown">
+                            <option>United States</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="otherAddress" class="ups-form_label">Billing Address</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="repl_name" class="ups-form_input" id="otherAddress">
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="otherAddress2" class="ups-form_label">Address Line 2</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="repl_name" class="ups-form_input" id="otherAddress2">
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="otherAddress3" class="ups-form_label">Address Line 3</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="repl_name" class="ups-form_input" id="otherAddress3">
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="otherCity" class="ups-form_label">City</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="repl_name" class="ups-form_input" id="otherCity">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="otherState" class="ups-form_label">State</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="repl_name" class="ups-form_input" id="otherState" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="otherZip" class="ups-form_label">ZIP Code</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="repl_name" class="ups-form_input" id="otherZip" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                    <input id="saveOtherAddress" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="1">
+                    <label for="saveOtherAddress" class="ups-checkbox-custom-label">Save this as my profile address</label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<hr>
+<h3>Total Due [currency]:
+<span class="pull-right">999,999.99</span></h3>
+<hr>
+<p>All Currency displayed in [local currency]</p><br>
+                
+<p><a href="repl_href" class="ups-new-window ups-link">Exchange Rate: [currency used to determine value of goods] = [conversion rate] [ShipTo currency]<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p><br>
+
+<p>Charges displayed are estimated and subject to change based on new information provided to UPS Brokerage.</p><br>
+
+<p><a href="repl_href" class="ups-new-window ups-link">Payments can be made any time online. However, it is recommended that payment occur at least 30 minutes prior to driver's arrival.<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+<br>
+
+<div class="row">
+	<div class="col-md-12">
+    	<div class="ups-form_ctaGroup">
+        	<button type="submit" class="ups-cta ups-cta_tertiary">Back</button>&nbsp; 
+        	<button type="submit" class="ups-cta ups-cta_primary">Next</button>   
+        </div>
+    </div>
+</div>

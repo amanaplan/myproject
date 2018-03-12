@@ -1,0 +1,349 @@
+<script type="text/ng-template" id="ups.ppc-paymentLVP.html">
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+    <section data-ng-show="isTable" class="ups-section">
+        <h2>My Payment Methods</h2>
+        <div class="ups-introductory"
+            data-ng-if="payementData.paymentMethods.length !== 0">
+            <p>View and manage your payment methods, including account
+                settings like pickup options, paperless invoicing, and authorized
+                users.</p>
+        </div>
+
+        <div class="ups-table ups-table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="col"
+                            data-ng-init="sortNickName=true;(sortWithoutDefault('payementNickName',sortNickName))"
+                            class="ups-table_header_tertiary"><button
+                            data-ng-click="sortNickName=!sortNickName;(sortWithoutDefault('payementNickName',sortNickName))"
+                            class="ups-link"><span class="ups-readerTxt">Sort By </span> NICKNAME<span
+                                data-ng-show="sortNickName" class="icon"><span class="ups-icon-chevrondown" aria-hidden="true"></span></span>
+                                <span data-ng-show="!sortNickName"
+                                class="icon"><span class="ups-icon-chevronup" aria-hidden="true"></span></span> </button></th>
+                        <th scope="col" data-ng-init="sortMethod=true" class="ups-table_header_tertiary">
+                            METHOD <!-- <a
+                            data-ng-click="sortMethod=!sortMethod;(sortWithoutDefault('Method',!sortMethod))"
+                            href="#" onclick="return false;"><span class="ups-readerTxt">Sort By </span> METHOD<span
+                                data-ng-show="sortMethod" class="icon ups-icon-chevrondown"></span>
+                                <span data-ng-show="!sortMethod" class="icon ups-icon-chevronup"></span>
+                        </a> -->
+                        </th>
+                        <!-- <th class="col-xs-2 ">Method</th> -->
+                        <th scope="col" data-ng-init="sortNumber=true" class="ups-table_header_tertiary">
+                            NUMBER <!-- <a
+                            data-ng-click="sortNumber=!sortNumber;(sortWithoutDefault('Number',!sortNumber))"
+                            href="#" onclick="return false;"><span class="ups-readerTxt">Sort By </span> NUMBER<span
+                                data-ng-show="sortNumber" class="icon ups-icon-chevrondown"></span>
+                                <span data-ng-show="!sortNumber" class="icon ups-icon-chevronup"></span>
+                        </a> -->
+                        </th>
+                        <th scope="col" class="ups-table_header_tertiary">COUNTRY</th>
+                        <th scope="col" class="ups-table_header_tertiary">PREFERRED METHOD</th>
+                        <th scope="col" class="ups-table_header_tertiary">MANAGE</th>
+                    </tr>
+                    <tr
+                        data-ng-repeat="(key, data) in payementData.paymentMethods track by $index">
+                        <td scope="row">
+                        	<a href="#" data-ng-click="openNicknameDlg(key)" onclick="return false;">
+                        		{{data.payementNickName}}
+							</a>
+                        </td>
+                        <td>{{data.Method}}</td>
+                        <td>{{data.Number}} <span data-ng-if="data.ExtraInfo"><br />{{data.ExtraInfo}}</span></td>
+                        <td>US</td>
+                        <td><a
+                            data-ng-if="data.Default=='Make Default Method'"
+                            data-ng-click="changeDefault(payementData.paymentMethods,key)"
+                            href="#" onclick="return false;">{{data.Default}}<span class="ups-readerTxt">{{data.Default}}</span></a>
+                            <span data-ng-if="data.Default=='DEFAULT METHOD'">{{data.Default}}</span>
+                        </td>
+                        <td>
+                           <!-- Edit Link -->
+                           <a point-focus
+                           data-ng-if="data.IsThisAccountActive"
+                           class="ups-text-underline ups-editCardpointCls"
+                           data-ng-click="payments.edit($index,data.Method, data);pointClass('ups-editCardpointCls',$index);"
+                           href="#"
+                           onclick="return false;">Edit<span class="ups-readerTxt"> payment{{data.Number}}</span></a> <span data-ng-if="data.IsThisAccountActive">|</span>
+                           <!-- Delete Link -->
+                           <a class="ups-text-underline"
+                           data-ng-if="data.IsThisAccountActive"
+                           data-ng-click="callDeletePopUp($index,'method')" href="#" onclick="return false;">Delete<span
+                               class="ups-readerTxt"> payment {{data.Number}}</span></a>
+                            <!-- Reactivate Link -->
+                            <a class="ups-text-underline"
+                               data-ng-if="!data.IsThisAccountActive"
+                               data-ng-click="openReactivateCodeDialog($index,'method')" href="#" onclick="return false;">Reactivate<span class="ups-readerTxt"> payment {{data.Number}}</span></a>
+                        </td>
+                    </tr>
+                    <tr data-ng-if="payementData.paymentMethods.length === 0">
+                        <td  scope="row" colspan="5">You havent added any Method yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="ups-form_group ups-form_required">
+            <label class="ups-form_label" for="ups-paymentType">Add a
+                Payment Method
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class=" ups-dropdown_wrapper ups-input_wrapper">
+                        <select check-max class="ups-dropdown ups-check-max"
+                            name="cardType" data-ng-model="Cardtype" aria-required="true" required
+                            data-ng-change="checkDisableButton(item.name)"
+                            data-ng-options="item.name for item in paymentType"
+                            id="ups-paymentType">
+                            <option value="" selected>--Select One--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <span class="ups-form_ctaGroup"><button
+                            type="button"
+                            class="ups-cta ups-cta_primary"
+                            data-ng-click="payments.add(Cardtype.name)">Add</button></span>
+                            <!-- data-ng-disabled="!Cardtype.name" -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ups-section">
+        <h2>My Discounts</h2>
+        <div class="ups-promotional">
+            <div class="ups-table ups-table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="ups-table_header_tertiary"><button class="ups-link"
+                                data-ng-click="payementData.sortType = 'Name'; payementData.sortReverse = !payementData.sortReverse"><span
+                                    class="ups-readerTxt">Sort By </span> NAME<span
+                                    data-ng-show="payementData.sortType = 'Name' && !payementData.sortReverse"
+                                    class="icon"><span class="ups-icon-chevrondown" aria-hidden="true"></span></span> <span
+                                    data-ng-show="payementData.sortType = 'Name' && payementData.sortReverse"
+                                    class="icon"><span class="ups-icon-chevronup" aria-hidden="true"></span></span> </button></th>
+
+                            <th scope="col" class="ups-table_header_tertiary">DESCRIPTION</th>
+                            <th scope="col" class="ups-table_header_tertiary">DATE ADDED</th>
+                            <th scope="col" class="ups-table_header_tertiary">EXPIRATION DATE</th>
+                            <th scope="col" class="ups-table_header_tertiary">MANAGE</th>
+                        </tr>
+                        <tr
+                            data-ng-repeat="data in payementData.promotionMethods  | orderBy:payementData.sortType:payementData.sortReverse track by $index">
+                            <td scope="row" class="">{{data.Name}}</td>
+                            <td class="ups-tbl_description">{{data.Description}} <a
+                                href="#" onclick="return false;" class="ups-text-underline" data-ng-click="openPromoPage()">link
+                                    to promo page</a></td>
+                            <td class="ups-date">{{data.DateAdded}}</td>
+                            <td class="ups-date">{{data.Expiration}}</td>
+                            <td class="ups-manage"><a class="ups-text-underline"
+                                data-ng-click="callDeletePopUp($index,'promotion')" href="#" onclick="return false;">Cancel<span
+                                    class="ups-readerTxt"> discount {{data.Name}}</span></a></td>
+                        </tr>
+                        <tr data-ng-if="payementData.promotionMethods.length === 0">
+                            <td scope="row" class="" colspan="5">You haven't added any
+                                Discount yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="button" data-ng-click="AddPromotion()"
+                class="ups-cta ups-cta_primary">Add a Promotion Code</button>
+        </div>
+    </section>
+</script>
+
+<script type="text/ng-template" id="ups.ppc-paymentSVP.html">
+    <div class="ups-list">
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <a class="list_link" href="#" onclick="return false;" data-ng-repeat="item in portObjComp1.content"
+                        data-ng-click="portObjComp1.next(item)">
+                        <div class="list_detail">
+                            <h3>{{item.title}}</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ups.ppc-paymentSVP_discount1.html">
+    <div class="ups-list">
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjComp2.back()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                {{selectedValueContent.title}}
+            </a>
+        </h2>
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <div class="list_link" data-ng-repeat="item in portObjComp2.content"
+                        data-ng-click="portObjComp2.next(item)">
+                        <div class="list_detail">
+                            <h3>{{item.Name}}</h3>
+                            <div>
+                                <strong>EXP. {{item.Expiration}}</strong>
+                            </div>
+                            <p>
+                                {{item.Description}} <a href="#" onclick="return false;" class="ups-link"
+                                    data-ng-click="openPromoPage()">link to promo page</a>
+                            </p>
+                            <div>
+                                <a class="ups-link"
+                                    data-ng-click="callDeletePopUp($index,'promotion')" href="#" onclick="return false;">Delete<span
+                                    class="ups-readerTxt"> discount {{item.Name}}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_ctaGroup">
+        <button type="button" data-ng-click="AddPromotion()"
+            class="ups-cta ups-cta_primary">Add a Promotion Code</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ups.ppc-paymentSVP_payment1.html">
+    <div class="ups-list">
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjComp2.back()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                {{selectedValueContent.title}}
+            </a>
+        </h2>
+        <div class="list-component">
+            <div class="list-col-bullets ups-bullet_padding">
+                <div class="list_row clearfix">
+                    <a class="list_link" href="#" onclick="return false;"
+                        data-ng-repeat="item in portObjComp2.content"
+                        data-ng-click="portObjComp2.next($index, item)">
+                        <div class="list_detail">
+                            <h3>
+                                {{item.payementNickName}} <span data-ng-if="item.makeDefault">(DEFAULT)</span>
+                            </h3>
+                            <ul class="ups-cardOrder_list ups-card_visible">
+                                <li
+                                    class="{{item.Cardtype?('ups-'+item.Cardtype| join):('ups-no-card')}} active"><span
+                                    class="ups-readerTxt">{{item.Cardtype}}</span></li>
+                            </ul>
+                            <span>{{item.displayAccount}}</span> <strong
+                                data-ng-if="item.accountType==='Payment Card'">EXP.
+                                {{item.monthId}}/{{item.year}}</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_group ups-form_required ups-paymentForm">
+        <div class="row">
+            <div class="col-md-5">
+                <label class="ups-form_label" for="ups-paymentType">Add a
+                    Payment Method
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class=" ups-dropdown_wrapper ups-input_wrapper">
+                    <select check-max class="ups-dropdown ups-check-max" name="cardType"
+                        data-ng-model="Cardtype" aria-required="true" required
+                        data-ng-change="checkDisableButton(item.name)"
+                        data-ng-options="item.name for item in paymentType"
+                        id="ups-paymentType">
+                        <option value="" selected>--Select One--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <span class="ups-form_ctaGroup"><button
+                        type="button"
+                        class="ups-cta ups-cta_primary"
+                        data-ng-click="payments.add(Cardtype.name)">Add</button></span>
+                        <!-- data-ng-disabled="!Cardtype.name" -->
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="ups.ppc-paymentSVP_payment2.html">
+    <div>
+        <h2>
+            <a point-focus="" href="#" onclick="return false;" class="ups-previous_page"
+                data-ng-click="portObjComp3.back()">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                {{selectedValueContent.title}}
+            </a>
+        </h2>
+
+        <ul class="ups-payment_tableContent">
+            <li><h3>{{selected.data.payementNickName}}</h3></li>
+            <li>
+                <p class="ups-boldText">Billing Address</p>
+                <p>{{selected.data.address.address1}}</p>
+                <p>{{selected.data.address.city}},{{selected.data.address.state_select}}</p>
+                <p>{{selected.data.address.zipcode}}</p>
+            </li>
+            <li>
+                <p class="ups-boldText">Method</p>
+                <p>{{selected.data.Method}}</p>
+            </li>
+            <li>
+                <p class="ups-boldText">Number</p>
+                <p>{{selected.data.Number}}</p>
+            </li>
+            <li>
+                <p class="ups-boldText">Preferred Method</p>
+                <p>
+                    <span data-ng-show="selected.data.makeDefault">DEFAULT METHOD</span>
+                    <a data-ng-hide="selected.data.makeDefault"
+                        data-ng-click="changeDefault(payementData.paymentMethods,selected.index)" class="ups-link">Make
+                        Default</a>
+                </p>
+            </li>
+            <li>
+                <p class="ups-boldText">Manage</p> <a point-focus
+                class="ups-link ups-editCardpointCls"
+                data-ng-click="payments.edit(selected.index,selected.data.Method, selected.data);pointClass('ups-editCardpointCls',selected.index);"
+                href="#" onclick="return false;">Edit<span class="ups-readerTxt"> payment
+                        {{selected.data.Number}}</span></a> | <a class="ups-link"
+                data-ng-click="callDeletePopUp(selected.index,'method');portObjComp3.back()"
+                href="#" onclick="return false;">Delete<span class="ups-readerTxt"> payment
+                        {{selected.data.Number}}</span></a>
+            </li>
+        </ul>
+    </div>
+</script>
+
+
+<div data-ng-controller="paymentCtrl" resize class="ups-svp_table" data-page-title="Payment Options">
+
+	<!--Previous Link Starts-->
+	<a point-focus="" href="#/profilePage" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Overview
+	</a>
+	<!--Previous Link Ends-->
+
+	<div data-ng-include="viewPortHtml"></div>
+</div>

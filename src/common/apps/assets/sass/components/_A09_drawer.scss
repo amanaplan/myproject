@@ -1,0 +1,125 @@
+.ups-drawer {
+	.ups-drawer-btn {
+		width: 100%;
+		background-color: $stone_40;
+		text-align: #{$default-float};
+		padding: 10px 8px 7px;
+		border: none;
+		border-top: 1px solid $stone_s3;
+		border-bottom: 1px solid $stone_s3;
+		/*border: 1px solid $black_s1;*/
+	}
+
+	.ups-drawer-content {
+		display: none;
+		border-bottom: 1px solid $black_s1;
+		padding: 10px 8px 7px;
+	}
+
+    /* selector below should remain added for 2nd theme on drawers*/
+    &.ups-drawer_slim {
+        .ups-drawer-btn {
+            width: auto;
+            background-color: transparent;
+            border-top: none;
+            border-bottom: none;
+            text-decoration: underline;
+
+            .icon {
+                margin-#{$default-float}: 10px;
+                text-decoration: none;
+                display: inline-block;
+
+                &:before {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .ups-drawer-content {
+            border-bottom: none;
+            padding: 5px;
+        }
+    }
+
+
+}
+ul.ups-drawer {
+    margin: 0;
+    padding: 0;
+
+    li.ups-drawer_list_item {
+        list-style: none;
+
+        &:first-child .ups-drawer-btn {
+            border-top: 1px solid $stone_s3;
+        }
+
+        .ups-drawer-btn {
+            border-top: none;
+
+            &:focus {
+                position: relative;
+                z-index: 2;
+            }
+
+            &.ups-drawer_btn_error {
+                color: $red;
+
+                &:focus {
+                    outline-color: $red;
+                }
+
+                .ups-drawer_left_icon {
+                    color: $red;
+                }
+            }
+
+            .icon {
+                margin-#{$opposite-direction}: 5px;
+                font-size: 16px;
+                position: relative;
+                top: 2px;
+                line-height: 16px;
+                color: $black;
+            }
+        }
+
+        .ups-drawer_left_icon {
+            vertical-align: -4px;
+        }
+
+        .icon.ups-drawer_left_icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+
+            &:before {
+                position: absolute;
+                top: -3px;
+            }
+        }
+
+        .ups-empty_circle {
+            height: 12px;
+            width: 12px;
+            border: 1px solid #000;
+            border-radius: 16px;
+            display: inline-block;
+            margin-#{$opposite-direction}: 9px;
+            position: relative;
+            top: -3px;
+            #{$default-float}: 2px;
+            transform: scale(1.3);
+            -ms-transform: scale(1.3);
+        }
+
+        .ups-required_indicator:after {
+            content: "*";
+        }
+
+        .ups-drawer-content {
+            padding: 15px 15px 0;
+        }
+    }
+}

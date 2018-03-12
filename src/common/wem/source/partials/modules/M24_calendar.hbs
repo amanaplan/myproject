@@ -1,0 +1,85 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M24 CALENDAR
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE     TYPE       DEFAULT
+    data-date        = string     n/a        month to display on load (YYYY-MM)
+    data-list        = boolean    false      show list on load
+
+-------------------------------------------------------------------------------
+
+AJAX:
+
+Currenlty configured in scripts/plugins/ups.calendar.js
+to pull data via AJAX from ajax/calendar_YYYY_MM.json
+
+See ajax/calendar_2015_05.json for example for exptected data format.
+
+-------------------------------------------------------------------------------
+
+LAYOUT:
+
+Calendar View:
+- canendar-nav
+| 30px
+- event
+| 15px
+- event
+
+List View:
+- canendar-nav
+| 30px
+- event-header
+| 30px
+- event-content
+| 30px
+- event-venue
+| 15px
+- event-time
+| 30px
+- CTAs
+| 30px
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M24 Calendar -->
+<!-- For full documentation app/source/partials/modules/M24_calendar.hbs -->
+<section class="ups-calendar_wrap ups-wrap">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-calendar" data-date="2016-05" data-list="false" data-lang-error="Unable to retrieve data"></div>
+
+    </div> <!-- @end .ups-wrap_inner -->
+    <script>
+
+		var eventsUrl='/assets/resources/ajax/calendar.xml?';
+		var country_Locale='/us/en';
+		var errorMessage = 'Unable to retrive data';
+		var isListView = false;
+		var defaultView = 'calendar';
+		if(defaultView == 'list'){
+			isListView = true;
+		}			
+		
+		function getPagelink(link){
+			var pageLink = "";
+			if(link.substring(0, 6) == "/sites" || link.substring(0, 6) == "sites/" ){
+				var pageURL = link.substring(link.indexOf("/") + 1);
+				pageURL = pageURL.substring(pageURL.indexOf("/") + 1);
+				pageURL = pageURL.substring(pageURL.indexOf("/") + 1);
+				pageURL = pageURL.substring(0, pageURL.lastIndexOf("."));
+				pageLink = '/us/en/pageURL.page??';
+				pageLink = pageLink.replace("pageURL", pageURL);					
+			}else{
+				pageLink =link;
+			}
+			return pageLink;
+		}
+    </script>
+</section> <!-- @end .ups-calendar -->

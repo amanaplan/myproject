@@ -1,0 +1,58 @@
+{{!--------------------------------------------
+===============================================
+MEDIA RESOURCE
+===============================================
+---------------------------------------------}}
+
+<div class="ups-resource">
+    {{#compare action "===" "download"}}
+    <a href="http://www.hgd1952.hr/pdf_datoteke/Test_document_PDF.pdf" target="_blank" download>
+    {{/compare}}
+    {{#compare action "===" "play"}}
+    <a target="_blank" href="M19_media_player-light.html">
+    {{/compare}}
+    {{#compare action "===" "read"}}
+    <a href="M10_article.html">
+    {{/compare}}
+    <div class="img-container">
+        <img src="{{image.src}}" alt="{{image.alt}}" />
+        {{#compare action "===" "download"}}
+            <span class="ups-iconAlone">
+                <i class="ups-icon ups-icon-document" aria-hidden="true"></i>
+                <span class="ups-readerTxt">Download</span>
+            </span>
+        {{/compare}}
+        {{#compare action "===" "play"}}
+            <span class="ups-iconAlone">
+                <i class="ups-icon ups-icon-play" aria-hidden="true"></i>
+                <span class="ups-readerTxt">Play Video</span>
+            </span>
+        {{/compare}}
+    </div>
+    {{#compare action "===" "download"}}
+    </a>
+    {{/compare}}
+    {{#compare action "===" "play"}}
+    </a>
+    {{/compare}}
+    {{#compare action "===" "read"}}
+    </a>
+    {{/compare}}
+    <div class="txt-container">
+        <p>{{title}}</p>
+        <h3>{{txt}}</h3>
+        {{#compare action "===" "download"}}
+            <a href="http://www.hgd1952.hr/pdf_datoteke/Test_document_PDF.pdf" class="ups-link" target="_blank"  download>
+                Download Whitepaper<span class="icon ups-link_newwindow" aria-hidden="true"></span><span class="ups-readerTxt">Open the link in a new window</span>
+            </a>
+        {{/compare}}
+        {{#compare action "===" "play"}}
+            <a target="_blank" href="M19_media_player-light.html" class="ups-link">
+                Watch the Video<span class="icon ups-link_newwindow" aria-hidden="true"></span><span class="ups-readerTxt">Open the link in a new window</span>
+            </a>
+        {{/compare}}
+        {{#compare action "===" "read"}}
+            <a href="M10_article.html" class="ups-link">Read More</a>
+        {{/compare}}
+    </div>
+</div>

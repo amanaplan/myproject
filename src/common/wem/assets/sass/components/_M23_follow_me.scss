@@ -1,0 +1,133 @@
+// ----------------------------------------------------
+// M23 Follow Me
+// ----------------------------------------------------
+
+
+.ups-follow-me {
+
+    .touch & {
+        display: none !important;
+    }
+
+    position: fixed;
+    top: 50%;
+    #{$opposite-direction}: 0;
+    z-index: $zMid + 1;
+    width: 180px;
+    background:$white;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    @include transition-property(width);
+    @include transition-duration(0.3s);
+
+    h2 {
+        color: #fff;
+        background: $black_s1;
+        text-transform: uppercase;
+        padding: 12px 20px;
+        line-height: 1.5;
+        position: relative;
+        font-family: $sans-bd;
+        font-size: 14px;
+        margin:0;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+    h3 {
+        padding: 12px 20px 8px;
+        line-height: 1.5;
+        position: relative;
+        font-family: $sans-bd;
+        font-size: 14px;
+        color:$black_s3;
+        margin: 0;
+        &:before {
+            display: none;
+            position: absolute;
+            #{$default-float}: 15px;
+        }
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+    p {
+        font-size: 0.9em;
+        // padding: 0 20px 12px;
+        padding: 0 20px;
+        margin-top: -8px;
+        color:$black_s3;
+        font-family: $sans;
+        overflow: hidden;
+        max-height: 0;
+        overflow: hidden;
+        width: 298px;
+        @include transition-property(all);
+        @include transition-duration(0.3s);
+    }
+
+    ul {
+        padding: 0 0 1px;
+        margin: 0;
+        li {
+//            margin: 1px 0;
+//            margin-#{$default-float}: 1px;
+            border: 1px solid $black_s1;
+            border-top: none;
+            list-style: none;
+            &.ups-inactive{
+                display:none;
+            }
+        }
+        a {
+            position: relative;
+            background: $white;
+            text-decoration: none;
+            overflow: hidden;
+            display: block;
+            &:hover, &:focus {
+                background: $ups_gold;
+            }
+        }
+    }
+
+    &.ups-active {
+        width: 300px;
+        a {
+            h3, p {
+                padding-#{$default-float}: 40px;
+                display: block;
+            }
+            p {
+                max-height: 200px;
+                padding: 0 20px 12px;
+            }
+            h3:before{
+                display: block;
+            }
+        }
+        ul{
+          li{
+            padding-bottom: 1px;
+          }
+        }
+    }
+
+    @media #{$media-medium} {
+        display: none;
+    }
+    @media #{$media-small} {
+        display: none;
+    }
+}
+
+// .ups-headFixed{
+//     .ups-follow-me {
+//         position: fixed;
+//     }
+// }

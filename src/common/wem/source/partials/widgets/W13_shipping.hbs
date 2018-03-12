@@ -1,0 +1,339 @@
+{{!--------------------------------------------
+===============================================
+Shipping
+===============================================
+---------------------------------------------}}
+
+<div class="ups-shipping ups-form_wrap ups-widget ups-wrap {{#if this.type}}ups-{{type}}{{/if}} {{bg}}">
+   <div class="ups-wrap_inner">
+        <div class="ups-widget_header">
+            <h2>{{this.title}}</h2>
+            {{#if this.help}}
+               <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+               <span class="ups-helpicon-text">Help</span></button>
+            {{/if}}
+        </div>
+        <div class="ups-widget_panel ups-shipping_panel">
+            {{#if this.help}}
+                <div class="ups-help_panel"><p>{{this.help}}</p></div>
+            {{/if}}
+            {{#isnt this.type 'campusShip'}}
+            <form class="ups-form">
+                 {{#isnt this.type "authenticated"}}
+
+                        <p class="ups-shipping_message">Please <a href="#login" class="ups-link">log in</a> to ship using your UPS profile.</p>
+
+                 {{/isnt}}
+                <div class="ups-widgetStructure">
+                	<div class="ups-shipping_type ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert">
+
+                    <label {{#if this.quickstart}}
+                            for="shipping_type_select--qs"
+                        {{else}}
+                            for="shipping_type_select"
+                        {{/if}}
+                            class="ups-form_label"
+                    >
+                        What type of shipment do you have? 
+                    </label>
+
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+
+                        <select
+                        {{#if this.quickstart}}
+                            id ="shipping_type_select--qs"
+                            name="shipping_type_select--qs"
+                        {{else}}
+                            id ="shipping_type_select"
+                            name="shipping_type_select"
+                        {{/if}}
+                            class="ups-dropdown"
+                        >
+                            <option value="package_letter">Package/Letter</option>
+                            <option value="returns">Returns</option>
+                            <option value="freight">Freight</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert">
+
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_weight--qs"
+                        {{else}}
+                            for="ups-shipping_weight"
+                            class="ups-form_label"
+                        {{/if}}
+                    >
+                        Weight 
+                    </label>
+
+                    <div class="ups-text_wrapper ups-input_wrapper weight_input" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+
+                        <input
+                            {{#if this.quickstart}}
+                                name="ups-shipping_weight--qs" id="ups-shipping_weight--qs"
+                            {{else}}
+                                name="ups-shipping_weight" id="ups-shipping_weight"
+                            {{/if}}
+                            class="ups-form_input ups-numberOnly" type="text" 
+                        />
+
+                        {{#isnt this.unit "multi"}}
+                            <span class="ups-input_unit">{{this.unit}}</span>
+                        {{/isnt}}
+                        {{#is this.unit "multi"}}
+                           <div class="ups-input_unit ups-dropdown_wrapper">
+                                <label
+                                    {{#if this.quickstart}}
+                                        for="ups-dropdown-mutliUnit--qs"
+                                    {{else}}
+                                        for="ups-dropdown-mutliUnit--qs"
+                                    {{/if}}
+                                        class="ups-readerTxt"
+                                >
+                                    Shipping Weight Units
+                                </label>
+
+                                <select
+                                    {{#if this.quickstart}}
+                                        name="ups-dropdown-mutliUnit--qs"
+                                        id="ups-dropdown-mutliUnit--qs"
+                                    {{else}}
+                                        name="ups-dropdown-mutliUnit"
+                                        id="ups-dropdown-mutliUnit"
+                                    {{/if}}
+                                    class="ups-dropdown"
+                                >
+                                   {{#each this.multi}}
+                                    <option value="{{this}}">{{this}}</option>
+                                    {{/each}}
+                                </select>
+                           </div>
+                        {{/is}}
+
+                    </div>
+                </div>
+                </div>
+
+                {{#isnt this.type "authenticated"}}
+			<div class="ups-widgetStructure">
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert">
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_from_select--qs"
+                        {{else}}
+                            for="ups-shipping_from_select"
+                        {{/if}}
+                        class="ups-form_label"
+                    >
+                        Ship From 
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select
+                            {{#if this.quickstart}}
+                                name="ups-shipping_from_select--qs"
+                                id="ups-shipping_from_select--qs"
+                            {{else}}
+                                name="ups-shipping_from_select"
+                                id="ups-shipping_from_select"
+                            {{/if}}
+                            class="ups-dropdown" 
+                        >
+                            <option value="">United States</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+               <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert ups-form_shortInput">
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_from--qs"
+                        {{else}}
+                            for="ups-shipping_from"
+                        {{/if}}
+                        class="ups-form_label"
+                    >
+                        Ship From Zip Code 
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input
+                            {{#if this.quickstart}}
+                                name="ups-shipping_from--qs"
+                                id="ups-shipping_from--qs"
+                            {{else}}
+                                name="ups-shipping_from"
+                                id="ups-shipping_from"
+                            {{/if}}
+                            class="ups-form_input"
+                            type="text" >
+                    </div>
+                </div>
+              </div>
+			  
+			  <div class="ups-widgetStructure">
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert">
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_to_select--qs"
+                        {{else}}
+                            for="ups-shipping_to_select"
+                        {{/if}}
+                        class="ups-form_label"
+                    >
+                        Ship To 
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select
+                            {{#if this.quickstart}}
+                                name="ups-shipping_to_select--qs"
+                                id="ups-shipping_to_select--qs"
+                            {{else}}
+                                name="ups-shipping_to_select"
+                                id="ups-shipping_to_select"
+                            {{/if}}
+                            class="ups-dropdown" 
+                        >
+                            <option value="">United States</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert ups-form_shortInput">
+                    <label
+                        {{#if this.quickstart}}
+                        for="ups-shipping_to--qs"
+                        {{else}}
+                        for="ups-shipping_to"
+                        {{/if}}
+                        class="ups-form_label"
+                    >
+                        Ship To Zip Code 
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input
+                            {{#if this.quickstart}}
+                                name="ups-shipping_to--qs"
+                                id="ups-shipping_to--qs"
+                            {{else}}
+                                name="ups-shipping_to"
+                                id="ups-shipping_to"
+                            {{/if}}
+                            type="text"
+                            class="ups-form_input" >
+                    </div>
+                </div>
+              </div>
+                {{/isnt}}
+
+              <div class="ups-widgetStructure">
+                {{#is this.type "authenticated"}}
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert">
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_to_select-auth--qs"
+                        {{else}}
+                            for="ups-shipping_to_select-auth"
+                        {{/if}}
+                        class="ups-form_label ups-hasLink"
+                    >
+                        Ship To 
+                    </label>
+                    <a class = "ups-form_link" href="#">Add another address</a>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select
+                            {{#if this.quickstart}}
+                                name="ups-shipping_to_select-auth--qs"
+                                id="ups-shipping_to_select-auth--qs"
+                            {{else}}
+                                name="ups-shipping_to_select-auth"
+                                id="ups-shipping_to_select-auth"
+                            {{/if}}
+                            class="ups-dropdown" 
+                        >
+                            <option value="">Select an address</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+                {{/is}}
+
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_group ups-form_requiredNoAlert ups-service_speed">
+                    <label
+                        {{#if this.quickstart}}
+                            for="ups-shipping_type--qs"
+                        {{else}}
+                            for="ups-shipping_type"
+                        {{/if}}
+                        class="ups-form_label"
+                    >
+                        Service Speed 
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select
+                            {{#if this.quickstart}}
+                                name="ups-shipping_type--qs"
+                                id="ups-shipping_type--qs"
+                            {{else}}
+                                name="ups-shipping_type"
+                                id="ups-shipping_type"
+                            {{/if}}
+                            class="ups-dropdown"
+                        >
+                            <option value="">Select a service type</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+              </div>
+
+                <div class="ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_ctaGroup">
+                {{#isnt this.type "authenticated"}}
+
+                    <button class="ups-cta ups-form_button ups-form_doubleButton ups-cta_primary ups-shipping_package" type="button">Ship as a Guest</button>
+                {{/isnt}}
+
+                {{#is this.type "authenticated"}}
+                    <button class="ups-cta ups-form_button ups-cta_primary ups-shipping_package ups-shipping_returns ups-shipping_freight ups-form_doubleButton" type="submit">Start Shipment</button>
+                {{/is}}
+                </div>
+
+                {{#isnt this.type "authenticated"}}
+                <div class="ups-shipping_freightNA ups-form_group ups-form_requiredNoAlert">
+                    <p>Please <a href="">Log in</a> to start a freight shipment.</p>
+                </div>
+                {{/isnt}}
+                
+                {{#isnt this.type "authenticated"}}
+                <div class="ups-shipping_returnsNA ups-form_group ups-form_requiredNoAlert">
+                    <p>Please <a href="">Log in</a> to create a return.</p>
+                </div>
+                {{/isnt}}
+            </form>
+            {{/isnt}}
+            {{#is this.type 'campusShip'}}
+            <h2>CampusShip<sup>®</sup></h2>
+            <a href="#create">Create a Shipment</a>
+            <a href="#resources">Resources</a>
+            <a href="#admin">CampusShip Admin</a>
+            <a href="#history">Shipping History</a>
+            {{/is}}
+        </div>
+        <!-- @end .ups-news_panel -->
+   </div>
+   <script>
+        var content={};
+   </script>
+</div>
+<!-- @end .ups-news -->

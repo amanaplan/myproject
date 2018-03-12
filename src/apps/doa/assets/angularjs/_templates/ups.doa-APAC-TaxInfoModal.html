@@ -1,0 +1,405 @@
+<div data-ng-controller="apacTaxInfoCtrl">
+	<!-- //// begin ups.doa-APAC-TaxInfoModal //// -->
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+	<form name="ups_apacTaxInfo" error-on-submit novalidate>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required"
+					data-ng-class="{ 'has-error' : ups_apacTaxInfo.companyName.$invalid && !ups_apacTaxInfo.companyName.$pristine }">
+					<label for="ups-company_name_input" class="ups-form_label">
+                    	Company Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur focus-on-error type="text" name="companyName"
+							class="ups-form_input" id="ups-company_name_input" value=""
+							data-ng-model="formObj.companyName" required maxlength="35"
+							aria-describedby="companyNameRequired-error" aria-required="true"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="companyNameRequired-error" role="alert"> 
+						<span
+							class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.companyName.$pristine && ups_apacTaxInfo.companyName.$invalid ">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-if="ups_apacTaxInfo.companyName.$error.required">Company Name is required.</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_apacTaxInfo.companyName.$valid)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="ups-form_group ups-form_required "
+					data-ng-class="{ 'has-error' : ups_apacTaxInfo.contactPerson.$invalid && !ups_apacTaxInfo.contactPerson.$pristine }">
+					<label for="ups-contact_person_input" class="ups-form_label">
+                    	Contact
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur focus-on-error type="text"
+							name="contactPerson" class="ups-form_input"
+							id="ups-contact_person_input" value=""
+							data-ng-model="formObj.contactPerson" required maxlength="35"
+							aria-describedby="contactPersonRequired-error"
+							aria-required="true" data-ng-model-options="{updateOn: 'blur'}">
+						<span id="contactPersonRequired-error" role="alert"> <span
+							class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.contactPerson.$pristine && ups_apacTaxInfo.contactPerson.$invalid ">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-if="ups_apacTaxInfo.contactPerson.$error.required">Contact
+									is required.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.contactPerson.$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_apacTaxInfo.contactPerson.$valid)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-billing_address1_input" class="ups-form_label">
+                    	Billing Address
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="billingAddress1"
+							class="ups-form_input" id="ups-billing_address1_input"
+							maxlength="35" required data-ng-model="formObj.billingAddress1"
+							aria-describedby="billingAddressRequired-error"
+							aria-required="true" data-ng-model-options="{updateOn: 'blur'}">
+						<span id="billingAddressRequired-error" role="alert"> <span
+							class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.billingAddress1.$pristine && ups_apacTaxInfo.billingAddress1.$invalid">
+								<span class="icon ups-error_exclamation">
+								<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-if="ups_apacTaxInfo.billingAddress1.$error.required">Billing
+									Address is required.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.billingAddress1.$valid&& ups_apacTaxInfo.billingAddress1.$dirty" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_apacTaxInfo.billingAddress1.$valid && ups_apacTaxInfo.billingAddress1.$dirty)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="ups-form_group">
+					<label for="ups-billing_address2_input"
+						class="ups-form_label ups-readerTxt ups-minHeight">Billing
+						Address </label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="billingAddress2" class="ups-form_input"
+							id="ups-billing_address2_input" maxlength="35"
+							data-ng-model="formObj.billingAddress2">
+					</div>
+				</div>
+
+				<div class="ups-form_group">
+					<label for="ups-billing_address3_input"
+						class="ups-form_label ups-readerTxt ps-minHeight">Billing
+						Address </label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="billingAddress3" class="ups-form_input"
+							id="ups-billing_address3_input" maxlength="35"
+							data-ng-model="formObj.billingAddress3">
+					</div>
+				</div>
+
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-city_input" class="ups-form_label">
+                    	City
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur validate-city type="text" name="city"
+							class="ups-form_input" id="ups-city_input" maxlength="35"
+							required data-ng-model="formObj.city"
+							data-ng-pattern="/^[a-zA-Z- ]+$/" aria-describedby="city-error"
+							aria-required="true" data-ng-change="countryVal(formObj.country)"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="city-error" role="alert"><span class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.city.$pristine && ups_apacTaxInfo.city.$invalid">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_apacTaxInfo.city.$error.required">City
+									is required.</span> <span
+								data-ng-hide="ups_apacTaxInfo.city.$error.required">Invalid
+									City.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.city.$valid && ups_apacTaxInfo.city.$dirty" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						 </span>
+						<div data-ng-if="(ups_apacTaxInfo.city.$valid && ups_apacTaxInfo.city.$dirty)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+                
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-province_input" class="ups-form_label">
+                    	Province
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="province"
+							id="ups-province_input" maxlength="35" required
+							data-ng-model="formObj.province" class="ups-form_input"
+							aria-describedby="provinceRequired-error" aria-required="true"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="provinceRequired-error" role="alert"> <span
+							class="ups-invalid_color"
+							data-ng-show="!ups_apacTaxInfo.province.$pristine && ups_apacTaxInfo.province.$invalid">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-if="ups_apacTaxInfo.province.$error.required">Province
+									is required.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.province.$valid && ups_apacTaxInfo.province.$dirty" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div id="dropdwncheckPosition" data-ng-if="(ups_apacTaxInfo.province.$valid && ups_apacTaxInfo.province.$dirty)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="ups-form_group ups-form_required"
+					data-ng-class="{ 'has-error' : ups_apacTaxInfo.country.$invalid && !ups_apacTaxInfo.country.$pristine }">
+					<label for="ups-country_select" class="ups-form_label">
+                    	Country
+						<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur focus-on-error type="text" name="country"
+							class="ups-form_input" id="ups-country_select" value=""
+							data-ng-model="formObj.country" required maxlength="35"
+							aria-describedby="countryRequired-error" aria-required="true"
+							data-ng-change="countryVal(formObj.country)"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="countryRequired-error" role="alert"> <span
+							class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.country.$pristine && ups_apacTaxInfo.country.$invalid ">
+								<span class="icon ups-error_exclamation">
+									<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-if="ups_apacTaxInfo.country.$error.required">Country
+									is required.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.country.$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_apacTaxInfo.country.$valid)">
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="ups-form_group ups-form_required ">
+					<label for="ups-postal_code_input" class="ups-form_label">
+                    	Postal Code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" class="ups-form_input"
+							id="ups-postal_code_input" maxlength="15" name="postalCode"
+							required data-ng-model="formObj.postalCode"
+							data-ng-pattern="/^[a-zA-Z0-9]+$/"
+							aria-describedby="postalCodeRequired-error" aria-required="true"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							id="postalCodeRequired-error" role="alert"> <span
+							class="ups-invalid_color"
+							data-ng-if="!ups_apacTaxInfo.postalCode.$pristine && ups_apacTaxInfo.postalCode.$invalid">
+								<span class="icon ups-error_exclamation">
+								<span class="ups-icon-exclamation" aria-hidden="true"></span>
+								</span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_apacTaxInfo.postalCode.$error.required">Postal
+									code is required.</span> <span
+								data-ng-hide="ups_apacTaxInfo.postalCode.$error.required">Invalid
+									Postal code.</span>
+						</span>
+						<span data-ng-if="ups_apacTaxInfo.postalCode.$valid && ups_apacTaxInfo.postalCode.$dirty" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						</span>
+						<div data-ng-if="(ups_apacTaxInfo.postalCode.$valid && ups_apacTaxInfo.postalCode.$dirty)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+
+                <div data-ng-if="vatCertifiedCountry">
+                    <fieldset class="ups-form_group">
+                        <legend class="ups-form_label">Are you a certified VAT
+                            company?</legend>
+                        <div>
+                            <span data-ng-repeat="i in vatCertified"
+                                class="ups-checkbox ups-input_wrapper  ups-display-inline">
+                                <input id="{{i.text}}" class="ups-radio-custom" type="radio"
+                                name="vatCertified" value="{{i.value}}"
+                                data-ng-model="formObj.vatCertified"
+                                data-ng-checked="{{i.value}}" /> <label for="{{i.text}}"
+                                class="ups-form_label ups-radio-custom-label">{{i.text}}</label>
+                            </span>
+                        </div>
+                    </fieldset>
+                    
+                    <div data-ng-if="formObj.vatCertified==='true'">
+                        <div class="ups-form_group ups-form_required "
+                            data-ng-class="{ 'has-error' : ups_apacTaxInfo.taxpayerId.$invalid && !ups_apacTaxInfo.taxpayerId.$pristine }">
+                            <label for="ups-taxpayerId_input" class="ups-form_label">
+                                Taxpayer ID
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur focus-on-error type="text"
+                                    name="taxpayerId" class="ups-form_input"
+                                    id="ups-taxpayerId_input" value=""
+                                    data-ng-model="formObj.taxpayerId" aria-required="true" required maxlength="15"
+                                    data-ng-model-options="{updateOn: 'blur'}">
+                                <span role="alert">
+                                    <span class="ups-invalid_color"
+                                        data-ng-if="!ups_apacTaxInfo.taxpayerId.$pristine && ups_apacTaxInfo.taxpayerId.$invalid">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span data-ng-if="ups_apacTaxInfo.taxpayerId.$error.required">
+                                            Taxpayer ID is required.
+                                        </span>
+                                    </span>
+                                </span>
+                                <div data-ng-if="(ups_apacTaxInfo.taxpayerId.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="ups-form_group ups-form_required"
+                            data-ng-class="{ 'has-error' : ups_apacTaxInfo.bankName.$invalid && !ups_apacTaxInfo.bankName.$pristine }">
+                            <label for="ups-bank_name_input" class="ups-form_label">
+                                Bank Name
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur focus-on-error type="text" name="bankName"
+                                    class="ups-form_input" id="ups-bank_name_input" value=""
+                                    data-ng-model="formObj.bankName" aria-required="true" required maxlength="35"
+                                    data-ng-model-options="{updateOn: 'blur'}">
+                                <span role="alert">
+                                    <span class="ups-invalid_color"
+                                        data-ng-if="!ups_apacTaxInfo.bankName.$pristine && ups_apacTaxInfo.bankName.$invalid">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>	
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span data-ng-if="ups_apacTaxInfo.bankName.$error.required">
+                                            Bank Name is required.
+                                        </span>
+                                    </span>
+                                </span>
+                                <div data-ng-if="(ups_apacTaxInfo.bankName.$valid)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="ups-form_group ups-form_required "
+                            data-ng-class="{ 'has-error' : ups_apacTaxInfo.bankAcctNum.$invalid && !ups_apacTaxInfo.bankAcctNum.$pristine }">
+                            <label for="ups-bankAcctNum_input" class="ups-form_label">
+                                Bank Account Number
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur focus-on-error type="text"
+                                    name="bankAcctNum" class="ups-form_input"
+                                    id="ups-bankAcctNum_input" value=""
+                                    data-ng-model="formObj.bankAcctNum" aria-required="true" required maxlength="15"
+                                    data-ng-model-options="{updateOn: 'blur'}">
+                                <span role="alert">
+                                    <span class="ups-invalid_color"
+                                        data-ng-if="!ups_apacTaxInfo.bankAcctNum.$pristine && ups_apacTaxInfo.bankAcctNum.$invalid">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span data-ng-if="ups_apacTaxInfo.bankAcctNum.$error.required">
+                                            Bank Account Number is required.
+                                        </span>
+                                    </span>
+                                </span>
+                                <div data-ng-if="(ups_apacTaxInfo.bankAcctNum.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span>	
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="ups-form_ctaGroup text-center">
+            <button class="ups-cta ups-cta_tertiary " data-ng-click="backBtn()">Back</button>
+
+            <button class="ups-cta ups-cta_primary "
+                data-ng-click="nextApacTaxInfoStep()">Next</button>
+                
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="ModalService.dismiss()">Cancel</button>
+		</div>
+	</form>
+	<!-- //// end ups.doa-APAC-TaxInfoModal //// -->
+</div>

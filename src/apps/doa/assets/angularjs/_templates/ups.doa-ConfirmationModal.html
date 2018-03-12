@@ -1,0 +1,79 @@
+<div class="ups-confirmation"
+	data-ng-class="{'ups-application_wrapper ups-form_wrap ups-app_onboarding':hideHeader}">
+    <!-- //// begin ups.doa-ConfirmationModal //// -->
+	<h2 data-ng-class="{'ups-no-modal':hideHeader}"
+		data-ng-if="hideHeader">Welcome, {{finalFormObj.first_name}}.</h2>
+	<!-- CONFIRMATION CONTENT -->
+	<div data-ng-controller="ConfirmationCtrl">
+        <div data-ng-if="finalFormObj">
+            <p>Use your new ID to order supplies, manage payment options, and more.</p>
+
+            <p data-ng-if="finalFormObj.nonUniqueEmailConfirmation">
+                The email address provided is shared by another user ID. Use your new user
+				ID when you want to access this new profile.
+            </p>
+
+			<div class="row">
+				<div class="col-md-5">
+					<div class="ups-group">
+						<p class="ups-group_label">Name</p>
+						<p class="ups-group_value">{{finalFormObj.name}}</p>
+					</div>
+					<div class="ups-group">
+						<p class="ups-group_label">Email</p>
+						<p class="ups-group_value">{{finalFormObj.email}}</p>
+					</div>
+					<div class="ups-group">
+						<p class="ups-group_label">User ID</p>
+						<p class="ups-group_value">{{finalFormObj.userId}}</p>
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-1">
+					<div data-ng-show="finalFormObj.isSocialLogin">
+						<div tabindex="0" aria-describedby="ups-social-login-text"
+							class="ups-social_Login_box panel panel-default">
+							<div id="ups-social-login-text" class="panel-body">
+								<p><strong>Your UPS profile is linked to [{{finalFormObj.type}}].</strong></p>
+								<p>You can always use this third-party site to log in,
+									or you can enter your email address or new user ID and password</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        <!-- //// end data-ng-if="finalFormObj" //// -->
+        <div data-ng-if="!finalFormObj">
+            <div class="ups-group ups-confirmation">
+                <div class="ups-introductory">
+                    <p>We'll send delivery notifications for this and all future
+                        home deliveries to:</p>
+                </div>
+            </div>
+
+            <div class="ups-group">
+                <p class="ups-group_label">Email:</p>
+                <p class="ups-group_value">jsmith@email.com</p>
+            </div>
+
+            <div class="ups-group">
+                <p>Free alerts are just one perk: You can request delivery changes, holds, and preferences too.</p>
+                <p><a href="#" onclick="return false;" class="ups-link ups-new-window">
+                        Learn about UPS My Choice&reg; <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a></p>
+            </div>
+        </div>
+        <!-- //// end data-ng-if="!finalFormObj" //// -->
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit"
+                class="ups-cta ups-cta_primary"
+                data-ng-if="!hideHeader"
+                data-ng-click="cancel();close();welcome();">Close</button>
+            <button type="button"
+                class="ups-cta ups-cta_secondary"
+                data-ng-click="redirectToMyProfile('mychoice')">Manage My Profile</button>
+        </div>
+		<!-- //// end ups-form_ctaGroup //// -->
+	</div>
+    <!-- //// end ups.doa-ConfirmationModal //// -->
+</div>

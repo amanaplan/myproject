@@ -1,0 +1,97 @@
+<!-- Mobile Notifications Manager Modal -->
+<div class="ups-box-modal  ups-modal-container">
+    <div class="ups-modal-container">
+        <p>Enter your mobile number below to register for SMS notifications.</p>
+          <p><em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em></p>
+      	<p><strong>You will not receive notifications between [10pm and 10 am] local time.</strong></p>
+        <div class="row">
+            <div class="col-md-5">
+             	<div class="ups-form_group ups-form_required">
+                    <label for="ups-country-language" class="ups-form_label">Country and Language <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                	<div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="support" data-name="support" class="ups-dropdown" id="ups-uid-form_title-support" aria-describedby="email-help-text2">
+                            <option value="most_recent">Australia - English</option>
+                            <option value="most_recent">Australia - English</option>
+                            <option value="most_recent">Australia - English</option>
+                            <option value="most_recent">Australia - English</option>
+                        </select>
+                   	</div>
+                </div>
+            </div>
+        </div>
+        <!-- ----------------------------------------------- -->
+        <!-- Commented out due to TFS 459040                 -->
+        <!-- ----------------------------------------------- -->
+        <!-- <div class="ups-form_group ups-form_required">
+            <label for="ups-uid-unnamed-name" class="ups-form_label">Mobile Number <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-5">
+                               <div class=" ups-text_wrapper ups-input_wrapper ">
+                                        <input type="text" name="country_dial_code" data-name="country_dial_code" class="ups-form_input ups-error" id="country_dial_code">
+                                 </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class=" ups-text_wrapper ups-input_wrapper " data-errormsg="Please provide.">
+                                        <input type="text" name="mobile_number" data-name="mobile_number" class="ups-form_input ups-error" id="mobile_number" aria-required="true" required="" data-parsley-trigger="blur" data-parsley-required-message="Please provide." data-parsley-maxlength="15">
+                                        <div class="ups-checkIcon">
+                                            <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span>
+                                        </div>
+                                            <p class="ups-formError"><span class="ups-icon-exclamation" aria-hidden="true"></span></p>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> -->
+
+        <!-- ------------------------------------- -->
+        <!-- TFS: 459040 Added Country Code Phone Number Input -->
+        <!-- ------------------------------------- -->
+        <div class="row">
+            <div class="col-md-5">
+               <div class="ups-form_group ups-form_required" data-errormsg="This field is required">
+                   <label for="upsPhoneNumberInput" class="ups-form_label">
+                       Phone Number
+                       <span aria-hidden="true" class="ups-required_indicator"></span>
+                   </label>
+                   <div class="ups-input_has_unit_left ups-text_wrapper ups-input_wrapper">
+                       <span class="ups-input_group_addon">+061</span>
+                       <input type="text" name="upsPhoneNumberInput" class="ups-form_input_unit ups-form_input" id="upsPhoneNumberInput" aria-required="true" required maxlength="15">
+                   </div>
+               </div>
+           </div>
+        </div>
+
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="rememberMyNumber" class="ups-checkbox-custom" name="rememberMyNumber" type="checkbox" value="1">
+            <label for="rememberMyNumber" class="ups-checkbox-custom-label ups-no_label">Remember my number</label>
+        </div>
+
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="certifyMyOwnNumber" class="ups-checkbox-custom" name="certifyMyOwnNumber" type="checkbox" value="1">
+            <label for="certifyMyOwnNumber" class="ups-checkbox-custom-label ups-no_label">I certify that this is my own number and I agree to the terms of use and privacy notice show below.</label>
+        </div>
+
+        <p><a href="repl_href" class="ups-link ups-new-window">SMS Program Terms of Use<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+        <p><a href="repl_href" class="ups-link ups-new-window">UPS Privacy Notice<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+
+        <section class="panel panel-default">
+			<div class="panel-body">
+				<p>Message and data rates may apply. Message frequency depends upon your activity.  For support, text <strong>HELP</strong> to 69877 (MYUPS) or visit SMS Help.  To opt out anytime, text STOP to 69877 (MYUPS).</p>
+                <p><a href="http://www.ups.com/content/us/en/resources/tracks/sms_tracking.html">http://www.ups.com/content/us/en/resources/tracks/sms_tracking.html</a></p>
+			</div>
+		</section>
+        <div class="ups-no_label text-center">
+            <button type="button" class="ups-cta ups-cta_secondary" ng-click="closeDialog()">Cancel</button>
+            <button type="button" class="ups-cta ups-cta_primary" ng-click="submit()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- End Mobile Notifications Manger -->

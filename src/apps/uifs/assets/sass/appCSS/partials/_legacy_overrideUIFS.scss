@@ -1,0 +1,164 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_RightRail";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+
+body.ups-appPage .container-fluid.iw_section .row.iw_row #ups-rr-legacy_app_container .row.iw_row .iw_columns.col-lg-4 .iw_component {
+    width: 100%!important;
+    min-width: 200px;
+    float:$opposite-direction;
+    max-width: 320px!important;
+}
+
+#main {
+
+  td.mod-pad {
+    table.border {
+      @include ups-dataTable;
+    }
+  }
+
+
+  .mod-clr {
+    .pi-h3 {
+      @include ups-serifHeaderSmaller;
+    }
+    .pi-h2 {
+      //serifHeaderSmaller but should be on this element itself
+        font-family: $serif;
+        font-weight: normal;
+        font-size: 26.6px;
+        color: $black_s4;
+        position: relative;
+        padding-#{$default-float}: 0;
+        margin-top: 0;
+    }
+  }
+
+	.stepModContent input[type="text"] {
+		max-width: 220px;
+	}
+
+	#estimateweightuom {
+		margin-#{$default-float}: 10px;
+	}
+
+  #step-4.stepModFlex, #stepFour {
+
+      fieldset {
+        width: 542px;
+        overflow-x: scroll;
+      }
+  }
+
+  #decl_value {
+    @include ups-textbox;
+  }
+
+  .Single.border {
+ 	border: 1px solid $black_s1;
+
+ 	.overflow_x {
+ 		width: 766px;
+ 		overflow-x: scroll;
+ 		table {
+ 			@include ups-dataTable;
+ 		}
+ 	}
+
+	  input {
+		  padding: 0;
+		  text-align: center;
+		  min-width: 33px;
+	  }
+ }
+
+  .container {
+    width: auto;
+    overflow: auto;
+  }
+form[type='uifsEditForm'] {
+	padding-bottom: 10px;
+	input[type="text"], #main input[type="password"] {
+		width: 90%;
+	}
+	.mod-bar {
+		padding-bottom: 10px;
+		padding-#{$opposite-direction}: 10px
+	}
+	table td dl dt {
+		padding: 5px 0px
+	}
+	dd.nopad {
+		padding-top: 5px;
+	}
+}
+
+  form[name='standAlonePickupRequest'] {
+    #step-4 .stepModHead {
+      h3 {
+        width: auto;
+      }
+      span.indent {
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+#AddressDiv, .modal-open .modal, #ChooseAddressDiv {
+	background:none!important;
+}
+
+#ups-rr_legacy_app_wrap #main #GroundFreightDetailInputForm input.clearmini.btnlnkL ,
+#ups-rr_legacy_app_wrap #main #GroundFreightDetailInputForm input.checkmini.btnlnkL,
+#ups-rr_legacy_app_wrap #main #GroundFreightDetailInputForm input.crossmini
+{background:none!important}
+
+
+body.ups-appPage .container-fluid.iw_section .row.iw_row #ups-rr-legacy_app_container .row.iw_row .iw_columns.col-lg-8{
+    width: 900px!important
+}
+#email_mesg , #spcl_instrt{width:92%}
+
+@-moz-document url-prefix() {
+
+.dataTable {width:92%}
+
+}
+#main #shipToAddressFields select:not([multiple]),#main #shipFromAddressFields select:not([multiple])  {max-width:220px!important}
+
+select[name=AddCommPackaging].modSelSupport {padding:0 8px!important}
+
+@media (max-width: 767px){
+    input[name=GFEmailBOLSubmit_button]  , input[name=GFEmailBOLSubmit_button]+ input {
+        width:auto!important;
+    }
+
+}
+
+#GroundFreightDetailInputForm .Single.border {width:600px; overflow-x: scroll;}
+
+/* TFS323267 UIFS Alignment Issue*/
+.ups-special_instructions_wrap {
+  word-wrap: break-word; //IE, Chrome, Safari
+  word-break: break-all; //FireFox, Chome, Safari
+}
+
+// reset .ltl-gfp table borders
+#main .dataTable.ltl-gfp:not(.sel) tbody td:not(:last-child),
+#main .dataTable.ltl-gfp:not(.sel) tbody tr td,
+#main .dataTable.ltl-gfp:not(.sel) tbody:first-child tr:nth-child(1) td.sec-head:not(:last-child),
+#main .dataTable.ltl-gfp:not(.sel) tbody:first-child tr:nth-child(1) th:not(:last-child),
+#main .dataTable.ltl-gfp:not(.sel) tbody:first-child tr:nth-child(1) th label:not(:last-child) {
+  border: 0;
+
+  // add bottom border to cells that have this class
+  &.has-border {
+    border-bottom: 1px solid;
+  }
+}
+
+/* TFS 477143 UIFS container size issue */
+.col-Right {
+  width: 322px;
+}
+

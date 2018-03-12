@@ -1,0 +1,96 @@
+<!-- ************************************************************************************ -->
+<!--  M48 Content with Anchor                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+ M48 Content with Anchor - Notes
+********************************************************************************
+
+ - Targetable.
+ - Dynamic or Defined.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+ M48 Content with Anchor - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    copy                       = string     / NO             / Lorem Ipsum Dolor Sit Amet
+    contentBlocks              = array      / NO             / [{heading{}, copy, body, cta},{heading{}, copy, body, cta}, ... ]
+    heading                    = object     / NO             / {"text", "align"}
+    heading.text               = string     / YES            / Example title
+    heading.align              = string     / YES            / left
+    this.copy                  = string     / NO             / Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    this.body                  = RTE        / YES            / <h2>Example body content</h2><p>example text</p>
+    this.cta                   = string     / NO             / Button CTA
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+ M48 Content with Anchor - Layout
+********************************************************************************
+
+-content block-
+| 60px
+-copy-
+| 30px
+-index-
+|30px
+-content-
+|30px
+-link-
+|30px
+-content-
+|30px
+-link-
+|30px
+-content-
+|30px
+-link-
+
+********************************************************************************
+--}}
+
+<div class="ups-content_with_anchor ups-wrap">
+    <div class="ups-wrap_inner">
+        
+            {{#if this.newtitle}}
+            <h2>{{this.newtitle}}</h2>
+            {{/if}} 
+        
+        
+            {{#if this.newsubtitle}}
+                <h3>{{this.newsubtitle}}</h3>
+            {{/if}} 
+        
+
+            {{#if this.copy}}
+                <p>{{this.copy}}</p>
+            {{/if}}    
+        <div class="ups-content_with_anchor_index">
+           <p>This document contains:</p>
+            <ul>
+            {{#each  contentBlocks}}
+                <li><a href="#contentBlock{{@index}}">{{this.heading.text}}</a></li>
+            {{/each}}
+            </ul>
+        </div>
+        <div class="ups-content_with_anchor-wrapper">
+            {{#each  contentBlocks}}
+               <div id="contentBlock{{@index}}" class = "ups-content_wrapTop"></div>
+                <div class='ups-content_wrap'>
+                    {{>M44_content_block this}}
+                    <a class="ups-content_with_wrapper_link" href=""><span class="ups-icon-2chevronup" aria-hidden="true"></span>Back to the top</a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

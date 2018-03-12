@@ -1,0 +1,220 @@
+<!-- //// begin ups.ppc-myInformation-communicationPreference //// -->
+<div class="ups-communicationPref ups-form_wrap"
+	data-ng-controller="communicationPerfController">
+	<ng-form name="ups_commProfform">
+		<!-- starts-->
+        <div class="ups-group" data-ng-if="optNeutral">
+            <p>
+                UPS offers a varierty of communication types to support your shipping and tracking needs, sent through several communication channgels. Would you like to learn more about the available UPS communications? Here are some of the available topics.
+            </p>
+        </div>
+        <div class="ups-group" data-ng-if="optInOut">
+            <p>
+                Choose the topics that interest you. Please know you can unsubscribe at any time:
+                United Parcel Service of Canada Ltd., 1022 Champlain Avenue, Burlington, ON L7l 0C2, ups.com
+            </p>
+            <p><a href="#/informationPage/editCommunicationPreferences" class="ups-link">Edit All Subscriptions</a></p>
+        </div>
+
+        <div class="ups-section ups-group">
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading" data-ng-if="optNeutral || optInOut">News and Insights</h3>
+            </div>
+            <p data-ng-if="optNeutral || optInOut">Get customized content to help you ship smarter.</p>
+            <p data-ng-if="optNeutral"><strong>Available Subscriptions:</strong> Email</p>
+
+
+            <h3 data-ng-if="optInOut">Current Subscriptions</h3>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Email:</p>
+                <p class="ups-group_value">js@gmail.com</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Frequency:</p>
+                <p class="ups-group_value">Weekly</p>
+            </div>
+            <div class="ups-form_ctaGroup" data-ng-if="optInOut">
+                <button data-ng-click="proceedToEditCommunicationPrefs()" type="button" class="ups-cta ups-cta_primary">Edit Subscriptions</button>
+            </div>
+        </div>
+
+        <div class="ups-section ups-group">
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading" data-ng-if="optNeutral || optInOut">Service Updates</h3>
+            </div>
+            <p data-ng-if="optNeutral || optInOut">Request alerts for severe weather or other service interruptions that may impact you.</p>
+            <p data-ng-if="optNeutral"><strong>Available Subscriptions:</strong> Email, Voice, Mail</p>
+            <h3 data-ng-if="optInOut">Current Subscriptions</h3>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Email:</p>
+                <p class="ups-group_value">js@gmail.com</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Voice:</p>
+                <p class="ups-group_value">None</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Mail:</p>
+                <p class="ups-group_value">1313 Mockingbird Lane Los Angeles, CA 98765 US</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Frequency:</p>
+                <p class="ups-group_value">Sent when updates occur</p>
+            </div>
+            <div class="ups-form_ctaGroup" data-ng-if="optInOut">
+                <button data-ng-click="proceedToEditCommunicationPrefs()" type="button" class="ups-cta ups-cta_primary">Edit Subscriptions</button>
+            </div>
+        </div>
+
+        <div class="ups-section ups-group">
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading" data-ng-if="optNeutral || optInOut">Discounts and Offers</h2>
+            </div>
+            <p data-ng-if="optNeutral || optInOut">Save money with the latest UPS promotional offers.</p>
+            <p data-ng-if="optNeutral"><strong>Available Subscriptions:</strong> Email, Voice, Mail</p>
+            <h3 data-ng-if="optInOut">Current Subscriptions</h3>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Email:</p>
+                <p class="ups-group_value">None</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Voice:</p>
+                <p class="ups-group_value">None</p>
+            </div>
+            <div class="ups-group ups-group_condensed" data-ng-if="optInOut">
+                <p class="ups-group_label">Mail:</p>
+                <p class="ups-group_value">None</p>
+            </div>
+            <div class="ups-form_ctaGroup" data-ng-if="optInOut">
+                <!-- If user has subcriptions button text should say "Edit Subscribe" -->
+                <button type="button" class="ups-cta ups-cta_primary">Subscribe</button>
+            </div>
+        </div>
+        <div class="ups-group" data-ng-if="optNeutral">
+            <p>Select from the options below to indicate your preferences regarding these types of communications from UPS. Be sure to select the Save button to submit your preferences. To define your preferences regarding shipment status, go to the <a href="#" class="ups-link">Preferences</a>page. For preferences for your mobile app, use your device settings features. To set your cookie preferences, click the grey box at the bottom right of this page.</p>
+        </div>
+        <fieldset class="ups-form_group" data-ng-if="!optInOut">
+            <legend class="ups-readerTxt">Select offers, insight, and industrial news you would like mailed to you.</legend>
+            <div class="ups-radio ups-input_wrapper">
+                <input type="radio"
+                	name="communication"
+                    id="ups-communication_2"
+                    class="ups-radio-custom"
+                    value="false"
+                    data-ng-checked="communicationLabel.disAllowCommunication.isSelected"
+                    data-ng-model="formObj.communication"
+                    data-ng-click="refreshCheckbox()"> <label
+                    for="ups-communication_2" class="ups-radio-custom-label">{{communicationLabel.disAllowCommunication.text}}
+                </label>
+            </div>
+            <div class="ups-radio ups-input_wrapper">
+                <input type="radio"
+                    name="communication"
+                    id="ups-communication_21"
+                    class="ups-radio-custom"
+                    data-ng-model="formObj.communication"
+                    data-ng-checked="communicationLabel.allowCommunication.isSelected"
+                    data-ng-click="refreshCheckbox()"> <label
+                    for="ups-communication_21" class="ups-radio-custom-label">{{communicationLabel.allowCommunication.text}}</label>
+            </div>
+            <!-- ups-checkbox ups-input_wrapper -->
+        </fieldset>
+        <!-- ups-form_group -->
+        <fieldset class="ups-form_group"  data-ng-if="US || NonUS">
+            <legend class="ups-readerTxt">Send me offers, insights, and industry news that can help improve my shipping.</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <div data-ng-repeat="obj in allowPermission">
+                    <input check-verify type="checkbox" id="{{obj.id}}"
+                        class="ups-checkbox-custom"
+                        data-ng-checked="formObj.comm[$index]"
+                        data-ng-model="formObj.comm[$index]" /> <label for="{{obj.id}}"
+                        class="ups-checkbox-custom-label">{{obj.value}}<span></span>
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <!-- ups-buttonList_wrapper ups-input_wrapper -->
+
+        <div class="row" data-ng-if="US || NonUS">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-pref_lang{{$index}}" class="ups-form_label">Preferred Language</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select class="ups-dropdown"
+                            id="ups-pref_lang{{$index}}">
+                            <option data-ng-repeat="lang in language" value="{{lang.code}}">{{lang.language}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ups-group" data-ng-if="optNeutral">
+            <button type="button" class="ups-cta ups-cta_primary" data-ng-click="savePref()">Save</button>
+            <!--data-ng-disabled="!ups_commProfform.$dirty" -->
+        </div>
+        <div class="ups-group" data-ng-if="!NonUS">
+            <p><strong>Note:</strong> You may continue to receive non-marketing email communications from UPS regarding your account
+                and shipping activity. You may also recieve email communications with delivery alerts and other information about
+                UPS's services, including service disruptions. Please, see our Privacy Notice for more information about UPS's privacy
+                practices.</p>
+            <p><a href="#" class="ups-link">Read Our Privacy Notice</a></p>
+        </div>
+        <!-- <h3 aria-label="{{communicationLabel.alternateContent}}">{{communicationLabel.alternateContent}}</h3>
+        <p data-ng-if="US">Provide your social media contact info and give our customer service reps one more way to help you get answers fast.</p> -->
+
+        <!-- <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-communication_social_twitter">{{communicationLabel.twitter}}</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" id="ups-communication_social_twitter"
+                            class="ups-form_input" maxlength="50"
+                            data-ng-model="formObj.twitter">
+                    </div>
+                </div> -->
+                <!-- added to fix accessibility issue -->
+                <!-- <span for="ups-communication_social_facebook" data-ng-if="userInfo.network=='facebook'" class="ups-form_label">{{communicationLabel.facebook}}</span> -->
+                <!-- end edit -->
+                <!-- <div class="ups-form_group">
+                    <label for="ups-communication_social_facebook" data-ng-if="userInfo.network!='facebook'" class="ups-form_label">{{communicationLabel.facebook}}</label>
+                    <div class="ups-text_wrapper ups-input_wrapper" data-ng-if="userInfo.network!='facebook'">
+                        <input type="text" id="ups-communication_social_facebook"
+                            class="ups-form_input" maxlength="50"
+                            data-ng-model="formObj.facebook" />
+                    </div>
+                    <p tabindex="0" data-ng-if="userInfo.network=='facebook'">{{userInfo.user_name}}</p>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="ups-form_ctaGroup" data-ng-if="US || NonUS">
+            <button type="button" class="ups-cta ups-cta_primary" data-ng-click="savePref()">Save</button>
+            <!--data-ng-disabled="!ups_commProfform.$dirty" -->
+        </div>
+        <!------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --	Remove these buttons in production. 									  --
+        --																			  --
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------->
+        <div class="ups-cms-demo">
+            <button class="ups-cta ups-cta_secondary" ng-click="US = true; NonUS = false; optInOut = false; optNeutral = false">US/CA</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="NonUS = true; US = false; optInOut = false; optNeutral = false">non-US/CA</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="optNeutral = true; US = false; optInOut = false; NonUS = false"> Opt Neutral</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="optInOut = true; optNeutral = false; NonUS = false; US = false;"> Opt In and Out</button>
+        </div>
+        <!------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --	Remove these buttons in production. 									  --
+        --																			  --
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------->
+
+        <!--ends-->
+    </ng-form>
+</div>
+<!-- //// end ups.ppc-myInformation-communicationPreference //// -->

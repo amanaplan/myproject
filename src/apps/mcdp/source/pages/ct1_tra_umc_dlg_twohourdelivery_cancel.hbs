@@ -1,0 +1,56 @@
+---
+title: cancel your confirmed delivery window?
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+       
+	{{> background_modal_content }}
+
+<div class="appLvl mod modal dialog">
+  <div class="appHead clearfix">
+    <h2>{{title}}</h2>
+    <ul>
+      <li>
+        <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+      </li>
+    </ul>
+  </div>
+  <div class="appBody">
+    <p>are you sure you want to cancel the current confirmed delivery window? </br>
+      select <strong>yes</strong> to cancel the confirmed delivery window.</p>
+    <fieldset>
+      <legend></legend>
+      <dl class="outHozFixed clearfix">
+        <dt><strong>tracking number: </strong></dt>
+        <dd>1z1234567890123456 - description</dd>
+        <dt><strong>confirmed delivery window:</strong></dt>
+        <dd>12:00 p.m. - 2:00 p.m., mm/dd/yyyy</dd>
+      </dl>
+    </fieldset>
+  </div>
+  <div class="appFooter">
+    <div class="btnBar alignCenter">
+      <input name="" type="button" value="yes" class="btn">
+      <input name="" type="button" value="no" class="btn">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+		
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+
+</script>
+</div>

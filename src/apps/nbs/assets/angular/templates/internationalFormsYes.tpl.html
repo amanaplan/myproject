@@ -1,0 +1,129 @@
+<!-- [formGroup] = "intFormsYes" -->
+<div>
+    <div [ngClass]="{'ups-toggle_view_right': !nbsBase.getNbsInSinglePg(), 'ups-toggle_box': nbsBase.getNbsInSinglePg()}">
+        <div class="ups-group" [ngClass]="{'ups-group_yes_wizard' : (yesWizard)}">
+            <h4>Create Simple Online Customs Forms</h4>
+            <p>
+                Answer some questions about your shipment, and we'll automatically generate a commercial invoice and other recommended documents.
+            </p>
+            <button type="button" class="ups-cta ups-cta_primary">Open Easy Forms</button>
+        </div>
+
+        <!-- Wizard Complete -->
+        <div *ngIf="yesWizard">
+            <div class="ups-group">
+                <h4>Review Your Forms</h4>
+                <p>
+                    Edit forms or add additional information below. Return to easy forms to manage required data.
+                </p>
+            </div>
+            <div class="ups-group">
+                <p *ngIf="undo">This is a paperless shipment. <button type="button" class="ups-link" (click)="undo = false">Undo</button></p>
+                <p *ngIf="!undo"><button type="button" class="ups-link" (click)="undo = true">Process as paperless</button></p>
+            </div>
+
+            <ul class="ups-list_style_none">
+                <li *ngFor="let completedSelection of internationalFormsYes; let i = index">
+                    <hr />
+                    <div [ngClass]="{'ups-group':vpSize.isXSVP || vpSize.isSMVP}" *ngIf="completedSelection.isItCompleted">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p>
+                                    <span class="icon ups-icon-checkcircle h4" aria-hidden="true" *ngIf="completedSelection.isItCompleted"></span>
+                                    <span class="h4">{{completedSelection.label}}</span>
+                                </p>
+                            </div>
+                            <div class="col-md-7 ups-btn_no_wrap">
+                                <button type="button" class="ups-cta ups-cta_secondary">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    Edit/View
+                                    <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                                </button>
+                                <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                                    <span class="icon ups-icon-{{completedSelection.icon}}" aria-hidden="true"></span>
+                                    {{completedSelection.iconText}}
+                                    <span class="ups-readerTxt">{{completedSelection.label}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!completedSelection.isItCompleted">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="!completedSelection.isItCompleted">
+                                    <input id="ups-setService{{i}}"
+                                        class="ups-checkbox-custom"
+                                        name="ups-setService{{i}}"
+                                        type="checkbox"
+                                        [attr.checked]="completedSelection.selected"
+                                        [attr.aria-describedby]="'ups-setServiceHelpTxt'+i"
+                                        [(ngModel)]="completedSelection.yesAddOptions"
+                                        [ngModelOptions]="{standalone:true}"
+                                        >
+                                    <label for="ups-setService{{i}}" class="ups-checkbox-custom-label"><span class="h4">{{completedSelection.label}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7 ups-btn_no_wrap" *ngIf="!completedSelection.isItCompleted">
+                                <button type="button" class="ups-cta ups-cta_secondary">
+                                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                                    Edit/View
+                                </button>
+                            </div>
+                        </div>
+                        <div id="ups-setServiceHelpTxt{{i}}">
+                            <div *ngIf="completedSelection.yesAddOptions">
+                                <!-- BEGIN Lead Copy -->
+                                <p id="ups-setServiceHelpTxt{{i}}" class="ups-lever_subheader">
+                                    <span aria-hidden="true" class="icon ups-icon-alert" *ngIf="completedSelection.strongStatus == 'Required'"></span>
+                                    <strong *ngIf="completedSelection.isItAStrongStatus">{{completedSelection.strongStatus}}</strong> 
+                                    {{completedSelection.regularStatus}}
+                                    <a href="{{completedSelection.link}}" class="ups-link" *ngIf="completedSelection.link">{{completedSelection.link}}</a>.
+                                </p>
+                                <!-- END Lead Copy -->
+                            </div>
+                            <div *ngIf="completedSelection.yesAddOptions">
+                                <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                                    <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                        <!-- BEGIN How would you like to add dropdown -->
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="ups-form_dropdown{{i}}"
+                                                class="ups-form_label">
+                                                How would you like  to add this form?
+                                                <span class="ups-required_indicator" aria-hidden="true"></span>
+                                            </label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select name="ups-form_dropdown{{i}}"
+                                                    class="ups-dropdown"
+                                                    id="ups-form_dropdown{{i}}"
+                                                    required
+                                                    aria-required="true"
+                                                    [(ngModel)]="completedSelection.addOption">
+                                                    <option [value]="0">Complete online</option>
+                                                    <option [value]="1">I'll attach my own</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- END How would you like to add dropdown -->
+                                    </div>
+                                    <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg()}">
+                                        <div [ngClass]="{'ups-no_label' : nbsBase.getNbsInSinglePg()}">
+                                            <!-- BEGIN Complete Now btn -->
+                                            <button type="button" class="ups-cta ups-cta_primary" *ngIf="completedSelection.addOption == 0">Complete Now</button>
+                                            <!-- END Complete Now btn -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <hr />
+            </ul>
+        </div>
+        <div class="ups-cms-demo">
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="yesWizard=!yesWizard">Trigger Review Section</button>
+        </div>
+        <!-- Wizard Complete -->
+    </div>
+</div>

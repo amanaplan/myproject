@@ -1,0 +1,153 @@
+<form  error-on-submit name="ups_editAccount" novalidate class="  ups-application_wrapper ups-accordion_expand">
+	<div  data-ng-if="enrolledType && !enrollAttentionReq">
+		<div class="row">
+			<div class="col-md-3">
+				<strong>Account</strong>
+			</div>
+			<div class="col-md-9"><p>{{accntNumer}}</p>
+			</div>
+
+			<div class="col-md-3">
+				<strong>Enrollment Status</strong>
+			</div>
+			<div class="col-md-9"><p>Enrolled</p>
+			</div>
+		</div>
+		<p><strong>Preferences</strong></p>
+		<div class="row" data-ng-repeat="item in enrollmentArray">
+			<div class="col-md-5">
+				<p>{{item}}</p>
+			</div>
+			<div class="col-md-5 col-md-offset-1">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">View a Sample
+					<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+			</div>
+		</div>
+		<p data-ng-if="!readOnly">To update your paperless invoicing preferences for this account, select <strong>Edit Preferences</strong>. To cancel paperless invoicing for this account, select <strong>Cancel Enrollment</strong>.
+		<div data-ng-if="!readOnly">
+				<div class="ups-form_ctaGroup">
+					<button type="submit" class="ups-cta ups-cta_primary" data-ng-click="editPref()">Edit Preferences</button>
+					<button type="button" class="ups-cta ups-cta_secondary" data-ng-click="cancel()">Cancel Enrollment</button>
+				</div>
+		</div>
+	</div>
+	<div data-ng-if="!(enrolledType) && !enrollAttentionReq">
+		<div class="row">
+			<div class="col-md-3">
+				<strong>Account</strong>
+			</div>
+			<div class="col-md-9"><p>{{accntNumer}}</p>
+			</div>
+
+			<div class="col-md-3">
+				<strong>Enrollment Status</strong>
+			</div>
+			<div class="col-md-9"><p>Not Enrolled</p>
+			</div>
+		</div>
+        <p data-ng-hide="readOnly">To enable paperless invoicing for this account, select <strong>Enroll Now</strong>.</p>
+        <div class="ups-form_ctaGroup" data-ng-hide="readOnly">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="editPref()">Enroll Now</button>
+        </div>
+	</div>
+	<div data-ng-if="enrollAttentionReq">
+		<div class="row">
+			<div class="col-md-4">
+				<strong>Account</strong>
+			</div>
+			<div class="col-md-8"><p>{{accntNumer}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<strong>Enrollment Status</strong>
+			</div>
+			<div class="col-md-8"><p><strong>Enrolled - Attention Required!</strong></p>
+			</div>
+		</div>
+		<p><strong>Preferences</strong></p>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless Invoice for Package Shipping</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample Invoice for Package Shipping
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless Packing List for Package Shipping</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample Packing List for Package Shipping
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless Worldwide Express Freight Packing List</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample UPS Paperless Worldwide Express Freight Packinges
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless Invoice for Air Freight Shipping</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample Invoice for Air Freight Shipping
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless NAFTA Certificate of Origin for Package Shipping</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample NAFTA Certificate of Origin for Package Shipping
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<p>UPS Paperless NAFTA Certificate of Origin for Air Freight Shipping</p>
+			</div>
+			<div class="col-md-6">
+				<a href="#" onclick="return false;" data-ng-click="openSampleInvoice()" class="ups-link ups-new-window">
+                	View a Sample NAFTA Certificate of Origin for Air Freight Shipping
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+			</div>
+		</div>
+        <p><strong>Attention required:</strong> Images necessary to process your paperless invoices have been deleted. Please, edit your preferences and upload the correct letterhead and signature images.</p>
+        <!-- <p>To update your paperless invoicing preferences for this account, select <strong>Edit Preferences</strong>. To cancel paperless invoicing for this account, select <strong>Cancel Enrollment</strong>.</p> -->
+        <div data-ng-if="!readOnly" class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="editPref()">Edit Preferences</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="cancel()">Cancel Enrollment</button>
+        </div>
+	</div>
+	
+	<!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons / comments before production. 					      --
+    --								  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" ng-click="enrollAttentionReq = true">Enrolled - Attention Required!</button>
+    </div>
+</form>

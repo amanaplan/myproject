@@ -1,0 +1,64 @@
+<!-- ************************************************************************************ -->
+<!-- A01 Step Block                                                                       -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+A01 Step Block - Data
+********************************************************************************
+
+Available Variations via class names:
+
+    Secondary Skin
+        Applied to when using a number and no block header
+        
+    Tertiary Skin
+        Applied to when using a icon and no block header
+
+
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    header_copy				   = string     / YES           / Return Information
+    body_copy                  = string     / YES           / Harry Potter has a suprisingly small wand.
+    link_item                  = loop       / NO            / loop through a vertical list of links
+    link_list_copy             = string     / NO            / click here to see his wand
+	link_item_icon			   = numeric	/ NO			/icon to the side of the link
+
+    Header Skin
+    block_header               = boolean    / YES           / Block Title
+    
+    Number Skin
+    step_number                = numeric    / YES           / 1, 2, 3 (Limit 3)
+    
+    Icon Skin
+    step_icon                  = string    / NO           / icon ups-icon-{{step_icon}} (Limit 3)
+	
+
+********************************************************************************
+--}}
+
+
+<!-- documentation ../source/parital/app_component/module/A01_step_block.hbs -->
+<div class="ups-step_block">
+	{{#if block_header}}<div class="ups-step_block_header">{{header_copy}}</div>{{/if}}
+	<div class="ups-step_block_body"> 
+		{{#if step_number}}<div class="row">{{/if}}
+			{{!-- Number Column (only numbers) --}}
+			{{#if step_number}}<div class="col-sm-1 col-md-2 ups-step_block_number text-center">{{step_number}}</div>{{/if}}
+			{{!-- Content Column --}}
+			{{#if step_number}}<div class="col-sm-11 col-md-10">{{/if}}
+				{{#if step_icon}}<p class="text-center"><span class="icon ups-icon-{{step_icon}} ups-step-icon" aria-hidden="true"></span></p>{{/if}}
+				<p class="ups-step_block_title">{{heading_copy}}</p>
+				<p class="ups-step_block_copy">{{body_copy}}</p>
+				<ul class="ups-step_block_list">
+					{{#each link_item}}
+					<li><a class="ups-link" href="{{list_link_url}}">{{link_list_copy}}
+					<span class="icon ups-icon-{{link_item_icon}}" aria hidden="true"></span></a></li>
+					{{/each}}
+				</ul>
+			{{#if step_number}}</div>
+		</div>{{/if}}
+	</div>
+</div>

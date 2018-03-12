@@ -1,0 +1,467 @@
+<!--<p>
+    You can receive email updates for up to five recipients, or SMS text for up to two recipients.
+</p>-->
+<p>
+    <em>
+        <span aria-hidden="true">*</span>
+        <span class="ups-readerTxt">Required</span>
+        Indicates required field
+    </em>
+</p>
+<div *ngIf="attemptSubmit && (!checkFormValid() || !checkNotifySelected())"
+    #errorList>
+	<h3 class="ups-invalid_color-list ups-error_alert-list">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+		Please correct the following errors
+    </h3>
+
+    <ul class="ups-icons-error">
+        <li *ngIf="!checkNotifySelected()">
+            <a href="#pkgUpdatesCurStatus" class="ups-invalid_color" pointIdClick>At least one notification must be selected</a>
+        </li>
+
+        <ng-container *ngFor="let package of packageUpdates.notifications; let j = index">
+            <ng-container *ngIf="package.sendUpdatesType == '0'">
+                <li *ngIf="!notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].valid">
+                    <a href="#pkgUpdatesEmailPhone{{ j }}" class="ups-invalid_color" pointIdClick>Recipient Email <span class="ups-readerTxt">field</span> is required</a>
+                </li>
+            </ng-container>
+
+        </ng-container>
+
+        <li *ngIf="this.packageUpdates.notifyProblem && !notificationForm.controls['notificationFailure'].controls['problemEmail'].valid">
+            <a href="#pkgUpdatesfailureEmail" class="ups-invalid_color" pointIdClick>My Email <span class="ups-readerTxt">field</span> is required</a>
+        </li>
+
+        <!--<li *ngIf="checkOnePhoneSelected() && !this.notificationForm.get('notificationOptions').valid">
+            <a href="#pkgUpdatesAgreeSMS" class="ups-invalid_color" pointIdClick>Agreement to Terms of Use is required</a>
+        </li>-->
+    </ul>
+</div>
+<form [formGroup]="notificationForm" novalidate>
+    <div formArrayName="notificationSettings">
+        <fieldset class="ups-form_group ups-form_required">
+            <legend class="ups-form_label">
+                When should we send updates
+                <span class="ups-required_indicator" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Required</span>
+            </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="pkgUpdatesCurStatus"
+                    class="ups-checkbox-custom"
+                    name="pkgUpdatesCurStatus"
+                    type="checkbox"
+                    value="1"
+                    aria-describedby="pkgUpdates_error"
+                    formControlName="pkgUpdatesCurStatus"
+                    [(ngModel)]="packageUpdates.notifyCurStatus">
+                <label for="pkgUpdatesCurStatus"
+                    class="ups-checkbox-custom-label">
+                    Current Status
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="pkgUpdatesDelay"
+                    class="ups-checkbox-custom"
+                    name="pkgUpdatesDelay"
+                    type="checkbox"
+                    value="1"
+                    aria-describedby="pkgUpdates_error"
+                    formControlName="pkgUpdatesDelay"
+                    [(ngModel)]="packageUpdates.notifyDelay">
+                <label for="pkgUpdatesDelay"
+                    class="ups-checkbox-custom-label">
+                    Unforeseen events or delays
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="pkgUpdatesDelivered"
+                    class="ups-checkbox-custom"
+                    name="pkgUpdatesDelivered"
+                    type="checkbox"
+                    value="1"
+                    aria-describedby="pkgUpdates_error"
+                    formControlName="pkgUpdatesDelivered"
+                    [(ngModel)]="packageUpdates.notifyDelivered">
+                <label for="pkgUpdatesDelivered"
+                    class="ups-checkbox-custom-label">
+                    Shipment is delivered
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="pkgUpdatesReadyPickup"
+                    class="ups-checkbox-custom"
+                    name="pkgUpdatesReadyPickup"
+                    type="checkbox"
+                    value="1"
+                    aria-describedby="pkgUpdates_error"
+                    formControlName="pkgUpdatesReadyPickup"
+                    [(ngModel)]="packageUpdates.notifyReadyPickup">
+                <label for="pkgUpdatesReadyPickup"
+                    class="ups-checkbox-custom-label">
+                    Package is ready for pickup
+                </label>
+            </div>
+            <div class="ups-icons-error" id="pkgUpdates_error" role="alert">
+                <div class="ups-invalid_color ups-group" *ngIf="!checkNotifySelected(j)">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    <span class="ups-readerTxt">Invalid:</span>
+                    At least one notification must be selected
+                </div>
+            </div>
+        </fieldset>
+
+        <!--<div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="pkgUpdatesLanguage" class="ups-form_label">
+                        Language
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="pkgUpdatesLanguage"
+                            class="ups-dropdown"
+                            id="pkgUpdatesLanguage"
+                            required
+                            aria-required="true"
+                            [(ngModel)]="packageUpdates.language"
+                            [ngModelOptions]="{'standalone' : true}">
+                            <option value="0">United States - English</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+
+
+    <ul class="row ups-delivery_updates_list" formArrayName="notifications">
+        <li class="col-md-6 col-sm-12 ups-delivery_updates_listitem" *ngFor="let package of packageUpdates.notifications; let j = index" [ngClass]="{'ups-delivery_updates_clear' : ((j % 2 == 0) && j > 0)}">
+            <section class="panel panel-default" [formGroupName]="j">
+            	<div class="panel-body">
+            		<h3 class="ups-delivery_updates_header pull-left" tabindex="-1" #pkgUpdatesHeader>Recipient {{ j + 1 }}</h3>
+                    <button type="button"
+                        class="ups-link ups-btn_action pull-right"
+                        (click)="removeRecipientBtn(j)"
+                        *ngIf="j > 0">
+                        <span class="ups-readerTxt">Remove Recipient {{ j + 1 }}</span>
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="ups-form_group ups-form_required">
+                        <label for="pkgUpdatesSendUpdates{{ j }}" class="ups-form_label">
+                            Send By
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="pkgUpdatesSendUpdates{{ j }}"
+                                class="ups-dropdown"
+                                id="pkgUpdatesSendUpdates{{ j }}"
+                                required
+                                aria-required="true"
+                                [(ngModel)]="package.sendUpdatesType"
+                                (ngModelChange)="notifyTypeChange()"
+                                [ngModelOptions]="{'standalone' : true}">
+                                <!--  -->
+                                <option value="0">Email</option>
+                                <option value="1" *ngIf="numPhoneSelected() < 2 || package.sendUpdatesType == '1'">SMS Text</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required" *ngIf="package.sendUpdatesType == '1' && loggedin && !mobileNumShown">
+                        <label for="pkgUpdatesMobileSel{{ j }}" class="ups-form_label">
+                            Mobile Number
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="pkgUpdatesMobileSel{{ j }}"
+                                class="ups-dropdown"
+                                id="pkgUpdatesMobileSel{{ j }}"
+                                required
+                                aria-required="true"
+                                [(ngModel)]="package.mobileNumSel"
+                                [ngModelOptions]="{'standalone' : true}">
+                                <option value="0">Select One</option>
+                                <option value="1">
+                                    404 967 5309
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div *ngIf="package.sendUpdatesType == '1' && !mobileNumShown">
+                        <button type="button" class="ups-link ups-btn_has_icon">
+                            <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                            Add a new number
+                        </button>
+                    </div>
+
+                    <div class="ups-group" *ngIf="package.sendUpdatesType == '1' && mobileNumShown">
+                        <div class="ups-group_label">
+                            Mobile Number
+                        </div>
+                        <div class="ups-group_value">
+                            1-770-123-1234
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required" *ngIf="package.sendUpdatesType == '0'">
+                        <label for="pkgUpdatesLanguage{{ j }}" class="ups-form_label">
+                            Language
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="pkgUpdatesLanguage{{ j }}"
+                                class="ups-dropdown"
+                                id="pkgUpdatesLanguage{{ j }}"
+                                required
+                                aria-required="true"
+                                [(ngModel)]="package.language"
+                                [ngModelOptions]="{'standalone' : true}">
+                                <option value="0">United States - English</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required" *ngIf="package.sendUpdatesType == '0'">
+                        <label for="pkgUpdatesEmailPhone{{ j }}" class="ups-form_label">
+                            Email
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                name="pkgUpdatesEmailPhone{{ j }}"
+                                class="ups-form_input"
+                                id="pkgUpdatesEmailPhone{{ j }}"
+                                aria-required="true"
+                                required
+                                aria-describedby="pkgUpdatesEmailPhone_error"
+                                formControlName="pkgUpdatesEmailPhone"
+                                [(ngModel)]="package.recipientEmailPhone"
+                                [ngClass]="{'ups-bodError': (!notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].valid && notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].touched)}">
+                                <div *ngIf="notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].valid">
+                                    <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                        </div>
+                        <span class="ups-icons-error" id="pkgUpdatesEmailPhone_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].valid && notificationForm.controls['notifications'].controls[j].controls['pkgUpdatesEmailPhone'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>Recipient Email is required.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </li>
+    </ul>
+
+
+    <div class="ups-group" *ngIf="packageUpdates.notifications.length < 5">
+        <button type="button"
+            class="ups-link ups-btn_has_icon"
+            (click)="addRecipientBtn()"
+            aria-describedby="pkgUpdatesTxtNotifyLimits">
+            <span class="icon ups-icon-plus"></span>Add Another Recipient
+        </button>
+        <p class="ups-indent" id="pkgUpdatesTxtNotifyLimits">
+            <em><span class="ups-text_atomic">Up to 5 recipients</span> <span class="ups-text_atomic">(only 2 by SMS text)</span></em>
+        </p>
+    </div>
+
+    <!-- formArrayName="notificationOptions" -->
+    <fieldset class="ups-form_group ups-form_required">
+        <legend class="ups-readerTxt">Additional Notification Options</legend>
+        <!--<div class="ups-input_wrapper ups-buttonList_wrapper" *ngIf="checkOnePhoneSelected()">
+            <input id="pkgUpdatesAgreeSMS"
+                class="ups-checkbox-custom"
+                name="pkgUpdatesAgreeSMS"
+                type="checkbox"
+                value="1"
+                required
+                aria-required="true"
+                aria-describedby="pkgUpdatesAgreeSMS_error"
+                formControlName="notifyAgreeSMS"
+                [(ngModel)]="packageUpdates.notifyAgreeSMS"
+                [ngClass]="{'ups-bodError': (!notificationForm.controls['notificationOptions'].controls['notifyAgreeSMS'].valid && notificationForm.controls['notificationOptions'].controls['notifyAgreeSMS'].touched)}">
+            <label for="pkgUpdatesAgreeSMS"
+                class="ups-checkbox-custom-label">
+                I agree to the <a href="#" class="ups-link">UPS SMS Program Terms of Use</a> and the <a href="#" class="ups-link">UPS Privacy Notice</a>. Message and data rates may apply.
+                <span class="ups-required_indicator" aria-hidden="true"></span>
+            </label>
+            <span class="ups-icons-error ups-icons-error-checkbox" id="pkgUpdatesAgreeSMS_error" role="alert">
+                <span class="ups-invalid_color" *ngIf="(!notificationForm.controls['notificationOptions'].controls['notifyAgreeSMS'].valid && notificationForm.controls['notificationOptions'].controls['notifyAgreeSMS'].touched)">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>Agreement to Terms of Use is required.</span>
+                </span>
+            </span>
+        </div>-->
+        <div class="ups-input_wrapper ups-buttonList_wrapper" *ngIf="checkOneEmailSelected()">
+            <input id="pkgUpdatesAddPersonal"
+                class="ups-checkbox-custom"
+                name="pkgUpdatesAddPersonal"
+                type="checkbox"
+                value="1"
+                [(ngModel)]="packageUpdates.addPersonalMsg"
+                [ngModelOptions]="{'standalone' : true}">
+            <label for="pkgUpdatesAddPersonal"
+                class="ups-checkbox-custom-label">
+                Add a personal message to emails.
+            </label>
+        </div>
+        <ng-container *ngIf="packageUpdates.addPersonalMsg && checkOneEmailSelected()">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="pkgUpdatesPersonalName" class="ups-form_label">
+                            Name
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                name="pkgUpdatesPersonalName"
+                                class="ups-form_input"
+                                id="pkgUpdatesPersonalName"
+                                [(ngModel)]="packageUpdates.personalName"
+                                [ngModelOptions]="{'standalone' : true}">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="pkgUpdatesPersonalMsg" class="ups-form_label">
+                            Personal Message
+                        </label>
+                        <p class="ups-form_subheader" id="pkgUpdatesPersonalMsg_helper">
+                            Up to 150 characters
+                        </p>
+                        <div class="ups-textArea_wrapper ups-input_wrapper">
+                            <textarea class="ups-textArea"
+                                id="pkgUpdatesPersonalMsg"
+                                rows="4"
+                                maxlength="150"
+                                name="pkgUpdatesPersonalMsg"
+                                aria-describedby="pkgUpdatesPersonalMsg_helper"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="ups-input_wrapper ups-buttonList_wrapper">
+            <input id="pkgUpdatesNotifyProblem"
+                class="ups-checkbox-custom"
+                name="pkgUpdatesNotifyProblem"
+                type="checkbox"
+                value="1"
+                [(ngModel)]="packageUpdates.notifyProblem"
+                [ngModelOptions]="{'standalone' : true}">
+            <label for="pkgUpdatesNotifyProblem"
+                class="ups-checkbox-custom-label">
+                Notify me if there's a problem sending updates.
+            </label>
+        </div>
+        <ng-container *ngIf="packageUpdates.notifyProblem">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required" formArrayName="notificationFailure">
+                        <label for="pkgUpdatesfailureEmail" class="ups-form_label">
+                            My Email
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                name="pkgUpdatesfailureEmail"
+                                class="ups-form_input"
+                                id="pkgUpdatesfailureEmail"
+                                required
+                                aria-required="true"
+                                aria-describedby="pkgUpdatesfailureEmail_error"
+                                formControlName="problemEmail"
+                                [(ngModel)]="packageUpdates.problemEmail"
+                                [ngClass]="{'ups-bodError' : (!notificationForm.controls['notificationFailure'].controls['problemEmail'].valid && notificationForm.controls['notificationFailure'].controls['problemEmail'].touched)}">
+                            <div *ngIf="notificationForm.controls['notificationFailure'].controls['problemEmail'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="pkgUpdatesfailureEmail_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!notificationForm.controls['notificationFailure'].controls['problemEmail'].valid && notificationForm.controls['notificationFailure'].controls['problemEmail'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span>My Email is required.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </fieldset>
+
+</form>
+
+
+
+<!--<div class="ups-tile">
+    <div class="ups-form_group">
+        <div class="ups-input_wrapper">
+            <input id="pkgUpdatesAddPersonal"
+                class="ups-checkbox-custom"
+                name="pkgUpdatesAddPersonal"
+                type="checkbox"
+                value="1"
+                [(ngModel)]="packageUpdates.addPersonalMsg">
+            <label for="pkgUpdatesAddPersonal"
+                class="ups-checkbox-custom-label">
+                Add Personal Message
+            </label>
+        </div>
+    </div>
+
+    <ng-container *ngIf="packageUpdates.addPersonalMsg">
+        <div class="ups-form_group">
+            <label for="pkgUpdatesPersonalName" class="ups-form_label">
+                Your Name
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text"
+                    name="pkgUpdatesPersonalName"
+                    class="ups-form_input"
+                    id="pkgUpdatesPersonalName"
+                    [(ngModel)]="packageUpdates.personalName">
+            </div>
+        </div>
+
+        <div class="ups-form_group">
+            <label for="pkgUpdatesPersonalMsg" class="ups-form_label">
+                Personal Message
+            </label>
+            <p class="ups-form_subheader" id="pkgUpdatesPersonalMsg_helper">
+                Up to 150 characters
+            </p>
+            <div class="ups-textArea_wrapper ups-input_wrapper">
+                <textarea class="ups-textArea"
+                    id="pkgUpdatesPersonalMsg"
+                    rows="4"
+                    maxlength="150"
+                    name="pkgUpdatesPersonalMsg"
+                    aria-describedby="pkgUpdatesPersonalMsg_helper"></textarea>
+            </div>
+        </div>
+    </ng-container>
+</div>-->
+
+
+<div class="ups-form_ctaGroup text-center">
+    <button type="button" class="ups-cta ups-cta_primary" (click)="doneBtn()">Done</button>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="cancelBtn()">Cancel</button>
+</div>
+
+<div class="ups-cms-demo">
+    <p>
+        SMS must be selected from the Send By dropdown to see these demo states.
+    </p>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="mobileNumShown = true">Mobile Number Chosen</button>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="mobileNumShown = false">Mobile Number Not Chosen</button>
+</div>

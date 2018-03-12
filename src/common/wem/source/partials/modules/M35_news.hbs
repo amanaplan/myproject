@@ -1,0 +1,66 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M35 NEWS
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE         TYPE        DEFAULT
+    data-prevTxt         = string   /  "Previous"    translation text
+    data-nextTxt         = string   /  "Next"        translation text
+
+------------------------------------------------------------------------------
+
+LAYOUT:
+
+-news-header
+| 30px
+-news-date
+| 15px
+-title
+| 15px
+-source
+| 15px
+-body
+| 30px
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M35 News -->
+<!-- For full documentation app/source/partials/modules/M35_news.hbs -->
+
+<div class="ups-news">
+    <div class="ups-wrap">
+        <div class="ups-wrap_inner" data-prevtxt="{{prevTxt}}" data-nexttxt="{{nextTxt}}">
+            <div class="ups-news_header">
+                <h2>{{title}}</h2>
+                {{#if seeAll}}<a class="ups-news_all ups-body-link" data-expand-text="{{seeAll.expand.label}}" href="{{seeAll.link}}">{{seeAll.label}}</a>{{/if}}
+            </div>
+            <ul class="ups-news_list">
+                {{#each items}}
+                <li class="ups-news_item{{#if image}} ups-news_item-wImage{{/if}}">
+                    {{#if image}}
+                    <a class="ups-news_img" href="{{more.link}}">
+                        <img src="{{image.src}}" alt="{{image.alt}}">
+                    </a>
+                    {{/if}}
+                    <div class="ups-news_content">
+                        <time datetime="{{date.datetime}}">{{date.formatted}}</time>
+                        <h3>{{{headline}}}</h3>
+                        <a class="ups-news_source" href="{{source.link}}" target="_blank">
+                            {{#if source.icon}}<img src="{{source.icon}}" alt="">{{/if}}{{source.label}}<span class="icon ups-link_newwindow" aria-hidden="true"></span><span class="ups-readerTxt">Open the link in a new window</span>
+                        </a>
+                        <p>{{{blurb}}} <a class="ups-news_more" href="{{more.link}}">{{more.label}}</a></p>
+                    </div> <!-- @end .ups-news_content -->
+                </li> <!-- @end .ups-news_item -->
+                {{/each}}
+            </ul> <!-- @end .ups-news_list -->
+            <div class="ups-news_nav"></div>
+        </div>
+    </div>
+</div> <!-- @end .ups-news -->
+
+

@@ -1,0 +1,98 @@
+// ----------------------------------------------------
+// Featured Three Piece
+// ----------------------------------------------------
+
+@mixin ups_featured_three_piece_sm {
+    .resource-container {
+        margin-top: $page-margin-sm * 2;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .featured-three-header {
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        &:before {
+            width: 100%;
+        }
+    }
+}
+
+.ups-featured-three-piece {
+    padding-top: $margin_1;
+    padding-bottom: $margin_1;
+    background: $stone_40;
+    color: $ups_brown;
+
+    .featured-three-header {
+        position: relative;
+
+        &:before {
+            content: '';
+            width: 50%;
+            height: 1px;
+            background: $ups_brown;
+            @include vertical-align();
+            position: absolute;
+            left: 25%;
+        }
+
+        h2 {
+            float: $default_float;
+            background: $stone_40;
+            text-align: center;
+            @include horizontal-align();
+            margin: 0;
+            padding: 0 15px;
+            max-width: 40%;
+            font-size: 2.2em;
+        }
+    }
+
+    .featured-three-resources {
+        margin-top: $margin_2;
+        .resource-container{
+	        .ups-resource{
+	        	.txt-container{
+	        		p{
+	        			font-size: 14px;
+					    color: $sun_s3;
+					    font-family: $sans;
+					    font-weight: 700;
+					    text-transform: uppercase;
+					    margin: 0;
+					    margin-bottom: 5px;
+	        		}
+	        		h3{
+        			    font-size: 20px;
+					    font-family: $sans;
+					    font-weight: 700;
+					    margin: 0 0 15px;
+					    color: $black_s3;
+					    text-transform: none;
+	        		}
+	        	}
+	        }
+       }
+    }
+
+    @media #{$media-small} {
+        @include ups_featured_three_piece_sm;
+
+        .featured-three-header {
+
+            &:before {
+                content: '';
+                left: 0;
+            }
+
+            h2 {
+                max-width: 90%;
+            }
+        }
+    }
+}

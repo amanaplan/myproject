@@ -1,0 +1,169 @@
+<div class="ups-wrap_inner">
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Accordian                  //// -->
+    <!-- ////////////////////////////////////////// -->
+    <section class="ups-group">
+        <div class="ups-faux-drawer">
+            <!-- /////////////////////////////////////////// -->
+            <!-- //// Begin Address Drawer             ///// -->
+            <!-- /////////////////////////////////////////// -->
+            <div class="ups-drawer-header">
+                <span  [ngClass]="{'ups-icon-checkcircle h3' : rtg,
+                                'ups-empty_circle' : !rtg }"
+                class="icon ups-drawer_left_icon"></span>
+                <span *ngIf="!rtg">In Progress</span>
+                <span *ngIf="rtg" class="h3">Ready to go</span>
+                <em class="pull-right">
+                    <span *ngIf="!rtg">Some information is required to complete this form.</span>
+                    <span *ngIf="rtg">All required fields have been entered in this form.<br>
+                        You may add addiontal information if you wish.</span>
+                </em>
+            </div>
+            <div class="ups-drawer-content">
+                <div class="ups-section ups-section_condensed">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Address Information</h3>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-section ups-section_condensed">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Ship From</h4>
+                                </div>
+                                <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                    <p>{{address.groupValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="ups-section ups-section_condensed">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Ship To</h4>
+                                </div>
+                                <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                    <p>{{address.groupValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-section ups-section_condensed">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">
+                            Shipment Information
+                            <button *ngIf="!editShipInfo"
+                                class="ups-link" 
+                                type="button" 
+                                (click)="editShipInfo = true">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                <span class="hidden-xs">Edit</span>
+                                <span class="ups-readerTxt"> section</span>
+                            </button>
+                            <button *ngIf="editShipInfo"
+                                class="ups-link" 
+                                type="button" 
+                                (click)="editShipInfo = false">
+                                <span class="hidden-xs">Cancel</span>
+                                <span class="ups-readerTxt"> Editing this section</span>
+                            </button>
+                        </h3>
+                    </div>
+                    <div class="ups-group">
+                        <div class="row">
+                            <div class="col-md-5"><p>[Description of Goods]</p></div>
+                            <div class="col-md-5 col-md-offset-2"><p>[Shipper Memo]</p></div>
+                        </div>
+                    </div>
+                    <div class="ups-group"><p>[Total Shipment Weight]</p></div>
+                    <div class="ups-group"><p>[Total Number of Packages]</p></div>
+                </div>
+                <div class="ups-section ups-section_condensed">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">
+                            Products
+                            <button *ngIf="addBtn"
+                                class="ups-link ups-btn_has_icon" 
+                                type="button" 
+                                (click)="addProd = true">
+                                <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                                <span class="hidden-xs">Add</span>
+                                <span class="ups-readerTxt"> another product</span>
+                            </button>
+                            <button *ngIf="!addBtn && !editProd"
+                                class="ups-link" 
+                                type="button" 
+                                (click)="editProd = true">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                <span class="hidden-xs">Edit</span>
+                                <span class="ups-readerTxt"> section</span>
+                            </button>
+                            <button *ngIf="!addBtn && editProd"
+                                class="ups-link" 
+                                type="button" 
+                                (click)="editProd = false">
+                                <span class="hidden-xs">Cancel</span>
+                                <span class="ups-readerTxt"> Editing this section</span>
+                            </button>
+                        </h3>
+                    </div>
+                    <p *ngIf="manNoProd" class="ups-invalid_color"><span class="icon ups-icon-alert" aria-hidden="true"></span> Your International shipment contains 0 products</p>
+                    <div *ngIf="manWithProd">
+                        <p>Items included in shipment, but not specified by package; may be in {{'{'}}either / multiple{{'}'}} package{{'{'}}s{{'}'}}.</p>
+                        <ol>
+                            <li *ngFor="let items of [1,2,3,4,5]">
+                                <p>{{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}} - {{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} unassigned.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <ol *ngIf="rtg">
+                        <li *ngFor="let prodName of [1,2,3]">
+                                <p>{{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</p>
+                            <ul>
+                                <li *ngFor="let prodItem of [1,2]">
+                                    {{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} in package {{'{'}}nn{{'}'}}. <span class="ups-indent">Note: {{'{'}}notes{{'}'}}</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <ul class="ups-label_list_options" *ngIf="wwef">
+                        <li *ngFor="let prodName of [1,2,3]">
+                            <div class="ups-group">
+                                <div class="row">
+                                    <div class="col-md-4"><p>{{prodName}}. Pallet Weight: [Weight][lbs.]</p></div>
+                                    <div class="col-md-4"><p>Pallet Dimensions: [nn x nn x nn][in]</p></div>
+                                    <div class="col-md-4"><p>Unit Price: [nn.nn]</p></div>
+                                </div>
+                                <p>Description of Goods</p>
+                                <p class="ups-invalid_color"><span class="icon ups-icon-alert" aria-hidden="true"></span> Pallet needs a description</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Accordian                    //// -->
+    <!-- //// Begin Demo Btns                  //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_primary" type="button" (click)="changeState('noProd')">No Products</button>
+        <br><br>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="changeState('withProd')">With Products</button>
+        <br><br>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="changeState('ready')">Ready To Go</button>
+        <br><br>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="changeState('wwef')">WWEF</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End  Demo Btns                   //// -->
+    <!-- //// Begin Modal Lvl Footer Btns      //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()">Close</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Modal Lvl Footer Btns        //// -->
+    <!-- ////////////////////////////////////////// -->
+</div>

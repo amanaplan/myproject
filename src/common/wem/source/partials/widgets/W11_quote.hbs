@@ -1,0 +1,189 @@
+{{!--------------------------------------------
+===============================================
+Quote
+===============================================
+---------------------------------------------}}
+
+<div class="ups-widget ups-wrap ups-quote ups-form_wrap {{this.bg}}">
+   <div class="ups-wrap_inner">
+        {{#if this.title}}
+           <div class="ups-widget_header">
+                {{#if this.title}}
+                    <h2 id="ups-quote-head">{{this.title}}</h2>
+                {{/if}}
+                {{#if this.help}}
+                   <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                   <span class="ups-helpicon-text">Help</span></button>
+                {{/if}}
+            </div>
+        {{else}}
+            {{#if this.help}}
+                <div class="ups-widget_header">
+                    <div class="ups-widget_header">
+                        <button class="ups-help_button"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+        <div class="ups-widget_panel ups-quote_panel" aria-labelledby="ups-quote-head" role="group">
+            {{#if this.help}}
+                <div class="ups-help_panel"><p>{{this.help}}</p></div>
+            {{/if}}
+
+            <form class="ups-form">
+
+                {{#isnt this.type "authenticated"}}
+                <div class="ups-form_note ups-quote_package ups-quote_letter ups-form_group">
+                    <p>For more accurate estimates or to receive negotiated rates, please <a href="#login">log in</a>.</p>
+                </div>
+
+                <div class="ups-form_note ups-quote_freight ups-form_group">
+                    <p>For more accurate estimates please <a href="#login">log in</a>.</p>
+                </div>
+                {{/isnt}}
+
+               
+    			<div class="ups-widgetStructure">
+                    <div class="ups-quote_type ups-quote_package ups-quote_letter ups-quote_freight ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_type_select" class="ups-form_label">What type of shipment do you have? </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id ="quote_type_select" name="quote_type_select" class="ups-dropdown" aria-label="What type of shipment do you have?">
+                                <option value="letter">Letter</option>
+                                <option value="package">Package</option>
+                                <option value="freight">Freight</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-quote_package ups-form_group ups-form_requiredNoAlert">
+                        <label for="ups-quote_package-weight" class="ups-form_label">Weight </label>
+                        <div class="ups-text_wrapper weight_input ups-input_wrapper">
+                            <input type="text" aria-label="Weight" name="ups-quote_package-weight" id="ups-quote_package-weight" class="ups-form_input ups-numberOnly">
+                            {{#isnt this.unit "multi"}}
+                                <span class="ups-input_unit">{{this.unit}}</span>
+                            {{/isnt}}
+                            {{#is this.unit "multi"}}
+                                <label for="ups-quote_package-weight-units" class="ups-readerTxt">Weight Units</label>
+                               <div class=" ups-input_unit ups-dropdown_wrapper">
+                                    <select name="multi_unit" class="ups-dropdown" id="ups-quote_package-weight-units">
+                                       {{#each this.multi}}
+                                        <option value="{{this}}">{{this}}</option>
+                                        {{/each}}
+                                    </select>
+                               </div>
+                            {{/is}}
+                        </div>
+                    </div>
+                    
+                    <div class="ups-quote_freight ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_freight-offereings" class="ups-form_label">Freight Offerings </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="quote_freight-offereings" id="quote_freight-offereings" class="ups-dropdown" aria-label="Freight Offerings" >
+                                <option value="">Select One</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                    {{#isnt this.type "authenticated"}}
+    			<div class="ups-widgetStructure">
+                   <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_fromCountry--unauthenticated" class="ups-form_label">Ship From </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="quote_fromCountry--unauthenticated" id="quote_fromCountry--unauthenticated" class="ups-dropdown" aria-label="Ship From" >
+                                <option value="">United States</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                   <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert ups-form_shortInput">
+                        <label for="ups-quote_from-zip" class="ups-form_label">Ship From Zip Code </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="ups-quote_from-zip" id="ups-quote_from-zip" class="ups-form_input"  aria-label="Ship From Zip Code" >
+                        </div>
+                    </div>
+    			</div>                
+    			<div class="ups-widgetStructure">
+                    <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_toCountry--unauthenticated" class="ups-form_label">Ship To </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="quote_toCountry--unauthenticated" id="quote_toCountry--unauthenticated" class="ups-dropdown" aria-label="Ship From" >
+                                <option value="">United States</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                   <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert ups-form_shortInput">
+                        <label for="quote_to--unauthenticated" class="ups-form_label">Ship To Zip Code </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="quote_to--unauthenticated" id="quote_to--unauthenticated" class="ups-form_input" aria-label="Ship to Zip Code" >
+                        </div>
+                    </div>
+    			</div>                
+                    {{/isnt}}
+
+                    {{#is this.type "authenticated"}}
+    			<div class="ups-widgetStructure">            
+                    <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_from--authenticated-from" class="ups-form_label ups-hasLink">Ship From </label>
+                        <a class = "ups-form_link" href="#">Add another address</a>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="quote_from--authenticated-from" id="quote_from--authenticated-from" class="ups-dropdown" aria-label="Ship From" >
+                                <option value="">Select an address</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ups-quote_package ups-quote_letter ups-form_group ups-form_requiredNoAlert">
+                        <label for="quote_from--authenticated-to" class="ups-form_label ups-hasLink">Ship To </label>
+                        <a class = "ups-form_link" href="#">Add another address</a>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="quote_from--authenticated-select" id="quote_from--authenticated-to" class="ups-dropdown" aria-label="Ship To" >
+                                <option value="">Select an address</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </select>
+                        </div>
+                    </div>
+    			</div>                
+                    {{/is}}
+    			
+                    
+    			<div class="ups-widgetStructure">
+                    <div class="ups-form_group ups-quote_package ups-quote_letter ups-quote_residential">
+                        <div class = "ups-checkbox ups-input_wrapper">
+                            <input id="ups-residential_check_{{id}}" class="ups-checkbox-custom" name="ups-residential" type="checkbox" value="residential">
+                            <label for="ups-residential_check_{{id}}" class="ups-checkbox-custom-label">Residential Address</label>
+                        </div>
+                    </div>
+    			</div>              
+
+                <div class="ups-form_ctaGroup ups-quote_package ups-quote_letter ups-quote_freight">
+                    <button class="ups-cta ups-form_button ups-cta_primary" type="submit">Get Quote</button>
+                </div>
+            </form>
+        </div>
+        <!-- @end .ups-news_panel -->
+   </div>
+   <script type="text/javascript">
+        var countryUOMURL='/master/quotetest/1488435716465.ajax?uomAjaxCall=true';
+        var quoteContent={
+            shipTo:'',
+          profileAddress:'My Profile Address'
+        };
+    </script>
+</div>
+<!-- @end .ups-news -->

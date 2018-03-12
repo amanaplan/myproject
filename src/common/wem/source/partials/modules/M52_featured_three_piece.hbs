@@ -1,0 +1,50 @@
+<!-- ************************************************************************************ -->
+<!-- M52 Featured Three Piece                                                             -->
+<!-- ************************************************************************************ -->
+
+
+{{!--
+********************************************************************************
+M52 FEATURED THREE PIECE: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 45px
+-featured- |30px| -featured- |30px| -featured-
+| 60px 
+
+********************************************************************************
+--}}
+
+<div class="ups-featured-three-piece ups-wrap">
+    <div class="ups-wrap_inner">
+        
+        {{#if title}}
+        <div class="featured-three-header clearfix">
+            <h2>{{title}}</h2>
+        </div>
+        {{/if}}
+
+        
+{{!--
+********************************************************************************
+M52 FEATURED THREE PIECE: RESOURCES
+********************************************************************************
+
+M52 Featured Three Piece can only have 3 resources, nothing more, nothing less.
+
+********************************************************************************
+--}}
+        
+        {{#if resources}}
+        <div class="featured-three-resources row">
+            {{#each_upto resources 3}}
+            <div class="resource-container col-sm-4">
+                {{> resource this}}
+            </div>
+            {{/each_upto}}
+        </div>
+        {{/if}}
+    </div>
+</div>

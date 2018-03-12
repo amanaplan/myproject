@@ -1,0 +1,134 @@
+<!-- Beginning of Form -->
+<form [formGroup]="editUserForm" (ngSubmit)="demoConfirmInviteUserSection(editUserForm.value)" novalidate>
+        <!-- Beginning of Page Level Errors -->
+        <div *ngIf="(editUserFormSubmitAttempt &amp;&amp; !editUserForm.valid)">
+            <h3 class="ups-invalid_color-list ups-error_alert-list" *ngIf="!AltErrorMessage">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+            <ul class="ups-icons-error" *ngIf="!AltErrorMessage">
+                <li *ngIf="(!editUserForm.controls['editUserID'].valid && editUserForm.controls['editUserID'].hasError('required'))">
+                    <a href="#editUserID" class="ups-invalid_color" pointIdClick>User ID <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!editUserForm.controls['editEmailInvite'].valid && editUserForm.controls['editEmailInvite'].hasError('required'))">
+                    <a href="#editEmailInvite" class="ups-invalid_color" pointIdClick>Email <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!editUserForm.controls['editEmailInvite'].valid && editUserForm.controls['editEmailInvite'].hasError('pattern'))">
+                    <a href="#editEmailInvite" class="ups-invalid_color" pointIdClick>Email <span class="ups-readerTxt">field</span></a> is invalid.
+                </li>
+            </ul>
+            <h3 class="ups-invalid_color-list ups-error_alert-list" *ngIf="((!editUserForm.controls['editUserID'].valid && editUserForm.controls['editUserID'].hasError('required') || (!editUserForm.controls['editEmailInvite'].valid && editUserForm.controls['editEmailInvite'].hasError('required'))) && (AltErrorMessage))"><span class="icon ups-icon-exclamation" aria-hidden="true"></span>The information that you have entered does not match any ups.com account.</h3>
+        </div>
+        <!-- End of Page Level Errors -->
+
+        <!-- <p class="ups-invalid_color-list ups-error_alert-list icon ups-icon-exclamation" *ngIf="AltErrorMessage"> The information that you have entered does not match any ups.com account.</p> -->
+        <!-- CMS DEMO: PLEASE DO NOT INCLUDE IN PRODUCTION -->
+        <div class="row" *ngIf="(editUserFormSubmitAttempt &amp;&amp; !editUserForm.valid)">
+            <div class="col-md-6">
+                <div class="ups-cms-demo">
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="AltErrorMessage=true">Alternative Error Message</button>
+                    <button type="button" class="ups-cta ups-cta_secondary" (click)="AltErrorMessage=false">Traditional Error Message</button>
+                </div>
+            </div>
+        </div>
+        <!-- CMS DEMO: PLEASE DO NOT INCLUDE IN PRODUCTION -->
+        <div class="ups-section">
+            <!-- Invite Existing User Heading -->
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading">Invite Existing User</h2>
+            </div>
+            <!-- End of Invite Existing User Heading -->
+
+            <p>If you would like to give UPS Returns<sup>&reg;</sup> Manager access to an existing UPS account holder, enter the User ID and email address used for their UPS account. You will then be able to apply user permissions below.</p>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Beginning of User ID Input -->
+                    <div class="ups-form_group ups-form_required">
+                        <label for="editUserID" class="ups-form_label">User ID <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="editUserID" class="ups-form_input" id="editUserID" aria-required="true" required aria-describedby="editUserID_error" [ngClass]="{'ups-bodError': (!editUserForm.controls['editUserID'].valid &amp;&amp; editUserForm.controls['editUserID'].touched)}" [formControl]="editUserForm.controls['editUserID']">
+                        </div>
+                        <span class="ups-icons-error" id="editUserID_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!editUserForm.controls['editUserID'].valid &amp;&amp; editUserForm.controls['editUserID'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="editUserForm.controls['editUserID'].hasError('required')">
+                                    User ID is required
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- End of User ID Input -->
+                    <!--- Beginning of Email Input -->
+                    <div class="ups-form_group ups-form_required">
+                        <label for="editEmailInvite" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="editEmailInvite" class="ups-form_input" id="editEmailInvite" aria-describedby="editEmailInvite_error" [ngClass]="{'ups-bodError': (!editUserForm.controls['editEmailInvite'].valid &amp;&amp; editUserForm.controls['editEmailInvite'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="editUserForm.controls['editEmailInvite']" aria-required="true" required>
+                        </div>
+                        <span class="ups-icons-error" id="editEmailInvite_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!editUserForm.controls['editEmailInvite'].valid &amp;&amp; editUserForm.controls['editEmailInvite'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="editUserForm.controls['editEmailInvite'].hasError('required')">
+                                    Email is required.
+                                </span>
+                                <span *ngIf="!editUserForm.controls['editEmailInvite'].hasError('required')">
+                                    Email is invalid.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- End of Email Input -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ups-section">
+            <!-- User Permissions Heading -->
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading">User Permissions</h2>
+            </div>
+            <!-- End of User Permissions Heading -->
+
+            <!-- Checkboxes -->
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">Select the level of access you would like to provide the user.</legend>
+                <p>Check all that apply</p>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="checkbox" name="userAdministrative" id="userAdministrative" class="ups-checkbox-custom">
+                    <label for="userAdministrative" class="ups-checkbox-custom-label">Administrative (all tasks including add/invite administrators)</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="checkbox" name="userManagePol" id="userManagePol" class="ups-checkbox-custom">
+                    <label for="userManagePol" class="ups-checkbox-custom-label">Manage policies (create/edit/delete)</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="checkbox" name="userViewPolicies" id="userViewPolicies" class="ups-checkbox-custom">
+                    <label for="userViewPolicies" class="ups-checkbox-custom-label">View policies only</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="checkbox" name="userViewHistory" id="userViewHistory" class="ups-checkbox-custom">
+                    <label for="userViewHistory" class="ups-checkbox-custom-label">View history only</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input type="checkbox" name="userOverrideIneligible" id="userOverrideIneligible" class="ups-checkbox-custom">
+                    <label for="userOverrideIneligible" class="ups-checkbox-custom-label">Override ineligible returns</label>
+                </div>
+            </fieldset>
+            <!-- End of Checkboxes -->
+        </div>
+
+
+        <!-- Button Group -->
+        <div class="ups-form_ctaGroup">
+            <button class="ups-cta ups-cta_primary" type="submit" (click)="demoConfirmInviteUserSection();">Invite User</button>
+            <a class="ups-cta ups-cta_secondary" routerLink="/administration/users">Cancel</a>
+        </div>
+        <!-- End of Button Group -->
+</form>
+<!-- End of Form -->

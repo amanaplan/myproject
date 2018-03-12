@@ -1,0 +1,77 @@
+<div data-ng-controller="popoverCtrl">
+    <button type="button" id="closeBtn" class="ups-close" data-ng-click="closePopover('addTag')"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span
+			class="ups-readerTxt">Close</span> </button>
+    <fieldset class="ups-form_group">
+        <legend class="ups-form_label" id="popoverTagTitle" tabindex="-1" focus-on-load>Tags</legend>
+        <div class="ups-tags_scroll">
+            <div data-ng-repeat="item in tags.content track by $index">
+                <input check-verify type="checkbox" id="{{'ups-tag_popover_'+$index}}"
+                    class="ups-checkbox-custom" data-ng-model="item.Selected"
+                    data-ng-change="filterChanged(tags.content)"
+                    data-ng-checked="item.Selected">
+                <label
+                    for="{{'ups-tag_popover_'+$index}}" class="ups-checkbox-custom-label">{{item.name
+                    |capFirstLetter}}<span></span> </label>
+            </div>
+        </div>
+    </fieldset>
+        <!-- <div class="col-md-12 ups-tag_content_svp" data-ng-init="selected={type:'custom'}">
+			<fieldset>
+				<div class="ups-tag_content"
+					data-ng-repeat="item in tags.content track by $index"
+					data-ng-if="item.type==='custom'">
+					<div class="col-xs-6 col-md-8">
+						<input type="text" maxLength="35" placeholder="Add Custom Tag"
+							class="ups-form_input" data-ng-show="item.editable"
+							data-ng-model="item.name" /> <span data-ng-show="item.notEdited"
+							class="ups-invalid_color">That tag already exists. Please
+							enter a unique tag.</span><span data-ng-show="!item.editable">
+							{{item.name}} </span>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<span class="ups-aside-right ups-is-hide"
+							data-ng-if="item.type==='custom'"><a href="#" onclick="return false;"
+							class="ups-link" data-ng-show="item.editable"
+							data-ng-click="saveTag(item, $index);">Save</a><a href="#" onclick="return false;"
+							class="ups-link" data-ng-show="!item.editable"
+							data-ng-click="editTag(item, $index);">Edit</a><span> | </span><a
+							href="#" onclick="return false;" class="ups-link ups-tag-close"
+							data-ng-click="removeTag(item);notEdited=false;">Delete</a></span>
+					</div>
+				</div>
+			</fieldset>
+		</div> -->
+
+        <div class="row">
+            <div class="col-sm-7"
+			data-ng-hide="tags.content.length===25">
+                <div class="ups-form_group">
+                    <label for="ups_tag_input" class="ups-form_label">Tag</label>
+                    <div class="ups-input_wrapper ups-text_wrapper">
+                        <input
+                            id="ups_tag_input" type="text" data-ng-model="newTag"
+                            maxLength="35" class="ups-form_input"
+                            data-ng-blur="!newTag" />
+                        <!--  && closeFocus() //from data-ng-blur -->
+                    </div>
+                    <span
+					data-ng-show="notEdited" class="ups-invalid_color">That tag
+                    already exists. Please enter a unique tag.</span> </div>
+            </div>
+            <div class="col-sm-5"
+			data-ng-hide="tags.content.length===25">
+                <div class="ups-no_label">
+                    <button class="ups-cta ups-cta_primary"
+				data-ng-click="addTag(newTag); newTag=''">Add</button>
+                <!-- data-ng-blur="closeFocus()" -->
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="ups-form_ctaGroup">
+                <button class="ups-cta ups-cta_tertiary ups-no-position"
+                data-ng-click="closePopover('addTag')"
+                data-ng-blur="closeFocus()">Done</button>
+            </div>
+        </div>
+</div>

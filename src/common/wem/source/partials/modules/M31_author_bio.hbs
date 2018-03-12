@@ -1,0 +1,82 @@
+<!-- ************************************************************************************ -->
+<!-- M31 Author Bio                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M31 Author Bio - Notes
+********************************************************************************
+
+ - Targetable.
+ - Dynamic or Defined.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M31 Author Bio - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    name                      = string       / YES             / Derrick Johnson
+    image                     = string       / NO              / ../images/article/bio_img.jpg
+    imageAlt                  = string       / NO              / author image
+    title                     = string       / NO              / Director
+    date                      = string       / NO              /  Last updated on MM/DD/YY
+    body                      = string       / YES             / <p>Pellentesque congue sodales Aenean est quam.</p>
+    articles                  = array        / NO              / [{label,url}, {label,url}, {label,url}]
+    facebook                  = string       / NO              / facebook link
+    twitter                   = string       / NO              / twitter link
+    linkedin                  = string       / NO              / linkedin link
+    email                     = string       / NO              / email link
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M31 Author Bio - Layout
+********************************************************************************
+
+-content block-
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-authorBio ups-wrap">
+    <div class="ups-wrap_inner">
+
+        <h2 class="ups-article-header">{{name}}</h2>
+
+        <img src="{{image}}" alt="{{imageAlt}}">
+        <div class="ups-authorBio_info">
+            <h3 class="ups-authorBio_authorTitle">{{title}}</h3>
+            <p class="ups-authorBio_date">{{date}}</p>
+            <div class='ups-authorBio_wrap'>{{{body}}}</div>
+            <div class="ups-authorBio_articles">
+                <h3>{{name}}'s Articles:</h3>
+                <ul>
+                {{#each articles}}
+                    <li><a href="{{this.url}}">{{this.label}}</a></li>
+                {{/each}}
+                </ul>
+            </div>
+            <div class="ups-authorBio_social">
+                <h3>Follow Me On:</h3>
+                {{#if this.facebook}}
+                <a href="{{this.facebook}}"><i class="icon-social ups-icon-facebook" aria-hidden="true"><span class ="ups-readerTxt">Share on Facebook</span></i></a>                    {{/if}}
+                {{#if this.twitter}}
+                <a href="{{this.twitter}}"><i class="icon-social ups-icon-twitter" aria-hidden="true"><span class ="ups-readerTxt">Share on twitter</span></i></a>{{/if}}
+                {{#if this.linkedin}}
+                <a href="{{this.linkedin}}"><i class="icon-social ups-icon-linkedin" aria-hidden="true"><span class ="ups-readerTxt">Share on linkedIn</span></i></a>{{/if}}
+                {{#if this.email}}
+                <a href="{{this.email}}"><i class="icon-social ups-icon-email" aria-hidden="true"><span class ="ups-readerTxt">Share by Email</span></i></a>{{/if}}
+            </div>
+        </div>
+
+    </div>
+</div>

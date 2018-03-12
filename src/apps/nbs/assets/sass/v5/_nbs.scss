@@ -1,0 +1,1404 @@
+/***********************************************
+**                                            **
+**	Icon Modifiers                            **
+**                                            **
+***********************************************/
+.ups-icon {
+	display: inline-block;
+	-webkit-appearance: none;
+	border-radius: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.ups-application_wrapper .ups-icon-check.ups-position-normal {
+	position: static;
+	#{$default-float}: 0;
+	#{$opposite-direction}: 0;
+	display: inline;
+}
+
+.ups-icon_complete {
+    color: $water_s3;
+}
+
+.ups-icon_list_alt {
+	@include unlist;
+	float: $opposite-direction;
+	margin-top: 10px;
+	margin-#{$opposite-direction}: -10px;
+	font-size: $standard_font + 4;
+
+	li {
+		display: inline-block;
+		padding: 0 10px;
+		border-#{$default-float}: 1px solid $black_s1;
+
+		&:first-child { border: none; }
+
+		&.ups-active button {
+			font: 1.2em $sans-bd;
+			padding-#{$default-float}: 24px;
+		}
+	}
+
+	button {
+		@include unbutton;
+		display: block;
+		position: relative;
+		padding-#{$default-float}: 20px;
+
+		.icon:before {
+			@include ups-icons;
+			position: absolute;
+			#{$default-float}: 0;
+			text-decoration: none;
+			font-size: 0.8em;
+		}
+	}
+
+	@media #{$media-small} {
+		display: none;
+	}
+}
+
+h3 button.ups-link {
+    font-size: $standard_font + 4;
+    float: right;
+}
+
+/*.ups-package_row .push.icon {
+	margin-#{$opposite-direction}: 60px;
+}*/
+/*.ups-input_has_unit .push.icon {
+	margin-#{$opposite-direction}: 60px;
+}*/
+
+/***********************************************
+**	End Icon Modifiers                        **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	Panel Modifiers                           **
+**                                            **
+***********************************************/
+.panel, .panel-heading, .panel-body {
+	position: relative;
+}
+
+// Update for TFS#526482
+.panel.panel-default {
+	border-color: $sky_s3;
+}
+
+.panel .panel-heading h2, .panel .panel-heading h3,
+.panel .panel-heading h4, .panel .panel-heading h5,
+.panel .panel-heading h5 {
+    margin-bottom: 0;
+}
+
+.panel, .panel-heading .icon {
+    margin-#{$opposite-direction}: 4px;
+}
+/***********************************************
+**	End Panel Modifiers                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Forms Box                             **
+**                                            **
+***********************************************/
+.ups-form_box {
+	padding: 5px;
+	border: 1px solid $black_s4;
+	margin-bottom: 10px;
+
+	h2, h3, h4, h5, h6 {
+		margin: 0 0 10px;
+
+		span {
+			vertical-align: top;
+		}
+	}
+
+	h3 span {
+		line-height: 36px;
+	}
+
+	.ups-form_status {
+		margin: 15px -5px;
+		padding: 10px;
+		background-color: $stone_60;
+		text-align: center;
+	}
+
+	.ups-form_number {
+		display: inline-block;
+		border-radius: 20px;
+		border: 1px solid $black_s4;
+		background-color: $white;
+		line-height: 1.4;
+		padding: 2px 6px 0;
+	}
+
+	.ups-form_status_blank {
+		height: 43px;
+	}
+
+	.ups-form_box_footer {
+		text-align: center;
+	}
+}
+
+.modal {
+	.ups-form_status {
+		/*margin: 0 -60px 30px;*/
+		/*padding: 5px 60px;*/
+
+		margin: 0 -15px 30px;
+		padding: 5px 15px;
+		background-color: $stone_60;
+
+		strong {
+			line-height: 36px;
+			font-weight: bold;
+		}
+	}
+}
+/***********************************************
+**	End UPS Forms Box                         **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	Modal Modifiers                           **
+**                                            **
+***********************************************/
+.modal {
+	.ups-contentBlock .ups-cta {
+		margin-top: 0;
+		text-decoration: underline;
+	}
+}
+/***********************************************
+**	End Modal Modifiers                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	Accordion Modifiers                       **
+**                                            **
+***********************************************/
+// Prevents unwanted margin on xs viewports
+//@media screen and (min-width: $screen-xs) {
+	.ups-accordion_list .ups-accordion_wrapper {
+		margin-#{$default-float}: 0;
+		margin-#{$opposite-direction}: 0;
+	}
+//}
+
+// Make the outline a rectange instead of a different shape
+.ups-accordion_toggle .row {
+	margin: 0;
+}
+
+.ups-accordion_toggle .row [class^='col']:first-child {
+	padding-#{$default-float}: 0; //should be left for rtl and ltr
+}
+
+.ups-accordion_toggle .row [class^='col']:last-child {
+	padding-#{$opposite-direction}: 0; //should be right for rtl and ltr
+}
+/***********************************************
+**	End Modal Modifiers                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	Input Modifiers                           **
+**                                            **
+***********************************************/
+// Make an element the size of the button
+.ups-btn_height {
+	line-height: 36px;
+}
+
+/*.ups-padTop {
+	padding-top: 0;
+}*/
+
+@media #{$media-medium} {
+	/*.ups-padTop {
+		//padding-top: 10px;
+		//padding-top: 2px;
+		padding-top: 1.93em;
+	}
+
+	.modal .ups-padTop {
+		padding-top: 2.20em;
+	}*/
+
+	.ups-labelHidden {
+		padding-top: 1.571em;
+	}
+}
+/***********************************************
+**	End Input Modifiers                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Box Radio                             **
+**                                            **
+***********************************************/
+.ups-application_wrapper .ups-input_wrapper.ups-boxed_radio {
+	height: auto;
+	margin: 0;
+	margin-bottom: 15px;
+
+	.ups-radio-custom-label {
+		padding: 0 5px;
+
+		span {
+			margin: 5px 0;
+		}
+	}
+
+	.ups-icon {
+		display: none;
+	}
+}
+
+.ups-application_wrapper .ups-boxed_radioGroup > div {
+	padding-#{$opposite-direction}: 0; //should be right for both rtl and ltr
+}
+
+.ups-application_wrapper .ups-boxed_radioGroup > div:last-child {
+	padding-#{$opposite-direction}: inherit; //should be right for both rtl and ltr
+}
+
+@media #{$not-mobile_or_tablet} {
+	.ups-application_wrapper .ups-input_wrapper.ups-boxed_radio {
+
+		.ups-radio-custom-label {
+			padding-top: 30px;
+
+			min-height: 180px;
+		}
+
+		.ups-icon {
+			display: block;
+		}
+	}
+}
+
+.ups-application_wrapper .ups-boxed_radio {
+	width: 100%;
+}
+
+.ups-application_wrapper .ups-boxed_radio.ups-gold {
+	background: $ups_gold;
+}
+
+.ups-application_wrapper .ups-boxed_radio p {
+	margin: 0;
+}
+
+.row.iw_row .iw_columns.col-lg-12 .ups-application_wrapper .ups-accordion_slim section.ups-accordion_list.ups-accordion_normal {
+	padding-top: 0px;
+	padding-bottom: 50px;
+}
+
+/***********************************************
+**	End UPS Box Radio                         **
+***********************************************/
+
+// Update for TFS#526470
+.ups-application_wrapper .ups-section {
+	margin-bottom: 45px;
+}
+
+// Update for#526464
+ul.ups-drawer li.ups-drawer_list_item .ups-drawer-btn {
+		background-color: $stone_60;
+}
+// Update for TFS#526464
+.ups-application_wrapper ul.ups-drawer li.ups-drawer_list_item .h4 .ups-empty_circle {
+	height: 12px;
+	width: 12px;
+	top: -3px;
+	margin-#{$opposite-direction}: 10px;
+}
+// Update for TFS#526464
+.ups-application_wrapper ul.ups-drawer li.ups-drawer_list_item .ups-drawer-btn .ups-drawer_left_icon.ups-icon-checkcircle {
+	color: $water_s3;
+}
+
+
+/***********************************************
+**                                            **
+**	UPS Section Bar                           **
+**                                            **
+***********************************************/
+.ups-section-bar {
+	background-color: $stone_60;
+	padding: 8px 5px;
+}
+
+.ups-section-bar .ups-cta {
+	padding: 0;
+}
+
+// Update for TFS#526482
+.ups-section_heading {
+	border-bottom: 1px solid $sky_s3 !important;
+}
+/***********************************************
+**	End UPS Section Bar                       **
+***********************************************/
+
+/***********************************************
+**                                            **
+**	UPS Centered Header                       **
+**                                            **
+***********************************************/
+.ups-centered_header {
+	font-size: 28px;
+}
+/***********************************************
+**	End UPS Centered Header                   **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Balance Bar                           **
+**                                            **
+***********************************************/
+.ups-balance_bar_container {
+	margin-bottom: -30px;
+	position: absolute;
+	bottom: 0;
+	#{$opposite-direction}: 0;
+	#{$default-float}: 0;
+
+	&.ups-fixed_bottom {
+	    position: fixed;
+	    z-index: 9999;
+	}
+
+    &.ups-balance_bar_opened {
+        @media #{$media-small} {
+            position: fixed;
+            z-index: 9999;
+        }
+    }
+
+	.ups-balance_bar {
+		padding: 10px 40px 5px;
+		background-color: $gold_40;
+		color: $black_s4;
+		z-index: 3;
+
+		h2 {
+			margin: 0;
+            position: relative;
+            z-index: 10;
+		}
+
+		p {
+			margin: 0;
+			margin-#{$default-float}: 40px;
+            position: relative;
+            z-index: 10;
+		}
+
+		.ups-icon-box {
+			font-size: 20px;
+			margin-#{$opposite-direction}: 20px;
+		}
+
+		.ups-cta_secondary {
+			text-decoration: none;
+
+			&:hover, &:focus, &:active {
+				text-decoration: none;
+			}
+		}
+
+		/*.expanded_show {
+			display: none;
+		}
+
+		.collapsed_show {
+			display: inline;
+		}
+
+		&.expanded {
+			.expanded_show {
+				display: inline;
+			}
+
+			.collapsed_show {
+				display: none;
+			}
+		}*/
+
+		.ups-cta {
+			width: auto;
+		}
+
+        .ups-balance_bar_expand_btn {
+            position: absolute;
+            top: -19px;
+            #{$default-float}: 50%;
+            margin-#{$default-float}: -15px;
+            padding: 10px 12px;
+            background-color: $gold_40;
+
+            &:hover {
+                background-color: $gold_40;
+            }
+
+            &:focus {
+                background-color: $gold_40;
+            }
+
+            .icon {
+                position: relative;
+                top: -3px;
+            }
+        }
+	}
+
+	.ups-balance_bar_expanded {
+		background-color: $gold_40; //$sand_s2;
+        @media #{$media-small} {
+            position: absolute;
+            top: 78px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+	}
+
+	.ups-balance_bar_inner {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		background-color: $gold_40; //$ups_sand;
+		padding: 20px 20px 0;
+
+		h3 {
+			margin-bottom: 20px;
+		}
+
+		.h1 {
+			margin-top: 0;
+		}
+
+		.row .col-md-3 {
+			margin-bottom: 20px;
+		}
+
+        @media #{$media-small} {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+	}
+
+	.ups-balance_title {
+		background-color: $stone_60;
+		padding: 15px 10px 8px;
+		padding-#{$opposite-direction}: 15px;
+	}
+
+	@media #{$not-mobile} {
+		.ups-balance_bar_inner {
+			padding-top: 0;
+			max-height: 20em;
+			margin-#{$default-float}: 20px;
+			background-color: $gold_40; //$sand_s2;
+		}
+	}
+}
+
+.ups-balance_bar_placeholder {
+    height: 60px;
+}
+
+.ups-balance_table {
+	margin-bottom: 15px;
+}
+
+.ups-balance_row {
+	border-bottom: 1px solid $black_s3;
+	padding: 7px 2px;
+
+	&.ups-balance_row_condensed {
+		border-bottom: none;
+		padding: 7px 2px 0;
+	}
+
+	span.pull-right {
+		margin-#{$default-float}: 5px;
+	}
+}
+/***********************************************
+**	End UPS Balance Bar                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS App Inner Container Styles            **
+**                                            **
+***********************************************/
+.ups-app_inner {
+	width: auto;
+	padding: 0;
+}
+
+@media #{$not-mobile_or_tablet} {
+	.ups-app_inner {
+		width: 60%;
+		margin: 0 auto;
+	}
+}
+/***********************************************
+**	End UPS App Inner                         **
+***********************************************/
+
+/***********************************************
+**                                            **
+**	UPS Form Container                        **
+**                                            **
+***********************************************/
+.ups-form_container {
+	background-color: $stone_60;
+	padding: $margin_4;
+	margin-bottom: $margin_3;
+
+	h2, h3 {
+		margin-top: 0;
+	}
+
+	.ups-form_container_header {
+		margin: -15px -15px 15px;
+		padding: 10px 15px;
+
+		&.ups-form_progress {
+			background-color: $sun_60;
+		}
+
+		&.ups-form_completed {
+			background-color: $grass_s3;
+			color: white;
+		}
+	}
+}
+
+.ups-application_wrapper .ups-section .ups-section_condense {
+    margin-bottom: 0;
+}
+
+.ups-application_wrapper .ups-section .ups-section-header .ups-cta {
+    padding: 0;
+}
+
+.ups-application_wrapper .ups-section .ups-section-header .ups-form_group {
+	width: inherit;
+    margin-bottom: -5px;
+}
+
+.ups-section .ups-section-header .ups-lever {
+	margin-top: -5px;
+}
+
+// .ups-application_wrapper {
+// 	position: relative;
+// }
+/***********************************************
+**	End UPS Form Container                    **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Package Section                       **
+**                                            **
+***********************************************/
+.ups-package_row {
+	/*margin-top: 25px;*/
+
+    .ups-speech_bubble {
+        margin: 10px 25px;
+        margin-bottom: 8px;
+    }
+}
+
+.ups-package_figure {
+	font-size: 150px;
+	display: block;
+	margin-top: 30px;
+}
+
+.ups-package_image {
+	margin-top: 30px;
+	width: 170px;
+}
+
+.ups-package-guidelines {
+	margin-top:50px;
+}
+
+@media #{$not-mobile_or_tablet} {
+	.ups-package_separator {
+		border-#{$opposite-direction}: 1px solid $stone_s3;
+	}
+}
+
+/*.ups-collapsed_package_row {
+	margin-bottom: 15px;
+	background-color: $stone_60;
+	padding: 10px 0;
+	border-bottom: 1px solid $black;
+
+	.ups-collapsed_package_info {
+		width: 40%;
+		padding-#{$default-float}: 10px;
+	}
+
+	.ups-collapsed_package_number {
+		width: 100%;
+		float: $default-float;
+		padding-#{$opposite-direction}: 15px;
+		line-height: 2.5em;
+	}
+
+	.ups-collapsed_package_weight {
+		width: 25%;
+		float: $default-float;
+		padding-#{$opposite-direction}: 15px;
+		line-height: 2.5em;
+	}
+
+	.ups-collapsed_package_dimensions {
+		width: 43%;
+		float: $default-float;
+		padding-#{$opposite-direction}: 15px;
+		line-height: 2.5em;
+	}
+
+    .ups-collapsed_package_message {
+        width: 68%;
+		float: $default-float;
+		padding-#{$opposite-direction}: 15px;
+		line-height: 2.5em;
+    }
+
+	.ups-collapsed_package_actions {
+		margin-#{$default-float}: 40%;
+		text-align: $opposite-direction;
+
+		.ups-cta {
+			padding: 10px 15px;
+			width: auto;
+			text-decoration: none;
+
+			span.icon {
+				font-size: 16px;
+			}
+		}
+
+		.ups-cta:first-child {
+			padding-#{$default-float}: 0;
+		}
+	}
+
+	@media #{$not-mobile} {
+		.ups-collapsed_package_info {
+			width: 61%;
+		}
+
+		.ups-collapsed_package_actions {
+			margin-#{$default-float}: 61%;
+		}
+
+		.ups-collapsed_package_number {
+			width: 32%;
+		}
+	}
+}*/
+
+.ups-package_actions {
+    position: absolute;
+    top: 15px;
+    #{$opposite-direction}: 0;
+
+    button {
+        padding: 0 15px;
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+            color: white;
+        }
+
+        .icon {
+            color: $white;
+            margin-#{$opposite-direction}: 2px;
+
+            &:hover {
+                color: white;
+            }
+
+            &:before {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.ups-pkgicon_custom_box {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 25px;
+		#{$default-float}: 156px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 207px;
+    	#{$default-float}: 71px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_height {
+		position: absolute;
+		top: 117px;
+    	#{$default-float}: 178px; //has to be left for RTL and LTR
+	}
+}
+
+.ups-pkgicon_letter {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 169px;
+		#{$default-float}: 56px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 80px;
+		#{$default-float}: 178px; //has to be left for RTL and LTR
+	}
+
+	/*.ups-package_height {
+		position: absolute;
+		top: 117px;
+    	#{$default-float}: 178px; //has to be left for RTL and LTR
+	}*/
+}
+
+.ups-pkgicon_expbox {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 162px;
+		#{$default-float}: 70px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 140px;
+		#{$default-float}: 167px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_height {
+		position: absolute;
+		top: 70px;
+		#{$default-float}: 170px; //has to be left for RTL and LTR
+	}
+}
+
+.ups-pkgicon_pallet {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 199px;
+		#{$default-float}: 52px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 181px;
+		#{$default-float}: 156px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_height {
+		position: absolute;
+		top: 87px;
+		#{$default-float}: 179px; //has to be left for RTL and LTR
+	}
+}
+
+.ups-pkgicon_expack {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 169px;
+		#{$default-float}: 75px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 83px;
+		#{$default-float}: 176px;	 //has to be left for RTL and LTR
+	}
+
+	/*.ups-package_height {
+		position: absolute;
+		top: 87px;
+		#{$default-float}: 179px;
+	}*/
+}
+
+.ups-pkgicon_tube {
+	position: relative;
+	display: inline-block;
+
+	.ups-package_length {
+		position: absolute;
+		top: 101px;
+		#{$default-float}: 103px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_width {
+		position: absolute;
+		top: 11px;
+		#{$default-float}: 153px; //has to be left for RTL and LTR
+	}
+
+	.ups-package_height {
+		position: absolute;
+		top: 45px;
+		#{$default-float}: 178px; //has to be left for RTL and LTR
+	}
+}
+/***********************************************
+**	End UPS Package Section                   **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	NBS CTA group Modifier                    **
+**                                            **
+***********************************************/
+.ups-form_ctaGroup {
+	margin-top: 25px;
+}
+/***********************************************
+**	End NBS CTA group Modifier                **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	NBS help Modifier                         **
+**                                            **
+***********************************************/
+//prevents help from showing under progress bar
+.ups-help_tooltip {
+	z-index: 50;
+}
+
+
+/***********************************************
+**                                            **
+**	Other NBS Styles                          **
+**                                            **
+***********************************************/
+.ups-icon_quote {
+	color: #f68b20;
+    font-size: 1.5em;
+    padding-#{$opposite-direction}: 12px;
+}
+
+.ups-icon_quote_right_arrow {
+	padding-#{$opposite-direction}: 12px;
+	color: $ups_sun;
+}
+
+/***********************************************
+**                                            **
+**	Toggle View Styles                        **
+**                                            **
+***********************************************/
+/*** moved to global (_widgets.scss) ***/
+
+
+/***********************************************
+**                                            **
+**	Header Shipping Actions                   **
+**                                            **
+***********************************************/
+.ups-shipping_header_action {
+    //padding: 0 18px;
+    padding: 0;
+    margin-#{$default-float}: 36px;
+
+    img {
+        vertical-align:top;
+        margin-#{$opposite-direction}: 5px;
+    }
+
+    &:first-child {
+        @media #{$not-mobile} {
+            margin-#{$default-float}: 0;
+        }
+    }
+
+    .ups-icon-questioncircle {
+        &:before {
+            margin-#{$default-float}: 0;
+        }
+    }
+
+    /*&:last-child {
+        padding-#{$opposite-direction}: 0;
+
+		@media #{$media-small} {
+			padding: 10px 30px;
+		}
+
+    }*/
+
+
+    @media #{$media-small} {
+        padding: 10px 30px;
+        text-align: left;
+        padding-#{$default-float}: 0;
+        padding-#{$opposite-direction}: 0;
+        margin-#{$default-float}: 0;
+        margin-#{$opposite-direction}: 0;
+
+        .ups-shipping_header_action_info {
+            top: 9px;
+        }
+    }
+}
+
+/***********************************************
+**                                            **
+**	Delete Action                             **
+**                                            **
+***********************************************/
+.ups-form_wrap .ups-remove_action {
+	.icon.ups-icon-minuscircle {
+        font-size: 1.2em;
+        top: 2px;
+	}
+}
+
+/***********************************************
+**                                            **
+**	Remove spacing for address                **
+**                                            **
+***********************************************/
+.ups-store_address p {
+    margin: 0;
+}
+
+div#location_found_selected {
+    margin-top: 10px;
+}
+
+/***********************************************
+**                                            **
+**	Button Modifiers                          **
+**                                            **
+***********************************************/
+.ups-input_btn_action {
+	padding-#{$default-float}:0;
+}
+
+.ups-even {
+	background-color: #f0f0ef;
+    padding-top: 15px;
+    padding-#{$default-float}: 15px;
+    padding-#{$opposite-direction}: 15px;
+    margin-#{$default-float}: -15px;
+    margin-#{$opposite-direction}: -15px;
+	margin-bottom: 15px;
+
+	// & .row { padding: 0 }
+}
+
+.confirmYes {
+	color: $ups_grass;
+	font-weight: bold;
+}
+
+.confirmNo {
+	color: $red;
+	font-weight: bold;
+}
+
+.ups-text_separate {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.ups-list_style_none {
+	@include unlist;
+}
+
+.ups-group.ups-group_yes_wizard {
+    margin-bottom: 35px;
+}
+/***********************************************
+**                                            **
+**	BEGIN Animation                           **
+**                                            **
+***********************************************/
+
+.pkTypeImg {
+    width: (390px/2);
+    height: (360px/2);
+	// margin: 0 30px 20px;
+	& .placeholder {
+		width: (390px/4);
+		height: (360px/4);
+	}
+}
+
+/***********************************************
+**                                            **
+**	END Animation                             **
+**                                            **
+***********************************************/
+
+/*
+** Begin Balancebar placeholder
+** (remove once the Angular version of the balance bar is built)
+*/
+
+/*
+//commenting out since angular version is built
+.ups-demo_balBarPlaceholder {
+	position: relative;
+	margin-bottom: 0px;
+	bottom: 0;
+    right: 0;
+	left: 0;
+
+	.ups-balance_bar {
+		padding: 10px 40px 5px;
+		background-color: #ffe199;
+		color: #242424;
+		z-index: 3;
+
+		.ups-icon-box {
+			margin-right: 20px;
+		}
+
+		p {
+			margin: 0;
+			margin-left: 20px;
+			position: relative;
+			z-index: 10;
+		}
+	}
+
+	h2 {
+		margin: 0;
+		position: relative;
+		z-index: 10;
+	}
+
+
+}*/
+.ups-faux-drawer {
+	.ups-drawer-header {
+		width: 100%;
+		background-color: $stone_40;
+		text-align: #{$default-float};
+		padding: 10px 8px 7px;
+		border: none;
+		border-top: 1px solid $stone_s3;
+		border-bottom: 1px solid $stone_s3;
+		/*border: 1px solid $black_s1;*/
+
+		&.ups-emphasize {
+			font-size: 16px;
+			.ups-empty_circle {
+				background-color: $ups_grass;
+				height: 20px;
+				width: 20px;
+				top: 0px;
+				left: 0px;
+				margin-#{$opposite-direction}: 8px;
+			}
+			.ups-digit-icon {
+				margin-#{$default-float}: 5px;
+			}
+		}
+
+	}
+
+	.ups-drawer-content {
+		border-bottom: 1px solid $black_s1;
+		padding: 10px 8px 7px;
+	}
+
+    /* selector below should remain added for 2nd theme on drawers*/
+    &.ups-drawer_slim {
+        .ups-drawer-header {
+            width: auto;
+            background-color: transparent;
+            border-top: none;
+            border-bottom: none;
+            text-decoration: underline;
+
+            .icon {
+                margin-#{$default-float}: 10px;
+                text-decoration: none;
+                display: inline-block;
+
+                &:before {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .ups-drawer-content {
+            border-bottom: none;
+            padding: 5px;
+        }
+    }
+
+
+}
+
+/* these borders are visible in all veiwports */
+.ups-bottomBorder { border-bottom: grey solid 1px; }
+
+/* these borders are visible in LVP and Guided VP */
+@media screen and (min-width: $screen-md) {
+	.ups-topBorder1 { border-top: grey solid 1px; }
+
+	.ups-bottomBorder1 { border-bottom: grey solid 1px; }
+
+	.ups-rightBorder1 { border-right: grey solid 1px; }
+}
+/*
+** End Balancebar placeholder
+*/
+
+
+// commented out because the tile row in the addons page was removed
+// kepping it in case the team requests tile rows be replaced.
+//.ups-tile_row {
+//	position: relative;
+//	background-color: #d9d9d6;
+//	margin-bottom: 20px;
+//	padding-bottom: 8px;
+//	padding-top: 20px;
+//	padding-#{$default-float}: 20px;
+//	padding-#{$opposite-direction}: 55px;
+//
+//	.ups-tile_icon {
+//		position: absolute;
+//		color: black;
+//		text-decoration: none;
+//		font-size: 25px;
+//		top: 15px;
+//		#{$opposite-direction}: 20px;
+//	}
+//}
+
+// Task 488389 ups-text_underline
+#ups-main .ups-text_undeline {
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+
+.ups-view_side_by_side {
+
+	.ups-view_sbs_or {
+		display: inline-block;
+		/*margin: 0 10px;*/
+		width: 20%;
+		padding-top: 25px;
+	}
+
+	.ups-view_sbs_section {
+		position: relative;
+		display: inline-block;
+		width: 40%;
+        vertical-align: top;
+	}
+}
+@media #{$media-small} {
+
+	.ups-view_side_by_side {
+		.ups-view_sbs_section {
+			display: block;
+			width: 100%;
+            padding-right: 10px;
+		}
+
+        .ups-view_sbs_section:last-child {
+            padding: 0;
+        }
+
+		.ups-view_sbs_or {
+			display: none;
+			/*width: 50%;*/
+		}
+	}
+
+    .ups-application_wrapper .ups-no_label_svp {
+        margin-top: 22px;
+    }
+}
+
+.ups-buttonList_wrapper.ups-input_wrapper {
+	.ups-ccImage {
+		height: 20px;
+		width: 25px;
+	}
+}
+
+@media #{$media-medium} {
+	.ups-dropdown_wrapper.ups-input_wrapper.ups-no_label {
+		margin-top: 0px;
+	}
+}
+
+.ups-datepicker_top_right {
+    .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+}
+
+.ups-section {
+    .ups-section_subheading {
+        margin: 5px 0 0;
+        font-size: 14px;
+        font-family: $sans;
+    }
+}
+@media #{$media-small} {
+	.ups-btn_no_wrap {
+		.ups-cta {width: inherit;}
+	}
+}
+
+
+.ups-text_information_container {
+    .ups-text_information_tooltip {
+        &.ups-text_information_tooltip_expanded {
+            max-height: 320px;
+
+            .ups-text_information_scroll {
+                max-height: 257px;
+                overflow: auto;
+            }
+        }
+    }
+}
+
+.ups-shipping_header_container {
+    margin-#{$default-float}: 36px;
+
+    .ups-text_information {
+        @media #{$media-small} {
+            top: 9px;
+        }
+    }
+
+    @media #{$media-small} {
+        margin-#{$default-float}: 0;
+    }
+}
+
+.ups-shipping_header_info {
+    height: 0;
+
+    &.ups-shipping_header_info_block {
+        height: auto;
+
+        .ups-text_information_container {
+            width: 100%;
+
+            .ups-text_information {
+                width: 100%;
+                position: initial;
+
+                .ups-text_information_tooltip.ups-text_information_tooltip_bottomleft {
+                    position: static;
+                    margin: 10px 0;
+                    #{$default-float}: 0;
+                    max-width: 100%;
+                    width: 100%;
+
+                    &:before, &:after {
+                        content: none;
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .ups-text_information_container {
+        padding: 0;
+        display: block;
+
+        .ups-text_information_tooltip.ups-text_information_tooltip_bottomleft {
+            top: 72px;
+        }
+
+        .ups-text_information_tooltip.ups-text_information_tooltip_bottomleft {
+            @media #{$media-small} {
+                position: static;
+                margin: 10px 0;
+            }
+        }
+    }
+
+    @media #{$media-small} {
+        height: auto;
+    }
+
+
+
+}

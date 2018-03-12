@@ -1,0 +1,50 @@
+{{!--
+********************************************************************************
+A05 Switch Toggle - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    title                      = string     / YES           / Toggle Control Title
+    name                       = string     / YES           / Name for the radio buttons
+    helper_txt                 = string     / NO            / helper text under the label
+    help_btn                   = string     / NO            / if there is a help button shown on the label
+    required_indicator         = boolean    / NO            / if the toggle is required 
+    buttons                    = array      / YES           / (up to 5) [{label_id, label_title,checked},{label_id, label_title,checked},...]
+    
+********************************************************************************
+
+Toggle needs to inside a div with class of ups-form_group.
+
+--}}
+
+<fieldset class="ups-toggle_fieldset">
+    <legend class="ups-form_label">
+    	{{ title }}
+        {{#if required_indicator }}
+        <span aria-hidden="true" class="ups-required_indicator"></span>
+        <span class="ups-readerTxt">Required</span>
+        {{/if}}
+    </legend>
+    {{#if help_btn }}
+    <div class="ups-help">
+        <button type="button" id="{{ this.id }}-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+            <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                <span class="ups-readerTxt">Close</span>
+            </button>
+            <p>{{{ help_btn }}}</p>
+        </div>
+    </div>
+    {{/if}}
+    {{#if helper_txt }}<p class="ups-form_subheader">{{ helper_txt }}</p>{{/if}}
+    <div class="ups-toggle well">
+        {{#each buttons}}
+            <input id="{{ this.label_id }}" name="{{ ../name }}" type="radio" {{#if this.checked }}checked{{/if}}>
+            <label for="{{ this.label_id }}" onclick="">{{ this.label_title }}</label>
+        {{/each}}
+        
+        <div class="switch-bg"></div>
+    </div>
+</fieldset>

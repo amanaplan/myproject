@@ -1,0 +1,211 @@
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// Begin UPS Alt CPC form                        //// -->
+<!-- /////////////////////////////////////////////////////// -->
+<section [formGroup]="altcpcForm">
+    <fieldset class="ups-form_group">
+    	<legend class="ups-form_label">
+            Other payment methods we accept:
+        </legend>
+
+    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+    		<input type="radio"
+                id="ups-altcpc-pay-store"
+                name="ups-altcpc-payment"
+                class="ups-radio-custom"
+                value="PayAtStore"
+                [(ngModel)]="altPaymentMethod"
+                [ngModelOptions]="{ 'standalone' : true }">
+    		<label for="ups-altcpc-pay-store"
+                class="ups-radio-custom-label">
+                Pay At Store
+            </label>
+    	</div>
+
+    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+    		<input type="radio"
+                id="ups-altcpc-paypal"
+                name="ups-altcpc-payment"
+                class="ups-radio-custom"
+                value="PayPal"
+                [(ngModel)]="altPaymentMethod"
+                [ngModelOptions]="{ 'standalone' : true }">
+    		<label for="ups-altcpc-paypal"
+                class="ups-radio-custom-label">
+                Paypal
+            </label>
+    		<img src="assets/resources/images/paymentMethods/paypal.svg" height="20px" width="40px" alt="PayPal Image">
+    	</div>
+
+    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+    		<input type="radio"
+                id="ups-altcpc-giropay"
+                name="ups-altcpc-payment"
+                class="ups-radio-custom"
+                value="Giropay"
+                [(ngModel)]="altPaymentMethod"
+                [ngModelOptions]="{ 'standalone' : true }">
+    		<label for="ups-altcpc-giropay"
+                class="ups-radio-custom-label">
+                Giropay
+            </label>
+    		<img src="assets/resources/images/paymentMethods/giropay.svg" height="20px" width="40px" alt="Giropay Image">
+    	</div>
+
+    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+    		<input type="radio"
+                id="ups-altcpc-sofort"
+                name="ups-altcpc-payment"
+                class="ups-radio-custom"
+                value="Sofort"
+                [(ngModel)]="altPaymentMethod"
+                [ngModelOptions]="{ 'standalone' : true }">
+    		<label for="ups-altcpc-sofort"
+                class="ups-radio-custom-label">
+                Sofort
+            </label>
+    		<img src="assets/resources/images/paymentMethods/sofort.svg" height="20px" width="40px" alt="Sofort Image">
+    	</div>
+    </fieldset>
+
+    <div *ngIf="altPaymentMethod == 'PayAtStore'">
+        <h3>Pay At Store</h3>
+        <p>Pay for this shipment when you drop off your packages at a UPS Access Point location. Bring a copy of your shipping ticket ID or show the ID barcode on your mobile device. Your label will be printed at the store when your package is accepted.</p>
+        <p>We'll send a copy of the shipping ticket and receipt to the email address below.</p>
+        <div class="row">
+        	<div class="col-md-6">
+        		<div class="ups-form_group">
+        			<label for="ups-altcpc-paystore-email" class="ups-form_label">Email</label>
+        			<div class="ups-text_wrapper ups-input_wrapper">
+        				<input type="text" name="ups-altcpc-paystore-email" class="ups-form_input" id="ups-altcpc-paystore-email">
+        			</div>
+        		</div>
+        	</div>
+        	<div class="col-md-6">
+        		<div class="ups-form_group">
+        			<label for="ups-altcpc-paystore-notification_lang" class="ups-form_label">Notification Language</label>
+        			<div class="ups-dropdown_wrapper ups-input_wrapper">
+        				<select type="text" name="ups-altcpc-paystore-notification_lang" class="ups-dropdown" id="ups-altcpc-paystore-notification_lang">
+        					<option selected="selected">{{ '{' }}language from shipper AP notification{{ '}' }}</option>
+        					<option value="">sample</option>
+        					<option value="">sample</option>
+        					<option value="">sample</option>
+        				</select>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input type="checkbox"
+                    id="ups-altcpc-paystore-sendACopyCB"
+                    name="ups-altcpc-paystore-sendACopyCB"
+                    class="ups-checkbox-custom">
+                <label for="ups-altcpc-paystore-sendACopyCB" class="ups-checkbox-custom-label">
+                    Send a copy of shipping invoice to my address as well.
+                </label>
+            </div>
+        </div>
+
+        <p>
+            <strong>{{ '{' }}AP Notification shipper's email address{{ '}' }}</strong>
+        </p>
+        <div class="row">
+        	<div class="col-md-6">
+        		<div class="ups-form_group">
+        			<label for="ups-altcpc-paystore-taxid"
+                        class="ups-form_label">
+                        Tax ID for printed invoice
+                    </label>
+        			<p class="ups-form_subheader"
+                        id="ups-altcpc-paystore-taxid-subhelp">
+                        Optional
+                    </p>
+        			<div class="ups-text_wrapper ups-input_wrapper">
+        				<input type="text"
+                            name="ups-altcpc-paystore-taxid"
+                            id="ups-altcpc-paystore-taxid"
+                            class="ups-form_input"
+                            aria-describedby="ups-altcpc-paystore-taxid-subhelp">
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+    <div *ngIf="altPaymentMethod == 'PayPal'">
+        <h3>PayPal</h3>
+        <p>You will be transferred to [PayPal] to complete this transaction.</p>
+        <div *ngIf="!altPayPaypalSaved">
+            <fieldset class="ups-form_group">
+            	<legend class="ups-form_label">Billing Address</legend>
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input type="radio"
+                        id="ups-cpc-bill-address-same"
+                        name="ups-altcpc-bill-address"
+                        class="ups-radio-custom"
+                        value="SameAdd">
+            		<label for="ups-sameBillingAddress" class="ups-radio-custom-label">
+                        {{ '{' }}2010 Warsaw Rd., Roswell, GA 30076{{ '}' }}
+                    </label>
+            	</div>
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input type="radio"
+                        id="ups-cpc-bill-address-diff"
+                        name="ups-altcpc-bill-address"
+                        class="ups-radio-custom"
+                        value="diffAdd">
+            		<label for="ups-diffBillingAddress" class="ups-radio-custom-label">
+                        Enter a different address.
+                    </label>
+            	</div>
+            </fieldset>
+            <div class="ups-form_group">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input type="checkbox"
+                        id="ups-saveThisPaymentCB"
+                        name="ups-saveThisPaymentCB"
+                        class="ups-checkbox-custom">
+                    <label for="ups-saveThisPaymentCB" class="ups-checkbox-custom-label">
+                        Save this information to my profile.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="altPayPaypalSaved">
+            <fieldset class="ups-form_group">
+            	<legend class="ups-form_label">
+                    Select a Paypal account:
+                </legend>
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input id="ups-select_paypal1" class="ups-radio-custom" type="radio" name="ups-select_paypal" value="ups-select_paypal1">
+            		<label for="ups-select_paypal1" class="ups-radio-custom-label"> Paypal - {{ '{' }}email/Login name{{ '}' }} - {{ '{' }}Nickname{{ '}' }}</label>
+            	</div>
+
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input id="ups-select_paypal2" class="ups-radio-custom" type="radio" name="ups-select_paypal" value="ups-select_paypal2">
+            		<label for="ups-select_paypal2" class="ups-radio-custom-label"> Paypal - {{ '{' }}email/Login name{{ '}' }} - {{ '{' }}Nickname{{ '}' }}</label>
+            	</div>
+
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input id="ups-select_paypal3" class="ups-radio-custom" type="radio" name="ups-select_paypal" value="ups-select_paypal3">
+            		<label for="ups-select_paypal3" class="ups-radio-custom-label"> Paypal - {{ '{' }}email/Login name{{ '}' }} - {{ '{' }}Nickname{{ '}' }}</label>
+            	</div>
+
+            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            		<input id="ups-select_paypal4" class="ups-radio-custom" type="radio" name="ups-select_paypal" value="ups-select_paypal4">
+            		<label for="ups-select_paypal4" class="ups-radio-custom-label"> Paypal - {{ '{' }}email/Login name{{ '}' }} - {{ '{' }}Nickname{{ '}' }}</label>
+            	</div>
+
+            </fieldset>
+            <div class="ups-group">
+                <button type="button" class="ups-link ups-btn_has_icon">
+                    <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    Add a PayPal Account
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// End UPS Alt CPC form                          //// -->
+<!-- /////////////////////////////////////////////////////// -->

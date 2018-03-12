@@ -1,0 +1,130 @@
+//TFS488408 for Confirmation Page Labels
+.ups-icon_clickable {
+    cursor: pointer;
+
+    .icon {
+        cursor: pointer;
+    }
+}
+
+.ups-has_icon {
+    span.icon {
+        position: relative;
+        top: 10px;
+    }
+}
+
+.ups-big_icon_circle {
+    padding: 15px 10px;
+    border-radius: 50px;
+    color: $white;
+    background-color: $ups_sun;
+    width: 60px;
+    height: 60px;
+
+    .icon {
+        cursor: default;
+        font-size: 30px;
+    }
+
+    .ups-icon-email {
+         #{$default-float}: 5px;
+    }
+
+    .icon:hover {
+        color: $white;
+    }
+
+    .ups-icon-syncsticker {
+        font-size: 35px;
+        position: relative;
+        top: -2px;
+         #{$default-float}: 2px;
+    }
+
+    .ups-icon-mobile {
+        position: relative;
+         #{$default-float}: 5px;
+    }
+}
+
+.ups-label_list_options {
+    padding: 0px;
+    margin: 0px;
+    li {
+        list-style: none;
+    }
+}
+.ups-label_option {
+    margin-bottom: 45px;
+
+    .ups-label_option_icon {
+        float: #{$default-float};
+        margin-bottom: 15px;
+    }
+
+    .ups-label_option_action {
+        margin-#{$default-float}: 80px;
+        display: block;
+
+        @media #{$media-medium} {
+            margin-#{$default-float}: 0;
+            clear: $default-float;
+        }
+    }
+
+    .ups-label_option_description {
+        margin-#{$default-float}: 80px;
+        padding-#{$opposite-direction}: 15px; //Added for TFS #451765; Gives more padding to the right label option text (this is particularly important in smaller viewports)
+
+        h2 {
+            margin-bottom: 2px;
+        }
+        // @media #{$media-medium} {
+        //     position: absolute;
+        //     top:21px;
+        // }
+        //
+        // @media #{$media-small} {
+        //     top:13px;
+        // }
+    }
+
+    .ups-toggle_view_state {
+        &.ups-toggle_view_left, &.ups-toggle_view_right {
+            margin-top: 45px;
+            background-color: transparent;
+            padding: 0;
+
+            &:before {
+                #{$opposite-direction}: auto;
+                #{$default-float}: 115px;
+            }
+        }
+    }
+
+    .ups-toggle_view_state {
+        &.ups-toggle_view_left .ups-toggle_view_content {
+            margin-#{$opposite-direction}: -100%;
+            margin-#{$opposite-direction}: calc(-100% - 30px);
+            background-color: $stone_40;
+            padding: 20px;
+        }
+
+        &.ups-toggle_view_right .ups-toggle_view_content {
+            margin-#{$default-float}: -100%;
+            margin-#{$default-float}: calc(-100% - 30px);
+            background-color: $stone_40;
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: #{$screen-md - 1}) {
+        .ups-toggle_view_state.ups-toggle_view_left, .ups-toggle_view_state.ups-toggle_view_right {
+            .ups-toggle_view_content {
+                margin-#{$default-float}: 0;
+                margin-#{$opposite-direction}: 0;
+            }
+        }
+    }
+}

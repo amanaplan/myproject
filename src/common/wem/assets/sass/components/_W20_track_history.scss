@@ -1,0 +1,234 @@
+// ----------------------------------------------------
+// W20 Track with History
+// ----------------------------------------------------
+.ups-trackHistory {
+    .ups-widget_panel {
+        text-align: center;
+        form {
+            position: relative;
+            margin-bottom: $margin_3;
+            .ups-trackHistory_input {
+                display: block;
+                height: 45px;
+                width: 84%;
+                overflow-y: hidden;
+                padding: 8px 10px;
+                padding-#{$opposite-direction}: 38px;
+                line-height: 28px;
+                font-size: 0.9em;
+                font-style: italic;
+                font-weight: 400;
+                float: none;
+                max-width: none;
+                margin: 0;
+                color: $ups_brown;
+            }
+            .ups-simpleTrack_input_wrap{
+                padding-#{$opposite-direction}: 45px;
+            }
+            .ups-trackHistory_btn {
+                display: block;
+                line-height: 36px;
+                position: absolute;
+                overflow: hidden;
+                height: 0;
+                top: 0px;
+                #{$opposite-direction}: 0px;
+                width: 45px;
+                padding: 45px 0 0;
+                border: none;
+				@include border_radius(0);
+
+                i:before {
+                    @include ups-icons;
+                    content: "\e629";
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    text-align: center;
+                    line-height: 45px;
+                }
+                .ups-rtl i:before {
+                    content: "\e627";
+                }
+            }
+            .ups-trackHistory_btn.ups-trackHistory_btn_lineHeight{
+            	i:before{
+            		line-height: 95px;
+            	}
+            }
+        }
+        .ups-trackHistory_list {
+            text-align: $default-float;
+            margin-bottom: 0;
+            margin-top: 0;
+
+            .ups-trackHistory_listHeader {
+                color: $black;
+                font-family: $sans-bd;
+                background: $stone_s3;
+                padding: 12px 20px 10px;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+            .ups-trackHistory_listRows {
+                margin: 0;
+                padding: 0;
+                .ups-input_wrapper {
+                    border-bottom: 1px solid $stone_s3;
+                    padding: 13px 20px;
+                    padding-#{$opposite-direction}: 20px;
+                    padding-#{$default-float}: 75px;
+                    label {
+                        position: static;
+                        padding: 0;
+                        display: inline;
+                        font-family: $sans-bd;
+                        text-decoration: underline;
+
+                        @media #{$media-small} {
+                            display: none;
+                        }
+
+                        &:before {
+                            position: absolute;
+                            #{$default-float}:20px;
+                            margin: 4px 0 0;
+                            margin-#{$opposite-direction}: 30px;
+                            background: $white;
+                            border: 2px solid $stone_s3;
+                            margin-top: 8px;
+                        }
+                    }
+                    a, p{
+                        padding: 0;
+                        margin: 0;
+                        line-height: 20px;
+                        border: none;
+                        display: block;
+                    }
+                    a {
+                        display: none;
+                        color: $black_s3;
+
+                        @media #{$media-small} {
+                            display: inline;
+                        }
+
+                        &:hover {
+                            color: $black_s1;
+                        }
+                    }
+                    &:nth-child(odd) {
+                        background: $stone_60;
+                    }
+                    &:before {
+                        position: absolute;
+                        #{$opposite-direction}:20px;
+                        display: none;
+                        top:50%;
+                        margin-top:-10px;
+                        font-size: 20px;
+                    }
+                    .ups-rtl &:before {
+                        content: "\e627";
+                    }
+                     .ups-checkbox-custom:checked + .ups-checkbox-custom-label:before {
+                        background: $white;
+                        box-shadow: inset 0px 0px 0px 4px $white;
+                    }
+                    .ups-form_wrap .ups-checkbox-custom:focus ~ label:before,
+                    .ups-form_wrap .ups-radio-custom:focus ~ label:before{
+                      background: $ups_gold_light;
+                    }
+                }
+                .ups-form_ctaGroup {
+                    text-align: center;
+                    button {
+                        display: inline-block;
+                        margin: 30px 0 $margin_3;
+                        width: 100%;
+                    }
+                }
+            }
+            p {
+                padding: $margin_3 0 $margin_3 20px;
+                margin: 0;
+                font-size: 14px;
+
+                a{
+                    display: inline;
+                    padding: 0;
+                    margin:0;
+                    color: $black_s3;
+                    text-decoration: underline;
+                    font-family: $sans-bd;
+
+                    .ups-rtl { font-weight: bold; }
+
+                    &:hover {
+                        color: $black_s1;
+                    }
+                }
+            }
+        }
+        a {
+            display: inline-block;
+            color: $black_s3;
+            text-decoration: underline;
+            font-family: $sans-bd;
+            margin-bottom: $margin_3;
+            // margin-top: $margin_3;
+            font-size: 14px;
+
+            .ups-rtl { font-weight: bold; }
+
+            &:hover {
+                color: $black_s1;
+            }
+        }
+        .ups-form_wrap{
+          .ups-checkbox-custom:checked + .ups-checkbox-custom-label:after{
+            left: 28px;
+            top: 26px;
+          }
+        } 
+    }
+}
+.ups-trackHistory, .subsection_aside .ups-trackHistory_wrap,
+.iw_columns.col-lg-4 .ups-trackHistory_wrap {
+    @include aside-pad-sm;
+
+    @media #{$media-small} {
+        .ups-widget_panel {
+            padding-bottom: 0;
+            .ups-trackHistory_listRows {
+                margin-bottom: 40px;
+                .ups-trackHistory_btn {
+                    #{$opposite-direction}: 21px;
+                }
+
+                .ups-input_wrapper{
+                    padding-#{$default-float}: 20px;
+                    cursor: pointer;
+                    &:before {
+                        display: block;
+                    }
+                }
+                .ups-checkbox-custom,.ups-checkbox-custom-label{
+                    display: none;
+                }
+                .ups-form_ctaGroup {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+

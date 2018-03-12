@@ -1,0 +1,573 @@
+{{> background_modal_content }}
+
+<!-- //////////////////////////// -->
+<!-- Begin Dialog Module -->
+<!-- Begin Application Module -->
+<div class="appLvl modal-dialog mod modal dialog">
+
+	<!-- Begin Application Header -->
+	<div class="appHead clearfix">
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!--
+        <h2>{pallet}{package} {nn} information</h2>
+		<ul class="clearfix">
+			<li>
+				<input type="button" class="btnlnkL closeIcon" title="Close" id="modalClose">
+			</li>
+		</ul>
+        -->
+    	<h2 class="ups-modal_heading">{Pallet}{Package} {nn} Information</h2>
+        <button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()">
+    		<span class="icon ups-icon-x" aria-hidden="true"></span>
+    		<span class="ups-readerTxt ng-binding">Close this dialog</span>
+    	</button>
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design -->
+        <!-- ************************************** -->
+	</div>
+	<!-- End Application Header -->
+
+	<!-- Begin Application Body -->
+	<div class="appBody ups-form_wrap ups-application_wrapper">
+		<p class="error">>>>Error message</p>
+		<!-- Begin Intro Text -->
+		<p>please provide information about the {pallets}{packages} in your shipment. you can enter information for up to 20 {pallets}{packages}.</p>
+        {{> A04_page_level_required_message }}
+
+		<!-- End Intro Text -->
+
+		<!-- Begin Package Type Columns -->
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!--
+        <div class="clearfix">
+			<dl>
+				<dt>
+					<label for="repl_id">type of packaging:</label>
+				</dt>
+				<dd>[selected package type]</dd>
+			</dl>
+		</div>
+		<div class="clear"></div>
+        -->
+        <div class="ups-group">
+            <p class="ups-group_label">Type of Packaging</p>
+            <p class="ups-group_value">[selected package type]</p>
+        </div>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design -->
+        <!-- ************************************** -->
+
+		<!-- End Package Type Columns -->
+
+        <div class="secLvl secLvlPlain tableOnly clearfix">
+            <div class="secBody">
+        		<!-- Begin Package Table -->
+        		<div id="selector" class="selector"><!-- wraps the entire table -->
+        			<div class="iDiv"><!-- removes the jQuery dialog scroll bars -->
+        				<table cellpadding="0" cellspacing="0" width="3875" class="dataTable borderBegin">
+        					<!-- width="3867" -->
+        					<!-- table width is set to the [width of tblHead columns = 125] x [number of columns - 1 = 29] + [width of the formcol7 column = 242] equals the [table width setting] -->
+                            <!--////-->
+                            <!--////-->
+                            <!-- 03/29/2017  The only table column with a specified width is the highlighted one which has been changed from formcol7 to formcol8 -->
+                            <tbody>
+
+        						<!-- Begin Copy Packages Row -->
+        						<tr>
+
+        							<td scope="col" class="formcol6"><!-- column 1 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+        								<!--<div><a class="btnlnkR">clear</a></div>-->
+        								<p class="restrictedText"><a class="ups-link_light">Clear</a></p>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+
+        							<!-- /////////////////////////////////////////////////////// -->
+        							<!-- the negative widths need to be dynamically changed using
+                                    inline styles as seen by the examples below.  each of the negative
+                                    values assumes a 125px column and does not account for the formcol7
+                                    classed column which consists of 242px fixed width.  adjustments
+                                    need to be made accordingly based on where the formcol7 is being
+                                    rendered -->
+                                    <!--////-->
+                                    <!--////-->
+                                    <!-- 03/29/2017  Any column with populated data should have a formcol6 class added to it -->
+        							<!-- //////////////////////////////////////////////////////// -->
+
+        							<td scope="col" class="formcol8 active"><!-- column 2-->
+
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--
+                                        <div class="active highlightHigh">
+                                          <div class="marginBegin"> <a class="btnlnk" href="repl_href">clear</a> </div>
+                                          <div class="pushRight marginEnd"> <a class="btnlnkR arrowIconR" href="repl_href">copy to all</a> <br>
+                                            <a class="btnlnkR arrowIconR" href="repl_href">copy to next</a> </div>
+                                        </div>
+                                        -->
+                                        <div class="row">
+        									<div class="col-xs-6"> <a class="ups-link_light" href="repl_href">Clear</a> </div>
+        									<div class="col-xs-6 pull-right"> <a class="ups-link_light" href="repl_href">Copy to all</a> <br>
+        										<a class="ups-link_light" href="repl_href">Copy to next</a> </div>
+        								</div>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+                                    {{#each blankRow}}
+                						<td scope="col"><!-- column {{colNum}} --></td>
+                                    {{/each}}
+        						</tr>
+        						<!-- End Copy Packages Row -->
+
+        						<!-- Begin Table Headers -->
+        						<tr>
+        							<td class="tblHead "><!-- column 1 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--<div class="restrictedText"> <span>[1]</span> </div>-->
+                                        <p class="restrictedText">[1]</p>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+        							<!--<td class="tblHead "><!-- column 2 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--<div class="restrictedText"> <span>[2]</span> </div>-->
+                                        <!--<p class="restrictedText">[2]</p>-->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    <!--</td>-->
+        							<td><!-- column 3 -->
+
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--
+                                        <div class="active highlight"> <span class="label">{pallet}{package} [3]</span>
+        									<div class="marginBegin floatBegin pagination"> <a class="first" href="repl_href"></a>|<a class="previous" href="repl_href">prev</a> </div>
+        									<div class="marginEnd floatEnd pagination on"> <a class="next" href="repl_href">next</a>|<a class="last" href="repl_href"></a> </div>
+        									<div class="clear"></div>
+        								</div>
+                                        -->
+                                        <section class="ups-search_support">
+                                            <div class="ups-search_results active">
+                                                    <div class="results-footer clearfix">
+                                                        <div class="footer-container">
+                                                            <button class="">&lt; Previous</button>
+                                                            <button class="next">Next &gt;</button>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </section>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+                                    {{#each blankRow}}
+            							<td class="tblHead "><!-- column {{colNum}} -->
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: Begin part of re-design -->
+                                            <!-- ************************************** -->
+                                            <!--<div class="restrictedText"> <span>[{{colNum}}]</span> </div>-->
+                                            <p class="restrictedText">[{{colNum}}]</p>
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: End part of re-design -->
+                                            <!-- ************************************** -->
+                                        </td>
+            						{{/each}}
+        						</tr>
+        						<!-- End Table Headers -->
+
+        						<!-- Begin Package Weight -->
+        						<tr>
+        							<td><!-- column 1 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--
+                                        <div class="restrictedText"> <br>
+        									<span class="restrictedText">{11} lbs</span><br>
+        								</div>
+                                        -->
+        								<p class="restrictedText">{11} lbs</p>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+        							<td class="active"><!-- column 2 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--
+                                        <dl>
+        									<dt>
+        										<label for="repl_id">{pallet}{package} weight:</label>
+        										<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+        									<dd>
+        										<input type="text" id="repl_id" class="formcol3">
+        										lbs </dd>
+        								</dl>
+                                        -->
+                                        <div class="ups-form_group ups-form_required">
+                							<label for="ups-pkg_weight" class="ups-form_label">
+                                                {Pallet}{Package} Weight
+                                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                        							<div class="ups-text_wrapper ups-input_wrapper">
+                        								<input type="text" name="ups-pkg_weight" class="ups-form_input ups-error" id="ups-pkg_weight">
+                        							</div>
+                        						</div>
+                                            </div>
+                                        </div>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+        							</td>
+                                    {{#each blankRow}}
+            							<td><!-- column {{colNum}} -->
+            								<div class="restrictedText"></div></td>
+                                    {{/each}}
+        						</tr>
+        						<!-- End Package Weight -->
+
+        						<!-- Begin Package Dimensions -->
+        						<tr>
+        							<td><div class="restrictedText pushDown">
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: Begin part of re-design -->
+                                            <!-- ************************************** -->
+        									<!--<p>12 L12 W</p>
+        									<br>
+        									<p>6 L</p>
+        									<br>
+        									<p>(inches)</p>-->
+            								<p class="restrictedText">
+                                                <span>12 L</span>
+                                                <span class="indent">12 W</span>
+                                                <span class="indent">6 H</span>
+                                                <span class="indent">{in}</span>
+                                            </p>
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: End part of re-design -->
+                                            <!-- ************************************** -->
+        								</div></td>
+        							<td class="active"><!-- column 2 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+        								<!--<dl>
+        									<dt>
+        										<label for="repl_id01"><a href="repl_href" class="btnlnkR helpIconR">{package}{pallet} dimensions:</a>{<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon">}</label>
+        									</dt>
+        									<dd>
+        										<input type="text" id="repl_id1" class="formcol3">
+        										<label for="repl_id1">length</label>
+        									</dd>
+        									<dt>
+        										<input type="text" id="repl_id2" class="formcol3">
+        										<label for="repl_id2">width</label>
+        									</dt>
+        									<dd>
+        										<input type="text" id="repl_id3" class="formcol3">
+        										<label for="repl_id3" class="">height</label>
+        									</dd>
+        								</dl>
+        								<span>(Inches)</span>-->
+                                        <fieldset class="ups-form_group">
+                                            <legend class="ups-form_label">
+                                                <a href="repl_href" class="btnlnkR helpIconR">{Package}{Pallet} Dimensions</a>
+                                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                            </legend>
+                                            <div class="row">
+                                                {{#each lwh}}
+                                                    <div class="col-xs-3">
+                                                        <div class="ups-form_group">
+                                							<label for="ups-pkg_{{name}}" class="ups-form_label">
+                                                                {{name}}
+                                                            </label>
+                                							<div class="ups-text_wrapper ups-input_wrapper">
+                                								<input type="text" name="ups-pkg_{{name}}" class="ups-form_input" id="ups-pkg_{{name}}">
+                                							</div>
+                                						</div>
+                                                    </div>
+                                                {{/each}}
+                                                <div class="col-xs-3">
+                                                    <span class="ups-no_label ups-no_label_plus">{in}</span>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+        								<p class=""><span class="reqTxtInst">(actual dimensions/weight will provide more accurate cost.)</span></p>
+        							</td>
+                                    {{#each blankRow}}
+            							<td><!-- column {{colNum}} -->
+            								<div class="restrictedText"></div></td>
+                                    {{/each}}
+        						</tr>
+        						<!-- End Package Dimensions -->
+
+        						<!-- Begin Declared Value -->
+        						<tr>
+        							<td><!-- column 1 -->
+        								<div class="restrictedText"><p class="restrictedText">{50.00} usd</p></div></td>
+        							<td class="active"><!-- column 2 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--<dl>
+        									<dt>
+        										<label for="repl_id4"><a href="repl_href" class="btnlnkR helpIconR">declared value:</a></label>
+        									</dt>
+        									<dd>
+        										<input type="text" id="repl_id4" class="formcol3">
+        										usd </dd>
+        								</dl>-->
+                                        <div class="ups-form_group">
+                							<label for="ups-pkg_declared_value" class="ups-form_label">Declared Value</label>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                        							<div class="ups-text_wrapper ups-input_wrapper">
+                        								<input type="text" name="ups-pkg_declared_value" class="ups-form_input" id="ups-pkg_declared_value">
+                        							</div>
+                        						</div>
+                                            </div>
+                                        </div>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+        							</td>
+                                    {{#each blankRow}}
+            							<td><!-- column {{colNum}} -->
+            								<div class="restrictedText"></div></td>
+                                    {{/each}}
+        						</tr>
+        						<!-- End Declared Value -->
+
+        						<!-- Begin Additional Services -->
+                                <!-- ************************************** -->
+                                <!-- REDESIGN EDIT: Begin part of re-design -->
+                                <!-- ************************************** -->
+                                <!-- This row has been removed -->
+        						<!--<tr class="line">
+        							<td><!-- column 1 --
+
+        								<div class="restrictedText"></div></td>
+        							<!--<td><!-- column 2 --
+
+        								<div class="restrictedText"></div></td>--
+        							<td><!-- column 3 --
+
+        								<div class="active highlight"> <span class="label">additional services</span> </div></td>
+        						</tr>
+                                <!-- ************************************** -->
+                                <!-- REDESIGN EDIT: Begin part of re-design -->
+                                <!-- ************************************** -->
+        						<!-- End Additional Services -->
+
+        						<!-- Begin Additional Services Selections -->
+        						<tr>
+        							<td><!-- column 1 -->
+
+        								<div class="restrictedText">
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: Begin part of re-design -->
+                                            <!-- ************************************** -->
+        									<!--
+                                            <table cellspacing="0" cellpadding="0" border="0" width="100%" class="borderBegin">
+        										<tbody>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_fid2" value="" name="repl_fname" checked="checked" disabled="disabled"></td>
+        												<td><label class="sel" for="repl_fid2">c.o.d.</label></td>
+        											</tr>
+        											<tr>
+        												<td width="10" valign="top">&nbsp;</td>
+        												<td>&nbsp;</td>
+        											</tr>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_id5" value="" name="repl_fname" checked="checked" disabled="disabled"></td>
+        												<td><label class="sel" for="repl_id5">delivery confirmation - no signature</label></td>
+        											</tr>
+        										</tbody>
+        									</table>
+                                            -->
+                                            <fieldset class="ups-form_group restrictedText">
+                                                <legend class="ups-form_label"><span class="restrictedText">Additional Services</span></legend>
+                								<div class="ups-buttonList_wrapper ups-input_wrapper">
+                									<input id="ups-pkg_cod_1" class="ups-checkbox-custom" name="ups-pkg_cod_1" type="checkbox" checked="true">
+                									<label for="ups-pkg_cod_1" value="1" class="ups-checkbox-custom-label">
+                                                        <span class="restrictedText">C.O.D.</span></label>
+                								</div>
+                								<div class="ups-buttonList_wrapper ups-input_wrapper">
+                									<input id="ups-pkg_del_conf_1" class="ups-checkbox-custom" name="ups-pkg_del_conf_1" type="checkbox">
+                									<label for="ups-pkg_del_conf_1" value="2" class="ups-checkbox-custom-label">
+                                                        <span class="restrictedText">Delivery Confirmation - no signature</span></label>
+                								</div>
+                                            </fieldset>
+                                            <!-- ************************************** -->
+                                            <!-- REDESIGN EDIT: End part of re-design -->
+                                            <!-- ************************************** -->
+        								</div></td>
+        							<td class="active"><!-- column 2 -->
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                                        <!-- ************************************** -->
+                                        <!--
+        								<div class="active highlightLow">
+                                            <span class="label">additional services</span>
+                                            <table cellspacing="0" cellpadding="0" border="0" width="100%" class="borderBegin">
+        										<tbody>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_id6" value="" name="repl_fname"></td>
+        												<td><label class="sel" for="repl_id6"><a href="repl_href" class="btnlnkR helpIconR">c.o.d.</a></label>
+        													<br>
+        													&nbsp;
+        													<input type="text" name="repl_name" id="txtbox" class="formcol3">
+        													[CCC]
+        													<p><span class="reqTxtInst">&nbsp; (Enter an amount for all packages, or for each package)</span></p></td>
+        											</tr>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_id7" value="" name="repl_fname" checked="checked"></td>
+        												<td class=""><label class="sel" for="repl_id7"><a href="repl_href" class="btnlnkR helpIconR">additional handling</a></label></td>
+        											</tr>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_id7" value="" name="repl_fname"></td>
+        												<td class=""><label class="sel" for="repl_id7"><a href="repl_href" class="btnlnkR helpIconR">ups premium care</a></label></td>
+        											</tr>
+        											<tr>
+        												<td width="10" valign="top"><input type="checkbox" id="repl_id8" value="" name="repl_fname"></td>
+        												<td><label class="sel" for="repl_id8"><a href="repl_href" class="btnlnkR helpIconR">delivery confirmation</a></label>
+        													<label class="sel hidden" for="repl_fid2">delivery confirmation - no signature</label>
+        													<br>
+        													<select id="repl_id9">
+        														<option value="">adult signature required</option>
+        													</select></td>
+        											</tr>
+        										</tbody>
+        									</table>
+        								</div></td>
+                                        -->
+                                        <fieldset class="ups-form_group">
+                                            <legend class="ups-form_label">Additional Services</legend>
+                                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                <input id="ups-pkg_cod_2" class="ups-checkbox-custom" name="ups-pkg_cod_2" type="checkbox" checked="true">
+                                                <label for="ups-pkg_cod_2" value="1" class="ups-checkbox-custom-label">
+                                                    <a href="repl_href" class="btnlnkR helpIconR">C.O.D.</a>
+                                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                                </label>
+                                                <div class="row">
+                                                    <div class="col-xs-9 ups-input_has_unit">
+        				                                <label for="ups-pkg_cod_amount" class="ups-readerTxt">C.O.D. Amount</label>
+                            							<div class="ups-text_wrapper ups-input_wrapper">
+                            								<input type="text" name="ups-pkg_cod_amount" class="ups-form_input" id="ups-pkg_cod_amount">
+                                                            <span class="ups-input_unit_measure">[CCC]</span>
+                            							</div>
+                            						</div>
+                                                </div>
+                                                <p class="reqTxtInst">(Enter an amount for all packages, or for each package)</p>
+                                            </div>
+                                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                <input id="ups-pkg_add_han" class="ups-checkbox-custom" name="ups-pkg_add_han" type="checkbox">
+                                                <label for="ups-pkg_add_han" value="2" class="ups-checkbox-custom-label">
+                                                    <a href="repl_href" class="btnlnkR helpIconR">Additional Handling</a>
+                                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                                </label>
+                                            </div>
+                                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                <input id="ups-pkg_prim" class="ups-checkbox-custom" name="ups-pkg_prim" type="checkbox">
+                                                <label for="ups-pkg_prim" value="3" class="ups-checkbox-custom-label">
+                                                    <a href="repl_href" class="btnlnkR helpIconR">UPS Premium Care</a>
+                                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                                </label>
+                                            </div>
+                                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                                <input id="ups-pkg_del_conf_2" class="ups-checkbox-custom" name="ups-pkg_del_conf_2" type="checkbox">
+                                                <label for="ups-pkg_del_conf_2" value="4" class="ups-checkbox-custom-label">
+                                                    <a href="repl_href" class="btnlnkR helpIconR">Delivery Confirmation</a>
+                                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                                </label>
+                                                <div class="row">
+                                                    <div class="col-xs-9">
+                                                        <label for="ups-pkg_del_conf_type_2" class="ups-readerTxt">Delivery confirmation type</label>
+                                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                            <select id="ups-pkg_del_conf_type_2" name="ups-pkg_del_conf_type_2" class="ups-dropdown">
+                                                                <option value="">Adult Signiture Required</option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!-- ************************************** -->
+                                        <!-- REDESIGN EDIT: End part of re-design -->
+                                        <!-- ************************************** -->
+                                    </td>
+                                    {{#each blankRow}}
+            							<td><!-- column {{colNum}} -->
+            								<div class="restrictedText"></div></td>
+                                    {{/each}}
+        						</tr>
+        						<!-- End Additional Services Selections -->
+
+        					</tbody>
+        				</table>
+        				<div class="clear"></div>
+        			</div>
+        		</div>
+        		<!-- End Package Table -->
+            </div>
+        </div>
+
+	</div>
+	<!-- End Application Body -->
+
+	<!-- Begin Application Footer -->
+	<div class="appFooter">
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Begin part of re-design -->
+        <!-- ************************************** -->
+		<!--<div class="btnBar alignCenter">
+			<input name="repl_name" type="button" value="cancel" class="btn">
+			<input name="repl_name" type="button" value="update" class="btn">
+		</div>-->
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary" value="" name="repl_name">Update</button>
+            <button type="submit" class="ups-cta ups-cta_secondary" value="" name="repl_name">Cancel</button>
+        </div>
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design -->
+        <!-- ************************************** -->
+	</div>
+	<!-- End Application Footer -->
+
+</div>
+<!-- End Application Module -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	/**
+	 changed width to fit content
+	**/
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:640});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+</script>

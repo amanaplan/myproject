@@ -1,0 +1,557 @@
+<div class="ups-application_wrapper ups-app_onboarding ups-pickup_request"
+	data-ng-controller='PreferredLocCtrl'>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-preference-PickupRequest //// -->
+    <!-- //////////////////////////////////////////////// -->
+	<ng-form name="ups_PickupRequest" id="ups_PickupRequest"
+		data-novalidate>
+        <p>We offer pickups on a pre-shipment basis, so you have
+            convenience without the commitment of a recurring pickup.</p>
+        <h3>
+            Choose your preferred times for UPS On-Call Pickup<sup>&reg;</sup>,
+            and we'll use these whenever you scheduled a pickup online.
+        </h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p id="ept_label" class="ups-form_label">Earliest Pickup Time</p>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="ups-form_group">
+                            <label for="ups-earliest-pickup-time" class="ups-readerTxt">Hours</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <select aria-describedby="ups-earliest-pickup-error"
+                                    id="ups-earliest-pickup-time" 
+                                    class="ups-dropdown"
+                                    name="ups-earliest-pickup-time"
+                                    data-ng-init="obj.earlyTime = obj.time[9]"
+                                    data-ng-model="obj.earlyTime"
+                                    data-ng-change="calculateTimings('early','hour',obj.earlyTime)"
+                                    aria-describedby="ept_label">
+                                    <option data-ng-repeat="time in obj.time" value="{{time}}">{{time}}</option>
+                                </select>
+                                <span role="alert">
+                                    <span id="ups-earliest-pickup-error" class="ups-invalid_color" data-ng-if="errorTiming">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        Earliest Pickup time must be earlier than latest.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="ups-form_group">
+                            <label for="ups-earliest-minutes" class="ups-readerTxt">Minutes</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <select name="ups-earliest-minutes" class="ups-dropdown"
+                                    id="ups-earliest-minutes"
+                                    data-ng-init="obj.earlyMintime= obj.minutes[0]"
+                                    data-ng-model="obj.earlyMintime"
+                                    data-ng-change="calculateTimings('early','minutes',obj.earlyMintime)"
+                                    aria-describedby="ept_label">
+                                    <option data-ng-repeat="minutes in obj.minutes"
+                                        value="{{minutes}}">{{minutes}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <fieldset class="ups-time ups-form_group ups-buttonList_inline">
+                            <legend class="ups-readerTxt">Choose AM or PM</legend>
+                            <div data-ng-repeat="labelType in obj.options"
+                                class="ups-buttonList_wrapper ups-input_wrapper"> 
+                                    <input id="label{{$index}}" 
+                                        class="ups-radio-custom" 
+                                        type="radio" 
+                                        name="labelValue"
+                                        value={{$index}} 
+                                        data-ng-click="calculateTimings('early','ampm',obj.labelValue)"
+                                        data-ng-model="obj.labelValue" 
+                                        data-ng-checked="obj.labelValue"
+                                        aria-describedby="ept_label" />
+                                    <label for="label{{$index}}" class="ups-form_label ups-radio-custom-label">{{labelType}}</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <p id="lpt_label" class="ups-form_label">Latest Pickup Time</p>
+                <div class="row">
+                    <div class="col-md-4 col-sm-3 col-xs-11">
+                        <div class="ups-form_group">
+                            <label for="ups-latest-pickup-time" class="ups-readerTxt">Hours</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <select aria-describedby="ups-latest-pickup-error"
+                                    id="ups-latest-pickup-time" class="ups-dropdown"
+                                    name="ups-latest-pickup-time"
+                                    data-ng-init="obj.latestTime = obj.time[4]"
+                                    data-ng-model="obj.latestTime"
+                                    data-ng-change="calculateTimings('latest','hour',obj.latestTime)"
+                                    aria-describedby="lpt_label">
+                                    <option data-ng-repeat="time in obj.time" value="{{time}}">{{time}}</option>
+                                </select>
+                                <span role="alert">
+                                    <span id="ups-latest-pickup-error" class="ups-invalid_color"
+                                    data-ng-if="errorTiming">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        Latest Pickup time must be earlier than latest.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-4">
+                        <div class="ups-form_group ups-input_has_unit">
+                            <label for="ups-latest-minutes" class="ups-readerTxt">Minutes</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <select name="ups-latest-minutes" class="ups-dropdown"
+                                    id="ups-latest-minutes"
+                                    data-ng-init="obj.latestMintime=obj.minutes[0]"
+                                    data-ng-model="obj.latestMintime"
+                                    data-ng-change="calculateTimings('latest','minute',obj.latestMintime)"
+                                    aria-describedby="lpt_label">
+                                    <option data-ng-repeat="minutes in obj.minutes"
+                                        value="{{minutes}}">{{minutes}}</option>
+                                </select>
+                                <span class="ups-input_unit_measure">P.M.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <hr>
+	
+        <p><strong>Note:</strong> All preferences below only apply to pickups
+            created in the Schedule a Pickup application.</p>
+			
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Pickup Location.</legend>
+            <div class="ups-checkbox ups-input_wrapper ">
+                <!--label  for="ups-address"-->
+                <input id="ups-addressfirst" type="radio" class="ups-radio-custom"
+                    name="mAddress" value="" data-ng-model="formObj.addressfirst"
+                    data-ng-click="diffAddress=false" data-ng-checked="true">
+                <label for="ups-addressfirst"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">Use
+                    my default profile address </label>
+                <div class="col-md-4 ups-address">
+                    <p>1234 main Street</p>
+                    <p>Rosewell, GA 30076</p>
+                    <p>US</p>
+                </div>
+            </div>
+            <div class="ups-checkbox ups-input_wrapper ">
+                <!--label  for="ups-addressnew"-->
+                <input id="ups-addressnew" type="radio" name="mAddress" value=""
+                    data-ng-model="formObj.addressnew"
+                    data-ng-click="diffAddress=true" class="ups-radio-custom" /> <label
+                    for="ups-addressnew"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">Enter
+                    a different mailing address.</label>
+            </div>
+            <div class="col-md-5 ups-address"
+                data-ng-if="diffAddress">
+                <div class="ups-form_group">
+                    <label for="ups-from_contacts" class="ups-form_label">
+                        My Contacts</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select data-ng-model="fromAcc" class="ups-dropdown"
+                            name="ups-from_contacts"
+                            data-ng-options="defaultAcc for fromAcc in obj.contactOptions"
+                            id="ups-from_contacts">
+                            <option value="" selected>My Default Profile Address.</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required ">
+                    <label for="ups-name" class="ups-form_label">
+                        Company or Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="upsCompanyName"
+                            class="ups-form_input" id="ups-name" maxlength="35"
+                            data-ng-model="companyOrName"
+                            data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required
+                            aria-describedby="ups-pickup-company-error"> <span
+                            id="ups-pickup-company-error" role="alert"><span
+                            class="ups-invalid_color"
+                            data-ng-if="!ups_PickupRequest.upsCompanyName.$pristine && ups_PickupRequest.upsCompanyName.$invalid">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="ups_PickupRequest.upsCompanyName.$error.required">This
+                                    field is required.</span> <span
+                                data-ng-hide="ups_PickupRequest.upsCompanyName.$error.required">Please
+                                    enter a valid entry.</span>
+                        </span> <span data-ng-if="ups_PickupRequest.upsCompanyName.$valid">
+                                <span class="ups-readerTxt">Check</span>
+                        </span> </span>
+                        <div data-ng-if="(ups_PickupRequest.upsCompanyName.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span>
+                        </div>
+                        <!-- @Note: screen reader text needs to be translated as well -->
+
+                    </div>
+
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                
+                <div class="ups-form_group">
+                    <label for="ups-contact" class="ups-form_label">Contact</label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input type="text" name="upsContact" class="ups-form_input"
+                            id="ups-contact" maxlength="35" data-ng-model="contact">
+                    </div>
+                </div>
+                
+                <div class="ups-group">
+                    <p class="ups-group_label">Country</p>
+                    <p class="ups-group_value" id="ups-country">United States</p>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-address" class="ups-form_label">
+                        Address
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <p id="streetHelperTxt" class="ups-form_subheader">Street</p>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur id="ups-address" type="text"
+                            name="address0" data-ng-pattern="" class="ups-form_input"
+                            maxlength="35" aria-required="true" required data-ng-model="form.address0"
+                            data-ng-model-options="{updateOn: 'blur'}"
+                            aria-describedby="streetHelperTxt"> <span
+                            id="ups-pickup-address-error" role="alert"> <span
+                            class="ups-invalid_color"
+                            data-ng-show="!ups_PickupRequest.address0.$pristine && ups_PickupRequest.address0.$invalid" aria-describedby="streetHelperTxt">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="ups_PickupRequest.address0.$error.required">Address
+                                    is required.</span>
+                        </span> <span data-ng-if="ups_PickupRequest.address0.$valid">
+                                <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                        <div data-ng-if="(ups_PickupRequest.address0.$valid)">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ups-form_group">
+                    <label for="ups-address1" class="ups-readerTxt">Address line 2</label>
+                    <p id="address1HelperTxt" class="ups-form_subheader">Apt., Suite, Unit</p>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input id="ups-address1" type="text" name="address1"
+                            data-ng-pattern="" class="ups-form_input" maxlength="35"
+                            data-ng-model="form.address1" aria-describedby="address1HelperTxt">
+                    </div>
+                </div>
+                
+                <div class="ups-form_group">
+                    <label for="ups-address2" class="ups-readerTxt">Addressline 3</label>
+                    <p id="address2HelperTxt" class="ups-form_subheader">Dept.,c/o,etc.</p>
+                    <div class="ups-text_wrapper ups-input_wrapper "
+                        data-errormsg="This field is required">
+                        <input id="ups-address2" type="text" name="address2"
+                            data-ng-pattern="" class="ups-form_input" maxlength="35"
+                            data-ng-model="form.address2" aria-describedby="address2HelperTxt">
+                    </div>
+                </div>
+                    
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-city" class="ups-form_label">
+                        City
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input error-on-blur id="ups-city" type="text"
+                            data-ng-model-options="{updateOn: 'blur'}" name="city"
+                            data-ng-pattern="/^\w+( +\w+)*$/" class="ups-form_input"
+                            maxlength="35" aria-required="true" required data-ng-model="form.city"
+                            aria-describedby="ups-pickup-city-error"> <span
+                            id="ups-pickup-city-error" role="alert"> <span
+                            class="ups-invalid_color"
+                            data-ng-show="!ups_PickupRequest.city.$pristine && ups_PickupRequest.city.$invalid">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="ups_PickupRequest.city.$error.required">City
+                                    is required.</span> <span
+                                data-ng-hide="ups_PickupRequest.city.$error.required">Invalid
+                                    City.</span>
+                        </span> <span data-ng-if="ups_PickupRequest.city.$valid"> <span
+                                class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                        <div data-ng-if="(ups_PickupRequest.city.$valid)">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-state" class="ups-form_label">
+                                State
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <select error-on-blur id="ups-state" class=" ups-dropdown"
+                                    name="state" data-ng-model="form.state" aria-required="true" required>
+                                    <option value="" selected>Select One</option>
+                                    <option data-ng-repeat="states in statesList track by $index"
+                                        value="{{states.code}}">{{states.state}}</option>
+                                </select><span class="ups-invalid_color"
+                                               data-ng-show="!ups_PickupRequest.state.$pristine && ups_PickupRequest.state.$invalid" role="alert">
+                                <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                <span data-ng-show="ups_PickupRequest.state.$error.required">State
+                                    is required.</span>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-zipcode" class="ups-form_label">Postal
+                                Code
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur id="ups-zipcode" type="text"
+                                    name="zipCode" data-ng-pattern="/^[a-zA-Z0-9-]*$/"
+                                    class="ups-form_input" maxlength="15"
+                                    data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required
+                                    data-ng-model="form.zipCode"
+                                    aria-describedby="ups-pickup-post-code-error"> <span
+                                    id="ups-pickup-post-code-error" role="alert"> <span
+                                    class="ups-invalid_color"
+                                    data-ng-show="!ups_PickupRequest.zipCode.$pristine && ups_PickupRequest.zipCode.$invalid">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-show="ups_PickupRequest.zipCode.$error.required">ZIP
+                                            Code is required.</span> <span
+                                        data-ng-hide="ups_PickupRequest.zipCode.$error.required">Invalid
+                                            Zip Code.</span>
+                                </span> <span data-ng-if="ups_PickupRequest.zipCode.$valid">
+                                        <span class="ups-readerTxt">Check</span>
+                                </span>
+                                </span>
+                                <div data-ng-if="(ups_PickupRequest.zipCode.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                        class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-form_group ">
+                            <label for="ups-phone" class="ups-form_label">Phone
+                                Number </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input type="text" number-mask name="upsPhone"
+                                    class="ups-form_input" id="ups-phone" maxlength="35"
+                                    data-ng-model="phone">
+                            </div>
+
+                            <!-- ups-text_wrapper ups-input_wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="ups-form_group ">
+                            <label for="ups-ext" class="ups-form_label">Extension </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input type="text" number-mask name="extention"
+                                    class="ups-form_input" id="ups-ext" maxlength="35"
+                                    data-ng-model="ext">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-preferred_loc" class="ups-form_label">Instructions
+                        for Your Driver</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select data-ng-model="pickupLoc" class="ups-dropdown"
+                            name="ups-preferred_loc"
+                            data-ng-options="pickupLoc for pickupLoc in formObj.preferredLocation"
+                            id="ups-preferred_loc">
+                            <option value="" selected>Select One</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+                
+                <div class="ups-form_group">
+                    <label for="ups-special_message" class="ups-form_label">Additional Instructions</label>
+                    <p class="ups-form_subheader">Up to 50 characters.</p>
+                    <input type="text" 
+                        name="specialInstruction" 
+                        class="ups-form_input"
+                        id="ups-special_message" 
+                        maxlength="50"
+                        data-ng-model="formObj.specialInstruction">
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+            </div>
+        </div>
+    	
+        <hr>
+        
+        <div class="ups-group"> 
+            <p><strong>UPS Account Information</strong></p>
+            <p>Bill pickup charges to one of your saved payment methods, or
+                use a payment account to unlock more options, like billing to the
+                receiver or a third party.</p>
+        
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups-bill_pickup" class="ups-form_label">Saved UPS Accounts</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                            <select data-ng-model="billPickup" class="ups-dropdown"
+                                name="ups-bill_pickup"
+                                data-ng-options="billPickup for billPickup in formObj.pickupCharges"
+                                id="ups-bill_pickup">
+                                <option value="" selected>Select One</option>
+                            </select>
+                        </div>
+                        <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <p><a href="#" class="ups-link ups-no_label" data-ng-click="addAccount()">Add Another Account</a></p>
+                </div>
+            </div>
+            
+            <p><strong>Note:</strong> Paying with a UPS account that has a
+                recurring pickup service may override your default pickup location
+                above.</p>
+        </div>
+
+        <p><strong>Notifications</strong></p>
+        <p>Request email confirmations, we'll send a message to the
+            recipients below every time you schedule a pickup.</p>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ">
+                    <label for="ups-recepient1" class="ups-form_label">
+                        Recipient 1<span class="ups-readerTxt">email</span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input type="text" name="recepient1" class="ups-form_input"
+                            id="ups-recepient1" maxlength="50"
+                            data-ng-model="formObj.recepient1">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+                
+                <div class="ups-form_group ">
+                    <label for="ups-recepient2" class="ups-form_label">
+                        Recipient 2<span class="ups-readerTxt">email</span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <input type="text" name="recepient2" class="ups-form_input"
+                            id="ups-recepient2" maxlength="50"
+                            data-ng-model="formObj.recepient2">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="ups-form_required">
+                    <label for="ups-email_message" class="ups-form_label">Custom
+                        Email confirmation Message
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label> 
+                    <p class="ups-form_subheader">Up to 150 characters.</p>
+                    <textarea class="ups-textArea ups-offset-03" name="message"
+                        id="ups-email_message" rows="5" cols="100" maxlength="150"
+                        data-ng-model="obj.email_message"
+                        data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required></textarea>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+            </div>
+        </div>
+        
+        <h3>Alert me if any of these emails are undeliverable.</h3>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ">
+                    <label for="ups-notification_undelivered" class="ups-form_label">Email</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="email" name="upsIfUndeiverable" class="ups-form_input"
+                            id="ups-notification_undelivered" maxlength="50" validate-email
+                            data-ng-model="obj.undeliverable"
+                            data-ng-model-options="{updateOn: 'blur'}"
+                            aria-describedby="email-error"> <span
+                            id="email-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="ups_PickupRequest.upsIfUndeiverable.$invalid">
+                                <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-show="ups_PickupRequest.upsIfUndeiverable.$invalid">Please
+                                    enter a valid email address.</span>
+                        </span> </span>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+                class="ups-cta ups-cta_primary ups-form-offset"
+                data-ng-click="savePickupRequest()">Save
+            </button>
+            <!-- data-ng-disabled="!(ups_PickupRequest.$valid)||!(ups_PickupRequest.$dirty)" -->
+        </div>
+	</ng-form>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-preference-PickupRequest   //// -->
+    <!-- //////////////////////////////////////////////// -->
+</div>

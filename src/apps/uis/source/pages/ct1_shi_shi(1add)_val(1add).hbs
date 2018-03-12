@@ -1,0 +1,295 @@
+---
+title: Create a Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+<form action="repl_action">
+  <div id="ccCntMod">
+    <div id="main">
+    
+      <ul id="subTab">
+        <li class="tab-on">Package</li>
+        <li class="tab-off"><a href="repl_href">Freight</a></li>
+      </ul>
+      <div style="clear:both;"></div>
+      <table width="566" border="0" cellspacing="0" cellpadding="0" class="tab">
+        <tr>
+          <th><div class="head-col4">
+              <h2>Address Validation </h2>
+              <ul>
+                <li class="helpmini"><a href="javascript:repl_function('repl_href')">Help</a></li>
+              </ul>
+            </div></th>
+        </tr>
+        <tr>
+          <td valign="top"><div class="introModFixed">
+              <p class="error">The Ship To address provided was not found in our address database, or requires additional information. (UPS: 80333)</p>
+              <p>Please review your entry for spelling and accuracy and modify the address as needed. You may wish to contact the recipient to ensure the original address is accurate. Required fields are indicated with<img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0">.</p>
+            </div>
+            
+            <!-- Step Module One -->
+            
+            <div id="step-1" class="stepModFixed4col">
+              <div class="stepModHead">
+                <h3>Suggested Address Information</h3>
+                <div style="clear:both;"></div>
+              </div>
+              <div class="stepModContent">
+                <fieldset>
+                  <legend>Step One: Select Address</legend>
+                  <div class="colL">
+                    <dl>
+                      <dt>
+                        <label>Suggested Address:</label>
+                      </dt>
+                      <dd>{Address}<br>
+                        {City}, {ST} {ZIP/Postal Code}</dd>
+                      <dd>--- No suggested address found ---</dd>
+                    </dl>
+                  </div>
+                  <div class="colR">
+                    <dl>
+                      <dt>
+                        <input name="repl_name" type="button" class="btnlnkL checkmini" value="Use Suggested Address">
+                      </dt>
+                      <dd>&nbsp;</dd>
+                    </dl>
+                  </div>
+                  <div style="clear:both;"></div>
+                </fieldset>
+                <h4>Suggested Address Range(s)</h4>
+                <p>You can use the following address and <a href="javascript:repl_function('repl_href')">address range<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a> suggestions to edit the address information below.</p>
+                <div id="iWindow" style="width: 300px; height: 117px;">
+                  <p>{Address}<br>
+                    {City}, {ST} {ZIP/Postal Code}</p>
+                  <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                  <p>{Address}<br>
+                    {City}, {ST} {ZIP/Postal Code}</p>
+                  <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                  <p>{Address}<br>
+                    {City}, {ST} {ZIP/Postal Code}</p>
+                  <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                  <p>{Address}<br>
+                    {City}, {ST} {ZIP/Postal Code}</p>
+                  <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                  <p>{Address}<br>
+                    {City}, {ST} {ZIP/Postal Code}</p>
+                  <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Step Module One -->
+            
+            <div id="step-2" class="stepModFixed4col">
+              <div class="stepModHead">
+                <h3>Review/Update Original Address</h3>
+                <div style="clear:both;"></div>
+              </div>
+              <div class="stepModContent">
+                <fieldset>
+                  <legend>Step One: Enter Address</legend>
+                  <div class="colL">
+                    <dl>
+                      <dt>
+                        <label for="company">Company or Name:</label>
+                      </dt>
+                      <dd>
+                        <input name="company" type="text" value="{Company or Name}" id="company" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                      <dt>
+                        <label for="contact">Contact:</label>
+                      </dt>
+                      <dd>
+                        <input name="contact" type="text" value="{Contact}" id="contact" size="32">
+                      </dd>
+                      <dt>
+                        <label for="country">Country or Territory:</label>
+                      </dt>
+                      <dd>United States</dd>
+                      <dt>
+                        <label for="address1">Address Line1:</label>
+                      </dt>
+                      <dd>
+                        <input name="address1" type="text" value="{Address Line 1}" id="address1" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                      <dt>
+                        <label for="address2">Address Line2:</label>
+                      </dt>
+                      <dd>
+                        <input name="address2" type="text" id="address2" size="32">
+                        <br>
+                        <div class="reqTxtInst">Apartment, suite, unit, building, floor, etc.</div>
+                      </dd>
+                      <dt>
+                        <label for="address3">Address Line 3:</label>
+                      </dt>
+                      <dd>
+                        <input name="address3" type="text" id="address3" size="32">
+                        <br>
+                        <div class="reqTxtInst">Department, c/o, etc.</div>
+                      </dd>
+                    </dl>
+                  </div>
+                  <div class="colR">
+                    <dl>
+                      <dt>
+                        <label for="city">City:</label>
+                      </dt>
+                      <dd>
+                        <input name="city" type="text" value="{City}" id="city" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                      <dt>
+                        <label for="state">State:</label>
+                      </dt>
+                      <dd>
+                        <select name="state" id="state">
+                          <option value="" selected>{State}</option>
+                          <option value="AL">Alabama</option>
+                          <option value="AK">Alaska</option>
+                          <option value="AZ">Arizona</option>
+                          <option value="AR">Arkansas</option>
+                          <option value="CA">California</option>
+                          <option value="CO">Colorado</option>
+                          <option value="CT">Connecticut</option>
+                          <option value="DE">Delaware</option>
+                          <option value="DC">District of Columbia</option>
+                          <option value="FL">Florida</option>
+                          <option value="GA">Georgia</option>
+                          <option value="HI">Hawaii</option>
+                          <option value="ID">Idaho</option>
+                          <option value="IL">Illinois</option>
+                          <option value="IN">Indiana</option>
+                          <option value="IA">Iowa</option>
+                          <option value="KS">Kansas</option>
+                          <option value="KY">Kentucky</option>
+                          <option value="LA">Louisiana</option>
+                          <option value="ME">Maine</option>
+                          <option value="MD">Maryland</option>
+                          <option value="MA">Massachusetts</option>
+                          <option value="MI">Michigan</option>
+                          <option value="MN">Minnesota</option>
+                          <option value="MS">Mississippi</option>
+                          <option value="MO">Missouri</option>
+                          <option value="MT">Montana</option>
+                          <option value="NE">Nebraska</option>
+                          <option value="NV">Nevada</option>
+                          <option value="NH">New Hampshire</option>
+                          <option value="NJ">New Jersey</option>
+                          <option value="NM">New Mexico</option>
+                          <option value="NY">New York</option>
+                          <option value="NC">North Carolina</option>
+                          <option value="ND">North Dakota</option>
+                          <option value="OH">Ohio</option>
+                          <option value="OK">Oklahoma</option>
+                          <option value="OR">Oregon</option>
+                          <option value="PA">Pennsylvania</option>
+                          <option value="RI">Rhode Island</option>
+                          <option value="SC">South Carolina</option>
+                          <option value="SD">South Dakota</option>
+                          <option value="TN">Tennessee</option>
+                          <option value="TX">Texas</option>
+                          <option value="UT">Utah</option>
+                          <option value="VT">Vermont</option>
+                          <option value="VA">Virginia</option>
+                          <option value="WA">Washington</option>
+                          <option value="WV">West Virginia</option>
+                          <option value="WI">Wisconsin</option>
+                          <option value="WY">Wyoming</option>
+                        </select>
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                      <dt>
+                        <label for="postal">ZIP Code:</label>
+                      </dt>
+                      <dd>
+                        <input name="postal" type="text" value="{ZIP/Postal Code}" id="postal" size="15">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                    </dl>
+                    <dl class="flexFirst">
+                      <dt>
+                        <label for="telephone">Telephone:</label>
+                      </dt>
+                      <dd>
+                        <input name="telephone" type="text" value="{Telephone}" id="telephone" size="15">
+                      </dd>
+                    </dl>
+                    <dl class="flexAfter">
+                      <dt>
+                        <label for="ext">Ext.:</label>
+                      </dt>
+                      <dd>
+                        <input name="ext" type="text"  id="ext" size="5">
+                      </dd>
+                    </dl>
+                    <div style="clear:both;"></div>
+                    <dl>
+                      <dt>
+                        <label for="email">E-mail:</label>
+                      </dt>
+                      <dd>
+                        <input name="email" type="text" value="{E-mail}" id="email" size="32">
+                      </dd>
+                    </dl>
+                  </div>
+                  <div style="clear:both;"></div>
+                </fieldset>
+                <div class="hr"><img src="/img/1.gif" alt="" height="1"></div>
+                <fieldset>
+                  <legend>Step One: Save Address</legend>
+                  <dl class="flexFirst">
+                    <!--<dt><label for="save_opt">�conomiser des options pour l'adresse:</label></dt>-->
+                    <dt>
+                      <label for="save_opt">Save Options for Address:</label>
+                    </dt>
+                    <dd>
+                      <select name="" id="save_opt">
+                        <option value="" selected>Select One</option>
+                        <option value="">Save As New Entry</option>
+                        <option value="">Save As New Entry and Set As Default</option>
+                        <!--<option value="">�conomiser en tant que nouveaux entr�e et ensemble en tant que d�faut</option>-->
+                      </select>
+                    </dd>
+                  </dl>
+                  <dl class="flexAfter">
+                    <!--<dt><label for="save_as">�conomiser ceci � mon carnet d'adresses comme:</label></dt>-->
+                    <dt>
+                      <label for="save_as">Save this to my Address Book as:</label>
+                    </dt>
+                    <dd>
+                      <input type="text" name="textfield" id="save_as">
+                    </dd>
+                  </dl>
+                  <div style="clear:both;"></div>
+                </fieldset>
+                <div class="hr"><img src="/img/1.gif" alt="" height="1"></div>
+                <p><strong>Note:</strong> The updated address information will be saved when the shipment is completed.</p>
+              </div>
+            </div></td>
+        </tr>
+        <tr>
+          <td class="btn-bar"><div class="btn-col4">
+              <input name="start_over" type="submit" value="Use Updated Address" class="btn">
+              <input name="next" type="submit" value="Use Original Address" class="btn">
+            </div></td>
+        </tr>
+      </table>
+      <table cellpadding="0" cellspacing="0" border="0" width="566" class="note">
+        <tr>
+          <td class="reqTxtInst"><p>UPS Assumes no liability for the address information provided by UPS Internet Shipping. The address suggestions do not support the identification or verification of occupants at an address. The shipper is responsible for all fees as a result of address corrections.</p></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</form>
+</div>

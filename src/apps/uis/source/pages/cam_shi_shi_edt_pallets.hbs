@@ -1,0 +1,249 @@
+---
+title: create shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+          <form action="repl_fname">
+            
+            <!-- Begin SubTabs --> 
+            <!-- ECS no tabs, UIS Tabs --> 
+            <!--<ul class="subTab clearfix">
+				<li class="tab-on">Package</li>
+				<li class="tab-off"><a href="repl_href">Freight</a></li>
+			</ul>--> 
+            <!-- End SubTabs --> 
+            
+            <!-- Begin Application Module --> 
+            <!-- USE Class="tab" for ECS Subtabs to display; or use class="mod" for UIS application display -->
+            <div class="appLvl col18 mod"> 
+              
+              <!-- Begin Application Header -->
+              <div class="appHead clearfix">
+                <h2 id="repl_id">edit information for all pallets</h2>
+                <ul>
+                  <li><a href="repl_href" class="btnlnkR helpiconR">Help</a></li>
+                </ul>
+              </div>
+              <!-- End Application Header --> 
+              
+              <!-- Begin Application Body -->
+              <div class="appBody clearfix">
+                <p id="repl_id" class="error">&gt;&gt;&gt;error message.</p>
+                <p id="repl_id">Please enter your pallet information below. You can enter information for up to 20 pallets.  Required fields are indicated with <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required">.</p>
+                <dl class="outHozFlex clearfix">
+                  <dt>
+                    <label for="repl_id">Total Pallets:</label>
+                  </dt>
+                  <dd id="repl_id">[n]</dd>
+                </dl>
+                <p>Review the <a class="btnlnkR newWindowIconR" href="repl_href">Raw Wood Guidelines</a> to see if they apply to your pallet.</p>
+                
+                <!-- Begin Section Module -->
+                <div class="secLvl step clearfix">
+                  <fieldset>
+                    <!-- Begin Section Header -->
+                    <div class="secHead clearfix">
+                      <h3 id="repl_id" class="">pallet n</h3>
+                    </div>
+                    <!-- End Section Header --> 
+                    
+                    <!-- Begin Section Body -->
+                    <div class="secBody clearfix">
+                      <dl class="group">
+                        <dt>
+                          <label for="repl_id"><a href="repl_href" class="btnlnkR helpIconR">packaging type label:</a></label>
+                        </dt>
+                        <dd>
+                          <select name="repl_name" id="repl_id">
+                            <option value="repl_id" selected>pallet</option>
+                          </select>
+                          <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required"></dd>
+                        <dt>
+                          <label id="repl_id" for="repl_id">weight label:</label>
+                        </dt>
+                        <dd>
+                          <input name="repl_name" type="text" id="repl_id" value="{10.0}" size="5">
+                          lbs<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required"></dd>
+                      </dl>
+                      <label id="repl_id" for="repl_id"><a href="repl_href" class="btnlnkR helpIconR">pallet dimensions:</a><img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required"></label>
+                      <fieldset>
+                        <dl class="flexFirst group">
+                          <dt>
+                            <label id="repl_id" for="repl_id" class="sel">length:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{lenght}" size="5">
+                            x</dd>
+                        </dl>
+                        <dl class="flexAfter group">
+                          <dt>
+                            <label id="repl_id" for="repl_id" class="sel">width:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{width}" size="5">
+                            x</dd>
+                        </dl>
+                        <dl class="flexAfter group">
+                          <dt>
+                            <label id="repl_id" for="repl_id" class="sel">height:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{height}" size="5">
+                            [in/cm]</dd>
+                        </dl>
+                        <div class="clear"></div>
+                        <p class="reqTxtInst">(for pallets, the value entered for length must be greater than or equal to the width value.)</p>
+                      </fieldset>
+                      <dl>
+                        <dt>
+                          <label id="repl_id" for="repl_id"><a href="repl_href" class="btnlnkR helpIconR">declared value label:</a></label>
+                        </dt>
+                        <dd>
+                          <input name="repl_name" type="text" id="repl_id" value="{nn.00}" size="5">
+                          usd</dd>
+                      </dl>
+                      <p id="repl_id"><strong>note:</strong> additional shipping fees.</p>
+                      <dl>
+                        <dt>
+                          <label for="repl_id"><a href="repl_href" class="btnlnkR helpIconR">number of pieces on pallet label:</a></label>
+                        </dt>
+                        <dd>
+                          <input name="repl_name" type="text" id="repl_id">
+                        </dd>
+                        <dt>
+                          <label id="repl_id" for="repl_id">merchandise description label:</label>
+                        </dt>
+                        <dd>
+                          <input name="repl_name" type="text" id="repl_id" value="{example description}">
+                          <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required"></dd>
+                      </dl>
+                      <label id="repl_id" for="repl_id"><a href="repl_href" class="btnlnkR helpIconR">references label:</a></label>
+                      <fieldset>
+                        <dl class="group">
+                          <!-- add flexFirst for UIS -->
+                          <dt>
+                            <label id="repl_id" for="repl_id">{reference #1 label}:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{reference 1}">
+                            <a href="repl_href">Search</a></dd>
+                        </dl>
+                        <dl class="group">
+                          <!-- add flexAfter for UIS -->
+                          <dt>
+                            <label id="repl_id" for="repl_id">{reference #2 label}:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{reference 2}">
+                            <a href="repl_href">Search</a></dd>
+                        </dl>
+                        <dl class="group">
+                          <!-- add flexAfter for UIS -->
+                          <dt>
+                            <label id="repl_id" for="repl_id">{reference #3 label}:</label>
+                          </dt>
+                          <dd>
+                            <input name="repl_name" type="text" id="repl_id" value="{reference 3}">
+                            <a href="repl_href">Search</a></dd>
+                        </dl>
+                      </fieldset>
+                      <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td><input name="repl_name" type="checkbox" id="repl_id" value="repl_id"></td>
+                          <td><label id="repl_id" for="repl_id" class="sel"><a href="repl_href" class="btnlnkR helpIconR">Add a bar code for Reference #1 to my Return label (this applies to all pallets in the shipment)</a>.</label></td>
+                        </tr>
+                      </table>
+                      <hr class="hr">
+                      <div class="clearfix">
+                        <h3>Additional Shipping Options and Services</h3>
+                        <p>select the delivery options and/or confirmation method:</p>
+                        <dl>
+                          <dt>
+                            <label for="repl_id">delivery options</label>
+                          </dt>
+                          <dd>
+                            <select id="repl_id">
+                              <option value="">none selected</option>
+                            </select>
+                          </dd>
+                        </dl>
+                        <p><a href="repl_href" class="btnlnk">copy to all</a></p>
+                        <dl>
+                          <dt>
+                            <label for="repl_id" id="repl_id"> <a href="repl_href" class="btnlnkR helpIconR">Proactive Response:</a> </label>
+                          </dt>
+                          <dd>
+                            <table border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td><input name="repl_name" type="radio" id="repl_id" value="repl_id"></td>
+                                <td><label id="repl_id" for="repl_id" class="sel">Proactive Response Requested</label>
+                                  <br>
+                                  <input name="repl_name" type="checkbox" id="repl_id" value="repl_id">
+                                  <label id="repl_id" for="repl_id" class="sel">Refrigeration Needed</label></td>
+                              </tr>
+                              <tr>
+                                <td><input name="repl_name" type="radio" id="repl_id" value="repl_id"></td>
+                                <td><label id="repl_id" for="repl_id" class="sel">Proactive Response Not Requested</label></td>
+                              </tr>
+                            </table>
+                          </dd>
+                        </dl>
+                        <div id="repl_id">
+                          <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td><input type="checkbox" id="repl_id" name="repl_name"></td>
+                              <td><label for="repl_id" class="sel"><a href="repl_href" class="btnlnkR helpIconR">dry ice</a></label></td>
+                            </tr>
+                          </table>
+                          <dl>
+                            <dt>
+                              <label for="repl_id">dry ice weight:</label>
+                            </dt>
+                            <dd>
+                              <input type="text" id="repl_id" class="formcol3">
+                              [lb/kg]</dd>
+                          </dl>
+                          <p><strong>note:</strong> all packages are shipped under iata regulations.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- End Section Body --> 
+                    
+                    <!-- Begin Section Footer --><!-- End Section Footer -->
+                  </fieldset>
+                </div>
+                <!-- End Section Module -->
+                
+                <p id="repl_id"><a href="repl_href" class="btnlnkL plusMini">Add One Pallet</a></p>
+              </div>
+              <!-- End Application Body --> 
+              <!-- Begin Application Footer -->
+              <div class="appFooter"> 
+                <!-- Begin Button Bar Row -->
+                <div class="btnBar">
+                  <input name="repl_name" type="button" id="repl_id" value="cancel" class="btn">
+                  <input name="repl_name" type="submit" id="repl_id" value="next" class="btnArw">
+                </div>
+                <!-- End Button Bar Row --> 
+              </div>
+              <!-- End Application Footer --> 
+            </div>
+            <!-- End Application Module -->
+            
+            <div align="center" class="cobrand"><br>
+              Company Support: &nbsp;&nbsp; 678-585-1321 &nbsp;&nbsp;<a href="mailto:test@ups.com">test@ups.com</a></div>
+          </form>
+        </div>
+        <!-- /applicationArea --> 

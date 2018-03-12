@@ -1,0 +1,259 @@
+<!-- aria-live and aria-atomic are added so the entire section is read anytime
+    there is updates to the status -->
+<div class="row" aria-live="assertive" aria-atomic="true">
+    <!-- col-sm-12 and col-xs-12 classes need to remain added for styling -->
+    <div class="col-md-5 col-sm-12 col-xs-12 ups-follow_details slide-left">
+        <div class="ups-progress_delivery" *ngIf="!noMapAvailable">
+            <p class="text-center ups-progress_delivery_title" *ngIf="closer && !tbd">
+                <span *ngIf="!cdw">Estimated Delivery Time:</span>
+                <span *ngIf="cdw">Confirmed Delivery Window:</span>
+            </p>
+            <p class="ups-progress_delivery_heading ups-progress_delivery_heading_large text-center" *ngIf="closer">
+                <strong *ngIf="!cdw && !tbd">12:00 PM - 4:00PM</strong>
+                <strong *ngIf="cdw && !tbd">2:00 PM - 4:00PM</strong>
+                <strong *ngIf="tbd">To be delivered by: 3:00PM</strong>
+            </p>
+            <p class="ups-progress_delivery_heading text-center" *ngIf="complete">
+                <strong>Your delivery is complete</strong>
+            </p>
+            <p class="ups-progress_delivery_heading text-center" *ngIf="completeAP">
+                <strong>Delivered to UPS Access Point<sup>&reg;</sup></strong>
+            </p>
+            <p class="ups-progress_delivery_heading text-center" *ngIf="unavailable">
+                <strong>Delivery estimate unavailable</strong>
+            </p>
+            <p class="ups-progress_delivery_heading text-center" *ngIf="missed">
+                <strong>Sorry we missed you</strong>
+            </p>
+            <p class="ups-progress_delivery_heading text-center" *ngIf="unableDeliver">
+                <strong>Package has been re-routed</strong>
+            </p>
+            <div *ngIf="completeAP" class="text-center">
+                <p>
+                    Awaiting Customer Pickup
+                </p>
+            </div>
+            <div *ngIf="(missed || unableDeliver) && !unableDeliverAP" class="text-center">
+                <p>
+                    For the latest information regarding your package,
+                </p>
+                <p>
+                    please visit the <a href="#" class="ups-link">UPS Tracking Page</a>
+                </p>
+            </div>
+            <div *ngIf="(missed || unableDeliver) && unableDeliverAP" class="text-center">
+                <p>
+                    Sorry we missed you! Your package is on its way to a UPS Access Point<sup>&reg;</sup> location for pickup at your convenience.
+                </p>
+                <p>
+                    For updates on its delivery to the UPS Access Point location, visit the <a href="#" class="ups-link">UPS Tracking Page</a>
+                </p>
+            </div>
+            <p class="ups-readerTxt" *ngIf="closer">
+                Package Progress
+            </p>
+            <ul class="ups-progress_delivery_bar" *ngIf="closer">
+                <!-- /li and li must be on the same line for correct styling -->
+                <li [ngClass]="{'ups-progress_delivery_bar_complete' : (stepProgress > 0), 'ups-progress_delivery_bar_current' : (stepProgress == 0)}">
+                    On The Road
+                    <span class="ups-readerTxt" *ngIf="stepProgress == 0">(Current Step)</span>
+                    <span class="ups-readerTxt" *ngIf="stepProgress > 0">(Step Complete)</span>
+                    <div class="ups-progress_delivery_bar_indicator">
+                        <span class="ups-progress_delivery_bar_indicator_inner"></span>
+                    </div>
+                </li><li [ngClass]="{'ups-progress_delivery_bar_complete' : (stepProgress > 1), 'ups-progress_delivery_bar_current' : (stepProgress == 1)}">
+                    In Your Area
+                    <span class="ups-readerTxt" *ngIf="stepProgress < 1">(Step Not Complete)</span>
+                    <span class="ups-readerTxt" *ngIf="stepProgress == 1">(Current Step)</span>
+                    <span class="ups-readerTxt" *ngIf="stepProgress > 1">(Step Complete)</span>
+                    <div class="ups-progress_delivery_bar_indicator">
+                        <span class="ups-progress_delivery_bar_indicator_inner"></span>
+                    </div>
+                </li><li class="ups-progress_delivery_bar_last"
+                    [ngClass]="{'ups-progress_delivery_bar_complete' : (stepProgress > 2), 'ups-progress_delivery_bar_current' : (stepProgress == 2)}">
+                    Almost There
+                    <span class="ups-readerTxt" *ngIf="stepProgress < 2">(Step Not Complete)</span>
+                    <span class="ups-readerTxt" *ngIf="stepProgress == 2">(Current Step)</span>
+                    <span class="ups-readerTxt" *ngIf="stepProgress > 2">(Step Complete)</span>
+                    <div class="ups-progress_delivery_bar_indicator">
+                        <span class="ups-progress_delivery_bar_indicator_inner"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- col-sm-12 and col-xs-12 classes need to remain added for styling -->
+    <div class="col-md-7 col-sm-12 col-xs-12 ups-follow_map pull-right"
+        [ngClass]="{'slide-right' : (vpSize.isGtSMVP), 'slide-left' : (vpSize.isLtMDVP), 'ups-follow_map_reduced' : (progressDetailsShown && (vpSize.isLtMDVP))}">
+        <!--<div class="ups-cms-demo" >
+            Map should be placed here
+        </div>-->
+        <div [hidden]="!(closer || missed || unableDeliver)" class="ups-follow_map_holder">
+            <!--<iframe width="100%" frameborder="0" src="http://www.bing.com/maps/embed/viewer.aspx?v=3&amp;cp=40.782001~-73.831703&amp;lvl=9&amp;w=800&amp;h=500&amp;sty=r&amp;typ=d&amp;pp=new%20york~~40.782001~-73.831703&amp;ps=&amp;dir=0&amp;mkt=en-us&amp;form=BMEMJS"></iframe>-->
+            <div #map class="ups-follow_map"><span *ngIf="!mapFailLoad">Map Loading...</span><span *ngIf="mapFailLoad">Map failed to load.</span></div>
+
+            <div class="ups-follow_map_update">This map updates automatically</div>
+
+            <button class="ups-follow_map_recenter ups-cta ups-cta_secondary">
+                <span class="icon ups-icon-locationhollow" aria-hidden="true"></span>
+                Re-Center
+            </button>
+
+            <div class="ups-follow_map_homepin" aria-hidden="true">
+                <img src="assets/resources/images/fmd/UPS_FMD_HouseIcon.svg" alt="home pin icon" width="31" height="30">
+            </div>
+            <!-- hidden from screen readers because the map is not accessible and image wouldn't make sense -->
+            <div class="ups-follow_map_truckpin" aria-hidden="true">
+                <img src="assets/resources/images/fmd/icon-FMD-package-car.svg" alt="truck pin icon" width="28" height="38">
+            </div>
+        </div>
+        <div class="ups-delivery_no_map" *ngIf="complete">
+            <div class="ups-delivery_no_map_icon">
+                <span class="icon ups-icon-checkcircle-solid" aria-hidden="true"></span>
+            </div>
+            <div class="ups-delivery_no_map_heading">
+                Success!
+            </div>
+            <div class="ups-delivery_no_map_text">
+                Your delivery has successfully been completed. For more information, please visit the
+                <p>
+                    <a href="#" class="ups-link">UPS tracking page</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ups-delivery_no_map" *ngIf="completeAP">
+            <div class="ups-delivery_no_map_icon">
+                <span class="icon ups-icon-checkcircle-solid" aria-hidden="true"></span>
+            </div>
+            <div class="ups-delivery_no_map_heading">
+                Delivered!
+            </div>
+            <div class="ups-delivery_no_map_text">
+                <div class="ups-group ups-group_condensed">
+                    <p>
+                        Your delivery was completed to a UPS Access Point location. For more information, please visit the <a href="#" class="ups-link">UPS tracking page</a>.
+                    </p>
+                </div>
+                <div class="ups-group ups-group_condensed">
+                    <p>
+                        A valid ID is required to pick up
+                    </p>
+                    <p>
+                        <a href="#" class="ups-link">See ID requirements</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="ups-delivery_no_map" *ngIf="unavailable">
+            <div class="ups-delivery_no_map_icon">
+                <span class="icon ups-icon-truck" aria-hidden="true"></span>
+            </div>
+            <div class="ups-delivery_no_map_heading">
+                Your package is on the way...
+            </div>
+            <div class="ups-delivery_no_map_text">
+                <p>
+                    However we are unable to determine the exact map location at this time.
+                </p>
+                <p>
+                    For more information regarding your package, please visit the
+                    <a href="#" class="ups-link">UPS tracking page</a>
+                </p>
+            </div>
+        </div>
+        <div class="ups-delivery_no_map" *ngIf="noMapAvailable">
+            <div class="ups-delivery_no_map_icon">
+                <span class="icon ups-icon-map" aria-hidden="true"></span>
+            </div>
+            <div class="ups-delivery_no_map_heading">
+                Your Follow My Delivery map is no longer available...
+            </div>
+            <div class="ups-delivery_no_map_text">
+                For the latest information regarding your package, please visit the <a href="#" class="ups-link">UPS Tracking page</a>.
+            </div>
+        </div>
+    </div>
+    <!-- col-sm-12 and col-xs-12 classes need to remain added for styling -->
+    <div class="col-md-5 col-sm-12 col-xs-12 ups-progress_details_container">
+        <div class="visible-sm visible-xs ups-progress_showhide_btn slide-left">
+            <button class="ups-cta ups-cta_secondary"
+                (click)="openProgressDetails()"
+                [attr.aria-expanded]="progressDetailsShown"
+                aria-controls="progressDetails">
+                <span class="icon pull-right"
+                    [ngClass]="{'ups-icon-chevronup' : (!progressDetailsShown), 'ups-icon-chevrondown' : (progressDetailsShown)}"
+                    aria-hidden="true"></span>
+                #1Z23456789123
+            </button>
+        </div>
+        <div class="ups-progress_details"
+            [ngClass]="{'slide-left' : (vpSize.isGtSMVP)}"
+            *ngIf="progressDetailsShown"
+            id="progressDetails">
+            <div class="ups-group">
+                <h2 class="ups-article-header">Package Details:</h2>
+                <p>
+                    <strong>Tracking Number: </strong><a href="#" class="ups-link">1Z23456789123</a>
+                </p>
+            </div>
+            <div class="ups-group" *ngIf="!complete && !noMapAvailable && !completeAP">
+                <p>
+                    <strong>Shipper: </strong> Amazon.com
+                </p>
+            </div>
+            <div class="ups-group" *ngIf="!complete && !noMapAvailable">
+                <p class="ups-form_label" *ngIf="!completeAP">
+                    Shipping To:
+                </p>
+                <p class="ups-form_label" *ngIf="completeAP">
+                    Delivered To:
+                </p>
+                <address>
+                    John Doe<br>
+                    123 Main St<br>
+                    Atlanta, Ga 30307
+                </address>
+                <p *ngIf="unableDeliverAP">
+                    <a href="#" class="ups-link">ID Requirements</a>
+                </p>
+                <a href="#" class="ups-link" *ngIf="!missed && !unableDeliver && !completeAP">Change Delivery</a>
+            </div>
+            <div class="ups-group" *ngIf="closer || unableDeliverAP">
+                <strong>Service: </strong>Next Day Air
+            </div>
+            <div class="ups-form_ctaGroup" *ngIf="!complete && !noMapAvailable">
+                <!--<button type="button" class="ups-cta ups-cta_primary">Manage My Deliveries</button>-->
+                <a href="#"
+                    [ngClass]="{'ups-cta ups-cta_primary' : !completeAP, 'ups-link' : completeAP}">Manage My Deliveries</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5 slide-left">
+        <div class="ups-progress_disclaimer">
+            <p>
+                i. Not a UPS My Choice&reg; member? <a href="#" class="ups-link">Sign up now</a> for enhanced delivery options.
+            </p>
+            <p>
+                ii. The driver's location is approximate and apparent proximity to your address does not necessarily mean that your package will be delivered within any particular amount of time. For the latest information regarding your package, please visit UPS tracking.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="ups-cms-demo">
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setComplete()">Delivery Complete</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCompleteAP()">Delivery Complete (AP)</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setUnavailable()">Delivery Estimate Unavailable</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setMissed()">Missed Delivery</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCloser(); cdw=false; tbd = true;">Delivery Getting Closer (In Your Area) [To be delivered]</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCloser(); cdw=false; tbd = false;">Delivery Getting Closer (In Your Area) [Estimated Delivery Window]</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCloser(); cdw=true; tbd = false;">Delivery Getting Closer (In Your Area) [Confirmed Delivery Window]</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setUnableDeliver()">Unable to Deliver</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setUnableDeliverAP()">Unable to Deliver (AP)</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setNoMapAvailable()">Map &amp; Status not available</button>
+    <hr>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCloserOTR()">Delivery Getting Closer (On the Road)</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="setCloserAT()">Delivery Getting Closer (Almost There)</button>
+</div>

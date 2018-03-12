@@ -1,0 +1,100 @@
+<div class="ups-official_datepicker_container" *ngIf="visible">
+    <div class="ups-official_datepicker">
+        <div class="ups-official_datepicker_month_controls">
+            <div class="ups-official_datepicker_month_controls_prev_container">
+                <button class="ups-official_datepicker_prev" (click)="prevMonth()">
+                    <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">{{ getLocaleObj().prevMonthTxt }}</span>
+                </button>
+            </div>
+            <div class="ups-official_datepicker_month_sel">
+                <div class="ups-form_group">
+                    <label for="ups-official-dp-month" class="ups-readerTxt">{{ getLocaleObj().monthLabel }}</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select class="ups-dropdown"
+                            id="ups-official-dp-month"
+                            name="ups-official-dp-month"
+                            [ngModel]="bsDpModel.month()"
+                            (ngModelChange)="updateMonth($event)">
+                            <option value="{{ item.month }}"
+                                *ngFor="let item of generateMonth(); let i = index"
+                                [disabled]="item.disabled">
+                                {{ getLocaleObj().months[item.month] }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ups-official_datepicker_year_sel">
+                <div class="ups-form_group">
+                    <label for="ups-official-dp-year" class="ups-readerTxt">{{ getLocaleObj().yearLabel }}</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select class="ups-dropdown"
+                            id="ups-official-dp-year"
+                            name="ups-official-dp-year"
+                            [ngModel]="bsDpModel.year()"
+                            (ngModelChange)="updateYear($event)">
+                            <option value="{{ item.year }}"
+                                *ngFor="let item of generateYear()"
+                                [disabled]="item.disabled">
+                                {{ item.year }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ups-official_datepicker_month_controls_next_container">
+                <button class="ups-official_datepicker_next" (click)="nextMonth()">
+                    <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">{{ getLocaleObj().nextMonthTxt }}</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="ups-official_datepicker_table_container">
+            <table class="ups-official_datepicker_table">
+                <caption class="ups-readerTxt">
+                    {{ getLocaleObj().datepickerCaptionTxt }}
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col"
+                            id="ups-official-dp-dayWeek{{ f }}"
+                            *ngFor="let dayOfWeek of getDaysWeek(); let f = index">
+                            <ng-container *ngIf="config.useShortWeekdayWord">
+                                <span aria-hidden="true">{{ dayOfWeek.short }}</span>
+                                <span class="ups-readerTxt">{{ dayOfWeek.long }}</span>
+                            </ng-container>
+                            <ng-container *ngIf="!config.useShortWeekdayWord">
+                                <span>dayOfWeek.long</span>
+                            </ng-container>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let week of generatedWeek; let i = index">
+                        <td headers="ups-official-dp-dayWeek{{ j }}"
+                            *ngFor="let date of week; let j = index">
+                            <button type="button"
+                                class="ups-official_datepicker_date_chooser_btn"
+                                id="ups-official-dp-chooser-{{ date.year }}{{ date.month }}{{ date.day }}"
+                                (click)="chooseDate(date.year, date.month, date.day)"
+                                [disabled]="date.disabled"
+                                [ngClass]="{'ups-official_datepicker_currentDay' : date.selDate, 'ups-official_datepicker_not_cur_month' : (bsDpModel.month() != date.month), 'ups-official_datepicker_today' : date.today}">
+                                <span class="ups-readerTxt">{{ getLocaleObj().months[date.month] }}, </span>
+                                {{ date.day }}
+                                <span class="ups-readerTxt">, {{ date.year }}</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ups-official_datepicker_modifier_btns">
+            <button type="button" class="ups-official_datepicker_today_btn" *ngIf="config.showTodayBtn" (click)="today()">{{ getLocaleObj().todayBtnTxt }}</button>
+            <button type="button" class="ups-official_datepicker_clear_btn" *ngIf="config.showClearBtn" (click)="clear()">{{ getLocaleObj().clearBtnTxt }}</button>
+        </div>
+        <button type="button" class="ups-official_datepicker_close_btn" *ngIf="config.showCloseBtn" (click)="hide()">{{ getLocaleObj().closeBtnTxt }}</button>
+    </div>
+</div>

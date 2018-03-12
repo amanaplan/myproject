@@ -1,0 +1,103 @@
+// ----------------------------------------------------
+// Page Level Notification
+// ----------------------------------------------------
+
+#ups-pageLevel_notifications {
+    background: $stone_60;
+    padding: $grid-gutter-width $page-margin;
+    position: relative;
+    width: 100%;
+    float: #{$default-float};
+    margin-bottom: $margin_3;
+    font-family: $sans-bd;
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    .ups-notification_label {
+        position: absolute;
+        top: 50%;
+        width: 240px;
+        margin-top: -12px;
+        #{$default-float}: $page-margin;
+        h3{
+            position: relative;
+            padding-#{$default-float}: 42px;
+            margin:0;
+            font: 1.7em/24px $sans-bd;
+
+            span {
+                overflow: hidden;
+                display: block;
+            }
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            .icon:before {
+                position: absolute;
+                top: 50%;
+                #{$default-float}: 0px;
+                font-size: 30px;
+                margin-top:-17px;
+                background: $white;
+                display: block;
+                border-radius: 50%;
+            }
+        }
+
+    }
+    .ups-notification_message {
+        padding-#{$default-float}: 270px;
+        font-size: 1.2em;
+        float: #{$default-float};
+
+        span {
+            display: inline;
+            line-height: 20px;
+            margin-#{$opposite-direction}: 4px;
+        }
+
+        .ups-pageLevel_notifications_link {
+            display: inline;
+            color: $ups_brown;
+            text-decoration: underline;
+            // margin-#{$default-float}: 6px;
+        }
+    }
+}
+
+
+@media #{$media-small} {
+    #ups-pageLevel_notifications  {
+        // margin: 0 (-$page-margin-sm);
+        padding: 10px $page-margin-sm 44px;
+        position: relative;
+        .ups-notification_label {
+            position: relative;
+            width: 100%;
+            padding: 24px 0;
+            height: auto;
+            top:initial;
+            #{$default-float}:initial;
+            margin:0;
+            h3{
+                padding: 0;
+                &:before {
+                    display: inline-block;
+                    position: relative;
+                    top: 6px;
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        .ups-notification_message {
+            padding: 0;
+        }
+    }
+}

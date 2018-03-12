@@ -1,0 +1,251 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+	<ng-form name="ups_shippingOptionform" data-novalidate>
+    <!-- ////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-shippingOption //// -->
+    <!-- ////////////////////////////////////// -->
+    <div class="row">
+		<div class="col-md-5">
+			<fieldset class="ups-form_group">
+				<legend class="ups-form_label">Shipping Application Display</legend>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-no-preference"
+						class="ups-radio-custom" name="ups-terms_checkbox"
+						type="radio" data-ng-model="formObj.noPreference">
+					<label for="ups-no-preference"
+						class="ups-radio-custom-label">No preference.</label>
+				</div>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-need-help-guided-flow"
+						class="ups-radio-custom" name="ups-terms_checkbox"
+						type="radio" data-ng-model="formObj.needHelpGuidedFlow">
+					<label for="ups-need-help-guided-flow"
+						class="ups-form_label ups-radio-custom-label">I need help. Use the guided flow display.</label>
+				</div>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-experienced-single-page"
+						class="ups-radio-custom" name="ups-terms_checkbox"
+						type="radio" data-ng-model="formObj.experiencedSinglePage"> <label
+						for="ups-experienced-single-page"
+						class="ups-form_label ups-radio-custom-label">I'm experienced. Use the single page display.</label>
+				</div>
+    		</fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-packagingType" class="ups-form_label">Packaging</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-packaging-type" id="ups-packagingType"
+						class="ups-dropdown" data-ng-model="formObj.packagingType">
+						<option
+							data-ng-repeat="packagingType in formObj.shippingOption.packagingType"
+							value="{{packagingType.packType}}">{{packagingType.packType}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-shippingOpt_service" class="ups-form_label">Shipping
+					Service</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-shippingService" id="ups-shippingOpt_service"
+						class="ups-dropdown" data-ng-model="formObj.shippingOpt_service">
+						<option
+							data-ng-repeat="shippingService in formObj.shippingOption.service"
+							value="{{shippingService.type}}">{{shippingService.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+        </div>
+    </div>
+    <div resize data-ng-class="{'ups-group': windowWidth < 992}" class="row">
+        <div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-shipFromAddress" class="ups-form_label">Ship
+					From Address</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-shipFromAddress" id="ups-shipFromAddress"
+						class="ups-dropdown" data-ng-model="formObj.shipFromAddress">
+						<option
+							data-ng-repeat="shipAddress in formObj.shippingOption.shipFromAddress"
+							value="{{shipAddress.address}}">{{shipAddress.address}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+        </div>
+        <div class="col-md-5">
+            <div resize data-ng-class="{'ups-no_label': windowWidth > 992}">
+                <button type="button" class="ups-cta ups-cta_secondary ups-input_btn_action">Add New Ship From Address</button>
+            </div>
+        </div>
+    </div>
+    <div esize data-ng-class="{'ups-group': windowWidth < 992}" class="row">
+        <div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-returnAddress" class="ups-form_label">Return
+					Address</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-returnAddress" id="ups-returnAddress"
+						class="ups-dropdown" data-ng-model="formObj.returnAddress">
+						<option
+							data-ng-repeat="returnAddress in formObj.shippingOption.returnAddress"
+							value="{{returnAddress.address}}">{{returnAddress.address}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+        <div class="col-md-5">
+            <div resize data-ng-class="{'ups-no_label': windowWidth > 991}">
+                <button type="button" class="ups-cta ups-cta_secondary ups-input_btn_action">Add New Return Address</button>
+            </div>
+        </div>
+	</div>
+
+    <div class="row">
+    	<div class="col-md-5">
+			<fieldset class="ups-form_group">
+				<legend class="ups-readerTxt">Additional Shipping Options</legend>
+				<div class="ups-checkbox ups-input_wrapper">
+					<input check-verify id="ups-review-shipping"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.reviewShipping">
+					<label for="ups-review-shipping"
+						class="ups-form_label ups-checkbox-custom-label">Review
+						shipping details, including price, before completing shipments.</label>
+				</div>
+				<!--<div class="ups-checkbox ups-input_wrapper ups-help_wrapper ups-help_textWrapper">
+					<input check-verify id="ups-offset-impact"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.offsetImpact">
+					<label for="ups-offset-impact"
+						class="ups-form_label ups-checkbox-custom-label">Offset
+						the impact of all my shipments using UPS carbon neutral.
+					</label>
+					<div class="ups-help">
+						<a href="#" onclick="return false;" data-ng-click="isPopoverOpen = !isPopoverOpen"
+							class="ups-help-position ups-help-position ups-form_link-noDecoration">Help
+							<span class="ups-icon-questioncircle" aria-hidden="true"></span>
+						</a>
+						<div class="ups-help_tooltip" data-ng-style="isPopoverOpen ? {'display':'block'} :{'display':'none'}">
+							<a href="#" data-ng-click="isPopoverOpen = false"
+								class="ups-link ups-help_close icon ">
+								<span class="ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Close</span>
+							</a>
+							<p>Explanatory text lorem ipsum dolor sit amet.</p>
+						</div>
+					 </div>
+				</div>-->
+				<div class="ups-checkbox_group ups-form_group ups-help_wrapper">
+					 <input check-verify id="ups-offset-impact"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.offsetImpact">
+					 <label for="ups-offset-impact"
+						class="ups-form_label ups-checkbox-custom-label ups-checkbox-help-link">Offset
+						the impact of all my shipments using UPS carbon neutral.
+					</label>
+                    <div class="ups-help">
+                        <button type="button" ups-help id="offsetCBHelp1" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close">
+                                <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                        	<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+                        </div>
+                    </div>
+
+				</div>
+				<div class="ups-checkbox ups-input_wrapper">
+					<input check-verify id="ups-connectedScale"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.connectedScale"> <label
+						for="ups-connectedScale"
+						class="ups-form_label ups-checkbox-custom-label">Weigh my
+						packages with my USB-connected scale.</label>
+				</div>
+				<div class="ups-checkbox ups-input_wrapper">
+					<input check-verify id="ups-likeItemsOnly"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.likeItemsOnly"> <label
+						for="ups-likeItemsOnly"
+						class="ups-form_label ups-checkbox-custom-label">Include
+						routing instructions for UPS Returns&reg; Exchange -Like Items
+						Only</label>
+				</div>
+				<div class="ups-checkbox ups-input_wrapper">
+					<input check-verify id="ups-driverInstruction"
+						class="ups-checkbox-custom" name="ups-terms_checkbox"
+						type="checkbox" data-ng-model="formObj.driverInstruction">
+					<label for="ups-driverInstruction"
+						class="ups-form_label ups-checkbox-custom-label">Include
+						routing instructions for UPS Returns&reg; Exchange -Driver
+						Instructions Inside</label>
+				</div>
+			</fieldset>
+		</div>
+		</div>
+    <hr />
+    <p>Because UPS Worldwide Express Freight shipments are so heavy, you may want to set separate pickup and delivery preferences.</p>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group ups-help_wrapper">
+				<label for="ups-pickupOption" class="ups-form_label">Pickup
+					Options</label>
+				<div class="ups-help">
+					<a href="#" onclick="return false;"
+						class="ups-help_link ups-form_link-noDecoration"
+						data-ng-click="pickupHelpLink()">Help <span class="ups-icon-newwindow" aria-hidden="true"></span><span
+						class="ups-readerTxt">This will open a new window</span></a>
+				</div>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-pickupOption" id="ups-pickupOption"
+						class="ups-dropdown" data-ng-model="formObj.pickupOption">
+						<option
+							data-ng-repeat="pickupOption in formObj.shippingOption.pickupOption"
+							value="{{pickupOption.type}}">{{pickupOption.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+
+		<div class="col-md-5 col-md-offset-1">
+			<div class="ups-form_group ups-help_wrapper">
+				<label for="ups-deliveryAddress" class="ups-form_label">Delivery
+					Options</label>
+				<div class="ups-help">
+					<a href="#" onclick="return false;"
+						class="ups-help_link icon ups-form_link-noDecoration"
+						data-ng-click="deliveryHelpLink()">Help <span class="ups-icon-newwindow" aria-hidden="true"></span><span
+						class="ups-readerTxt">This will open a new window</span></a>
+				</div>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-deliveryAddress" id="ups-deliveryAddress"
+						class="ups-dropdown" data-ng-model="formObj.deliveryAddress">
+						<option
+							data-ng-repeat="deliveryAddr in formObj.shippingOption.deliveryOption"
+							value="{{deliveryAddr.type}}">{{deliveryAddr.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+
+	</div>
+    <div class="ups-form_ctaGroup">
+        <button type="submit"
+            class="ups-cta ups-cta_primary ups-form-offset"
+            data-ng-click="saveShippingOption()">Save</button>
+            <!-- data-ng-disabled="!(ups_shippingOptionform.$dirty)" -->
+    </div>
+    <!-- ups-form_ctaGroup -->
+    <!-- ////////////////////////////////////// -->
+    <!-- //// end ups.ppc-shippingOption   //// -->
+    <!-- ////////////////////////////////////// -->
+	</ng-form>
+</div>

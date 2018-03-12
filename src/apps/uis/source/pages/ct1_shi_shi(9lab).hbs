@@ -1,0 +1,151 @@
+---
+title: UPS Internet Shipping - View/Print Label
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+
+
+
+
+<!-- SearchBodyStart --> 
+<script language="JavaScript1.2" type="text/javascript">
+var labelMask = "";
+var labelType = "gif";
+
+var totalReceipts = "0";
+var receiptType = "gif";
+var parentkey = "true";
+var labelMaskSeparator = "-";
+
+ // opens child popup windows
+ function popUpNewWindows()
+ {
+ if (true)
+ {
+ // only pop up new windows if our URL says to - we are the first window when from the completeshipment or shippinghistory
+ // pop up receipt window first
+ for(var i = 0; i < totalReceipts; i++)
+ {
+ var origSaURL = "create";
+
+ var saURL = origSaURL + "?ActionOriginPair=Print___PrinterPage&PrinterID=SVMxMjkyMDAyNg%3D%3D53690&parent=false&receipt=true&totalReceipts=" + totalReceipts + "&receiptType=" + receiptType + "&currentReceiptIndex=" + i + "&1172689654724" + "&loc=en_US";
+
+ if(i==0)
+ {
+ saURL = saURL+"&notFirstReceipt=true";
+ }
+
+ var windowName = "receipt" + i + "1172689654724";
+ var win = window.open(saURL, windowName, "resizable=yes,status=yes,menubar=yes,scrollbars=yes,width=600,height=400");
+ win.focus();
+
+ 
+ if(totalReceipts > 1) {
+ i = totalReceipts;
+ }
+ 
+ }
+ // pop up label Windows
+ if (labelMask!="")
+ {
+ arrayOfLabelIndexes = labelMask.split(labelMaskSeparator)
+ var myInt;
+ myInt = arrayOfLabelIndexes.length;
+ 
+ myInt = 1;
+ 
+ arrayOfLabelIndexes = labelMask.split(labelMaskSeparator)
+
+ for (var i=0; i < myInt; i++)
+ {
+ var origSaURL = "create";
+ var labelNumber = arrayOfLabelIndexes[i];
+ 
+ 
+ var saURL = origSaURL + "?ActionOriginPair=Print___PrinterPage&PrinterID=SVMxMjkyMDAyNg%3D%3D53690&parent=false&labelMask=" + labelNumber + "&labelType=" + labelType + "&1172689654724" + "&loc=en_US";
+ 
+ saURL = origSaURL + "?ActionOriginPair=Print___PrinterPage&PrinterID=SVMxMjkyMDAyNg%3D%3D53690&parent=false&labelMask=" + labelMask + "&labelType=" + labelType + "&1172689654724" + "&loc=en_US";
+ 
+ var windowName = "Label" + labelNumber + "1172689654724";
+
+ var win = window.open(saURL, windowName, "resizable=yes,status=yes,menubar=yes,scrollbars=yes,width=600,height=400");
+ win.focus();
+ 
+ }
+ }
+ } //parent
+ 
+
+ } //popUpNewWindows
+
+
+ // displays popup window for turn in copy
+ function popTurnInCopy()
+ {
+ var origSaURL = "create";
+ var saURL = origSaURL + "?ActionOriginPair=TurnInCopy___StartSession&PrinterID=SVMxMjkyMDAyNg%3D%3D53690&parent=false&labelMask=" + 3 + "&labelType=" + "EPL2" + "&1172689654724" + "&loc=en_US";
+ var windowName = "Label" + "1172689654724";
+ var win = window.open(saURL, windowName, "resizable=yes,status=yes,menubar=yes,scrollbars=yes,width=650,height=500");
+ win.focus();
+ }
+
+ // closes popup window
+ function closeMe()
+ {
+ window.close();
+ }
+
+ // if page breaks supported, and not thermal printing window, display OS specific print dialog
+ 
+ window.print();
+
+</script>
+<div onLoad="popUpNewWindows();" onUnload="uisUnLoad();">
+<form name="printerForm" method="post" action="create">
+  <input name="ActionOriginPair" value="" type="hidden">
+  <input name="TC_TIME_STAMP" value="1172689654724" type="hidden">
+  <input name="loc" value="en_US" type="hidden">
+  <input name="RedirectHref" value="" type="hidden">
+  <div id="ccCntMod">
+    <div id="main">
+      <div class="labelPage">
+        <div class="instructions">
+            
+          <ol>
+            <li><b>Print the label(s):</b> Select the Print button on the print dialog box that appears. <b>Note:</b> If your browser does not support this function select Print from the File menu to print the label.</li>
+            <li><b>Fold the printed label at the dotted line.</b> Place the label in a UPS Shipping Pouch. If you do not have a pouch, affix the folded label using clear plastic shipping tape over the entire label.</li>
+            <li><b>GETTING YOUR SHIPMENT TO UPS<br>
+              Customers without a Daily Pickup</b><br>
+              <ul>
+                <li>Schedule a same day or future day Pickup to have a UPS driver pickup all of your Internet Shipping packages.</li>
+                <li>Hand the package to any UPS driver in your area.</li>
+                <li>Take your package to a location of The UPS Store&reg;, UPS Drop Box, UPS Customer Center, UPS Alliances (Office Depot&reg; or Staples&reg;) or Authorized Shipping Outlet near you. Items sent via UPS Return Services (including Ground Returns) are accepted at any UPS Drop Box.</li>
+                <li>To find the location nearest you, please visit the 'Find Locations' Quick link at ups.com.</li>
+              </ul>
+              <b>Customers with a Daily Pickup</b><br>
+              <ul>
+                <li>Your driver will pickup your shipment(s) as usual.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <div class="fold">FOLD HERE</div>
+        <div class="labelPage"><img src="Label.gif" alt="" height="392" width="672"></div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- SearchBodyEnd -->
+</div>
+</div>

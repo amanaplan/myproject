@@ -1,0 +1,195 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_RightRail";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+
+#main {
+    .modContent {
+        ul.lstAnchor {
+            li {
+                background-image: none;
+            }
+            a {
+                &:before {
+                    @include ups-iconFont("\e60f");
+                    display: inline-block;
+                    top: 2px;
+                }
+            }
+        }
+    }
+
+    table.mod {
+        background-color: $white;
+        border: none;
+
+        .appHead {
+            padding: 0;
+
+            .helpmini {
+                a {
+                    &:after {
+                        @include ups-iconFont("\e660");
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+
+        h3 {
+            color: $black_s4;
+        }
+
+        p, blockquote {
+            font-family: $sans;
+            font-size: 14px;
+        }
+
+        blockquote {
+            border-color: $black_s1;
+            padding-#{$default-float}: 5px;
+        }
+
+        dt.fldLbl, dt.fldLbl span {
+            font-family: $sans-bd;
+            font-weight: normal;
+        }
+
+    }
+
+    table.optSelTable {
+        background-color: $white;
+        border: 1px solid $black_s1;
+
+        th {
+            background-color: $stone_s3;
+            color: $black_s4 !important;
+            border-bottom: none;
+            text-transform: uppercase;
+            padding: 12px 15px;
+        }
+
+        td {
+            border-color: $black_s1;
+
+            &.viewEdit {
+                vertical-align: middle;
+            }
+        }
+
+        #PP_pickupByHour_label {
+            text-decoration: underline;
+        }
+
+        #PP_acctInfo_label {
+            font-family: $sans-bd;
+        }
+
+        input.plusmini.btnlnkL {
+            background-image: url(/assets/resources/images/legacyAppImages/plusIcon.gif);
+            background-size: 12px;
+            background-position: 1px 3px;
+        }
+
+        input.checkmini {
+            background-image: url(/assets/resources/images/legacyAppImages/checkmini.gif);
+            background-position: 1px 1px;
+        }
+
+        input.crossmini {
+            background-image: url(/assets/resources/images/legacyAppImages/crossmini.gif);
+            background-position: 1px 1px;
+            margin-#{$opposite-direction}: 10px;
+        }
+
+
+         //fixing misaligned checkboxes and radio buttons and their labels
+        #EPRT {
+            #PRT_printInstructionOnFirstOnly_label {
+                width: 100px;
+                margin-#{$default-float}: 4px;
+            }
+
+            .colL tbody tr:nth-child(3) input {
+                float: $default-float;
+            }
+        }
+
+        #ECTP dl:nth-of-type(2) dd {
+            label:nth-of-type(2) {
+                max-width: 490px;
+                margin-#{$default-float}: 4px;
+              }
+
+              input:nth-of-type(2) {
+                float: $default-float;
+              }
+          }
+
+        #EFR {
+            input[type=button] {
+                @include ups-legacy_cta($water_s3);
+                margin-top: 10px;
+            }
+
+            dd {
+                margin: 5px 0;
+                label {
+                    margin-bottom: 0;
+                }
+            }
+
+            input[type=radio] {
+                &:before {
+                    vertical-align: initial;
+                }
+            }
+        }
+
+        label[for="formbean.printingBean.printInstructionsOnFirstLabelOnly"] {
+            width: 200px;
+        }
+    }
+
+    #AllPreferencesTop {
+        img {
+            display: none;
+        }
+
+        &:before {
+            @include ups-iconFont("\e65b");
+            display: inline-block;
+            top: 2px;
+            #{$opposite-direction}: 3px;
+        }
+    }
+}
+
+.ui-dialog.ui-widget {
+    .appHead {
+        #help_id_add1:after {
+            display: none;
+        }
+    }
+
+    .appBody {
+        #secBody {
+            label {
+                display: inline-block;
+            }
+        }
+        .secBody {
+            textarea {
+                border-color: $stone_s3;
+                font-family: $sans;
+            }
+        }
+
+    }
+
+    #dsl_dialog {
+        #secBody {
+            table {
+                margin-#{$default-float}: 5px;
+            }
+        }
+    }
+}

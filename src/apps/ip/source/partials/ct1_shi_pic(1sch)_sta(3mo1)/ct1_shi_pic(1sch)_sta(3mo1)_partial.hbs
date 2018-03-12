@@ -1,0 +1,991 @@
+<div class="ups-application_wrapper ups-form_wrap">
+<form action="repl_fname">
+    <!-- Begin Application Module -->
+    <div class="appLvl mod">
+        <!-- Begin Application Header -->
+        <div class="appHead clearfix">
+            <h2>Modify Pickup Information</h2>
+        </div>
+        <!-- End Application Header -->
+        <!-- Begin Application Body -->
+        <div class="appBody clearfix">
+            <!-- ************************************** -->
+            <!-- REDESIGN EDIT: Start part of re-design -->
+            <!-- ************************************** -->
+            <!--<p>Required fields are indicated with <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon">.</p>-->
+
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+            <!-- ************************************** -->
+            <!-- REDESIGN EDIT: End part of re-design -->
+            <!-- ************************************** -->
+
+            <!-- Begin Pickup Information and Location -->
+            <div class="secLvl step">
+                <!-- Begin Header Bar -->
+                <div class="secHead clearfix">
+                    <div class="stepNumberDiv"><span class="stepNumber">1</span></div>
+                    <h3>Pickup Information and Location</h3>
+                </div>
+                <!-- End Header Bar -->
+                <!-- Begin Section Body -->
+                <div class="secBody clearfix">
+                    <div id="dyn_pnl_1">
+                        <!--Pickup Information and Location - Default -->
+                        {{!-- <div id="pnl_1_1">
+                            <fieldset>
+                                <h4>Pickup Address:</h4>
+                                <dl role="presentation" >
+                                    <dd>{Company or Name}</dd>
+                                    <dd>{Address Line 1}</dd>
+                                    <dd>{City}, {State}, {ZIP Code}</dd>
+                                    <dd>{Country or Territory}</dd>
+                                    <dd></dd>
+                                </dl>
+                                <dl role="presentation" class="outHozFlex clearfix">
+                                    <dt>
+                                        <span class="label">E-mail Address:</span>
+                                    </dt>
+                                    <dd>nnnnnnnnnnnnnn@nnnnnnn.com</dd>
+                                </dl>
+                                <div class="subcol7 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Contact Name:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="" id="repl_id" class="formcol6" maxlength="22">
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id">Suite/Room:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="15" id="repl_id" class="formcol6" maxlength="8">
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="subcol9">
+                                    <dl role="presentation" class="flexAfter group">
+                                        <dt>
+                                            <label for="repl_id">Telephone:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="30" id="repl_id" maxlength="15">
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"> </dd>
+                                    </dl>
+                                    <dl role="presentation" class="flexAfter group">
+                                        <dt>
+                                            <label for="repl_id">Ext:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="8" id="repl_id" maxlength="4">
+                                        </dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                    <dl role="presentation">
+                                        <dt>
+                                            <label for="repl_id">Floor:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="30" id="repl_id" maxlength="3">
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tbody>
+                                    <tr>
+                                        <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+                                        <td><label for="chxbox1" class="sel">Residential address</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> --}}
+
+                        {{>"ct1_shi_pic(1sch)_sta(3mo1)_pil_partial" pickup_inf }}
+
+                        <!--Pickup Information and Location - Customer Entered Account Number and ZIP Only-->
+                        {{!-- <div id="pnl_1_2">
+                            <fieldset>
+                                <h4>Pickup will be made at the Pickup Address for the UPS Account entered.</h4>
+                                <p>To view the Pickup Location details for an entered UPS Account Number, you must be <a href="#">logged into ups.com</a>.</p>
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Contact Name:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="" id="repl_id" class="formcol6" maxlength="22">
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id">Suite/Room:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="15" id="repl_id" class="formcol6" maxlength="8">
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" class="flexAfter group">
+                                        <dt>
+                                            <label for="repl_id">Telephone:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="15" id="repl_id" class="formcol5" maxlength="15">
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"> </dd>
+                                    </dl>
+                                    <dl role="presentation" class="flexAfter group">
+                                        <dt>
+                                            <label for="repl_id">Ext.:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="5" id="repl_id" class="formcol3" maxlength="4">
+                                        </dd>
+                                    </dl>
+                                    <div class="clear"></div>
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Floor:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="15" id="repl_id" class="formcol6" maxlength="3">
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 2 -->
+                            </fieldset>
+                            <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                <tbody>
+                                    <tr>
+                                        <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+                                        <td><label for="chxbox1" class="sel">Residential address</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> --}}
+                    </div>
+                </div>
+                <!-- End Section Body -->
+            </div>
+            <!-- End Pickup Information and Location -->
+            <!-- Begin Service and Package Information -->
+            <div class="secLvl step">
+                <!-- Begin Header Bar -->
+                <div class="secHead clearfix">
+                    <div class="stepNumberDiv"><span class="stepNumber">2</span></div>
+                    <h3>Service and Package Information</h3>
+                </div>
+                <!-- End Header Bar -->
+                <!-- Begin Section Body -->
+                <div class="secBody clearfix">
+                    <p>Select the number of packages in your pickup, as well as the UPS Services indicated by your UPS Shipping Labels</p>
+                    <p>UPS Worldwide Express Freight only accepts pallets, you must create seperate pickup requests for other package types.</p>
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: Start part of re-design -->
+                    <!-- ************************************** -->
+                    <!--<div class="group clearfix">
+                        <tr class="odd">
+                            <td><input id="repl_id" type="checkbox" value="repl_fvalue" name="repl_fname" disabled></td>
+                            <td><label class="sel" for="repl_id">This is a pallet pickup request</label></td>
+                        </tr>
+                    </div>-->
+
+                    <div class="ups-form_group">
+                        <div class="ups-checkbox ups-input_wrapper">
+                            <input id="pickupPalletRequest" class="ups-checkbox-custom" name="pickupPalletRequest" value="1" type="checkbox" disabled>
+                            <label for="pickupPalletRequest" class="ups-form_label ups-checkbox-custom-label">This is a pallet pickup request</label>
+                        </div>
+                    </div>
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: Start part of re-design -->
+                    <!-- ************************************** -->
+                    <div id="dyn_pnl_2">
+                        <!--Service and Package Information - Default-->
+                        {{!-- <div id="pnl_2_1">
+                            <fieldset>
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Packages(s) in Your Pickup:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" class="formcol3">
+                                                <option value="" selected>0</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Total Weight of Your Pickup:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_fname" type="text" value="[0000]" id="repl_id">
+                                            lbs. </dd>
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <!-- End Interior Column 2 -->
+                            <fieldset>
+                                <h4>UPS Services in Your Pickup:</h4>
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <input name="" type="button" value="UPS Domestic Services" class="btnlnkL collapseIcon group">
+                                        </dt>
+                                        <dd>
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr class="odd">
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air Early A.M.&reg;</a></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air&reg;</a></label></td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air Saver&reg;</a></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS 2nd Day Air A.M.&reg;</a></label></td>
+                                                </tr>
+                                                <tr class="odd">
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS 2nd Day Air&reg;</a></label></td>
+                                                </tr>
+                                            </table>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <input name="" type="button" value="UPS International Services" class="btnlnkL expandIcon">
+                                        </dt>
+                                        <dd> </dd>
+                                        <dt>
+                                            <input name="" type="button" value="UPS EU Transborder Services" class="btnlnkL expandIcon">
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <!-- End Interior Column 2 -->
+                            <fieldset>
+                                <h4>Does your pickup contain:</h4>
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Items that weigh more than 70 lbs.?</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_fnameA" type="radio" value="repl_fvalue" id="repl_id" disabled>
+                                            <label for="repl_id" class="sel">Yes</label>
+                                        </dd>
+                                        <dd>
+                                            <input name="repl_fnameB" type="radio" value="repl_fvalue" id="repl_id" checked disabled>
+                                            <label for="repl_id" class="sel">No</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id"><a href="" class="btnlnkR helpIconR">Only documents of no commercial value</a>?</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id" disabled>
+                                            <label for="repl_id" class="sel">Yes</label>
+                                        </dd>
+                                        <dd>
+                                            <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id" checked disabled>
+                                            <label for="repl_id" class="sel">No</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 2 -->
+                            </fieldset>
+                        </div> --}}
+
+                        {{>"ct1_shi_pic(1sch)_sta(3mo1)_spi_partial" spi }}
+                        <!--Service and Package Information - Pallet Request -->
+                        {{!-- <div id="pnl_2_2">
+                            <!-- Begin 1st Row -->
+                            <fieldset>
+                                <h4>UPS Services in Your Pickup:</h4>
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <input name="" type="button" value="UPS Pallet Service" class="btnlnkL collapseIcon group">
+                                        </dt>
+                                        <dd>
+                                            <table border="0" cellpadding="0" cellspacing="0" class="indent">
+                                                <tr class="odd">
+                                                    <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                                                    <td><label for="repl_id" class="sel"><a href="repl_href">UPS Worldwide Express Freight&#8480;</a></label></td>
+                                                </tr>
+                                            </table>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <dl role="presentation">
+                                    <dt>
+                                        <label for="selectbox">Preferred Unit of Measure:</label>
+                                    </dt>
+                                    <dd>
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="sel" scope="row"><input name="radio_group_nameA" type="radio" value="" id="radio1" checked/></td>
+                                                    <td><label for="radio1" class="sel">inches/pounds</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sel" scope="row"><input name="radio_group_nameB" type="radio" value="" id="radio2"/></td>
+                                                    <td><label for="radio2" class="sel">centimeters/kilograms</label></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+                                <!-- Begin 2nd Row -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation">
+                                        <dt>
+                                            <label for="selectbox">Pallet(s) in Your Pickup:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="selectbox" class="formcol3">
+                                                <option value="repl_value" selected disabled>1</option>
+                                                <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <dl role="presentation">
+                                    <dt>
+                                        <label for="txtbox">Total Weight of Your Pickup:</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="text" name="repl_name" id="txtbox" class="formcol3" value="[00000]" disabled>
+                                        [lbs.]</dd>
+                                </dl>
+                            </fieldset>
+                            <!--Begin 3rd Row -->
+                            <fieldset>
+                                <div class="clearfix">
+                                    <dl role="presentation" class="clearfix">
+                                        <dt>
+                                            <label for="repl_id"><a href="" class="btnlnkR helpIconR">Dimensions of your Largest Pallet:</a></label>
+                                        </dt>
+                                    </dl>
+                                    <dl role="presentation" class="flexFirst clearfix">
+                                        <dt>
+                                            <label for="repl_id07">Length:</label>
+                                        </dt>
+                                        <dd>
+                                            <input id="repl_id07" type="text" class="formcol3"  value="[0000]" disabled>
+                                            x</dd>
+                                    </dl>
+                                    <dl role="presentation" class="flexAfter clearfix">
+                                        <dt>
+                                            <label for="repl_id08">Width:</label>
+                                        </dt>
+                                        <dd>
+                                            <input id="repl_id08" type="text" class="formcol3" value="[0000]" disabled>
+                                            x</dd>
+                                    </dl>
+                                    <dl role="presentation" class="flexAfter clearfix">
+                                        <dt>
+                                            <label for="repl_id09">Height:</label>
+                                        </dt>
+                                        <dd>
+                                            <input id="repl_id09" type="text" class="formcol3" value="[0000]" disabled>
+                                            [in.]</dd>
+                                    </dl>
+                                </div>
+                                <div class="marginBegin subcol13">
+                                    <p class="reqTxtInst">(For pallets, the value entered for Length must be greater than or equal to the width value.)</p>
+                                    <div class="group clearfix">
+                                        <tr class="odd">
+                                            <td><input id="repl_id" type="checkbox" value="repl_fvalue" name="repl_fname" disabled></td>
+                                            <td><label class="sel" for="repl_id">Shipment contains dangerous goods</label></td>
+                                            <td><a href="repl_name" class="helpIconR btnlnkR indent">What's This</a></td>
+                                        </tr>
+                                    </div>
+                                    <p>Review the <a href="repl_name" class="btnlnkR newWindowIconR">Raw Wood Guidelines</a> to see if they apply to your pallet</p>
+                                </div>
+                            </fieldset>
+                        </div> --}}
+                    </div>
+                </div>
+                <!-- End Section Body -->
+            </div>
+            <!-- End Service and Package Information -->
+            <!-- Begin Pickup Date and Time -->
+            <div class="secLvl step">
+                <!-- Begin Header Bar -->
+                <div class="secHead clearfix">
+                    <div class="stepNumberDiv"><span class="stepNumber">3</span></div>
+                    <h3>Pickup Date and Time</h3>
+                </div>
+                <!-- End Header Bar -->
+                <!-- Begin Section Body -->
+                <div class="secBody clearfix">
+                    <div id="dyn_pnl_3">
+                        <!--Pickup Date and Time - Default-->
+                        {{!-- <div id="pnl_3_1">
+                            <dl role="presentation" >
+                                <dt>
+                                    <label for="replace_id">Pickup Date:</label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="repl_id01">
+                                        <option value="" selected="">{Pickup Date}</option>
+                                        <option value="">I will drop off at a ups location</option>
+                                    </select>
+                                </dd>
+                            </dl>
+                            <fieldset>
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id" >Earliest Pickup Time:</label>
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"></dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id" >Latest Pickup Time:</label>
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"></dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id" >Start of Lunch Period:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id" >End of Lunch Period:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id">
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <h4>Additional Pickup Information</h4>
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Preferred Pickup Location:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" class="formcol5">
+                                                <option value="" selected>Choose One</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id"><a href="">Pickup Reference</a>:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="" id="repl_id" class="formcol5">
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <dl role="presentation" >
+                                <dt>
+                                    <label for="repl_id">Enter any special instructions to the UPS Driver:</label>
+                                </dt>
+                                <dd>
+                                    <textarea name="textarea" cols="32" rows="3" class="full"></textarea>
+                                </dd>
+                            </dl>
+                        </div> --}}
+                        <!--Pickup Date and Time - Pallet Request - Pickup -->
+                        {{!-- <div id="pnl_3_2">
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="selectbox" class="helpIconR btnlnkR">Pickup Preference</label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="selectbox" class="formcol5" disabled>
+                                        <option value="repl_value" selected>UPS will Pick up</option>
+                                        <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </dd>
+                            </dl>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td><input id="repl_id02" type="checkbox" value="repl_fvalue" name="repl_fname"></td>
+                                        <td><label class="sel" for="repl_id02">Liftgate on Pickup</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id"><a href="" class="btnlnkR helpIconR">Pickup Date:</a></label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="repl_id01" disabled>
+                                        <option value="" selected="">{Pickup Date}</option>
+                                        <option value="">i will drop off at a ups location</option>
+                                    </select>
+                                    <img class="requiredIcon" width="12" height="11" border="0" src="/img/1.gif" alt="repl_alt"></dd>
+                            </dl>
+                            <fieldset>
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id" >Earliest Pickup Time:</label>
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"></dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id" >Latest Pickup Time:</label>
+                                            <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"></dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id" >Start of Lunch Period:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                        <dt>
+                                            <label for="repl_id" >End of Lunch Period:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            :
+                                            <select name="repl_name" id="repl_id" disabled>
+                                                <option value="" selected>nn</option>
+                                            </select>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">AM</label>
+                                            <input type="radio" name="repl_name" value="" id="repl_id">
+                                            <label for="repl_id" class="sel">PM</label>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </fieldset>
+                            <!-- End Interior Column 2 -->
+                            <!-- Begin Interior Column 1 -->
+                            <fieldset>
+                                <h4>Additional Pickup Information</h4>
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id">Preferred Pickup Location:</label>
+                                        </dt>
+                                        <dd>
+                                            <select name="repl_name" id="repl_id" class="formcol5">
+                                                <option value="" selected>Choose One</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <label for="repl_id"><a href="">Pickup Reference</a>:</label>
+                                        </dt>
+                                        <dd>
+                                            <input name="repl_name" type="text" size="" id="repl_id" class="formcol5">
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 2 -->
+                            </fieldset>
+                            <dl role="presentation" >
+                                <dt>
+                                    <label for="repl_id">Enter any special instructions to the UPS Driver:</label>
+                                </dt>
+                                <dd>
+                                    <textarea name="textarea" cols="32" rows="3" class="full"></textarea>
+                                </dd>
+                            </dl>
+                        </div> --}}
+                        <!--Pickup Date and Time - Pallet Request - Drop-off -->
+                        {{!-- <div id="pnl_3_3">
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="selectbox" class="helpIconR btnlnkR">Pickup Preference:</label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="selectbox" class="formcol5" disabled>
+                                        <option value="repl_value" selected>I will drop off at a UPS Location</option>
+                                        <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </dd>
+                            </dl>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id"><a href="" class="btnlnkR helpIconR">Drop-off Date:</a></label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="repl_id01" disabled>
+                                        <option value="" selected="">{Today's Date}</option>
+                                        <option value="">i will drop off at a ups location</option>
+                                    </select>
+                                    <img class="requiredIcon" width="12" height="11" border="0" src="/img/1.gif" alt="repl_alt"></dd>
+                            </dl>
+                            <!-- Begin Interior Column 1 -->
+                            <div class="subcol12 marginBegin">
+                                <div class="secLvl message clearfix">
+                                    <div class="secBody">
+                                        <dl role="presentation">
+                                            <dt><span class="label">[Location/Facility Name]</span></dt>
+                                            <dd>[Address 1] <br>
+                                                [City], [Other], [State] [ZIP/Postal Code] <br>
+                                                [Country or Territory] <br>
+                                                Telephone: [Number] <br>
+                                                Fax: [Number] </dd>
+                                        </dl>
+                                        <dl role="presentation">
+                                            <dt><span class="label">Hours of Operation</span></dt>
+                                            <dd>[Weekday] hh:mm AM to hh:mm PM </dd>
+                                        </dl>
+                                        <dl role="presentation">
+                                            <dt><span class="label">UPS Location Latest Drop-off Time:</span></dt>
+                                            <dd>hh:mm PM</dd>
+                                        </dl>
+                                        <dl role="presentation" >
+                                            <dt>
+                                                <label for="repl_id" >What time will your shipment be dropped off?</label>
+                                                <img alt="repl_alt" border="0" height="11" width="12" src="/img/1.gif" class="requiredIcon"></dt>
+                                            <dd>
+                                                <select name="repl_name" id="repl_id" disabled>
+                                                    <option value="" selected>10</option>
+                                                </select>
+                                                :
+                                                <select name="repl_name" id="repl_id" disabled>
+                                                    <option value="" selected>00</option>
+                                                </select>
+                                                <input type="radio" name="repl_name" value="" id="repl_id" checked>
+                                                <label for="repl_id" class="sel">A.M.</label>
+                                                <input type="radio" name="repl_name" value="" id="repl_id">
+                                                <label for="repl_id" class="sel">PM</label>
+                                                <br>
+                                                (local time) </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                            </div>
+                        </div> --}}
+
+                        {{>"ct1_shi_pic(1sch)_sta(3mo1)_pdt_partial" pdt }}
+                    </div>
+                </div>
+                <!-- End Section Body -->
+            </div>
+            <!-- End Pickup Date and Time -->
+            <!-- Begin Destination Options -->
+            <div class="secLvl step">
+                <!-- Begin Header Bar -->
+                <div class="secHead clearfix">
+                    <div class="stepNumberDiv"><span class="stepNumber">4</span></div>
+                    <h3>Destination Options</h3>
+                </div>
+                <!-- End Header Bar -->
+                <!-- Begin Section Body -->
+                <div class="secBody clearfix">
+                    <div id="dyn_pnl_4">
+                        <!--Destination Options - Pallet Request - Pickup-->
+                        {{!-- <div id="pnl_4_1">
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="selectbox" class="helpIconR btnlnkR">Delivery Preference:</label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="selectbox" class="formcol7" disabled>
+                                        <option value="repl_value" selected>UPS will Deliver</option>
+                                        <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </dd>
+                            </dl>
+                            <h4>Ultimate Destination Address Information</h4>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="selectbox" class="helpIconR btnlnkR">Country or Territory:</label>
+                                </dt>
+                                <dd>
+                                    <select name="repl_name" id="selectbox" class="formcol7" disabled>
+                                        <option value="repl_value" selected>United States</option>
+                                        <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </dd>
+                            </dl>
+                        </div> --}}
+                        <!--Destination Options - Pallet Request - Drop-off-->
+                        {{!-- <div id="pnl_4_2">
+                            <div class="subcol12 marginBegin">
+                                <dl role="presentation" >
+                                    <dt>
+                                        <label for="repl_id01"><a href="" class="btnlnkR helpIconR">Delivery Preference:</a></label>
+                                    </dt>
+                                    <dd>
+                                        <select id="repl_id01" disabled>
+                                            <option value="">ups will deliver</option>
+                                            <option value="" selected>Hold for Customer Pickup at UPS Location</option>
+                                        </select>
+                                        <img class="requiredIcon" width="12" height="11" border="0" src="/img/1.gif" alt="repl_alt"></dd>
+                                </dl>
+                                <div class="secLvl message clearfix">
+                                    <div class="secHead clearfix">
+                                        <h4>Shipment will be held for pick up at this UPS</h4>
+                                    </div>
+                                    <div class="secBody">
+                                        <dl role="presentation" >
+                                            <dt><span class="label">[Location/Facility Name]</span></dt>
+                                            <dd>[Address 1] <br>
+                                                [City], [Other], [State] [ZIP/Postal Code] <br>
+                                                [Country or Territory] <br>
+                                                Telephone: [Number] <br>
+                                                Fax: [Number] </dd>
+                                        </dl>
+                                        <dl role="presentation" >
+                                            <dt><span class="label">Hours of Operation</span></dt>
+                                            <dd>[Weekday] hh:mm AM to hh:mm PM <br>
+                                                [Weekday] hh:mm AM to hh:mm PM <br>
+                                                [Weekday] hh:mm AM to hh:mm PM<br>
+                                                ...<br>
+                                                [Sunday][Closed] </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        {{>"ct1_shi_pic(1sch)_sta(3mo1)_dest_options_partial" dest_opt }}
+                    </div>
+                </div>
+                <!-- End Section Body -->
+            </div>
+            <!-- End Destination Options -->
+            <!-- Begin Pickup Notifications -->
+            <div class="secLvl step">
+                <div id="dyn_pnl_5">
+                    <!--Pickup Notifications - Hide -->
+                    {{!-- <div id="pnl_5_1">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <div class="stepNumberDiv"><span class="stepNumber">{n}</span></div>
+                            <h3>Pickup Notifications</h3>
+                            <ul>
+                                <li> <a href="repl_name">Show Pickup Notifications</a> </li>
+                            </ul>
+                        </div>
+                        <!-- End Header Bar -->
+                    </div> --}}
+                    <!--Pickup Notifications - Show -->
+                    {{!-- <div id="pnl_5_2">
+                        <div class="secHead clearfix">
+                            <div class="stepNumberDiv"><span class="stepNumber">{n}</span></div>
+                            <h3>Pickup Notifications</h3>
+                        </div>
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl class="outHozLedger clearfix">
+                                <dt> <span class="label">Pickup Request Confirmations</span> </dt>
+                                <dd><a href="repl_name">Hide</a></dd>
+                            </dl>
+                            <p>Enter a mobile phone number and provider to receive SMS confirmation of this Pickup Request.</p>
+                            <table class="dataTable full" title="repl_title" summary="repl_summary">
+                                <thead>
+                                    <tr>
+                                        <th>Mobile Phone Number:</th>
+                                        <th>Mobile Phone Provider:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd">
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                        <td><select name="repl_name" id="selectbox" class="formcol5">
+                                                <option value="repl_value"></option>
+                                                <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                            </select></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr class="hr">
+                            <p>Enter up to five e-mail addresses to receive e-mail confirmation of this Pickup Request.</p>
+                            <table class="dataTable full" title="repl_title" summary="repl_summary">
+                                <thead>
+                                    <tr>
+                                        <th>Email Addresses:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd">
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td><input type="text" name="repl_name" id="txtbox" class="formcol5"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id">Enter a personalized message to be included in your e-mail confirmation.*:</label>
+                                </dt>
+                                <dd>
+                                    <textarea name="textarea" cols="32" rows="3" class="full"></textarea>
+                                </dd>
+                            </dl>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="txtbox">If any notification is undeliverable, please e-mail:</label>
+                                </dt>
+                                <dd>
+                                    <input type="text" name="repl_name" id="txtbox" class="formcol5" value="{profile e-mail address}">
+                                </dd>
+                                <p>(Required for e-mail notificaitons.)</p>
+                            </dl>
+                        </div>
+                        <div class="clear"></div>
+                        <!-- End Section Body -->
+                    </div> --}}
+
+                    {{>"ct1_shi_pic(1sch)_sta(3mo1)_pick_notify_partial" pick_notify }}
+                </div>
+            </div>
+            <!-- End Pickup Notifications -->
+        </div>
+        <!-- Begin Application Footer -->
+        <div class="appFooter">
+            <!-- Begin Button Bar Row -->
+            <div class="btnBar">
+                <input name="Input" type="submit" value="Next" class="btnArw">
+            </div>
+            <!-- End Button Bar Row -->
+        </div>
+        <!-- End Application Footer -->
+    </div>
+    <!-- End Application Body -->
+    <!-- End Application Module -->
+</form>
+</div>

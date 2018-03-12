@@ -1,0 +1,724 @@
+// Begin Background Color at app level
+// -----------------------------------
+/*
+
+.ups-empty_circle {
+    height: 12px;
+    width: 12px;
+    border: 1px solid #000;
+    border-radius: 16px;
+    display: inline-block;
+    margin-#{$opposite-direction}: 9px;
+    position: relative;
+    top: -3px;
+    #{$default-float}: 2px;
+    transform: scale(1.3);
+    -ms-transform: scale(1.3);
+}
+&.brown_dk_bg {
+	background: $brown_dk;
+}
+&.ups_brown_bg {
+	background: $ups_brown;
+}
+&.brown_s4_bg {
+	background: $brown_s4;
+}
+&.brown_s3_bg {
+	background: $brown_s3;
+}
+&.brown_s1_bg {
+	background: $brown_s1;
+}
+&.sand_s2_bg {
+	background: $sand_s2;
+}
+&.ups_sand_bg {
+	background: $ups_sand;
+}
+&.sand_60_bg {
+	background: $sand_60;
+}
+&.sand_40_bg {
+	background: $sand_40;
+}
+&.white_bg {
+	background: $white;
+}
+&.black_s4_bg {
+	background: $black_s4;
+}
+&.black_s3_bg {
+	background: $black_s3;
+}
+&.black_s1_bg {
+	background: $black_s1;
+}
+&.stone_s3_bg {
+	background: $stone_s3;
+}
+&.ups_stone_bg {
+	background: $ups_stone;
+}
+*/
+&.stone_60_bg {
+	background: $stone_60;
+}
+/*
+&.stone_40_bg {
+	background: $stone_40;
+}
+*/
+// End Background Color at app level
+// ---------------------------------
+
+// Begin Text Color at app level
+// -----------------------------------
+/*
+&.brown_dk_color {
+	color: $brown_dk;
+}
+&.ups_brown_color {
+	color: $ups_brown;
+}
+&.brown_s4_color {
+	color: $brown_s4;
+}
+&.brown_s3_color {
+	color: $brown_s3;
+}
+&.brown_s1_color {
+	color: $brown_s1;
+}
+&.sand_s2_color {
+	color: $sand_s2;
+}
+&.ups_sand_color {
+	color: $ups_sand;
+}
+&.sand_60_color {
+	color: $sand_60;
+}
+&.sand_40_color {
+	color: $sand_40;
+}
+&.white_color {
+	color: $white;
+}
+&.black_s4_color {
+	color: $black_s4;
+}
+&.black_s3_color {
+	color: $black_s3;
+}
+&.black_s1_color {
+	color: $black_s1;
+}
+&.stone_s3_color {
+	color: $stone_s3;
+}
+&.ups_stone_color {
+	color: $ups_stone;
+}
+&.stone_60_color {
+	color: $stone_60;
+}
+&.stone_40_color {
+	color: $stone_40;
+}
+*/
+// End Text Color at app level
+// ---------------------------------
+
+.ups-wrap_alt_background {
+	background-color: $stone_40;
+	padding-top: $margin_4;
+}
+
+// MODULES
+// ----------------------------------
+.ups-subsection .ups-module {
+    //width:100%;
+}
+
+.ups-module {
+	width: 100%;
+
+    aside & {
+        padding-top: 0;
+    }
+
+	// HEADER
+	// ----------------------------------
+	.ups-module_header {
+		background: $sand_s2;
+		padding: 12px 30px;
+		text-transform: uppercase;
+		position: relative;
+
+		h3 {
+			color: $white;
+		}
+
+		.ups-help_button {
+			text-transform: none;
+			color:$white;
+			text-decoration: none;
+			line-height: 20px;
+			position: absolute;
+			display: block;
+			top: 0%;
+			height: 100%;
+			line-height: 46px;
+			padding: 0 30px;
+			background: none;
+			border:0;
+			#{$opposite-direction}: 0;
+			@include transition-property(all);
+			@include transition-duration($main-transition-speed);
+
+			&:before{
+				font-size: 18px;
+				float: $opposite-direction;
+				position: relative;
+				top: 10px;
+				@if $text-direction == ltr {
+					margin:2px 0 0 5px;
+				} @else {
+					margin:2px 5px 0 0;
+				}
+			}
+
+			&:hover {
+				//color: $white;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// BODY
+	// ----------------------------------
+	.ups-module_panel {
+		background: $white;
+		text-align: $default-float;
+		padding: $margin_3 $grid-gutter-width;
+		@include pie-clearfix;
+
+		.ups-help_panel {
+			display: none;
+			margin: 0;
+			padding: $margin_3 20px;
+			p {
+				padding: $margin_4 0;
+				margin: 0;
+				border:1px solid $ups_stone;
+				border-right: 0;
+				border-left: 0;
+				text-align: $default-float;
+			}
+			&.ups-active {
+				display: block;
+			}
+		}
+
+		.ups-disabled {
+			//TODO
+		}
+
+		.ups-form_group {
+			position: relative;
+			width: 100%;
+			//max-width: 450px;
+			margin-bottom: 30px;
+
+			.input-group .ups-form_input {
+				width: 100%;
+			}
+		}
+
+		.ups-form_link {
+			position: absolute;
+			top:0;
+			color:$black_s3;
+			text-decoration: underline;
+			@if $text-direction == ltr {
+				right:0;
+			} @else {
+				left:0;
+			}
+			@include transition-property(all);
+			@include transition-duration($main-transition-speed);
+
+			&:hover {
+				color: $black_s1;
+			}
+		}
+
+		.ups-ship-by {
+			margin-top: 0;
+			margin-bottom: $margin_3;
+
+			.ship-by_calendar {
+				float: none;
+
+				.ship-by_calendar_datepicker {
+					//display: block;
+				}
+			}
+		}
+	}
+
+
+
+	// SVP
+	// ----------------------------------
+	aside & {
+		width: auto;
+		margin: 0 -20px;
+
+		.ups-module_header {
+			padding: 14px 20px;
+
+			.ups-help_button{
+				padding: 0 15px;
+			}
+		}
+
+		.ups-module_panel {
+			padding: $margin_3 20px 0;
+			//border: none;
+			//border-top: 0;
+			.ups-help_panel {
+				margin: 0;
+				margin-bottom: $margin_3;
+				padding: 0 20px;
+			}
+			.ups-form_doubleButton {
+				width: 100%;
+				max-width: 100%;
+				padding: 12px 0 10px;
+
+				&:last-child {
+					margin-bottom: $margin_3;
+				}
+			}
+
+			.ups-subsection-alt & {
+				border: none;
+			}
+		}
+	}
+
+	@media #{$media-mediumMid} {
+		&, aside & {
+			width: auto;
+
+			.ups-module_header {
+				a { #{$opposite-direction}: 60px; }
+			}
+		}
+	}
+
+	@media #{$media-small} {
+		&, aside & {
+			width: auto;
+
+			.ups-module_header {
+				padding: 14px 20px;
+				margin: 0 -20px;
+
+				.ups-help_button {
+					padding: 0 15px;
+				}
+			}
+
+			.ups-module_panel {
+				padding: $margin_3 20px 0;
+				border: none;
+				margin: 0 -20px;
+
+				.ups-help_panel {
+					margin: 0;
+					margin-bottom: $margin_3;
+					padding: 0 20px;
+				}
+				.ups-form_doubleButton {
+					width: 100%;
+					max-width: 100%;
+					padding: 12px 0 10px;
+
+					&:last-child {
+						margin-bottom: $margin_3;
+					}
+				}
+
+				.ups-subsection-alt & {
+					border: none;
+				}
+			}
+		}
+	}
+
+	// HELP
+	// ----------------------------------
+	&.ups-help_show{
+		.ups-help_button {
+			background: $white;
+		}
+
+		.ups-help_panel {
+			display: block;
+			padding-bottom: 0;
+			padding-top: 0;
+			margin-bottom: $margin_3;
+		}
+	}
+}
+
+// GROUPING
+// ----------------------------------
+.ups-group {
+	margin-bottom: $margin_4;
+
+	.ups-group_label {
+		font-family: $sans-bd;
+        font-weight: normal;
+        color: $black_s4;
+        font-size: 1em;
+		line-height: inherit;
+		margin: 0 0 $margin_5;
+	}
+
+	.ups-group_value {
+		line-height: 35px;
+	}
+
+	&.ups-group_condensed p {
+		margin-bottom: 0;
+	}
+
+	&.ups-group_condensed p.ups-form_label, &.ups-group_condensed p.ups-group_label {
+		margin-bottom: 5px;
+	}
+
+	address {
+		margin-bottom: 15px;
+	}
+
+
+}
+
+.reCAPTCHA {
+	margin: 50px 0 30px;
+}
+
+.ups-indent-left {
+	margin-#{$default-float}: 6%;
+}
+address.ups-address_condensed {
+	margin-bottom: 0;
+}
+
+// LINK ICONS
+// ----------------------------------
+.ups-icon-questioncircle,
+.ups-icon-print,
+.ups-icon-time,
+.ups-icon-plane,
+.ups-icon-pluscircle,
+.ups-icon-edit,
+.ups-icon-chevronright,
+.ups-icon-2chevronright,
+.ups-icon-arrowright,
+.ups-icon-chevronleft,
+.ups-icon-2chevronleft,
+.ups-icon-arrowleft,
+.ups-icon-list,
+.ups-icon-grid,
+.ups-icon-xcircle {
+	display: inline-block;
+
+	-webkit-appearance: none;
+	border-radius: 0;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+
+	&:hover {
+		color: $black_s1;
+		text-decoration: underline;
+	}
+	&:before {
+		line-height: 1.1;
+		top: -1px;
+		position: relative;
+	}
+}
+
+// LEFT ICONS
+.ups-icon-questioncircle,
+.ups-icon-print,
+.ups-icon-time,
+.ups-icon-plane,
+.ups-icon-pluscircle,
+.ups-icon-edit,
+.ups-icon-chevronright,
+.ups-icon-2chevronright,
+.ups-icon-arrowright,
+.ups-icon-list,
+.ups-icon-grid,
+.ups-icon-xcircle {
+	&:before {
+		float: $opposite-direction;
+		margin-#{$default-float}: $margin_5;
+	}
+}
+
+// RIGHT ICONS
+.ups-icon-chevronleft,
+.ups-icon-2chevronleft,
+.ups-icon-arrowleft,
+.ups-icon-timeleft,
+.ups-icon-planeleft, {
+	&:before {
+		float: $default-float;
+		margin-#{$opposite-direction}: $margin_5;
+	}
+}
+.ups-indent {
+	padding-#{$default-float}: 20px;
+}
+
+.ups-table .ups-help {
+	float: none;
+
+	.ups-icon-questioncircle {
+		position: relative;
+	}
+}
+
+.ups-no_label {
+	margin-top: 17px + $margin_5;	//height of label plus label margin
+
+	@media #{$media-small} {
+		margin-top: 0;
+	}
+	&.ups-no_label_plus {
+		margin-top: 25px + $margin_5;
+	}
+
+}
+
+.col-xs-1,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12 {
+	.ups-no_label {
+		margin-top: 17px + $margin_5;	//height of label plus label margin
+
+		&.ups-no_label_plus {
+			margin-top: 25px + $margin_5;
+		}
+	}
+
+}
+
+.ups-cta_inline {
+	@media #{$media-small} {
+		margin-bottom: $margin_3;
+	}
+}
+
+/*ul.ups-icon_list {
+	@include unlist;
+	padding-#{$default-float}: 0;
+
+	a, button {
+		padding: 10px 0;
+		padding-#{$default-float}: 28px;
+		position: relative;
+		display: block;
+		line-height: 1.5;
+		font-family: $sans-bd;
+
+		@media #{$media-small} {
+			padding-top: $margin_4;
+			padding-bottom: $margin_4;
+		}
+
+		&:before {
+			content: '';
+			background-image: url('/assets/resources/images/social.jpg');
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			#{$default-float}: 0;
+			top: 50%;
+			margin-top: -12px;
+
+			@media #{$highres} {
+				background-image: image-url('social_2x.jpg');
+				background-size: 20px 120px;
+			}
+		}
+
+		&.ups-icon-facebook:before 	{ background-position: 0 0; }
+		&.ups-icon-twitter:before  	{ background-position: 0 -20px; }
+		&.ups-icon-linkedin:before 	{ background-position: 0 -40px; }
+		&.ups-icon-youtube:before  	{ background-position: 0 -60px; }
+		&.ups-icon-amazon:before 	{ background-position: 0 -80px; }
+		&.ups-icon-google:before	{ background-position: 0 -100px; }
+	}
+
+	&.ups-list_horizontal li {
+		display: inline-block;
+		margin-#{$opposite-direction}: $margin_3;
+
+		@media #{$media-small} {
+			display: block;
+		}
+	}
+}*/
+
+.ups-status {
+	display: inline-block;
+	margin-bottom: $margin_5;
+	font-size: 1.2em;
+	font-weight: 700;
+	text-transform: uppercase;
+
+	&:before {
+		@include ups-icons;
+		position: relative;
+		top: 2px;
+		margin-#{$opposite-direction}: 5px;
+	}
+
+	&.ups-status_good {
+		color: $grass_s3;
+
+		&:before {
+			content: '\2713';
+		}
+	}
+	&.ups-status_bad {
+		color: $red;
+
+		&:before {
+			content: '\2717';
+		}
+	}
+}
+
+.ups-new-window {
+	.ups-icon-newwindow {
+		position: relative;
+		display: inline-block;
+		margin: 0 5px;
+		font-size: 0.8em;
+	}
+}
+
+.ups-input_wrapper > input + label + .ups-inner_content {
+	margin-#{$default-float}: 32px;
+}
+
+label > address {
+	margin-bottom: 10px;
+
+	p {
+		margin: 0 0 5px;
+	}
+}
+
+/*
+	CAC indent for different address
+*/
+.ups-cac_address {
+	margin-left: 15px;
+}
+
+hr {
+	border-color: $stone_60;
+}
+
+.ups-toggle_view_content {
+	background-color: $stone_40;
+}
+.panel > .panel-body .ups-toggle_view_content {
+	margin-#{$default-float}: -15px;
+	margin-#{$opposite-direction}: -15px;
+	padding: 20px;
+}
+
+//Empty Circle "icon"
+.ups-empty_circle {
+    height: 12px;
+    width: 12px;
+    border: 1px solid $black;
+    border-radius: 16px;
+    display: inline-block;
+    margin-#{$opposite-direction}: 4px;
+    position: relative;
+    top: -1px;
+    #{$default-float}: 2px;
+    transform: scale(1.3);
+    -ms-transform: scale(1.3);
+}
+
+
+/*
+	Previous Page Link, moved here from PPC
+*/
+ .ups-previous_page {
+        margin-bottom: 25px;
+        display: inline-block;
+        text-transform: uppercase;
+        text-decoration: none;
+        line-height: 45px;
+		color: $black_s3;
+        /*&:before {
+            content: "\e201";
+            @include ups-icons;
+            font-size: 1.2em;
+            margin-#{$opposite-direction}: 8px;
+        }*/
+        &:hover {
+            text-decoration: none;
+        }
+		@media #{$media-medium} {
+            padding-#{$default-float}: 10px;
+        }
+		.ups-icon-chevronleft {
+		    position: relative;
+			top: 5px;
+			font-size: 1.2em;
+		}
+        /*.ups-small-fontIcon {
+            height: 25px;
+            overflow: visible;
+            &:before {
+                font-size: 1.3em;
+            }
+            &.ups-icon-informationcircle {
+                height: 30px;
+                &:before {
+                    font-size: 1em;
+                }
+            }
+        }*/
+    }
+
+    .ups-list_style_none {
+		@include unlist;
+		margin-bottom: 10px;
+    };

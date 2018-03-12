@@ -1,0 +1,90 @@
+---
+title: ups my choice - verify identity
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+	{{> background_modal_content }}
+
+<div class="appLvl mod modal dialog">
+  <div class="appHead clearfix">
+    <h2>{{title}}</h2>
+    <ul>
+      <li>
+        <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+      </li>
+    </ul>
+  </div>
+  <div class="appBody">
+    <p>maintaining the security of your shipments is extremely important to us.  to prevent others from fraudulently redirecting your homebound packages, please verify your identity by answering the following questions.</p>
+    <dl class="outHozFlex clearfix group">
+      <dt>
+        <label for="repl_id">recipient name:</label>
+      </dt>
+      <dd>
+        <label for="repl_id">john smith</label>
+      </dd>
+    </dl>
+    <p>to verify your identity, please answer the following questions.</p>
+    <dl class="lstBullet">
+      <dt>which of the following streets have you previously or currently used as your address?</dt>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        street name</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        street name</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        street name</dd>
+    </dl>
+    <dl class="lstBullet">
+      <dt>which of the following is/was your phone number?</dt>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        nnn-nnn-nnnn</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        nnn-nnn-nnnn</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        nnn-nnn-nnnn</dd>
+    </dl>
+    <dl class="lstBullet">
+      <dt>which of the following cities have you never lived in or used as your address?</dt>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        city name</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        city name</dd>
+      <dd>
+        <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id">
+        city name</dd>
+    </dl>
+  </div>
+  <div class="appFooter">
+    <div class="btnBar alignCenter">
+      <input name="" type="button" value="cancel" class="btn">
+      <input name="" type="button" value="submit" class="btnArw">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+
+</script>
+</div>

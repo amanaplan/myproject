@@ -1,0 +1,224 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="ups-label_option">
+            <div class="ups-label_option_icon ups-big_icon_circle">
+                <!-- <img src="/assets/resources/images/placeholder-icon.jpg" width="60" height="60" alt="Placeholder"> -->
+				<span class="icon ups-icon-print" aria-hidden="true"></span>
+            </div>
+            <div class="ups-label_option_description">
+                <p>Send your label to your printer now.</p>
+                <!--<p>Send it to your printer now.</p>-->
+            </div>
+            
+            <button type="button" class="ups-cta ups-cta_primary ups-label_option_action" id="printLabelBtn" aria-expanded="false" aria-controls="printTileView">Print Label</button>
+            
+            <div class="ups-toggle_view_state ups-toggle_view_left ups-label_option_expand" id="printTileView">
+                <div class="ups-toggle_view_content">
+                    <h3>Success</h3>
+                    <p>You are all set to schedule a pickup or drop-off at a UPS location near you. You can also email the label to yourself for backup.</p>
+                    <div class="ups-form_ctaGroup">
+                        <button type="button" class="ups-cta ups-cta_primary">Got it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="ups-label_option">
+            <div class="ups-label_option_icon ups-big_icon_circle">
+                <!-- <img src="/assets/resources/images/placeholder-icon.jpg" width="60" height="60" alt="Placeholder"> -->
+				<span class="icon ups-icon-email" aria-hidden="true"></span>
+            </div>
+            <div class="ups-label_option_description">
+                <p>Send a digital copy of your package label to your inbox for later.</p>
+                <!--<p>Send a digital copy of your package label to your inbox for later.</p>-->
+            </div>
+            
+            <button type="button" class="ups-cta ups-cta_primary ups-label_option_action" id="emailLabelBtn" aria-expanded="false" aria-controls="emailTileView">Email Label</button>
+            
+            <div class="ups-toggle_view_state ups-toggle_view_right ups-label_option_expand" id="emailTileView">
+                <div class="ups-toggle_view_content">
+                    <div id="emailEntryContainer">
+                        {{#if error}}
+                            {{>A03_page_level_error}}
+                        {{/if}}
+                        <!--<h3>Enter Email Address *</h3>-->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="return_email" class="ups-form_label">
+                                        Enter Email Address
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input name="return_email"
+                                            class="ups-form_input{{#if error}} ng-touched ng-invalid ng-dirty{{/if}}"
+                                            {{#if error}}aria-describedby="return_email_error"{{/if}}
+                                            id="return_email"
+                                            aria-required="true"
+                                            required
+                                            type="text">
+                                    </div>
+                                    {{#if error}}
+                                        {{>A11_field_lvl_error error_return_email }}
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <!--<div class="col-md-7">
+                                
+                            </div>-->
+                        </div>
+                        <div class="ups-form_ctaGroup">
+                            <button type="button" class="ups-cta ups-cta_primary" id="emailSubmitBtn">Submit</button>
+                            <button type="button" class="ups-cta ups-cta_secondary" id="closeEmailTileViewBtn">Cancel</button>
+                        </div>
+                    </div>
+                    
+                    <div id="emailSuccessContainer">
+                        <h3>Success</h3>
+                        <p>Your label has been sent to (myaddress@email.com). Now you can schedule a pickup or drop-off at a UPS location near you.</p>
+                        <div class="ups-form_ctaGroup">
+                            <button type="button" class="ups-cta ups-cta_primary">Got it</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="ups-label_option">
+            <div class="ups-label_option_icon">
+                <img src="/assets/resources/images/shipping_packages/syncsticker_icon.svg" width="60" height="60" alt="sync sticker barcode">
+				<!-- <span class="icon ups-icon-email"></span> -->
+            </div>
+            <div class="ups-label_option_description">
+                <p>Get a mobile shipping barcode sticker from a UPS Dropbox to synce to your package.</p>
+                <!--<p>Get a mobile shipping barcode sticker from a UPS Drop Box and sync it with your package.</p>-->
+            </div>
+            
+            <button type="button" class="ups-cta ups-cta_primary ups-label_option_action" id="syncStickerBtn" aria-expanded="false" aria-controls="syncStickerTileView">Sync Sticker Barcode</button>
+            
+            <div class="ups-toggle_view_state ups-toggle_view_left ups-label_option_expand" id="syncStickerTileView">
+                <div class="ups-toggle_view_content">
+                    <div id="barcodeEntryContainer">
+                        <!--<h3>Enter Your Barcode</h3>
+                        <p>Please enter the 11-digit code found on your mobile shipping barcode sticker. <a href="#" class="ups-link">Learn more</a></p>-->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group">
+                                    <label for="return_barcode" class="ups-form_label">
+                                        Enter Your Barcode
+                                    </label>
+                                    <p class="ups-form_subheader">Please enter the 11-digit code found on your mobile shipping barcode sticker. <a href="#" class="ups-link">Learn more</a></p>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input name="return_barcode"
+                                            class="ups-form_input"
+                                            id="return_barcode"
+                                            type="text"
+                                            placeholder="Enter barcode here">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-7">-->
+                                
+                            <!--</div>-->
+                        </div>
+                        <div class="ups-form_ctaGroup">
+                                    <button type="button" class="ups-cta ups-cta_primary" id="barcodeSubmitBtn">Submit</button>
+                                    <button type="button" class="ups-cta ups-cta_secondary" id="closeBarcodeTileViewBtn">Cancel</button>
+                                </div>
+                    </div>
+                    
+                    <div id="barcodeSuccessContainer">
+                        <h3>Success</h3>
+                        <p>Your package has been synced with your shipping order. Make sure the mobile shipping barcode sticker is attached to your package before dropping-off at a UPS Drop Box or The UPS Store&reg;. <a href="#" class="ups-link">Learn more</a></p>
+                        <p><strong>Tracking Number:</strong> 1Z1234567891234567</p>
+                        <p><strong>Barcode Sticker Number:</strong> Z9123456789</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{{!-- <div class="ups-list ups-wrap">
+    <div class="ups-wrap_inner">
+        <h2 class="ups-article-header">
+            Choose your label option
+        </h2>
+        <div class="list-component">
+            <!-- ************************************************************************************ -->
+            <!-- M15 List Multi                                                                       -->
+            <!-- ************************************************************************************ -->
+            <div class="list_multi">
+                <div class="list_row clearfix">
+                
+                    <div class="list_detail">
+                        <div class="list-image-container left">
+                            <div class="ups-big_icon_circle">
+                                <span class="icon ups-icon-print" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="list-text-container left">
+                            <h2>Print Label</h2>
+                            <div class="list-desc-container">
+                                <p>Send it to your printer now.</p>
+                                <button type="button" class="ups-cta ups-cta_primary">Print Label</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ups-toggle_view_state ups-toggle_view_left">
+                        <h3>Success</h3>
+                        <p>You are all set...</p>
+                    </div>
+                    
+                    <div class="list_detail">
+                        <div class="list-image-container left">
+                            <div class="ups-big_icon_circle">
+                                <span class="icon ups-icon-email" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="list-text-container left">
+                            <h2>Email Label</h2>
+                            <div class="list-desc-container">
+                                <p>Send a digital copy of your package label to your inbox for later.</p>
+                                <button type="button" class="ups-cta ups-cta_primary">Email Label</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="list_detail">
+                        <div class="list-image-container left">
+                            <div class="ups-big_icon_circle">
+                                <img src="/assets/resources/images/placeholder-icon.jpg" alt="Placeholder">
+                                <!--<span class="icon ups-icon-email" aria-hidden="true"></span>-->
+                            </div>
+                        </div>
+                        <div class="list-text-container left">
+                            <h2>Sticker Scan</h2>
+                            <div class="list-desc-container">
+                                <p>Get a mobile shipping barcode sticker from a UPS Drop Box and sync it with your package.</p>
+                                <button type="button" class="ups-cta ups-cta_primary">Sync Sticker Barcode</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+
+{{!-- {{>M15_list labelOptions }} --}}

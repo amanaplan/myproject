@@ -1,0 +1,67 @@
+<!-- ************************************************************************************ -->
+<!-- M13 LEGACY TABS                                                                      -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M13 LEGACY TABS: -LAYOUT-
+********************************************************************************
+
+| 60px height Tab
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M13 LEGACY TABS: DESKTOP vs MOBILE
+********************************************************************************
+
+Same architecture from M08, where mobile tab-headers are in ups-tab-content.
+However, there is no content
+
+********************************************************************************
+--}}
+
+<div class="ups-legacy-tabs">
+
+    <div class="ups-tab-headers ups-wrap">
+        <div class="ups-wrap_inner">
+            {{#each this}}
+            {{#compare active "===" false}}
+            <a class="ups-tab-move" href="{{link}}">
+            {{/compare}}
+                <span class="{{#compare active "===" true}}ups-tab-move{{/compare}} tab-header{{#if @last}}{{else}}{{#tabNextChild @index ../../this}} hide-tab-border{{/tabNextChild}}{{/if}}" data-tab="{{tab}}" {{#compare active "===" true}} data-open="true" {{/compare}}{{#compare active "===" false}} data-open="false" {{/compare}} style="border-top-color:{{color}}" {{#compare active "===" true}} tabindex="0" {{/compare}}>
+                    <span class="tab-title">{{tab}}</span>
+                    <span class="tab-border"></span>
+                </span>
+            {{#compare active "===" false}}
+            </a>
+            {{/compare}}
+            {{/each}}
+        </div>
+    </div>
+    <!-- @end ups-tab-header for desktop -->
+
+    {{#each this}}
+    <div class="ups-tab-content{{#if @first}} top-tab{{/if}}" data-tab="{{tab}}"{{#compare active "===" true}} data-open="true"{{/compare}}{{#compare active "===" false}} data-open="false" {{/compare}}>
+        {{#compare active "===" false}}
+        <a href="{{link}}">
+        {{/compare}}
+        <div class="tab-header" data-tab="{{tab}}" style="border-top-color:{{color}}">
+            <div class="tab-title">
+                {{tab}}
+            </div>
+            <span class="ups-med_show">
+                <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Expand {{tab}}</span>
+            </span>
+        </div>
+        {{#compare active "===" false}}
+        </a>
+        {{/compare}}
+        <!-- @end ups-tab-header for mobile -->
+    </div>
+    {{/each}}
+
+</div>

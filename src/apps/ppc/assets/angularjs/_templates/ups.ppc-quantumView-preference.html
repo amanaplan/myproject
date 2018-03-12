@@ -1,0 +1,62 @@
+<div class="ups-application_wrapper ups-form_wrap ups-quantum-view-pref" data-page-title="Quantum View" data-ng-controller="QuantumViewPreferenceAccordionCtrl">
+	<!--Previous Link Starts-->
+	<a point-focus="" href="#/preferencePage" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Preferences
+	</a>
+	<!--Previous Link Ends-->
+	<form error-on-submit
+		name="ups_quantumView" novalidate>
+        <h2>Quantum View Notifications</h2>
+		<div class="ups-accordion_list">
+			<div class="ups-accordion_wrapper">
+				<div class="ups-accordion_content">
+					<uib-accordion close-others="oneAtATime"> <uib-accordion-group
+						data-ng-repeat="group in groupOne"
+						template-url="/app_assets/templates/ups.accordion.group.html"
+						is-open="group.active">
+						<uib-accordion-heading>
+						{{group.title}}
+						<span class="icon" aria-hidden="true"
+						data-ng-class="{'ups-icon-minus ups-active': group.active, 'ups-icon-plus': !group.active}"></span>
+						<span class="ups-readerTxt" ng-if="group.active">collapse</span>
+						<span class="ups-readerTxt" ng-if="!group.active">expand</span>
+						</uib-accordion-heading>
+					<div data-ng-include="group.content"></div>
+					</uib-accordion-group> </uib-accordion>
+				</div>
+			</div>
+		</div>
+        <h2>Quantum View Administration</h2>
+        <div class="ups-accordion_list" data-ng-if="!notEnrolledDiv">
+			<div class="ups-accordion_wrapper">
+				<div class="ups-accordion_content">
+					<uib-accordion close-others="oneAtATime"> <uib-accordion-group
+						data-ng-repeat="group in groupTwo"
+						template-url="/app_assets/templates/ups.accordion.group.html"
+						is-open="group.active">
+						<uib-accordion-heading>
+						{{group.title}}
+						<span class="icon" aria-hidden="true"
+						data-ng-class="{'ups-icon-minus ups-active': group.active, 'ups-icon-plus': !group.active}"></span>
+						<span class="ups-readerTxt" ng-if="group.active">collapse</span>
+						<span class="ups-readerTxt" ng-if="!group.active">expand</span>
+						</uib-accordion-heading>
+					<div data-ng-include="group.content"></div>
+					</uib-accordion-group> </uib-accordion>
+				</div>
+			</div>
+		</div>
+        <div class="ups-cms-demo" data-ng-if="notEnrolledDiv" style="padding:130px">
+            <p class="text-center">
+                For non-enrolled users, this page shows information about Quantum View, and offers the ability to enroll for QV access.
+            </p>
+        </div>
+        <!-- Do Not Include In Production -->
+        <div class="ups-cms-demo">
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="notEnrolledDiv = false;">QVA - Enrolled</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="notEnrolledDiv = true;">QVA - Not Enrolled</button>
+        </div>
+        <!-- Do Not Include In Production -->
+	</form>
+</div>

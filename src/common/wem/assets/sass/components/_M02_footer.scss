@@ -1,0 +1,491 @@
+// ----------------------------------------------------
+// FOOTER
+// ----------------------------------------------------
+
+#ups-footerWrap {
+    background: $ups_brown;
+    overflow: hidden;
+    padding: 0 60px;
+}
+
+#ups-footer {
+    color: $white;
+    padding: 24px 0 48px;
+    @include pie-clearfix;
+
+    .ups-footer_colsCont {
+        position: relative;
+        @include pie-clearfix;
+
+        &:before {
+            content: '';
+            position: absolute;
+            height: 300%;
+            width: 200%;
+            top: -100%;
+            #{$opposite-direction}: 75%;
+            background: $black_s3;
+        }
+    }
+
+    .ups-footer_contact {
+        margin-top: 30px;
+        position: relative;
+
+        &:before {
+            content: "";
+            height: 1px;
+            background: $white;
+            position: absolute;
+            top: 0;
+            #{$opposite-direction}: -($grid-gutter-width/2);
+            width: 800%;
+        }
+
+        a {
+            position: relative;
+            font-family: $sans-bd;
+            padding: 14px 0;
+            padding-#{$default-float}: 40px;
+
+            .icon:before {
+                color: $ups_gold;
+                position: absolute;
+                #{$default-float}: 0;
+                font-size: 1.3em;
+                line-height: 1;
+                top: 50%;
+                margin-top: -11px;
+                text-decoration: none;
+            }
+            .ups-icon-email {
+                position: static;
+            }
+            &:hover:before {
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            &:after {
+                content: "";
+                height: 1px;
+                background: $white;
+                position: absolute;
+                bottom: 0;
+                #{$opposite-direction}: -($grid-gutter-width/2);
+                width: 800%;
+            }
+        }
+        li a{
+          span.icon{
+            &.ups-link_newwindow:before{
+              position:relative;
+              color:white;
+              margin-left:5px;
+              font-size: 11.2px;
+            }
+          }
+          span.ups-icon-locator{
+            &:before{
+              content: "\e62d";
+            }
+          }
+        }
+    }
+
+
+    h2 {
+        font-family: $serif;
+        font-size: 1.2em;
+        border-bottom: 1px solid $ups_gold;
+        padding-bottom: 7px;
+        margin: 20px 0 15px;
+        text-transform: uppercase;
+    }
+
+    ul {
+        @include unlist;
+
+        a {
+            display: block;
+            line-height: 1.5;
+            color: $white;
+            padding: 10px 0;
+
+            &.ups-more {
+                font-family: $sans-bd;
+
+                .ups-rtl & {
+                    font-family: $sans;
+                    font-weight: bold;
+                }
+            }
+
+            &[class^="ups-footer_social-"],
+            &[class*=" ups-footer_social-"] {
+                padding-#{$default-float}: 28px;
+                position: relative;
+
+                &:before {
+                    content: '';
+                    background-image: image-url('social.jpg');
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    #{$default-float}: 0;
+                    top: 50%;
+                    margin-top: -12px;
+
+                    @media #{$highres} {
+                        background-image: image-url('social_2x.jpg');
+                        background-size: 20px 120px;
+                    }
+                }
+            }
+
+            &.ups-footer_social-facebook:before { background-position: 0 0; }
+            &.ups-footer_social-twitter:before  { background-position: 0 -20px; }
+            &.ups-footer_social-linkedin:before { background-position: 0 -40px; }
+            &.ups-footer_social-youtube:before  { background-position: 0 -60px; }
+        }
+    }
+
+    .ups-footer_legal {
+        clear: both;
+        width: 75%;
+        float: $opposite-direction;
+        padding: 0;
+        padding-#{$default-float}: 12px;
+        padding-#{$opposite-direction}: 18px;
+        font-size: 0.85em;
+
+        .ups-footer_links {
+            margin-top: 40px;
+            overflow: hidden;
+
+            ul {
+                // display: inline;
+                margin-#{$default-float}: -20px;
+            }
+
+            li {
+                padding: 0;
+                padding-#{$default-float}: 20px;
+                margin: -2px 0 4px;
+                white-space: nowrap;
+                line-height: 17px;
+                position: relative;
+                display: inline-block;
+
+                &:before {
+                    content: '';
+                    width: 1px;
+                    height: 100%;
+                    background: $white;
+                    position: absolute;
+                    bottom: 0;
+                    #{$default-float}: 10px;
+
+                    @media #{$media-medium} {
+                        display: none;
+                    }
+                }
+
+                a {
+                    display: inline;
+                    padding: 0;
+  
+                }
+            }
+        }
+
+        // .ups-footer_disclaimer {
+        //     display: inline;
+        // }
+    }
+
+    &.ups-footer_light {
+        .ups-footer_links {
+            ul {
+                float: $opposite-direction;
+                margin: 0;
+                max-width: 55%; //updated for TFS 403163
+            }
+
+            ul {
+                // display: inline;
+                margin-#{$default-float}: 0;
+                margin-#{$opposite-direction}: -20px;
+            }
+
+            li {
+                padding-#{$default-float}: 0;
+                padding-#{$opposite-direction}: 20px;
+
+                &:before {
+                    #{$default-float}: auto;
+                    #{$opposite-direction}: 10px;
+
+                    @media #{$media-medium} {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .ups-footer_disclaimer {
+            float: $default-float;
+            max-width: 40%; //updated for TFS 403163
+        }
+    }
+
+}
+
+// MEDIUM VIEWPORT
+// ----------------------------------------------------
+@media #{$media-medium} {
+    #ups-footerWrap {
+        background: $black_s3;
+    }
+
+    #ups-footer {
+
+        padding: 0;
+
+        .ups-footer_colsCont:before { display: none; }
+
+        .ups-footer_contact {
+            border: 0px;
+            margin: 0;
+            padding-#{$default-float}: 45px;
+           // &:before { display: none; }
+
+            a {
+                padding-#{$default-float}: 0;
+
+                &:after { display: none; }
+
+                .icon:before {
+                    -ms-transform: translateX(-100%) translateY(-50%);
+                    -moz-transform: translateX(-100%) translateY(-50%);
+                    -webkit-transform: translateX(-100%) translateY(-50%);
+                    transform: translateX(-100%) translateY(-50%);
+                    top: 50%;
+                    margin: 0 -13px;
+                }
+            }
+            &:before {
+                display:none;
+            }
+        }
+
+        h2 {
+            font-family: $sans;
+            text-transform: none;
+            border-bottom: 1px solid $white;
+            background: $ups_brown;
+            margin: 0 (-$page-margin);
+            padding: 22px $page-margin;
+            position: relative;
+
+            &.ups-active {
+                .ups-iconAlone:before {
+                    content: "\e653";
+                }
+            }
+
+            button {
+                @include unbutton;
+                position: absolute;
+                #{$opposite-direction}: $page-margin;
+                top: 50%;
+                width: 44px;
+                height: 44px;
+                line-height: 54px;
+                font-size: 1.1em;
+                margin: -22px 0 0;
+                margin-#{$opposite-direction}: -10px;
+                text-align: center;
+                overflow:hidden;
+            }
+
+        }
+
+        .ups-footer_custserv h2 {
+            background: none;
+
+            .icon:before {
+                @include ups-icons;
+                content: "\e660";
+                color: $ups_gold;
+                line-height: 0;
+                font-size: 1.3em;
+                position: relative;
+                top: 5px;
+                margin-#{$opposite-direction}: 9px;
+
+            }
+        }
+
+        .ups-footer_col {
+            $flex-legacy-enabled: true;
+            width: 100%;
+            @include display-flex;
+            @include flex-direction(column);
+            $flex-legacy-enabled: false;
+        }
+
+        
+
+        .ups-footer_legal {
+            clear: both;
+            width: 100%;
+            float: none;
+            padding: 0;
+            font-size: 1em;
+
+            .ups-footer_links {
+                margin: 0;
+                overflow: visible;
+                ul {
+                    display: block;
+                    float: none;
+                    max-width: none;
+                    margin: 0;
+                }
+                li {
+                    padding: 0;
+                    margin: 0;
+                    white-space: normal;
+                    line-height: 1;
+                    display: block;
+
+                    &:after { display: none; }
+
+                    a {
+                        display: block;
+                    }
+                }
+            }
+
+            .ups-footer_disclaimer {
+                display: block;
+                padding: 24px 0;
+                text-align: center;
+                max-width: none;
+            }
+
+            .ups-feedback_link {
+                display: block;
+                padding: 24px $page-margin;
+                margin: 0 (-$page-margin);
+                color: $white;
+                text-align: center;
+                border-bottom: 1px solid $white;
+                font-size: 1.2em;
+
+                &:before {
+                    color: $ups_gold;
+                    position: relative;
+                    font-size: 1.8em;
+                    line-height: 0;
+                    margin-#{$opposite-direction}: 8px;
+                    top: 10px;
+                }
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                     text-decoration: none;
+                }
+            }
+        }
+
+
+        .ups-footer_legal .ups-footer_links ul,
+        ul {
+            display: none;
+            margin: 0 (-$page-margin);
+            padding: 0  $page-margin 0 ($page-margin + 16);
+            max-height: 0;
+            overflow: hidden;
+            @include transition-property(all);
+            @include transition-duration(0.3s);
+
+            &.ups-active {
+                display:block;
+                max-height: 1000px;
+                padding-top: 22px;
+                padding-bottom: 22px;
+                border-bottom: 1px solid $white;
+
+                &.ups-footer_contact {
+                    border-bottom: 0px;
+                }
+            }
+
+            a {
+                line-height: 1;
+                padding: 22px 0;
+
+                &[class^="ups-footer_social-"],
+                &[class*=" ups-footer_social-"] {
+                    padding-#{$default-float}: 36px;
+                    position: relative;
+
+                    &:before {
+                        content: '';
+                        background-image: image-url('social.jpg');
+                        width: 21px;
+                        height: 21px;
+                        position: absolute;
+                        #{$default-float}: 0;
+                        top: 50%;
+                        margin-top: -14px;
+                        background-size: 21px 129px;
+
+                        @media #{$highres} {
+                            background-image: image-url('social_2x.jpg');
+                            background-size: 21px 128px;
+                        }
+                    }
+
+                    &.ups-footer_social-facebook:before { background-position: 0 0; }
+                    &.ups-footer_social-twitter:before  { background-position: 0 -22px; }
+                    &.ups-footer_social-linkedin:before { background-position: 0 -43px; }
+                    &.ups-footer_social-youtube:before  { background-position: 0 -65px; }
+                }
+            }
+        }
+
+    }
+}
+
+
+// SMALL VIEWPORT
+// ----------------------------------------------------
+@media #{$media-small} {
+    #ups-footerWrap {
+        padding: 0 20px;
+    }
+    #ups-footer {
+        h2 {
+            margin: 0 (-$page-margin-sm);
+            padding: 22px $page-margin-sm;
+
+            button {
+                #{$opposite-direction}: $page-margin-sm;
+            }
+        }
+
+        ul {
+            margin: 0 (-$page-margin-sm);
+            padding: 0  $page-margin-sm 0 ($page-margin-sm + 16)
+        }
+
+        .ups-footer_legal {
+            .ups-feedback_link {
+                padding: 24px $page-margin-sm;
+                margin: 0 (-$page-margin-sm);
+            }
+        }
+    }
+}

@@ -1,0 +1,175 @@
+<!-- Beginning of Remove User Permissions Modal -->
+<ups-modal modal-title="Remove User Permissions" #removeUserPermissionsModal></ups-modal>
+<!-- End of Remove User Permissions Modal -->
+
+<!-- Beginning of Users -->
+<div class="ups-section">
+    <!-- Current Users Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Users</h2>
+    </div>
+    <!-- End of Users Heading -->
+    <div class="ups-group">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="searchUsers">Search Users</label>
+                    <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                        <input class="ups-form_input" id="searchUsers" name="searchUsers" type="search">
+                        <button class="ups-input_action ups-input_action_invert"> <span aria-hidden="true" class="icon ups-icon-search"></span> <span class="ups-readerTxt">Click to search for current users and their permissions in the list below</span> </button>
+                    </div>
+                </div>
+                <div class="ups-form_ctaGroup">
+                    <button type="button" [attr.aria-expanded]="!addFiltersButton ? true: false" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-link" (click)="addFiltersButton = !addFiltersButton"><span class="icon" [ngClass]="{ 'ups-icon-plus' : addFiltersButton, 'ups-icon-minus' : !addFiltersButton}"></span><span *ngIf="addFiltersButton">Add</span><span *ngIf="!addFiltersButton">Remove</span> Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!addFiltersButton">
+        <fieldset class="ups-form_group">
+            <legend class="ups-readerTxt">
+                Filter by Permissions
+            </legend>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <ng-container *ngFor="let checkbox of filterPermissions; let i = index">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input class="ups-checkbox-custom" id="filterPermissions{{i}}" type="checkbox" value="{{i}}" name="filterPermissions"/>
+                                    <label class="ups-checkbox-custom-label" for="filterPermissions{{i}}">{{checkbox.filterPermissionsLabel}}</label>
+                                </div>
+                            </div>
+                             <div class="clearfix visible-md-block visible-lg-block" *ngIf="(i % 2) == 1"></div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_primary">Apply Filters</button>
+    </div>
+</div>
+<!-- End of Users -->
+
+<!-- Beginning of Current Users & Promotions -->
+<div class="ups-section">
+    <!-- Current Users & Promotions Heading -->
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Current Users & Permissions</h3>
+    </div>
+    <!-- End of Current Users & Promotions Heading -->
+
+    <!-- Beginning of Gray User Row #1-->
+    <div class="ups-tile">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">User:</p>
+                            <p>Jane Doe</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">Permissions:</p>
+                            <ul class="ups-ul_slim">
+                                <li>View Policies Only</li>
+                                <li>Override Ineligible returns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Beginning of Edit | Delete Button Group -->
+            <div class="col-xs-4">
+                <div class="ups-tile_btn_group pull-right text-right">
+                    <a class="ups-link" routerLink="/administration/users/edit">Edit</a>
+                    <button class="ups-link" type="button" (click)="demoRemoveUserPermissionsModal();">Remove</button>
+                </div>
+            </div>
+            <!-- End of Edit | Delete Button Group -->
+        </div>
+    </div>
+    <!-- End of Gray User Row #1-->
+
+    <!-- Beginning of Gray User Row #2 -->
+    <div class="ups-tile">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">User:</p>
+                            <p>John Black</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">Permissions:</p>
+                            <ul class="ups-ul_slim">
+                                <li>Invite/add new administrators</li>
+                                <li>Manage policies</li>
+                                <li>View History</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Beginning of Edit | Delete Button Group -->
+            <div class="col-xs-4">
+                <div class="ups-tile_btn_group pull-right text-right">
+                    <a class="ups-link" routerLink="/administration/users/edit">Edit</a>
+                    <button class="ups-link" type="button" (click)="demoRemoveUserPermissionsModal();">Remove</button>
+                </div>
+            </div>
+            <!-- End of Edit | Delete Button Group -->
+        </div>
+    </div>
+    <!-- End of Gray User Row #2 -->
+
+    <!-- Beginning of Gray User Row #3-->
+    <div class="ups-tile">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">User:</p>
+                            <p>First Last</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ups-group">
+                            <p class="ups-group_label">Permissions:</p>
+                            <ul class="ups-ul_slim">
+                                <li>No permissions on UPS</li>
+                                <li>Returns anage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Beginning of Edit | Delete Button Group -->
+            <div class="col-xs-4">
+                <div class="ups-tile_btn_group pull-right text-right">
+                    <a class="ups-link" routerLink="/administration/users/edit">Enable User</a>
+                </div>
+            </div>
+            <!-- End of Edit | Delete Button Group -->
+        </div>
+    </div>
+    <!-- End of Gray User Row #3 -->
+
+    <!-- Beginning of Button Group -->
+    <div class="ups-form_ctaGroup">
+        <a class="ups-cta ups-cta_primary" routerLink="/administration/users/createUser">Create New User</a>
+        <a class="ups-cta ups-cta_primary" routerLink="/administration/users/inviteUser">Invite User</a>
+    </div>
+    <!-- End of Button Group -->
+
+</div>
+<!-- End of Current Users & Promotions -->

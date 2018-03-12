@@ -1,0 +1,130 @@
+<ups-progress-tracker ></ups-progress-tracker>
+<div class="ups-wrap_inner">
+    <form name="NBSspaForm" novalidate>
+        <!--<div class="ups-wrap">
+            <div class="ups-wrap_inner" >-->
+
+                <div [ngClass]="{'ups-group' : !loggedin || vpSize.isSMVP}">
+                    <div class="row">
+                        <div class="col-md-5" *ngIf="loggedin">
+                            <!--<div class="row">
+                                <div class="col-sm-7">-->
+                                    <div class="ups-form_group">
+                                        <label for="select_box_1" class="ups-form_label">My Accounts</label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="select" class="ups-dropdown" id="select_box_1">
+                                                <option value="">Select One</option>
+                                                <option value="option_1">Option 1</option>
+                                                <option value="option_2">Option 2</option>
+                                                <option value="option_3">Option 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <!--</div>-->
+                                <!--<div class="col-sm-5">
+                                    <div [ngClass]="{'ups-no_label ups-no_label_plus' : vpSize.isGtXSVP && loggedin, 'ups-group' : vpSize.isXSVP}">
+                                        <a href="#" class="ups-link">See Account Details</a>
+                                    </div>
+                                </div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-6 ups-no_label ups-no_label_plus">
+                                <button class="ups-link" type="button">See Account Details</button>
+                            </div>-->
+                        </div>
+                        <div class="col-sm-3" *ngIf="!loggedin">
+                            <div>
+                                <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action" id="headerLoginLink">
+                                    <span class="icon ups-icon-lock" aria-hidden="true"></span>
+                                    Log in
+                                </a>
+                            </div>
+                        </div>
+                        <div [ngClass]="{'col-sm-9' : !loggedin, 'col-md-7' : loggedin}">
+                            <!--<div class="row">
+                                <div class="col-md-6">-->
+                                    <div [ngClass]="{'ups-group' : vpSize.isLtSMVP && loggedin, 'ups-no_label ups-no_label_plus' : vpSize.isGtSMVP && loggedin,
+                                        'ups-text-md-right' : loggedin,
+                                        'ups-text-sm-right' : !loggedin}">
+
+                                        <!-- [ngClass]="{'ups-shipping_header_action' : vpSize.isGtSMVP}" -->
+                                        <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action">
+                                            <span class="icon ups-icon-shippingfreight" aria-hidden="true"></span>
+                                            Ship Freight
+                                        </a>
+
+                                        <a href="#" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action">
+                                            <span class="icon ups-icon-arrowbackforward" aria-hidden="true"></span>
+                                            Switch View
+                                        </a>
+
+                                        <!--<div class="ups-text_information_container ups-shipping_header_container">
+                                            <div class="ups-text_information">-->
+                                                <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon ups-shipping_header_action" id="nbsSwitchViewInfoBtn" (click)="UpsInfoBtn.toggle(switchViewInfoContainer)">
+                                                    <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                                    Help
+                                                </button>
+                                            <!--</div>
+                                        </div>-->
+
+                                        <div class="ups-text_information_wrapper ups-shipping_header_info">
+                                            <div class="ups-text_information_container">
+                                                <div class="ups-text_information" upsInfoBtn #switchViewInfoContainer>
+                                                    <div class="ups-text_information_tooltip ups-text_information_tooltip_bottomleft ups-text_information_tooltip_expanded">
+                                                        <button type="button" class="ups-text_information_close icon ups-icon-x ups-iconAlone">
+                                                            <span class="ups-readerTxt">Close</span>
+                                                        </button>
+                                                        <div class="ups-text_information_scroll">
+                                                            <div class="ups-group ups-group_condensed">
+                                                                <p>
+                                                                    <strong>What can I do with new ups.com shipping?</strong>
+                                                                </p>
+                                                                <p>
+                                                                    Big changes are happening. Some options are still in development, others may be in unexpected places. Take a tour and see top questions: <a href="#" class="ups-link">New Web Shipping Help</a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="ups-group ups-group_condensed">
+                                                                <p>
+                                                                    <strong>Exit New Shipping Beta</strong>
+                                                                </p>
+                                                                <p>
+                                                                    If you're not interested in trying the new format now, you can still return to legecy shipping. We won't ask you again for a while. <a href="#" class="ups-link">Return to Classic Shipping</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-app_inner">
+
+
+                    <ups-nbs-whereFrom-section #NBSWhereFromView *ngIf="whereFromSection">Loading Where From</ups-nbs-whereFrom-section>
+                    <ups-nbs-whereTo-section #NBSWhereToView *ngIf="whereToSection"></ups-nbs-whereTo-section>
+                    <ups-nbs-what-section #NBSWhatView *ngIf="whatSection"></ups-nbs-what-section>
+                    <ups-nbs-when-section #NBSWhenView *ngIf="whenSection"></ups-nbs-when-section>
+                    <ups-nbs-intForms-section #NBSIntFormsView *ngIf="intFormsSection"></ups-nbs-intForms-section>
+                    <ups-nbs-details-section #NBSDetailsView *ngIf="detailsSection"></ups-nbs-details-section>
+                    <!-- Forms component goes here -->
+                    <ups-nbs-payment-section #NBSPaymentView *ngIf="paymentSection"></ups-nbs-payment-section>
+
+                    <div class="ups-form_ctaGroup">
+                        <button type="button" class="ups-cta ups-cta_tertiary" *ngIf="backBtn">Back</button>
+                        <button type="button" class="ups-cta ups-cta_primary" *ngIf="continueBtn" (click)="nbsGFFormSubmit()">Continue</button>
+                        <button type="button" class="ups-cta ups-cta_primary" *ngIf="nextBtn">Next</button>
+                        <button type="button" class="ups-cta ups-cta_secondary" *ngIf="cancelBtn">Cancel Shipment</button>
+                        <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon" *ngIf="saveShipmentBtn">
+                            Save Shipment for Later
+                            <span class="icon ups-icon-save" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            <!--</div>
+        </div>-->
+    </form>
+</div>
+<ups-balanceBar></ups-balanceBar>

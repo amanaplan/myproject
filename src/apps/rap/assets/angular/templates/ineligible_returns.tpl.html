@@ -1,0 +1,117 @@
+<!-- Beginning of Ineligible Returns Component -->
+
+<div class="ups-section"> <!-- .ups-section -->
+    <!-- Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Ineligible Returns</h2>
+    </div>
+    <!-- End of Heading -->
+    <form [formGroup]="ineligibleReturnsSearchForm" (ngSubmit)="demoUpdateUserSection(ineligibleReturnsSearchForm.value)" novalidate>
+        <div *ngIf="(ineligibleReturnsSearchFormSubmitAttempt &amp;&amp; !ineligibleReturnsSearchForm.valid)">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+                <li *ngIf="(!ineligibleReturnsSearchForm.controls['trackingNum'].valid && ineligibleReturnsSearchForm.controls['trackingNum'].hasError('required'))">
+                    <a href="#trackingNum" class="ups-invalid_color" pointIdClick>Tracking Number <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+            </ul>
+        </div>
+        <div class="row"> <!-- Beginning of Tracking Number Search Input Row -->
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_requried">
+                    <label for="trackingNum" class="ups-form_label">Enter tracking number to find original shipment <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="search" name="trackingNum" class="ups-form_input" id="trackingNum" aria-required="true" required aria-describedby="trackingNum_error" [ngClass]="{'ups-bodError': (!ineligibleReturnsSearchForm.controls['trackingNum'].valid &amp;&amp; ineligibleReturnsSearchForm.controls['trackingNum'].touched)}" [formControl]="ineligibleReturnsSearchForm.controls['trackingNum']" pattern="[a-zA-Z0-9]+">
+                    </div>
+                    <!-- Field Level Error Message -->
+                    <span class="ups-icons-error" id="trackingNum_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!ineligibleReturnsSearchForm.controls['trackingNum'].valid &amp;&amp; ineligibleReturnsSearchForm.controls['trackingNum'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="ineligibleReturnsSearchForm.controls['trackingNum'].hasError('required')">
+                                Tracking Number is required
+                            </span>
+                        </span>
+                    </span>
+                    <!-- End of Field Level Error Message -->
+                </div>
+            </div>
+        </div> <!-- End of Tracking Number Search Input Row -->
+
+        <!-- CTA Button Group -->
+        <div class="ups-form_ctaGroup">
+            <button type="button" class="ups-cta ups-cta_primary" (click)="demoSearchResults();">Search</button>
+        </div>
+        <!-- End of CTA Button Group -->
+    </form>
+</div><!-- .ups-section -->
+
+<div  *ngIf="showSearchResults">
+    <div class="ups-section">
+        <!-- Heading -->
+        <div class="ups-section-header">
+            <h2 class="ups-section_heading">Results for "1ZAB242"</h2>
+        </div>
+        <!-- End of Heading -->
+
+        <!-- Return History Detail -->
+        <div class="row">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Plug-in:</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>{{ '{' }}Plug-in Name{{ '}' }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Name:</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>Hatti Lim</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Forward Tracking:</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>1ZAW323F</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Reference #1:</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>136</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p><strong>Reference #2:</strong></p>
+                        </div>
+                        <div class="col-md-8">
+                            <p>1441</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- End of Return History Detail -->
+
+        <!-- CTA Button Group -->
+        <div class="ups-form_ctaGroup">
+            <a class="ups-cta ups-cta_primary" routerLink="/ineligibleReturns/policyDetails">Create Return</a>
+            <button class="ups-cta ups-cta_secondary" type="button" (click)="demoCancelSearchResults();">Cancel</button>
+        </div>
+        <!-- End of CTA Button Group -->
+    </div>
+
+</div>
+<!-- End of Ineligible Returns Component -->

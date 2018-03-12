@@ -1,0 +1,61 @@
+<div class="ups-modal-container">
+	<!-- //// begin ups.doa-conflictPromoCode //// -->
+    <p>Looks like you've allready got a special discount or negotiated rate. Compare the discounts below and choose which one you prefer.</p>
+    <!-- //// begin Discount Name panel //// -->
+	<div class="panel panel-info">
+		<div data-ng-if="discountProcess==='new'" class="panel-heading">
+        	We recommend that you apply the new discount.
+        </div>
+
+		<div class="panel-body">
+			<p><strong>New Discount Name</strong></p>
+        
+            <p>Some discount description here. Some discount description here. Some discount description here. Some discount description here.</p>
+            
+            <p><a href="#" onclick="return false;" data-ng-click="openConditions()" class="ups-link ups-new-window">View Terms and Conditions<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+            
+            <div data-ng-if="!discountProcess==='keepcurrent' || discountProcess==='new'" class="ups-form_group ups-checkbox_group">
+                <div class="ups-checkbox ups-input_wrapper " data-errormsg="Apply new discount">
+                    <input  id="ups-terms_checkbox" class="ups-checkbox-custom" name="ups-terms_checkbox" value="1" type="checkbox" data-ng-model="formObj.tnc" data-ng-checked="formObj.tnc" data-ng-required="true" required="required"> <label for="ups-terms_checkbox" class="ups-form_label ups-checkbox-custom-label">By selecting this checkbox and the Apply New Discount button, I agree to the terms and conditions.
+                    </label>
+                </div>
+            </div>
+
+			<div data-ng-if="discountProcess==='keepcurrent'" class="ups-form_group">
+                <div class="ups-checkbox ups-input_wrapper " data-errormsg="Apply new discount">
+                    <input  id="ups-terms_checkbox" class="ups-checkbox-custom" name="ups-terms_checkbox" value="1" type="checkbox" data-ng-model="formObj.tnc" data-ng-checked="formObj.tnc" data-ng-required="true" required="required"> <label for="ups-terms_checkbox" class="ups-form_label ups-checkbox-custom-label">I agree to the terms and conditions of this promotion.
+                    </label>
+                </div>
+			</div>
+            
+            <div class="ups-form_ctaGroup ">
+                <button data-ng-disabled="!formObj.tnc" data-ng-click="ok()" type="button"
+                    class="ups-cta ups-cta_primary">Apply Discount</button>
+            </div>
+		</div>
+	</div>
+    <!-- //// end Discount Name panel //// -->
+    <!-- //// begin Conflict Name panel //// -->
+	<div class="panel panel-info">
+		<div data-ng-if="discountProcess==='keepcurrent'" class="panel-heading">
+            We recommend that you keep your existing discount.
+        </div>
+
+		<div class="panel-body">
+        	<p><strong>Current Conflict Name</strong></p>
+            
+            <p>Some discount description here. Some discount description here. Some discount description here. Some discount description here.</p>
+            
+            <p><a href="#" onclick="return false;" data-ng-click="openConditions()" class="ups-link ups-new-window">View Terms and Conditions<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> </p>
+            
+            <p><a href="#" onclick="return false;" data-ng-click="openConditions()" class="ups-link ups-new-window">View Current Savings<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> </p>
+            
+			<div class="ups-form_ctaGroup ">
+				<button data-ng-click="ok()" type="button"
+					class="ups-cta ups-cta_primary">Keep Discount</button>
+			</div>
+		</div>
+	</div>
+    <!-- //// end Conflict Name panel //// -->
+	<!-- //// end ups.doa-conflictPromoCode //// -->
+</div>

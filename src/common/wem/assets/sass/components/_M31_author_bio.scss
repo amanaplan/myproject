@@ -1,0 +1,207 @@
+// ----------------------------------------------------
+// Author Bio
+// ----------------------------------------------------
+
+.ups-authorBio {
+    margin: 0 0 $margin_1;
+    img {
+        width:25%;
+        max-width: 200px;
+        height: auto;
+        display: inline-block;
+        @if $text-direction == ltr {
+            float: left;
+        } @else {
+            float: right;
+        }
+    }
+    img + .ups-authorBio_info {
+      width:75%;
+      @if $text-direction == ltr {
+            float: right;
+            padding-left: $margin_3;
+        } @else {
+            float: left;
+            padding-right: $margin_3;
+        }
+        @media #{$media-small}{
+          width:100%;
+          float: left;
+          padding-left:0;
+        }
+    }
+    .ups-authorBio_info {
+        width:100%;
+        height: auto;
+        display: inline-block;
+        //padding:0 0px $margin_3 0px;
+        .ups-authorBio_authorTitle {
+            margin-top: 0;
+        }
+        blockquote {
+            position: relative;
+            width: 100%;
+            font-size: 1.7em;
+            font-family: $serif;
+            color: $ups_sky;
+            margin: $margin_3 0px;
+            padding:0;
+            border:0;
+        }
+        h3{
+            font-family: $sans-bd;
+            font-size: 1.3em;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+        p{
+            margin-bottom: $margin_4;
+        }
+        .ups-authorBio_articles{
+            margin-top:$margin_3;
+            ul{
+                list-style: none;
+                padding: 0 0px $margin_4;
+                li {
+                    padding:$margin_4 0;
+                    a{
+                        font-family: $sans-bd;
+                        color: $black_s3;
+                        text-decoration: underline;
+                        @include transition-property(all);
+                        @include transition-duration($main-transition-speed);
+
+                        .ups-rtl {
+                            font-family: $sans;
+                            font-weight: 700;
+                        }
+
+                        &:hover {
+                            color: $black_s1;
+                        }
+                    }
+                }
+            }
+        }
+        .ups-authorBio_social {
+            h3 {
+                font-size: 1.15em;
+                margin: $margin_3 0 $margin_4;
+            }
+            a{
+                display: inline-block;
+                color: $ups_brown;
+                font-size: 28px;
+                line-height: 49px;
+                @if $text-direction == ltr {
+                    margin-right: $margin_3;
+                    float: left;
+                } @else {
+                    float: right;
+                    margin-left: $margin_3;
+                }
+
+                i {
+                    width: 30px;
+                    height: 30px;
+                    background-size: 30px 180px;
+                    &.icon-social{
+                        background-image: image-url('social_2x.jpg');
+                    }
+
+                    &.ups-icon-twitter {
+                        background-position: 0 -30px;
+                    }
+
+                    &.ups-icon-linkedin {
+                        background-position: 0 -60px;
+                    }
+
+                    &.ups-icon-email {
+                        background-image: image-url('email-icon.png');
+                        background-size: 100%;
+
+                        &:before {
+                            content: none;
+                        }
+                    }
+                }
+
+                &:hover,
+                &:focus {
+                    text-decoration: none;
+                }
+            }
+
+            .ups-icon-email{
+                display: block;
+                &:before {
+                    top: 0;
+                }
+            }
+        }
+    }
+}
+
+
+@mixin ups_bio_sm {
+    .ups-authorBio {
+        .ups-article-header{
+            margin-bottom: $margin_3;
+        }
+        img{
+            width: 50%;
+            margin-bottom: $margin_3;
+        }
+        .ups-authorBio_info {
+            width: 100%;
+            clear:both;
+            padding: 0;
+            blockquote {
+                font-size: 1.4em;
+                margin: $margin_3 0;
+                line-height: 30px;
+            }
+            p{
+                margin-bottom: $margin_4;
+                line-height: 18px;
+            }
+            .ups-authorBio_social {
+                a{
+                    display: block;
+                    text-align: center;
+                    margin: $margin_4 $margin_3 $margin_4 0;
+                    @if $text-direction == ltr {
+                        float: left;
+                    } @else {
+                        float: right;
+                    }
+                    .icon-social_mob {
+                        margin:auto;
+                    }
+                    .ups-icon-email {
+                        font-size: 30px;
+                        position: relative;
+                        top: -3px;
+                        &:before{
+                            line-height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media #{$media-small} {
+    @include ups_bio_sm;
+}
+
+.subsection_aside,
+.iw_columns.col-lg-4 {
+    @include ups_bio_sm;
+}

@@ -1,0 +1,533 @@
+<div class="ups-wrap" [pageTitle]="'Package detail'">
+    <div class="ups-wrap_inner">
+        <form [formGroup]="addClaimDetailsForm">
+            <div *ngIf="(!formValid() && submitBtnClicked)"
+                #errorList>
+                <h3 class="ups-invalid_color-list ups-error_alert-list">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    Please correct the following errors
+                </h3>
+                <ul class="ups-icons-error">
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailFromContactName'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailFromContactName" pointIdClick>Shipped From Contact Name <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailFromTelephone'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailFromTelephone" pointIdClick>Shipped From Telephone <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailToContactName'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailToContactName" pointIdClick>Shipped To Contact Name <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailToTelephone'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailToTelephone" pointIdClick>Shipped To Telephone <span class="ups-readerTxt">field</span> is required</a>
+                    </li>
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailFromEmail'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailFromEmail" pointIdClick>Shipped From Email <span class="ups-readerTxt">field</span> is invalid</a>
+                    </li>
+                    <li *ngIf="!addClaimDetailsForm.controls['claimDetailToEmail'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailToEmail" pointIdClick>Shipped To Email <span class="ups-readerTxt">field</span> is invalid</a>
+                    </li>
+                    <li *ngIf="viewLossDetails && claimDetailPkgIssue == '0'">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimDetailPkgIssueNotLocated" pointIdClick>A package issue must be chosen.</a>
+                    </li>
+                </ul>
+            </div>
+
+            <p>
+                Use the fields below to tell us about your package.
+            </p>
+
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+
+            <h2>Package Information</h2>
+
+            <p>
+                <strong>Tracking Number:</strong>
+                1Z123E2X11111111
+            </p>
+            <p>
+                <strong>Ship Date:</strong>
+                MM/DD/YYYY
+            </p>
+            <p>
+                <strong>Service:</strong>
+                [service]
+            </p>
+            <p>
+                <strong>Weight:</strong>
+                [NN.NN][LBS]
+            </p>
+            <p>
+                <strong>Number of Packages:</strong>
+                [NN]
+            </p>
+            <p>
+                <strong>Status:</strong>
+                [Status]
+            </p>
+            <p *ngIf="viewDeliveryDate">
+                <strong>Delivery Date:</strong>
+                [MM/DD/YYYY]
+            </p>
+
+            <h2>Shipping Details</h2>
+            <p *ngIf="!viewShipDetailsReceiverTxt">
+                Please enter contact information for the shipper and the receiver so we can communicate with them.
+            </p>
+            <p *ngIf="viewShipDetailsReceiverTxt">
+                Please enter contact information so we can communicate with the receiver.
+            </p>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-group ups-group_condensed">
+                        <p class="ups-group_label">
+                            Shipped From
+                        </p>
+                        <p *ngIf="viewCompleteAddress">
+                            [SHIPPER NAME]
+                        </p>
+                        <p>
+                            <ng-container *ngIf="viewCompleteAddress">[ADDRESS]<br></ng-container>
+                            [CITY, STATE]<br>
+                            [<ng-container *ngIf="viewCompleteAddress">POSTAL, </ng-container>COUNTRY]
+                        </p>
+                        <p *ngIf="viewCompleteAddress">
+                            [OTHER]
+                        </p>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimDetailFromContactName" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From </span>Contact Name
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromContactName"
+                                name="claimDetailFromContactName"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimDetailFromContactName_error"
+                                formControlName="claimDetailFromContactName"
+                                [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailFromContactName'].valid && addClaimDetailsForm.controls['claimDetailFromContactName'].touched)}">
+                            <div *ngIf="addClaimDetailsForm.controls['claimDetailFromContactName'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailFromContactName_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailFromContactName'].valid && addClaimDetailsForm.controls['claimDetailFromContactName'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped From</span> Contact Name is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimDetailFromTelephone" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From </span>Telephone
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromTelephone"
+                                name="claimDetailFromTelephone"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimDetailFromTelephone_error"
+                                formControlName="claimDetailFromTelephone"
+                                [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailFromTelephone'].valid && addClaimDetailsForm.controls['claimDetailFromTelephone'].touched)}">
+                            <div *ngIf="addClaimDetailsForm.controls['claimDetailFromTelephone'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailFromTelephone_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailFromTelephone'].valid && addClaimDetailsForm.controls['claimDetailFromTelephone'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped From</span> Telephone is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailFromTelephoneExt" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From Telephone Extension</span>
+                            <span aria-hidden="true">Ext.</span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromTelephoneExt"
+                                name="claimDetailFromTelephoneExt"
+                                formControlName="claimDetailFromTelephoneExt">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailFromAlternateTelephone" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From </span>Alternate Telephone
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromAlternateTelephone"
+                                name="claimDetailFromAlternateTelephone"
+                                formControlName="claimDetailFromAlternateTelephone">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailFromAlternateTelephoneExt" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From Alternate Telephone Extension</span>
+                            <span aria-hidden="true">Ext.</span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromAlternateTelephoneExt"
+                                name="claimDetailFromAlternateTelephoneExt"
+                                formControlName="claimDetailFromAlternateTelephoneExt">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailFromEmail" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped From </span>Email
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailFromEmail"
+                                name="claimDetailFromEmail"
+                                aria-describedby="claimDetailFromEmail_error"
+                                formControlName="claimDetailFromEmail">
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailFromEmail_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailFromEmail'].valid && addClaimDetailsForm.controls['claimDetailFromEmail'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped From </span>Email is invalid.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="ups-group ups-group_condensed">
+                        <p class="ups-group_label">
+                            Shipped To
+                        </p>
+                        <p *ngIf="viewCompleteAddress">
+                            [SHIPPER NAME]
+                        </p>
+                        <p>
+                            <ng-container *ngIf="viewCompleteAddress">[ADDRESS]<br></ng-container>
+                            [CITY, STATE]<br>
+                            [<ng-container *ngIf="viewCompleteAddress">POSTAL, </ng-container>COUNTRY]
+                        </p>
+                        <p *ngIf="viewCompleteAddress">
+                            [OTHER]
+                        </p>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimDetailToContactName" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To </span>Contact Name
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToContactName"
+                                name="claimDetailToContactName"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimDetailToContactName_error"
+                                formControlName="claimDetailToContactName"
+                                [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailToContactName'].valid && addClaimDetailsForm.controls['claimDetailToContactName'].touched)}">
+                            <div *ngIf="addClaimDetailsForm.controls['claimDetailToContactName'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailToContactName_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailToContactName'].valid && addClaimDetailsForm.controls['claimDetailToContactName'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped To</span> Contact Name is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group ups-form_required">
+                        <label for="claimDetailToTelephone" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To </span>Telephone
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToTelephone"
+                                name="claimDetailToTelephone"
+                                required
+                                aria-required="true"
+                                aria-describedby="claimDetailToTelephone_error"
+                                formControlName="claimDetailToTelephone"
+                                [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailToTelephone'].valid && addClaimDetailsForm.controls['claimDetailToTelephone'].touched)}">
+                            <div *ngIf="addClaimDetailsForm.controls['claimDetailToTelephone'].valid">
+                                <span aria-hidden="true" class="icon ups-icon-check"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailToTelephone_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailToTelephone'].valid && addClaimDetailsForm.controls['claimDetailToTelephone'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped To</span> Telephone is required.</span>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailToTelephoneExt" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To Telephone Extension</span>
+                            <span aria-hidden="true">Ext.</span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToTelephoneExt"
+                                name="claimDetailToTelephoneExt"
+                                formControlName="claimDetailToTelephoneExt">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailToAlternateTelephone" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To </span>Alternate Telephone
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToAlternateTelephone"
+                                name="claimDetailToAlternateTelephone"
+                                formControlName="claimDetailToAlternateTelephone">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailToAlternateTelephoneExt" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To Alternate Telephone Extension</span>
+                            <span aria-hidden="true">Ext.</span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToAlternateTelephoneExt"
+                                name="claimDetailToAlternateTelephoneExt"
+                                formControlName="claimDetailToAlternateTelephoneExt">
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group">
+                        <label for="claimDetailToEmail" class="ups-form_label">
+                            <span class="ups-readerTxt">Shipped To </span>Email
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                class="ups-form_input"
+                                id="claimDetailToEmail"
+                                name="claimDetailToEmail"
+                                aria-describedby="claimDetailToEmail_error"
+                                formControlName="claimDetailToEmail">
+                        </div>
+                        <span class="ups-icons-error" id="claimDetailToEmail_error" role="alert">
+                            <span class="ups-invalid_color" *ngIf="(!addClaimDetailsForm.controls['claimDetailToEmail'].valid && addClaimDetailsForm.controls['claimDetailToEmail'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span><span class="ups-readerTxt">Shipped To </span>Email is invalid.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <ng-container *ngIf="viewLossDetails">
+                <h2>Loss Details</h2>
+                <p>
+                    You are reporting a lost package, but our records indicate this package was delivered. We will need to talk to the person disputing the delivery. Please ensure that the information above is accurate. If we cannot make contact, your claim will be closed.
+                </p>
+
+                <fieldset class="ups-form_group ups-form_required">
+                    <legend class="ups-form_label">
+                        Select the item below that best describes the package issue
+                        <span class="ups-readerTxt">Required</span>
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueNotLocated"
+                            name="claimDetailPkgIssue"
+                            value="1"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueNotLocated">
+                            Package was left at the address and it cannot be located.
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueIncorrectAddress"
+                            name="claimDetailPkgIssue"
+                            value="2"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueIncorrectAddress">
+                            Delivery was to an incorrect address
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueNeighborNotRetrieved"
+                            name="claimDetailPkgIssue"
+                            value="3"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueNeighborNotRetrieved">
+                            Delivery was to a neighbor or alternate address and cannot be retrieved
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueDisputeSignature"
+                            name="claimDetailPkgIssue"
+                            value="4"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueDisputeSignature">
+                            The receiver is disputing the signature obtained at delivery and does not have the package
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueAPNotThere"
+                            name="claimDetailPkgIssue"
+                            value="5"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueAPNotThere">
+                            Customer attempted to collect from an Access Point or retail location and the package was not there
+                        </label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="radio"
+                            class="ups-radio-custom"
+                            id="claimDetailPkgIssueNoSignature"
+                            name="claimDetailPkgIssue"
+                            value="6"
+                            aria-describedby="claimDetailPkgIssue_error"
+                            formControlName="claimDetailPkgIssue"
+                            [(ngModel)]="claimDetailPkgIssue"
+                            [ngClass]="{'ups-bodError' : (!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)}">
+                        <label class="ups-radio-custom-label" for="claimDetailPkgIssueNoSignature">
+                            Signature was required at delivery and no signature is provided
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="ups-icons-error"
+                    id="claimDetailPkgIssue_error"
+                    role="alert"
+                    *ngIf="viewLossDetails">
+                    <div class="ups-invalid_color ups-group" *ngIf="(!addClaimDetailsForm.controls['claimDetailPkgIssue'].valid && addClaimDetailsForm.controls['claimDetailPkgIssue'].touched)">
+                        <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        A package issue must be chosen.
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <label for="claimDetailAdditionalComments" class="ups-form_label">Additional Comments (up to XX characters)</label>
+                            <div class="ups-textArea_wrapper ups-input_wrapper">
+                                <textarea class="ups-textArea"
+                                    id="claimDetailAdditionalComments"
+                                    name="claimDetailAdditionalComments"
+                                    rows="8"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+
+
+
+            <div class="ups-form_ctaGroup">
+                <button class="ups-cta ups-cta_primary" (click)="submitForm()">Next</button>
+                <button class="ups-cta ups-cta_secondary">Cancel</button>
+            </div>
+        </form>
+
+        <div class="ups-cms-demo">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="demoPgView" class="ups-form_label">
+                            View
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="demoPgView"
+                                class="ups-dropdown"
+                                id="demoPgView"
+                                [(ngModel)]="demoPgView"
+                                [ngModelOptions]="{standalone : true}"
+                                (ngModelChange)="demoViewChange()">
+                                <option [value]="1">Shipper - No Delivery Scan</option>
+                                <option [value]="2">Recipient - No Delivery Scan</option>
+                                <option [value]="3">Shipper - Delivery Scan Exists</option>
+                                <option [value]="4">Recipient - Delivery Scan Exists</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

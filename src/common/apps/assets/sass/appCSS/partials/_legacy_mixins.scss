@@ -1,0 +1,46 @@
+@mixin ups-legacy_cta($bgColor, $important:!important) {
+    @include ups-cta($bgColor, $important);
+}
+
+@mixin ups-legacy_colorHeader($color, $important:!important) {
+    @include ups-colorHeader($color, $important);
+}
+
+@mixin ups-legacy_inputDisabled($important:!important) {
+    @include ups-inputDisabled($important);
+}
+
+@mixin ups-tealSearchBtn {
+    background-color: #008369;
+    border: none;
+    border-radius: 0;
+    margin-#{$default-float}: 5px;
+    height: 35px;
+    position: absolute;
+    text-align: center;
+    width: 35px;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-property: all;
+    -o-transition-duration: 0.2s;
+    -o-transition-property: all;
+    -webkit-appearance: none;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-property: all;
+
+    &:hover, &:focus {
+        background-color: darken($water_s3, 5%);
+    }
+
+    &:focus {
+        outline: 5px auto $ups_gold;
+    }
+
+    &:after {
+        font-family: "UPSicons" !important;
+        content: "\e100";
+        position: relative;
+        display: inline-block;
+        color: $white;
+        line-height: 35px;
+    }
+}

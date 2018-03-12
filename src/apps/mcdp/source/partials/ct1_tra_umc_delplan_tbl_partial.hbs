@@ -1,0 +1,690 @@
+ 
+<form action="repl_fname">
+    
+    <!-- Begin 1511 --> 
+    <!-- /subtabs begin -->
+    <ul class="subTab clearfix">
+        <li class="tab-on">my delivery planner</li>
+    </ul>
+    <!-- /subtabs end --> 
+    
+    <!-- Begin Application Module -->
+    <div class="appLvl tab col24 clearfix"> 
+        <!-- Begin Application Header -->
+        <div class="appHead clearfix">
+            <ul class="lstPipe clearfix">
+                <li><a href="javascript:helpModLvl('https://www.ups.com/content/us/en/tracking/tracking/umc_help.html')" class="btnlnkR helpIconR">Help</a></li>
+            </ul>
+        </div>
+        <div  class="appBody">  
+            <!-- //////////////////////////////////////////////////////////////////////// --> 
+            <!-- //// Begin Head Section                                             //// --> 
+            <!-- //////////////////////////////////////////////////////////////////////// -->
+            <div class="secLvl message">
+                <div class="secBody">
+                    <p>Your premium subscription will expire on mm/dd/yyyy. <a href="repl_href" class="btnlnkR arrowIconR">Renew Your Membership</a></p>
+                </div>
+            </div>
+			{{#unless no_rows}}
+            <p> To view the tracking details for a shipment, select the tracking number.  To view or update the {{#if default}}special instructions for a shipment, select <strong>Add</strong> or {{else}}delivery alerts, select{{/if}} <strong>View/Edit</strong>.  To make a delivery change select <strong>Request/Change</strong>. </p>
+            <div class="floatBegin clearfix">
+                <dl class="flexFirstPad" role="presentation">
+                    <dt>
+                        <label for="repl_id">Show Shipments Sent To:</label>
+                    </dt>
+                    <dd>
+                        <select id="repl_id">
+                            <option selected value="">MyHouse</option>
+                            <option value="">MyOffice</option>
+                            <option value="">UGA</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl class="flexAfter clearfix" id="repl_id" role="presentation">
+                    <dt> <span class="label">Date Range:</span> </dt>
+                    <dd>
+                        <input type="text" readonly value="04/01/2010" id="inputTableRangeFrom" class="hasDatepicker">
+                        <img class="ui-datepicker-trigger" src="/img/icn_calendar.gif" alt="" title="">&nbsp;to&nbsp;
+                        <input type="text" readonly value="04/08/2010" id="inputTableRangeTo" class="hasDatepicker">
+                        <img class="ui-datepicker-trigger" src="/img/icn_calendar.gif" alt="" title=""> </dd>
+                </dl>
+            </div>
+            <div class="clearfix"></div>
+			{{/unless}}
+            <!-- //////////////////////////////////////////////////////////////////////// --> 
+            <!-- //// End Head Section                                               //// --> 
+            <!-- //// Begin Table Section                                            //// --> 
+            <!-- //////////////////////////////////////////////////////////////////////// -->
+            <div class="secLvl" style="display: block;" id="tableView">
+			{{#unless no_rows}}
+                <div class="secHead">
+                    <div class="floatBegin  clearfix">
+                        <h4 id="hTableNum">Number of Shipments: {{#compare nonUS pre_authorized_returns operator="==="}}13{{else}}21{{/compare}}</h4>
+                    </div>
+                    <div class="floatEnd clearfix"> 
+                        Last Updated: 
+                        <span id="updatedTimeTable">10:30 A.M., 04/01/2010</span> 
+                        <span class="indent lstPipeR"> <a href="javascript:mcdp.showCalendarView()" class="btnlnk" id="showCalendarViewId">Calendar View</a> </span> 
+                        | 
+                        <span><a href="javascript:mcdp.showTableView()" class="btnlnk fc-state-active" id="showTableViewId">Table View</a></span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+			{{/unless}}
+                <div class="secBody clearfix">
+                    <table class="tablesorter dataTable" id="dp_table_view" role="presentation">
+                        <thead>
+                            <tr class="superHead">
+                                <th colspan="5" class="alignCenter">Shipment Information</th>
+                                <th colspan="4" class="alignCenter"><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="mcdptt_1">Shipment Actions</a></th>
+                            </tr>
+                            <tr>
+                                <th width="8%" valign="middle" class="header hand headerSortUp">Scheduled Delivery <br/>
+                                    Date <div class="icon ups-icon-wedgedown"></div></th>
+                                <th width="13%" valign="middle" class="header hand">Delivery Time</th>
+                                <th width="17%" valign="middle" class="header hand">Ship From</th>
+                                <th width="14%" valign="middle" class="header hand">Tracking #</th>
+                                <th width="21%" valign="middle" class="header hand">Status</th>
+                                <th width="6%" valign="middle">Delivery Alerts</th>
+                                <th width="9%" valign="middle">Provide Delivery Instructions</th>
+                                {{#if default}}<th width="6%" valign="middle">Select a 2-Hour Delivery Window</th>{{/if}}
+                                <th width="6%" valign="middle">Change Delivery</th>
+                            </tr>
+                        </thead>
+                        <tbody valign="top" id="dp_table_body">
+                            {{#if no_rows}}
+                            <tr class="odd">
+                                <td colspan="9">There are curently no shipments in transit to this home delivery address.</td>
+                            </tr>
+                            {{else}}
+                            <tr class="odd">
+                                <td>04/02/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>ABC Corporation<br/>
+                                    Saddlebrook, NJ, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123456')">1Z1234567890123456</a><br/>
+                                    Books from Amazon</td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="" title="">Delivered</a><br><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Return This Package</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/04/2010<br/>
+                                    (Updated)</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123456')">1Z1234567890123456</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="" title="">Delivered</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Add</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/06/2010</td>
+                                <td>12:00 PM - 2:00 PM<br>
+								Confirmed</td>
+                                <td>Buy.com<br/>
+                                    Alison Viejo, CA, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123456')">1Z1234567890123456</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="" title="">{{#if default}}Out for Delivery to Access Point{{else}}In Transit{{/if}}</a>{{#if icod}}<br>Import Fees Paid <a class="btnlnkR helpIconR" href="repl_href">View Details</a>{{/if}}{{#if pre_authorized_returns}}<br>Import Fees Paid <a class="btnlnkR helpIconR" href="repl_href">View Details</a>{{/if}}</td>
+                                <td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Change</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/06/2010<br/></td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123456')">1Z1234567890123456</a></td>
+								<td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br>C.O.D. - 25.00 USD, Check </td>                                
+								<td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/06/2010</td>
+                                <td>12:00 PM - 2:00 PM<br/>
+                                    Confirmed</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890122343')">1Z1234567890122343</a></td>
+								<td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br>
+								Adult Signature Required <br>
+								C.O.D. - 25.00 USD, Check </td>                                
+								<td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890122343')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890122343')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890122343')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>Not Available</td>
+                                <td>Not Available</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123460')">1Z1234567890123460</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a> {{#if icod}}<br>Import Fees Due <a class="btnlnkR helpIconR" href="repl_href">Pay Now</a>{{/if}}</td>
+                                <td><a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123460')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123460')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123460')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123460')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>Not Available</td>
+                                <td>Not Available</td>
+                                <td>BLC Inc.<br/>
+                                    London, UK</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123460')">1Z1234567890123460</a></td>
+                               <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Hold for Pickup</strong></td>
+                                <td><!--<a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123460')" class="anchor">View/Edit</a>--></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123460')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>Not Available</td>
+                                <td>Not Available</td>
+                                <td>BLC Inc.<br/>
+                                    London, UK</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123473')">1Z1234567890123473</a></td>
+                               <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Hold for Pickup Today</strong><br>
+                                    Pickup By: 04/06/2010</td>
+                                <td><!--<a onClick="mcdp.ajaxGetModal('da','1','1','1Z1234567890123460')" class="anchor">View/Edit</a>--></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123473')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                             <td>04/07/2010<br/>
+                                    Updated</td>
+                                <td>By End of Day</td>
+                                <td>BLC Inc.<br/>
+                                    London, UK</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123473')">1Z1234567890123473</a></td>
+                             <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Deliver to Another Address</strong><br>
+                                    5532 Main Street<br>
+                                    Roswell, GA, US 30076</td>
+                                <td><a onclick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123473')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                               <td>04/08/2010<br/>
+                                    Updated</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123464')">1Z1234567890123464</a></td>
+                               <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Reschedule Delivery</strong></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onclick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123460')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123464')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/08/2010</td>
+                                <td>Not Available</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123455')">1Z1234567890123455</a></td>
+                               <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Return to Sender</strong></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123455')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123455')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/09/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123446')">1Z1234567890123446</a></td>
+                              <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Leave With Neighbor</strong><br>
+                                    1234 Elm Street<br>
+                                    Roswell, GA, US 30076</td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                <td><a onclick="mcdp.ajaxGetModal('di','1','1','1Z1234567890123456')" class="anchor">Add</a></td>
+                                {{#if default}}<td><!--<a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Select</a>--></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/08/2010</td>
+                                <td>Not Available</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123437')">1Z1234567890123437</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br>
+                                    <strong>Hold for Pickup at a UPS Access Point</strong><br>
+                                    The UPS Store<br>
+                                    1010 Mansell Rd.<br>
+                                    Roswell, GA, US 30076<br>
+                                    Tel: 555-123-4567<br>
+                                    store@email.com</td>
+                                <td></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/09/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123428')">1Z1234567890123428</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Signature Required</strong><br>
+                                    <div class="indent"><a href="repl_href">Authorize Shipment Release</a></div></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123428')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123428')" class="anchor">Add</a></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123428')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/10/2010<br>Updated</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123419')">1Z1234567890123419</a></td>
+                              <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Signature Required</strong><br>
+                                    <div class="indent">Shipment Release Authorized<br>
+                                        <a href="repl_href">Cancel Shipment Release</a></div></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123419')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123419')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/11/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123123')">1Z1234567890123123</a></td>
+                               <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br>
+                                    <strong>Signature Required</strong><br>
+                                    <div class="indent">Shipment release not allowed due<br>
+                                        to delivery instructions.<br>
+                                        <a href="repl_href">View Delivery Instructions</a></div></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123123')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123123')" class="anchor">Add</a></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123123')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/11/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123124')">1Z1234567890123124</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Signature Required</strong><br/>
+                                    <div class="indent">Shipment Release Authorized<br/>
+                                        <a href="repl_href">Cancel Shipment Release</a></div></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123124')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123124')" class="anchor">Add</a></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123124')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/11/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890126463')">1Z1234567890126463</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Signature Required</strong><br/>
+                                    <div class="indent">Shipment release not allowed due<br/>
+                                        to delivery instructions.<br/>
+                                        <a href="repl_href">View Delivery Instructions</a></div></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890126463')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890126463')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890126463')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/14/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127832')">1Z1234567890127832</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    <a href="repl_href">Authorize Shipment Release</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127832')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127832')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127832')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127832')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/14/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127833')">1Z1234567890127833</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    Shipment Release Authorized<br/>
+                                    <a href="repl_href">Cancel Shipment Release</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127833')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127833')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127833')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127833')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/20/2010</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127732')">1Z1234567890127732</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    Returned to Shipper</td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127732')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127732')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/20/2010</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127657')">1Z1234567890127657</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    <b>Note:</b> {ups surepost/ups basic} packages are not eligible for ups my choice features. immediate access to your features is available by upgrading to ups ground ($3.50 fee applies). upgraded packages will typically be delivered one day earlier.<br/>
+                                    <a href="repl_href">Upgrade Now</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127657')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127657')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/20/2010</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127658')">1Z1234567890127658</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">out for delivery</a><br/>
+                                    <b>Note:</b> ups my choice features, including upgrade to ups ground, are not available for this package. reasons may include; the package is currently out for delivery or has been delivered.<br/></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127657')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td></td>
+                            </tr>                            
+                            <tr class="even">
+                                <td>04/20/2010</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890127657')">1Z1234567890127657</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/><br/>
+                                    <b>** Limited Options: **</b><br/>
+                                    Roswell, GA, US 30076    
+                                </td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890127657')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td>= n/a =</td>
+                            </tr>
+                            {{#if default}}
+                            <tr class="even">
+                                <td>04/02/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123456')">1Z1234567890123456</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    <strong>Service Upgrade</strong></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123456')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>Not Available</td>
+                                <td>Not Available</td>
+                                <td>BLC Inc.<br/>
+                                    London, UK</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123473')">1Z1234567890123473</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Service Upgrade and Hold for<br/>
+                                    Pickup</strong></td>
+                                <td></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123473')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>Not Available</td>
+                                <td>Not Available</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123464')">1Z1234567890123464</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Service Upgrade and Hold for<br/>
+                                    Pickup Today</strong><br/>
+                                    Pickup By: 04/06/2010</td>
+                                <td></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123464')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/10/2010<br/>
+                                    Updated</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123419')">1Z1234567890123419</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    <strong>Service Upgrade and Hold for<br/>
+                                    Pickup at a UPS Access Point</strong><br/>
+                                    The UPS Store<br/>
+                                    1010 Mansell Rd.<br/>
+                                    Roswell, GA, US 30076<br/>
+                                    Tel: 555-123-4567<br/>
+                                    store@email.com</td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123419')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123419')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/07/2010<br/>
+                                    Updated</td>
+                                <td>By End of Day</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123455')">1Z1234567890123455</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Service Upgrade and Deliver to a<br/>
+                                    Another Address</strong><br/>
+                                    5532 Main Street<br/>
+                                    Roswell, GA, US 30076</td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123455')" class="anchor">View/Edit</a></td>
+                                <td></td>
+                                {{#if default}}<td></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123455')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/08/2010<br/>
+                                    Updated</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123446')">1Z1234567890123446</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Exception</a><br/>
+                                    <strong>Service Upgrade and Reschedule<br/>
+                                    Delivery</strong></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Change</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/06/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123446')">1Z1234567890123446</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    Direct Delivery Only </td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="odd">
+                                <td>04/06/2010</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                                <td>Amazon<br/>
+                                    Chicago, IL, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123446')">1Z1234567890123446</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">In Transit</a><br/>
+                                    Package Release Code required to<br>
+                                    claim this package</td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Request</a></td>
+                            </tr>
+                            <tr class="even">
+                                <td>04/02/2010<br/>
+                                    Estimated</td>
+                                <td>10:00 AM - 2:00 PM</td>
+                               <td>ABC Corporation<br>
+                                    Saddlebrook, NJ, US</td>
+                                <td><a href="javascript:mcdp.redirectToTracking('1Z1234567890123446')">1Z1234567890123446</a></td>
+                                <td><a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Manifest</a><br/></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">View/Edit</a></td>
+                                {{#if default}}<td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Select</a></td>{{/if}}
+                                <td><a onClick="mcdp.ajaxGetModal('dcr','1','1','1Z1234567890123446')" class="anchor">Request</a></td>
+                            </tr>
+                            {{/if}}
+                            {{/if}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////////////////////////////// --> 
+            <!-- //// End Table Section                                              //// --> 
+            <!-- //// Begin Footer Section                                           //// --> 
+            <!-- //////////////////////////////////////////////////////////////////////// -->
+            {{#unless no_rows}}
+		    <p><strong>Description of Terms:</strong></p>
+            <p><strong>Estimated Delivery Time</strong> - An estimated delivery time. This time is not guaranteed and may vary based on your driver's workload, weather and traffic.</p>
+            <p><strong>By End of Day</strong> - Most deliveries occur before 7:00 P.M., but factors such as workload, weather, and traffic may cause the driver to deliver later than 7:00 P.M.</p>
+            {{#unless nonUS}}
+			{{#unless icod}}
+			{{#unless pre_authorized_returns}}
+			<p><strong>Confirmed</strong> - A selected Confirmed Delivery Window during which UPS will attempt to delivery your package.</p>
+			{{/unless}}
+			{{/unless}}
+			{{/unless}}
+            <p><strong>Limited Options</strong> - Tracking actions are limited; the shipment delivery address does not match you UPS My Choice address.</p>
+            <div class="secLvl group2 sell message clearfix"> 
+                <!-- Begin Section Body -->
+                <div class="secBody">
+                    <div class="flexFirst clearfix"><img height="16" width="16" border="0" src="/img/icon_exclamation_triangle_16.gif" alt=""></div>
+                    <div class="flexAfter clearfix">
+                        <p><span class="label">Reminder:</span> Your shipment has been delivered to the UPS Access Point<sup>&trade;</sup> location(s), and must be picked up by mm/dd/yyyy.<br>
+                            Shipments not picked up during this time will be retunred to shipper.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="subcol7 marginBegin clearfix">
+                        <dl class="indent" role="presentation">
+                            <dt> <span class="label">Store Location:</span> </dt>
+                            <dd>The UPS Store</dd>
+                            <dd>4321 Hill Street, Suite A</dd>
+                            <dd>Roswell, GA, US 30076</dd>
+                            <dd>Tel: 770-123-4567</dd>
+                        </dl>
+                    </div>
+                  <div class="subcol17 marginEnd clearfix">
+									<table class="dataTable tablePlain tableGroup2" role="presentation">
+										<tbody><tr>
+											<th scope="row">Shipped From:</th>
+											<th scope="row">Tracking #:</th>
+											<th scope="row">Delivered On:</th>
+										</tr>
+										<tr class="odd">
+											<td scope="row">ABC Corporation</td>
+											<td scope="row"><a href="">1z1234567890123123</a><br>
+												Books from Amazon</td>
+											<td scope="row">03/29/2009</td>
+										</tr>
+										<tr>
+											<td scope="row">Amazon</td>
+											<td scope="row"><a href="">1z1234567890123456</a></td>
+											<td scope="row">03/30/2010</td>
+										</tr>
+									</tbody></table>
+								</div>
+                </div>
+                <!-- End Section Body --> 
+            </div>
+			{{/unless}}
+            <div class="legacy-show_hide">
+                <button type="button" class="ups-link legacy-sh_btn" data-show-text="Show Shipment History" data-hide-text="Hide Shipment History">
+                    <span class="icon ups-icon-plus" aria-hidden="true"></span> 
+                    <span class="legacy-sh_btn_text">Show Shipment History</span>
+                </button>
+                <table class="dataTable legacy-sh_block" role="presentation">
+                    <thead>
+                        <tr>
+                            <th class="tblLeft" scope="row col">Delivery Date</th>
+                            <th scope="col">Ship From</th>
+                            <th scope="col">Tracking #</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if no_rows}}
+                        <tr class="odd tblTop">
+                            <td colspan="4" scope="row">There are no recently delivered shipments.</td>
+                        </tr>
+                        {{else}}
+                        <tr class="odd tblTop">
+                            <td scope="row">03/30/2010</td>
+                            <td>Amazon<br>
+                                Chicago, IL, US</td>
+                            <td><a href="">1z1234567890123123</a><br>
+                                Books from Amazon</td>
+                            <td>Delivered<br>
+                            	<a class="anchor infoAnchor hozAnchor btnlnkR helpIconR" id="">Return This Package</a></td>
+                        </tr>
+                        <tr class="tblTop">
+                            <td scope="row">03/29/2010</td>
+                            <td>ABC Corporation<br>
+                                Saddlebrook, NJ, US</td>
+                            <td><a href="">1z1234567890123123</a></td>
+                            <td>Delivered</td>
+                        </tr>
+                        <tr class="odd tblTop">
+                            <td scope="row">03/16/2010</td>
+                            <td>BLC Inc<br>
+                                London, UK</td>
+                            <td><a href="">1z1234567890123123</a></td>
+                            <td>Exception: Seized by customs</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+            <!-- //////////////////////////////////////////////////////////////////////// --> 
+            <!-- //// End Footer Section                                             //// --> 
+            <!-- //////////////////////////////////////////////////////////////////////// -->
+        </div>
+    </div>
+</form>

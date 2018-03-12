@@ -1,0 +1,136 @@
+<!-- //// begin ups.ppc-edit-security-questions //// -->
+<div
+	class="ups-securityQuestions ups-modal-wrapper ups-wrap ups-form_wrap  ups-application_wrapper"
+	data-ng-controller="securityCtrl">
+	<div class="ups-dash ups-wrap "
+		data-ng-class="{'ups-bodError':true==duplicate}">
+        <p data-ng-show="duplicate" class="ups-invalid_color ups-aside-none">You
+            have chosen the same Question Again!</p>
+        <div data-ng-if="!AddQuestions">
+            <h2 class="modal-title ups-offset-02">Edit Security Questions</h2>
+        </div>
+        <div data-ng-if="AddQuestions">
+            <h2 class="modal-title ups-offset-02">Add Security Questions</h2>
+        </div>
+
+        <p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+		<form name="ups_securityQuestion" 
+        	error-on-submit 
+            data-novalidate
+			id="ups-securityQuestion">
+            <!-- @Note: will conditionally display middle name in a larger column if international exists in json data -->
+            <ul>
+                <li data-ng-repeat="item in values" class="row">
+                <ng-form name="innerForm">
+                	<div class="ups-form_group">
+                        <div class="col-md-4">
+                            <div class=" ups-form_group ups-form_required">
+                                <label class="ups-form_label" for="selectList{{$index}}">Security
+                                    Question {{$index+1}}
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper margin20">
+                                    <select error-on-blur data-ng-model="item.SelectQuestions"
+                                        class="ups-dropdown"
+                                        data-ng-options="x for x in Qustions.QuestionOptions"
+                                        data-ng-change="preventDuplicats(item.SelectQuestions,$index);checking($index)"
+                                        id="selectList{{$index}}" aria-required="true" required>
+                                        <option value="" selected>Select One</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-ng-show="item.ShowOrHide">
+                            <div class=" ups-form_group ups-form_required">
+                                <label class="ups-form_label" for="Question{{$index}}">Your
+                                    Question
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                    data-errormsg="This field is required">
+                                    <input error-on-blur type="text" maxlength="256"
+                                        name="Question" data-ng-model='item.Question'
+                                        id="Question{{$index}}"
+                                        class="ups-form_input data-ng-pristine data-ng-valid data-ng-valid-required data-ng-valid-pattern data-ng-valid-maxlength data-ng-touched"
+                                        data-ng-required="item.ShowOrHide"
+                                        aria-required="{{ (item.ShowOrHide) ? 'true' : 'false' }}"> 
+                                    <span class="ups-invalid_color"
+                                        data-ng-show="!innerForm.Question.$pristine && innerForm.Question.$invalid" role="alert">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> 
+                                        <span data-ng-show="innerForm.Question.$error.required">Question
+                                            is required</span> <span
+                                        data-ng-hide="innerForm.Question.$error.required">Invalid
+                                            Question.</span>
+                                    </span>
+                                    <div data-ng-if="(innerForm.Question.$valid)">
+                                        <!-- @Note: screen reader text needs to be translated as well -->
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                            class="ups-readerTxt">Check</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class=" ups-form_group ups-form_required">
+                                <label class="ups-form_label" for="Answer{{$index}}">
+                                    Answer
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper "
+                                    data-errormsg="This field is required ">
+                                    <input type="password"
+                                        class="ups-form_input data-ng-pristine data-ng-valid  data-ng-valid-required data-ng-valid-maxlength data-ng-touched"
+                                        name="Answer" maxlength="256" data-ng-model="item.Answer"
+                                        aria-required="true" required data-ng-blur="Answer($index)"
+                                        data-ng-model-options="{updateOn: 'blur'}"
+                                        id="Answer{{$index}}" data-ng-pattern="/^[\S]{5,256}$/">
+                                    <button type="button" id="showButton"
+                                        class="ups-cta ups-cta_secondary ups-questions_showhide"
+                                        data-ng-click="showHide($event)" value="Show"
+                                        aria-describedby="ups-show-hide-text">Show</button>
+                                    <span id="ups-show-hide-text" class="ups-readerTxt">password in plain text</span> 
+                                    <span class="ups-invalid_color"
+                                        data-ng-show="!innerForm.Answer.$pristine && innerForm.Answer.$invalid" role="alert">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-show="innerForm.Answer.$error.required">Answer
+                                            is Required</span> <span
+                                        data-ng-show="innerForm.Answer.$error.pattern">Answers
+                                            must be at least five characters. </span>
+                                    </span>
+                                    <div data-ng-if="(innerForm.Answer.$valid)">
+                                        <!-- @Note: screen reader text needs to be translated as well -->
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                            class="ups-readerTxt">Check</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-form></li>
+            </ul>
+
+
+
+			<div class="ups-form_ctaGroup">
+				<button type="submit" 
+                	class="ups-cta ups-cta_primary "
+					data-ng-click="submitForm(ups_securityQuestion.$valid, ups_securityQuestion); SaveQuestions()"
+					data-dismiss="modal">Save</button>
+				<button type="submit" 
+                	class="ups-cta ups-cta_secondary"
+					data-ng-click="cancel()">Cancel</button>
+                    
+                    <!-- data-ng-disabled="!ups_securityQuestion.$valid || duplicate || !ups_securityQuestion.$dirty " -->
+			</div>
+		</form>
+	</div>
+</div>
+<!-- //// end ups.ppc-edit-security-questions //// -->

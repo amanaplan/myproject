@@ -1,0 +1,214 @@
+{{!--
+********************************************************************************
+A23 Balance Bar
+********************************************************************************
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    allow_expand              = boolean     / YES           / if bar can expand or not
+--}}
+<div id="balance_bar_placeholder">&nbsp;</div>
+<div class="ups-balance_bar_container{{#if allow_expand }} ups-balance_bar_noexpand{{/if}}">
+	<div class="ups-balance_bar clearfix" id="ups-balance_bar">
+		<button type="button" class="ups-cta ups-cta_secondary ups-balance_bar_expand_btn" aria-expanded="false"> <span class="icon ups-icon-chevronup" aria-hidden="true"></span> <span class="ups-readerTxt">Click to expand</span> </button>
+		<!--<h2><span class="expanded_show">Your Balance</span><span class="collapsed_show">Shipping Total: $42.86</span></h3>
+        <p>Retail rates were applied to this shipment</p>-->
+		
+		<h2> <span class="icon ups-icon-box pull-left" aria-hidden="true"></span> <span id="titleTotalWithTaxesandDiscount">Total (with taxes and discount)</span><span id="titleTotalWithDiscount">Total (with discount)</span><span id="titleTotalCharges">Total Charges</span> $42.86 </h2>
+		<!-- <p>Shipping Total (Original): $90.73</p>-->
+		<p>Published Charges: $90.73</p>
+	</div>
+	<div class="ups-balance_bar_expanded" id="ups-balance_bar_expanded"> 
+		<!--<div class="ups-balance_title">
+            <h3 class="ups-form_label">Balance <span class="pull-right"><span class="icon ups-icon-wedgedown" aria-hidden="true"></span></span></h3>
+        </div>-->
+		<div class="ups-balance_bar_inner"> 
+			<!--<div class="row">
+        		<div class="col-md-3">
+            		<h3 class="ups-form_label">Shipping Fees</h3>
+                    <div class="ups-balance_table">
+                    	<div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Lorem ipsum dolor sit amet
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Sed do eiusmod tempor
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Excepteur sint occaecat cupidatat non proident
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Duis aute irure dolor in reprehenderit
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                    </div>
+        		</div>
+                <div class="col-md-3">
+                	<h3 class="ups-form_label">Additional Option Fees</h3>
+                    <div class="ups-balance_table">
+                    	<div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Esse cillum dolore
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Deserunt mollit anim
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Magni dolores eos qui ratione
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                	<h3 class="ups-form_label">Total Pickup Charges</h3>
+                    <div class="ups-balance_table">
+                    	<div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Dignissimos ducimus
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                        <div class="ups-balance_row">
+                        	<div class="ups-balance_cell fill_width">
+                            	Itaque earum
+                            </div>
+                            <div class="ups-balance_cell">
+                            	$0.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                	<h3 class="ups-form_label">Shipping Total:</h3>
+                    <p class="h1">$42.86</p>
+                    <p>Retail rates were applied to this shipment</p>
+                    <p>Duties and taxes are not included</p>
+                    <p>Pickup Charges: disclaimer placeholder</p>
+                    <p>Transportation Charges: disclaimer placeholder</p>
+                    <p>Tax disclaimer placeholder - EU, CA, MX</p>
+                </div>
+            </div>-->
+			<div class="row">
+				<div class="col-md-3" id="ups-balance_bar_col1">
+					<h3 class="ups-form_label">Shipping Fees</h3>
+					<div class="ups-balance_table clearfix">
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Transportation </div>
+						<div class="ups-balance_row clearfix"> <span class="pull-right">$0.00</span> Delivery Area Surcharge - Rural </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> EEI Filing Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Extended Area Surcharge (Ship From) </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Extended Area Surcharge (Ship To) </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Fuel Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Residential Surcharge </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Security Surcharge </div>
+					</div>
+					<p>Transportation Charges: disclaimer placeholder</p>
+				</div>
+				<div class="col-md-3" id="ups-balance_bar_col2">
+					<h3 class="ups-form_label">Additional Option Fees</h3>
+					<div class="ups-balance_table">
+						<div class="ups-balance_row ups-balance_row_condensed"> C.O.D. Amount </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> - Package 1 </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Email Notifications </div>
+						<div class="ups-balance_row ups-balance_row_condensed"> UPS Premium Care </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> - Package 1 </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> UPS Carbon Neutral </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Deliver to Addressee Only </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Direct Delivery Only </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Package Release Code </div>
+					</div>
+				</div>
+				<div class="col-md-3" id="ups-balance_bar_col3">
+					<h3 class="ups-form_label">Pickup Charges</h3>
+					<div class="ups-balance_table">
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> Schedule a Pickup </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> {Pickup Fee} </div>
+						<div class="ups-balance_row"> <span class="pull-right">$0.00</span> {Pickup Fee} </div>
+					</div>
+					<p>Pickup Charges: disclaimer placeholder</p>
+				</div>
+				<div class="col-md-3" id="ups-balance_bar_col4">
+					<h3 class="ups-form_label">Subtotals</h3>
+					<p>A discount has been applied to the {Standard List/Daily/Retail} rates for this shipment. Retail rates were applied to this shipment.</p>
+					<div class="ups-balance_table">
+						<div class="ups-balance_row ups-balance_row_condensed"> 
+							<span class="pull-right">$0.00</span> Pickup Charges (Original) 
+						</div>
+						<div class="ups-balance_row"> 
+							<span class="pull-right">$0.00</span> 
+							<strong>Pickup Charges (Negotiated)</strong> 
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed"> 
+							<span class="pull-right">$0.00</span> 
+							Charges (Original) 
+						</div>
+						<div class="ups-balance_row"> 
+							<span class="pull-right">$0.00</span> 
+							<strong>Charges (Negotiated)</strong> 
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed"> 
+							Published Charges: $0.00 
+						</div>
+						<div class="ups-balance_row ups-balance_row_condensed"> 
+							<span class="pull-right">$0.00</span> 
+							VAT 
+						</div>
+						<div class="ups-balance_row"> 
+							<span class="pull-right">$0.00</span> 
+							<strong><span id="titleTotalWithTaxesandDiscount2">Total (with taxes and discount)</span>
+							<span id="titleTotalWithDiscount2">Total (with discount)</span>
+							<span id="titleTotalCharges2">Total Charges</span></strong>
+						</div>
+					</div>
+					<p>Tax disclaimer placeholder - EU, CA, MX</p>
+				</div>
+			</div>
+			
+			<!------------------------------------------------------------------
+            ----    Remove these buttons in production                     -----
+            ------------------------------------------------------------------->
+			<div class="ups-cms-demo">
+				<h4>Column View</h4>
+				<button class="ups-cta ups-cta_secondary" type="button" id="balanceBar2colBtn">2 column View</button>
+				<button class="ups-cta ups-cta_secondary" type="button" id="balanceBar3colBtn">3 column View</button>
+				<button class="ups-cta ups-cta_secondary" type="button" id="balanceBar4colBtn">4 column View</button>
+				<h4>Total Title Changes</h4>
+				<button class="ups-cta ups-cta_secondary" type="button" id="titleTotalWithTaxesandDiscountBtn">"Total with Taxes and Discount"</button>
+				<button class="ups-cta ups-cta_secondary" type="button" id="titleTotalWithDiscountBtn">"Total with Discount"</button>
+				<button class="ups-cta ups-cta_secondary" type="button" id="titleTotalChargesBtn">"Total Charges"</button>
+			</div>
+		</div>
+	</div>
+</div>

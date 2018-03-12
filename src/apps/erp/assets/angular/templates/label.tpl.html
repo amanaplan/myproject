@@ -1,0 +1,322 @@
+<div class="ups-wrap" [pageTitle]="'Label Your Package'">
+    <div class="ups-wrap_inner">
+        <a href="#" class="ups-previous_page"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back to Overview </a>
+        <div class="ups-group">
+            <p> If you have any questions about your return, please access the <a href="#" class="ups-link">Merchant Policy</a> from your retailer's website for further details about this return.</p>
+        </div>
+        <!-- TFS 451765: Change LLP HTML To A Semantic Structure; Created a UL for the 3/4 LLP options -->
+        <ul class="ups-label_list_options">
+            <div class="row" *ngIf="viewportSize.isLtMDVP">
+                <!-- Beginning of Get Mobile Code - This <li> is where the mobile option moves to in SVP -->
+                <li id="mobileScanDivSVP">
+
+                </li>
+                <!-- End of Get Mobile Code -->
+            </div>
+            <div class="row">
+                <!-- Beginning of Print Label Option -->
+                <li>
+                    <div class="col-md-6">
+                        <div class="ups-label_option">
+                			<div class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable" (click)="showPrintView()" aria-hidden="true">
+                				<span class="icon ups-icon-print"></span> </div>
+                			<div class="ups-label_option_description">
+                				<p>Send your label to your printer now.</p>
+                			</div>
+                			<div class="ups-label_option_action">
+                				<button type="button"
+                                    class="ups-cta ups-cta_primary"
+                                    id="printLabelBtn"
+                                    [attr.aria-expanded]="(printViewShown) ? 'true' : 'false'"
+                                    aria-controls="printTileView"
+                                    (click)="showPrintView()"
+                                    [attr.aria-busy]="(viewLoading) ? 'true' : 'false'"> Print Label </button>
+                				<img src="/assets/resources/images/ajax-loader.gif" alt="Loading..." *ngIf="viewLoading" class="ups-btn_loading"> </div>
+                			<div class="ups-toggle_view_state ups-toggle_view_left ups-label_option_expand"
+                                id="printTileView"
+                                *ngIf="printViewShown">
+
+                				<div class="ups-toggle_view_content" *ngIf="!findLocation">
+                					<div class="row">
+                						<div class="col-md-6 ups-border_right">
+                							<h2 class="h4 ups-slim_header">Success</h2>
+                							<p>You are all set to schedule a pickup or drop-off at a UPS location near you. You can also email the label to yourself for backup.</p>
+                							<!--<div class="ups-form_ctaGroup">
+                                                <button type="button" class="ups-cta ups-cta_primary">Got it</button>
+                                            </div>-->
+                						</div>
+                						<!-- DT NOTE: col-md-12 added on purpose for positioning -->
+                						<div class="col-md-12 visible-xs visible-sm">
+                							<hr class="ups-hr_defined">
+                						</div>
+                						<div class="col-md-6">
+                							<h2 class="h4 ups-slim_header">Would you like to...</h2>
+                							<div class="ups-form_ctaGroup">
+                								<div class="row">
+                									<div class="col-sm-5 text-center hidden-xs"> <a href="#" class="ups-cta ups-cta_primary">Schedule a Pickup</a> </div>
+                									<div class="col-sm-2 text-center ups-btn_height hidden-xs"> <strong>OR</strong> </div>
+                									<div class="col-sm-5 text-center">
+                										<button type="button" class="ups-cta ups-cta_primary" (click)="findLocation = true; focusBackLoc();" id="findLocationBtn">Find a Location</button>
+                									</div>
+                								</div>
+                							</div>
+                						</div>
+                					</div>
+                				</div>
+                				<div class="ups-toggle_view_content" *ngIf="findLocation">
+                					<button class="ups-link" (click)="findLocation = false; focusFindLoc();" id="backLocationBtn"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back </button>
+                                    <ups-find-location></ups-find-location>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </li>
+                <!-- End of Print Label Option -->
+
+                <!-- Beginning of Email Label Option -->
+                <li>
+                    <div class="col-md-6">
+                		<div class="ups-label_option" [ngClass]="{'ups-label_option_slim': viewportSize.isLtMDVP &amp;&amp; !showSync}">
+                			<div class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable" (click)="showEmailView()" aria-hidden="true">
+                				<!-- <img src="/assets/resources/images/placeholder-icon.jpg" width="60" height="60" alt="Placeholder"> -->
+                				<span class="icon ups-icon-email"></span> </div>
+                			<div class="ups-label_option_description">
+                				<p>Send a digital copy of your package label to your inbox for later.</p>
+                				<!--<p>Send a digital copy of your package label to your inbox for later.</p>-->
+                			</div>
+                			<div class="ups-label_option_action">
+                				<button type="button"
+                                    class="ups-cta ups-cta_primary"
+                                    id="emailLabelBtn"
+                                    [attr.aria-expanded]="(emailViewShown) ? 'true' : 'false'"
+                                    aria-controls="emailTileView"
+                                    (click)="showEmailView()"
+                                    [attr.aria-busy]="(viewLoading) ? 'true' : 'false'"> Email Label </button>
+                				<img src="/assets/resources/images/ajax-loader.gif" alt="Loading..." *ngIf="viewLoading" class="ups-btn_loading"> </div>
+                			<div class="ups-toggle_view_state ups-toggle_view_right ups-label_option_expand"
+                                id="emailTileView"
+                                *ngIf="emailViewShown">
+                				<div class="ups-toggle_view_content" slideOpen>
+                					<div id="emailEntryContainer" *ngIf="!emailSuccess">
+                						<form [formGroup]="emailForm" (ngSubmit)="emailSubmit(emailForm.value)" novalidate>
+                							<div *ngIf="(emailSubmitAttempt &amp;&amp; !emailForm.valid)">
+                								<h3 class="ups-invalid_color-list ups-error_alert-list"> <span class="icon ups-icon-exclamation" aria-hidden="true"></span> Please correct the following errors </h3>
+                								<ul class="ups-icons-error">
+                									<li *ngIf="(!emailForm.controls['return_email'].valid && emailForm.controls['return_email'].hasError('required'))"> <a href="#return_email" class="ups-invalid_color">Email <span class="ups-readerTxt">field</span></a> is required </li>
+                									<li *ngIf="(!emailForm.controls['return_email'].valid && !emailForm.controls['return_email'].hasError('required'))"> <a href="#return_email" class="ups-invalid_color">Email <span class="ups-readerTxt">field</span></a> is invalid </li>
+                								</ul>
+                							</div>
+
+                							<!--<h3>Enter Email Address *</h3>-->
+                							<div class="row">
+                								<div class="col-md-5">
+                									<div class="ups-form_group ups-form_required">
+                										<label for="return_email" class="ups-form_label"> Enter Email Address <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                										<div class="ups-text_wrapper ups-input_wrapper">
+                											<input name="return_email"
+                                                                class="ups-form_input"
+                                                                id="return_email"
+                                                                aria-required="true"
+                                                                required
+                                                                type="email"
+                                                                [ngClass]="{'ups-bodError':  (!emailForm.controls['return_email'].valid &amp;&amp; emailForm.controls['return_email'].touched)}"
+                                                                pattern="^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$"
+                                                                [formControl]="emailForm.controls['return_email']">
+                										</div>
+                										<span class="ups-icons-error" id="return_email_error" role="alert"> <span class="ups-invalid_color"
+                                                                *ngIf="(!emailForm.controls['return_email'].valid &amp;&amp; emailForm.controls['return_email'].touched)"> <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span> <span class="ups-readerTxt"> Invalid</span> <span *ngIf="emailForm.controls['return_email'].hasError('required')"> Email is required. </span>
+                										<!-- logThis(emailForm.controls['return_email']) -->
+                										<span *ngIf="!emailForm.controls['return_email'].hasError('required')"> Email is invalid. </span> </span> </span> </div>
+                								</div>
+                								<!--<div class="col-md-7">
+
+                                                </div>-->
+                							</div>
+                							<div class="ups-form_ctaGroup">
+                								<button type="submit" class="ups-cta ups-cta_primary" id="emailSubmitBtn">Submit</button>
+                								<button type="button"
+                                                    class="ups-cta ups-cta_secondary"
+                                                    id="closeEmailTileViewBtn"
+                                                    (click)="closeAll()">Cancel</button>
+                							</div>
+                						</form>
+                					</div>
+                					<div id="emailSuccessContainer" *ngIf="emailSuccess">
+                						<h3>Success</h3>
+                						<p>Your label has been sent to (myaddress@email.com). Now you can schedule a pickup or drop-off at a UPS location near you.</p>
+                						<div class="ups-form_ctaGroup">
+                							<button type="button" class="ups-cta ups-cta_primary">Got it</button>
+                						</div>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </li>
+                <!-- End of Email Label Option -->
+            </div>
+            <div class="row">
+                <!-- Beginning of Sync Sticker Barcode Label Option -->
+                <li>
+                    <div class="col-md-6" *ngIf="showSync">
+                		<div class="ups-label_option">
+                			<div class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable" (click)="showSyncStickerView()" aria-hidden="true">
+                				<!-- <img src="/assets/resources/images/shipping_packages/syncsticker_icon.svg" width="60" height="60" alt="sync sticker barcode"> -->
+                				<span class="icon ups-icon-syncsticker"></span>
+                			</div>
+                			<div class="ups-label_option_description">
+                				<p>Get a mobile shipping barcode sticker from a UPS Dropbox to sync to your package.</p>
+                			</div>
+                			<div class="ups-label_option_action">
+                				<button type="button"
+                                    class="ups-cta ups-cta_primary"
+                                    id="syncStickerBtn"
+                                    [attr.aria-expanded]="(syncStickerViewShown) ? 'true' : 'false'"
+                                    aria-controls="syncStickerTileView"
+                                    (click)="showSyncStickerView()"
+                                    [attr.aria-busy]="(viewLoading) ? 'true' : 'false'"> Sync Sticker Barcode </button>
+                				<img src="/assets/resources/images/ajax-loader.gif" alt="Loading..." *ngIf="viewLoading" class="ups-btn_loading"> </div>
+                			<div class="ups-toggle_view_state ups-toggle_view_left ups-label_option_expand"
+                                id="syncStickerTileView"
+                                *ngIf="syncStickerViewShown">
+                				<div class="ups-toggle_view_content" slideOpen>
+                					<div id="barcodeEntryContainer" *ngIf="!syncStickerSuccess">
+                						<!--<h3>Enter Your Barcode</h3>
+                                        <p>Please enter the 11-digit code found on your mobile shipping barcode sticker. <a href="#" class="ups-link">Learn more</a></p>-->
+                						<form [formGroup]="syncForm" (ngSubmit)="syncSubmit(syncForm.value)" novalidate>
+                							<div *ngIf="(syncCode.error.noExists)">
+                								<h3 class="ups-invalid_color-list ups-error_alert-list"> <span class="icon ups-icon-exclamation" aria-hidden="true"></span> Please correct the following errors </h3>
+                								<ul class="ups-icons-error">
+                									<li *ngIf="(syncCode.error.noExists)"> <a href="#return_barcode" class="ups-invalid_color">Sync Barcode <span class="ups-readerTxt">field</span></a> does not contain a barcode that exists. </li>
+                								</ul>
+                							</div>
+                							<div class="row">
+                								<div class="col-md-5">
+                									<div class="ups-form_group">
+                										<label for="return_barcode" class="ups-form_label"> Enter Your Barcode </label>
+                										<p class="ups-form_subheader">Please enter the 11-digit code found on your mobile shipping barcode sticker. <a href="#" class="ups-link">Learn more</a></p>
+                										<div class="ups-text_wrapper ups-input_wrapper">
+                											<input name="return_barcode"
+                                                                class="ups-form_input"
+                                                                id="return_barcode"
+                                                                type="text"
+                                                                placeholder="Enter barcode here"
+                                                                maxlength="11"
+                                                                [formControl]="syncForm.controls['return_barcode']">
+                										</div>
+                									</div>
+                								</div>
+                							</div>
+                							<div class="ups-form_ctaGroup">
+                								<button type="submit"
+                                                    class="ups-cta ups-cta_primary"
+                                                    id="barcodeSubmitBtn">Submit</button>
+                								<button type="button"
+                                                    class="ups-cta ups-cta_secondary"
+                                                    id="closeBarcodeTileViewBtn"
+                                                    (click)="closeAll()">Cancel</button>
+                							</div>
+                						</form>
+                					</div>
+                					<div id="barcodeSuccessContainer" *ngIf="syncStickerSuccess">
+                						<h3>Success</h3>
+                						<p>Your package has been synced with your shipping order. Make sure the mobile shipping barcode sticker is attached to your package before dropping-off at a UPS Drop Box or The UPS Store&reg;. <a href="#" class="ups-link">Learn more</a></p>
+                						<p><strong>Tracking Number:</strong> 1Z1234567891234567</p>
+                						<p><strong>Barcode Sticker Number:</strong> Z9123456789</p>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </li>
+                <!-- End of Sync Sticker Barcode Label Option -->
+
+                <!-- Beginning of Get Mobile Code - Note: This is programmed to move to beginning of the <ul> in <li id="mobileScanDivSVP"> -->
+                <li>
+                    <div id="mobileScanDiv">
+                        <div id="mobileScanLabel" class="col-md-6">
+                    		<div class="ups-label_option">
+                    			<div class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable" (click)="showMobileBarcodeView()" aria-hidden="true"> <span class="icon ups-icon-mobile"></span> </div>
+                    			<div class="ups-label_option_description">
+                    				<p>Send a barcode to your phone to be scanned at The UPS Store&reg;.</p>
+                    			</div>
+                    			<div class="ups-label_option_action">
+                    				<button type="button"
+                                        class="ups-cta ups-cta_primary"
+                                        id="showMobileBarcodeBtn"
+                                        [attr.aria-expanded]="(mobileScanSuccessShown) ? 'true' : 'false'"
+                                        aria-controls="mobileScanSuccessView"
+                                        (click)="showMobileBarcodeView()"
+                                        [attr.aria-busy]="(viewLoading) ? 'true' : 'false'"> Get Mobile Code </button>
+                    				<img src="/assets/resources/images/ajax-loader.gif" alt="Loading..." *ngIf="viewLoading" class="ups-btn_loading">
+                                </div>
+                                <div *ngIf="viewportSize.isLtMDVP">
+                                    <div class="ups-toggle_view_state ups-toggle_view_right ups-label_option_expand"
+                                    id="mobileScanSuccessView" *ngIf="mobileScanSuccessShown">
+                        				<div class="ups-toggle_view_content text-center" *ngIf="!findLocationThree" slideOpen>
+                                            <div class="ups-group">
+                                                <img alt="Scan the Mobile Barcode" class="ups-barcode_mobile" src="/assets/resources/images/erp/LabelLandingPage_Barcode_SVP.svg" width="210px">
+                                            </div>
+                                            <button type="button" class="ups-cta ups-cta_primary">Download to Device</button>
+                                            <p class="h4">Success!</p>
+                                            <p>
+                                                Present this code at The UPS Store nearest to you to scan and ship your package.
+                                            </p>
+                                            <hr class="ups-erp_hr"/>
+                                            <p class="h4">Would you like to...</p>
+                                            <button type="button" class="ups-cta ups-cta_primary" (click)="findLocationThree = true; focusBackLoc();" id="findLocationBtnTwo">Find a UPS Location</button>
+                        				</div>
+                                        <div class="ups-toggle_view_content" *ngIf="findLocationThree">
+                                            <button class="ups-link" (click)="findLocationThree = false; focusFindLoc();" id="backLocationBtnThree"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back </button>
+                                            <ups-find-location></ups-find-location>
+                                        </div>
+                    			    </div>
+                                </div>
+                                <div *ngIf="viewportSize.isGtSMVP">
+                                    <div class="ups-toggle_view_state ups-label_option_expand" [ngClass]="{'ups-toggle_view_left': !showSync, 'ups-toggle_view_right': showSync}"
+                                    id="mobileScanSuccessView"
+                                    *ngIf="mobileScanSuccessShown">
+                        				<div class="ups-toggle_view_content" *ngIf="!findLocationTwo" slideOpen>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h2 class="h4 ups-slim_header">You're almost done</h2>
+                                                        <p>Present this code at The UPS Store nearest you to scan and ship your package. <a href="#" class="ups-link">Learn More</a>
+                                                        </p>
+                                                </div>
+                                                <div class="col-md-4 ups-border_right">
+                                                    <div class="ups-group text-center">
+                                                        <img alt="Scan the Mobile Barcode" class="ups-barcode_mobile" src="/assets/resources/images/erp/LabelLandingPage_Barcode_SVP.svg" width="210px">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 text-center">
+                            							<h2 class="h4 ups-slim_header">Would you like to...</h2>
+                                                        <button type="button" class="ups-cta ups-cta_primary" (click)="findLocationTwo = true; focusBackLoc();" id="findLocationBtnTwo">Find a Location</button>
+                                                </div>
+                                            </div>
+                        				</div>
+                                        <div class="ups-toggle_view_content" *ngIf="findLocationTwo">
+                                            <button class="ups-link" (click)="findLocationTwo = false; focusFindLoc();" id="backLocationBtnTwo"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back </button>
+                                            <ups-find-location></ups-find-location>
+                                        </div>
+                    			    </div>
+                                </div>
+                		    </div>
+                	   </div>
+                    </div>
+                </li>
+                <!-- End of Get Mobile Code -->
+            </div>
+        </ul>
+        <!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+        <div class="ups-cms-demo">
+            <h3>Loading Views</h3>
+        	<button type="button" class="ups-cta ups-cta_secondary" (click)="viewLoading=true">Loading View</button>
+        	<button type="button" class="ups-cta ups-cta_secondary" (click)="viewLoading=false">Not Loading View</button>
+            <hr />
+            <h3>Sync Sticker Barcode Views</h3>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="showSync=true">Show Sync Sticker Barcode</button>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="showSync=false">Hide Sync Sticker Barcode</button>
+        </div>
+        <!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+    </div>
+</div>

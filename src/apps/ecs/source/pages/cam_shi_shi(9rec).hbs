@@ -1,0 +1,875 @@
+---
+title: On Call Saturday Stop Charge
+layout: legacy.hbs
+version: v4
+dynpnls: yes
+appID: com.ups.ECS
+appCSS: ups.legacy_overrideECS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+					
+					<!-- Add List for Print Page -->
+					<ul class="lstBrand">
+						<li>
+							
+						</li>
+					</ul>
+					<form action="repl_fname">
+						
+						<!-- Begin Application Module -->
+						<div class="appLvl col18 mod"> 
+							<!-- Begin Application Header --> 
+							<!-- Remove for Print Page --> 
+							
+							<!--
+							<div class="appHead clearfix">
+								<h2 id="repl_id">{application header}</h2>
+									<ul>
+										<li>{<a href="repl_href" class="btnlnkR helpiconR">help link}</a></li>
+									</ul>
+							</div>
+							--> 
+							
+							<!-- End Application Header --> 
+							<!-- Begin Application Body -->
+							<div class="appBody clearfix">
+								<div class="subcol9 marginBegin clearfix">
+									<dl role="presentation" class="outHozFlex clearfix">
+										<dt><span class="label">Transaction Date:</span></dt>
+										<dd>[dd/mm/yyyy]</dd>
+									</dl>
+								</div>
+								<div class="subcol9 marginEnd clearfix">
+									<dl role="presentation" class="outHozFlex clearfix">
+										<dt><span class="label">Tracking Number:</span></dt>
+										<dd>[1ZFOO1001234567890]<br>
+											[1ZFOO1001234567890]</dd>
+									</dl>
+								</div>
+								<div class="clearfix"></div>
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// Begin Panel 1 Address Info                     //// --> 
+								<!-- //////////////////////////////////////////////////////// --> 
+								
+								<!-- Begin Section Module -->
+								<div class="secLvl step"> 
+									<!-- Begin Section Header -->
+									<div class="secHead clearfix">
+										<div class="stepNumberDiv"><span class="stepNumber">1</span></div>
+										<h3 id="repl_id">Address Information</h3>
+									</div>
+									<!-- End Section Header --> 
+									
+									<!-- Begin Section Body -->
+									<div class="secBody clearfix">
+										<div class="floatBegin">
+											<dl role="presentation">
+												<dt>
+													<label id="repl_id" for="repl_id">Ship To:</label>
+												</dt>
+												<dd id="repl_id">{contact name}<br>
+													{company name}<br>
+													{address 1}<br>
+													{city}, {other}<br>
+													{country or territory}<br>
+													telephone: {number}</dd>
+											</dl>
+										</div>
+										<div class="floatBegin">
+											<dl role="presentation">
+												<dt>
+													<label id="repl_id" for="repl_id">Alternate Address:</label>
+												</dt>
+												<dd id="repl_id">{contact name}<br>
+													{company name}<br>
+													{address 1}<br>
+													{city}, {other}<br>
+													{country or territory}<br>
+													telephone: {number}<br>
+													<br>
+													Notifications:<br>
+													{email address}</dd>
+											</dl>
+										</div>
+										<div class="floatBegin">
+											<dl role="presentation">
+												<dt>
+													<label id="repl_id" for="repl_id">Ship From:</label>
+												</dt>
+												<dd id="repl_id">{contact name}<br>
+													{company name}<br>
+													{address 1}<br>
+													{city}, {other}<br>
+													{country or territory}<br>
+													telephone: {number}</dd>
+											</dl>
+										</div>
+										<div class="floatAfter">
+											<dl role="presentation">
+												<dt>
+													<label id="repl_id" for="repl_id">Return Address:</label>
+												</dt>
+												<dd id="repl_id">{contact name}<br>
+													{company name}<br>
+													{address 1}<br>
+													{city}, {other}<br>
+													{country or territory}<br>
+													telephone: {number}</dd>
+											</dl>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<!-- End Section Body --> 
+									
+									<!-- Begin Section Footer --><!-- End Section Footer --> 
+								</div>
+								<!-- End Section Module --> 
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// End Panel 1 Address Info                       //// --> 
+								<!-- //// Begin Panel 2 Package Info                     //// --> 
+								<!-- //////////////////////////////////////////////////////// --> 
+								
+								<!-- Begin Section Module -->
+								<div class="secLvl step"> 
+									<!-- {if body contents include only a table MUST add class(tableonly) at beginning of section module (<div class="secLvl step tableonly">) When Shipment Information is removed and table is display ALONE in secLvl div}
+									<!-- Begin Section Header -->
+									<div class="secHead clearfix">
+										<div class="stepNumberDiv"><span class="stepNumber">2</span></div>
+										<h3 id="repl_id">Package Information</h3>
+									</div>
+									<!-- End Section Header --> 
+									
+									<!-- Begin Section Body -->
+									<div class="secBody"> 
+										
+										<!-- --------------------------------------------------------- --> 
+										<!-- Shipment Information --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- Begin Sub Module -->
+										<div class="secLvl"> 
+											<!-- Begin Sub Header -->
+											<div class="secHead clearfix">
+												<h4 id="repl_id">{general information}</h4>
+											</div>
+											<!-- End Sub Header --> 
+											
+											<!-- Begin Sub Body -->
+											<div class="secBody">
+												<dl role="presentation" class="outHozFixed1 clearfix group">
+													<dt> <span class="label">{shipment id label:}</span> </dt>
+													<dd id="repl_id">{shipment id}</dd>
+												</dl>
+												<dl role="presentation" class="outHozFixed1 clearfix group">
+													<dt> <span class="label">{actual weight label:}</span> </dt>
+													<dd id="repl_id">{nn.n lbs/kg}</dd>
+												</dl>
+												<dl role="presentation" class="outHozFixed1 clearfix group">
+													<dt> <span class="label"><a href="repl_href" class="btnlnkR helpIconR">{billable weight label:}</a></span> </dt>
+													<dd id="repl_id">{nn.n lbs/kg}</dd>
+												</dl>
+												<dl role="presentation" class="outHozFixed1 clearfix group">
+													<dt>Shipment Contains <strong>Dangrous Goods</strong>:</dt>
+													<dd>{Yes/No}</dd>
+												</dl>
+												<dl role="presentation" class="outHozFixed1 clearfix group">
+													<dt> <span class="label">{description of goods label:}</span> </dt>
+													<dd id="repl_id">{description of goods}</dd>
+												</dl>
+												<div class="clearfix"></div>
+												<br>
+												<p>Account Enabled for UPS Paperless<sup>sm</sup> Invoice</p>
+												<p>Account Enabled for UPS Paperless NAFTA</p>
+											</div>
+											<!-- End Sub Body --> 
+											
+											<!-- Begin Sub Footer --><!-- End Sub Footer --> 
+										</div>
+										<!-- End Sub Module --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- END Shipment Information --> 
+										<!-- --------------------------------------------------------- --> 
+										
+										<!-- --------------------------------------------------------- --> 
+										<!-- Handling Information --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- Begin Sub Module -->
+										<div class="secLvl"> 
+											<!-- Begin Sub Header -->
+											<div class="secHead clearfix">
+												<h4 id="repl_id">Handling Units in this Shipment</h4>
+											</div>
+											<!-- End Sub Header --> 
+											
+											<!-- Begin Sub Body -->
+											<div class="secBody">
+												<table border="0" cellpadding="0" cellspacing="0" class="dataTable full">
+													<thead>
+														<tr>
+															<th scope="col"></th>
+															<th scope="col">Handling Unit Type</th>
+															<th scope="col">Number of<br>Handling Units:</th>
+															<th scope="col">Length</th>
+															<th scope="col">Width</th>
+															<th scope="col">Height</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="odd">
+															<td scope="row">1</td>
+															<td>[Hand Unit Type]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00] [in]</td>
+														</tr>
+														<tr>
+															<td scope="row">2</td>
+															<td>[Hand Unit Type]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00] [in]</td>
+														</tr>
+														<tr class="odd">
+															<td scope="row">3</td>
+															<td>[Hand Unit Type]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00]</td>
+															<td>[00] [in]</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- End Sub Body --> 
+											
+											<!-- Begin Sub Footer --><!-- End Sub Footer --> 
+										</div>
+										<!-- End Sub Module --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- END Handling Information --> 
+										<!-- --------------------------------------------------------- --> 
+										
+										<!-- --------------------------------------------------------- --> 
+										<!-- Package Information --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- Begin Sub Module -->
+										<div class="secLvl"> 
+											<!-- Begin Sub Header -->
+											<div class="secHead clearfix">
+												<h4 id="repl_id">{package information}</h4>
+												<ul>
+													<li><a href="repl_href" class="btnlnkL editMini">edit</a></li>
+												</ul>
+											</div>
+											<!-- End Sub Header --> 
+											
+											<!-- Begin Sub Body -->
+											<div class="secBody">
+												<table border="0" cellpadding="0" cellspacing="0" class="dataTable full">
+													<tr>
+														<th class="sel alignCenter">&nbsp;</th>
+														<th><label id="repl_id" for="repl_id">{tracking number}</label></th>
+														<th><label id="repl_id" for="repl_id">{weight}</label></th>
+														<th class="nowrap"><label id="repl_id" for="repl_id">{dimensions/<br>
+																packaging}</label></th>
+														<th><label id="repl_id" for="repl_id">{declared value}</label></th>
+														<th class="nowrap"><label id="repl_id" for="repl_id">{reference label-<br>
+																reference value}</label></th>
+														<th><label id="repl_id" for="repl_id">{details}</label></th>
+													</tr>
+													<tr class="odd">
+														<td class="sel alignCenter">1.</td>
+														<td>{1Znnnnnnnnnnnnnnnn}</td>
+														<td nowrap="nowrap">{nn.n} {lbs/kg}<br>
+															([000][lb/kg] billable)</td>
+														<td nowrap="nowrap">{nn}x{nn}x{nn} {in.}<br>
+															{packaging type}</td>
+														<td nowrap="nowrap">{nn.nn usd}</td>
+														<td nowrap="nowrap">{reference label - <br>
+															reference value}</td>
+														<td>{}</td>
+													</tr>
+													<tr>
+														<td class="sel alignCenter">2.</td>
+														<td>{1Znnnnnnnnnnnnnnnn}</td>
+														<td nowrap="nowrap">{nn.n} {lbs/kg}<br>
+															([000][lb/kg] billable)</td>
+														<td nowrap="nowrap">{nn}x{nn}x{nn} {in.}<br>
+															{packaging type}</td>
+														<td nowrap="nowrap">{nn.nn usd}</td>
+														<td nowrap="nowrap">{reference label - <br>
+															reference value}</td>
+														<td>{}</td>
+													</tr>
+													<tr class="odd">
+														<td class="sel alignCenter">3.</td>
+														<td>{1Znnnnnnnnnnnnnnnn}</td>
+														<td nowrap="nowrap">{nn.n} {lbs/kg}<br>
+															([000][lb/kg] billable)</td>
+														<td nowrap="nowrap">{nn}x{nn}x{nn} {in.}<br>
+															{packaging type}</td>
+														<td nowrap="nowrap">{nn.nn usd}</td>
+														<td nowrap="nowrap">{reference label - <br>
+															reference value}</td>
+														<td>{}</td>
+													</tr>
+												</table>
+												
+												<!-- --------------------------------------------------------- --> 
+												<!-- Default --> 
+												<!-- --------------------------------------------------------- --> 
+												
+											</div>
+											<!-- End Sub Body --> 
+											
+											<!-- Begin Sub Footer --><!-- End Sub Footer --> 
+										</div>
+										<!-- End Sub Module --> 
+										<!-- --------------------------------------------------------- --> 
+										<!-- END Package Information --> 
+										<!-- --------------------------------------------------------- --> 
+										
+									</div>
+									<!-- End Section Body --> 
+									
+									<!-- Begin Section Footer --><!-- End Section Footer --> 
+								</div>
+								<!-- End Section Module --> 
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// End Panel 2 Package Info                       //// --> 
+								<!-- //// Begin Panel 3 UPS Shipping Service/Options     //// --> 
+								<!-- //////////////////////////////////////////////////////// -->
+								
+								<div id="dyn_pnl_1"> 
+									
+									<!-- ////////////////////////// --> 
+									<!-- //// Begin ECS        //// --> 
+									<!-- ////////////////////////// -->
+									
+									<div id="pnl_1_1" class="secLvl step">
+										<div class="secHead clearfix">
+											<div class="stepNumberDiv"><span class="stepNumber">3</span></div>
+											<h3 id="repl_id">UPS Shipping Service and Options</h3>
+											<ul>
+												<li><a href="repl_href" class="btnlnkL editMini">{edit link}</a></li>
+											</ul>
+										</div>
+										<div class="secBody clearfix">
+											<dl role="presentation">
+												<dt><span class="label">Service:</span></dt>
+												<dd>[service type]</dd>
+											</dl>
+											<dl role="presentation">
+												<dt><span class="label">Guaranteed By:</span></dt>
+												<dd>[End of Day], {weekday}, {mm/dd/yyyy}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">[Pre-Tax Shipping Fees Subtotal]</span></dt>
+												<dd>nnn.nn USD</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Shipping Fees Subtotal:</span></dt>
+												<dd>nnn.nn USD</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{transaction}</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Gross Shipping Charges:</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozFixed clearfix">
+												<dt><span class="label">Density Rated</span><br>
+													(rated as pounds per cubic foot)</dt>
+												<dd>[nnn]</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">[nn%] Discounted Amount<br>
+													&nbsp;&nbsp;&nbsp;(Ground with Freight Pricing)</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Amount After Discount</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{delivery area - rural}</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Extended Area Surcharge (Ship From)</span><br>
+													[geo-type]</dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Extended Area Surcharge (Ship To)</span><br>
+													[geo-type]</dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{fuel surcharge}</span></dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">EEI Filing Surcharge</span></dt>
+												<dd>{nnn.nn} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">State Department License Filing Surcharge</span></dt>
+												<dd>{nnn.nn} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{saturday processing fee}</span></dt>
+												<dd>{nn.dd usd}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{additional handing label}</span></dt>
+												<dd>&nbsp;</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nnn,nn eur}</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nnn,nn eur}</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nnn,nn eur}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{large package surcharge label}</span></dt>
+												<dd>&nbsp;</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nnn,nn eur}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{declared value label}</span></dt>
+												<dd>No Charge</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{residential surcharge}</span></dt>
+												<dd>{nnn.nn usd}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Security Surcharge</span></dt>
+												<dd>{nnn.nn usd}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Seasonal Surcharge</span></dt>
+												<dd>{nnn.nn usd}</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Seasonal Additional Handling Surcharge</span></dt>
+												<dd>&nbsp;</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nn.dd} usd</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">Seasonal Large Package Surcharge</span></dt>
+												<dd>&nbsp;</dd>
+												<dt class="indent">{package {n}}</dt>
+												<dd>{nn.dd} usd</dd>
+											</dl>
+											<div class="clearfix"></div>
+											<h3>Additional Shipping Options:</h3>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">E-mail Notification:</span><br>
+													&nbsp; 1. {email address}<br>
+													&nbsp; E-mail Failure Notification {email address}s</dt>
+												<dd>No Charge</dd>
+											</dl>
+											<div class="clearfix"></div>
+											<dl role="presentation">
+												<dt><span class="label">UPS Premium Care:</span></dt>
+												<dd>&nbsp; Package 1:</dd>
+											</dl>
+											<p><span class="label">UPS Carbon Neutral:</span></p>
+											<dl role="presentation">
+												<dt><span class="label">UPS Proactive Response<sup>sm</sup>:</span></dt>
+												<dd>&nbsp; Refigeration Needed&nbsp;</dd>
+											</dl>
+											<dl role="presentation">
+												<dt><span class="label">Dry Ice (Shipped under IATA regulations)</span></dt>
+												<dd>&nbsp; Pallet [0]<br>
+													&nbsp; &nbsp; Dry Ice Weight: [00.0][lb/kg]</dd>
+											</dl>
+											<dl role="presentation">
+												<dt><span class="label">Saturday Delivery:</span></dt>
+												<dd>Note: Remember to put a Saturday Delivery sticker on your packages.</dd>
+											</dl>
+											<dl role="presentation" class="outHozLedger clearfix">
+												<dt><span class="label">{Pkg exempt from Alt Delivery Address... name TBD}</span></dt>
+												<dd>nnn.nn USD</dd>
+											</dl>
+											<p><span class="label">Saturday Pickup:</span></p>
+											<p><span class="label">Liftgate on Pickup:</span></p>
+											<p><span class="label">Liftgate on Pickup:</span></p>
+											<dl role="presentation" class="outHozLedger totals clearfix">
+												<dt>Total Shipping Charges</dt>
+												<dd>nnn.nn USD</dd>
+											</dl>
+											<div class="clearfix"></div>
+											<p><strong>Note:</strong> Pallet and other surcharges may be included in shipping charges.</p>
+										</div>
+									</div>
+									
+									<!-- ////////////////////////// --> 
+									<!-- //// End ECS          //// --> 
+									<!-- //// Begin UIS        //// --> 
+									<!-- ////////////////////////// -->
+									
+									<div id="pnl_1_2" class="secLvl step">
+										<div class="secHead clearfix">
+											<div class="stepNumberDiv"><span class="stepNumber">3</span></div>
+											<h3 id="repl_id">UPS Return Service and Return Shipping Options</h3>
+										</div>
+										<div class="secBody clearfix">
+											<dl role="presentation" class="outHozFlex clearfix">
+												<dt> <span class="label"  id="repl_id" for="repl_id">{service:}</span> </dt>
+												<dd id="repl_id">{service type}</dd>
+												<dt> <span class="label"  id="repl_id" for="repl_id">{guaranteed by}:<sup>1</sup></span> </dt>
+												<dd id="repl_id">{end of day}, {weekday}, {mm/dd/yyyy}</dd>
+											</dl>
+											<div class="secLvl message">
+												<div class="secBody">
+													<p>{rate name} rates were applied to this shipment</p>
+													<p>{message placeholder for not showing total charges.}</p>
+												</div>
+											</div>
+											<div class="col8 hrCol marginBegin">
+												<dl role="presentation" class="outHozLedger clearfix totals">
+													<dt> <span class="label" id="repl_id" for="repl_id">{shipping fees subtotal label:}</span> </dt>
+													<dd>{nn.nn usd}</dd>
+												</dl>
+												<div>
+													<input id="repl_id" onClick="" name="" type="button" class="btnlnkL expandIcon" value="{show shipping fees subtotal details}">
+												</div>
+												<div>
+													<input id="repl_id" onClick="" name="" type="button" class="btnlnkL collapseIcon" value="{hide shipping fees subtotal details}">
+												</div>
+												<dl role="presentation" class="outHozLedger indent clearfix">
+													<dt> <span class="label" id="repl_id" for="repl_id">{transportation}</span> </dt>
+													<dd id="repl_id">{nn.dd} usd</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{density rated}</span></dt>
+													<dd id="repl_id">{nn.dd} usd</dd>
+												</dl>
+												<p>(rated as pounds per cubic foot)</p>
+												<dl role="presentation" class="outHozLedger indent clearfix">
+													<dt> <span class="label" id="repl_id" for="repl_id">{fuel surcharge}</span> </dt>
+													<dd id="repl_id">{nn.dd} usd</dd>
+													<dt> <span class="label">{EEI Filing Surcharge}</span> </dt>
+													<dd id="repl_id">{nnn,nn usd}</dd>
+													<dt> <span class="label">{State Department License Filing surcharge}</span> </dt>
+													<dd id="repl_id">{nnn,nn usd}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{additional handing label}</span> </dt>
+													<dd>&nbsp;</dd>
+													<dt class="indent">{package {n}}</dt>
+													<dd id="repl_id">{nnn,nn eur}</dd>
+													<dt class="indent">{package {n}}</dt>
+													<dd id="repl_id">{nnn,nn eur}</dd>
+													<dt class="indent">{package {n}}</dt>
+													<dd id="repl_id">{nnn,nn eur}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{large package surcharge label}</span> </dt>
+													<dd>&nbsp;</dd>
+													<dt class="indent">{package {n}}</dt>
+													<dd id="repl_id">{nnn,nn eur}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{declared value label}</span> </dt>
+													<dd id="repl_id">{no charge}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{extended area surcharge}</span> </dt>
+													<dd id="repl_id">{nnn,nn eur}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{declared value label}</span> </dt>
+													<dd>&nbsp;</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{package {n}}</span> </dt>
+													<dd id="repl_id">{nn.dd} usd</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{large package surcharge}</span> </dt>
+													<dd id="repl_id">{no charge}</dd>
+													<dt class="indent">{package {n}}</dt>
+													<dd id="repl_id">{nnn.nn usd}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{residential surcharge}</span> </dt>
+													<dd id="repl_id">{nnn.nn usd}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{saturday processing fee}</span> </dt>
+													<dd id="repl_id">{nn.dd usd}</dd>
+													<dt> <span class="label" id="repl_id" for="repl_id">{seasonal surcharge}</span> </dt>
+													<dd id="repl_id">{nn.dd usd}</dd>
+												</dl>
+											</div>
+											<div class="col8 marginEnd">
+												<h4 id="repl_id">{additional shipping options}:</h4>
+												<dl role="presentation" class="outHozLedger clearfix group">
+													<dt> <span class="label" id="repl_id" for="repl_id">{e-mail notifications:}</span> <a href="repl_href" class="noPrint">{edit link</a> <a href="repl_href" class="noPrint">cancel link}</a></dt>
+													<dd id="repl_id">{no charge}</dd>
+												</dl>
+												<dl role="presentation" class="outHozFlex clearfix">
+													<dt class="indent">{1.}{e-mail address}:</dt>
+													<dd>{label created, ship, exception, delivery}</dd>
+													<dt class="indent">{e-mail failure notification}:</dt>
+													<dd id="repl_id">{email address}</dd>
+												</dl>
+												<dl role="presentation" class="outHozLedger clearfix">
+													<dt> <span class="label" id="repl_id" for="repl_id">ups returns <sup>&reg;</sup> exchange lable:</span> </dt>
+													<dd id="repl_id">nnn.nn usd</dd>
+												</dl>
+												<dl role="presentation" class="outHozLedger clearfix group">
+													<dt> <span class="label" id="repl_id" for="repl_id">ups returns <sup>&reg;</sup> exchange notification lable:</span> </dt>
+													<dd id="repl_id">no charge</dd>
+												</dl>
+												<dl role="presentation" class="outHozFlex clearfix">
+													<dt class="indent"> <span id="repl_id" for="repl_id" class="sel label">call:</span> </dt>
+													<dd id="repl_id">{phone number} - {country or territory - language}</dd>
+													<dt class="indent"> <span id="repl_id" for="repl_id" class="sel label">sms:</span> </dt>
+													<dd id="repl_id">{mobile number} - {country or territory - language}</dd>
+													<dt class="indent"> <span id="repl_id" for="repl_id" class="sel label">e-mail:</span> </dt>
+													<dd id="repl_id">{email address} - {country or territory - language}</dd>
+													<dt class="indent"> <span id="repl_id" for="repl_id" class="sel label">e-mail failure notification:</span> </dt>
+													<dd id="repl_id">{email address}</dd>
+													<dt class="indent"> <span id="repl_id" for="repl_id" class="sel label">language:</span> </dt>
+													<dd id="repl_id">{country or territory - language}</dd>
+												</dl>
+												<dl role="presentation" class="outHozLedger clearfix">
+													<dt> <span class="label" id="repl_id" for="repl_id">{ups carbon neutral label:}</span> <a href="repl_href" class="noPrint">{cancel link}</a></dt>
+													<dd id="repl_id">{nnn.}{nn} {usd}</dd>
+												</dl>
+												<dl role="presentation" class="outHozLedger clearfix group">
+													<dt> <span class="label" id="repl_id" for="repl_id">{ups proactive response<sup>sm</sup> label:}</span> <a href="repl_href" class="noPrint">{cancel link}</a></dt>
+													<dd id="repl_id">{nnn.}{nn} {usd}</dd>
+												</dl>
+												<p id="repl_id" class="indent">{needed}</p>
+												<dl role="presentation" class="outHozLedger clearfix group">
+													<dt> <span class="label" id="repl_id" for="repl_id">{saturday delivery:}</span> <a href="repl_href" class="noPrint">{cancel link}</a></dt>
+													<dd id="repl_id">{nnn.}{nn} {usd}</dd>
+												</dl>
+												<p id="repl_id"><strong>note:</strong> {ups carbon neutral text}</p>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									
+									<!-- ////////////////////////// --> 
+									<!-- //// End UIS          //// --> 
+									<!-- ////////////////////////// --> 
+									
+								</div>
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// End Panel 3 UPS Shipping Service/Options       //// --> 
+								<!-- //// Begin Panel 4 Pickup/Drop-off Info             //// --> 
+								<!-- //////////////////////////////////////////////////////// --> 
+								
+								<!-- Begin Section Module -->
+								<div class="secLvl step"> 
+									<!-- Begin Section Header -->
+									<div class="secHead clearfix">
+										<div class="stepNumberDiv"><span class="stepNumber">4</span></div>
+										<h3 id="repl_id">[Pickup/Drop-off] Information</h3>
+									</div>
+									<!-- End Section Header --> 
+									
+									<!-- Begin Section Body -->
+									<div class="secBody">
+										<div class="flexFirst clearfix">
+											<dl role="presentation">
+												<dt> <span for="repl_id" class="label">[Pickup/Collection] Address:</span> </dt>
+												<dd id="repl_id">{contact name}<br>
+													{company name}<br>
+													{address 1}<br>
+													{city}, {other}<br>
+													{country or territory}<br>
+													telephone: {number}<br>
+													<br>
+													{Residential Address}</dd>
+											</dl>
+										</div>
+										<div class="flexAfter clearfix">
+											<dl role="presentation">
+												<dt> <span for="repl_id" class="label">[Pickup/Collection] Request Number:</span> </dt>
+												<dd id="repl_id"> &nbsp; 1234567890AB1</dd>
+											</dl>
+											<dl role="presentation">
+												<dt> <span for="repl_id" class="label">Earliest [Pickup/Collection] Time:</span> </dt>
+												<dd id="repl_id"> &nbsp; {earliest pickup time}</dd>
+											</dl>
+											<dl role="presentation">
+												<dt> <span for="repl_id" class="label">Latest [Pickup/Collection] Time:</span> </dt>
+												<dd id="repl_id"> &nbsp; {latest pickup time}</dd>
+											</dl>
+											<dl role="presentation">
+												<dt> <span for="repl_id" class="label">[Pickup/Collection] Reference:</span> </dt>
+												<dd id="repl_id"> &nbsp; {reference number for pickup}</dd>
+											</dl>
+										</div>
+										<div class="clearfix"></div>
+										<dl role="presentation" class="outHozLedger clearfix">
+											<dt><span for="repl_id" class="label">Schedule a [Pickup/Collection]</span></dt>
+											<dd id="repl_id">No Charge</dd>
+											<dt>&nbsp; {Various Pickup Fees}</dt>
+											<dd id="repl_id">No Charge</dd>
+											<dt>&nbsp; {Tax 1}:</dt>
+											<dd id="repl_id">{nnn.nn XXX}</dd>
+											<dt>&nbsp; {Tax 2}:</dt>
+											<dd id="repl_id">{nnn.nn XXX}</dd>
+											<dt>&nbsp; {Tax 3}:</dt>
+											<dd id="repl_id">{nnn.nn XXX}</dd>
+										</dl>
+										<dl role="presentation" class="outHozLedger totals clearfix">
+											<dt for="repl_id">Total [Pickup/Collection] Charges</dt>
+											<dd id="repl_id">No Charge</dd>
+										</dl>
+										<div class="clearfix"></div>
+									</div>
+									<!-- End Section Body --> 
+									
+									<!-- Begin Section Footer --><!-- End Section Footer --> 
+								</div>
+								<!-- End Section Module --> 
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// End Panel 4 Pickup/Drop-off Info               //// --> 
+								<!-- //// Begin Panel 5 Payment Info                     //// --> 
+								<!-- //////////////////////////////////////////////////////// --> 
+								
+								<!-- Begin Section Module -->
+								<div class="secLvl step"> 
+									<!-- Begin Section Header -->
+									<div class="secHead clearfix">
+										<div class="stepNumberDiv"><span class="stepNumber">5</span></div>
+										<h3 id="repl_id">Payment Information</h3>
+									</div>
+									<!-- End Section Header --> 
+									
+									<!-- Begin Section Body -->
+									<div class="secBody">
+										<dl role="presentation" class="outHozFixed clearfix">
+											<dt>
+												<label for="repl_id">Bill Shipping  Charges to:</label>
+											</dt>
+											<dd>{payment method}</dd>
+										</dl>
+										<dl role="presentation" class="outHozFixed clearfix">
+											<dt>
+												<label for="repl_id">Bill Duties and Taxes to:</label>
+											</dt>
+											<dd>Receiver</dd>
+										</dl>
+										
+										<!-- Begin Section Module -->
+										<div class="secLvl message"> 
+											<!-- Begin Section Header --><!-- End Section Header --> 
+											
+											<!-- Begin Section Body -->
+											<div class="secBody">
+												<dl role="presentation" class="outHozLedger clearfix totals group">
+													<dt> <span for="repl_id" class="label">Total Charged</span> </dt>
+													<dd id="repl_id">{nnnn.nn XXX}</dd>
+												</dl>
+												<p>{a discount has been applied to the [rate name] rates for this shipment}</p>
+												<dl role="presentation" class="outHozLedger clearfix totals group">
+													<dt><span for="repl_id" class="label">Subtotal Pickup Charges:</span></dt>
+													<dd id="repl_id">{nnnn.nn XXX}</dd>
+													<dt><span for="repl_id" class="label">Negotiated Shipping Charges:</span></dt>
+													<dd id="repl_id">{nnnn.nn XXX}</dd>
+													<dt class="indent">{Tax 1}:</dt>
+													<dd>{nnnn.nn XXX}</dd>
+													<dt class="indent">{Tax 2}:</dt>
+													<dd>{nnnn.nn XXX}</dd>
+													<dt class="indent">{Tax 3}:</dt>
+													<dd>{nnnn.nn XXX}</dd>
+													<dt><span for="repl_id" class="totals">Total Charges</span></dt>
+													<dd>{nnnn.nn XXX}</dd>
+												</dl>
+											</div>
+											<!-- End Section Body --> 
+											
+											<!-- Begin Section Footer --><!-- End Section Footer --> 
+										</div>
+										<!-- End Section Module --> 
+										
+									</div>
+									<!-- End Section Body --> 
+									
+									<!-- Begin Section Footer --><!-- End Section Footer --> 
+								</div>
+								<!-- End Section Module --> 
+								
+								<!-- //////////////////////////////////////////////////////// --> 
+								<!-- //// End Panel 5 Payment Info                       //// --> 
+								<!-- //////////////////////////////////////////////////////// --> 
+								
+							</div>
+							<!-- End Application Body --> 
+							<!-- Begin Application Footer -->
+							<div class="appFooter"> 
+								<!-- Begin Button Bar Row -->
+								<div class="btnBar">
+									<input name="" type="button" id="repl_id" value="{back to shiping history}" class="btn">
+									<input name="" type="submit" id="repl_id" value="{view/print receipt}" class="btn">
+								</div>
+								<!-- End Button Bar Row --> 
+							</div>
+							<!-- End Application Footer --> 
+						</div>
+						<!-- End Application Module -->
+						<br>
+						<div align="center" class="cobrand">
+							Company Support: &nbsp;&nbsp; 678-585-1321 &nbsp;&nbsp;<a href="mailto:test@ups.com">test@ups.com</a> </div>
+					</form>
+					
+					<!--////////////SAMPLED FROM PRODUCTION SERVER ///////////-->
+					
+					<table class="note" cellSpacing="0" cellPadding="0" width="566" border="0">
+						<tbody>
+							<tr>
+								<td class="reqTxtInst"><p><span class="bold">Note:</span> This document is not an invoice. Your invoice may vary from the displayed reference rates.</p></td>
+							</tr>
+							<tr>
+								<td class="reqTxtInst"><p> &#8224; Shipping charges are billed to the third party listed as the payer of Shipping Charges. </p></td>
+							</tr>
+							<tr>
+								<td class="reqTxtInst"> * For delivery and guarantee information, see the <A href="{0}" id="upsServiceGuide">UPS Service Guide</A>. To speak to a customer service representative, call 1-800-PICK-UPS for domestic services and 1-800-782-7892 for international services. <br>
+									<br>
+									<B>Responsibility for Loss or Damage</B> <br>
+									Unless a greater value is recorded in the declared value field as appropriate for the UPS shipping system used, the shipper agrees that the released value of each package covered by this receipt is no greater than $100, which is a reasonable value under the circumstances surrounding the transportation. If additional protection is desired, a shipper may increase UPS&#039;s limit of liability by declaring a higher value and paying an additional charge. UPS does not accept for transportation and shipper&#039;s requesting service through the Internet are prohibited from shipping packages with a value of more than $50,000. The maximum liability per package assumed by UPS shall not exceed $50,000, regardless of value in excess of the maximum. Claims not made within nine months after delivery of the package (sixty days for international shipments), or in the case of failure to make delivery, nine months after a reasonable time for delivery has elapsed (sixty days for international shipments), shall be deemed waived. The entry of a C.O.D. amount is not a declaration of value for carriage purposes. All checks or other negotiable instruments tendered in payment of C.O.D. will be accepted by UPS at shipper&#039;s risk. UPS shall not be liable for any special, incidental, or consequential damages.  All shipments are subject to the terms and conditions contained in the UPS Tariff and the UPS Terms and Conditions of Service, which can be found at www.ups.com. <br></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<table class="popHead noPrint" cellSpacing="0" cellPadding="0" width="566" border="0">
+						<tbody>
+							<tr>
+								<td class="close"><a href="javascript:window.close();"> <img height="14" alt="" src="/img/btn_close_mini.gif" width="14" border="0"><IMG height="8" alt="" src="/img/1.gif" width="3" border="0">Close Window </a></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<!--//////////// END ///////////--> 
+					
+				</div>
+				<!-- /applicationArea --> 
+				<!-- Begin IC DEVELOPMENT USE ONLY --> 
+			
+
+<div id="select_pnl_1">
+	<dl role="presentation">
+		<dt>
+			<label for="dyn_pnl_select_1">ECS/UIS:</label>
+		</dt>
+		<dd>
+			<select id="dyn_pnl_select_1" class="formcol5">
+				<option value="1">ECS</option>
+				<option value="2">UIS</option>
+			</select>
+		</dd>
+	</dl>
+</div>

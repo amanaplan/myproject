@@ -1,0 +1,120 @@
+<!-- ************************************************************************************ -->
+<!-- M29 FAQ                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M29 FAQ - Notes
+********************************************************************************
+
+ - Targetable.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M29 FAQ - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    heading                    = string     / NO            / FAQ Example
+    items                      = array      / YES           / [{toggle_title, collapsables[]},{toggle_title, collapsables[]},...]
+    this.toggle_title          = string     / YES           / Topic Title A
+    this.collapsables          = array      / YES           / {question,answer}
+    this.question              = string     / YES           / How can I stay informed about network status and specific deliveries?
+    this.answer                = RTE        / YES           / <p>UPS makes it for businesses to stay informed�even for complex supply chains</p>
+
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M29 FAQ - Layout
+********************************************************************************
+
+-faq-
+| 60px
+********************************************************************************
+--}}
+
+<div class="ups-faqs ups-accordion_list ups-wrap ups-singlefaq">
+    <div class="ups-wrap_inner">
+        {{#if this.heading}}<h2 class="ups-article-header">{{this.heading}}</h2>{{/if}}
+
+        <div class="ups-accordion_wrapper ups-accordion_faq{{#if this.noTopics}} ups-faq_noTopic{{/if}}{{#lengthEqual items 1}} ups-faq_single{{/lengthEqual}}">
+            <div class="ups-accordion_content" {{#compare items.length '>' 1}} role="presentation"{{/compare}}>
+                {{#each this.items}}
+                {{setIndexVar @index}}
+                <div class="ups-accordion_item{{#compare @index '==' 0}} ups-active{{/compare}}">
+                        {{#compare ../this.items.length '>' 1}}
+                        <div class="ups-acc-headcont" role="heading" aria-level="3">
+                            <a href="#" class=" ups-accordion_toggle{{#compare @index '==' 0}} ups-active{{/compare}}" role="button" id="ups-accordionFaq{{@index}}{{this.indexer}}" {{#if @first}} aria-expanded="true" {{else}} aria-expanded="false" {{/if}} >
+                                {{this.toggle_title}}
+                                <i class="icon ups-icon-plus" aria-hidden="true"></i>
+                                {{!-- <span class="ups-readerTxt" data-lang-show="expand" data-lang-hide="collapse">{{#if @first}} collapse {{else}}expand{{/if}}</span> --}}
+                            </a>
+                        </div>
+                    {{/compare}}
+                    <div class="ups-accordion_expand" {{#compare ../this.items.length '>' 1}}role="region"{{#if @first}} aria-hidden="false" {{else}} aria-hidden="true" {{/if}} aria-labelledby="ups-accordionFaq{{@index}}{{this.indexer}}"{{/compare}}>
+
+                        {{#lengthEqual this.collapsables 1}}
+                         <div class="ups-collapsable_parent" role="presentation">
+                           {{#each this.collapsables}}
+                                <div class="ups-collapsable_wrap ups-active ups-faq_single">
+                                    <div class="ups-collapsable_toggle">{{question}}</div>
+                                    <div class="ups-collapsable_content">
+                                        {{{answer}}}
+                                        {{#if this.link}}<a class = "ups-accordion_link" href="{{this.link}}">{{this.linkLabel}}</a>{{/if}}
+                                        {{#if this.video}}<a href=""><img src="{{this.thumbnail}}" alt="{{this.thumbnail}}"></a>{{/if}}
+                                    </div>
+                                </div>
+                            {{/each}}
+                         </div>   
+                        {{else}}
+                        <div class="ups-collapsable_parent" role="presentation">
+                            {{#each this.collapsables}}
+                                <div class="ups-collapsable_wrap{{#compare ../index '==' 0}}{{#compare @index '==' 0}} ups-active{{/compare}}{{/compare}}">
+                                    <div class="ups-acc-headcont" role="heading" aria-level="4">
+                                        <a href="#" class="ups-collapsable_toggle" role="button" id="ups-FaqCollapse{{@index}}{{../this.indexer}}" {{#if @first}} aria-expanded="true" {{else}} aria-expanded="false" {{/if}} aria-controls="ups-collapseControl{{@index}}{{../this.indexer}}">
+                                            {{#compare ../index '==' 0}}{{#compare @index '==' 0}} <i class="ups-iconAlone"><span class="icon ups-icon-minus" aria-hidden="true"></span>{{!-- <span class="ups-readerTxt" data-lang-show="expand" data-lang-hide="collapse">{{#if @first}} collapse {{else}}expand{{/if}}</span> --}}</i>{{/compare}}{{#compare @index '>' 0}} <i class="ups-iconAlone">
+                                                <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                                                {{!-- <span class="ups-readerTxt" data-lang-show="expand" data-lang-hide="collapse">{{#if @first}} collapse {{else}}expand{{/if}}</span> --}} </i>{{/compare}}{{/compare}}
+                                            {{#compare ../index '>' 0}}<i class="ups-iconAlone"><span class="icon ups-icon-plus" aria-hidden="true"></span>{{!-- <span class="ups-readerTxt" data-lang-show="expand" data-lang-hide="collapse">{{#if @first}} collapse {{else}}expand{{/if}}</span> --}}</i>{{/compare}}
+
+                                            {{question}}
+                                        </a>
+                                    </div>
+
+                                    <div class="ups-collapsable_content" role="region" {{#if @first}} aria-hidden="false" {{else}} aria-hidden="true" {{/if}} aria-labelledby="ups-FaqCollapse{{@index}}{{../this.indexer}}" id="ups-collapseControl{{@index}}{{../this.indexer}}">
+                                        {{{answer}}}
+                                        {{#if this.link}}<a class="ups-accordion_link" href="{{this.link}}">{{this.linkLabel}}</a>{{/if}}
+                                        {{#if this.video}}<a href=""><img src="{{this.thumbnail}}" alt="{{this.thumbnail}}"></a>{{/if}}
+                                    </div>
+
+                                </div>
+                            {{/each}}
+                        </div>
+                        {{/lengthEqual}}
+                        {{#if this.link}}<a class = "ups-accordion_link" href="{{this.link}}">{{this.linkLabel}}</a>{{/if}}
+                    </div>
+                </div>
+                {{/each}}
+                {{#if cta-list}}
+                <div>
+                    <div class="ups-link-list">
+                        <ul>
+                            {{#each cta-list}}
+                                <li><a class="ups-link" href="{{this.link}}">{{this.label}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

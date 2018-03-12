@@ -1,0 +1,122 @@
+// TABLES
+// ----------------------------------
+.table {
+	margin-bottom: 0;
+
+	tbody tr {
+
+		> th, > td {
+			border: none;
+		}
+	}
+
+	&.table-striped {
+		tbody tr {
+			&:nth-child(2n-1) {
+				background: $stone_60;//#ECECEC;
+			}
+
+			&:nth-child(2n) {
+				background: $white;
+			}
+		}
+	}
+
+	thead tr th, thead tr td, tbody tr th, tbody tr td, tfoot tr th, tfoot tr td {
+        position: relative;
+        padding: 12px 20px 10px;
+        border: 1px solid $ups_brown;
+        border-#{$default-float}: none;
+        border-top: none;
+        vertical-align: middle;
+
+        &:last-child {
+            border-#{$opposite-direction}: none;
+        }
+    }
+
+	thead tr {
+		> th, > td {
+			border: none;
+		}
+
+		&:last-child {
+			border-bottom: 1px solid $ups_brown;
+		}
+	}
+
+    thead th, thead td {
+        font-family: $sans;
+        font-weight: 700;
+        border: none;
+    }
+
+	.ups-table_header_primary {
+        background: $ups_gold;
+        text-transform: uppercase;
+	}
+	.ups-table_header_secondary {
+       	background: $gold_40;
+	}
+	.ups-table_header_tertiary {
+		text-transform: uppercase;
+        font-family: $sans;
+        font-weight: 700;
+        button {
+            text-transform: uppercase;
+        }
+	}
+
+    tbody th {
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @media #{$media-small} {
+            padding-top: 20px;
+        }
+    }
+
+    tbody tr {
+
+        &:first-child th, &:first-child td {
+            border-top: none;
+        }
+    }
+
+	tfoot th, tfoot td {
+		font-weight: 700;
+        text-transform: uppercase;
+	}
+
+	a {
+       /* color: $black_s3;
+        text-decoration: underline;
+        font-family: $sans-bd;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        &:hover {
+            color: $black_s1;
+            text-decoration: underline;
+        }*/
+
+        &:last-of-type{
+            margin-bottom: $margin_4;
+            &:last-of-type{
+                margin-bottom: 0;
+            }
+        }
+        margin-#{$default-float}: 0;
+    }
+
+    //Added by Afftene(RFX0YCF) for JIRA UPSO-2740 (Gives tables with unique heading content in the first column the same stylings as if it was a standard td)
+    //Edited by Afftene(RFX0YCF) for ticket JIRA UPSO-2842 and JIRA UPSO-3797
+    tbody tr th[scope="row"] {
+        text-transform: capitalize;
+        font-weight: 400;
+    }
+}
+.table-responsive {
+	margin-bottom: $margin_3;
+}

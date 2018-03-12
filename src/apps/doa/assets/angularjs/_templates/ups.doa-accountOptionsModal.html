@@ -1,0 +1,597 @@
+<!-- //// begin ups.doa-accountOptionsModal //// -->
+<div class=" ups-content-wrapper">
+	<p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+	<form name="ups_accOptionsform" error-on-submit novalidate>
+        <fieldset class="ups-form_group ups-form_required">
+            <legend class="ups-form_label ups-asterisk-no-label">
+                Is this account for personal use or business shipping?
+                <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+            </legend>
+            <div data-ng-repeat="i in accountUsage"
+                class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="{{i.type}}" class="ups-radio-custom" type="radio"
+                    name="accUsage" value="{{i.type}}"
+                    data-ng-model="formObj.accUsage_$index"
+                    data-ng-click="toggleAccountType($index) || toggleBusinessResponse($index)"
+                    data-ng-checked="{{i.isSelected}}"
+                    data-ng-disabled="{{i.isDisabled}}" /> <label for="{{i.type}}"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.type}}
+                </label>
+            </div>
+        </fieldset>
+
+		<div class="row" data-ng-show="isBusinessSelected" data-ng-if="isUS">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-companyName_input" class="ups-form_label">
+                        Company Name
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+					<div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+						<input error-on-blur="" focus-on-error="" type="text" name="companyname"
+						class="ups-form_input"
+						id="ups-companyName_input" value="" required maxlength="35"
+						aria-describedby="companyName-error" aria-required="true" data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/" data-ng-model="formObj.companyName" data-ng-model-options="{updateOn: 'blur'}" >
+						<span data-ng-if="(ups_accOptionsform.companyname.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+						</span>
+
+                        <span id="companyName-error" role="alert">
+                        	<span class="ups-invalid_color" data-ng-if="(ups_accOptionsform.companyname.$invalid && clicked) || (!ups_accOptionsform.companyname.$pristine && ups_accOptionsform.companyname.$invalid) ">
+								<span class="icon ups-error_exclamation">
+                                	<span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                </span>
+                                <span data-ng-show="ups_accOptionsform.companyname.$error.required"> Name is required.</span>
+                                <span data-ng-hide="ups_accOptionsform.companyname.$error.required">Invalid name.</span>
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" data-ng-show="isBusinessSelected" data-ng-if="isUS">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required ">
+                    <label for="ups-companyEmail_input" class="ups-form_label">
+                    	Company Email
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+                        <input error-on-blur=""
+                        	validate-email=""
+                            type="email"
+                            name="companyEmail_input"
+                        	class="ups-form_input ng-pristine ng-untouched ng-empty ng-valid-email ng-invalid ng-invalid-required ng-valid-maxlength"
+                            id="ups-companyEmail_input"
+                            value=""
+                        	maxlength="50"
+                            required=""
+                            data-ng-model="formObj.email"
+                            title="address@domail.com"
+                        	data-ng-model-options="{updateOn: 'blur'}"
+                            aria-describedby="email-error"
+                            aria-required="true">
+                        <span id="email-error" role="alert"><span class="ups-invalid_color ng-scope" data-ng-if="(clicked &amp;&amp; ups_accOptionsform.companyEmail_input.$invalid)|| (!ups_accOptionsform.companyEmail_input.$pristine &amp;&amp; ups_accOptionsform.companyEmail_input.$invalid)">
+                            <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                            <span data-ng-show="ups_accOptionsform.companyEmail_input.$error.required">Email is required.</span>
+                            <span data-ng-hide="ups_accOptionsform.companyEmail_input.$error.required" class="ng-hide">Please enter a valid email address.</span>
+                        </span></span>
+                        <div data-ng-if="(ups_accOptionsform.companyEmail_input.$valid)">
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<fieldset class="ups-form_group" data-ng-if="isEU">
+            <legend class="ups-form_label">[Do you agree to receive your invoices electronically?]</legend>
+            <div class="ups-form_group ups-checkbox_group">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify id="ups-receiveInvoicesElectronically"
+                        class="ups-checkbox-custom" name="ups-receiveInvoicesElectronically" value="1"
+                        type="checkbox" data-ng-model="formObj.receiveInvoicesElectronically"
+                        data-ng-checked="formObj.receiveInvoicesElectronically" />
+                    <label for="ups-receiveInvoicesElectronically"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        [By checking this box, I agree to receive my invoices online through the UPS Billing Center. I also agree that I will not receive paper
+						invoices.]
+                    </label>
+                </div>
+			</div>
+		</fieldset>
+		<fieldset class="ups-form_group" data-ng-if="isUS || isCA || isEU">
+            <legend class="ups-form_label">Do you plan to ship any of
+                the regulated items below?</legend>
+            <p class="ups-offset-none">For safety reasons, we require a UPS
+                pickup for all shipments containing hazardous materials.</p>
+            <div class="ups-form_group ups-checkbox_group">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify id="ups-shipProd1"
+                        class="ups-checkbox-custom" name="ups-shipProd1" value="1"
+                        type="checkbox" data-ng-model="formObj.ShipProd1"
+                        data-ng-checked="formObj.ShipProd1" />
+                    <label for="ups-shipProd1"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        Alcoholic beverages or tobacco products
+                    </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper" data-ng-hide="isCA || isEU">
+                <!--<div class="ups-checkbox ups-input_wrapper" data-ng-if="!isUS">-->
+                    <input check-verify id="ups-shipProd2"
+                        class="ups-checkbox-custom" name="ups-shipProd2" value="2"
+                        type="checkbox" data-ng-model="formObj.ShipProd2"
+                        data-ng-checked="formObj.ShipProd2" /> <label
+                        for="ups-shipProd2"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        Dangerous goods
+                        <span class="ups-help ups-help-position">
+                        	<a href="#" class="ups-decoration-none ups-new-window" data-ng-click="openpopup('hazardousHelp')">
+                            	Help<span class="ups-readerTxt">about Dangerous goods</span>
+                            	<span class="ups-icon-newwindow" aria-hidden="true"></span>
+                            </a>
+                    	</span>
+                    </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper" data-ng-hide="isCA">
+                    <input check-verify id="ups-shipProd3"
+                        class="ups-checkbox-custom" name="ups-shipProd3" value="3"
+                        type="checkbox" data-ng-model="formObj.ShipProd3"
+                        data-ng-checked="formObj.ShipProd3" />
+                    <label for="ups-shipProd3"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        Lithium batteries
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="ups-form_group ups-form_required" data-ng-show="isUS">
+            <legend class="ups-form_label ups-asterisk-no-label">
+                Will you ship prescription pharmaceuticals directly to patients?
+<!--                <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>	-->
+            <em class="ups-required_indicator"><span class="ups-readerTxt">
+                        Required</span></em>
+            </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper "
+                data-ng-repeat="i in userResponse">
+                <input id="ups-{{i.type}}-pres" class="ups-radio-custom"
+                    name="prescription" value="{{i.type}}" type="radio"
+                    data-ng-model="formObj.pres"
+                    data-ng-click="togglePrescriptionResponse($index)"
+                    data-ng-checked="{{i.isSelected}}"
+                    data-ng-keydown="$event.keyCode == 13 ? formObj.ShipProd3 = !formObj.ShipProd3 : null" />
+                <label for="ups-{{i.type}}-pres"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.type}}
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="ups-form_group ups-form_required" data-ng-show="isUS || isPresSelected">
+            <legend class="ups-form_label ups-asterisk-no-label">
+                Are you licensed in every state or territory to which you will
+                ship prescription pharmaceuticals?
+                <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+            </legend>
+            <div data-ng-repeat="i in userResponse"
+                class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="ups-{{i.type}}-licence" class="ups-radio-custom"
+                    name="licenced" type="radio" value="{{i.type}}"
+                    data-ng-model="formObj.licence"
+                    data-ng-click="toggleAccountType($index)"
+                    data-ng-checked="!{{i.isSelected}}"> <label
+                    for="ups-{{i.type}}-licence"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.type}}
+                </label>
+            </div>
+        </fieldset>
+		 <fieldset class="ups-form_group ups-form_required" data-ng-show="isUS || isPresSelected">
+            <legend class="ups-form_label ups-asterisk-no-label">
+                Do you operate as an online or mail-order pharmacy?
+                <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+            </legend>
+            <div data-ng-repeat="i in userResponse"
+                class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="ups-{{i.type}}-operate" class="ups-radio-custom"
+                    name="operate" type="radio" value="{{i.type}}"
+                    data-ng-model="formObj.operate"
+                    data-ng-click="toggleAccountType($index)"
+                    data-ng-checked="!{{i.isSelected}}"> <label
+                    for="ups-{{i.type}}-operate"
+                    class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.type}}
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">What's your preferred invoice mailing address?</legend>
+            <div class="ups-indentation ups-form_group">
+                <div class="ups-input_wrapper">
+                    <input id="ups-addressfirst" type="radio"
+                        class="ups-radio-custom" name="mAddress" value=""
+                        data-ng-model="formObj.addressfirst"
+                        data-ng-click="toggleAccountType($index);diffAddress=false"
+                        data-ng-checked="true"> <label for="ups-addressfirst"
+                        class="ups-form_label ups-radio-custom-label ups-width_auto">Use
+                        my profile address. </label>
+                    <p>1234 main Street</p>
+                    <p>Rosewell, GA 30076</p>
+                    <p>US</p>
+                </div>
+                <div class="ups-input_wrapper ups-offset-0">
+                    <input id="ups-addressnew" type="radio" name="mAddress" value=""
+                        data-ng-model="formObj.addressnew"
+                        data-ng-click="toggleAccountType($index);diffAddress=true"
+                        class="ups-radio-custom" /> <label for="ups-addressnew"
+                        class="ups-form_label ups-radio-custom-label ups-width_auto">Enter
+                        a different mailing address.</label>
+                    <p>You'll enter this new mailing address on the next page.</p>
+                </div>
+            </div>
+        </fieldset>
+		<div class="row">
+			<div class="col-md-5">
+                <div data-ng-if="diffAddress">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-country" class="ups-form_label">
+                            Country
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                            <select id="ups-country"
+                                data-ng-change="selectCountry(form.country)"
+                                class="ups-dropdown " name="country" data-ng-model="form.country" aria-required="true" required>
+                                <option data-ng-repeat="countries in countryList track by $index"
+                                    value="{{countries.code}}">{{countries.country}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ups-form_required">
+                        <div class="ups-form_group">
+                            <label for="ups-address" class="ups-form_label">
+                                Address
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <p id="streetHelperTxt" class="ups-form_subheader">Street</p>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur
+                                	id="ups-address"
+                                    type="text"
+                                    name="address0"
+                                    data-ng-pattern=""
+                                    class="ups-form_input"
+                                    maxlength="35"
+                                    aria-required="true"
+                                    required data-ng-model="form.address0"
+                                    data-ng-model-options="{updateOn: 'blur'}"
+                                    aria-describedby="streetHelperTxt">
+                                <div data-ng-if="(ups_accOptionsform.address0.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                        class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                            <span class="ups-invalid_color"
+                                data-ng-show="(!ups_accOptionsform.address0.$pristine && ups_accOptionsform.address0.$invalid)||(ups_accOptionsform.address0.$invalid && clicked)" role="alert">
+                                <span class="icon ups-error_exclamation"> <span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span>
+                            </span> <span data-ng-show="ups_Cardform.address0.$error.required">Address
+                                    is required.</span>
+                            </span>
+                        </div>
+                        <div>
+                            <label for="ups-address1" class="ups-readerTxt">Address
+                                line 1</label>
+                            <p id="address1HelperTxt" class="ups-form_subheader">Apt., Suite, Unit</p>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+                                data-errormsg="This field is required">
+                                <input id="ups-address1" type="text" name="address1"
+                                    data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                    data-ng-model="form.address.address1" aria-describedby="address1HelperTxt">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="ups-address2" class="ups-readerTxt">Address
+                                line 2</label>
+                            <p id="address2HelperTxt" class="ups-form_subheader">Dept.,c/o,etc.</p>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+                                data-errormsg="This field is required">
+                                <input id="ups-address2" type="text" name="address2"
+                                    data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                    data-ng-model="form.address.address2" aria-describedby="address2HelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-city" class="ups-form_label">
+                            City
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                            <input error-on-blur id="ups-city" type="text" name="city"
+                                data-ng-pattern="/^[a-zA-Z- ]+$/" class="ups-form_input"
+                                maxlength="35" aria-required="true" required data-ng-model="form.address.city"
+                                data-ng-model-options="{updateOn: 'blur'}">
+                            <div data-ng-if="(ups_accOptionsform.city.$valid)">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                    class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_accOptionsform.city.$pristine && ups_accOptionsform.city.$invalid)||(ups_accOptionsform.city.$invalid && clicked)" role="alert">
+                            <span class="icon  ups-error_exclamation"> <span
+                                class="ups-icon-check" aria-hidden="true"></span>
+                        </span> <span data-ng-show="ups_accOptionsform.city.$error.required">City
+                                is required.</span> <span
+                            data-ng-hide="ups_accOptionsform.city.$error.required">Invalid
+                                City.</span>
+                        </span>
+                    </div>
+                    <div class="ups-form_group ups-form_required">
+                        <label for="{{setUS?'ups-state':''}}" data-ng-if="setUS"
+                            class="ups-form_label">
+                            State
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <label data-ng-if="!setUS" class="ups-form_label">
+                            Other Address Information
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required" data-ng-if="setUS">
+                            <select error-on-blur
+                                    data-ng-class="{'ups-bodError':(ups_accOptionsform.state.$invalid && clicked)}"
+                                    id="{{setUS?'ups-state':''}}" class=" ups-dropdown"
+                                name="state" data-ng-model="form.address.state" aria-required="true" required>
+                                <option value="" selected>Select One</option>
+                                <option data-ng-repeat="states in statesList track by $index"
+                                    value="{{states.code}}">{{states.state}}</option>
+                            </select>
+                            <span class="ups-invalid_color"
+                                  data-ng-show="(!ups_accOptionsform.state.$pristine && ups_accOptionsform.state.$invalid)||(ups_accOptionsform.state.$invalid && clicked)" role="alert">
+                            <span class="icon  ups-error_exclamation"> <span
+                                class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span> <span data-ng-if="setUS"
+                                      data-ng-show="ups_accOptionsform.state.$error.required">State
+                                is required.</span> <span data-ng-if="!setUS"
+                                                          data-ng-show="ups_accOptionsform.state.$error.required">
+                                Address Information is required.</span>
+                        </span>
+                        </div>
+                        <div data-ng-if="!setUS" class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                            <input error-on-blur id="{{setUS?'':'ups-state'}}" required
+                                type="text" name="state" class="ups-form_input" maxlength="35"
+                                data-ng-model="form.address.state"
+                                data-ng-model-options="{updateOn: 'blur'}">
+                            <div data-ng-if="(ups_accOptionsform.state.$valid)">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                    class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-zipcode" data-ng-if="setUS" class="ups-form_label">
+                            ZIP Code
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <label data-ng-if="!setUS" class="ups-form_label">
+                            Postal Code
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                            <input error-on-blur id="ups-zipcode" type="text" name="zipCode"
+                                data-ng-pattern="/^[a-zA-Z0-9-]*$/" class="ups-form_input"
+                                maxlength="15" aria-required="true" required data-ng-model="form.address.zipCode"
+                                data-ng-model-options="{updateOn: 'blur'}">
+                            <div data-ng-if="(ups_accOptionsform.zipCode.$valid)">
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_accOptionsform.zipCode.$pristine && ups_accOptionsform.zipCode.$invalid)||(ups_accOptionsform.zipCode.$invalid && clicked)" role="alert">
+                            <span class="icon ups-error_exclamation"> <span
+                                class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span> <span data-ng-if="setUS"
+                            data-ng-show="ups_accOptionsform.zipCode.$error.required">ZIP
+                                Code is required.</span> <span data-ng-if="setUS"
+                            data-ng-hide="ups_accOptionsform.zipCode.$error.required">Invalid
+                                Zip Code.</span> <span data-ng-if="!setUS"
+                            data-ng-hide="ups_accOptionsform.zipCode.$error.required">Invalid
+                                Postal Code.</span> <span data-ng-if="!setUS"
+                            data-ng-show="ups_accOptionsform.zipCode.$error.required">Postal
+                                Code is required.</span>
+                        </span>
+                    </div>
+                </div>
+				<div class="ups-form_group"
+					ng-class="{ 'has-error' : ups_accOptionsform.brNumber.$invalid && !ups_accOptionsform.brNumber.$pristine }"
+                    data-ng-if="!isUS && !isCA">
+					<h3 data-ng-if="isEU">Tax Information</h3>
+					<label for="ups-bRegNonUS_input" class="ups-form_label">
+                    	Business Registration or VAT ID
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input type="text" name="brNumberNonUS"
+							class="ups-form_input" id="ups-bRegNonUS_input" value=""
+							data-ng-model="formObj.acc_numberNonUS" maxlength="2"
+                            data-ng-model-options="{updateOn: 'blur'}">
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+				<!-- ups-form_group ups-form_required -->
+				<div class="ups-form_group"
+					ng-class="{ 'has-error' : ups_accOptionsform.brNumber.$invalid && !ups_accOptionsform.brNumber.$pristine }"
+                    data-ng-if="isUS || isCA">
+					<label for="ups-bReg_input" class="ups-form_label">
+                    	Business Registration or VAT ID
+                       <!-- <span aria-hidden="true" class="ups-required_indicator"></span>-->
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<!--data-errormsg="This field is required">-->
+						<input error-on-blur type="text" name="brNumber"
+							class="ups-form_input" id="ups-bReg_input" value=""
+							data-ng-model="formObj.acc_number"  maxlength="2"
+							aria-describedby="brNumber-error"
+							data-ng-model-options="{updateOn: 'blur'}"><!-- required aria-required="true"> <!--<span
+							id="brNumber-error"><span class="ups-invalid_color"
+							ng-if="!ups_accOptionsform.brNumber.$pristine && ups_accOptionsform.brNumber.$invalid">
+								<span class="icon ups-error_exclamation"> <span
+									class="ups-icon-exclamation" aria-hidden="true"></span>
+							</span> <span class="ups-readerTxt">Invalid</span> <span
+								ng-if="ups_accOptionsform.brNumber.$error.required">Business
+									Registration or VAT ID is required.</span>
+						</span> <span data-ng-if="ups_accOptionsform.brNumber.$valid"> <span
+								class="ups-readerTxt">Check</span>
+						</span> </span>
+						<div data-ng-if="(ups_accOptionsform.brNumber.$valid)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>-->
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+				<!-- ups-form_group ups-form_required -->
+				<div data-ng-if="isCA">
+                    <div class="ups-form_group">
+                        <label for="ups-unit-measurement" class="ups-form_label">Unit of Measurement </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="ups-unit-measurement" class="ups-dropdown"
+                                id="ups-unit-measurement" data-ng-model="formObj.unitMeasurement">
+                                <option data-ng-repeat="unit in unitMeasurement"
+                                    value="{{unit.type}}">{{unit.type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <fieldset class="ups-form_group">
+                        <legend class="ups-form_label">
+                            Will you use an import brokerage for this account?
+                            <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+                        </legend>
+                        <div class="ups-indentation ups-form_group">
+                            <div class="ups-input_wrapper" data-ng-repeat="i in userResponse">
+                                <input id="ups-{{i.type}}-brokerage"
+                                	class="ups-radio-custom"
+                                    name="brokerage"
+                                    value="{{i.type}}"
+                                    type="radio"
+                                    data-ng-model="formObj.importBrokerage"
+                                    data-ng-click="toggleImportBrokerage($index)"
+                                    data-ng-checked="{{i.isSelected}}"
+                                    data-ng-keydown="$event.keyCode == 13 ? formObj.ShipProd3 = !formObj.ShipProd3 : null" />
+                                <label for="ups-{{i.type}}-brokerage"
+                                    class="ups-form_label ups-radio-custom-label ups-width_auto">{{i.type}}
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div data-ng-if="isCA && isBrokerType">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-broker-type" class="ups-form_label">
+                            Broker Type
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select name="ups-broker-type" class="ups-dropdown"
+                                id="ups-broker-type" data-ng-model="formObj.brokerType" aria-required="true" required>
+                                <option data-ng-repeat="type in brokerType" value="{{type.type}}">{{type.type}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div data-ng-if="formObj.brokerType === 'Existing Broker'">
+                        <div class="ups-form_group ups-form_required"
+                            ng-class="{ 'has-error' : ups_accOptionsform.brokerName.$invalid && !ups_accOptionsform.brokerName.$pristine }">
+                            <label for="ups-brokerName_input" class="ups-form_label">
+                                Broker Name
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur
+                                    type="text"
+                                    name="brokerName"
+                                    class="ups-form_input"
+                                    id="ups-brokerName_input"
+                                    value=""
+                                    data-ng-model="formObj.broker_name"
+                                    required maxlength="50"
+                                    aria-describedby="brokerName-error"
+                                    aria-required="true"
+                                    data-ng-model-options="{updateOn: 'blur'}"
+                                    data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/">
+                                <span id="brokerName-error" role="alert">
+                                	<span class="ups-invalid_color" ng-if="!ups_accOptionsform.brokerName.$pristine && ups_accOptionsform.brokerName.$invalid"> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span class="ups-readerTxt">Invalid</span> <span ng-if="ups_accOptionsform.brokerName.$error.required">Broker name is required.</span><span data-ng-hide="ups_accOptionsform.brokerName.$error.required">Please enter a valid broker name.</span> </span>
+                                    <span data-ng-if="ups_accOptionsform.brokerName.$valid"> <span class="ups-readerTxt">Check</span> </span>
+                                </span>
+                                <div data-ng-if="(ups_accOptionsform.brokerName.$valid)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper -->
+                        </div>
+                        <!-- ups-form_group ups-form_required -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_group" data-ng-if="!isCA && !isUS">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-no_vatID"
+                    class="ups-checkbox-custom"
+                    name="ups-no_vatID"
+                    value="1"
+                    type="checkbox"
+                    data-ng-model="formObj.nvid"
+                    data-ng-checked="formObj.nvid">
+                <label for="ups-no_vatID"
+                    class="ups-form_label ups-checkbox-custom-label">
+                    I do not have a business registration or VAT ID.
+                </label>
+                <p data-ng-if="formObj.nvid">Please note, if no VAT ID is given you will recieve a final customer invoice.</p>
+            </div>
+            <!-- ups-checkbox ups-input_wrapper -->
+        </div>
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper "
+                data-errormsg="Agreement to Terms &amp; Conditions is required.">
+                <input check-verify id="ups-pickup_account"
+                    class="ups-checkbox-custom"
+                    name="ups-pickup_account"
+                    value="1"
+                    type="checkbox"
+                    data-ng-model="formObj.tnc"
+                    data-ng-checked="formObj.tnc">
+                <label for="ups-pickup_account"
+                    class="ups-form_label ups-checkbox-custom-label">
+                    Set this account as my default payment method for UPS pickups.
+                </label>
+            </div>
+            <!-- ups-checkbox ups-input_wrapper -->
+        </div>
+        <!-- ups-form_group ups-form_required -->
+    	<p data-ng-if="isPromo">By selecting <strong>Next</strong>, I agree to the <a href="repl_href" class="ups-link ups-new-window">Discount Terms and Conditions <span aria-hidden="true" class="ups-icon-newwindow"></span></a></p>
+
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_tertiary"
+                data-ng-click="ModalService.back()">Back</button>
+            <button type="submit" class="ups-cta ups-cta_primary " data-ng-click="nextStep()">Next</button>
+        </div>
+	</form>
+</div>
+<!-- //// end ups.doa-accountOptionsModal //// -->

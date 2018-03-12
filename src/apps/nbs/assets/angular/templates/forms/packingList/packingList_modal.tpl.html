@@ -1,0 +1,440 @@
+<div class="ups-wrap_inner">
+    <form name="NBSPackingList" [formGroup]="plModal" novalidate>
+        <p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// Begin Page Level error messaging //// -->
+        <!-- ////////////////////////////////////////// -->
+        <section *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid()) &&  wwef">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+                <li>
+                    <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>Product is required</a>
+                </li>
+            </ul>
+        </section>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Page Level error messaging   //// -->
+        <!-- //// Begin Accordian                  //// -->
+        <!-- ////////////////////////////////////////// -->
+        <section class="ups-group">
+            <ul class="ups-drawer" upsDrawerList>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// Begin Address Drawer             ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01">
+                        <span class="icon ups-drawer_left_icon ups-icon-checkcircle"></span>
+                        Address Information
+                        <span class="ups-readerTxt" *ngIf="complete">Complete</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer01">
+                    <!-- /////////////////////////////////////////// -->
+                    <!-- ////         Address Information      ///// -->
+                    <!-- /////////////////////////////////////////// -->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-section ups-section_condensed">
+                                    <div class="ups-section-header">
+                                        <h3 class="ups-section_heading">Ship From</h3>
+                                    </div>
+                                    <p>[Country or Territory]</p>
+                                    <p>[Contact Name], [Company Name]</p>
+                                    <address class="ups-address_condensed">
+                                        [Street Adress], [Address2], [Address 3]<br>
+                                        [City], [State], [Zip]
+                                    </address>
+                                        [Email], [Phone]
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="ups-section ups-section_condensed">
+                                    <div class="ups-section-header">
+                                        <h3 class="ups-section_heading">Ship To</h3>
+                                    </div>
+                                    <address class="ups-address_condensed">
+                                        [Country or Territory]<br>
+                                        [Contact Name], [Company Name]<br>
+                                        [Street Adress], [Address2], [Address 3]<br>
+                                        [City], [State], [Zip]
+                                    </address>
+                                        [Email], [Phone]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Address Drawer               ///// -->
+                <!-- //// Begin Shipment Drawer            ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02">
+                        <span [ngClass]="{'ups-icon-checkcircle' : complete,
+                                        'ups-empty_circle' : !complete }"
+                                class="icon ups-drawer_left_icon"></span>
+                        Shipment Information
+                        <span class="ups-readerTxt" *ngIf="complete">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="!complete">Needs to be completed</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <!-- /////////////////////////////////////////// -->
+                    <!-- ////        Shipping Information      ///// -->
+                    <!-- /////////////////////////////////////////// -->
+                    <div class="ups-drawer-content" id="upsDrawer02">
+                        <p><strong>Description of Goods:</strong> {{ '{' }}Prepopulate{{ '}' }}</p>
+                        <p><strong>Total Shipment Weight:</strong> {{ '{' }}Prepopulate{{ '}' }}</p>
+                        <p><strong>Total Number of Packages:</strong> {{ '{' }}Prepopulate{{ '}' }}</p>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group">
+                                    <label for="ups-shipName" class="ups-form_label">[Shipment Number]<span aria-hidden="true"></span></label>
+                                    <div class=" ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="ups-shipName" class="ups-form_input ups-error" id="ups-shipName">
+                                    </div>
+                                </div>
+                                <div class="ups-form_group">
+                                    <label for="ups-invoiceNum" class="ups-form_label">[Invoice Number]<span aria-hidden="true"></span></label>
+                                    <div class=" ups-text_wrapper ups-input_wrapper ">
+                                        <input type="text" name="ups-invoiceNum" class="ups-form_input ups-error" id="ups-invoiceNum">
+                                    </div>
+                                </div>
+                                <div class="ups-form_group">
+                                    <label for="ups-poNum" class="ups-form_label">[PO Number]<span aria-hidden="true"></span></label>
+                                    <div class=" ups-text_wrapper ups-input_wrapper ">
+                                        <input type="text" name="ups-poNum" class="ups-form_input ups-error" id="ups-poNum">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="ups-form_group">
+                                    <label for="ups-shipMemo" class="ups-form_label">Shipper Memo<span aria-hidden="true"></span></label>
+                                    <div class="ups-textArea_wrapper ups-input_wrapper">
+                                        <textarea class="ups-textArea"  id="ups-shipMemo" rows="10" maxlength="500" name="ups-shipMemo"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Shipment Drawer              ///// -->
+                <!-- //// Begin Product Drawer             ///// -->
+                <!-- /////////////////////////////////////////// -->
+                <li class="ups-drawer_list_item">
+                    <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03" [ngClass]="{'ups-drawer_btn_error' : (nbsBase.nbsGlobalFormSubmit && !nbsFormValid() &&wwef)}">
+                        <span [ngClass]="{'ups-icon-checkcircle' : (nbsFormValid()),
+                                        'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !nbsFormValid() &&wwef),
+                                        'ups-empty_circle' : (!nbsBase.nbsGlobalFormSubmit && !nbsFormValid()) || !wwef }"
+                                class="icon ups-drawer_left_icon"></span>
+                        Product
+                        <span class="ups-required_indicator" aria-hidden="true" *ngIf="wwef"></span>
+                        <span class="ups-readerTxt">Required Section</span>
+                        <span class="ups-readerTxt" *ngIf="nbsFormValid()">Complete</span>
+                        <span class="ups-readerTxt" *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid() &&wwef)">Needs to be completed</span>
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content" id="upsDrawer03">
+
+                        <div *ngIf="!wwef">
+                            <p *ngIf="!hasPkg"><span class="icon ups-icon-alert" aria-hidden="true"></span> Your International shipment contains 0 products</p>
+                            <div *ngIf="hasPkg && productsComplete">
+                                <ul class="ups-label_list_options">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p>1. {{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p>{{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} unassigned.</p>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            {{'{'}}10{{'}'}} {{'{'}}unit{{'}'}} in package 1.
+                                            <button type="button" class="ups-link ups-indent">
+                                                <span class="ups-readerTxt">Delete item</span>
+                                                <span class="icon ups-icon-xcircle" arai-hidden="true"></span>
+                                            </button>
+                                        </p>
+                                        <hr>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p>2. {{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p>{{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} unassigned.</p>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            {{'{'}}10{{'}'}} {{'{'}}unit{{'}'}} in package 2.
+                                            <button type="button" class="ups-link ups-indent">
+                                                <span class="ups-readerTxt">Delete item</span>
+                                                <span class="icon ups-icon-xcircle" arai-hidden="true"></span>
+                                            </button>
+                                        </p>
+                                        <hr>
+                                    </li>
+                                    <li>
+                                        <div class="ups-group">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <p>3. {{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p>{{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} unassigned.</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="ups-link">Split into multiple package</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            {{'{'}}10{{'}'}} {{'{'}}unit{{'}'}} in package 3.
+                                            <button type="button" class="ups-link ups-indent">
+                                                <span class="ups-readerTxt">Delete item</span>
+                                                <span class="icon ups-icon-xcircle" arai-hidden="true"></span>
+                                            </button>
+                                        </p>
+                                        <div *ngFor="let thisItem of thisLoop.items; let j = index">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <!-- Select a package selectbox &amp; Number of Units -->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <!-- Select a package selectbox -->
+                                                            <div class="ups-form_group">
+                                                                <label for="selectPkg{{ i }}{{ j }}" class="ups-form_label"> Select a Package </label>
+                                                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                                    <select id="selectPkg{{ i }}{{ j }}"
+                                                                            name="selectPkg{{ i }}{{ j }}"
+                                                                            class="ups-dropdown">
+                                                                        <option value="{{ optionList + 1 }}" *ngFor="let optionList of numbers">{{ optionList + 1}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <!-- Number of Units -->
+                                                            <div class="ups-form_group">
+                                                                <label for="numUnits{{ i }}{{ j }}" class="ups-form_label">Number of Units</label>
+                                                                <div class="ups-text_wrapper ups-input_wrapper">
+                                                                    <input type="text" name="numUnits{{ i }}{{ j }}" class="ups-form_input" id="numUnits{{ i }}{{ j }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <!-- Notes -->
+                                                    <div class="ups-form_group">
+                                                        <label for="notes{{ i }}{{ j }}" class="ups-form_label">Notes</label>
+                                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                                            <input type="text" name="notes{{ i }}{{ j }}" class="ups-form_input" id="notes{{ i }}{{ j }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="hidden-md" *ngIf=" j != (thisLoop.items.length - 1)">
+                                        </div>
+                                        <button type="button" class="ups-link ups-button_has_icon" (click)="assignItems(i)">
+                                            <span class="icon ups-icon-pluscircle" aria-hidden="true"></span> 
+                                            Assign Items
+                                        </button>
+                                        <hr>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div *ngIf="hasPkg && !productsComplete">
+                                <ul class="ups-label_list_options">
+                                    <li *ngFor="let thisLoop of productsLoop; let i = index">
+                                        <div class="ups-group">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <p>{{i + 1}}. {{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</p>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p>{{'{'}}nn{{'}'}} {{'{'}}unit{{'}'}} unassigned.</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="ups-link">Split into multiple package</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngFor="let thisItem of thisLoop.items; let j = index">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <!-- Select a package selectbox &amp; Number of Units -->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <!-- Select a package selectbox -->
+                                                            <div class="ups-form_group">
+                                                                <label for="selectPkg{{ i }}{{ j }}" class="ups-form_label"> Select a Package </label>
+                                                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                                    <select id="selectPkg{{ i }}{{ j }}"
+                                                                            name="selectPkg{{ i }}{{ j }}"
+                                                                            class="ups-dropdown">
+                                                                        <option value="{{ optionList + 1 }}" *ngFor="let optionList of numbers">{{ optionList + 1}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <!-- Number of Units -->
+                                                            <div class="ups-form_group">
+                                                                <label for="numUnits{{ i }}{{ j }}" class="ups-form_label">Number of Units</label>
+                                                                <div class="ups-text_wrapper ups-input_wrapper">
+                                                                    <input type="text" name="numUnits{{ i }}{{ j }}" class="ups-form_input" id="numUnits{{ i }}{{ j }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <!-- Notes -->
+                                                    <div class="ups-form_group">
+                                                        <label for="notes{{ i }}{{ j }}" class="ups-form_label">Notes</label>
+                                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                                            <input type="text" name="notes{{ i }}{{ j }}" class="ups-form_input" id="notes{{ i }}{{ j }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="hidden-md" *ngIf=" j != (thisLoop.items.length - 1)">
+                                        </div>
+                                        <button type="button" class="ups-link ups-button_has_icon" (click)="assignItems(i)">
+                                            <span class="icon ups-icon-pluscircle" aria-hidden="true"></span> 
+                                            Assign Items
+                                        </button>
+                                        <hr>
+                                    </li>
+                                </ul>
+                                <button type="button" class="ups-cta ups-cta_secondary ups-btn_has_icon" (click)="addProd()">
+                                    <span class="icon ups-icon-plus" aria-hidden="true"></span> 
+                                    Add Product
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="wwef">
+                            <div class="ups-group">
+                                <p>1. Pallet Weight: [Weight][lbs] <span class="ups-indent">Pallet Dimentsions: [nn x nn x nn][in/cc]</span></p>
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-8">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="descGoods01" class="ups-form_label">Description of Goods <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        name="descGoods01"
+                                                        class="ups-form_input"
+                                                        id="descGoods01"
+                                                        aria-required="true"
+                                                        required
+                                                        aria-describedby="descGoods01_error"
+                                                        formControlName="descGoods01"
+                                                        [ngClass]="{'ups-bodError': (!plModal.controls['descGoods01'].valid && plModal.controls['descGoods01'].touched)}">
+                                            </div>
+                                            <span class="ups-icons-error" id="descGoods01_error" role="alert">
+                                                <span class="ups-invalid_color"
+                                                    *ngIf="(!plModal.controls['descGoods01'].valid && plModal.controls['descGoods01'].touched)">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt"> Invalid</span>
+                                                    <span *ngIf="plModal.controls['descGoods01'].hasError('required')">
+                                                        Description of goods is [ required | Invalid ].
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-md-2">
+                                        <div class="ups-form_group">
+                                            <label for="price01" class="ups-form_label">Unit Price</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="price01" class="ups-form_input" id="price01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ups-group">
+                                <p>2. Pallet Weight: [Weight][lbs] <span class="ups-indent">Pallet Dimentsions: [nn x nn x nn][in/cc]</span></p>
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-8">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="descGoods02" class="ups-form_label">Description of Goods <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        name="descGoods02"
+                                                        class="ups-form_input"
+                                                        id="descGoods02"
+                                                        aria-required="true"
+                                                        required
+                                                        aria-describedby="descGoods02_error"
+                                                        formControlName="descGoods02"
+                                                        [ngClass]="{'ups-bodError': (!plModal.controls['descGoods02'].valid && plModal.controls['descGoods02'].touched)}">
+                                            </div>
+                                            <span class="ups-icons-error" id="descGoods02_error" role="alert">
+                                                <span class="ups-invalid_color"
+                                                    *ngIf="(!plModal.controls['descGoods02'].valid && plModal.controls['descGoods02'].touched)">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt"> Invalid</span>
+                                                    <span *ngIf="plModal.controls['descGoods02'].hasError('required')">
+                                                        Description of goods is [ required | Invalid ].
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-md-2">
+                                        <div class="ups-form_group">
+                                            <label for="price02" class="ups-form_label">Unit Price</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="price01" class="ups-form_input" id="price02">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ups-cms-demo ups-form_ctaGroup">
+                            <button class="ups-cta ups-cta_primary" type="button" (click)="wwef = !wwef">WWEF</button>
+                            <button class="ups-cta ups-cta_primary" type="button" (click)="wwef = false; hasPkg = !hasPkg">Toggle has packages or not</button>
+                        </div>
+
+                    </div>
+                </li>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End Product Drawer               ///// -->
+                <!-- /////////////////////////////////////////// -->
+            </ul>
+        </section>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Accordian                    //// -->
+        <!-- //// Begin Modal Lvl Footer Btns      //// -->
+        <!-- ////////////////////////////////////////// -->
+        <div class="ups-form_ctaGroup text-center">
+            <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()">Close</button>
+            <button class="ups-cta ups-cta_primary" type="button" (click)="formSave()">Save and Close</button>
+        </div>
+        <!-- ////////////////////////////////////////// -->
+        <!-- //// End Modal Lvl Footer Btns        //// -->
+        <!-- ////////////////////////////////////////// -->
+    </form>
+</div>

@@ -1,0 +1,158 @@
+<!-- ************************************************************************************ -->
+<!-- M17 Form                                                                     -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M17 FORM: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 45px
+-desc-
+| 30px
+-input-
+| 30px
+-radio-
+| 15px
+-radio-
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-formConfirmation_wrap ups-wrap">
+   <div class="ups-wrap_inner">
+
+        {{#if this.formConfirmation.title}}<h2 class="ups-article-header">{{this.formConfirmation.title}}</h2>{{/if}}
+
+        {{#if this.formConfirmation.header}}<h3>{{{this.formConfirmation.header}}}</h3>{{/if}}
+
+        {{#if this.formConfirmation.copy}}<p>{{{this.formConfirmation.copy}}}</p>{{/if}}
+
+        <div class="ups-form_ctaGroup">
+            {{#each formConfirmation.cta}}
+                <button class="ups-cta ups-cta_{{this.type}}">{{this.label}}</button>
+            {{/each}}
+        </div>
+   </div>
+</div>
+<div class="ups-form_wrap ups-formStrict ups-wrap">
+   <div class="ups-wrap_inner">
+
+
+        {{#if this.title}}<h2 class="ups-article-header">{{this.title}}</h2>{{/if}}
+
+        {{#if this.copy}}<div class="introductory">{{{this.copy}}}</div>{{/if}}
+
+        <form action ="M17_formConfirmation.html" data-parsley-validate>
+
+            <h3 class="ups-error_alert"><span class="icon ups-icon-exclamation" aria-hidden="true"></span>{{alert}}</h3>
+            <ul class="ups-errorChannel">
+            </ul>
+            <p class="ups-cancelText">Are you sure you want to cancel? You will lose all information."</p>
+
+            {{#each inputs}}
+                <{{#is this.type "buttonList"}}fieldset{{else}}div{{/is}} class="ups-form_group {{#if this.required}}ups-form_required{{/if}} {{#if help}}ups-help_wrapper {{#is this.input "textField"}}ups-help_textWrapper{{/is}}{{/if}}">
+                    {{#if header}}
+                        {{#is this.type "buttonList"}}
+                            <legend class="ups-form_label">{{this.header}}{{#if this.required}} <span aria-hidden="true" class="ups-required_indicator"></span>
+                            <span class="ups-readerTxt">Required</span>{{/if}}</legend>
+                        {{else}}
+                            <label for="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}" class="ups-form_label">{{this.header}} {{#if this.required}}<span aria-hidden="true" class="ups-required_indicator"></span>{{/if}}</label>
+                        {{/is}}
+                        {{#if subheader}} <p class="ups-form_subheader" id="email-help-text{{@index}}">{{subheader}}</p>{{/if}}
+                        {{#if help}}
+                           <!--<div class="ups-help">
+                                <button type="button" id="ups-formHelp{{@index}}" class="ups-help_link"><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>Help</button>
+                                <div class="ups-help_tooltip">
+                                    <button type="button" class="ups-help_close">
+                                        <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Close</span>
+                                    </button>
+                                    <p>{{this.help}}</p>
+                                </div>
+                           </div>-->
+                        {{/if}}
+                    {{/if}}
+                    {{#is this.input "textField"}}
+                        <div class=" ups-text_wrapper ups-input_wrapper {{#is this.type 'email'}}email_input{{/is}}" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+                            <input type="{{type}}" name="{{this.name}}" data-name="{{this.name}}" class="ups-form_input ups-error" id="ups-uid-ups-uid-{{nameToId ../../title}}-{{nameToId this.header}}" {{#if help}} aria-describedby="email-help-text{{@index}}" {{/if}} {{#if this.required}}aria-required="true" required data-parsley-trigger="blur"{{/if}} {{#if this.pattern}} data-parsley-pattern="{{this.pattern}}" {{/if}} {{#if this.errorMsg}}data-parsley-required-message="{{this.errorMsg}}"{{/if}} data-parsley-maxlength="50" {{#is this.name "email"}} data-parsley-type="email" data-parsley-type-message="Please enter Email Properly" {{/is}}>
+                            <div class="ups-checkIcon">
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span>
+                            </div>
+                            {{#if this.required}}
+                                <p class="ups-formError"><span class="ups-icon-exclamation" aria-hidden="true"></span></p>
+
+
+                            {{/if}}
+                        </div>
+                    {{/is}}
+                    {{#is this.type "textArea"}}
+                        <div class="ups-textArea_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+                            <textarea class = "ups-textArea" data-name="{{this.name}}" id="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}" rows="8" maxlength="500" name="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}"  {{#if help}} aria-describedby="email-help-text{{@index}}" {{/if}} {{#if this.required}}aria-required="true" required data-parsley-trigger="blur"{{/if}}  {{#if this.errorMsg}}data-parsley-required-message="{{this.errorMsg}}"{{/if}} data-parsley-maxlength-message="{{this.errorMsg}}"></textarea>
+                            <p class="ups-textArea_characters" aria-live="polite">
+                            <span class="ups-charLeft" aria-hidden="true" aria-live="off">0</span> <span class="ups-formslash" aria-hidden="true" aria-live="off"> / </span>
+                            <span class="ups-charCount" aria-hidden="true" aria-live="off">500</span>
+                            <span class="ups-readerTxt ups-charAnounce" aria-hidden="true" aria-live="polite"></span>
+                            <span class="ups-contentExceed" aria-hidden="false">Maximum Limit Reached</span></p>
+                        </div>
+                    {{/is}}
+                    {{#is this.type "dropdown"}}
+                        <div class="ups-dropdown_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+                            <select name="{{this.name}}" data-name="{{this.name}}" class="ups-dropdown" id="ups-uid-{{nameToId ../../title}}-{{nameToId this.name}}"  {{#if help}} aria-describedby="email-help-text{{@index}}" {{/if}} {{#if this.required}}aria-required="true" required data-parsley-trigger="blur"{{/if}} {{#if this.errorMsg}}data-parsley-required-message="{{this.errorMsg}}"{{/if}}>
+                                {{#each items}}
+                                    <option value="{{this.value}}">{{this.text}}</option>
+                                {{/each}}
+                            </select>
+                            {{#if this.required}}
+                                <p class="ups-formError">{{this.errorMsg}}</p>
+                            {{/if}}
+                        </div>
+                    {{/is}}
+                    {{#is this.type "buttonList"}}
+                       {{#each items}}
+                            <div class = "ups-buttonList_wrapper ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+
+                                <input data-name="{{this.name}}" id="ups-uid-{{nameToId ../../../title}}-{{nameToId this.text}}" class="ups-{{this.type}}-custom" name="ups-uid-{{nameToId ../../../title}}-{{nameToId this.name}}" data-parsley-multiple="ups-uid-{{nameToId ../../../title}}-{{nameToId this.name}}" type="{{this.type}}" value="{{this.value}}"  {{#if this.required}} aria-required="true" required{{else}}{{#if ../../required}} aria-required="true" required{{/if}}{{/if}}  {{#if this.errorMsg}} data-parsley-required-message="{{this.errorMsg}}"{{/if}}>
+
+                                <label for="ups-uid-{{nameToId ../../../title}}-{{nameToId this.text}}" class="ups-{{this.type}}-custom-label">{{{this.text}}}{{#if this.required}} <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>{{/if}}</label>
+                                {{#if this.required}}
+                                    <p class="ups-formError">{{this.errorMsg}}</p>
+                                {{/if}}
+                            </div>
+                        {{/each}}
+                    {{/is}}
+                    {{#is this.type "checkbox"}}
+                        <div class = "ups-checkbox ups-input_wrapper" {{#if this.errorMsg}}data-errormsg="{{this.errorMsg}}"{{/if}}>
+                            <input data-name="{{this.name}}" {{#if @first}} data-parsley-mincheck="1" {{/if}} id="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" class="ups-checkbox-custom" name="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" value="{{this.value}}" type="checkbox"{{#if this.required}} aria-required="true" required="" data-parsley-trigger="click"{{/if}}  {{#if this.errorMsg}}data-parsley-required-message="{{this.errorMsg}}"{{/if}}>
+                            <label for="ups-uid-{{nameToId ../../title}}-{{nameToId this.id}}" class="ups-form_label ups-checkbox-custom-label">
+                                {{{this.text}}}
+                                {{#if this.required}}<span aria-hidden="true" class="ups-required_indicator"></span>{{/if}}
+                            </label>
+                            {{#if this.required}}
+                                <p class="ups-formError">{{this.errorMsg}}</p>
+                            {{/if}}
+                        </div>
+                    {{/is}}
+                </{{#is this.type "buttonList"}}fieldset{{else}}div{{/is}}>
+                {{#is this.type "content"}}
+                    <div class="ups-form_group">
+                        <p>{{{this.text}}}</p>
+                    </div>
+                {{/is}}
+            {{/each}}
+            <div class="ups-form_privacy">
+                <p><strong>Note</strong> UPS will only use your email address to deliver email related to this request.</p>
+            </div>
+            <div class="ups-form_ctaGroup">
+                {{#each cta}}
+                    <button type="submit" class="ups-cta ups-cta_{{this.type}}">{{this.label}}</button>
+                {{/each}}
+            </div>
+        </form>
+   </div>
+</div>
+

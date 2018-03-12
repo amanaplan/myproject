@@ -1,0 +1,271 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+
+#main {
+    .appBody {
+        .secLvl.group2.message, .secLvl.sell.message {
+            .secBody {
+                border: none;
+                background-color: $white;
+                padding: 15px 0;
+
+                .dataTable {
+                    border-color: $ups-brown !important;
+                    &.tablePlain {
+                        tr:nth-child(1) {
+                            th {
+                                background-color: $gold_60 !important;
+                            }
+                        }
+                    }
+                }
+            }
+            .secHead {
+                h3 {
+                    &:before {
+                        @include ups-iconFont("\e60a");
+                        color: $white;
+                        font-size: 30px;
+                        display: block;
+                        float: $default-float;
+                        margin-#{$opposite-direction}: 5px;
+                    }
+                    img {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .secLvl.sell.message {
+            @include ups-legacy_colorHeader($sun_s3);
+            background-color: $white;
+
+            .secBody {
+                background-color: $sun_s3;
+                padding: 5px 0;
+            }
+
+
+            .flexFirst {
+                margin-#{$default-float}: 15px;
+                &:before {
+                    @include ups-iconFont("\e60a");
+                    color: $white;
+                    font-size: 30px;
+                }
+                img {
+                    display: none;
+                }
+            }
+
+            .flexAfter p, .flexAfter span {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                color: $white;
+            }
+
+            .subcol7, .subcol17 {
+                margin-top: 15px;
+            }
+        }
+
+		.secLvl.cmsMsg.seccol24 img {
+			width: 100%;
+		}
+
+        .secLvl#tableView {
+            h4#hTableNum {
+                font-size: 1.17em;
+            }
+            .secBody {
+                padding: 0 10px;
+            }
+        }
+
+        .ui-datepicker-trigger {
+            width: 14px;
+        }
+        #repl_id {
+            input[type=text] {
+                width: 115px !important;
+            }
+        }
+        fieldset {
+            ul.inline.lstPipeR {
+                li {
+                    margin-#{$opposite-direction}: 0;
+                }
+            }
+            .secLvl {
+                padding: 10px;
+            }
+            #tableView {
+                padding: 0;
+            }
+        }
+
+        .fc-view {
+            .fc-day-content {
+                background: $white;
+                opacity: 1;
+            }
+
+            h3.fc-day-header {
+                background: $white;
+                height: 30px;
+                opacity: 1;
+
+                .fc-day-number {
+                    font-size: 14px;
+                    margin: 5px 5px 0 0;
+                    opacity: 1;
+                }
+            }
+
+            .fc-day-wrapper {
+                border: 1px solid $stone_s3;
+            }
+
+            .fc-not-today {
+                h3.fc-day-header {
+                    margin: 0;
+                    background: none;
+                }
+            }
+
+            .fc-today {
+                h3.fc-day-header {
+                    margin: 0;
+                    background: $ups-gold;
+                }
+                .fc-day-content {
+                    background: $ups-gold;
+                }
+            }
+
+            thead {
+                background: $black_s3;
+
+                .fc-week-head {
+                    color: $white;
+                    text-align: center;
+                    padding: 10px 0;
+                    border-#{$opposite-direction}: 1px solid $black_s1;
+                }
+
+                .fc-sat .fc-week-head {
+                    border-#{$opposite-direction}: none;
+                }
+            }
+
+
+            td.fc-state-default {
+                a {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .fc-dpicker {
+            .fc-state-selected {
+                background: $gold_60;
+            }
+
+            .fc-state-border {
+                border: 1px solid $black_s4;
+                background-color: $ups-gold;
+            }
+
+            .fc-dpicker-button {
+                .fc-dpicker-nav-button {
+                    background: none;
+                    padding: 0;
+                    height: auto;
+                    text-indent: -999999px;
+
+                    &#rightBtn {
+                        &:after {
+                            @include ups-iconFont("\e629");
+                            color: $black_s4;
+                            font-size: 20px;
+                            margin-#{$opposite-direction}: 10px;
+                            text-indent: 0;
+                            float: $opposite-direction;
+                        }
+                    }
+
+                    &#leftBtn {
+                        &:after {
+                            @include ups-iconFont("\e627");
+                            color: $black_s4;
+                            font-size: 20px;
+                            margin-#{$default-float}: 10px;
+                            text-indent: 0;
+                            float: $default-float;
+                        }
+                    }
+                }
+            }
+        }
+
+        #hTableRangeFrom, #inputTableRangeTo {
+            @include ups-datepickerIcon;
+        }
+
+        #HistoryWindow {
+            sub {
+                bottom: 0;
+            }
+        }
+        .plusMini {
+            background-image: url(/assets/resources/images/legacyAppImages/plusIcon.gif);
+            background-position: initial;
+            background-size: 10px;
+        }
+        .minusMini {
+            background-image: url(/assets/resources/images/legacyAppImages/minusIcon.gif);
+            background-position: initial;
+            background-size: 10px;
+        }
+    }
+
+	div#addressDynamic div:nth-child(3) {
+		float: $default-float;
+	}
+}
+
+#ups-fw_legacy_app_wrap #main #dp_table_view a.anchor {
+    color: #3366CC!important
+}
+
+form[name=redirectform] .error #lwnErrMsg {color:#F31A12}
+#sendByHeading,#sendToHeading {background:none;border:none}
+
+.ui-dialog.ui-widget .modal form[name=deliveryAlertForm] .dataTable:not(.sel) thead tr:nth-child(2) th {border-#{$opposite-direction}: 1px solid #351c15;}
+#mcdpd_cd_b , #mcdpd_da_b , #mcdpd_s2hdw_b,#mcdpd_di_b {margin: 5px 0; padding:10px 0px!important;}
+#main .appBody .fc-agenda-body a.btnGradient.btnGradient7{    background-position: 0pt -2px;
+    display: inline-block;
+    margin: 5px 0;
+    padding:0 10px!important;
+    color: #fff!important;}
+
+.error{color:#F31A12!important}
+#fcfooterId a#rightBtn.fc-dpicker-nav-button ,#fcfooterId a#leftBtn.fc-dpicker-nav-button {overflow:visible;}
+
+button.button {
+    margin-bottom: 5px;
+}
+
+
+/* TFS Defect 334492 */
+#origCACAddress {
+
+    #origCAC_Column1,
+    #origCAC_Column2 {
+        width: auto !important;
+    }
+
+    #origDisplayPhone + #origDisplayExtension {
+        margin-left: 10px;
+    }
+
+}

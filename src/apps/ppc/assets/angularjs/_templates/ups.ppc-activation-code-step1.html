@@ -1,0 +1,45 @@
+<div class="ups-activationCode ups-form_wrap ups-application_wrapper ups-tab-container" data-page-title="Activate My Membership">
+	<!-- //// begin ups.ppc-activation-code-step1 //// -->
+    <a point-focus="" href="#/preferencePage/mychoicePreference" class="ups-previous_page"> 
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to UPS My Choice Preferences
+	</a>
+	<h4>Welcome back John. Let's get started.</h4>
+	<form name="ups_activationCodeStep1" error-on-submit novalidate>
+		<div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-country_select" class="ups-form_label">Country</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select  name="ups-state_select"
+                            id="ups-country_select" class="ups-dropdown"
+                            data-ng-model="formObj.country"								data-ng-disabled="disabled" data-ng-change="changeVal()">
+                            <option data-ng-repeat="countries in countryList"
+                                value="{{countries.code}}">{{countries.country}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group">
+                    <label for="ups-language_select" class="ups-form_label">Language</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select  name="ups-lang_select"
+                            id="ups-language_select" class="ups-dropdown"
+                            data-ng-model="formObj.language">
+                            <option data-ng-repeat="lang in languageList"
+                                value="{{lang}}">{{lang}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper -->
+                </div>
+                <div class="ups-form_ctaGroup">
+                    <button type="submit" class="ups-cta ups-cta_primary"
+                        data-ng-click="nextActivation()">Next</button>
+                    <!-- data-ng-disabled="!(ups_activationCodeStep1.$valid)" -->
+                </div>
+			</div>
+		</div>
+	</form>
+	<!-- //// end ups.ppc-activation-code-step1 //// -->
+</div>

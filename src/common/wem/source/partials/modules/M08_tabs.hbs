@@ -1,0 +1,65 @@
+<!-- ************************************************************************************ -->
+<!-- M08 TABS                                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M08 TABS: -LAYOUT-
+********************************************************************************
+
+| 60px height Tab
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M08 TABS: DESKTOP vs MOBILE
+********************************************************************************
+
+M08 ups-tab-headers are for desktop
+M08 ups-tab-content are for desktop & mobile
+M08 tab-headers in ups-tab-content are for mobile
+
+********************************************************************************
+--}}
+
+<div class="ups-tabs" >
+
+    <div class='ups-tab-headers ups-wrap' role="tablist">
+        <div class="ups-wrap_inner" >
+            {{#each this}}
+                <a href="#" class="tab-header ups-tab-move" role="tab" aria-controls="tab_{{@index}}_panel" id="tab_{{@index}}" data-tab="{{tab}}" {{#if @first}} data-open="true" {{else}} data-open="false" {{/if}} style="border-top-color:{{color}}" {{#if @first}} aria-expanded="true" {{else}} aria-expanded="false" {{/if}} {{#if @first}} tabindex="0" {{else}} tabindex="-1" {{/if}}>
+                    <span class="tab-title">{{tab}}</span>
+                    <span class="tab-border"></span>
+                </a>
+            {{/each}}
+        </div>
+    </div>
+    <!-- @end ups-tab-headers for desktop -->
+
+    {{#each this}}
+        <div class="ups-acc-headcont" role="heading" aria-level="3">
+            <a href="#" class="tab-header ups-accordion-tab" role="button" data-tab="{{tab}}" {{#if @first}} data-open="true"  {{else}} data-open="false" {{/if}}  aria-controls="tab_{{@index}}_panel" id="tab_{{@index}}" {{#if @first}} aria-expanded="true" {{else}} aria-expanded="false" {{/if}}>
+                <span class="tab-title">{{tab}}</span>
+                <i>
+                    <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                </i>
+            </a>
+        </div>
+        <!-- @end ups-tab-header for mobile -->
+
+        <div tabindex="0" aria-labelledby="tab_{{@index}}" id="tab_{{@index}}_panel" role="tabpanel" {{#if @first}} aria-hidden="false" {{else}} aria-hidden="true" {{/if}} class="ups-tab-content{{#if @first}} top-tab{{/if}}" data-tab="{{tab}}" {{#if @first}} data-open="true" data-content-selected="true" {{else}}{{#isNthChild @index 1}} data-prev-active="true" {{/isNthChild}}{{#isNotNthChild @index 1}} data-prev-active="false" {{/isNotNthChild}} data-open="false" data-content-selected="false" {{/if}}{{#if force}} data-stick="true" {{/if}}>
+            <div class="sub-detail-container">
+                {{#if list}}
+                    {{> M15_list list}}
+                {{/if}}
+                {{#if contentBlock}}
+                    {{> M44_content_block contentBlock}}
+                {{/if}}
+            </div>
+        </div>
+        <!-- @end ups-tab-content -->
+    {{/each}}
+
+</div>

@@ -1,0 +1,155 @@
+{{#if default}}
+<p>To help us keep your information secure, please choose one of the options below.</p>
+
+<fieldset class="ups-form_group">
+    <legend class="ups-readerTxt">Verification Method Options</legend>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="verification_option_1" class="ups-radio-custom" name="verification_option" value="1" type="radio">
+        <label for="verification_option_1" class="ups-radio-custom-label">[option 1]</label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="verification_option_2" class="ups-radio-custom" name="verification_option" value="2" type="radio">
+        <label for="verification_option_2" class="ups-radio-custom-label">[option 2]</label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="verification_option_3" class="ups-radio-custom" name="verification_option" value="3" type="radio">
+        <label for="verification_option_3" class="ups-radio-custom-label">[option 3]</label>
+    </div>
+    <div class="ups-buttonList_wrapper ups-input_wrapper">
+        <input id="verification_option_4" class="ups-radio-custom" name="verification_option" value="4" type="radio">
+        <label for="verification_option_4" class="ups-radio-custom-label">[option x]</label>
+    </div>
+</fieldset>
+
+<div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+    <button type="button" class="ups-cta ups-cta_primary">Next</button>
+    <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+</div>
+{{/if}}
+
+{{#if verror}}
+    <p>Answer the questions below to continue. Correct responses are not case-sensitive.</p>
+    {{>A04_page_level_required_message }}
+
+    {{>A03_page_level_error error_msg }}
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="ups-form_group ups-form_required">
+                <label class="ups-form_label" for="security_question_1">
+                    What is your mother's maiden name?
+                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="security_question_1"
+                        class="ups-form_input"
+                        id="security_question_1"
+                        aria-required="true"
+                        required=""
+                        type="text">
+                </div>
+            </div>
+
+            <div class="ups-form_group ups-form_required">
+                <label class="ups-form_label" for="security_question_2">
+                    [Security question 2]
+                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="security_question_2"
+                        class="ups-form_input"
+                        id="security_question_2"
+                        aria-required="true"
+                        required=""
+                        type="text">
+                </div>
+            </div>
+
+            <div class="ups-form_group ups-form_required">
+                <label class="ups-form_label" for="security_question_3">
+                    [Security question 3]
+                    <span class="ups-required_indicator" aria-hidden="true"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="security_question_3"
+                        class="ups-form_input"
+                        id="security_question_3"
+                        aria-required="true"
+                        required=""
+                        type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        <button type="button" class="ups-cta ups-cta_primary">Next</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+    </div>
+{{/if}}
+
+{{#if vfail}}
+<p>The answers you selected did not match our records. If you would like to try a different method to verify your identity, please select <strong>Continue</strong></p>
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        <button type="button" class="ups-cta ups-cta_primary">Continue</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+    </div>
+{{/if}}
+
+{{#if vsuccess}}
+    <p>To skip this step in the future, make this an approved device. We don't recommend doing this if you're using a shared computer.</p>
+    <div class="ups-form_group">
+        <div class="ups-checkbox ups-input_wrapper">
+            <input id="rememberDevice"
+                class="ups-checkbox-custom"
+                name="rememberDevice"
+                value="1"
+                type="checkbox">
+            <label for="rememberDevice" class="ups-form_label ups-checkbox-custom-label">
+                Remember this device.
+            </label>
+        </div>
+    </div>
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        <button type="button" class="ups-cta ups-cta_primary">Next</button>
+    </div>
+{{/if}}
+
+{{#if vlocked}}
+    <p>To make sure an unauthorized user isn't trying to log into your profile. we've locked your information. Please call Customer Service to continue.</p>
+    <p><strong>UPS Customer Service:</strong> 1-800-PICK-UPS</p>
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        <button type="button" class="ups-cta ups-cta_primary">Done</button>
+    </div>
+{{/if}}
+
+{{#if vpin_fail}}
+<p>The PIN you entered did not match our records. If you would like to try a different method to verify your identity, please select <strong>Continue</strong>.</p>
+	<div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        <button type="button" class="ups-cta ups-cta_primary">Continue</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+    </div>
+{{/if}}
+
+{{#if vpin_error}}
+	<p>We've sent your PIN by [Text]. Enter it below to continue.</p>
+    {{>A04_page_level_required_message }}
+    {{>A03_page_level_error error_msg }}
+<div class="row">
+	<div class="col-md-5">
+		<div class="ups-form_group ups-form_required">
+			<label for="pin">
+				PIN
+				<span aria-hidden="true" class="ups-required_indicator"></span>
+			</label>
+			<div class=" ups-input_wrapper">
+				<input error-on-blur="" class="ups-form_input" type="text" name="pin" id="pin" maxlength="6" aria-required="true" required="">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+    <button type="button" class="ups-cta ups-cta_primary">Next</button>
+    <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+</div>
+{{/if}}

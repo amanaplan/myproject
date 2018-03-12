@@ -1,0 +1,94 @@
+<!-- ************************************************************************************ -->
+<!-- M10 Article                                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M10 ARTICLE: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 45px
+-author-
+| 30px
+-index-
+| 30px
+-sub-header-
+| 5px
+-article-desc
+| 30px
+-sub-header-
+| 5px
+-article-desc
+| 30px
+-tags
+| 60px
+
+********************************************************************************
+--}}
+
+
+<div class="ups-article ups-wrap">
+    <div class="ups-wrap_inner">
+        {{#if this.heading}}
+        <h2 class="ups-article-header">{{this.heading}}</h2>
+        {{/if}}
+        {{#if this.author}}
+        <div class="ups-article_author">
+            <a class="ups-article_authorImg" href="{{this.author.bioLink}}">
+                <img src="{{this.author.image}}" alt="{{this.author.imageAlt}}">
+            </a>
+            <div class="ups-article_authorName">
+                <h2>By <a href="{{this.author.bioLink}}">{{this.author.name}}</a></h2>
+                <p class="ups-article_authorTitle">{{this.author.title}}</p>
+            </div>
+        </div>
+        {{/if}}
+        {{#if this.source}}
+        <div class="ups-article_source">
+            <a class="ups-article_sourceImg" href="{{this.source.sourceLink}}">
+                <p>{{this.source.name}}</p>
+                <img src="{{this.source.image}}" alt="{{this.source.imageAlt}}">
+            </a>
+            <p class="ups-article_date">{{this.source.date}}</p>
+        </div>
+        {{/if}}
+        {{#if this.index}}
+        <div class="ups-article_index">
+           <p>This document contains:</p>
+            <ul>
+            {{#each this.index}}
+                <li><a href="{{this.url}}">{{this.label}}</a></li>
+            {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+        {{#if body}}
+            <div class='ups-article_wrap'>
+                {{{this.body}}}
+                {{#if readMore}}
+                    <div class='ups-article_readMore'>
+                        <a href="#more">Read More</a>
+                    </div>
+                {{/if}}
+            </div>
+
+        {{/if}}
+
+        {{#if tags}}
+        <div class="ups-article_tags">
+            <span class='ups-article_tags_label'>Tags:</span>
+            <div class="ups-article_tagsArray">
+                {{#each tags}}
+                <div class="ups-article_tag">
+                    <a href="{{this.url}}">
+                        {{this.label}}
+                    </a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</div>

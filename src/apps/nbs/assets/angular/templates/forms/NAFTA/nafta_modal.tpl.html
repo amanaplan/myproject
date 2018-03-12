@@ -1,0 +1,693 @@
+<!--
+** NAFTA Certificate of Origin Modal **
+-->
+<div class="ups-wrap_inner">
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// Begin Page Level error messaging //// -->
+    <!-- ////////////////////////////////////////// -->
+    <section *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+        <ul class="ups-icons-error">
+            <li *ngIf="!addListValid()">
+                <a href="#upsDrawerBtn02" class="ups-invalid_color" pointIdClick>Errors in Address Information</a>
+            </li>
+            <li *ngIf="!prodListValid()">
+                <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>Errors in Product Information</a>
+            </li>
+        </ul>
+    </section>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Page Level error messaging   //// -->
+    <!-- //// BEGIN Page content               //// -->
+    <!-- ////////////////////////////////////////// -->
+    <section class="ups-group">
+        <ul class="ups-drawer" *ngIf="!inProg && !ready" upsDrawerList>
+            <!-- /////////////////////////////////////////////// -->
+            <!-- ////   Begin Blanket Time Period Drawer   ///// -->
+            <!-- /////////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01">
+                    <span [ngClass]="{'ups-icon-checkcircle' : complete, 'ups-empty_circle' : !complete }" class="icon ups-drawer_left_icon"></span>
+                    Blanket Time Period
+                    <span class="ups-readerTxt" *ngIf="complete">Complete</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <div class="ups-drawer-content" id="upsDrawer01">
+                    <!-- /////////////////////////////////////////////// -->
+                    <!-- ////   Blanket Time Period Information    ///// -->
+                    <!-- /////////////////////////////////////////////// -->
+                    <p>
+                        <strong>Set Blanket Time Period</strong>
+                    </p>
+                    <p>
+                        <em>By default, this certificate is active for shipments within the next 30 days. If you expect to ship
+                            this item again, you may extend the blanket time period of this certificate for up to one year.</em>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <label for="ups-blanketDP1" class="ups-form_label">From</label>
+                                        <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                            <input type="text" id="ups-blanketDP1" class="ups-form_input" [ngModel]="blancketDT1 | date:'MM/dd/yyyy'" [ngModelOptions]="{'standalone' : true}"
+                                                (ngModelChange)="(dMoment(blancketDT1, 'MM/dd/yyyy', true)) ? blancketDT1 = $event : false">
+                                            <button class="ups-date_picker_button" type="button" (click)="toggleDatePick('blanketDP1')">
+                                                <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                                <span class="ups-readerTxt">Select date from a calendar</span>
+                                            </button>
+                                            <ups-datepicker #btpDatePicker1></ups-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ups-form_group">
+                                        <label for="ups-blanketDP2" class="ups-form_label">To</label>
+                                        <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                            <input type="text" id="ups-blanketDP2" class="ups-form_input" [ngModel]="blancketDT2 | date:'MM/dd/yyyy'" [ngModelOptions]="{'standalone' : true}"
+                                                (ngModelChange)="(dMoment(blancketDT2, 'MM/dd/yyyy', true)) ? blancketDT2 = $event : false">
+                                            <button class="ups-date_picker_button" type="button" (click)="toggleDatePick('blanketDP2')">
+                                                <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                                <span class="ups-readerTxt">Select date from a calendar</span>
+                                            </button>
+                                            <ups-datepicker #btpDatePicker2></ups-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- ///////////////////////////////////////////// -->
+            <!-- ////   End Blanket Time Period Drawer   ///// -->
+            <!-- ////  Begin Address Information Drawer  ///// -->
+            <!-- ///////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{'ups-empty_circle' : addInfoCircle(),
+                                'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !addListValid()), 
+                                'ups-icon-checkcircle' : ((nbsBase.nbsGlobalFormSubmit && addListValid()) && (producer == '1' && savedAdd == 'new'))}"></span>
+                    Address Information
+                    <span class="ups-readerTxt" *ngIf="complete">Complete</span>
+                    <span class="ups-readerTxt" *ngIf="!complete">Needs to be completed</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <!-- //////////////////////////////////// -->
+                <!-- ////    Address Information    ///// -->
+                <!-- //////////////////////////////////// -->
+                <div class="ups-drawer-content" id="upsDrawer02" [formGroup]="addInfoFormGroup">
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- //// Begin Page Level Error Handling  //// -->
+                    <!-- ////////////////////////////////////////// -->
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !addListValid())">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+                            <ng-container *ngIf="naftaAddInfoCAC.length > 0 && (producer == 1 && savedAdd == 'new')">
+                                <li *ngFor="let error of naftaAddInfoCAC.first.formErrors();">
+                                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}}</a> is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern)
+                                    ? 'invalid' : '' }}
+                                </li>
+                            </ng-container>
+                            <li *ngIf="addInfoFormGroup.controls['naftaEmail'].hasError('required')">
+                                <a href="#ups-naftaEmail" class="ups-invalid_color" pointIdClick>Email</a> is [required / invalid]
+                            </li>
+                            <li *ngIf="addInfoFormGroup.controls['naftaPhone'].hasError('required')">
+                                <a href="#ups-naftaPhone" class="ups-invalid_color" pointIdClick>Phone</a> is [required / invalid]
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- //// End Page Level Error Handling    //// -->
+                    <!-- //// Section content                  //// -->
+                    <!-- ////////////////////////////////////////// -->
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-section">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Exporter</h4>
+                                </div>
+                                <div class="ups-group">
+                                    <p>[Country]</p>
+                                    <p>[Contact Name]</p>
+                                    <p>[Company Name]</p>
+                                    <address class="ups-address_condensed">
+                                        [Street Adress], [Address2], [Address 3]
+                                        <br> [City], [State], [Zip]
+                                    </address>
+                                    <p>[Email]</p>
+                                    <p>[Phone]</p>
+                                </div>
+                                <div class="ups-form_group">
+                                    <label for="ups-naftaTaxId1" class="ups-form_label">Exporter Tax ID</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="ups-naftaTaxId1" class="ups-form_input ups-error" id="ups-naftaTaxId1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="ups-section">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Importer</h4>
+                                </div>
+                                <div class="ups-group">
+                                    <p>[Country]</p>
+                                    <p>[Contact Name]</p>
+                                    <p>[Company Name]</p>
+                                    <address class="ups-address_condensed">
+                                        [Street Adress], [Address2], [Address 3]
+                                        <br> [City], [State], [Zip]
+                                    </address>
+                                    <p>[Email]</p>
+                                    <p>[Phone]</p>
+                                </div>
+                                <div class="ups-form_group">
+                                    <label for="ups-naftaTaxId2" class="ups-form_label">Importer Tax ID</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="ups-naftaTaxId2" class="ups-form_input ups-error" id="ups-naftaTaxId2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <div class="alert-icon pull-left">
+                            <span aria-hidden="true" class="icon ups-icon-informationcircle"></span>
+                        </div>
+                        <button [attr.aria-expanded]="addInfoShipTip" aria-controls="shiptip1" class="ups-alert_collapse" type="button" (click)="addInfoShipTip = !addInfoShipTip">
+                            <span class="ups-readerTxt">Click to expand</span>
+                            <span [ngClass]="{ 'ups-icon-wedgeup' : addInfoShipTip, 'ups-icon-wedgedown' : !addInfoShipTip }" class="icon " aria-hidden="true"></span>
+                        </button>
+                        <div class="alert-title ups-alert_has_icon">
+                            <p>
+                                <strong>Ship Tip:</strong>
+                                What type of IDs are valid for this form?
+                            </p>
+                        </div>
+                        <div class="alert-content ups-alert_has_icon" id="shiptip1" *ngIf="addInfoShipTip">
+                            <p>Depending on the nature of your shipment, several ID types can be used:</p>
+                            <ul type="disc">
+                                <li>For individuals, a Social Security Number (SSN) will suffice.</li>
+                                <li>Business shippers can use either an Employer identification number (EIN) or the D-U-N-S(c)
+                                    Number (DUNS) for their address. An EIN is a tax ID issued to a business by the IRS;
+                                    DUNS is a widely recognized location-specific identifier from Dun &amp; Bradstreet.</li>
+                                <li>A foreign entity may use a valid ID form issued and recognized by their government or region,
+                                    such as a VAT ID. If no other number is available, a passport number may be used for
+                                    an individual exporter.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ups-form_group">
+                        <label for="ups-producer" class="ups-form_label">Producer of Goods</label>
+                        <div class="ups-input_wrapper ups-dropdown_wrapper">
+                            <select id="ups-producer" class="ups-dropdown" [(ngModel)]="producer" [ngModelOptions]="{'standalone' : true}">
+                                <option value="0">Available to customs on request</option>
+                                <option value="1">Exporter is producer of goods</option>
+                                <option value="2">Add single producer (other than exporter)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ups-form_group" *ngIf="producer == 1">
+                        <label for="ups-savedAdd" class="ups-form_label">Saved Addresses</label>
+                        <div class="ups-input_wrapper ups-dropdown_wrapper">
+                            <select id="ups-savedAdd" class="ups-dropdown" [(ngModel)]="savedAdd" [ngModelOptions]="{'standalone' : true}">
+                                <option value="0">{{'{'}}Address 1{{'}'}}</option>
+                                <option value="1">{{'{'}}Address 2{{'}'}}</option>
+                                <option value="new">Enter New Address</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div *ngIf="producer == 1 && savedAdd == 'new'">
+                        <!-- CAC Lives Here -->
+                        <ups-cac #naftaAddInfoCAC></ups-cac>
+                        <!-- //// End CAC //// -->
+                        <!-- //// Begin From Email, Phone, and Ext Row //// -->
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="ups-naftaEmail" class="ups-form_label">
+                                        Email
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="ups-naftaEmail" class="ups-form_input" id="ups-naftaEmail" aria-required="true" required aria-describedby="ups-naftaEmail_error"
+                                            formControlName="naftaEmail" [ngClass]="{'ups-bodError': (!addInfoFormGroup.controls['naftaEmail'].valid && addInfoFormGroup.controls['naftaEmail'].touched)}">
+                                    </div>
+                                    <span class="ups-icons-error" id="naftaEmail_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(!addInfoFormGroup.controls['naftaEmail'].valid && addInfoFormGroup.controls['naftaEmail'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="addInfoFormGroup.controls['naftaEmail'].hasError('required')">
+                                                Email is [ required | Invalid ].
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="ups-naftaPhone" class="ups-form_label">Phone
+                                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="ups-naftaPhone" class="ups-form_input" id="ups-naftaPhone" aria-required="true" required aria-describedby="naftaPhone_error"
+                                                    formControlName="naftaPhone" [ngClass]="{'ups-bodError': (!addInfoFormGroup.controls['naftaPhone'].valid && addInfoFormGroup.controls['naftaPhone'].touched)}">
+                                            </div>
+                                            <span class="ups-icons-error" id="ups-naftaPhone_error" role="alert">
+                                                <span class="ups-invalid_color" *ngIf="(!addInfoFormGroup.controls['naftaPhone'].valid && addInfoFormGroup.controls['naftaPhone'].touched)">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt"> Invalid</span>
+                                                    <span *ngIf="addInfoFormGroup.controls['naftaPhone'].hasError('required')">
+                                                        Phone is [ required | Invalid ].
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="ups-form_group">
+                                            <label for="fromExt" class="ups-form_label">Ext.</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="fromExt" class="ups-form_input" id="fromExt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //// End From Email, Phone, and Ext Row //// -->
+                        <div class="ups-form_group">
+                            <label for="ups-taxId" class="ups-form_label">Producer Tax ID</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="ups-taxId" class="ups-form_input" id="ups-taxId">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- ///////////////////////////////////////////// -->
+            <!-- ////   End Address Information Drawer   ///// -->
+            <!-- ////        Begin Product Drawer        ///// -->
+            <!-- ///////////////////////////////////////////// -->
+            <li class="ups-drawer_list_item">
+                <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03">
+                    <span class="icon ups-drawer_left_icon" [ngClass]="{'ups-empty_circle' : addInfoCircle(),
+                                'ups-icon-alert' : (nbsBase.nbsGlobalFormSubmit && !addListValid()), 
+                                'ups-icon-checkcircle' : ((nbsBase.nbsGlobalFormSubmit && addListValid()) && (producer == '1' && savedAdd == 'new'))}"></span>
+                    Products
+                    <span class="ups-readerTxt" *ngIf="complete">Complete</span>
+                    <span class="ups-readerTxt" *ngIf="!complete">Needs to be completed</span>
+                    <span class="pull-right">
+                        <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                    </span>
+                </button>
+                <!-- //////////////////////////////////// -->
+                <!-- ////    Product Information    ///// -->
+                <!-- //////////////////////////////////// -->
+                <div class="ups-drawer-content" id="upsDrawer03" [formGroup]="prodInfoFormGroup">
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- //// Begin Section Level Error Handling  //// -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !prodListValid())">
+                        <h3 class="ups-invalid_color-list ups-error_alert-list">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            Please correct the following errors:
+                        </h3>
+                        <ul class="ups-icons-error">
+                            <ng-container *ngIf="coreForm.length">
+                                <li *ngFor="let error of coreForm.first.coreFormError();">
+                                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}} is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern)
+                                        ? 'invalid' : '' }}</a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
+                    <div *ngIf="!inProgress && !withProd && !readyToGo" class="row">
+                        <div class="col-md-6">
+                            <p>
+                                <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                                No products have been added to this form.
+                            </p>
+                            <p>
+                                <button class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button">
+                                    <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                                    Add Product</button>
+                            </p>
+                            <!-- <button class="ups-cta ups-cta_secondary" type="button" (click)="ready = false ; inProgress = !inProgress">
+                                Add Product
+                                <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                                <span class="ups-readerTxt">Add a product</span>
+                            </button> -->
+                        </div>
+                    </div>
+                    <!-- ///////////////////////////////////////////// -->
+                    <!-- ////   End Section Level Error Handling  //// -->
+                    <!-- ////      Begin Core Form Component     ///// -->
+                    <!-- ///////////////////////////////////////////// -->
+                    <ups-coreForm #coreForm *ngIf="inProgress"></ups-coreForm>
+                    <!-- //////////////////////////////////////////// -->
+                    <!-- ////      End Core Form Component      ///// -->
+                    <!-- ////      Begin Product Component      ///// -->
+                    <!-- //////////////////////////////////////////// -->
+                    <div *ngIf="withProd || readyToGo" class="row">
+                        <p>Select products to include with NAFTA Certificate of Origin.</p>
+                        <div class="ups-group">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="ups-prodOne" class="ups-checkbox-custom" type="checkbox" checked>
+                                <label for="ups-prodOne" class="ups-checkbox-custom-label">
+                                    1. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details Page{{'}'}}
+                                </label>
+                                <button *ngIf="readyToGo" class="ups-link pull-right" type="button" (click)="editShipInfo = true">
+                                    <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                    <span class="hidden-xs">Edit</span>
+                                    <span class="ups-readerTxt"> section</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="readyToGo" class="row ups-indent">
+                        <div class="col-md-6">
+                            <p>Preference Criterion: {{'{'}}A-F{{'}'}}</p>
+                            <p>Producer: {{'{'}}Yes/No(1-3){{'}'}}</p>
+                            <p>RVC: {{'{'}}No/NC{{'}'}}</p>
+                            <p>Country or Territory of Origin: {{'{'}}country{{'}'}}</p>
+                        </div>
+                    </div>
+                    <div [ngClass]="{'ups-indent' : withProd}">
+                        <div *ngIf="inProgress || withProd" class="row">
+                            <div class="col-md-6">
+                                <p *ngIf="!withProd">Select products to include with NAFTA Certificate of Origin.</p>
+                                <div class="ups-form_group">
+                                    <label for="ups-productProducer" class="ups-form_label">
+                                        <span *ngIf="!withProd">Producer</span>
+                                        <span *ngIf="!inProgress">Who is the producer of this item?</span>
+                                        <span aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="ups-productProducer" id="ups-productProducer" class="ups-dropdown">
+                                            <option *ngIf="withProd">Available to customs on request.</option>
+                                            <option *ngIf="inProgress">Exporter is producer of goods.</option>
+                                            <option *ngIf="inProgress">I have a signed certificate of origin for this item.</option>
+                                            <option *ngIf="inProgress">I have other proof of origin on record.</option>
+                                            <option *ngIf="inProgress">A certificate of origin is available on request.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="preferenceCriterion == 'prefCrit' && (inProgress || withProd)" class="row">
+                            <div class="col-md-6">
+                                <div class="ups-form_group">
+                                    <label for="ups-naftaRVC" class="ups-form_label">If regional value content (RVC) is used, how is it calculated?
+                                    </label>
+                                    <p class="ups-form_subheader">Only necessary for goods verified by partial NAFTA origin</p>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="naftaRVC" id="naftaRVC" class="ups-dropdown">
+                                            <option>Select One</option>
+                                            <option>At least 50% of transactional value (TV)</option>
+                                            <option>At least 60% of net cost (NC)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-offset-md-1">
+                                <div class="ups-form_group">
+                                    <label for="coFromDate" class="ups-form_label">From</label>
+                                    <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                        <input name="coFromDate" type="text" [ngModel]="coFromDate | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(coFromDate, 'MM/dd/yyyy', true)) ? coFromDate = $event : false"
+                                            id="coFromDate" class="ups-form_input" [ngModelOptions]="{standalone : true}">
+                                        <button class="ups-date_picker_button" type="button" (click)="toggleDatePick('coFromDate')">
+                                            <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                            <span class="ups-readerTxt">Select date from a calendar</span>
+                                        </button>
+                                        <ups-datepicker #naftaRVCFrom class="ups-datepicker_top_right"></ups-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-offset-md-1">
+                                <div class="ups-form_group">
+                                    <label for="coToDate" class="ups-form_label">To</label>
+                                    <div class="ups-input_wrapper ups-text_wrapper ups-has_calendar_icon">
+                                        <input name="coToDate" type="text" [ngModel]="coToDate | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(coToDate, 'MM/dd/yyyy', true)) ? coToDate = $event : false"
+                                            id="coToDate" class="ups-form_input" [ngModelOptions]="{standalone : true}">
+                                        <button class="ups-date_picker_button" type="button" (click)="toggleDatePick('coToDate')">
+                                            <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                                            <span class="ups-readerTxt">Select date from a calendar</span>
+                                        </button>
+                                        <ups-datepicker #naftaRVCTo class="ups-datepicker_top_right"></ups-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="inProgress || withProd">
+                            <div class="ups-form_group">
+                                <label for="ups-naftaCountryPicker" class="ups-form_label">In which NAFTA countries or territories was this item or its materials produced, in whole
+                                    or in part?
+                                </label>
+                                <p class="ups-form_subheader" id="ups-naftaCountryPicker">Choose all that apply.</p>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input id="ups-naftaCountryPicker_1" class="ups-radio-custom" name="naftaCountrySel" type="radio" value="1">
+                                    <label for="ups-naftaCountryPicker_1" class="ups-radio-custom-label">Canada</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input id="ups-naftaCountryPicker_2" class="ups-radio-custom" name="naftaCountrySel" type="radio" value="2">
+                                    <label for="ups-naftaCountryPicker_2" class="ups-radio-custom-label">Mexico</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input id="ups-naftaCountryPicker_3" class="ups-radio-custom" name="naftaCountrySel" type="radio" value="3">
+                                    <label for="ups-naftaCountryPicker_3" class="ups-radio-custom-label">Puerto Rico</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input id="ups-naftaCountryPicker_5" class="ups-radio-custom" name="naftaCountrySel" type="radio" value="5">
+                                    <label for="ups-naftaCountryPicker_5" class="ups-radio-custom-label">United States</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                    <input id="ups-naftaCountryPicker_4" class="ups-radio-custom" name="naftaCountrySel" type="radio" value="4">
+                                    <label for="ups-naftaCountryPicker_4" class="ups-radio-custom-label">Joint</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="inProgress || withProd" class="row">
+                            <div class="col-md-6">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="ups-preferenceCriterion" class="ups-form_label">Preference Criterion
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="ups-preferenceCriterion" id="ups-preferenceCriterion" class="ups-dropdown" required aria-required="true" aria-describedby="ups-preferenceCriterion_error"
+                                            [ngClass]="{'ups-bodError':  (preferenceCriterion == 'Select' && (nbsBase.nbsGlobalFormSubmit && !prodListValid())) }"
+                                            [(ngModel)]="preferenceCriterion" [ngModelOptions]="{'standalone' : true}">
+                                            <option value="Select">Select One</option>
+                                            <option>Preference Criterion A</option>
+                                            <option value="prefCrit">
+                                                Preference Criterion B
+                                            </option>
+                                            <option>Preference Criterion C</option>
+                                            <option value="prefCrit">
+                                                Preference Criterion D
+                                            </option>
+                                            <option>Preference Criterion E</option>
+                                            <option>Preference Criterion F</option>
+                                        </select>
+                                    </div>
+                                    <span class="ups-icons-error" id="ups-origin_error" role="alert">
+                                        <span class="ups-invalid_color" *ngIf="(preferenceCriterion == 'Select' && (nbsBase.nbsGlobalFormSubmit && !prodListValid()))">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            This field is required.
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr *ngIf="withProd">
+                    <div *ngIf="withProd" class="row">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="withProd">
+                            <input id="ups-prodTwo" class="ups-checkbox-custom" type="checkbox">
+                            <label for="ups-prodTwo" class="ups-checkbox-custom-label">
+                                2. {{'{'}}Product Name - {{'}'}} {{'{'}}Product Description from Product Details Page{{'}'}}
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                    <button *ngIf="inProgress || withProd || readyToGo" class="ups-link ups-cta ups-cta_secondary ups-btn_has_icon" type="button">
+                        <span aria-hidden="true" class="icon ups-icon-plus"></span>
+                        Add Another Product
+                    </button>
+                    <!-- ////////////////////////////////////////// -->
+                    <!-- ////           End Accordian          //// -->
+                    <!-- ////          Begin Demo Btns         //// -->
+                    <!-- ////////////////////////////////////////// -->
+                    <div class="ups-cms-demo">
+                        <div class="row">
+                            <!-- <div class="col-md-3">
+                                <button class="ups-cta ups-cta_secondary" type="button" (click)="noProd = !noProd ; withProd = false ; inProg = false">No Products</button>
+                            </div> -->
+                            <div class="col-md-4">
+                                <button class="ups-cta ups-cta_secondary" type="button" (click)="withProd = false ; inProgress = !inProgress ; readyToGo = false">
+                                    In Progress
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="ups-cta ups-cta_secondary" type="button" (click)="withProd = !withProd ; inProgress = false ; readyToGo = false">
+                                    With Products
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="ups-cta ups-cta_secondary" type="button" (click)="withProd = false ; inProgress = false ; readyToGo = !readyToGo">
+                                    Complete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- View - In Progress / Ready To Go States -->
+        <div class="ups-section" *ngIf="(inProg || ready)">
+            <div class="ups-group ups-faux-drawer">
+                <div class="ups-drawer-header">
+                    <span [ngClass]="{'ups-icon-checkcircle h3' : ready,
+                                    'ups-empty_circle' : inProg }" class="icon ups-drawer_left_icon"></span>
+                    <span *ngIf="inProg">In Progress</span>
+                    <span *ngIf="ready" class="h3">Ready to go</span>
+                    <em class="pull-right">
+                        <span *ngIf="inProg">Some information is required to complete this form.</span>
+                        <span *ngIf="ready">All required fields have been entered in this form.
+                            <br> You may add additional information if you wish.</span>
+                    </em>
+                </div>
+            </div>
+            <div class="ups-drawer-content">
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Blanket Period</h3>
+                    </div>
+                    <p>{{'{'}}MM/DD/YYYY{{'}'}} to {{'{'}}MM/DD/YYYY{{'}'}}</p>
+                </div>
+                <div class="ups-sectionups-section_condense">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">
+                            Address Information
+                            <button *ngIf="!editAddInfo" class="ups-link" type="button" (click)="editAddInfo = true">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                <span class="hidden-xs">Edit</span>
+                                <span class="ups-readerTxt"> section</span>
+                            </button>
+                            <button *ngIf="editAddInfo" class="ups-link" type="button" (click)="editAddInfo = false">
+                                <span class="hidden-xs">Cancel</span>
+                                <span class="ups-readerTxt"> editing this section</span>
+                            </button>
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-section">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Exporter</h4>
+                                </div>
+                                <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                    <p>{{address.groupValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="ups-section">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Importer</h4>
+                                </div>
+                                <div class="ups-group ups-group_condensed" *ngFor="let address of reviewAddress;">
+                                    <p>{{address.groupValue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-section">
+                                <div class="ups-section-header">
+                                    <h4 class="ups-section_heading">Producer</h4>
+                                </div>
+                                <p *ngIf="ready">Information available to customs on request.</p>
+                                <p *ngIf="inProg">Exporter is producer of goods.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">
+                            Product Information
+                            <button *ngIf="!editProdInfo" class="ups-link" type="button" (click)="editProdInfo = true">
+                                <span aria-hidden="true" class="icon ups-icon-edit"></span>
+                                <span class="hidden-xs">Edit</span>
+                                <span class="ups-readerTxt"> section</span>
+                            </button>
+                            <button *ngIf="editProdInfo" class="ups-link" type="button" (click)="editProdInfo = false">
+                                <span class="hidden-xs">Cancel</span>
+                                <span class="ups-readerTxt"> editing this section</span>
+                            </button>
+                        </h3>
+                    </div>
+                    <p class="ups-invalid_color" *ngIf="inProg">
+                        <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                        No products have been added to this form.
+                    </p>
+                    <ol *ngIf="ready">
+                        <li class="ups-group" *ngFor="let prodName of [1,2]">
+                            <p>
+                                <strong>{{'{'}}Product name{{'}'}} - {{'{'}}Product Description Information{{'}'}}</strong>
+                            </p>
+                            <ul class="ups-indent">
+                                <li>{{'{'}}Tariff code}{{''}}</li>
+                                <li>Preference Criterion: {{'{'}}A - 123abc{{'}'}}</li>
+                                <li>Producer: {{'{'}}Yes/No(1-3){{'}'}}</li>
+                                <li>RVC: {{'{'}}No/NC{{'}'}} {{'{'}}MM/DD/YYYY{{'}'}} to {{'{'}}MM/DD/YYYY{{'}'}}</li>
+                                <li>Country or Territory of Origin: {{'{'}}country{{'}'}}</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Accordian Page content       //// -->
+    <!-- //// Begin Demo Btns                  //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="ready = false ; inProg = false">Form</button>
+        <br>
+        <br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="ready = true ; inProg = false">Ready To Go</button>
+        <br>
+        <br>
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="inProg = true ; ready = false">In Progress</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- ////         End  Demo Btns           //// -->
+    <!-- ////   Begin Modal Lvl Footer Btns    //// -->
+    <!-- ////////////////////////////////////////// -->
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_secondary" type="button" (click)="closeEvent()">Cancel</button>
+        <button class="ups-cta ups-primary" type="button" (click)="formSave()">Save and Close</button>
+    </div>
+    <!-- ////////////////////////////////////////// -->
+    <!-- //// End Modal Lvl Footer Btns        //// -->
+    <!-- ////////////////////////////////////////// -->
+</div>

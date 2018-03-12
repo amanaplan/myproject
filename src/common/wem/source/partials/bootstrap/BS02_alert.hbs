@@ -1,0 +1,22 @@
+<div class="alert {{#if skin}}{{skin}}{{/if}} {{#if dismissible}}alert-dismissible{{/if}}" role="alert">
+	{{#if icon}}
+    <div class="alert-icon pull-left">
+        <span class="icon ups-icon-{{icon}}" aria-hidden="true"></span>
+    </div>
+    {{/if}}
+    {{#if collapsable}}
+    <button type="button" class="ups-alert_collapse{{#if dismissible}} alert-dismissible{{/if}}" aria-expanded="false">
+        <span class="ups-readerTxt">Click to expand</span><span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+    </button>
+    {{/if}}
+	{{#if dismissible}}
+	<button type="button" class="close" data-dismiss="alert">
+		<span class="icon ups-icon-x" aria-hidden="true"></span>
+		<span class="ups-readerTxt">Close alert</span>
+	</button>
+	{{/if}}
+    {{#if title}}<div class="alert-title{{#if icon}} ups-alert_has_icon{{/if}}{{#if collapsable}}{{#if dismissible}} ups-alert_can_dismiss_collapse{{/if}}{{/if}}">{{{ title }}}</div>{{/if}}
+    <div class="alert-content{{#if icon}} ups-alert_has_icon{{/if}}">
+	    <p>{{{ text }}}</p>
+    </div>
+</div>

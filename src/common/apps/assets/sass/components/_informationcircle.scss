@@ -1,0 +1,378 @@
+.ups-text_information_container {
+    padding-#{$opposite-direction}: 30px;
+    display: inline-block;
+    position: relative;
+    z-index: 11;
+    // @if $text-direction == ltr {
+    //     float:right;
+    //     text-align: right;
+    // } @else {
+    //     float:left;
+    //     text-align: left;
+    // }
+    .ups-text_information {
+        position: absolute;
+        #{$opposite-direction}: 0;
+        top: 0;
+        .ups-text_information_button {
+            border: none;
+            background: none;
+            border-radius: 1px;
+            padding: 0 7px 2px;
+        }
+    }
+    .ups-text_information_tooltip {
+        display: none;
+        position: absolute;
+        max-width: 350px;
+        width: 320px;
+        max-height: 150px;
+        bottom:100%;
+        margin-bottom: 50px;
+        background: $ups_stone;
+        border: 2px solid $stone_s3;
+        padding: 30px;
+        font-family: $sans;
+        margin-#{$default-float}: -8px;
+        text-align: #{$default-float};
+        #{$default-float}: 20px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-top: 50px solid $stone_s3;
+            @if $text-direction == ltr {
+                margin-left:-2px;
+                left: 0%;
+                border-right: 50px solid transparent;
+            } @else {
+                margin-right:-2px;
+                right:0;
+                border-left: 50px solid transparent;
+            }
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-top: 45px solid $ups_stone;
+            @if $text-direction == ltr {
+                left: 0%;
+                border-right: 45px solid transparent;
+            } @else {
+                right:0;
+                border-left: 45px solid transparent;
+            }
+        }
+
+        &.ups-text_information_tooltip_bottomright {
+            top: 87px;
+            bottom: auto;
+            margin-top:-25px;
+            margin-bottom: 0;
+            &:before {
+                top: auto;
+                bottom: 100%;
+                border-top:0;
+                border-bottom: 50px solid $stone_s3;
+            }
+            &:after {
+                top: auto;
+                bottom: 100%;
+                border-top:0;
+                border-bottom: 45px solid $ups_stone;
+            }
+        }
+        &.ups-text_information_tooltip_bottomleft {
+            #{$opposite-direction}: 13px;
+            #{$default-float}: auto;
+            top: 87px;
+            bottom: auto;
+            margin-top:-25px;
+            margin-bottom: 0;
+            &:before {
+                left:auto;
+                #{$opposite-direction}:0;
+                top: auto;
+                margin-#{$opposite-direction}: -2px;
+                bottom: 100%;
+                border-top:0;
+                border-#{$opposite-direction}:0;
+                border-bottom: 50px solid $stone_s3;
+                border-#{$default-float}: 50px solid transparent;
+            }
+            &:after {
+                #{$default-float}:auto;
+                #{$opposite-direction}:0;
+                top: auto;
+                bottom: 100%;
+                border-top:0;
+                border-#{$opposite-direction}:0;
+                border-bottom: 45px solid $ups_stone;
+                border-#{$default-float}: 45px solid transparent;
+            }
+        }
+        &.ups-text_information_tooltip_topleft {
+            #{$opposite-direction}: 6px;
+            #{$default-float}: auto;
+
+            &:before {
+                #{$default-float}:auto;
+                #{$opposite-direction}:0;
+                margin-#{$opposite-direction}: -2px;
+                border-#{$opposite-direction}:0;
+                border-#{$default-float}: 50px solid transparent;
+            }
+            &:after {
+                #{$default-float}:auto;
+                #{$opposite-direction}:0;
+                border-#{$opposite-direction}:0;
+                border-#{$default-float}: 45px solid transparent;
+            }
+        }
+    }
+    .ups-text_information_close {
+        @include unbutton;
+        position: absolute;
+        cursor: pointer;
+        top:10px;
+        font-size: 14px;
+        @if $text-direction == ltr {
+            right:10px;
+        } @else {
+            left:10px;
+        }
+        &:before {
+            line-height: 1.1;
+        }
+    }
+}
+
+@media #{$media-small} {
+    .ups-text_wrapper {
+        max-width: 100%;
+    }
+
+    .ups-text_information_wrapper {
+        .ups-input_wrapper {
+            overflow: hidden;
+        }
+
+        .ups-text_information_container {
+            width:100%;
+            padding-#{$opposite-direction}:0;
+            .ups-text_information {
+                width: 100%;
+                position: initial;
+                .ups-text_information_button {
+                    @include unbutton;
+                    position: absolute;
+                    top:0;
+                    @if $text-direction == ltr {
+                        right:0;
+                    } @else {
+                        left:0;
+                    }
+                }
+                .ups-text_information_tooltip {
+                    position: relative;
+                    #{$default-float}:0;
+                    margin:20px 0;
+                    max-width: 100%;
+                    width: 100%;
+                    &:before {
+                        top:initial;
+                        bottom: 100%;
+                        #{$default-float}:initial;
+                        #{$opposite-direction}: 0%;
+                        margin:0;
+                        margin-#{$opposite-direction}:-3px;
+                        border:0;
+                    }
+                    &:after {
+                        top:initial;
+                        bottom: 100%;
+                        #{$default-float}:initial;
+                        #{$opposite-direction}: 0%;
+                        border:0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// .ups-help {
+//     //display: none; // this needs to be reomved from CMS component instead of hiding via CSS
+//     z-index: 11;
+//     @if $text-direction == ltr {
+//         float:right;
+//         text-align: right;
+//     } @else {
+//         float:left;
+//         text-align: left;
+//     }
+//     .ups-help_link {
+//         color: $black_s3;
+//         -webkit-appearance: none;
+//         border-radius: 0;
+//         background: none;
+//         border: none;
+//         padding: 0;
+//         cursor: pointer;
+//         position: absolute;
+//         top: 0;
+//         #{$opposite-direction} :0;
+//         .ups-icon-questioncircle {
+//             display:inline;
+//         }
+//         &:hover {
+//             color: $black_s1;
+//             text-decoration: underline;
+//         }
+//         .icon:before {
+//             line-height: 1.1;
+//             top: -1px;
+//             position: relative;
+//            @if $text-direction == ltr {
+//                float:right;
+//                margin-left: 5px;
+//             } @else {
+//                 float:left;
+//                 margin-right: 5px;
+//             }
+//         }
+//     }
+//     .ups-help_tooltip {
+//         display: none;
+//         position: absolute;
+//         max-width: 350px;
+//         width: 100%;
+//         bottom:100%;
+//         margin-bottom: 50px;
+//         background: $ups_stone;
+//         border: 2px solid $stone_s3;
+//         padding: 30px;
+//         font-family: $sans;
+//         /* #{$default-float} :100%; */
+//         margin-#{$default-float}: -8px;
+//         text-align: #{$default-float};
+//
+//         &:before {
+//             content: '';
+//             position: absolute;
+//             top: 100%;
+//             width: 0; height: 0;
+//             border-top: 50px solid $stone_s3;
+//             @if $text-direction == ltr {
+//                 margin-left:-2px;
+//                 left: 0%;
+//                 border-right: 50px solid transparent;
+//             } @else {
+//                 margin-right:-2px;
+//                 right:0;
+//                 border-left: 50px solid transparent;
+//             }
+//         }
+//         &:after {
+//             content: '';
+//             position: absolute;
+//             top: 100%;
+//             width: 0; height: 0;
+//             border-top: 45px solid $ups_stone;
+//             @if $text-direction == ltr {
+//                 left: 0%;
+//                 border-right: 45px solid transparent;
+//             } @else {
+//                 right:0;
+//                 border-left: 45px solid transparent;
+//             }
+//         }
+//
+//         &.ups-help_tooltip_bottomright {
+//             top: 87px;
+//             bottom: auto;
+//             margin-top:-25px;
+//             margin-bottom: 0;
+//             &:before {
+//                 top: auto;
+//                 bottom: 100%;
+//                 border-top:0;
+//                 border-bottom: 50px solid $stone_s3;
+//             }
+//             &:after {
+//                 top: auto;
+//                 bottom: 100%;
+//                 border-top:0;
+//                 border-bottom: 45px solid $ups_stone;
+//             }
+//         }
+//         &.ups-help_tooltip_bottomleft {
+//             right: 6px;
+//             left: auto;
+//             top: 87px;
+//             bottom: auto;
+//             margin-top:-25px;
+//             margin-bottom: 0;
+//             &:before {
+//                 left:auto;
+//                 right:0;
+//                 top: auto;
+//                 margin-right: -2px;
+//                 bottom: 100%;
+//                 border-top:0;
+//                 border-right:0;
+//                 border-bottom: 50px solid $stone_s3;
+//                 border-left: 50px solid transparent;
+//             }
+//             &:after {
+//                 left:auto;
+//                 right:0;
+//                 top: auto;
+//                 bottom: 100%;
+//                 border-top:0;
+//                 border-right:0;
+//                 border-bottom: 45px solid $ups_stone;
+//                 border-left: 45px solid transparent;
+//             }
+//         }
+//         &.ups-help_tooltip_topleft {
+//             right: 6px;
+//             left: auto;
+//
+//             &:before {
+//                 left:auto;
+//                 right:0;
+//                 margin-right: -2px;
+//                 border-right:0;
+//                 border-left: 50px solid transparent;
+//             }
+//             &:after {
+//                 left:auto;
+//                 right:0;
+//                 border-right:0;
+//                 border-left: 45px solid transparent;
+//             }
+//         }
+//     }
+//     .ups-help_close {
+//         @include unbutton;
+//         position: absolute;
+//         cursor: pointer;
+//         top:10px;
+//         font-size: 14px;
+//         @if $text-direction == ltr {
+//             right:10px;
+//         } @else {
+//             left:10px;
+//         }
+//         &:before {
+//             line-height: 1.1;
+//         }
+//     }
+// }

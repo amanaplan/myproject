@@ -1,0 +1,751 @@
+<!-- //////////////////////// -->
+<!-- Begin Status Bar Example -->
+<!-- //////////////////////// -->
+
+<!-- Grey Status Bar: commented out becoause it's not in PT
+<div class="secHead clearfix">
+    <h4>On time package status: <a href="" class="ups-link_light helpIconR"><span>out for delivery</span></a></h4>
+    <ul class="countDown pull-right clearfix">
+        <li>business<br>
+            days left</li>
+        <li class="number">3</li>
+    </ul>
+</div>
+-->
+
+{{#if dyn_stat_bar}}
+    <div class="newpkgProgress{{#if return}} return{{/if}}">
+        <div class="newstatus">
+
+            <!-- Tracking Package Status -->
+            <div class="pkgstep current {{#if complete_num}}complete{{complete_num}}{{/if}}{{#if exception}} exception{{/if}}">
+                <div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor helpIconR" id="tt_0">
+                    {{#if processed}}Order Processed: Ready for UPS{{/if}}
+                    {{#if in_transit}}On Time:In Transit{{/if}}
+                    {{#if on_vehicle}}On Vehicle for Delivery Today{{/if}}
+                    {{#if trans_to_po}}Transferred to Local Post Office for Delivery today{{/if}}
+                    {{#if del}}Delivered{{/if}}
+                    {{#if del_by_po}}Delivered by Local Post Office{{/if}}
+                    {{#if pkg_not_at_ap}}Package not at UPS Access Point yet{{/if}}
+                    {{#if ship_info_void}}Shipment Information Voided{{/if}}
+                    {{#if del_to_ups}}Delivered to UPS Retail Location for Customer Pickup{{/if}}
+                </a></span> </div>
+            </div>
+
+            <!-- Ghosted Value 1 -->
+            <div class="pkgstep{{#if s1_complete}} complete{{/if}}">
+                <div class="pkgstep2"> <span>Shipped</span> </div>
+            </div>
+            <!-- Ghosted Value 2 -->
+            <div class="pkgstep{{#if s2_complete}} complete{{/if}}">
+                <div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+            </div>
+            <!-- Ghosted Value 3 -->
+            <div class="pkgstep{{#if s3_complete}} complete{{/if}}">
+                <div class="pkgstep4"> <span>
+                    {{#if on_truck}}On Local Truck{{/if}}
+                    {{#if out_for_del}}Out for Delivery<br>To Access Point{{/if}}
+                </span> </div>
+            </div>
+            <!-- Ghosted Value 4 -->
+            <div class="pkgstep delivery">
+                <div class="pkgstep5">
+                    <span>Delivered</span> <br>
+                    {{#if days_left}}<span class="window">{{days_left}} Business Day(s) Left</span> </span>{{/if}}
+                    <div class="arrow"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+        <!-- Return -->
+        <!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+        <div class="newstatusR">
+            <!-- Ghosted Value 5 -->
+            <div class="pkgstep delivery">
+                <div class="pkgstep2R"> <span>Delivery <br/>
+                    <span class="window">5 Business Day(s) Left</span></span> </div>
+            </div>
+            <!-- Tracking Package Status - Return -->
+            <div class="pkgstep current">
+                <div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+
+{{#if order_processed_ready_for_ups}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Order Processed: Ready for UPS</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep">
+				<div class="pkgstep3"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivered</span> <br>
+					<!--<span class="window">5 Business Day(s) Left</span> </span>-->
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if order_processed_ready_for_ups2}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete1">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Order Processed: Ready for UPS</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if on_time_in_transit}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete2">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor helpIconR" id="tt_0">On Time: In Transit</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">3 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{!if regional_messaging_bar}}
+	{{!<div class="secHead clearfix">
+		<h4><span>weather advisory</span></h4>
+		<ul class="countDown clearfix">
+			<li>business<br>
+				days left</li>
+			<li class="number">4</li>
+		</ul>
+	</div>}}
+{{!if}}
+
+{{#if on_time_in_transit_to_ups_access_point}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete2">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor helpIconR" id="tt_0">On Time: In Transit to a UPS Access Point&trade;</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">3 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if on_vehicle_for_delivery_today}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete3">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">On Vehicle for Delivery Today</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivered <br>
+					<!--<span class="window">5 Business Day(s) Left</span> </span>-->
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)"
+													class="btnIconR hintAnchor" id="tt_0"> Ruckkehr zum Absender:
+					auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if transferred_to_local_post_office_for_delivery_today}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete3 exception">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Transferred to Local Post Office for Delivery today</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivered <br/>
+					<!--<span class="window">5 Business Day(s) Left</span> </span>-->
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if delivered}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Delivered</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if delivered_by_local_post_office}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Delivered by Local Post Office</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if ruckkehr_zum_absender}}
+	<div class="newpkgProgress  return">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4">
+				<div class="pkgstep1"> <span>Delivered by Local Post Office</span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if returned_to_sender}}
+	<div class="newpkgProgress  return">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4">
+				<div class="pkgstep1"> <span>Delivered by Local Post Office</span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Returned -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current complete5">
+				<div class="pkgstep1R"> <span>Returned to Sender</span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if package_not_at_UPS_Access_Point_Yet}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4 exception">
+				<div class="pkgstep1 alignCenter"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor info" id="tt_0">Package not at UPS Access Point yet </a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if shipment_information_voided}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4 exception">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Shipment Information Voided</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if package_not_at_UPS_Access_Point_Yet2}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete2 exception">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Package not at UPS Access Point yet</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep">
+				<div class="pkgstep4"> <span>Out for Delivery<br>
+					To Access Point</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep5"> <span>Delivered <br/>
+					<!--<span class="window">5 Business Day(s) Left</span> </span>-->
+					<div class="arrow"> </div>
+					</span> </div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+{{#if delivered_to_UPS_retail_location_for_customer_pickup}}
+	<div class="newpkgProgress">
+		<div class="newstatus">
+
+			<!-- Tracking Package Status -->
+			<div class="pkgstep current complete4">
+				<div class="pkgstep1"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Delivered to UPS Retail Location for Customer Pickup</a></span> </div>
+			</div>
+
+			<!-- Ghosted Value 1 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep2"> <span>Shipped</span> </div>
+			</div>
+			<!-- Ghosted Value 2 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep3 helpIconR"> <span>In Transit</span> </div>
+			</div>
+			<!-- Ghosted Value 3 -->
+			<div class="pkgstep complete">
+				<div class="pkgstep4"> <span>On Local Truck</span> </div>
+			</div>
+			<!-- Ghosted Value 4 -->
+			<div class="pkgstep delivery complete">
+				<div class="pkgstep5"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span> </span>
+					<div class="arrow"> </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- //////////////////////\\\\\\\\\\\\\\\\\\\\\ -->
+		<!-- Return -->
+		<!-- \\\\\\\\\\\\\\\\\\\\\\///////////////////// -->
+
+		<div class="newstatusR">
+			<!-- Ghosted Value 5 -->
+			<div class="pkgstep delivery">
+				<div class="pkgstep2R"> <span>Delivery <br/>
+					<span class="window">5 Business Day(s) Left</span></span> </div>
+			</div>
+			<!-- Tracking Package Status - Return -->
+			<div class="pkgstep current">
+				<div class="pkgstep1R"> <span><a href="javascript:void(0)" class="btnIconR hintAnchor" id="tt_0">Ruckkehr zum Absender: auf dem Fahrzeug fur Liefer huete</a></span> </div>
+			</div>
+		</div>
+	</div>
+{{/if}}
+<!-- //////////////////////// -->
+<!-- END Status Bar Example   -->
+<!-- //////////////////////// -->

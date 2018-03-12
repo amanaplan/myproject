@@ -1,0 +1,45 @@
+<div class="ups-application_wrapper ups-app_onboarding"
+	data-ng-controller="PaperlessShippingLanesCtrl">
+	<ng-form name="ups_plessShippinglaneform" data-novalidate>
+    <p><strong>Choose which type of invoice you would like to receive for
+        each shipping lane.</strong></p>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label class="ups-form_label" for="ups-account-type">
+					Account Number</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select id="ups-account-type" class="ups-dropdown"
+						name="ups-account-type" data-ng-model="formObj.accountType"
+						data-ng-change="enablemanageLaneBtn(formObj.accountType)">
+						<option data-ng-repeat="type in accountType" value="{{type.type}}">{{type.type}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5 col-md-offset-1">
+			<div class="ups-form_ctaGroup">
+				<button type="submit" class="ups-cta ups-cta_primary"
+					data-ng-click="openmanageLanesPopup()">Manage Invoices</button>
+                    <!-- data-ng-disabled="enableManageLane" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_ctaGroup ">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveManageShippingLanesData()">Save
+                    <!-- data-ng-disabled="!(ups_plessShippinglaneform.$dirty)" -->
+				</button>
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	</ng-form>
+	<modal
+		class="ups-wrap ups-application_wrapper ups-app_onboarding ups-form_wrap"
+		visible="showModal" value="modalValues"> </modal>
+</div>

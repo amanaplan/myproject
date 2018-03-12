@@ -1,0 +1,84 @@
+<div class="ups-activationCode ups-activationCode-existingUsers ups-form_wrap ups-application_wrapper ups-tab-container" data-page-title="Activate My Membership">
+	<!-- //// begin ups.ppc-activationCode_step2_existingUsers //// -->
+	<p>Almost there. Enter your activation code so we can verify your membership.</p>
+
+	<h3 data-ng-if='invalidCode'><span class="ups-invalid_color-list ups-error_alert-list" id="otpNumber-error">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+        {{ErrorMessage}}
+		</span></h3>
+	<form name="ups_Activation_existingUsers" error-on-submit novalidate>
+
+		<div class="ups-group">
+            <p class="ups-group_label">Name and Address</p>
+            <address>
+            	{{AddressLine1}}<br>
+            	{{AddressLine2}}<br>
+            	{{AddressLine3}}
+            </address>
+		</div>
+
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-activationCode"
+						data-ng-class="{'ups-invalid_Code ': invalidCode, 'ups-form_label':!invalidCode}">
+						Activation code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="upsActivationCode"
+							class="ups-form_input" id="ups-activationCode"
+							data-ng-pattern="/^[a-zA-Z0-9]+$/" maxlength="8"
+							data-ng-model="Activation_Code"
+							data-ng-blur="disableVerification=false" aria-required="true" required><span
+							id="upsActivationCode-error" role="alert"><span
+							class="ups-invalid_color"
+							data-ng-if="!ups_Activation_existingUsers.upsActivationCode.$pristine && ups_Activation_existingUsers.upsActivationCode.$invalid ">
+								<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_Activation_existingUsers.upsActivationCode.$error.required">This
+									field is required.</span> <span
+								data-ng-hide="ups_Activation_existingUsers.upsActivationCode.$error.invalid">Wrong
+									Code Entry.</span>
+						</span>
+						<span data-ng-if="ups_Activation_existingUsers.upsActivationCode.$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+						 </span>
+						<div data-ng-if="(ups_Activation_existingUsers.upsActivationCode.$valid)">
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+
+
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+                
+                <div class="ups-group">
+                	<a href="#" onclick="return false;" class="ups-link" data-ng-click="newCode('existingMember')" data-ng-if="!startOverProcess">Send My a New Code</a>
+                </div>
+            </div>
+        </div>
+                
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary"
+                data-ng-click="VerifyCode('fromExisting')">Submit</button>
+				
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="cancel()">Cancel</button>
+                
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="returnToPrefernces()">Go to My Preferences</button>
+                <!--data-ng-disabled="!Activation_Code || disableVerification"-->
+                
+            <button type="submit" data-ng-if="startOverProcess" class="ups-cta ups-cta_secondary"
+                data-ng-click="startOver('existingMember')">Start Over</button>
+        </div>
+	</form>
+	<!-- //// end ups.ppc-activationCode_step2_existingUsers //// -->
+	<modal class="ups-wrap ups-application_wrapper ups-app_onboarding ups-form_wrap"
+		visible="showModal" value="modalValue"> </modal>
+</div>

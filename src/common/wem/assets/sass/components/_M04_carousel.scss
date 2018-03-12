@@ -1,0 +1,505 @@
+// ----------------------------------------------------
+// CAROUSEL
+// ----------------------------------------------------
+
+.ups-carousel {
+	position: relative;
+    overflow: hidden;
+	.ups-skipNav_carousel{ 
+		position: absolute;
+	    width: 140px;
+	    background: $ups_brown;
+	    padding: 5px;
+	    text-align: center;
+	    color: $white;
+	    top: -100px;
+	    left: 50%;
+	    margin-left: -70px;
+	    font-family: $sans;
+	    //font-weight: 700;
+	    //text-transform: uppercase;
+	    font-size: 0.8em;
+	    //max-height: 40px;
+	    z-index: 1;
+	    @include transition-property(top);
+	    @include transition-duration(0.3s);
+
+        display: none;
+	    
+	    &.ups-autoplay_show{
+	    	top: 0;
+	    }
+	}
+    background: $stone_s3;
+
+    .ups-carousel_list {
+        @include unlist;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .slick-initialized .ups-carousel_item { display: block; }
+    .ups-carousel_item {
+        position: relative;
+        display: none;
+
+        &:focus { outline: none; }
+
+        &:first-child { display: block; }
+
+        .ups-carousel_contentWrap {
+            @include transition-property(opacity);
+            @include transition-duration(0.3s);
+
+            .ups-navOpen .col-lg-12 > .iw_placeholder &, .ups-navOpen .col-lg-12 > .iw_component & {
+                opacity: 0;
+
+                @media #{$media-small} {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .ups-carousel_content {
+            top: 26px;
+            position: absolute;
+            width: 50%;
+            overflow: hidden;
+            #{$opposite-direction}: $page-margin;
+            z-index: 1;
+        }
+
+        .ups-carousel_msg {
+            background: $white;
+            background: rgba($white, 0.85);
+            padding: 20px;
+            float: $opposite-direction;
+            max-width: 460px;
+
+            h2 {
+                font-family: $serif;
+                margin: 0;
+                font-size: 2.3em;
+            }
+
+            p {
+                margin: $margin_5 0 0;
+                font-size: 1.2em;
+            }
+        }
+
+        .ups-carousel_ctas {
+            clear: both;
+            float: $opposite-direction;
+            margin-top: 15px;
+
+            .ups-cta {
+                padding: 10px 30px 10px;
+                margin-#{$default-float}: 20px;
+                &:focus{
+                  outline-offset: -2px;
+                }
+                
+
+                &.ups-cta-secondary {
+                    background: $black_s1;
+
+                    .no-touch &:hover,
+                    .no-touch &:focus {
+                        background: lighten($black_s1, 10%);
+                    }
+                }
+            }
+            @media #{$media-small} {
+              .ups-cta + .ups-cta-secondary{
+                margin-top:10px;
+              }
+            }
+        }
+
+        .ups-imgFrame {
+            display: block;
+            height: 275px;
+            background-position: center;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            @include background-image(linear-gradient(rgba($black_s3, 0), rgba($black_s3, 0.6)));
+            border: none;
+        }
+
+        @media #{$media-small} {
+            &:after { display: none; }
+        }
+    }
+
+    .slick-next,
+    .slick-prev {
+        display: block;
+        position: absolute;
+        bottom: 25px;
+        z-index: 1;
+        height: 54px;
+        padding: 54px 0 0;
+        margin-top: 12px;
+        width: $page-margin;
+        border: none;
+        background: none;
+
+        .icon:before {
+            @include ups-icons;
+            position: absolute;
+            display: block;
+            height: 54px;
+            width: 50px;
+            top: 0;
+            left: 0;
+            text-align: center;
+            line-height: 54px;
+            color: $white;
+            font-size: 68px;
+        }
+
+
+        &.slick-disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+
+    .slick-next {
+        #{$opposite-direction}: 0;
+
+        .icon:before {
+            content: '\e62a';
+            .ups-rtl & { content: '\e628'; }
+        }
+    }
+
+    .slick-prev {
+        #{$default-float}: 0;
+
+        .icon:before {
+            content: '\e628';
+            .ups-rtl & { content: '\e62a'; }
+        }
+    }
+
+    .slick-dots {
+        @include unlist;
+        display: block;
+        position: absolute;
+        bottom: 35px;
+        z-index: 1;
+        width: 50%;
+        left: 25%;
+        right: 25%;
+        text-align: center;
+
+        li {
+            display: inline;
+
+            &.slick-active {
+                button {
+                    background: $ups_gold;
+                    color: $ups_gold;
+                }
+            }
+        }
+
+        button {
+            @include unbutton;
+            height: 18px;
+            width: 18px;
+            border-radius: 18px;
+            border: 3px solid $white;
+            background: $white;
+            color: $white;
+            font-size: 0.5em;
+            margin: 0 15px;
+        }
+    }
+
+
+    @media #{$media-medium} {
+        .ups-carousel_item {
+            .ups-carousel_msg {
+                padding: 15px;
+
+                h2 {
+                    margin: 0;
+                    font-size: 2em;
+                }
+
+                p {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+    @media #{$media-small} {
+        background: none;
+
+        .ups-carousel_item {
+
+            .ups-imgFrame {
+                padding-top: 50%;
+                height: 0;
+            }
+
+            .ups-paraFrame {
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100px;
+                    @include background-image(linear-gradient(rgba($black_s3, 0), rgba($black_s3, 0.6)));
+                    border: none;
+                }
+            }
+
+            .ups-carousel_content {
+                position: static;
+                width: auto;
+                padding: 20px;
+            }
+            .ups-carousel_msg {
+                float: none;
+                background: none;
+                padding: 0;
+                max-width: none;
+            }
+
+            .ups-carousel_ctas {
+                text-align: center;
+                float: none;
+
+                .ups-cta {
+                    margin: 0;
+
+                    &.ups-cta-secondary {
+                        background: none;
+                        color: $ups_brown;
+                        font-weight: normal;
+                        font-family: $sans-bd;
+                        text-decoration: underline;
+
+                        .ups-rtl {
+                            font-family: $sans;
+                            font-weight: 700;
+                        }
+
+                        .no-touch &:hover,
+                        .no-touch &:focus {
+                            background: none;
+                            color: lighten($ups_brown, 10%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .slick-next,
+        .slick-prev {
+            // bottom: -4px;
+            bottom: auto;
+            margin-top: -60px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            .icon:before {
+                // color: $black_s1;
+                font-size: 32px;
+            }
+        }
+
+        .slick-next {
+            #{$opposite-direction}: 10px;
+
+            .icon:before {
+                content: '\e629';
+                .ups-rtl & { content: '\e627'; }
+            }
+        }
+
+        .slick-prev {
+            #{$default-float}: 10px;
+
+            .icon:before {
+                content: '\e627';
+                .ups-rtl & { content: '\e629'; }
+            }
+        }
+
+        .slick-dots {
+            // position: static;
+            // width: 100%;
+            // padding: 19px 60px;
+            // margin-bottom: 15px;
+            bottom: auto;
+            margin-top: -45px;
+
+            button {
+                // background: $black_s1;
+                // color: $black_s1;
+                height: 12px;
+                width: 12px;
+                border-radius: 12px;
+                border-width: 2px;
+                // border: 2px solid $black_s1;
+                margin: 0 10px;
+            }
+        }
+    }
+
+}
+
+.iw_columns.col-lg-12{
+	.ups-carousel{
+   		margin-bottom: $margin_1;
+	}
+}
+
+.subsection_aside,
+.iw_columns.col-lg-12 .col-lg-4{
+  .ups-carousel{
+   background: white;
+   border: 1px solid $black_s1;
+    .ups-carousel_item {
+        &:after {
+            content: none;
+        }
+        .ups-imgFrame {
+            padding-top: 50%;
+            height: 0;
+        }
+        // .ups-paraFrame {
+        //     &:after {
+        //         content: '';
+        //         display: block;
+        //         position: absolute;
+        //         bottom: 0;
+        //         left: 0;
+        //         width: 100%;
+        //         height: 100px;
+        //         @include background-image(linear-gradient(rgba($black_s3, 0), rgba($black_s3, 0.6)));
+        //         border: none;
+        //     }
+        // }
+        .ups-carousel_content {
+            position: static;
+            width: auto;
+            padding: 20px;
+        }
+        .ups-carousel_msg {
+            float: none;
+            background: none;
+            padding: 0;
+            max-width: none;
+        }
+        .ups-carousel_ctas {
+            text-align: center;
+            float: none;
+            .ups-cta {
+                margin: 0;
+                &.ups-cta-secondary {
+                    background: none;
+                    color: $ups_brown;
+                    font-weight: normal;
+                    font-family: $sans-bd;
+                    text-decoration: underline;
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                    .no-touch &:hover,
+                    .no-touch &:focus {
+                        background: none;
+                        color: lighten($ups_brown, 10%);
+                    }
+                }
+            }
+        }
+        .ups-paraFrame{
+           height: 0;
+           padding-top: 50%;
+           picture {top:0;}
+        }
+    }
+    .slick-next,
+    .slick-prev {
+        // bottom: -4px;
+        //
+        // bottom: auto;
+        // margin-top: -60px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        .icon:before {
+            // color: $black_s1;
+            font-size: 32px;
+        }
+    }
+    .slick-next {
+        #{$opposite-direction}: 10px;
+        margin-top: -45px;
+
+        .icon:before {
+            content: '\e629';
+            .ups-rtl & { content: '\e627'; }
+        }
+    }
+    .slick-prev {
+        #{$default-float}: 10px;
+        margin-top: -45px;
+        .icon:before {
+            content: '\e627';
+            .ups-rtl & { content: '\e629'; }
+        }
+    }
+    .slick-dots {
+        // position: static;
+        // width: 100%;
+        // padding: 19px 60px;
+        // margin-bottom: 15px;
+        //
+        bottom: auto;
+        margin-top: -28px;
+        // padding-top: 24px;
+        button {
+            // background: $black_s1;
+            // color: $black_s1;
+            height: 12px;
+            width: 12px;
+            border-radius: 12px;
+            border-width: 2px;
+            // border: 2px solid $black_s1;
+            margin: 0 10px;
+        }
+    }
+}
+}
+
+.ups-appPage{
+  .col-lg-4{
+    .ups-carousel{
+      max-width:320px;
+    }
+  }
+}

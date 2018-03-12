@@ -1,0 +1,497 @@
+<!--
+    getNbsInSinglePg() = true
+        adds classes specific to SPA version
+    getNbsInSinglePg() = false
+        adds classes specific to Guided Flow version
+-->
+<ups-modal #modalInvAdd>
+    Testing
+</ups-modal>
+<ups-modal #modalInvAddNoClass>
+    Testing
+</ups-modal>
+<div [formGroup]="nbsSpaSectionWhereFrom">
+    <!-- //// Begin Section lvl error handling //// -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+
+        <ul class="ups-icons-error">
+            <ng-container *ngIf="whereFromCAC.length > 0">
+                <li *ngFor="let error of whereFromCAC.first.formErrors();">
+                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}}</a> is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern) ? 'invalid' : '' }}
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['fromEmail'].hasError('required')">
+                    <a href="#fromEmail" class="ups-invalid_color" pointIdClick>Email</a> is required
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['fromEmail'].hasError('email') && !nbsSpaSectionWhereFrom.controls['fromEmail'].hasError('required')">
+                    <a href="#fromEmail" class="ups-invalid_color" pointIdClick>Email</a> is invalid
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['fromPhone'].hasError('required')">
+                    <a href="#fromPhone" class="ups-invalid_color" pointIdClick>Phone</a> is required
+                </li>
+            </ng-container>
+            <ng-container *ngIf="whereReturnCAC.length > 0">
+                <li *ngFor="let error of whereReturnCAC.first.formErrors();">
+                    <a [attr.href]="'#' + error.field_dom_id" class="ups-invalid_color" pointIdClick>{{error.field_name}}</a> is {{ (error.field_req) ? 'required' : '' }} {{ (error.field_pattern) ? 'invalid' : '' }}
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['returnEmail'].hasError('required')">
+                    <a href="#returnEmail" class="ups-invalid_color" pointIdClick>Email</a> is required
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['returnEmail'].hasError('email') && !nbsSpaSectionWhereFrom.controls['returnEmail'].hasError('required')">
+                    <a href="#returnEmail" class="ups-invalid_color" pointIdClick>Email</a> is invalid
+                </li>
+                <li *ngIf="nbsSpaSectionWhereFrom.controls['returnPhone'].hasError('required')">
+                    <a href="#returnPhone" class="ups-invalid_color" pointIdClick>Phone</a> is required
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+    <!-- //// End Section lvl error handling //// -->
+    <!-- //// Begin Shipping From / Return Section //// -->
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// Begin From/Return Completed      ///// -->
+    <!-- /////////////////////////////////////////// -->
+
+    <!-- //// Begin From/Return use same address //// -->
+    <div class="ups-section" *ngIf="completeSameAdd">
+        <div class="ups-section-header">
+            <button type="button" class="ups-link pull-right" (click)="fromGuestDefault()">
+                <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                <span class="hidden-xs" aria-hidden="true">Edit</span>
+            </button>
+            <h2 class="ups-section_heading">Ship From / Return To <span class="ups-readerTxt">address</span></h2>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p>[Name], [Contact Name]</p>
+            <address class="ups-address_condensed">
+                [123 Main St., Unit 12], [CITY], [GEORGIA], [00000] <br>
+                [County], [Country or Territory]<br>
+                [Email], [Phone], [Ext]
+            </address>
+        </div>
+    </div>
+    <!-- //// End From/Return use same address //// -->
+    <!-- //// Begin From/Return use different address //// -->
+    <div class="row" *ngIf="completeDiffAdd">
+        <div class="col-md-5 ups-section">
+            <div class="ups-section-header">
+                <button type="button" class="ups-link pull-right" (click)="editFromNotReturn()">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Edit</span>
+                </button>
+                <h2 class="ups-section_heading">Ship From  <span class="ups-readerTxt">address</span></h2>
+            </div>
+            <div class="ups-group ups-group_condensed">
+                <p>[Name], [Contact Name]</p>
+                <address class="ups-address_condensed">
+                    [123 Main St., Unit 12], [CITY], [GEORGIA], [00000] <br>
+                    [County], [Country or Territory]<br>
+                    [Email], [Phone], [Ext]
+                </address>
+            </div>
+        </div>
+        <div class="col-md-5  col-md-offset-2 ups-section">
+            <div class="ups-section-header">
+                <button type="button" class="ups-link pull-right" (click)="fromLoggedContacts()">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Edit</span>
+                </button>
+                <h2 class="ups-section_heading">Return To  <span class="ups-readerTxt">address</span></h2>
+            </div>
+            <div class="ups-group ups-group_condensed">
+                <p>[Name], [Contact Name]</p>
+                <address class="ups-address_condensed">
+                    [231 Niam Ts., Tinu 21], [CITY], [State], [00000] <br>
+                    [County], [Country or Territory]<br>
+                    [Email], [Phone], [Ext]
+                </address>
+            </div>
+        </div>
+    </div>
+    <!-- //// End From/Return use different address //// -->
+
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// End From/Return Completed        ///// -->
+    <!-- //// Begin From/Return not Completed  ///// -->
+    <!-- /////////////////////////////////////////// -->
+    <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}" *ngIf="!completeDiffAdd && !completeSameAdd">
+        <!-- //// Begin Shipping From Section //// -->
+        <section class="ups-section"
+                [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg()}">
+            <!-- If Comact View -->
+            <div class="ups-section-header" *ngIf="nbsBase.getNbsInSinglePg()">
+                <button type="button" class="ups-link pull-right" *ngIf="fromLoggedin" (click)="fromEditable = !fromEditable">
+                    <span *ngIf="fromEditable">Cancel</span>
+                    <span *ngIf="!fromEditable" class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true" *ngIf="!fromEditable" >Edit</span>
+                </button>
+                <h2 class="ups-section_heading">
+                    <span>Ship From</span>
+                    <span *ngIf="!returnAddressForm"> / Return To</span>
+                     <span class="ups-readerTxt">address</span>
+                </h2>
+            </div>
+            <!-- If Guided Flow -->
+            <h2 class="ups-section_heading ups-centered_header text-center" *ngIf="!nbsBase.getNbsInSinglePg()">
+                Hello. Where are you shipping from?
+            </h2>
+
+            <!-- //// Begin From Saved Address //// -->
+            <div [ngClass]="{'row' : !nbsBase.getNbsInSinglePg()}">
+                <div [ngClass]="{'col-xs-5' : !nbsBase.getNbsInSinglePg()}">
+                    <div class="ups-form_group" *ngIf="fromWithContacts">
+                        <label for="fromSavedAdd" class="ups-form_label"> My Addresses </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="fromSavedAdd"
+                                    name="fromSavedAdd"
+                                    class="ups-dropdown"
+                                    [(ngModel)]="fromSavedAdd"
+                                    [ngModelOptions]="{'standalone': true}">
+                                <option value="new">Enter New Address</option>
+                                <option value="default" selected="selected">Default</option>
+                                <option value="add2">Address 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2" *ngIf="!nbsBase.getNbsInSinglePg() && fromWithContacts">
+                    <button type="button" class="ups-link ups-no_label" (click)="fromEditable = !fromEditable">
+                        <span *ngIf="!fromEditable && fromSavedAdd != 'new'"><span aria-hidden="true" class="icon ups-icon-edit"></span> Edit</span>
+                        <span *ngIf="fromEditable && fromSavedAdd != 'new'">Cancel</span>
+                    </button>
+                </div>
+            </div>
+            <!-- //// End From Saved Address //// -->
+            <!-- /////////////////////////////////////////// -->
+            <!-- //// Begin Where From Complete        ///// -->
+            <!-- /////////////////////////////////////////// -->
+            <div class="ups-group ups-group_condensed" *ngIf="!fromEditable && fromSavedAdd != 'new'">
+                <p>[Name], [Contact Name]</p>
+                <address class="ups-address_condensed">
+                    [123 Main St., Unit 12], [CITY], [GEORGIA], [00000] <br>
+                    [County], [Country or Territory]<br>
+                    [Email], [Phone], [Ext]
+                </address>
+            </div>
+
+            <!-- /////////////////////////////////////////// -->
+            <!-- //// End Where From Complete          ///// -->
+            <!-- //// Begin Where From Editable        ///// -->
+            <!-- /////////////////////////////////////////// -->
+
+            <!-- //// Begin CAC //// -->
+            <!-- Contains the following fields -->
+            <!-- Country or Territory -->
+            <!-- Contact Company -->
+            <!-- Contact Name -->
+            <!-- Address -->
+            <!-- City -->
+            <!-- State -->
+            <!-- Zip Code -->
+            <ups-cac #NBSWhereFromCAC *ngIf="fromEditable || fromSavedAdd == 'new'"></ups-cac>
+            <!-- //// End CAC //// -->
+            <div *ngIf="fromEditable || fromSavedAdd == 'new'">
+                <!-- //// Begin From Email, Phone, and Ext Row //// -->
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="fromEmail" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                        name="fromEmail"
+                                        class="ups-form_input"
+                                        id="fromEmail"
+                                        aria-required="true"
+                                        required
+                                        aria-describedby="fromEmail_error"
+                                        formControlName="fromEmail"
+                                        [ngClass]="{'ups-bodError': (!nbsSpaSectionWhereFrom.controls['fromEmail'].valid && nbsSpaSectionWhereFrom.controls['fromEmail'].touched)}">
+                            </div>
+                            <span class="ups-icons-error" id="fromEmail_error" role="alert">
+                                <span class="ups-invalid_color"
+                                    *ngIf="(!nbsSpaSectionWhereFrom.controls['fromEmail'].valid && nbsSpaSectionWhereFrom.controls['fromEmail'].touched)">
+                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    <span *ngIf="nbsSpaSectionWhereFrom.controls['fromEmail'].hasError('required')">
+                                        Email is [ required | invalid ].
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="fromPhone" class="ups-form_label">Phone <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text"
+                                                name="fromPhone"
+                                                class="ups-form_input"
+                                                id="fromPhone"
+                                                aria-required="true"
+                                                required
+                                                aria-describedby="fromPhone_error"
+                                                formControlName="fromPhone"
+                                                [ngClass]="{'ups-bodError': (!nbsSpaSectionWhereFrom.controls['fromPhone'].valid && nbsSpaSectionWhereFrom.controls['fromPhone'].touched)}">
+                                    </div>
+                                    <span class="ups-icons-error" id="fromPhone_error" role="alert">
+                                        <span class="ups-invalid_color"
+                                            *ngIf="(!nbsSpaSectionWhereFrom.controls['fromPhone'].valid && nbsSpaSectionWhereFrom.controls['fromPhone'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="nbsSpaSectionWhereFrom.controls['fromPhone'].hasError('required')">
+                                                Phone is [ required | Invalid ].
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="ups-form_group">
+                                    <label for="fromExt" class="ups-form_label">Ext</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="fromExt" class="ups-form_input" id="fromExt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// End From Email, Phone, and Ext Row //// -->
+                <!-- //// Begin From email message //// -->
+                <p *ngIf="fromSavedAdd == 'new'">We may use the email above to notify the receiver on the status of this shipment.</p>
+                <!-- //// End From email message //// -->
+                <!-- //// Begin From "Send Me Updates...." Checkbox //// -->
+                <div class="ups-form_group" *ngIf="fromSavedAdd != 'new'">
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input id="fromSendMeUpdates" class="ups-checkbox-custom" name="fromSendMeUpdates" type="checkbox" value="1">
+                        <label for="fromSendMeUpdates" class="ups-checkbox-custom-label">Send status updates on this shipment using the email provided above.</label>
+                    </div>
+                </div>
+                <!-- //// End From "Send Me Updates...." Checkbox //// -->
+                <!-- //// Begin From SaveEdits to Address //// -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-form_group">
+                            <label class="ups-lever" onclick="" for="fromSaveEdits">
+                                <input type="checkbox"
+                                        id="fromSaveEdits"
+                                        name="fromSaveEdits"
+                                        class="ups-lever_checkbox"
+                                        [(ngModel)]="fromSaveEdits"
+                                        [ngModelOptions]="{'standalone': true}">
+                                <strong class="ups-form_label ups-lever_label">Save Edits to This Address</strong>
+                                <!-- if checked then yes -->
+                                <span aria-hidden="true" class="ups-lever_switch">
+                                    <span class="ups-lever_switch_yes">Yes</span>
+                                    <span class="ups-lever_switch_bg"></span>
+                                    <span class="ups-lever_switch_no">No</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="fromSaveEdits">
+                        <div class="ups-form_group">
+                            <label for="fromSaveEditsAs" class="ups-form_label">Save As</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="fromSaveEditsAs" class="ups-form_input" id="fromSaveEditsAs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// Begin From SaveEdits to Address //// -->
+            </div>
+            <!-- /////////////////////////////////////////// -->
+            <!-- //// End Where From Editable          ///// -->
+            <!-- /////////////////////////////////////////// -->
+        </section>
+        <!-- //// End Shipping From Section //// -->
+        <!-- //// Begin Shipping Return Section //// -->
+        <section class="ups-section"
+                [ngClass]="{'col-md-5 col-md-offset-2' : nbsBase.getNbsInSinglePg()}">
+            <div class="ups-section-header">
+
+                <h2 class="ups-section_heading" id="returnAddressForm_label">
+                    <div class="ups-form_group pull-right">
+                        <label class="ups-lever" onclick="" for="returnAddressForm">
+                            <input type="checkbox"
+                                    id="returnAddressForm"
+                                    name="returnAddressForm"
+                                    class="ups-lever_checkbox"
+                                    [(ngModel)]="returnAddressForm"
+                                    [ngModelOptions]="{'standalone': true}">
+                            <span class="ups-readerTxt">Use a different return address?</span>
+                            <!-- if checked then yes -->
+                            <span aria-hidden="true" class="ups-lever_switch">
+                                <span class="ups-lever_switch_yes">Yes</span>
+                                <span class="ups-lever_switch_bg"></span>
+                                <span class="ups-lever_switch_no">No</span>
+                            </span>
+                        </label>
+                    </div>
+                    <span aria-hidden="true">Use a different return address?</span>
+                </h2>
+            </div>
+            <!-- Begin Editable Returns -->
+            <div *ngIf="returnAddressForm">
+                <!-- //// Begin Return Saved Address //// -->
+                <div class="ups-form_group" *ngIf="fromLoggedin">
+                    <label for="returnSavedAdd" class="ups-form_label"> My Addresses </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="returnSavedAdd" name="returnSavedAdd" class="ups-dropdown" aria-required="true">
+                            <option>Default</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- //// End Return Saved Address //// -->
+                <!-- //// Begin CAC //// -->
+                <!-- Contains the following fields -->
+                <!-- Country or Territory -->
+                <!-- Contact Company -->
+                <!-- Contact Name -->
+                <!-- Address -->
+                <!-- City -->
+                <!-- State -->
+                <!-- Zip Code -->
+                <ups-cac #NBSWhereReturnCAC></ups-cac>
+                <!-- //// End CAC //// -->
+                <!-- //// Begin Return Email, Phone, and Ext Row //// -->
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="returnEmail" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                        name="returnEmail"
+                                        class="ups-form_input"
+                                        id="returnEmail"
+                                        aria-required="true"
+                                        required
+                                        aria-describedby="returnEmail_error"
+                                        formControlName="returnEmail"
+                                        [ngClass]="{'ups-bodError': (!nbsSpaSectionWhereFrom.controls['returnEmail'].valid && nbsSpaSectionWhereFrom.controls['returnEmail'].touched)}">
+                            </div>
+                            <span class="ups-icons-error" id="returnEmail_error" role="alert">
+                                <span class="ups-invalid_color"
+                                    *ngIf="(!nbsSpaSectionWhereFrom.controls['returnEmail'].valid && nbsSpaSectionWhereFrom.controls['returnEmail'].touched)">
+                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    <span *ngIf="nbsSpaSectionWhereFrom.controls['returnEmail'].hasError('required')">
+                                        Email is [ required | invalid ].
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="returnPhone" class="ups-form_label">Phone <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text"
+                                                name="returnPhone"
+                                                class="ups-form_input"
+                                                id="returnPhone"
+                                                aria-required="true"
+                                                required
+                                                aria-describedby="returnPhone_error"
+                                                formControlName="returnPhone"
+                                                [ngClass]="{'ups-bodError': (!nbsSpaSectionWhereFrom.controls['returnPhone'].valid && nbsSpaSectionWhereFrom.controls['returnPhone'].touched)}">
+                                    </div>
+                                    <span class="ups-icons-error" id="returnPhone_error" role="alert">
+                                        <span class="ups-invalid_color"
+                                            *ngIf="(!nbsSpaSectionWhereFrom.controls['returnPhone'].valid && nbsSpaSectionWhereFrom.controls['returnPhone'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> Invalid</span>
+                                            <span *ngIf="nbsSpaSectionWhereFrom.controls['returnPhone'].hasError('required')">
+                                                Phone is [ required | invalid ].
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="ups-form_group">
+                                    <label for="returnExt" class="ups-form_label">Ext</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="returnExt" class="ups-form_input" id="returnExt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// End Return Email, Phone, and Ext Row //// -->
+                <!-- //// Begin Return "Send Me Updates...." Checkbox //// -->
+                <div class="ups-form_group">
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input id="returnSendMeUpdates" class="ups-checkbox-custom" name="returnSendMeUpdates" type="checkbox" value="1">
+                        <label for="returnSendMeUpdates" class="ups-checkbox-custom-label">Send status updates on this shipment using the email provided above.</label>
+                    </div>
+                </div>
+                <!-- //// End Return "Send Me Updates...." Checkbox //// -->
+                <!-- //// Begin Return SaveEdits to Address //// -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-form_group">
+                            <label class="ups-lever" onclick="" for="returnSaveEdits">
+                                <input type="checkbox"
+                                        id="returnSaveEdits"
+                                        name="returnSaveEdits"
+                                        class="ups-lever_checkbox"
+                                        [(ngModel)]="returnSaveEdits"
+                                        [ngModelOptions]="{'standalone': true}">
+                                <strong class="ups-form_label ups-lever_label">Save Edits to This Address</strong>
+                                <!-- if checked then yes -->
+                                <span aria-hidden="true" class="ups-lever_switch">
+                                    <span class="ups-lever_switch_yes">Yes</span>
+                                    <span class="ups-lever_switch_bg"></span>
+                                    <span class="ups-lever_switch_no">No</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="returnSaveEdits">
+                        <div class="ups-form_group">
+                            <label for="returnSaveEditsAs" class="ups-form_label">Save As</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="returnSaveEditsAs" class="ups-form_input" id="returnSaveEditsAs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// Begin Return SaveEdits to Address //// -->
+            </div>
+            <!-- End Editable Returns -->
+        </section>
+        <!-- //// End Shipping Return Section //// -->
+    </div>
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// End From/Return not Completed    ///// -->
+    <!-- /////////////////////////////////////////// -->
+
+    <!-- //// End Shipping Return / Return Section //// -->
+    <!-- //// Begin Where Demo button //// -->
+    <div class="ups-cms-demo">
+        <div class="row">
+            <div class="col-sm-6">
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromGuestDefault()">Guest Default</button><br>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromLoggedContacts()">Logged In w/ contacts</button><br>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromSurePost()">Sure Post</button><br>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromReviewSame()">Complete using Same Address</button><br>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromReviewDiff()">Complete using Different Address</button>
+    </div>
+    <!-- These modals have been moved to http://uidev.ups.com/nbs_spa.html#/nonFormsModals <div class="col-sm-6">
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromInvAddModal()">Invalid Address Modal</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="fromInvAddNoClassModal()">Invalid Address w/ no Classification Modal</button>
+    </div> -->
+</div>
+    </div>
+    <!-- //// End Where Demo button //// -->
+</div>

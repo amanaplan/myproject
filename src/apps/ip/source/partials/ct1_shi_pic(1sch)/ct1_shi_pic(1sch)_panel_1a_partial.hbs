@@ -1,0 +1,424 @@
+
+<div class="secLvl step"> 
+	
+	<!-- Begin Header Bar --> 
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber">1</span></div>
+		<h3>Account Information</h3>
+	</div>
+	<!-- End Header Bar -->
+	<div class="secBody clearfix">
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="ups-form_group">
+					<label for="paymentMethod" class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Payment Method</a></label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select name="paymentMethod" class="ups-dropdown" id="paymentMethod">
+							<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+							<option value="">Shipper Account XXNXXN - When Needed Account</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{#if pickup_account_details.smart }}
+		<section class="panel panel-primary">
+			<div class="panel-body">
+				<h3>UPS Smart Pickup no_pendingStatus</h3>
+				<p>A pickup has already occured today, PRN <a href="repl_href" class="ups-link">NNXNNX</a></p>
+			</div>
+		</section>
+		{{/if}}
+		<div class="ups-group" id="addPickupDetailsBtn">
+			<button type="button" id="" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span class="icon ups-icon-pluscircle"></span>Pickup Account Details</button>
+		</div>
+		<div class="ups-group" id="removePickupDetailsBtn">
+			<button type="button" id="" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span class="icon ups-icon-minuscircle"></span>Pickup Account Details</button>
+		</div>
+		<div class="ups-indent" id="pickupAccountDetailsContainer"> {{#if pickup_account_details.default }}
+			<div class="ups-group">
+				<p><strong>Pickup Schedule</strong></p>
+				<p>Daily, Tuesday, Wednesday, Thursday, Monday, Saturday</p>
+			</div>
+			<div class="ups-group">
+				<p><strong>Pending On-Call Pickups for this account:</strong></p>
+				<p>Yes (n) <a href="repl_href" class="ups-link">Show All</a></p>
+			</div>
+			{{/if}}
+			{{#if pickup_account_details.no_pend_pickups}}
+			<div class="ups-group">
+				<p><strong>Pickup Schedule</strong></p>
+				<p>Daily, Tuesday, Wednesday, Thursday, Monday, Saturday</p>
+			</div>
+			{{/if}}
+			{{#if pickup_account_details.when_needed }}
+			<div class="ups-group">
+				<p><strong>Pending On-Call Pickups for this account</strong></p>
+				<p>Yes <a href="repl_href" class="ups-link">Show All</a></p>
+			</div>
+			<div class="ups-group">
+				<p><strong>Smart Pickup Status</strong></p>
+				<p>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href" class="ups-link">{today's date}</a></p>
+				<p><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</p>
+			</div>
+			{{/if}}
+			{{#if pickup_account_details.notify_time_not_set }}
+			<div class="ups-group">
+				<p><strong>Pending On-Call Pickups for this account:</strong></p>
+				<p>Yes (n) <a href="repl_href" class="ups-link">Show All</a></p>
+			</div>
+			<div class="ups-group">
+				<p><strong>Smart Pickup Status</strong></p>
+				<p>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href" class="ups-link">{today's date}</a></p>
+				<p><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</p>
+			</div>
+			{{/if}}
+			{{#if pickup_account_details.notify_time_set }}
+			<div class="ups-group">
+				<p><strong>Pending On-Call Pickups for this account:</strong></p>
+				<p>Yes (n) <a href="repl_href" class="ups-link">Show All</a></p>
+			</div>
+			<div class="ups-group">
+				<p><strong>Smart Pickup Status</strong></p>
+				<p>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href" class="ups-link">{today's date}</a></p>
+				<p><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</p>
+			</div>
+			{{/if}}
+			{{#if pickup_account_details.smart }}
+			<div class="ups-group">
+				<p><strong>Smart Pickup Status</strong></p>
+				<p>{Pickup Completed}</p>
+				<p><strong>Notify Time:</strong> Your Smart Pickup must be requested by {time and date}.</p>
+			</div>
+			{{/if}} </div>
+		{{#if pickup_account_details.when_needed }}
+		<fieldset class="ups-form_group ups-form_required">
+			<legend class="ups-form_label">Select an action <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></legend>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="requestSmartPickup" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="requestSmartPickup" class="ups-radio-custom-label"> <strong>Request a Smart Pickup</strong></label>
+				<p>{If submitted {before} (notify time on today's date), a UPS driver will make a pickup at this UPS Account's pickup location {today's date}.}</p>
+			</div>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="scheduleOnCallPickup" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="scheduleOnCallPickup" class="ups-radio-custom-label"> <strong>Schedule an On-Call Pickup</strong></label>
+				<p> You may schedule an additional on-call pickup for this UPS Account, or schedule an on-call pickup for an address that does not match the UPS Account's pickup location.</p>
+			</div>
+		</fieldset>
+		{{/if}}
+		{{#if pickup_account_details.notify_time_not_set }}
+		<p>If you need a pickup after your <a href="repl_href" class="btnlnkR helpIconR">Notify Time</a> or from a different location, you may schedule an additional <a href="repl_href" class="ups-link">On-Call Pickup</a>. <strong>Otherwise, no further action is needed.</strong> Thank you for choosing UPS.</p>
+		<div class="ups-form_group">
+			<div class="ups-checkbox ups-input_wrapper">
+				<input id="scheduleAnAdditionalOnCallPickup" class="ups-checkbox-custom" name="scheduleAnAdditionalOnCallPickup" type="checkbox">
+				<label for="scheduleAnAdditionalOnCallPickup" value="1" class="ups-checkbox-custom-label"><strong>Schedule an additional On-Call Pickup</strong></label>
+			</div>
+		</div>
+		{{/if}}
+		{{#if pickup_account_details.notify_time_set }}
+		<fieldset class="ups-form_group">
+			<legend class="ups-form_label">If the pickup has not been completed, <span class="ups-group_value">you may:</span></legend>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="uncompletedPickup1" class="ups-radio-custom" name="uncompletedPickup1" value="1" type="radio">
+				<label for="uncompletedPickup1" class="ups-radio-custom-label"> Include any additional shipments with others to be picked up as part of today's Smart Pickup. No further action is needed.</label>
+			</div>
+		</fieldset>
+		<fieldset class="ups-form_group">
+			<legend class="ups-form_label">If the pickup has not been completed, <span class="ups-group_value">you may:</span></legend>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="scheduleOnCallPickup" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="scheduleOnCallPickup" class="ups-radio-custom-label"> Request a Smart Pickup for this UPS Account's pickup location {tomorrow}e </label>
+			</div>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="scheduleAdditionalOnCallPickup" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="scheduleAdditionalOnCallPickup" class="ups-radio-custom-label"> Schedule an additional On-Call Pickup </label>
+			</div>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="findDropOffLocation" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="findDropOffLocation" class="ups-radio-custom-label"> Find the drop-off location nearest you </label>
+			</div>
+		</fieldset>
+		<p>If you need a pickup from a different location, you may schedule an additional <a href="repl_href" class="ups-link">On-Call Pickup</a>.</p>
+		<div class="ups-form_group">
+			<div class="ups-checkbox ups-input_wrapper">
+				<input id="scheduleAnOnCallPickup" class="ups-checkbox-custom" name="scheduleAnOnCallPickup" type="checkbox">
+				<label for="scheduleAnOnCallPickup" value="1" class="ups-checkbox-custom-label">Schedule an On-Call Pickup.</label>
+			</div>
+		</div>
+		{{/if}}
+		{{#if pickup_account_details.smart }}
+		<fieldset class="ups-form_group ups-form_required">
+			<legend class="ups-form_label">Select an Option <span aria-hidden="true" class="ups-required_indicator"></span></legend>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="includeThisShipment" class="ups-radio-custom" name="selectAnAction" value="1" type="radio">
+				<label for="includeThisShipment" class="ups-radio-custom-label"> Include this shipment with the {next business day/date} Smart Pickup</label>
+			</div>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="scheduleaddtionalOnCallPickup" class="ups-radio-custom" name="selectAnAction" value="2" type="radio">
+				<label for="scheduleaddtionalOnCallPickup" class="ups-radio-custom-label"> Schedule an {additional} <a href="repl_href" class="btnlnkR helpiconR">UPS On-Call Pickup</a>. UPS Smart Pickup customers may schedule an Air or International pickup at no charge.</label>
+			</div>
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input id="findUPSLocation" class="ups-radio-custom" name="selectAnAction" value="3" type="radio">
+				<label for="findUPSLocation" class="ups-radio-custom-label"> Find a UPS location near you. (Select this option for no pickup) </label>
+			</div>
+		</fieldset>
+		{{/if}} 
+		<!-- -------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation For ct1_shi_pic(1sch)          --> 
+		<!-- -------------------------------------------------------- --> 
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>
+	<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation">
+			<dt><span class="label">Pickup Schedule:</span></dt>
+			<dd>Daily, Tuesday, Wednesday, Thursday, Monday, Saturday</dd>
+		</dl>
+		<dl role="presentation">
+			<dt><span class="label">Pending On-Call Pickups for this account:</span></dt>
+			<dd>Yes (n) <a href="repl_href">Show All</a></dd>
+		</dl>
+	</div>--> 
+		
+		<!-- --------------------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation of ct1_shi_pic(1sch)_pickup_no_pending.html --> 
+		<!-- --------------------------------------------------------------------- --> 
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>
+	<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation":>
+			<dt><span class="label">Pickup Schedule:</span></dt>
+			<dd>Daily, Tuesday, Wednesday, Thursday, Monday, Saturday</dd>
+		</dl>
+	</div>--> 
+		
+		<!-- ------------------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation ct1_shi_pic(1sch)_pickup_when_needed.html --> 
+		<!-- ------------------------------------------------------------------- --> 
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>--> 
+		<!--<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation">
+			<dt><span class="label">Pending On-Call Pickups for this account:</span></dt>
+			<dd>Yes (n) <a href="repl_href">Show All</a></dd>
+		</dl>
+		<dl role="presentation">
+			<dt><span class="label">Smart Pickup Status:</span></dt>
+			<dd>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href">{today's date}</a>.</dd>
+			<dd><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</dd>
+		</dl>
+	</div>
+	<fieldset>
+		<legend>Select an action:</legend>
+		<p aria-hidden="true"><span class="label">Select an action: <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/></span></p>
+		<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+			<tbody>
+				<tr>
+					<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="radio1"/></td>
+					<td><label for="radio1" class="sel">Request a Smart Pickup</label></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>{If submitted {before} (notify time on today's date), a UPS driver will make a pickup at this UPS Account's pickup location {today's date}.}</td>
+				</tr>
+			</tbody>
+		</table>
+		<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+			<tbody>
+				<tr>
+					<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="radio2"/></td>
+					<td><label for="radio2" class="sel">Schedule an On-Call Pickup</label></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>You may schedle an additional on-call pickup for this UPS Account, or schedule an on-call pickup for an address that does not match the UPS Account's pickup location.</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>--> 
+		
+		<!-- ------------------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation ct1_shi_pic(1sch)_pickup_notify_time_not_set.html --> 
+		<!-- ------------------------------------------------------------------- --> 
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>
+	<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation">
+			<dt><span class="label">Pending On-Call Pickups for this account:</span></dt>
+			<dd>Yes (n) <a href="repl_href">Show All</a></dd>
+		</dl>
+		<dl role="presentation">
+			<dt><span class="label">Smart Pickup Status:</span></dt>
+			<dd>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href">{today's date}</a>.</dd>
+			<dd><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</dd>
+		</dl>
+	</div>
+	<p>If you need a pickup after your <a href="repl_href" class="btnlnkR helpIconR">Notify Time</a> or from a different location, you may schedule an additional <a href="repl_href">On-Call Pickup</a>. <strong>Otherwise, no further action is needed.</strong> Thank you for choosing UPS.</p>
+	<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+		<tbody>
+			<tr>
+				<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+				<td><label for="chxbox1" class="sel">Schedule an additional On-Call Pickup</label></td>
+			</tr>
+		</tbody>
+	</table>--> 
+		
+		<!-- ------------------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation ct1_shi_pic(1sch)_pickup_notify_time_set.html --> 
+		<!-- ------------------------------------------------------------------- --> 
+		
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>
+	<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation">
+			<dt><span class="label">Pending On-Call Pickups for this account:</span></dt>
+			<dd>Yes (n) <a href="repl_href">Show All</a></dd>
+		</dl>
+		<dl role="presentation">
+			<dt><span class="label">Smart Pickup Status:</span></dt>
+			<dd>A <a href="repl_href" class="btnlnkR helpIconR">Smart Pickup</a> has not been requested for this <a href="repl_href" class="btnlnkR helpIconR">UPS Account's pickup location</a> for <a href="repl_href">{today's date}</a>.</dd>
+			<dd><strong>Notify Time:</strong> Your Smart Pickup must be requested before {notify time}.</dd>
+		</dl>
+		<p><strong>If the pickup has not been completed,</strong> you may:</p>
+		<table border="0" cellpadding="0" cellspacing="0" role="presentation" class="indent">
+			<tbody>
+				<tr>
+					<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio1"/></td>
+					<td><label for="radio1" class="sel">Include any additional shipments with others to be picked up as part of today's Smart Pickup. No further action is needed.</label></td>
+				</tr>
+			</tbody>
+		</table>
+		<p><strong>If the pickup has not been completed,</strong> you may:</p>
+		<fieldset>
+			<legend>Select an option</legend>
+			<table border="0" cellpadding="0" cellspacing="0" role="presentation" class="indent">
+				<tbody>
+					<tr>
+						<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio1"/></td>
+						<td><label for="radio1" class="sel">Request a Smart Pickup for this UPS Account's pickup location {tomorrow}</label></td>
+					</tr>
+					<tr>
+						<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio2"/></td>
+						<td><label for="radio2" class="sel">Schedule an additional On-Call Pickup</label></td>
+					</tr>
+					<tr>
+						<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio3"/></td>
+						<td><label for="radio3" class="sel">Find the drop-off location nearest you</label></td>
+					</tr>
+				</tbody>
+			</table>
+			<p>If you need a pickup from a different location, you may schedule an additional <a href="repl_href">On-Call Pickup</a></p>
+			<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+				<tbody>
+					<tr>
+						<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+						<td><label for="chxbox1" class="sel">Schedule an On-Call Pickup.</label></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
+	</div>--> 
+		
+		<!-- ------------------------------------------------------------------- --> 
+		<!-- Old Legacy Implementation ct1_shi_pic(1sch)_pickup_smart.html --> 
+		<!-- ------------------------------------------------------------------- --> 
+		<!--<dl role="presentation">
+		<dt>
+			<label for=""><a href="" class="btnlnkR helpIconR">Payment Method</a>:</label>
+		</dt>
+		<dd>
+			<select name="repl_name" id="">
+				<option value="" selected>Shipper Account XXNXXN - Daily Account</option>
+				<option value="">Shipper Account XXNXXN - When Needed Account</option>
+			</select>
+		</dd>
+	</dl>
+	<div class="secLvl message clearfix">
+		<div class="secHead clearfix">
+			<h3>UPS Smart Pickup Status</h3>
+		</div>
+		<div class="secBody">
+			<p>A pickup has already occured today, PRN <a href="repl_href">NNXNNX</a></p>
+		</div>
+	</div>
+	<p>
+		<input id="acctInfoExpPickup" name="repl_name" type="button" value="Pickup Account Details" class="btnlnkL plusMini"/>
+	</p>
+	<div class="indent" id="acctInfoExpPickupContainer">
+		<dl role="presentation">
+			<dt><span class="label">Smart Pickup Status:</span></dt>
+			<dd>{Pickup completed}</dd>
+		</dl>
+		<p><strong>Notify Time:</strong> Your Smart Pickup must be requested by {time and date}.</p>
+	</div>
+	<fieldset>
+		<legend>Select an Option</legend>
+		<p aria-hidden="true"><span class="label">Select an Option:</span><img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/></p>
+		<table border="0" cellpadding="0" cellspacing="0" role="presentation">
+			<tbody>
+				<tr>
+					<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio1"/></td>
+					<td><label for="radio1" class="sel">Include this shipment with the {next business day/date} Smart Pickup</label></td>
+				</tr>
+				<tr>
+					<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio2"/></td>
+					<td><label for="radio2" class="sel">Schedule an {additional} <a href="" class="btnlnkR helpIconR">UPS On-Call Pickup.</a> UPS Smart Pickup customers may schedule an Air or International pickup at no charge.</label></td>
+				</tr>
+				<tr>
+					<td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio3"/></td>
+					<td><label for="radio3" class="sel">Find a UPS location near you. (Select this option for no pickup)</label></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>--> 
+	</div>
+</div>

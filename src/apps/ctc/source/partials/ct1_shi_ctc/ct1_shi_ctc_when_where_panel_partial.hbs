@@ -1,0 +1,2240 @@
+<div class="menuPanel">
+    <div class="secLvl step clearfix">
+
+        <!-- Begin Section Header -->
+
+        <div class="secHead clearfix">
+            <div class="stepNumberDiv"> <span class="stepNumber">1</span> </div>
+            <h3>where and when?</h3>
+            <!-- ************************************** -->
+            <!-- REDESIGN EDIT: Start part of re-design -->
+            <!-- ************************************** -->
+            <!--<ul class="clearfix">
+                <li><a href="repl_href" class="btnlnk">edit</a></li>
+            </ul>-->
+            <div class="pull-right">
+                <button class="ups-link">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">edit</span>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+            <!-- ************************************** -->
+            <!-- REDESIGN EDIT: End part of re-design   -->
+            <!-- ************************************** -->
+
+        </div>
+
+        <!-- Begin Sub Module (Ship From/To) -->
+        <div class="secBody">
+            {{#if default_not_logged_in_domestic}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc -->
+                <!-- //////// -->
+                <p class="error">&gt;&gt;&gt; Error message placeholder, error description. Next steps or solution</p>
+
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+
+                        <!-- Begin Ship From Inputs -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <!-- Country or Territory Input -->
+                        <div class="RIF_Address" id="orig">
+                            <div style="float:left; width:250px; ">
+                                <div class="RIF_Country" id="origCountry" style="float:left;">
+                                    <label class="fldLbl" id="origCountryLabel">Country or Territory</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <select class="modSelMedium" id="origCountryValue" name="origCountry" style="width:242px;" tabindex="7">
+                                        <option value="">Select One</option>
+                                        <option value="AX">Aland Islands</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola ...</option>
+                                        <option selected="selected" value="US">... United States</option>
+                                        <option value="UY">Uruguay</option>
+                                        <option value="VI">US Virgin Islands</option>
+                                        <option value="UZ">Uzbekistan</option>
+                                        <option value="VU">Vanatu</option>
+                                        <option value="VE">Venezuela</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="WF">Wallia &amp; Futuna Islands</option>
+                                        <option value="YE">Yemen</option>
+                                        <option value="ZM">Zambia</option>
+                                        <option value="ZW">Zimbabwe</option>
+                                    </select>
+
+                                    <!--<img alt="" id="origCountryReqdImg" src="request_files/1.gif" height="9" width="11">-->
+
+                                    </span> </div>
+                                <br style="clear:both;">
+                                <div class="RIF_Cp1" id="origCp1" style="float:left;"> <span class="RIF_City" id="origCity">
+                                    <label class="fldLbl" id="origCityLabel">City</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="ui-autocomplete-input" id="origCityValue" maxlength="35" name="origCity" size="32" tabindex="8" type="text">
+                                    <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </span> </span> </div>
+                                <br style="clear:both;">
+                                <div class="RIF_Cp2" id="origCp2" style="float:left;"> <span class="RIF_Postal" id="origPostal">
+                                    <label class="fldLbl" id="origPostalLabel">ZIP Code</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <input id="origPostalValue" maxlength="15" name="origPostal" size="15" tabindex="9" type="text">
+                                    <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </span> </span> </div>
+                            </div>
+                        </div>
+                        <input id="origCityHist" name="origCityHist" type="hidden">
+                        <input id="origStateHist" name="origStateHist" type="hidden">
+                        <input id="origPostalHist" name="origPostalHist" type="hidden">
+                        <input id="origLocale" value="en_US" name="origLocale" type="hidden">
+                        <input id="origRIFClient" value="CTC" name="origLocale" type="hidden">
+                        <input id="origPolDiv3Value" name="origPolDiv3" type="hidden">
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<table border="0" cellpadding="0" cellspacing="0">
+    						<tr>
+    							<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+    							<td><label for="repl_id4" class="sel">residential address</label></td>
+    						</tr>
+    					</table>-->
+
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromResidential"
+                                    class="ups-checkbox-custom"
+                                    name="shipFromResidential"
+                                    value="1"
+                                    type="checkbox">
+                                <label for="shipFromResidential"
+                                    class="ups-form_label ups-checkbox-custom-label">Residential Address</label>
+                            </div>
+                        </div>
+
+                        {{#if pl_to_pl_pallet}}
+                        <fieldset class="ups-form_required">
+                            <legend class="ups-form_label">
+                                Shipment Type
+                                <span class="ups-required_indicator" aria-hidden="true"></span>
+                            </legend>
+                            <div class="ups-buttonList_wrapper ups-radio ups-input_wrapper">
+                                <input id="shipTypePackage"
+                                    class="ups-radio-custom"
+                                    name="shipType"
+                                    value="1"
+                                    type="radio">
+                                <label for="shipTypePackage"
+                                    class="ups-form_label ups-radio-custom-label"><a href="repl_href" class="btnlnkR helpIconR">Package / Letter</a></label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-radio ups-input_wrapper">
+                                <input id="shipTypePallet"
+                                    class="ups-radio-custom"
+                                    name="shipType"
+                                    value="2"
+                                    type="radio">
+                                <label for="shipTypePallet"
+                                    class="ups-form_label ups-radio-custom-label"><a href="repl_href" class="btnlnkR helpIconR">Pallet</a></label>
+                            </div>
+                        </fieldset>
+                        {{/if}}
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <div class="RIF_Address" id="orig">
+                            <div style="float:left; width:250px; ">
+                                <div class="RIF_Country" id="origCountry" style="float:left;">
+                                    <label class="fldLbl" id="origCountryLabel">Country or Territory</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <select class="modSelMedium" id="origCountryValue" name="origCountry" style="width:242px;" tabindex="7">
+                                        <option value="">Select One</option>
+                                        <option value="AX">Aland Islands</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola ...</option>
+                                        <option selected="selected" value="US">... United States</option>
+                                        <option value="UY">Uruguay</option>
+                                        <option value="VI">US Virgin Islands</option>
+                                        <option value="UZ">Uzbekistan</option>
+                                        <option value="VU">Vanatu</option>
+                                        <option value="VE">Venezuela</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="WF">Wallia &amp; Futuna Islands</option>
+                                        <option value="YE">Yemen</option>
+                                        <option value="ZM">Zambia</option>
+                                        <option value="ZW">Zimbabwe</option>
+                                    </select>
+
+                                    <!--<img alt="" id="origCountryReqdImg" src="request_files/1.gif" height="9" width="11">-->
+
+                                    </span> </div>
+                                <br style="clear:both;">
+                                <div class="RIF_Cp1" id="origCp1" style="float:left;"> <span class="RIF_City" id="origCity">
+                                    <label class="fldLbl" id="origCityLabel">City</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" class="ui-autocomplete-input" id="origCityValue" maxlength="35" name="origCity" size="32" tabindex="8" type="text">
+                                    <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </span> </span> </div>
+                                <br style="clear:both;">
+                                <div class="RIF_Cp2" id="origCp2" style="float:left;"> <span class="RIF_Postal" id="origPostal">
+                                    <label class="fldLbl" id="origPostalLabel">ZIP Code</label>
+                                    <br>
+                                    <span style="white-space: nowrap;">
+                                    <input id="origPostalValue" maxlength="15" name="origPostal" size="15" tabindex="9" type="text">
+                                    <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </span> </span> </div>
+                            </div>
+                        </div>
+                        <input id="origCityHist" name="origCityHist" type="hidden">
+                        <input id="origStateHist" name="origStateHist" type="hidden">
+                        <input id="origPostalHist" name="origPostalHist" type="hidden">
+                        <input id="origLocale" value="en_US" name="origLocale" type="hidden">
+                        <input id="origRIFClient" value="CTC" name="origLocale" type="hidden">
+                        <input id="origPolDiv3Value" name="origPolDiv3" type="hidden">
+                        <script type="text/javascript">
+
+                                if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                            </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<dl class="group">
+    							<dt>
+    								<label for="repl_id"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a> </label>
+    							</dt>
+    							<dd>
+    								<table border="0" cellpadding="0" cellspacing="0">
+    									<tr>
+    										<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+    										<td><label for="repl_id8" class="sel">residential address</label></td>
+    									</tr>
+    									<tr>
+    										<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+    										<td><label for="repl_id9" class="sel">have ups determine my destination type</label></td>
+    									</tr>
+    								</table>
+    							</dd>
+    							<dt>
+    								<label for="repl_id10">when are you shipping?</label>
+    								<img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+    							<dd>
+    								<select id="repl_id10" class="formcol7">
+    									<option>mm/dd/yyyy</option>
+    								</select>
+    								<img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+    						</dl>-->
+
+                        {{#unless ca_to_ca_uap}}
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                    class="ups-radio-custom"
+                                    name="shipToDestination"
+                                    value="1"
+                                    type="radio">
+                                <label for="shipToResidential" class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                    class="ups-radio-custom"
+                                    name="shipToDestination"
+                                    value="1"
+                                    type="radio">
+                                <label for="shipToDetermine" class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+                        {{/unless}}
+
+                        {{#if ca_to_ca_uap}}
+                        <div class="ups-form_group">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToAP"
+                                    class="ups-checkbox-custom"
+                                    name="shipToAP"
+                                    value="1"
+                                    type="checkbox">
+                                <label for="shipToAP" class="ups-checkbox-custom-label">
+                                    Ship to a UPS access point&trade;
+                                </label>
+                            </div>
+                            <div class="ups-indent_with_input" id="APSelectionContainer">
+                                <p>
+                                    <button type="button" class="ups-cta ups-cta_primary">
+                                        Select a UPS Access Point&trade;
+                                    </button>
+                                </p>
+                                <p class="text-center">
+                                    OR
+                                </p>
+                                <p>
+                                    <button type="button"
+                                        class="ups-cta ups-cta_primary"
+                                        id="APSelectID">
+                                        Enter Location ID
+                                    </button>
+                                </p>
+
+                            </div>
+                            <div class="ups-indent_with_input" id="APLocationIDContainer">
+                                <div class="ups-form_group">
+                                    <label for="locationID">Location ID</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text"
+                                            class="ups-form_input"
+                                            id="locationID">
+                                    </div>
+                                </div>
+                                <p>
+                                    <button type="button" class="ups-cta ups-cta_primary" disabled>Find Location</button>
+                                </p>
+                                <p>
+                                    <button type="button" class="ups-cta ups-cta_primary">Cancel</button>
+                                </p>
+                            </div>
+                        </div>
+                        {{/if}}
+
+                        {{#if ca_to_ca_uap_selected}}
+                        <div class="ups-form_group">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToAP"
+                                    class="ups-checkbox-custom"
+                                    name="shipToAP"
+                                    value="1"
+                                    type="checkbox">
+                                <label for="shipToAP" class="ups-checkbox-custom-label">
+                                    Ship to a UPS access point&trade;
+                                </label>
+                            </div>
+
+                            <div class="ups-indent_with_input">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <div class="ups-group ups-group_condensed">
+                                            <p>
+                                                Boom IT
+                                            </p>
+                                            <p>
+                                                286 Torbay Rd
+                                            </p>
+                                            <p>
+                                                St John S. NL
+                                            </p>
+                                            <p>
+                                                A1A4L6
+                                            </p>
+                                            <p>
+                                                Tel: 1-800-742-5877
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <button type="button" class="ups-link ups-btn_spacing">Edit</button>
+                                        <button type="button" class="ups-link">Clear</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {{/if}}
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if default_not_logged_in_transborder}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_p1_not_logged_in_transborder -->
+                <!-- //////// -->
+                <p class="error">&gt;&gt;&gt; Error message placeholder, error description. Next steps or solution</p>
+
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship From</h4> -->
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<table border="0" cellpadding="0" cellspacing="0">
+    						<tr>
+    							<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+    							<td><label for="repl_id4" class="sel">residential address</label></td>
+    						</tr>
+    					</table>-->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromResidential"
+                                    class="ups-checkbox-custom"
+                                    name="shipFromResidential"
+                                    value="1"
+                                    type="checkbox">
+                                <label for="shipFromResidential"
+                                    class="ups-form_label ups-checkbox-custom-label">Residential Address</label>
+                            </div>
+                        </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<dl class="group">
+    							<dt>
+    								<label for="repl_id"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a> </label>
+    							</dt>
+    							<dd>
+    								<table border="0" cellpadding="0" cellspacing="0">
+    									<tr>
+    										<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+    										<td><label for="repl_id8" class="sel">residential address</label></td>
+    									</tr>
+    									<tr>
+    										<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+    										<td><label for="repl_id9" class="sel">have ups determine my destination type</label></td>
+    									</tr>
+    								</table>
+    							</dd>
+    							<dt>
+    								<label for="repl_id10">when are you shipping?</label>
+    								<img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+    							<dd>
+    								<select id="repl_id10" class="formcol7">
+    									<option>mm/dd/yyyy</option>
+    								</select>
+    								<img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+    						</dl>-->
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                    class="ups-radio-custom"
+                                    name="shipToDestination"
+                                    value="1"
+                                    type="radio">
+                                <label for="shipToResidential" class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                    class="ups-radio-custom"
+                                    name="shipToDestination"
+                                    value="1"
+                                    type="radio">
+                                <label for="shipToDetermine" class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design datepicker -->
+                        <!-- ************************************************* -->
+                        <!--<dl role="presentation">
+                            <dt>
+                                <label for="repl_id10">When are you shipping?</label>
+                                <img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+                            <dd>
+                                <select id="repl_id10" class="formcol5">
+                                    <option>mm/dd/yyyy</option>
+                                </select>
+                                <img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+                        </dl>
+                        -->
+                        <div class="ups-form_group ups-form_required">
+    						<label class="ups-form_label" for="ctc_calendar">
+                                When are you shipping?
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>
+                            </label>
+    						<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input class="ups-form_input" id="ctc_calendar" maxlength="10" name="ctc_calendar" tabindex="5" type="text" value="02/06/2017">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+    							</button>
+                            </div>
+    					</div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design datepicker   -->
+                        <!-- ************************************************* -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                                <td><label for="repl_id4" class="sel">Documents of no Commercial Value.</label></td>
+                            </tr>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromNoCommVal" class="ups-checkbox-custom" name="shipFromNoCommVal" value="1" type="checkbox">
+                                <label for="shipFromNoCommVal" class="ups-form_label ups-checkbox-custom-label">Documents of no Commercial Value</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design Custom Value -->
+                        <!-- *************************************************** -->
+                        <!--
+                        <dl role="presentation">
+                            <dt>
+                                <label for="txtbox"><a href="repl_href" class="btnlnkR helpIconR">Custom Value:</a></label>
+                            </dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                                <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/>
+                                <select name="repl_name" id="selectbox">
+                                    <option value="repl_value" selected>USD US Dollar</option>
+                                    <option value="repl_value"></option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label>Duty Type:</label>
+                            </dt>
+                            <dd>[00 - description]</dd>
+                        </dl>
+                        -->
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="ups-form_group ups-form_required">
+    								<label class="ups-form_label" for="ctcCustVal">
+                                        <a href="#">Customs Value</a>
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        <span class="ups-readerTxt">Required</span>
+                                        <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    </label>
+    								<div class="ups-text_wrapper ups-input_wrapper">
+                                        <input class="ups-form_input" id="ctcCustVal" name="ctcCustVal" type="text" value="">
+                                    </div>
+    							</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="ups-form_group ups-no_label">
+    								<label class="ups-readerTxt" for="ctc_currency">Type of currency</label>
+    								<div class="ups-dropdown_wrapper ups-input_wrapper">
+    									<select class="ups-dropdown" name="ctc_currency" id="ctc_currency">
+    										<option value="">USD</option>
+    										<option value="">CCC</option>
+                                        </select>
+    								</div>
+    							</div>
+                            </div>
+                        </div>
+                        <!--<p><strong>Duty Type</strong></p>
+                        <p>[00 - description]</p>-->
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design Custom Value   -->
+                        <!-- *************************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if default_logged_in_domestic}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_p1_logged_in_domestic -->
+                <!-- //////// -->
+                <p class="error">&gt;&gt;&gt; Error message placeholder, error description. Next steps or solution.</p>
+
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship From</h4> -->
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Select from My UPS Address Book</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+                        <!--<table border="0" cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                    				<td><label for="repl_id4" class="sel">residential address</label></td>
+                    			</tr>
+                    		</table>-->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromResidential"
+                                        class="ups-checkbox-custom"
+                                        name="shipFromResidential"
+                                        value="1"
+                                        type="checkbox">
+                                <label for="shipFromResidential"
+                                        class="ups-form_label ups-checkbox-custom-label"> Residential Address </label>
+                            </div>
+                        </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Select from My UPS Address Book</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<p for="repl_id"><span class="label"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></span> </p>
+                    		<table border="0" cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+                    				<td><label for="repl_id8" class="sel">Residential Address</label></td>
+                    			</tr>
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+                    				<td><label for="repl_id9" class="sel">Have UPS determine my destination type</label></td>
+                    			</tr>
+                    		</table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id10">When are you shipping?</label>
+                                    <img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+                                <dd>
+                                    <select id="repl_id10">
+                                        <option>mm/dd/yyyy</option>
+                                    </select>
+                                    <img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+                            </dl>-->
+
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToResidential"
+                                        class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToDetermine"
+                                        class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+                        <div class="ups-form_group ups-form_required">
+							<label class="ups-form_label" for="shipDatePick"> When are you shipping?
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>
+                            </label>
+							<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input class="ups-form_input" id="shipDatePick" maxlength="10" name="shipDatePick" tabindex="5" type="text" value="02/06/2017">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+								</button>
+                            </div>
+						</div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if default_logged_in_transborder}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_p1_logged_in_transborder -->
+                <!-- //////// -->
+                <p class="error">&gt;&gt;&gt; Error message placeholder, error description. Next steps or solution</p>
+
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship From</h4> -->
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Select from My UPS Address Book</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+                        <!--<table border="0" cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                    				<td><label for="repl_id4" class="sel">residential address</label></td>
+                    			</tr>
+                    		</table>-->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromResidential"
+                                        class="ups-checkbox-custom"
+                                        name="shipFromResidential"
+                                        value="1"
+                                        type="checkbox">
+                                <label for="shipFromResidential"
+                                        class="ups-form_label ups-checkbox-custom-label"> Residential Address </label>
+                            </div>
+                        </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Select from My UPS Address Book</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<p for="repl_id"><span class="label"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></span> </p>
+                    		<table border="0" cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+                    				<td><label for="repl_id8" class="sel">Residential Address</label></td>
+                    			</tr>
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+                    				<td><label for="repl_id9" class="sel">Have UPS determine my destination type</label></td>
+                    			</tr>
+                    		</table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id10">When are you shipping?</label>
+                                    <img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+                                <dd>
+                                    <select id="repl_id10">
+                                        <option>mm/dd/yyyy</option>
+                                    </select>
+                                    <img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+                            </dl>-->
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToResidential"
+                                        class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToDetermine"
+                                        class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+                        <div class="ups-form_group ups-form_required">
+							<label class="ups-form_label" for="shipDatePick"> When are you shipping?
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>
+                            </label>
+							<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input class="ups-form_input" id="shipDatePick" maxlength="10" name="shipDatePick" tabindex="5" type="text" value="02/06/2017">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+								</button>
+                            </div>
+						</div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                                <td><label for="repl_id4" class="sel">Documents of no Commercial Value.</label></td>
+                            </tr>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromNoCommVal" class="ups-checkbox-custom" name="shipFromNoCommVal" value="1" type="checkbox">
+                                <label for="shipFromNoCommVal" class="ups-form_label ups-checkbox-custom-label">Documents of no Commercial Value</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design Custom Value -->
+                        <!-- *************************************************** -->
+                        <!--
+                        <dl role="presentation">
+                            <dt>
+                                <label for="txtbox"><a href="repl_href" class="btnlnkR helpIconR">Customs value:</a></label>
+                            </dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                                <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/>
+                                <select name="repl_name" id="selectbox">
+                                    <option value="repl_value" selected>USD US Dollar</option>
+                                    <option value="repl_value"></option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label>Duty Type:</label>
+                            </dt>
+                            <dd>[00 - description]</dd>
+                        </dl>
+                        -->
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="ups-form_group ups-form_required">
+    								<label class="ups-form_label" for="ctcCustVal">
+                                        <a href="#">Customs Value</a>
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        <span class="ups-readerTxt">Required</span>
+                                        <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    </label>
+    								<div class="ups-text_wrapper ups-input_wrapper">
+                                        <input class="ups-form_input" id="ctcCustVal" name="ctcCustVal" type="text" value="">
+                                    </div>
+    							</div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="ups-form_group ups-no_label">
+    								<label class="ups-readerTxt" for="ctc_currency">Type of currency</label>
+    								<div class="ups-dropdown_wrapper ups-input_wrapper">
+    									<select class="ups-dropdown" name="ctc_currency" id="ctc_currency">
+    										<option value="">USD</option>
+    										<option value="">CCC</option>
+                                        </select>
+    								</div>
+    							</div>
+                            </div>
+                        </div>
+                        <!--<p><strong>Duty Type</strong></p>
+                        <p>[00 - description]</p>-->
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design Custom Value   -->
+                        <!-- *************************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if time_only_countries}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_p1_time_only_countries -->
+                <!-- //////// -->
+
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship From</h4> -->
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <div class="clear"> </div>
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<p for="repl_id"><span class="label"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></span> </p>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+                                    <td><label for="repl_id8" class="sel">Residential Address</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+                                    <td><label for="repl_id9" class="sel">Have UPS determine my destination type</label></td>
+                                </tr>
+                            </table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id10">When are you shipping?</label>
+                                    <img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+                                <dd>
+                                    <select id="repl_id10">
+                                        <option>mm/dd/yyyy</option>
+                                    </select>
+                                    <img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+                            </dl>-->
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToResidential"
+                                        class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToDetermine"
+                                        class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+                        <div class="ups-form_group ups-form_required">
+                            <label class="ups-form_label" for="shipDatePick"> When are you shipping?
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input class="ups-form_input" id="shipDatePick" maxlength="10" name="shipDatePick" tabindex="5" type="text" value="02/06/2017">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                                <td><label for="repl_id4" class="sel">Documents of no Commercial Value.</label></td>
+                            </tr>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromNoCommVal" class="ups-checkbox-custom" name="shipFromNoCommVal" value="1" type="checkbox">
+                                <label for="shipFromNoCommVal" class="ups-form_label ups-checkbox-custom-label">Documents of no Commercial Value</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design Custom Value -->
+                        <!-- *************************************************** -->
+                        <!--
+                        <dl role="presentation">
+                            <dt>
+                                <label for="txtbox"><a href="repl_href" class="btnlnkR helpIconR">Customs value:</a></label>
+                            </dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                                <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/>
+                                <select name="repl_name" id="selectbox">
+                                    <option value="repl_value" selected>USD US Dollar</option>
+                                    <option value="repl_value"></option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label>Duty Type:</label>
+                            </dt>
+                            <dd>[00 - description]</dd>
+                        </dl>
+                        -->
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="ups-form_group ups-form_required">
+                                    <label class="ups-form_label" for="ctcCustVal">
+                                        <a href="#">Customs Value</a>
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        <span class="ups-readerTxt">Required</span>
+                                        <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input class="ups-form_input" id="ctcCustVal" name="ctcCustVal" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="ups-form_group ups-no_label">
+                                    <label class="ups-readerTxt" for="ctc_currency">Type of currency</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select class="ups-dropdown" name="ctc_currency" id="ctc_currency">
+                                            <option value="">USD</option>
+                                            <option value="">CCC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<p><strong>Duty Type</strong></p>
+                        <p>[00 - description]</p>-->
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design Custom Value   -->
+                        <!-- *************************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1" checked/></td>
+                                    <td><label for="chxbox1" class="sel">I'm shipping pallets</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipToPallets" class="ups-checkbox-custom" name="shipToPallets" value="1" type="checkbox">
+                                <label for="shipToPallets" class="ups-form_label ups-checkbox-custom-label">I'm shipping pallets</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if time_only_ww_express_freight}}
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_time_only_ww_express_freight -->
+                <!-- //////// -->
+
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship From</h4> -->
+                <!-- Begin Sub Module (Ship From) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship From</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design   -->
+                        <!-- ************************************** -->
+                        <!--<table border="0" cellpadding="0" cellspacing="0">
+                    			<tr>
+                    				<td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                    				<td><label for="repl_id4" class="sel">residential address</label></td>
+                    			</tr>
+                    		</table>-->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromResidential"
+                                        class="ups-checkbox-custom"
+                                        name="shipFromResidential"
+                                        value="1"
+                                        type="checkbox">
+                                <label for="shipFromResidential"
+                                        class="ups-form_label ups-checkbox-custom-label"> Residential Address </label>
+                            </div>
+                        </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+                <!-- End Sub Module (Ship From) -->
+                <hr class="hr">
+                <!-- Begin Sub Module (Ship To) -->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Begin part of re-design   -->
+                <!-- ************************************** -->
+                <!-- <h4>Ship To</h4> -->
+                <!-- Begin Sub Module (Ship To) -->
+
+                <div class="secLvl secLvlPlain clearfix">
+
+                    <!-- Begin Sub Header -->
+                    <div class="secHead clearfix"><h4>Ship To</h4></div>
+                    <!-- End Sub Header -->
+
+                    <!-- Begin Sub Body -->
+
+                    <div class="secBody">
+                    <!-- ************************************** -->
+                    <!-- REDESIGN EDIT: End part of re-design   -->
+                    <!-- ************************************** -->
+
+                        <!-- /////////////////////////// -->
+                        <!-- Begin RIF Address Component -->
+                        <script charset="utf-8" src="request_files/rif_201201_05_00_en_US.js" type="text/javascript"></script>
+                        <dl role="presentation" id="origCountry">
+                            <dt>
+                                <label id="repl_id">Country or Territory</label>
+                            </dt>
+                            <dd>
+                                <select id="repl_id" name="origCountry" tabindex="7" class="formcol5">
+                                    <option value="">Select One</option>
+                                    <option value="AX">Aland Islands</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola ...</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanatu</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WF">Wallia &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label id="origCityLabel">City</label>
+                            </dt>
+                            <dd>
+                                <input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="origCityValue" name="origCity" tabindex="8" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchCity" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" height="12" width="12" alt="repl_alt"></a> <img alt="" id="origCityReqdImg" src="/img/1.gif" height="9" width="11"> </dd>
+                            <dt>
+                                <label id="origPostalLabel">ZIP Code</label>
+                            </dt>
+                            <dd>
+                                <input id="origPostalValue" maxlength="15" name="origPostal" tabindex="9" type="text" class="formcol5">
+                                <a class="RIF_AddressSearch" href="javascript:void(0);" id="origAddressSearchPostal" onclick="window.com_ups_rif.ascLaunch(this)"><img src="/img/btn_details_mini.gif" alt="repl_text" width="12" height="12" border="0"></a> <img alt="Required" id="origPostalReqdImg" src="/img/icn_dia.gif" height="9" width="11"> </dd>
+                        </dl>
+                        <script type="text/javascript">
+
+                            if (window.com_ups_rif) { if (!window.com_ups_rif.addresses) { window.com_ups_rif.addresses = new Object(); } window.com_ups_rif.addresses['orig'] = {'stateSize':15,'stateMaxLength':15,'stateWidthPx':166,'cspIdx1':8,'cspIdx2':0,'cspIdx3':9,'cpIdx1':8,'cpIdx2':9,'csIdx1':8,'csIdx2':0,'hideRequiredIndicator':false,'hideNonRequiredFields':false,'required':{"AD":4,"AE":1,"AF":1,"AG":1,"AI":1,"AL":1,"AM":4,"AN":1,"AO":1,"AP":4,"AR":4,"AS":1,"AT":4,"AU":4,"AW":1,"AX":1,"AZ":4,"BA":4,"BB":1,"BD":4,"BE":4,"BF":1,"BG":4,"BH":1,"BI":1,"BJ":1,"BL":1,"BM":1,"BN":1,"BO":1,"BR":4,"BS":1,"BT":1,"BW":1,"BY":4,"BZ":1,"CA":6,"CB":1,"CD":1,"CF":1,"CG":1,"CH":4,"CI":1,"CK":1,"CL":1,"CM":1,"CN":4,"CO":1,"CR":1,"CV":1,"CY":4,"CZ":4,"DE":4,"DJ":1,"DK":4,"DM":1,"DO":1,"DZ":4,"EC":1,"EE":4,"EG":1,"EN":4,"ER":1,"ES":4,"ET":1,"EU":1,"FI":4,"FJ":1,"FM":4,"FO":4,"FR":4,"GA":1,"GB":4,"GD":1,"GE":4,"GF":1,"GG":4,"GH":1,"GI":1,"GL":4,"GM":1,"GN":1,"GP":1,"GQ":1,"GR":4,"GT":1,"GU":1,"GW":1,"GY":1,"HK":1,"HN":1,"HO":4,"HR":4,"HT":1,"HU":4,"IC":4,"ID":4,"IE":1,"IL":4,"IN":4,"IQ":1,"IS":4,"IT":4,"JE":4,"JM":1,"JO":1,"JP":4,"KE":1,"KG":4,"KH":1,"KI":1,"KM":1,"KN":1,"KO":4,"KR":4,"KW":1,"KY":1,"KZ":4,"LA":1,"LB":1,"LC":1,"LI":4,"LK":4,"LR":1,"LS":1,"LT":4,"LU":4,"LV":4,"LY":1,"M3":4,"MA":1,"MB":1,"MC":4,"MD":4,"ME":4,"MG":1,"MH":4,"MK":4,"ML":1,"MN":4,"MO":1,"MP":1,"MQ":4,"MR":1,"MS":1,"MT":1,"MU":1,"MV":1,"MW":1,"MX":4,"MY":4,"MZ":1,"NA":1,"NB":4,"NC":1,"NE":1,"NF":1,"NG":1,"NI":1,"NL":4,"NO":4,"NP":1,"NT":1,"NZ":4,"OM":1,"PA":1,"PE":1,"PF":1,"PG":1,"PH":4,"PK":4,"PL":4,"PO":4,"PR":4,"PT":4,"PT-30":4,"PW":4,"PY":1,"QA":1,"RE":4,"RO":4,"RS":4,"RT":1,"RU":4,"RW":1,"SA":4,"SB":1,"SC":1,"SE":4,"SF":4,"SG":4,"SI":4,"SK":4,"SL":1,"SM":4,"SN":1,"SP":1,"SR":1,"SS":1,"SV":1,"SW":1,"SX":4,"SY":1,"SZ":1,"TA":1,"TB":1,"TC":1,"TD":1,"TG":1,"TH":4,"TI":1,"TJ":4,"TL":1,"TM":4,"TN":4,"TO":1,"TR":4,"TT":1,"TU":4,"TV":1,"TW":4,"TZ":1,"UA":4,"UG":1,"UI":1,"US":4,"UV":4,"UY":4,"UZ":4,"VA":4,"VC":1,"VE":1,"VG":1,"VI":4,"VL":4,"VN":4,"VR":1,"VU":1,"WF":1,"WL":4,"WS":1,"YA":4,"YE":1,"YT":1,"ZA":4,"ZM":1,"ZW":1,"ZZ":1}}; }
+
+                        </script>
+                        <!-- End RIF Address Component -->
+                        <!-- ///////////////////////// -->
+
+                        <div class="clear"> </div>
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+                        <!--<p for="repl_id"><span class="label"> <a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></span> </p>
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id8"></td>
+                                    <td><label for="repl_id8" class="sel">Residential Address</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="radio" value="" id="repl_id9"></td>
+                                    <td><label for="repl_id9" class="sel">Have UPS determine my destination type</label></td>
+                                </tr>
+                            </table>
+                            <dl role="presentation">
+                                <dt>
+                                    <label for="repl_id10">When are you shipping?</label>
+                                    <img alt="repl_text"  border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dt>
+                                <dd>
+                                    <select id="repl_id10">
+                                        <option>mm/dd/yyyy</option>
+                                    </select>
+                                    <img src="/img/icn_calendar.gif" alt="repl_text" width="12" height="12" border="0" class="btnlnk"> </dd>
+                            </dl>-->
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Destination Type</a></legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToResidential"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToResidential"
+                                        class="ups-radio-custom-label"> Residential Address </label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="shipToDetermine"
+                                        class="ups-radio-custom"
+                                        name="shipToDestination"
+                                        value="1"
+                                        type="radio">
+                                <label for="shipToDetermine"
+                                        class="ups-radio-custom-label"> Have UPS determine my destination type </label>
+                            </div>
+                        </fieldset>
+                        <div class="ups-form_group ups-form_required">
+                            <label class="ups-form_label" for="shipDatePick"> When are you shipping?
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                <span class="ups-readerTxt">Required</span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                                <input class="ups-form_input" id="shipDatePick" maxlength="10" name="shipDatePick" tabindex="5" type="text" value="02/06/2017">
+                                <button type="button" class="ups-date_picker_button">
+                                    <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Select date from a calendar</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="repl_id4"></td>
+                                <td><label for="repl_id4" class="sel">Documents of no Commercial Value.</label></td>
+                            </tr>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipFromNoCommVal" class="ups-checkbox-custom" name="shipFromNoCommVal" value="1" type="checkbox">
+                                <label for="shipFromNoCommVal" class="ups-form_label ups-checkbox-custom-label">Documents of no Commercial Value</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: Start part of re-design Custom Value -->
+                        <!-- *************************************************** -->
+                        <!--
+                        <dl role="presentation">
+                            <dt>
+                                <label for="txtbox"><a href="repl_href" class="btnlnkR helpIconR">Customs value:</a></label>
+                            </dt>
+                            <dd>
+                                <input type="text" name="repl_name" id="txtbox" class="formcol5">
+                                <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"/>
+                                <select name="repl_name" id="selectbox">
+                                    <option value="repl_value" selected>USD US Dollar</option>
+                                    <option value="repl_value"></option>
+                                </select>
+                            </dd>
+                            <dt>
+                                <label>Duty Type:</label>
+                            </dt>
+                            <dd>[00 - description]</dd>
+                        </dl>
+                        -->
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div class="ups-form_group ups-form_required">
+                                    <label class="ups-form_label" for="ctcCustVal">
+                                        <a href="#">Customs Value</a>
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        <span class="ups-readerTxt">Required</span>
+                                        <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input class="ups-form_input" id="ctcCustVal" name="ctcCustVal" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="ups-form_group ups-no_label">
+                                    <label class="ups-readerTxt" for="ctc_currency">Type of currency</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select class="ups-dropdown" name="ctc_currency" id="ctc_currency">
+                                            <option value="">USD</option>
+                                            <option value="">CCC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<p><strong>Duty Type</strong></p>
+                        <p>[00 - description]</p>-->
+                        <!-- *************************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design Custom Value   -->
+                        <!-- *************************************************** -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Start part of re-design checkbox   -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1" checked/></td>
+                                    <td><label for="chxbox1" class="sel">I'm shipping pallets</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        -->
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="shipToPallets" class="ups-checkbox-custom" name="shipToPallets" value="1" type="checkbox">
+                                <label for="shipToPallets" class="ups-form_label ups-checkbox-custom-label">I'm shipping pallets</label>
+                            </div>
+                        </div>
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: End part of re-design checkbox     -->
+                        <!-- ************************************************* -->
+
+                        <!-- ************************************************* -->
+                        <!-- REDESIGN EDIT: Begin part of re-design            -->
+                        <!-- ************************************************* -->
+                        <!--
+                        <h4>How will you get your pallets to UPS?</h4>
+                        <dl role="presentation">
+                            <dt>
+                                <label for="selectbox"><a href="repl_href" class="btnlnkR helpIconR">Pickup Preference:</a></label>
+                            </dt>
+                            <dd>
+                                <select name="repl_name" id="selectbox" class="formcol5">
+                                    <option value="repl_value" selected>UPS will Pick up</option>
+                                    <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl role="presentation">
+                            <dt>
+                                <label for="selectbox"><a href="repl_href" class="btnlnkR helpIconR">Delivery Preference:</a></label>
+                            </dt>
+                            <dd>
+                                <select name="repl_name" id="selectbox" class="formcol5">
+                                    <option value="repl_value" selected>Hold for Customer Pickup at UPS Location</option>
+                                    <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        -->
+                        <fieldset>
+                            <legend class="ups-form_label">How will you get your pallets to UPS?</legend>
+                            <div class="ups-form_group">
+                                <label class="ups-form_label" for="ctcPickupPref">
+                                    <a href="#">Pickup Preference</a>
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    <span class="ups-readerTxt">Required</span>
+                                    <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select class="ups-dropdown" name="ctcPickupPref" id="ctcPickupPref">
+                                        <option value="" selected>UPS will Pick up</option>
+                                        <option value="">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="ups-form_group">
+                                <label class="ups-form_label" for="ctcDeliveryPref">
+                                    <a href="#">Delivery Preference</a>
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    <span class="ups-readerTxt">Required</span>
+                                    <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select class="ups-dropdown" name="ctcDeliveryPref" id="ctcDeliveryPref">
+                                        <option value="" selected>Hold for Customer Pickup at UPS Location</option>
+                                        <option value="">Option 2 which is much longer than Option 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: End part of re-design -->
+                        <!-- ************************************** -->
+
+                        <!-- ************************************** -->
+                        <!-- REDESIGN EDIT: Begin part of re-design -->
+                        <!-- ************************************** -->
+                        <!-- these divs are added -->
+                    </div>
+                </div>
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+
+            {{#if p1_collapsed_completed}}
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: Start part of re-design -->
+                <!-- ************************************** -->
+                <!--<dl role="presentation">
+                		<dt><span class="label">Ship To:</span></dt>
+                		<dd>New York, 10001, United States<br>
+                			Residential / Commercial</dd>
+                		<dt><span class="label">Ship From:</span></dt>
+                		<dd>Seattle, 98110, United States<br>
+                			Residential / Commercial</dd>
+                		<dt><span class="label">Shipment Date:</span></dt>
+                		<dd>Thursday, March 19, 2011</dd>
+                		<dt><span class="label">Customs Value:</span></dt>
+                		<dd>[000.00] [AAA]</dd>
+                		<dt><span class="label">Duty Type:</span></dt>
+                		<dd>[00 - description]</dd>
+                		<dt><span class="label">Number of Packages:</span></dt>
+                		<dd>[00]</dd>
+                	</dl>-->
+
+                <!-- //////// -->
+                <!-- example page -->
+                <!-- ct1_shi_ctc_p1_collapsed_completed -->
+                <!-- //////// -->
+                <div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Ship To</strong> </div>
+                    <div class="ups-group_value">
+                        <p>New York, 10001, United States</p>
+                        <p>Residential / Commercial</p>
+                    </div>
+                </div>
+                <div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Ship From</strong> </div>
+                    <div class="ups-group_value">
+                        <p>Seattle, 98110, United States</p>
+                        <p>Residential / Commercial</p>
+                    </div>
+                </div>
+                <div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Shipment Date</strong> </div>
+                    <div class="ups-group_value">
+                        <p>Thursday, March 19, 2011</p>
+                    </div>
+                </div>
+                <div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Customs Value</strong> </div>
+                    <div class="ups-group_value">
+                        <p>[000.00] [AAA]</p>
+                    </div>
+                </div>
+                <div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Duty Type</strong> </div>
+                    <div class="ups-group_value">
+                        <p>[00 - description]</p>
+                    </div>
+                </div>
+                <!--<div class="ups-group ups-group_condensed">
+                    <div class="ups-group_label"> <strong>Number of Packages</strong> </div>
+                    <div class="ups-group_value">
+                        <p>[00]</p>
+                    </div>
+                </div>-->
+                <!-- ************************************** -->
+                <!-- REDESIGN EDIT: End part of re-design -->
+                <!-- ************************************** -->
+            {{/if}}
+            <!-- ************************************** -->
+            <!-- REDESIGN EDIT: Start part of re-design -->
+            <!-- ************************************** -->
+            <!--<div class="secFooter">
+
+                <div class="btnBar">
+                    <dl class="outHozLedger">
+                        <dt>
+                            <input name="repl_name" type="button" value="clear" class="btn" disabled>
+                        </dt>
+                        <dd>
+                            <input name="repl_name" type="button" value="update" class="btnArw">
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>-->
+        </div>
+        <!-- End Sub Module (Ship From/To) -->
+
+        <!-- Begin Section Footer -->
+
+        <div class="secFooter">
+
+            <!-- Begin Button Bar Row -->
+
+            <div class="btnBar">
+                <button name="repl_name" type="button" value="" class="ups-cta ups-cta_tertiary" {{#if disabled}}disabled{{/if}}>Clear</button>
+                <button name="repl_name" type="button" value="" class="ups-cta ups-cta_primary">Update</button>
+            </div>
+
+            <!-- End Button Bar Row -->
+
+        </div>
+
+        <!-- End Section Footer -->
+
+        <!-- added ending div below -->
+    </div>
+</div>
+    <!-- ************************************** -->
+    <!-- REDESIGN EDIT: End part of re-design   -->
+    <!-- ************************************** -->

@@ -1,0 +1,24 @@
+{{!--
+********************************************************************************
+A22 Progress Tracker
+********************************************************************************
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    step                      = array       / YES           / step: [{"step_complete" : (boolean), "step_current" : (boolean), "step_name" : (string), "step_link" : (string)}, ...]
+--}}
+
+<div class="ups-progress_bar_inner">
+    <ul>
+        {{#each step }}<li>
+            <div class="ups-progress_number{{#if step_complete }} ups-progress_complete{{/if}}{{#if step_current }} ups-progress_current{{/if}}">
+                {{#if step_complete }}<a href="{{ step_link }}"><span class="icon ups-icon-check" aria-hidden="true"></span><span class="ups-readerTxt">Step {{ math @index "+" 1  }} Done</span>{{/if}}
+                {{#if step_current }}<span class="ups-readerTxt">Current Step </span>{{/if}}
+                {{#unless step_complete }}<span>{{ math @index "+" 1 }}</span>{{/unless}}
+                {{#if step_complete }}</a>{{/if}}
+            </div>
+            <div class="ups-progress_name">
+                {{#if step_complete }}<a href="{{ step_link }}" class="ups-link">{{/if}}{{ step_name }}{{#if step_complete }}</a>{{/if}}</div>
+        </li>{{/each}}
+    </ul>
+</div>

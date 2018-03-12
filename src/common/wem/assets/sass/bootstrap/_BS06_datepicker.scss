@@ -1,0 +1,214 @@
+.uib-datepicker-popup {
+    width: auto;
+
+    &.dropdown-menu {
+        display: block;
+        float: none;
+        margin: 0;
+
+        .uib-button-bar {
+            padding: 10px 9px 2px;
+        }
+    }
+
+    .uib-datepicker {
+        width: 100%;
+        overflow-y: hidden;
+    }
+
+    .uib-daypicker thead th .btn {
+        /*width: 25%;*/
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        .glyphicon {
+            @extend .icon;
+        }
+
+        .glyphicon-chevron-left {
+            @extend .ups-icon-chevronleft;
+            //@extend .ups-application_wrapper .ups-icon-chevronleft;
+            @extend [class^="ups-icon-"]:before, [class*=" ups-icon-"];
+        }
+
+        .glyphicon-chevron-right {
+            @extend .ups-icon-chevronright;
+            //@extend .ups-application_wrapper .ups-icon-chevronleft;
+            @extend [class^="ups-icon-"]:before, [class*=" ups-icon-"];
+        }
+    }
+
+    .btn-info.active, .uib-datepicker-current {
+        color: black;
+    }
+
+    //New Code for TFS 451925: Update Global Datepicker Styling
+    @media #{$media-small} {
+        .btn {
+            padding: 12px 29px;
+        }
+        .uib-button-bar {
+            padding:10px 15px 0;
+        }
+    }
+    @media #{$media-small-sm} {
+        .btn {
+            padding: 12px 12px;
+        }
+        .uib-button-bar {
+            padding:10px 15px 0;
+        }
+    }
+    // Old code
+    // @media #{$media-small} {
+    //     .btn {
+    //         padding: 12px 12px;
+    //     }
+    //     .uib-button-bar {
+    //         padding:10px 15px 0;
+    //     }
+    // }
+
+    button.btn.btn-default.btn-sm.btn-info.active {
+        background-color: $ups_gold !important;
+        color: black;
+
+        &:hover, &:active:focus {
+            color: black;
+        }
+    }
+    .btn-info {
+        background-color: $ups_gold !important;
+        color: $black;
+
+        &:hover, &:active:focus {
+            color: $black;
+        }
+    }
+
+    .btn.btn-danger, .btn.btn-success {
+        background-color: $water_s3;
+
+        &:hover, &:active:focus {
+            background-color: $water_s3;
+        }
+    }
+
+    .ups-checkbox_button_wrap {
+        //padding: 0 20px;
+        padding: 0 7px;
+        .ups-checkbox_button {
+            width:33.33333%;
+            display: inline-block;
+            margin-#{$default-float}: 8.33333%;
+            @media #{$media-medium} {
+                width: auto;
+                display: block;
+                margin-#{$default-float}: auto;
+                padding: inherit;
+            }
+            .ups-checkbox-custom-label {
+                margin: 2px 0;
+            }
+
+        }
+
+    }
+
+    .uib-datepicker-popup.dropdown-menu {
+        top: 40px;
+        left: 0px;
+    }
+
+
+}
+
+/*********************TFS348929***********************/
+/*********************Date Picker*********************/
+/*****************************************************/
+.ups-datepicker_inline {
+
+	.uib-day {
+		position: relative;
+		border: 1px solid $ups_brown;
+		border-top: none;
+		vertical-align: middle;
+	}
+
+	.uib-daypicker {
+		width: 100%;
+	}
+
+	.uib-daypicker thead tr:nth-child(2) th {
+		border: 1px solid $ups_brown;
+		background-color: $stone_60;
+		padding: 12px 20px 10px;
+		text-transform: uppercase;
+	}
+
+	.uib-daypicker .btn.btn-default, .no-touch .btn.btn-default:hover, .btn-default.btn-sm.uib-title {
+		padding: 24px 45px 20px;
+		text-decoration: none;
+	}
+
+	@media #{$media-small-sm} {
+
+		.uib-daypicker .uib-day .btn.btn-default, .no-touch .btn.btn-default:hover, .btn-default.btn-sm.uib-title {
+			padding: 10px 5px;
+		}
+
+		.uib-daypicker thead tr:nth-child(2) th {
+			padding: 0;
+		}
+
+		.uib-daypicker .btn {
+			padding: 10px 5px !important;
+		}
+
+	}
+
+	@media #{$media-medium} {
+
+		.uib-daypicker .btn.btn-default, .no-touch .btn.btn-default:hover, .btn-default.btn-sm.uib-title {
+			padding: 12px 20px 10px;
+		}
+
+	}
+
+	@media #{$not-mobile_or_tablet} {
+		.btn.btn-default, .no-touch .btn.btn-default:hover, .btn-default.btn-sm.uib-title {
+			padding: 24px 45px 20px;
+		}
+	}
+
+	 .glyphicon {
+            @extend .icon;
+        }
+
+        .glyphicon-chevron-left {
+            @extend .ups-icon-chevronleft;
+            //@extend .ups-application_wrapper .ups-icon-chevronleft;
+            @extend [class^="ups-icon-"]:before, [class*=" ups-icon-"];
+        }
+
+        .glyphicon-chevron-right {
+            @extend .ups-icon-chevronright;
+            //@extend .ups-application_wrapper .ups-icon-chevronleft;
+            @extend [class^="ups-icon-"]:before, [class*=" ups-icon-"];
+        }
+
+    button.btn.btn-default.btn-sm.btn-info {
+        background-color: $ups-gold !important;
+
+        &.active {
+            outline: 5px auto $ups-gold;
+        }
+    }
+
+    button.btn.btn-default.btn-sm.active {
+        outline: 5px auto $ups-gold;
+    }
+}

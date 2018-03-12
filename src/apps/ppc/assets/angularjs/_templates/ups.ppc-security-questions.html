@@ -1,0 +1,77 @@
+<div data-ng-controller="securityCtrl">
+	<!-- //// begin ups.ppc-security-questions //// -->
+    <!-- SECIURITY CONTENT -->
+	<form>
+        <div data-ng-if="option == 0">
+            <p>Help us keep your information secure. Add another
+                layer of protection by answering a few questions.</p>
+            <div class="ups-form_ctaGroup">
+                <button type="submit" 
+                    class="ups-cta ups-cta_primary"
+                    data-ng-click="proceedToAdd()">Add Security Questions</button>
+            </div>
+        </div>
+        <div class="ups-security_Questions" data-ng-if="option == 1">
+           <p>These answers help us verify your identity and keep your information secure.</p>
+    
+           <div class="ups-form_group">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify id="ups-terms_checkbox"
+                        class="ups-checkbox-custom" 
+                        data-ng-init="UseSecurity=true"
+                        name="ups-terms_checkbox" 
+                        value="1" 
+                        type="checkbox"
+                        data-ng-model="UseSecurity" 
+                        data-ng-checked="UseSecurity">
+                    <label for="ups-terms_checkbox"
+                        class="ups-form_label ups-checkbox-custom-label ups-security_Questions">
+                        Use these questions as an added layer of protection for my personal information. </label>
+                </div>
+                <!-- ups-checkbox ups-input_wrapper -->
+            </div>
+           <!-- ups-form_group ups-form_required -->
+           <div class="ups-form_ctaGroup">
+                <button type="submit" 
+                    class="ups-cta ups-cta_primary"
+                    data-dismiss="modal" 
+                    data-ng-click="checkPassword()">Edit</button>
+                <!--<button type="submit" 
+                    class="ups-cta ups-cta_secondary"
+                    data-dismiss="modal" 
+                    data-ng-click="reset()">Reset</button>-->
+            </div>
+         </div>   
+         <!-- 7601 v1.08, readded message if unable to add security questions -->
+		 <div class="ups-invalid_color ups-group" data-ng-if="option == 2" >
+			<p>You are not able to edit security questions at this time. Please try again later.</p>
+		 </div>
+     </form>
+        
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons in production. 									  --
+    --																			  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+        <div class="ups-form_ctaGroup">
+            <button class="ups-cta ups-cta_secondary" ng-click="option = 0">Default Message</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="option = 1">Message after adding questions</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="option = 2">Not able to edit</button>
+        </div>
+    </div>
+    
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons in production. 									  --
+    --																			  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    </div>
+	<!-- //// end ups.ppc-security-questions //// -->
+</div>

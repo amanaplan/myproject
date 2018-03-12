@@ -1,0 +1,47 @@
+<div data-page-title="Edit account {{ payementNickName }}">
+<!--Warning: {{ payementNickName }} does not escape any html when read and pasted in the title.-->
+	<!--Previous Link Starts-->
+	<a point-focus="" href="#/paymentPage" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Payment Options
+	</a>
+	<p><strong>You are not authorized to make or request changes for this account.  Please talk to the account owner if you need additional privileges.</strong></p>
+	<!--Previous Link Ends-->
+	<div class="ups-accordion_list">
+	<div class="ups-accordion_wrapper"
+		data-ng-controller="editAccountCtrl">
+		<div class="ups-accordion_content">
+		<uib-accordion close-others="oneAtATime"> <uib-accordion-group
+			data-ng-repeat="group in groups"
+			template-url="/app_assets/templates/ups.accordion.group.html"
+			is-open="group.active">
+			<uib-accordion-heading>
+			{{group.title}}
+			<span class="icon" aria-hidden="true"
+			data-ng-class="{'ups-icon-minus ups-active': group.active, 'ups-icon-plus': !group.active}"></span>
+			<span class="ups-readerTxt" ng-if="group.active">collapse</span>
+			<span class="ups-readerTxt" ng-if="!group.active">expand</span>
+			</uib-accordion-heading>
+		<div data-ng-include="group.content"></div>
+		</uib-accordion-group> </uib-accordion>
+		</div>
+		<modal value="modalValues"
+			class="ups-wrap ups-application_wrapper ups-app_onboarding ups-form_wrap"
+			visible="showPaperlessInvoice"> </modal>
+	</div>
+	</div>
+     <!------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--	Remove these buttons in production. 									  --
+--																			  --
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+        <button class="ups-cta ups-cta_secondary" ng-click="readOnly = false">Edit Mode</button>
+        <button class="ups-cta ups-cta_secondary" ng-click="readOnly = true">Read Only Mode</button>
+    </div>
+    <!------------------------------------------------------------------------------
+------------------------------------------------------------------------------->
+</div>

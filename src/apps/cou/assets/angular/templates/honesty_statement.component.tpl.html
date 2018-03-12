@@ -1,0 +1,63 @@
+<div class="ups-wrap" [pageTitle]="'Honesty statement'">
+    <div class="ups-wrap_inner">
+        <form [formGroup]="honestyStatementForm" novalidate>
+            <div *ngIf="(!honestyStatementForm.valid && submitBtnClicked)"
+                #errorList>
+                <h3 class="ups-invalid_color-list ups-error_alert-list">
+                    <span aria-hidden="true" class="icon ups-icon-exclamation"></span>
+                    Please correct the following errors
+                </h3>
+                <ul class="ups-icons-error">
+                    <li *ngIf="!honestyStatementForm.controls['claimHonestyStatementAgreement'].valid">
+                        <!-- [pointIdClick] directive path: common/apps/assets/angular/point_id_click.ts -->
+                        <a class="ups-invalid_color" href="#claimHonestyStatementAgreement" pointIdClick>Agreement to honesty statement is required.</a>
+                    </li>
+                </ul>
+            </div>
+
+            <p>
+                [Instructions to the use indicating that he should read and agree to the terms of this statement in order to continue with the claims submission process.]
+            </p>
+
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+
+            <div class="ups-form_group ups-form_required">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input type="checkbox"
+                        class="ups-checkbox-custom"
+                        id="claimHonestyStatementAgreement"
+                        name="claimHonestyStatementAgreement"
+                        value="1"
+                        required
+                        aria-required="true"
+                        aria-describedby="claimHonestyStatementAgreement_error"
+                        formControlName="claimHonestyStatementAgreement"
+                        [ngClass]="{'ups-bodError' : !honestyStatementForm.controls['claimHonestyStatementAgreement'].valid && honestyStatementForm.controls['claimHonestyStatementAgreement'].touched}">
+                    <label class="ups-checkbox-custom-label" for="claimHonestyStatementAgreement">
+                        By Selecting this box, I certify that the information provided in this submission for Claim Payment and all communications related to this Request, including but not limit to statements as to the actual content and value of items that have been lost or damaged, are true and accurate to the best of my knowledge, and that this Request have been submitted in good faith.
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </label>
+                    <span class="ups-icons-error" id="claimHonestyStatementAgreement_error" role="alert">
+                        <span class="ups-invalid_color" *ngIf="(!honestyStatementForm.controls['claimHonestyStatementAgreement'].valid && honestyStatementForm.controls['claimHonestyStatementAgreement'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span>Agreement to honesty statement is required.</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="ups-form_ctaGroup">
+                <button type="button" class="ups-cta ups-cta_primary" (click)="submitForm()">Submit</button>
+                <button type="button" class="ups-cta ups-cta_tertiary">Agree and Continue</button>
+                <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

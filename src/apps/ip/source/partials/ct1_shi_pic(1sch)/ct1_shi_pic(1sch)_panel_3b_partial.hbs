@@ -1,0 +1,562 @@
+
+<div class="secLvl step"> 
+  
+  <!-- Begin Header Bar -->
+  <div class="secHead clearfix">
+    <div class="stepNumberDiv"> <span class="stepNumber">3</span> </div>
+    <h3>service and {package/pallet} information</h3>
+  </div>
+  <!-- End Header Bar --> 
+  
+  <!-- Begin Section Body -->
+  <div class="secBody clearfix"> {{#if service_package_pallet.default}}
+    <p>Select the number of packages in your pickup, as well as the UPS Services indicated by your UPS Shipping Labels.</p>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="ups-form_group">
+          <label for="state" class="ups-form_label">Package(s) in Your Pickup </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="state" class="ups-dropdown" id="state">
+              <option value="most_recent">1</option>
+              <option value="option_1">Option 1</option>
+              <option value="option_2">Option 2</option>
+              <option value="option_3">Option 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-5">
+        <p>UPS Services In Your Pickup</p>
+        <div class="ups-group" id="">
+          <button type="button" id="" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span class="icon ups-icon-wedgedown"></span>UPS Domestic Services</button>
+        </div>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="ups-group ups-no_label" id="">
+          <button type="button" id="" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span class="icon ups-icon-wedgedown"></span>UPS International Services</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <fieldset class="ups-form_group">
+          <legend class="ups-form_label">Does your pickup contain:</legend>
+          <p><strong>Items that weigh more than 70lbs.?</strong></p>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="yesOption" class="ups-radio-custom" name="moreThan70" value="1" type="radio">
+            <label for="yesOption" class="ups-radio-custom-label">Yes</label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="noOption" class="ups-radio-custom" name="moreThan70" value="2" type="radio">
+            <label for="noOption" class="ups-radio-custom-label">No</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="ups-form_group">
+      <div class="ups-checkbox ups-input_wrapper">
+        <input id="palletPickupRequest" class="ups-checkbox-custom" name="palletPickupRequest" type="checkbox">
+        <label for="palletPickupRequest" value="1" class="ups-checkbox-custom-label">This is a pallet pickup request</label>
+        <span class="indent"><a href="repl_href" class="btnlnkR helpIconR">What is a pallet</a></span>
+        </label>
+      </div>
+    </div>
+    {{/if}}
+    {{#if service_package_pallet.alt}} 
+    <!-- ------------------------------------------ --> 
+    <!-- Note: Right now, the code below is suspected to be apart of another state of this particular panel. While at this current moment, we don't know which state it belongs to, we found it still important to update the code to WEM standards --> 
+    <!-- ------------------------------------------ -->
+    <section class="panel panel-primary">
+      <div class="panel-heading">
+        <h4 class="panel-title">UPS Worldwide Express Freight<sup>&trade;</sup> Pallet Request</h4>
+      </div>
+      <div class="panel-body">
+        <p> <strong>Note:</strong> Pallet pickup requests are only valid with the ups Worldwide Express Freight<sup>&trade;</sup> service, and must be for international air freight shipments secured on pallets. </p>
+        <p> If yours isn't a UPS Worldwide Express Freight shipment, deselect the pallet pickup request checkbox to choose from other UPS services or package types. Review the <a href="repl_link" alt="repl_alt" class="ups-link">weight and size limits</a> for details on size limits for your shipment. </p>
+        <p> If you have a domestic ground/LTL freight shipment, you may <a href="repl_link" alt="repl_alt" class="ups-link">schedule a freight pickup</a> now. </p>
+      </div>
+    </section>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="ups-form_group">
+          <label for="packagesLabel" class="ups-form_label">Package(s) Label </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="packagesLabel" class="ups-dropdown" id="packagesLabel">
+              <option value="most_recent">1</option>
+              <option value="option_1">Option 1</option>
+              <option value="option_2">Option 2</option>
+              <option value="option_3">Option 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="ups-form_group ups-input_has_unit">
+          <label for="totalWeight" class="ups-form_label"> Total Weight Label </label>
+          <div class="ups-text_wrapper ups-input_wrapper">
+            <input type="text" name="totalWeight" class="ups-form_input" id="totalWeight">
+            <span class="ups-input_unit_measure">{lbs.}</span> </div>
+        </div>
+      </div>
+    </div>
+    <fieldset class="ups-form_group">
+      <legend class="ups-form_label"> UPS Services in Your Pickup </legend>
+      <div class="row">
+        <div class="col-xs-5">
+          <p>
+            <button type="button" class="ups-link ups-btn_has_icon"> UPS Domestic Collapsible Section <span class="icon ups-icon-wedgeup"></span> </button>
+          </p>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupServicesNextDayAirAM" class="ups-checkbox-custom" name="pickupServicesNextDayAirAM" value="1" type="checkbox">
+            <label for="pickupServicesNextDayAirAM" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air Early A.M.®</a></label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupServicesNextDayAir" class="ups-checkbox-custom" name="pickupServicesNextDayAir" value="1" type="checkbox">
+            <label for="pickupServicesNextDayAir" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air®</a></label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupServicesNextDayAirSaver" class="ups-checkbox-custom" name="pickupServicesNextDayAirSaver" value="1" type="checkbox">
+            <label for="pickupServicesNextDayAirSaver" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air Saver®</a></label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupServices2ndDayAm" class="ups-checkbox-custom" name="pickupServices2ndDayAm" value="1" type="checkbox">
+            <label for="pickupServices2ndDayAm" class="ups-checkbox-custom-label"><a href="#">UPS 2nd Day Air A.M.®</a></label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupServices2ndDay" class="ups-checkbox-custom" name="pickupServices2ndDay" value="1" type="checkbox">
+            <label for="pickupServices2ndDay" class="ups-checkbox-custom-label"><a href="#">UPS 2nd Day Air®</a></label>
+          </div>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1">
+          <p>
+            <button type="button" class="ups-link ups-btn_has_icon"> UPS International Services <span class="icon ups-icon-wedgedown"></span> </button>
+          </p>
+          <p>
+            <button type="button" class="ups-link ups-btn_has_icon"> UPS EU Transborder Services <span class="icon ups-icon-wedgedown"></span> </button>
+          </p>
+          <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Preferred Unit of Measure Label</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="inchesPounds" class="ups-radio-custom" name="unitOfMeasure" value="1" type="radio">
+              <label for="inchesPounds" class="ups-radio-custom-label">inches/pounds</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="centimetersKilograms" class="ups-radio-custom" name="unitOfMeasure" value="1" type="radio">
+              <label for="centimetersKilograms" class="ups-radio-custom-label">centimeters/kilograms</label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </fieldset>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="ups-form_group">
+          <label for="packagesPalletsLabel" class="ups-form_label">{Packages}{Pallets} in Pickup </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="packagesPalletsLabel" class="ups-dropdown" id="packagesLabel">
+              <option value="most_recent">1</option>
+              <option value="option_1">Option 1</option>
+              <option value="option_2">Option 2</option>
+              <option value="option_3">Option 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="ups-form_group">
+          <label for="packagesPalletsLabel" class="ups-form_label"><a href="repl_href" class="btnlnkR helpIconR">Use the same values for all pallets?</a></label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="packagesPalletsLabel" class="ups-dropdown" id="packagesPalletsLabel">
+              <option value="most_recent">Yes</option>
+              <option value="option_1">No</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="ups-form_group ups-input_has_unit">
+          <label for="weightLabel" class="ups-form_label"> Weight Label </label>
+          <div class="ups-text_wrapper ups-input_wrapper">
+            <input type="text" name="weightLabel" class="ups-form_input" id="weightLabel">
+            <span class="ups-input_unit_measure">[unit]</span> </div>
+        </div>
+      </div>
+    </div>
+    <p>(For pallets, the value entered for Length must be greater than or equal to the width value.)</p>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="ups-form_group">
+          <div class="ups-checkbox ups-input_wrapper">
+            <input id="dangerousGoodsLabel" class="ups-checkbox-custom" name="dangerousGoodsLabel" type="checkbox">
+            <label for="dangerousGoodsLabel" value="1" class="ups-checkbox-custom-label">Dangerous Goods Label</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="ups-group">
+          <p><a href="repl_href" class="btnlnkR helpIconR">What's this?</a></p>
+        </div>
+      </div>
+    </div>
+    <p>Review the <a href="repl_href" class="btnlnkR helpIconR">raw wood guidelines</a> to see if they apply to your pallet. </p>
+    <p class="ups-form_label">Does your pickup contain:</p>
+    <div class="row">
+      <div class="col-xs-5">
+        <fieldset class="ups-form_group">
+          <legend class="ups-form_label"> Items that weight more than 70 lbs.? </legend>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupWeightMore70Yes" class="ups-radio-custom" name="pickupWeightMore70" value="1" type="radio">
+            <label for="pickupWeightMore70Yes" class="ups-radio-custom-label">Yes</label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupWeightMore70No" class="ups-radio-custom" name="pickupWeightMore70" value="1" type="radio">
+            <label for="pickupWeightMore70No" class="ups-radio-custom-label">No</label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-6 col-xs-offset-1">
+        <fieldset class="ups-form_group">
+          <legend class="ups-form_label"> <a href="repl_href" class="btnlnkR helpIconR">Only documents of no commercial value?</a> </legend>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupDocsCommercialValueYes" class="ups-radio-custom" name="pickupDocsCommercialValue" value="1" type="radio">
+            <label for="pickupDocsCommercialValueYes" class="ups-radio-custom-label">Yes</label>
+          </div>
+          <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupDocsCommercialValueNo" class="ups-radio-custom" name="pickupDocsCommercialValue" value="1" type="radio">
+            <label for="pickupDocsCommercialValueNo" class="ups-radio-custom-label">No</label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <section class="panel panel-primary">
+      <div class="panel-body">
+        <p>For assistance with pallet only shipment <a href="repl_href" class="btnlnkR helpIconR">Contact UPS</a></p>
+      </div>
+    </section>
+    <!-- ------------------------- --> 
+    <!-- Old Legacy Implementation --> 
+    <!-- ------------------------- --> 
+    
+    <!-- ////////////////////////////////////////////////////////////////// --> 
+    <!-- Begin Enter Pickup Information - w/Labels - No Return Labels --> 
+    <!--	<div class="group clearfix">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr class="odd">
+					<td><input id="" type="checkbox" value="repl_fvalue" name="repl_fname"></td>
+					<td><label class="sel" for="">This is a pallet pickup request</label></td>
+					<td><span style="inline:block;margin-left:50px;"><a href="repl_link" alt="repl_alt" class="btnlnkR helpIconR">What is a pallet</a></span></td>
+				</tr>
+			</table>
+			<div class="secLvl clearfix message sell" style="">
+				<fieldset>
+					<legend></legend>
+					<div class="secHead clearfix">
+						<h4>UPS Worldwide Express Freight<span style="font-size:12px;"><sup>TM</sup></span> Pallet Request</h4>
+					</div>
+					<div class="secbody">
+						<fieldset>
+							<legend></legend>
+							<p> <strong>Note:</strong> Pallet pickup requests are only valid with the ups Worldwide Express Freight <span style="font-size:10px;"><sup>TM</sup></span> service, and must be for international air freight shipments secured on pallets. </p>
+							<p> If yours isn't a UPS Worldwide Express Freight shipment, deselect the pallet pickup request checkbox to choose from other UPS services or package types. Review the <a href="repl_link" alt="repl_alt">weight and size limits</a> for details on size limits for your shipment. </p>
+							<p> If you have a domestic ground/LTL freight shipment, you may <a href="repl_link" alt="repl_alt">schedule a freight pickup</a> now. </p>
+						</fieldset>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<fieldset>
+			
+			<!-- Begin Interior Column 1 --
+			<div class="subcol9 marginBegin">
+				<dl role="presentation" >
+					<dt>
+						<label for="">package(s) label:</label>
+					</dt>
+					<dd>
+						<select name="repl_name" id="">
+							<option value="" selected>0</option>
+						</select>
+					</dd>
+				</dl>
+			</div>
+			<!-- End Interior Column 1 --> 
+    
+    <!-- Begin Interior Column 2 --
+			<div class="subcol9">
+				<dl role="presentation" >
+					<dt>
+						<label for="">total weight Label:</label>
+					</dt>
+					<dd>
+						<input name="repl_fname" type="text" value="" id="">
+						{lbs.} </dd>
+				</dl>
+			</div>
+			<!-- End Interior Column 2 --
+		</fieldset>
+		<fieldset>
+			<h4>ups services sub header:</h4>
+			<!-- Begin Interior Column 1 --
+			
+			<p><strong>Note:</strong> the ups service(s) alert message label.</p>
+			<div class="subcol9 marginBegin">
+				<dl role="presentation" >
+					<dt> 
+						<input name="" type="button" value="ups domestic collapsible section" class="btnlnkL minusMini group">
+					</dt>
+					<dd>
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr class="odd">
+								<td class="indent"><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+								<td><label for="" class="sel"><a href="repl_href">ups service&reg;</a></label></td>
+							</tr>
+							<tr>
+								<td class="indent"><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+								<td><label for="" class="sel"><a href="repl_href">ups service&reg;</a></label></td>
+							</tr>
+							<tr class="odd">
+								<td class="indent"><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+								<td><label for="" class="sel"><a href="repl_href">ups service&reg;</a></label></td>
+							</tr>
+							<tr>
+								<td class="indent"><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+								<td><label for="" class="sel"><a href="repl_href">ups service&reg;</a></label></td>
+							</tr>
+							<tr class="odd">
+								<td class="indent"><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+								<td><label for="" class="sel"><a href="repl_href">ups service&reg;</a></label></td>
+							</tr>
+						</table>
+					</dd>
+				</dl>
+			</div>
+			
+			<!-- End Interior Column 1 --> 
+    
+    <!-- Begin Interior Column 2 --
+			<div class="subcol9">
+				<dl role="presentation" >
+					<dt>
+						<input name="" type="button" value="ups international expandable section 1" class="btnlnkL plusMini">
+						<!--<input name="" type="button" value="Details Collapsible Section" class="btnlnkL collapseIcon group">--
+					</dt>
+					<dd> 
+						<!--<table border="0" cellpadding="0" cellspacing="0"  class="" style="display:none;">
+                                                    <tr class="odd">
+                                                        <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+                                                        <td><label for="" class="sel"><a href="repl_href">UPS Service&reg;</a></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+                                                        <td><label for="" class="sel"><a href="repl_href">UPS Service&reg;</a></label></td>
+                                                    </tr>
+                                                </table>--
+					</dd>
+					<dt>
+						<input name="" type="button" value="ups transborder expandable section 2" class="btnlnkL plusMini">
+						<!--<input name="" type="button" value="Details Collapsible Section" class="btnlnkL collapseIcon group">--
+					</dt>
+					<dd> 
+						<!--<table border="0" cellpadding="0" cellspacing="0"  class="" style="display:none;">
+                                                    <tr class="odd">
+                                                        <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+                                                        <td><label for="" class="sel"><a href="repl_href">UPS Service&reg;</a></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id=""></td>
+                                                        <td><label for="" class="sel"><a href="repl_href">UPS Service&reg;</a></label></td>
+                                                    </tr>
+                                                </table>--
+					</dd>
+				</dl>
+				
+				<!-- //////////////////////////////////////// --> 
+    <!-- Begin Pickup Modules - WW Freight (1304) --
+				<dl role="presentation" >
+					<dt>
+						<label for="repl_id">preferred unit of measure label</label>
+					</dt>
+					<dd>
+						<table border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="sel"><input type="radio" value="repl_value" name="repl_name" id="repl_id1" checked="checked"></td>
+								<td><label for="repl_id1" class="sel">inches / pounds</label></td>
+							</tr>
+							<tr>
+								<td class="sel"><input type="radio" value="repl_value" name="repl_name" id="repl_id2"></td>
+								<td><label for="repl_id2" class="sel">centimeters / kilograms</label></td>
+							</tr>
+						</table>
+					</dd>
+				</dl>
+				<!-- End Pickup Modules - WW Freight (1304) --> 
+    <!-- ////////////////////////////////////// --
+				
+			</div>
+			<!-- End Interior Column 2 --
+		</fieldset>
+		<div class="subcol9 marginBegin">
+			<dl role="presentation" >
+				<dt>
+					<label for="repl_id05">{packages}{pallets} in pickup:</label>
+				</dt>
+				<dd>
+					<select id="repl_id05" type="text">
+						<option selected="" value="repl_value05">1</option>
+					</select>
+				</dd>
+			</dl>
+		</div>
+		<div class="subcol9 marginEnd" style="display: block;" id="showPalletSizeOpt">
+			<dl role="presentation" >
+				<dt>
+					<label for=""><a class="btnlnkR helpIconR" href="">Use the same values for all pallets?</a></label>
+				</dt>
+				<dd>
+					<select id="exppickuppalletsize" name="palletSizeOpts">
+						<option selected="" value="0">Yes</option>
+						<option value="1">No</option>
+					</select>
+				</dd>
+			</dl>
+		</div>
+		<div class="clearfix"></div>
+		<div>
+			<dl role="presentation" >
+				<dt>
+					<label for="repl_id06">weight label:</label>
+				</dt>
+				<dd>
+					<input id="repl_id06" type="text" class="formcol3">
+					[unit label]{<img alt="repl_alt" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon">}</dd>
+			</dl>
+		</div>
+		<div class="group clearfix">
+			<div>
+				<label for=""><a href="" class="btnlnkR helpIconR">Dimensions input label</a></label>
+			</div>
+			<dl role="presentation" class="flexFirst group clearfix">
+				<dt>
+					<label for="repl_id07">Length:</label>
+				</dt>
+				<dd>
+					<input id="repl_id07" type="text" class="formcol3">
+					x</dd>
+			</dl>
+			<dl role="presentation" class="flexAfter group clearfix">
+				<dt>
+					<label for="repl_id08">Width:</label>
+				</dt>
+				<dd>
+					<input id="repl_id08" type="text" class="formcol3">
+					x</dd>
+			</dl>
+			<dl role="presentation" class="flexAfter group clearfix">
+				<dt>
+					<label for="repl_id09">Height:</label>
+				</dt>
+				<dd>
+					<input id="repl_id09" type="text" class="formcol3">
+					[unit label]<img alt="repl_alt" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"></dd>
+			</dl>
+			<div class="clear"></div>
+			<!-- ///////////////////////////////////////// --> 
+    <!-- Begin Pickup Modules - WW Freight (7203?) --
+			<div for="repl_id" class="reqTxtInst">(For pallets, the value entered for Length must be greater than or equal to the width value.)</div>
+			<!-- End Pickup Modules - WW Freight (7203?) --> 
+    <!-- /////////////////////////////////////// --
+		</div>
+		<div class="group clearfix">
+			<dl role="presentation" class="outHozFlex">
+				<dt>
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><input id="repl_id10" type="checkbox" value="repl_fvalue" name="repl_fname"></td>
+							<td><label class="sel" for="repl_id10">dangerous goods label</label></td>
+						</tr>
+					</table>
+				</dt>
+				<dd><a href="repl_href" class="btnlnkR helpIconR">what's this?</a></dd>
+			</dl>
+		</div>
+		<div class="clear"></div>
+		<div class="clearfix">
+			<p>Review the <a class="btnlnkR newWindowIconR" href="repl_href">raw wood guidlines</a> to see if they apply to your pallet.</p>
+		</div>
+		<fieldset>
+			<h4>does your pickup sub header:</h4>
+			
+			<!-- Begin Interior Column 1 --
+			<div class="subcol9 marginBegin">
+				<dl role="presentation" >
+					<dt>
+						<label>items that weigh question label?</label>
+					</dt>
+					<dd>
+						<input name="newName2" type="radio" value="repl_fvalue" id="">
+						<label for="" class="sel">Yes</label>
+					</dd>
+					<dd>
+						<input name="newName2" type="radio" value="repl_fvalue" id="" checked>
+						<label for="" class="sel">No</label>
+					</dd>
+				</dl>
+			</div>
+			<!-- End Interior Column 1 --> 
+    
+    <!-- Begin Interior Column 2 --
+			<div class="subcol9">
+				<dl role="presentation" >
+					<dt>
+						<label for="">documents question <a href="" class="btnlnkR helpIconR">term level help label</a>?</label>
+					</dt>
+					<dd>
+						<input name="newName3" type="radio" value="repl_fvalue" id="">
+						<label for="" class="sel">Yes</label>
+					</dd>
+					<dd>
+						<input name="newName3" type="radio" value="repl_fvalue" id="" checked>
+						<label for="" class="sel">No</label>
+					</dd>
+				</dl>
+			</div>
+			<!-- End Interior Column 2 --
+			
+		</fieldset>
+		
+		<!-- start JAN 11 ER RFC - Enter Pickup Information - w/Labels - Yes Shipping Labels --> 
+    <!-- start JAN 11 ER RFC - Enter Pickup Information - No Labels - Default - I will Pay ... checkbox NOT selected --> 
+    <!-- start JAN 11 ER RFC - Enter Pickup Information - No Default Account - No Labels --> 
+    <!-- start JAN 11 ER RFC - Enter Pickup Information - Daily/Scheduled - Acct Details Hidden - From Default --
+		<fieldset>
+			<div class="secLvl message clearfix">
+				<fieldset>
+					<!-- Begin Sub Header --> 
+    <!-- End Sub Header --> 
+    <!-- Begin Sub Body --> 
+    
+    <!-- begin UI CHANGE 11/17/2010 -- RFC 0000 --
+					<div class="secBody">
+						<p>for assistance with pallet only shipments <a href="" class="btnlnkR helpIconR">contact ups</a>.</p>
+					</div>
+					<!-- end UI CHANGE 11/17/2010 -- RFC 0000 --> 
+    
+    <!-- End Sub Body --> 
+    <!-- Begin Sub Footer --> 
+    <!-- End Sub Footer --
+				</fieldset>
+			</div>
+			<!-- stop JAN 11 ER RFC - Enter Pickup Information - w/Labels - Yes Shipping Labels --> 
+    <!-- stop JAN 11 ER RFC - Enter Pickup Information - No Labels - Default - I will Pay ... checkbox NOT selected --> 
+    <!-- stop JAN 11 ER RFC - Enter Pickup Information - No Default Account - No Labels --> 
+    <!-- stop JAN 11 ER RFC - Enter Pickup Information - Daily/Scheduled - Acct Details Hidden - From Default 
+			
+		</fieldset>--> 
+    {{/if}} </div>
+  <!-- End Section Body --> 
+  
+</div>

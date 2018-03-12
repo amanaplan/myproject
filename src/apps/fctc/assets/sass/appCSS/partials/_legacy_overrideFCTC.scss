@@ -1,0 +1,171 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_reskin";
+
+#main {
+	.stepModContent {
+		img[src="/img/icn_dia.gif"] {
+			margin-#{$default-float}: 0;
+		}
+		label[for="delivery_confirmation"] {
+			margin-bottom: 5px;
+		}
+		label[for="haz_materials"] {
+			white-space: nowrap;
+		}
+		input[type="text"] {
+			max-width: 220px;
+		}
+		.modMsg.blu {
+			margin: 0;
+		}
+	}
+	.stepModFixed4col {
+		width: 600px;
+	}
+	.btn-col4 {
+		margin: 5px;
+	}
+	table.dataTable {
+		td[nowrap="nowrap"] {
+			a {
+				&:before {
+					@include ups-iconFont("\e668");
+					display: inline-block;
+					top: 2px;
+					margin-#{$opposite-direction} : 4px;
+				}
+				img {
+					display: none;
+				}
+			}
+		}
+	}
+	table.tab th .head-col4 {
+		padding: 10px 10px 0px 10px !important;
+	}
+	form[name="fctcentryform"] {
+		table th, table td {
+			border-#{$opposite-direction}: 1px solid $black_s1;
+
+			th, td {
+				border-#{$opposite-direction}: none;
+			}
+		}
+	}
+	table.mod {
+		th {
+			a {
+				color: $black_s4;
+			}
+		}
+		tr:nth-of-type(2) {
+			td {
+				padding-top: 10px;
+			}
+		}
+	}
+	form[name="weightlimitform"] {
+		.stepModFlex {
+			.dataTable {
+				td {
+					background-color: $white;
+					border: none;
+				}
+			}
+		}
+	}
+
+	form[name="timeandcostform"] {
+		.flexFirst, .flexAfter {
+			float: none;
+			width: 100%;
+		}
+	}
+.dataTable:not(.sel) tbody:first-child tr:nth-child(1) th:last-child label{
+	border-#{$opposite-direction}:none;
+}
+}
+#main #DoAppAddExistingAccountDiv {
+    background-color: rgba(255,255,255, .5);
+}
+
+#airFreightAccountNumber-error .ups-invalid_color,#air-freight-nickname-error .ups-invalid_color,#postal-code-error,#account-nickname-error,
+#account-nickname-error,#accountNumber-error{display:block}
+#main .stepModContent #airFreightAccountNumber-error .ups-invalid_color span ,
+#main .stepModContent #air-freight-nickname-error .ups-invalid_color span,
+#main .stepModContent #postal-code-error span, #main .stepModContent #account-nickname-error span
+
+,#main .stepModContent #accountNumber-error span,#main .stepModContent .ups-icons-error a.ups-invalid_color,
+.ups-invalid_color-list.ups-error_alert-list,.ups-invalid_color-list.ups-error_alert-list .ups-icon-exclamation:before
+{color:#c91a13!important}
+.ups-application_wrapper .ups-error_exclamation {#{$opposite-direction}: 78px; position: absolute;}
+.ups-application_wrapper .ups-error_alert-list .ups-icon-exclamation {top:auto!important}
+
+
+/***********************************
+************************************
+Begin Redesign CSS Edits for Jul 17
+************************************
+************************************/
+
+//h2 .ups-link_header { font-size: .65em; }
+
+//h3 .ups-link_header { font-size: .80em; }
+
+#main .secLvl .secHead {
+	margin: 0;
+}
+
+#main .secLvl:not(.cmsMsg) .secBody {
+	margin: 10px 0 0 0;
+}
+
+#main .appLvl .appFooter {
+    padding: 10px;
+}
+
+.clear {
+	margin-top: 10px;
+}
+
+/* TFS373917 */
+.table tbody tr td {
+	position: static;
+}
+
+#main .dataTable:not(.sel) tbody tr:last-child td {
+    border-bottom: 1px solid #351c15;
+}
+
+/* End for TFS373917 */
+
+/* TFS389368 */
+#main #subTab {
+    padding: 0; 
+}
+
+/* TFS395449 */
+
+input[type="text"] {
+		max-width: none;
+}
+
+/* Begin FCTC hack for required img remove after Jul 17 release */
+.ups-input_img_required img {
+	position: absolute;
+    left: 100%;
+    top: 10px;
+}
+
+/* End FCTC hack for required img remove after Jul 17 release */
+
+
+/* TFS 401210 */
+p.ups-remove_link_newwindow_padding {
+	padding: 0;
+}
+/***********************************
+************************************
+End Redesign CSS Edits for Jul 17
+************************************
+************************************/

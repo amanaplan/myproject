@@ -1,0 +1,1572 @@
+// Plugin: checkedReveal
+// ----------------------------------
+//.ups-reveal_content {
+//	display: none;
+//}
+
+
+// Plugin: Show/Hide Password
+// ----------------------------------
+/*.ups-show_password_wrapper, .ups-form_user_id {
+	.ups-form_input {
+		padding-#{$opposite-direction}: $margin_2;
+	}
+
+	.ups-icon-check {
+		position: absolute;
+		top: 10px;
+		//#{$default-float}: 66%;
+		//#{$default-float}: 90%;
+		right:10px;
+		display: none;
+
+		&:before {
+			color: $ups_grass;
+			font-size: 1.5em;
+		}
+
+		&.ups-active {
+			display: block;
+		}
+	}
+}
+.ups-show_password_wrapper {
+	.ups-show_password_link, .ups-hide_password_link {
+		display: none;
+
+		&.ups-active {
+			display: block;
+		}
+	}
+}*/
+
+// Plugin: _validateUserID, _validateUserPassword
+// ----------------------------------
+/*.ups-show_password_wrapper, .ups-form_user_id {
+	.ups-form_input {
+		padding-#{$opposite-direction}: $margin_2;
+	}
+
+	.ups-icon-check {
+		position: absolute;
+		top: 10px;
+		//#{$default-float}: 66%;
+		//#{$default-float}: 90%;
+		right:10px;
+		display: none;
+
+		&:before {
+			color: $ups_grass;
+			font-size: 1.5em;
+		}
+
+		&.ups-active {
+			display: block;
+		}
+	}
+}
+.ups-show_password_wrapper {
+	.ups-show_password_link, .ups-hide_password_link {
+		display: none;
+
+		&.ups-active {
+			display: block;
+		}
+	}
+}*/
+
+
+//Styles for slim accordion
+//-----------------------------------
+.ups-accordion_slim {
+	.ups-accordion_list {
+		margin: 0;
+	}
+
+	.ups-wrap {
+		padding: 0;
+	}
+
+	.ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_toggle {
+		padding: 12px 5px;
+	}
+}
+.ups-accordion_toggle_side {
+	.icon {
+		position: static !important;
+		right: auto !important;
+		top: auto !important;
+		margin: 4px 0 0 8px !important;
+	}
+}
+@if $text-direction == rtl {
+	.ups-accordion_toggle_side .icon {
+		margin: 4px 8px 0 0 !important;
+	}
+} @else {
+	.ups-accordion_toggle_side .icon {
+		margin: 4px 0 0 8px !important;
+	}
+}
+
+/***********************************************
+**                                            **
+**	Base Styles for UPS Lever/Toggle          **
+**                                            **
+***********************************************/
+@mixin switch-toggle() {
+	position: relative;
+  	display: block;
+    cursor: pointer;
+	font-size: $standard_font + 2px; //This standardizes Yes/No font-size over all tag types.
+	//font-family: $sans-bd;
+    font-family: $sans;
+
+	/*.ups-form_subheader, .ups-lever_subheader {
+		font-weight: normal;
+        font-family: $sans;
+	}*/
+}
+
+
+/***********************************************
+**                                            **
+**	UPS Lever                                 **
+**                                            **
+***********************************************/
+
+.ups-lever {
+	@include switch-toggle();
+
+	display: inline-block; // Changed to inline-block by Andrew on 3-15-17 [TFS: 327278]
+	/*width: 100%;*/ /* Removed by Andrew on 3-15-17 [TFS: 327278] */
+
+    label,
+	> span,
+    .ups-lever_label,
+    .ups-lever_switch {
+		/*line-height: 2em;*/
+		vertical-align: middle;
+	}
+
+
+	> span,
+    .ups-lever_switch {
+		display: block;
+		float: if($text-direction == ltr, left, right);
+		height: 30px;
+		width: 90px;
+		border: 3px solid $ups_stone;
+		background-color: $ups_stone;
+		border-radius: 20px;
+		margin-bottom: 5px;
+		position: relative;
+		overflow: hidden;
+		transition: border-color .2s, background-color .2s;
+        font-family: $sans-bd;
+
+		> span,
+        .ups-lever_switch_yes,
+        .ups-lever_switch_bg,
+        .ups-lever_switch_no {
+			display: inline-block;
+			width: 50%;
+			line-height: 2em;
+			color: $white;
+			float: #{$default-float};
+    		text-align: center;
+			position: relative;
+			transition: left .2s, right .2s;
+
+		}
+
+		> span:first-child,
+        .ups-lever_switch_yes {
+			#{$default-float}: -66%;
+            color: white;
+		}
+
+		> span:last-child,
+        .ups-lever_switch_no {
+			#{$opposite-direction}: 8%;
+            color: black;
+		}
+
+		.switch-bg,
+        .ups-lever_switch_bg {
+			/*display: none;*/
+			width: 32%;
+			position: absolute;
+			#{$default-float}: 0;
+			top: 0;
+		 	bottom: 0;
+    		border-radius: 24px;
+			transition: left .2s, right .2s;
+		}
+	}
+
+	input,
+    .ups-lever_checkbox {
+		position: absolute;
+		opacity: 0;
+
+		&:checked ~ span,
+        &:checked ~ .ups-lever_switch {
+			border-color: $water_s3;
+			background-color: $water_s3;
+		}
+
+		&:checked ~ span .switch-bg,
+        &:checked ~ .ups-lever_switch .ups-lever_switch_bg {
+			#{$default-float}: 67%;
+		}
+
+		&:checked ~ span > span:first-child,
+        &:checked ~ .ups-lever_switch .ups-lever_switch_yes {
+			#{$default-float}: 5%;
+		}
+
+		&:checked ~ span > span:last-child,
+        &:checked ~ .ups-lever_switch .ups-lever_switch_no {
+			#{$opposite-direction}: -66%;
+		}
+
+		&:focus ~ span, &:active ~ span,
+        &:focus ~ .ups-lever_switch, &:active ~ .ups-lever_switch {
+			outline: 5px auto $ups-gold;
+
+            .ie9, .ie10, .ie11 & {
+                outline: 1px solid $ups-gold;
+            }
+
+            @at-root {
+                @-moz-document url-prefix() {
+                    & {
+                        outline: 1px auto $ups-gold;
+                    }
+                }
+            }
+		}
+	}
+
+	.ups-help_link {
+		font-weight: normal;
+	}
+
+	.switch-bg,
+    .ups-lever_switch_bg {
+		background-color: $white;
+
+	}
+
+	.ups-lever_rlabel {
+		margin-#{$default-float}: 135px;
+	}
+
+	p {
+		font-weight: normal;
+	}
+
+	// .ups-form_subheader {
+	// 	clear: left;
+	// 	position: relative;
+	// 	top: 10px;
+	// 	margin-left: -135px;
+	// }
+
+
+	.ups-form_subheader {
+		clear: none;
+		top: 0;
+		margin-#{$default-float}: 0;
+	}
+
+    .ups-form_label, .ups-lever_label {
+        font-family: $sans-bd;
+    }
+
+
+
+
+	/*.ups-lever_rlabel + span {
+		float: left;
+	}*/
+
+
+	/*&:hover .switch-bg {
+		background-color: darken($water_s3, 5%);
+	}
+
+	> span {
+		position: relative;
+		overflow: hidden;
+		display: block;
+		min-height: 2em;
+		padding: 0;
+
+		text-align: left;
+		border: 1px solid silver;
+		background-color: $white;
+		border-radius: 25px;
+		overflow: visible;
+		line-height: 45px;
+		height: 45px;
+
+		> span {
+			position: relative;
+			z-index: 2;
+			display: block;
+			float: left;
+			width: 50%;
+
+			text-align: center;
+
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+
+			height: 45px;
+			transition: color .2s, right .2s, border-radius .2s;
+
+			&:first-child {
+				color:white;
+			}
+
+			&:nth-child(2) {
+				color: black;
+			}
+		}
+	}
+
+	.switch-bg {
+		right: 50%;
+		width: 50%;
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		z-index: 3;
+
+		&:checked ~ span .switch-bg {
+			right: 0%;
+		}
+
+		&:checked ~ span > span:first-child {
+			color: black;
+		}
+
+		&:checked ~ span > span:nth-child(2) {
+			color: white;
+		}
+
+
+
+		~ span .switch-bg {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			border-top-left-radius: 24px;
+			border-bottom-left-radius: 24px;
+			box-shadow: 1px 0 2px rgba(0,0,0,.4);
+		}
+
+		&:checked ~ span .switch-bg {
+			border-top-right-radius: 24px;
+			border-bottom-right-radius: 24px;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			box-shadow: -1px 0 2px rgba(0,0,0,.4);
+		}
+	}
+
+	strong {
+		font-weight: inherit;
+	} */
+}
+
+/***********************************************
+**                                            **
+**	UPS Toggle                                **
+**                                            **
+***********************************************/
+.ups-toggle_fieldset {
+	position: relative;
+}
+
+.ups-toggle {
+	@include switch-toggle();
+
+	/* For callout panels in foundation
+	*/
+	padding: 0 !important;
+	border: 1px solid $ups_stone;
+	border-radius: 25px;
+    background-color: $white;
+    display: table;
+    width: 100%;
+
+    label,
+	> span,
+    .ups-toggle_radio_label {
+		/*line-height: 2em;*/
+		vertical-align: middle;
+	}
+
+	&:after {
+		clear: both;
+		content: " ";
+		display: table;
+	}
+
+	&:hover {
+		background-color: darken($white, 5%);
+
+        &.ups-toggle_disabled {
+            background: $white;
+        }
+
+	}
+
+    .ups-form_label, .ups-toggle_label {
+        font-family: $sans-bd;
+    }
+
+	.switch-bg, .ups-toggle_switch_bg {
+		#{$default-float}: 0;
+		width: 10px;
+		box-shadow: 1px 0 2px rgba(0,0,0,.4), -1px 0 2px rgba(0,0,0,.4);
+        font-family: $sans-bd;
+	}
+
+	.switch-bg,
+    .ups-toggle_switch_bg {
+		position: absolute;
+		top: 0;
+		padding: 0;
+		z-index: 1;
+		display:block;
+		height: 100%;
+		background-color: $water_s3;
+		transition: right .2s, border-radius .2s, left .2s;
+	}
+
+	input,
+    .ups-toggle_radio {
+		position: absolute;
+		#{$default-float}: 0;
+		opacity: 0;
+
+		+ label,
+        + .ups-toggle_radio_label {
+			position: relative;
+			z-index: 2;
+			display: block;
+			/*float: left;*/
+			padding: 0 8px;
+			margin: 0;
+			text-align: center;
+            cursor: pointer;
+            display: table-cell;
+		}
+	}
+
+	input[type=radio],
+    .ups-toggle_radio {
+		&:focus, &:active {
+			~ .switch-bg,
+            ~ .ups-toggle_switch_bg {
+                outline: 5px auto $ups-gold;
+
+                .ie9, .ie10, .ie11 & {
+                    outline: 1px solid $ups-gold;
+                }
+
+                @at-root {
+                    @-moz-document url-prefix() {
+                        & {
+                            outline: 1px auto $ups-gold;
+                        }
+                    }
+                }
+			}
+
+			~ label,
+            ~ .ups-toggle_radio_label {
+				outline: none;
+			}
+		}
+
+		&:checked {
+			~ .switch-bg,
+            ~ .ups-toggle_switch_bg {
+				border-radius: 3px;
+			}
+
+			+ label,
+            + .ups-toggle_radio_label {
+				color: $white;
+			}
+		}
+
+        &:disabled {
+			~ .switch-bg,
+            ~ .ups-toggle_switch_bg {
+				border-radius: 3px;
+                background-color: $stone_60;
+			}
+
+			+ label,
+            + .ups-toggle_radio_label {
+				color: $black_s1;
+                cursor: not-allowed;
+			}
+		}
+
+		&:first-of-type:checked ~ .switch-bg,
+        &:first-of-type:checked ~ .ups-toggle_switch_bg {
+			border-top-#{$opposite-direction}-radius: 3px;
+			border-bottom-#{$opposite-direction}-radius: 3px;
+			border-top-#{$default-float}-radius: 24px;
+			border-bottom-#{$default-float}-radius: 24px;
+			box-shadow: 1px 0 2px rgba(0,0,0,.4);
+		}
+
+		&:last-of-type:checked ~ .switch-bg,
+        &:last-of-type:checked ~ .ups-toggle_switch_bg {
+			border-top-#{$opposite-direction}-radius: 24px;
+			border-bottom-#{$opposite-direction}-radius: 24px;
+			border-top-#{$default-float}-radius: 3px;
+			border-bottom-#{$default-float}-radius: 3px;
+			box-shadow: -1px 0 2px rgba(0,0,0,.4);
+		}
+	}
+
+	label,
+    .ups-toggle_radio_label {
+		padding: 10px 2px 7px 2px !important;
+		transition: color .2s;
+		height: 35px;
+	}
+
+    /* 3 Items */
+    label:nth-child(2):nth-last-child(4),
+	label:nth-child(2):nth-last-child(4) ~ label,
+	label:nth-child(2):nth-last-child(4) ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(4),
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(4) ~ .ups-toggle_radio_label,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(4) ~ .ups-toggle_switch_bg {
+        width: 50%;
+    }
+
+    label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(4) ~ .ups-toggle_radio:checked:nth-child(3) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 50%;
+    }
+
+	label:nth-child(2):nth-last-child(6),
+	label:nth-child(2):nth-last-child(6) ~ label,
+    label:nth-child(2):nth-last-child(6) ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(6),
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(6) ~ .ups-toggle_radio_label,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(6) ~ .ups-toggle_switch_bg {
+        width: 33.33%;
+    }
+
+    label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(3) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(6) ~ .ups-toggle_radio:checked:nth-child(3) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 33.33%;
+    }
+
+    label:nth-child(2):nth-last-child(6) ~ input:checked:nth-child(5) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(6) ~ .ups-toggle_radio:checked:nth-child(5) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 66.66%;
+    }
+
+    /* 4 Items */
+	label:nth-child(2):nth-last-child(8),
+	label:nth-child(2):nth-last-child(8) ~ label,
+    label:nth-child(2):nth-last-child(8) ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8),
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8) ~ .ups-toggle_radio_label,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8) ~ .ups-toggle_switch_bg {
+        width: 25%;
+    }
+
+    label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(3) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8) ~ .ups-toggle_radio:checked:nth-child(3) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 25%;
+    }
+
+    label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(5) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8) ~ .ups-toggle_radio:checked:nth-child(5) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 50%;
+    }
+
+    label:nth-child(2):nth-last-child(8) ~ input:checked:nth-child(7) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(8) ~ .ups-toggle_radio:checked:nth-child(7) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 75%;
+    }
+
+    /* 5 Items */
+	label:nth-child(2):nth-last-child(10),
+	label:nth-child(2):nth-last-child(10) ~ label,
+    label:nth-child(2):nth-last-child(10) ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10),
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_radio_label,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_switch_bg {
+        width: 20%;
+    }
+
+    label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(3) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_radio:checked:nth-child(3) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 20%;
+    }
+
+    label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(5) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_radio:checked:nth-child(5) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 40%;
+    }
+
+    label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(7) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_radio:checked:nth-child(7) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 60%;
+    }
+
+    label:nth-child(2):nth-last-child(10) ~ input:checked:nth-child(9) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(10) ~ .ups-toggle_radio:checked:nth-child(9) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 80%;
+    }
+
+    /* 6 Items */
+	label:nth-child(2):nth-last-child(12),
+	label:nth-child(2):nth-last-child(12) ~ label,
+    label:nth-child(2):nth-last-child(12) ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12),
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio_label,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_switch_bg {
+        width: 16.6%;
+    }
+
+    label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(3) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio:checked:nth-child(3) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 16.6%;
+    }
+
+    label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(5) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio:checked:nth-child(5) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 33.2%;
+    }
+
+    label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(7) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio:checked:nth-child(7) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 49.8%;
+    }
+
+    label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(9) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio:checked:nth-child(9) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 66.4%;
+    }
+
+    label:nth-child(2):nth-last-child(12) ~ input:checked:nth-child(11) + label ~ .switch-bg,
+    .ups-toggle_radio_label:nth-child(2):nth-last-child(12) ~ .ups-toggle_radio:checked:nth-child(11) + .ups-toggle_radio_label ~ .ups-toggle_switch_bg {
+        #{$default-float}: 83%;
+    }
+}
+
+
+/***********************************************
+**                                            **
+**	UPS Inputs, Toggle & Switch Help Btns     **
+**                                            **
+***********************************************/
+
+.ups-help_wrapper {
+
+	.ups-form_label {
+		padding-#{$opposite-direction}: 85px; //set to 85 because Help in Bulgarian is 85px long
+	}
+
+    .ups-lever, {
+        margin-#{$opposite-direction}: 85px; //set to 85 because Help in Bulgarian is 85px long
+    }
+
+    .ups-toggle_fieldset .ups-form_label {
+        padding-#{$opposite-direction}: 85px; //set to 85 because Help in Bulgarian is 85px long
+    }
+}
+
+.ups-input_has_unit.ups-help_wrapper {
+
+	.ups-form_label {
+		padding-#{$opposite-direction}: 135px; //set to 85 because Help in Bulgarian is 85px long + 50px for the unit
+	}
+}
+
+
+
+//Social icons block
+//-----------------------------------
+ul.ups-icon_list {
+	@include unlist;
+	padding-#{$default-float}: 0;
+	//border-bottom: 1px solid #bebebe;
+	//padding-bottom: 20px;
+	li {
+		padding: 0;
+	}
+	button {
+
+		background: none;
+		border: 0px;
+		line-height: 35px;
+    	margin-#{$default-float}: 35px;
+        // margin-top: $margin_4;
+		// margin-bottom: $margin_4;
+	}
+	a, span {
+		padding-#{$default-float}: 45px;
+		padding-#{$opposite-direction}: 20px;
+
+
+		position: relative;
+		display: block;
+		line-height: 1.5;
+		font-family: $sans-bd;
+
+		margin-top: $margin_4;
+		margin-bottom: $margin_4;
+
+		@media screen and (min-width: $screen-md){
+			margin: 0;
+		}
+		cursor: pointer;
+
+		&:before {
+			content: ' ';
+			background-image: url('/assets/resources/images/social.png');
+			width: 34px;
+			height: 34px;
+			position: absolute;
+			#{$default-float}: -35px;
+			@media #{ $highres }{
+				//background-size: 100%;
+			}
+		}
+		&.ups-icon-facebook:before {
+			background-position: 0 0;
+		}
+		&.ups-icon-linkedin:before {
+			background-position: 0 -40px;
+		}
+        &.ups-icon-twitter:before {
+			background-position: -39px -81px;
+		}
+		&.ups-icon-google {
+			width: 70px;
+			height: 36px;
+            //height: 20px;
+            //height: 35px;
+			position: relative;
+			top: -6px;
+			padding: 0px;
+			&:before {
+				background-position: -34px 0px;
+				width: 111px;
+				height: 45px;
+                // background-position: 0px -85px;
+				// width: 191px;
+				// height: 44px;
+			}
+		}
+		&.ups-icon-amazon:before {
+			background-position: 0 -120px;
+		}
+	}
+}
+
+
+//Fix for inline anchors inside app accordions
+//-----------------------------------
+.ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_expand a{
+	display: inline-block;
+	padding-top: 0;
+	padding-bottom: 0;
+    //Restores classic UI Padding for our CTA buttons that use the anchor link to navigate to URLs
+    //Made by Afftene for JIRA UPSO-2841
+    &.ups-cta.ups-cta_primary,.ups-cta.ups-cta_secondary,.ups-cta.ups-cta_tertiary {
+        padding:10px 30px 10px;
+    }
+}
+
+/***********************************************
+**                                            **
+**	UPS Section Styles                        **
+**                                            **
+***********************************************/
+@mixin ups-section-mixin() {
+    padding-bottom: $margin_5;
+    font-family: $serif;
+    font-size: 24px;
+}
+
+.ups-section {
+	margin-bottom: 30px;
+
+	&.ups-section_condensed p {
+		margin-bottom: 0;
+	}
+
+	.ups-section-header {
+		margin-bottom: 12px;
+		//border-bottom: 1px solid $ups_gold;
+		color: #333333;
+		line-height: 21px;
+		position: relative;
+
+		.ups-section_heading {
+			@include ups-section-mixin();
+
+            border-bottom: 1px solid $ups_gold;
+		}
+
+        .ups-subsection_heading {
+            @include ups-section-mixin();
+
+            border-bottom: 1px solid $black_s1;
+        }
+
+        .ups-section_heading, .ups-subsection_heading {
+            &.ups-section_heading_label {
+				font-family: $sans-bd;
+				font-weight: normal;
+				color: $black_s4;
+				font-size: 1em;
+				padding-bottom: 0;
+			}
+        }
+
+		.ups-form_label {
+			display:block;
+			&.ups-form_label_separator {
+			border-bottom: 1px solid $ups_stone;
+
+			}
+		}
+
+		/*h2 {
+			font-family: Georgia, Times, serif;
+			font-size: 24px;
+		}*/
+
+		&.no-border {
+			border-bottom: none;
+		}
+
+		/*h2, h3, h4, h5, h6 {
+			margin: 0;
+			margin-bottom: 4px;
+		}
+
+		.ups-cta {
+			padding: 0px;
+		}
+
+		.ups-cta.no-padding {
+			padding: 0;
+		}*/
+	}
+
+	h2, h3, h4, h5, h6 {
+		margin: 0 0 10px;
+	}
+}
+
+.ups-section .ups-section-header .ups-cta {
+	padding: 16px 30px 14px;
+	width: initial;
+	display: block;
+}
+
+.ups-section .ups-section-header .ups-help {
+	float: right;
+
+	.ups-help_link {
+		top: auto;
+		bottom: 2px;
+	}
+}
+
+/*.ups-section_heading {
+	font-size: 30px;
+}*/
+
+.modal {
+    .ups-section {
+		line-height: 1.5;
+	}
+}
+
+@media screen and (min-width: $screen-lg) {
+    .ups-section .ups-section-header .ups-cta {
+		padding: 0px;
+	}
+}
+/***********************************************
+**	End UPS Section Styles                    **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Progress Circle                       **
+**                                            **
+***********************************************/
+.ups-circle_progress {
+    margin-bottom: $margin_3;
+	text-align: center;
+	position: relative;
+
+    .ups-progress-bar-label {
+        display: inline-block;
+        top: 41%;
+        position: absolute;
+        #{$default-float}: 48%;
+        font-size: 2em;
+    }
+}
+
+
+/***********************************************
+**                                            **
+**	UPS Tile Button                           **
+**                                            **
+***********************************************/
+.ups-tile_button {
+	position: relative;
+
+	.ups-radio-custom {
+		position: absolute;
+		opacity: 0;
+	}
+
+	.ups-radio-custom:checked ~ .ups-tile_button_content {
+		background-color: $water_s3;
+		color: white;
+
+		.ups-form_label {
+			color: white;
+		}
+
+		.ups-tile_icon {
+			color: white;
+		}
+	}
+
+    .ups-radio-custom:focus ~ .ups-tile_button_content, .ups-radio-custom:active ~ .ups-tile_button_content {
+        outline: 5px auto $ups_gold;
+    }
+
+	.ups-tile_button_content {
+		padding: 15px;
+		text-align: center;
+		border-radius: 6px;
+		display: block;
+		border: 1px solid $black_s1;
+		cursor: pointer;
+		//min-height: 184px;
+		min-height: 100px;
+		margin-bottom: 10px;
+		word-break: break-word;
+
+		.ups-tile_icon {
+			/*background-color: $ups_sun;*/
+			padding: 10px 12px 0;
+			/*border-radius: 30px; */
+			font-size: 40px;
+			/*color: white;*/
+			display: inline-block;
+		}
+
+		.ups-tile_link {
+			display: block;
+			margin: 10px 0;
+		}
+
+		.ups-tile_description {
+			display: block;
+			font-weight: normal;
+		}
+
+		/*Spacing for tiles that utilizes images instead of icon code*/
+		.ups-tile_img_spacing {
+			margin-bottom: 13px;
+    		margin-top: 9px;
+		}
+		/*Spacing for tiles with multiple lines that utilizes images instead of icon code*/
+		.ups-tile-img_space_multi {
+			margin-top: 9px;
+   			margin-bottom: 21px;
+		}
+	}
+}
+
+/* 5 column tile - NBS Payment */
+
+.ups-centered_payment_tile {
+	float: none;
+	margin: 0 auto;
+	vertical-align: top;
+    display: inline-block;
+    width: 25%;
+    padding: 0 15px;
+}
+
+@media #{$media-small} {
+    .ups-centered_payment_tile {
+        width: 50%;
+    }
+}
+
+/***********************************************
+**	End UPS Tile Button                       **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Progress Bar                          **
+**                                            **
+***********************************************/
+.ups-progress_bar {
+	margin: 0 -60px;
+	background-color: $stone_60;
+	padding: 15px 0 0;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.ups-progress_bar_inner {
+	margin: 0 auto;
+	display: inline-block;
+
+	ul {
+		position: relative;
+		padding: 0;
+		padding-left: 5px; //has to remain left for ltr and rtl
+		margin-bottom: 0;
+
+		&:before {
+			content: " ";
+			position: absolute;
+			top: 12px;
+			left: 20px;
+			right: 20px;
+			bottom: 0;
+			margin: 0 auto;
+			border-top: 2px solid $black_s4;
+			z-index: 1;
+		}
+	}
+
+	ul li {
+		display: inline-block;
+		list-style: none;
+		margin-right: 5px; //has to remain right for ltr and rtl
+		text-align: center;
+		width: 45px;
+		min-height: 50px;
+		vertical-align: top;
+	}
+
+	.ups-progress_number {
+		display: inline-block;
+		padding: 2px 7px;
+		border-radius: 24px;
+		border: 2px solid $black_s4;
+		margin: 0 auto;
+		position: relative;
+		background-color: $stone_60;
+		z-index: 2;
+	}
+
+	.ups-progress_number a {
+		text-decoration: none;
+	}
+
+	.ups-progress_name {
+		position: relative;
+		z-index: 2;
+		margin-top: 9px;
+		display: none;
+	}
+
+	.ups-progress_number.ups-progress_current + .ups-progress_name {
+		display: block;
+		top: -7px;
+		@media #{$media-medium} {
+			white-space: nowrap;
+		}
+	}
+
+	.ups-progress_number span {
+		position: relative;
+		top: 2px;
+		font-size: 14px;
+	}
+
+	.ups-progress_number.ups-progress_complete {
+		padding: 1px 4px;
+		background-color: $water_s3;
+		border-color: $water_s3;
+	}
+
+	.ups-progress_number.ups-progress_complete span {
+		position: relative;
+		left: 0; //has to remain left for ltr and rtl
+	}
+
+	.ups-progress_number.ups-progress_current {
+		position: relative;
+		top: -4px;
+		padding: 6px 10px;
+		border-color: $ups_sun;
+		background-color: $ups_sun;
+	}
+
+	.ups-progress_number.ups-progress_current span {
+		font-weight: bold;
+	}
+
+	.ups-progress_number.ups-progress_complete span:before {
+		font-size: 14px;
+		font-weight: bold;
+		color: white;
+
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.ups-progress_bar_inner {
+		.ups-progress_name {
+			display: block;
+		}
+	}
+
+	.ups-progress_bar_inner ul {
+		padding-left: 25px; //has to remain left for ltr and rtl
+
+		&:before {
+			left: 50px;
+			right: 50px;
+		}
+
+		li {
+			margin-right: 25px; //has to remain right for ltr and rtl
+			min-width: 60px;
+			width: auto;
+		}
+	}
+}
+/***********************************************
+**	End UPS Progress Bar                      **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Carousel                              **
+**                                            **
+***********************************************/
+.ups-carousel_list {
+    @media screen and (min-width: #{$screen-md}){
+        margin-#{$opposite-direction}: -28px;
+    }
+
+    @media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md -1}) {
+        margin-#{$opposite-direction}: -15px;
+    }
+}
+
+.ups-profile-slider {
+    background: $white;
+    display: block;
+    min-height: 303px;
+    font-family: $sans;
+    color: $ups_brown;
+    padding: 15px;
+    border: 1px solid $stone_s3;
+    margin-#{$opposite-direction}: 30px;
+    cursor: pointer;
+
+    @media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md -1}) {
+        min-height: 420px;
+        margin-#{$opposite-direction}: 15px;
+    }
+
+	@media screen and #{$not-mobile_or_tablet} {
+		min-height: 218px;
+	}
+
+	@media screen and #{$media-medium} {
+		min-height: 218px;
+	}
+
+	@media screen and #{$media-mediumMid} {
+		min-height: 200px;
+	}
+
+	@media screen and #{$media-small} {
+		min-height: 160px;
+	}
+
+    /* Removed by Quest
+		@media screen and (max-width: #{$screen-sm - 2}){
+        margin-#{$opposite-direction}: 0;
+    } */
+
+    a {
+        text-decoration: none;
+    }
+
+    h3 {
+        margin: 0 auto 10px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+}
+.ups-carousel {
+    background: none;
+    margin: 0 0 100px;
+    border: none;
+    .slick-dots {
+        bottom: -50px;
+        width: 56%;
+        #{$default-float}: 22%;
+        #{$opposite-direction}: 22%;
+
+        button {
+            height: 14px;
+            margin: 0 5px;
+            width: 15px;
+        }
+
+        @media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md -1}) {
+            bottom: -12%;
+        }
+
+	}
+
+    .slick-next,
+    .slick-prev {
+        position: absolute;
+        bottom: -73px;
+        z-index: 2;
+        cursor: pointer;
+
+        .icon:before {
+            color: $black_s1;
+            text-indent: 0;
+            font-size: 22px; /* for IE */
+        }
+    }
+
+    .slick-next {
+        #{$opposite-direction}: 12%;
+
+		@media screen and #{$media-medium} {
+			#{$opposite-direction}: 12%;
+
+		}
+
+
+        @media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md -1}) {
+            #{$opposite-direction}: 12%;
+        }
+
+        @media screen and (max-width: #{$screen-sm - 2}){
+            #{$opposite-direction}: 5%;
+        }
+
+		@media screen and #{$not-mobile_or_tablet} {
+			#{$opposite-direction}: 33%;
+		}
+    }
+
+    .slick-prev {
+       #{$default-float}: 12%;
+
+		@media screen and #{$media-medium} {
+			#{$default-float}: 12%;
+
+		}
+
+        @media screen and (min-width: #{$screen-sm - 1}) and (max-width: #{$screen-md -1}) {
+            #{$default-float}: 12%;
+        }
+
+        @media screen and (max-width: #{$screen-sm - 2}){
+            #{$default-float}: 5%;
+        }
+
+		@media screen and #{$not-mobile_or_tablet} {
+			#{$default-float}: 33%;
+		}
+    }
+}
+
+.ups-carousel .slick-dots span {
+    height: 14px;
+    margin: 0 5px;
+    width: 15px;
+    display: inline-block;
+}
+
+.ups-carousel .slick-dots span {
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    height: 18px;
+    width: 18px;
+    border-radius: 18px;
+    border: 3px solid $black_s1;
+    background: $black_s1;
+    color: $black_s1;
+    font-size: 0.5em;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.ups-carousel .slick-dots li.slick-active span {
+    background: $ups_gold;
+    color: $ups_gold;
+}
+/***********************************************
+**	End UPS Carousel                          **
+***********************************************/
+
+/***********************************************
+**                                            **
+**	UPS Pickup Options Day Specific           **
+**                                            **
+***********************************************/
+
+	div.ups-pickupOptions_day_specific {
+    	margin: 0 0 20px 0;
+
+	label.ups-checkbox-custom-label {
+		border: 1px solid $ups_stone;
+		cursor: pointer;
+		position: relative;
+    	font-family: $sans;
+    	font-weight: normal;
+		padding-left: 0;
+		padding-top: 50px;
+    	width: 100%;
+		line-height: initial;
+		min-height: 120px;
+		margin: 0;
+	}
+
+	.ups-checkbox-custom + .ups-checkbox-custom-label:before {
+		display: none;
+	}
+
+	.ups-checkbox-custom {
+		margin: 0;
+	}
+
+	.ups-checkbox-custom:checked + .ups-checkbox-custom-label:after {
+		display: none;
+	}
+
+	.ups-checkbox-custom:checked + .ups-checkbox-custom-label  {
+		background-color: $water_s3;
+		color: $white;
+	}
+
+	.ups-checkbox-custom:focus + label, .ups-checkbox-custom:active + label {
+		outline: 5px auto $ups-gold;
+	}
+
+	@media #{$media-small} {
+		.ups-form_checkIcon {
+    		left: initial;
+    		top: initial;
+    		width: initial;
+		}
+
+	}
+ }
+/***********************************************
+**                                            **
+**	End UPS Pickup Options Day Specific       **
+**                                            **
+***********************************************/
+
+
+/***********************************************
+**                                            **
+**	UPS Toggle View                           **
+**                                            **
+***********************************************/
+.ups-toggle_view {
+	padding: 0 5px;
+
+	.ups-toggle_view_or {
+		display: inline-block;
+		/*margin: 0 10px;*/
+		width: 20%;
+		padding: 8px 0;
+	}
+
+	.ups-toggle_view_selection {
+		position: relative;
+		display: inline-block;
+		width: 40%;
+        vertical-align: top;
+
+        &.ups-toggle_view_selection_unavailable {
+            line-height: 35px;
+        }
+
+		.ups-radio-custom {
+			position: absolute;
+			opacity: 0;
+
+            &:focus ~ .ups-form_label {
+                outline: 5px auto $ups_gold;
+            }
+		}
+
+		.ups-form_label {
+			border: 1px solid $ups_stone;
+			padding: 8px;
+			border-radius: 5px;
+            cursor: pointer;
+		}
+
+		.ups-radio-custom:checked ~ .ups-form_label {
+			background-color: $water_s3;
+			color: white;
+		}
+	}
+}
+
+@mixin toggle_view_shared() {
+	content: "";
+    border-left: 15px solid $stone_40; //has to be left for RTL and LTR
+    border-top: 15px solid $stone_40;
+    border-right: 15px solid transparent; //has to be right for RTL and LTR
+    border-bottom: 15px solid transparent;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -15px;
+}
+
+.ups-toggle_view_state, .ups-toggle_box {
+	background-color: $stone_40;
+	padding: 10px;
+}
+
+.ups-toggle_box, .ups-toggle_view_right, .ups-toggle_view_left {
+	position: relative;
+	margin: 25px 0 30px;
+    .ups-form_ctaGroup {
+        margin-bottom: 0px;
+    }
+
+    /** {
+        position: relative;
+        z-index: 1;
+    }*/
+}
+
+.ups-toggle_view_right:before {
+	@include toggle_view_shared();
+
+    #{$opposite-direction}: 85px;
+}
+
+.ups-toggle_view_left:before {
+	@include toggle_view_shared();
+
+    #{$default-float}: 85px;
+}
+
+@media #{$media-small} {
+	/*.ups-toggle_view_right:before, .ups-toggle_view_left:before {
+		border: none;
+		transform: none;
+		position: static;
+		top: auto;
+		left: auto;
+		right: auto;
+	}*/
+
+    .ups-toggle_view_right:before {
+        #{$opposite-direction}: 80px;
+    }
+
+    .ups-toggle_view_left:before {
+        #{$default-float}: 80px;
+    }
+
+	.ups-toggle_view {
+		.ups-toggle_view_selection {
+			/*display: block;*/
+			width: 50%;
+            padding-right: 10px;
+
+            .ups-form_label {
+                min-height: 55px;
+            }
+		}
+
+        .ups-toggle_view_selection:last-child {
+            padding: 0;
+        }
+
+		.ups-toggle_view_or {
+			display: none;
+			/*width: 50%;*/
+		}
+	}
+}
+/***********************************************
+**	End Toggle View                           **
+***********************************************/
+/***********************************************
+**                                            **
+**	UPS Tile                                  **
+**                                            **
+***********************************************/
+.ups-tile {
+	background-color: #d9d9d6;
+    margin-bottom: 30px;
+    padding: 20px;
+    padding-bottom: 5px;
+    position: relative; //added rule to resolve TFS: 396890
+
+	.ups-tile_content {
+		//padding: 10px 50px 0 20px;
+		padding-#{$opposite-direction}: 50px;
+	}
+
+	.ups-tile_icon {
+		position: absolute;
+		color: black;
+		text-decoration: none;
+		font-size: 25px;
+		top: 15px;
+		right: 35px;
+	}
+}
+/***********************************************
+**	End UPS tile                              **
+***********************************************/

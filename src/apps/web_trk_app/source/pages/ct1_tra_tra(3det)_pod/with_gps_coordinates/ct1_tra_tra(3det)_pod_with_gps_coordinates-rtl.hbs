@@ -1,0 +1,59 @@
+---
+title: ct1_tra_tra(3det)_pod
+layout: legacy.hbs
+version: v4
+appID: com.ups.trackWeb
+appCSS: ups.legacy_overrideWebTrkApp
+dir: rtl
+lang: ar
+---
+
+<!-- *************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+	
+	{{>"ct1_tra_tra(3det)_pod_partial" ct1_tra_tra3det_pod.with_gps_coordinates}}
+
+<!------------- -- -------------->
+<!--   IC DEV Display Module   -->
+<!------------- -- --------------
+<script type="text/javascript">
+var htmlcobrand;
+$(document).ready(function(){
+	/* Prepend Control Box */
+	$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Track" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Tracking" class="btn"></div></div>');
+	/* Set default container and stylesheet to Internet Pickup */
+	$('.switchContainer').removeClass('ccacmpad1');
+	$('.switchContainer').attr('id', 'ccCntMod');
+	chooseStyle('Tracking', 60);
+	htmlcobrand = $('.cobrand').html();
+	$('.cobrand').remove();
+
+});
+/* function to switch views */
+function switchContainer(container) {
+	if(container == 'ccCntMod') {
+		$('.switchContainer').removeClass('ccacmpad1');
+		$('.switchContainer').attr('id', container);
+		chooseStyle('Tracking', 60);
+		$('.cobrand').remove();
+	}
+	if(container == 'ccacmpad1') {
+		$('.switchContainer').attr('id', '');
+		$('.switchContainer').addClass(container);
+		chooseStyle('Campus Track', 60);
+		$('.cobrand').remove();
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+	}
+}
+
+</script>-->
+<script type="text/javascript" src="assets/resources/scripts/legacy_app_ent/tracking/master.js"></script>
+<!------------- -- -------------->
+<!-- END IC DEV Display Module -->
+<!------------- -- -------------->
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->

@@ -1,0 +1,548 @@
+{{#unless spi_pallet_request }}
+    <!-- Default -->
+    <!-- ************************************** -->
+    <!-- REDESIGN EDIT: Start part of re-design -->
+    <!-- ************************************** -->
+    <!--<fieldset>
+        <div class="subcol9 marginBegin">
+            <dl role="presentation" >
+                <dt>
+                    <label for="repl_id">Packages(s) in Your Pickup:</label>
+                </dt>
+                <dd>
+                    <select name="repl_name" id="repl_id" class="formcol3">
+                        <option value="" selected>0</option>
+                    </select>
+                </dd>
+            </dl>
+        </div>
+        <div class="subcol9">
+            <dl role="presentation" >
+                <dt>
+                    <label for="repl_id">Total Weight of Your Pickup:</label>
+                </dt>
+                <dd>
+                    <input name="repl_fname" type="text" value="[0000]" id="repl_id">
+                    lbs. </dd>
+            </dl>
+        </div>
+    </fieldset>-->
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="ups-form_group">
+                <label for="pickupNumPackages" class="ups-form_label">
+                    Package(s) in your Pickup
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="pickupNumPackages"
+                        class="ups-dropdown"
+                        id="pickupNumPackages">
+                        <option value="1">
+                            1
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1">
+            <div class="ups-form_group ups-input_has_unit">
+                <label for="pickupTotalWeight" class="ups-form_label">
+                    Total Weight of Your Pickup
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="pickupTotalWeight"
+                        class="ups-form_input"
+                        id="pickupTotalWeight"
+                        type="text">
+                    <span class="ups-input_unit_measure">lbs</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<fieldset>
+        <h4>UPS Services in Your Pickup:</h4>
+        <div class="subcol9 marginBegin">
+            <dl role="presentation" >
+                <dt>
+                    <input name="" type="button" value="UPS Domestic Services" class="btnlnkL collapseIcon group">
+                </dt>
+                <dd>
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr class="odd">
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air Early A.M.&reg;</a></label></td>
+                        </tr>
+                        <tr>
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air&reg;</a></label></td>
+                        </tr>
+                        <tr class="odd">
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS Next Day Air Saver&reg;</a></label></td>
+                        </tr>
+                        <tr>
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS 2nd Day Air A.M.&reg;</a></label></td>
+                        </tr>
+                        <tr class="odd">
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS 2nd Day Air&reg;</a></label></td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div class="subcol9">
+            <dl role="presentation" >
+                <dt>
+                    <input name="" type="button" value="UPS International Services" class="btnlnkL expandIcon">
+                </dt>
+                <dd> </dd>
+                <dt>
+                    <input name="" type="button" value="UPS EU Transborder Services" class="btnlnkL expandIcon">
+            </dl>
+        </div>
+    </fieldset>-->
+
+    <fieldset class="ups-form_group">
+        <legend class="ups-form_label">
+            UPS Services in Your Pickup
+        </legend>
+        <div class="row">
+            <div class="col-xs-5">
+                <p>
+                    <button type="button" class="ups-link ups-btn_has_icon">
+                        UPS Domestic Services
+                        <span class="icon ups-icon-wedgeup"></span>
+                    </button>
+                </p>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesNextDayAirAM"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesNextDayAirAM"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesNextDayAirAM" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air Early A.M.&reg;</a></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesNextDayAir"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesNextDayAir"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesNextDayAir" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air&reg;</a></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesNextDayAirSaver"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesNextDayAirSaver"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesNextDayAirSaver" class="ups-checkbox-custom-label"><a href="#">UPS Next Day Air Saver&reg;</a></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServices2ndDayAm"
+                        class="ups-checkbox-custom"
+                        name="pickupServices2ndDayAm"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServices2ndDayAm" class="ups-checkbox-custom-label"><a href="#">UPS 2nd Day Air A.M.&reg;</a></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServices2ndDay"
+                        class="ups-checkbox-custom"
+                        name="pickupServices2ndDay"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServices2ndDay" class="ups-checkbox-custom-label"><a href="#">UPS 2nd Day Air&reg;</a></label>
+                </div>
+            </div>
+
+            <div class="col-xs-5 col-xs-offset-1">
+                <p>
+                    <button type="button" class="ups-link ups-btn_has_icon">
+                        UPS International Services
+                        <span class="icon ups-icon-wedgedown"></span>
+                    </button>
+                </p>
+                <p>
+                    <button type="button" class="ups-link ups-btn_has_icon">
+                        UPS EU Transborder Services
+                        <span class="icon ups-icon-wedgedown"></span>
+                    </button>
+                </p>
+
+            </div>
+        </div>
+
+    </fieldset>
+
+
+    <!--<fieldset>
+        <h4>Does your pickup contain:</h4>
+        <div class="subcol9 marginBegin">
+            <dl role="presentation" >
+                <dt>
+                    <label for="repl_id">Items that weigh more than 70 lbs.?</label>
+                </dt>
+                <dd>
+                    <input name="repl_fnameA" type="radio" value="repl_fvalue" id="repl_id" disabled>
+                    <label for="repl_id" class="sel">Yes</label>
+                </dd>
+                <dd>
+                    <input name="repl_fnameB" type="radio" value="repl_fvalue" id="repl_id" checked disabled>
+                    <label for="repl_id" class="sel">No</label>
+                </dd>
+            </dl>
+        </div>
+        <div class="subcol9">
+            <dl role="presentation" >
+                <dt>
+                    <label for="repl_id"><a href="" class="btnlnkR helpIconR">Only documents of no commercial value</a>?</label>
+                </dt>
+                <dd>
+                    <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id" disabled>
+                    <label for="repl_id" class="sel">Yes</label>
+                </dd>
+                <dd>
+                    <input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id" checked disabled>
+                    <label for="repl_id" class="sel">No</label>
+                </dd>
+            </dl>
+        </div>
+    </fieldset>-->
+
+    <p class="ups-form_label">
+        Does your pickup contain:
+    </p>
+    <div class="row">
+        <div class="col-xs-5">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">
+                    Items that weight more than 70 lbs.?
+                </legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupWeightMore70Yes"
+                        class="ups-radio-custom"
+                        name="pickupWeightMore70"
+                        value="1"
+                        type="radio">
+                    <label for="pickupWeightMore70Yes" class="ups-radio-custom-label">Yes</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupWeightMore70No"
+                        class="ups-radio-custom"
+                        name="pickupWeightMore70"
+                        value="1"
+                        type="radio">
+                    <label for="pickupWeightMore70No" class="ups-radio-custom-label">No</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-xs-6 col-xs-offset-1">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">
+                    <a href="repl_href" class="btnlnkR helpIconR">Only documents of no commercial value?</a>
+                </legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupDocsCommercialValueYes"
+                        class="ups-radio-custom"
+                        name="pickupDocsCommercialValue"
+                        value="1"
+                        type="radio">
+                    <label for="pickupDocsCommercialValueYes" class="ups-radio-custom-label">Yes</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupDocsCommercialValueNo"
+                        class="ups-radio-custom"
+                        name="pickupDocsCommercialValue"
+                        value="1"
+                        type="radio">
+                    <label for="pickupDocsCommercialValueNo" class="ups-radio-custom-label">No</label>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+
+    <!-- ************************************** -->
+    <!-- REDESIGN EDIT: End part of re-design -->
+    <!-- ************************************** -->
+{{/unless}}
+
+{{#if spi_pallet_request }}
+    <!-- ************************************** -->
+    <!-- REDESIGN EDIT: Start part of re-design -->
+    <!-- ************************************** -->
+    <!--<fieldset>
+        <h4>UPS Services in Your Pickup:</h4>
+        <div class="subcol9 marginBegin">
+            <dl role="presentation" >
+                <dt>
+                    <input name="" type="button" value="UPS Pallet Service" class="btnlnkL collapseIcon group">
+                </dt>
+                <dd>
+                    <table border="0" cellpadding="0" cellspacing="0" class="indent">
+                        <tr class="odd">
+                            <td><input name="repl_fname" type="checkbox" value="repl_fvalue" id="repl_id"></td>
+                            <td><label for="repl_id" class="sel"><a href="repl_href">UPS Worldwide Express Freight&#8480;</a></label></td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <dl role="presentation">
+            <dt>
+                <label for="selectbox">Preferred Unit of Measure:</label>
+            </dt>
+            <dd>
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                    <tbody>
+                        <tr>
+                            <td class="sel" scope="row"><input name="radio_group_nameA" type="radio" value="" id="radio1" checked/></td>
+                            <td><label for="radio1" class="sel">inches/pounds</label></td>
+                        </tr>
+                        <tr>
+                            <td class="sel" scope="row"><input name="radio_group_nameB" type="radio" value="" id="radio2"/></td>
+                            <td><label for="radio2" class="sel">centimeters/kilograms</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </dd>
+        </dl>
+        <div class="subcol9 marginBegin">
+            <dl role="presentation">
+                <dt>
+                    <label for="selectbox">Pallet(s) in Your Pickup:</label>
+                </dt>
+                <dd>
+                    <select name="repl_name" id="selectbox" class="formcol3">
+                        <option value="repl_value" selected disabled>1</option>
+                        <option value="repl_value">Option 2 which is much longer than Option 1</option>
+                    </select>
+                </dd>
+            </dl>
+        </div>
+        <dl role="presentation">
+            <dt>
+                <label for="txtbox">Total Weight of Your Pickup:</label>
+            </dt>
+            <dd>
+                <input type="text" name="repl_name" id="txtbox" class="formcol3" value="[00000]" disabled>
+                [lbs.]</dd>
+        </dl>
+    </fieldset>-->
+
+    <p>
+        UPS Services in Your Pickup
+    </p>
+
+
+    <div class="row">
+        <div class="col-xs-6">
+            <fieldset class="ups-form_group">
+                <legend>
+                    Pallet Services
+                </legend>
+                <p>
+                    <button type="button" class="ups-link ups-btn_has_icon">
+                        UPS Pallet Service
+                        <span class="icon ups-icon-wedgeup"></span>
+                    </button>
+                </p>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesExpressFreight"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesExpressFreight"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesExpressFreight" class="ups-checkbox-custom-label"><a href="#">UPS Worldwide Express Fright<sup>SM</sup></a></label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-xs-6">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">
+                    Preferred Unit of Measure
+                </legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesPreferredMeasureIn"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesPreferredMeasure"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesPreferredMeasureIn" class="ups-checkbox-custom-label">
+                    Inches/pounds</label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="pickupServicesPreferredMeasureCm"
+                        class="ups-checkbox-custom"
+                        name="pickupServicesPreferredMeasure"
+                        value="1"
+                        type="checkbox">
+                    <label for="pickupServicesPreferredMeasureCm" class="ups-checkbox-custom-label">centimeters/kilograms</label>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="ups-form_group">
+                <label for="pickupNumPallets" class="ups-form_label">
+                    Pallet(s) in your Pickup
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="pickupNumPallets"
+                        class="ups-dropdown"
+                        id="pickupNumPallets">
+                        <option value="1">
+                            1
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1">
+            <div class="ups-form_group ups-input_has_unit">
+                <label for="pickupTotalWeight" class="ups-form_label">
+                    Total Weight of Your Pickup
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="pickupTotalWeight"
+                        class="ups-form_input"
+                        id="pickupTotalWeight"
+                        type="text"
+                        aria-disabled="true"
+                        disabled>
+                    <span class="ups-input_unit_measure">lbs</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<fieldset>
+        <div class="clearfix">
+            <dl role="presentation" class="clearfix">
+                <dt>
+                    <label for="repl_id"><a href="" class="btnlnkR helpIconR">Dimensions of your Largest Pallet:</a></label>
+                </dt>
+            </dl>
+            <dl role="presentation" class="flexFirst clearfix">
+                <dt>
+                    <label for="repl_id07">Length:</label>
+                </dt>
+                <dd>
+                    <input id="repl_id07" type="text" class="formcol3"  value="[0000]" disabled>
+                    x</dd>
+            </dl>
+            <dl role="presentation" class="flexAfter clearfix">
+                <dt>
+                    <label for="repl_id08">Width:</label>
+                </dt>
+                <dd>
+                    <input id="repl_id08" type="text" class="formcol3" value="[0000]" disabled>
+                    x</dd>
+            </dl>
+            <dl role="presentation" class="flexAfter clearfix">
+                <dt>
+                    <label for="repl_id09">Height:</label>
+                </dt>
+                <dd>
+                    <input id="repl_id09" type="text" class="formcol3" value="[0000]" disabled>
+                    [in.]</dd>
+            </dl>
+        </div>
+        <div class="marginBegin subcol13">
+            <p class="reqTxtInst">(For pallets, the value entered for Length must be greater than or equal to the width value.)</p>
+            <div class="group clearfix">
+                <tr class="odd">
+                    <td><input id="repl_id" type="checkbox" value="repl_fvalue" name="repl_fname" disabled></td>
+                    <td><label class="sel" for="repl_id">Shipment contains dangerous goods</label></td>
+                    <td><a href="repl_name" class="helpIconR btnlnkR indent">What's This</a></td>
+                </tr>
+            </div>
+            <p>Review the <a href="repl_name" class="btnlnkR newWindowIconR">Raw Wood Guidelines</a> to see if they apply to your pallet</p>
+        </div>
+    </fieldset>-->
+    <p class="ups-form_label">
+        <a href="" class="btnlnkR helpIconR">Dimensions of your Largest Pallet:</a>
+    </p>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="ups-form_group">
+                <label for="pickupPackageLength" class="ups-form_label">
+                    Length
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="pickupPackageLength"
+                        class="ups-form_input"
+                        id="pickupPackageLength"
+                        type="text"
+                        aria-disabled="true"
+                        disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="ups-form_group">
+                <label for="pickupPackageWidth" class="ups-form_label">
+                    Width
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="pickupPackageWidth"
+                        class="ups-form_input"
+                        id="pickupPackageWidth"
+                        type="text"
+                        aria-disabled="true"
+                        disabled>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="ups-form_group ups-input_has_unit">
+                <label for="pickupPackageHeight" class="ups-form_label">
+                    Height
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input name="pickupPackageHeight"
+                        class="ups-form_input"
+                        id="pickupPackageHeight"
+                        type="text"
+                        aria-disabled="true"
+                        disabled>
+                    <span class="ups-input_unit_measure">[in.]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        (For pallets, the value entered for Length must be greater than or equal to the width value.)
+    </p>
+
+    <div class="ups-form_group">
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="pickupContainsDangerous"
+                class="ups-checkbox-custom"
+                name="pickupContainsDangerous"
+                value="1"
+                type="checkbox"
+                aria-disabled="true"
+                disabled>
+            <label for="pickupContainsDangerous" class="ups-checkbox-custom-label">Shipment contains dangerous goods <a href="repl_name" class="helpIconR btnlnkR indent">What's This</a></label>
+        </div>
+    </div>
+
+    <p>Review the <a href="repl_name" class="btnlnkR newWindowIconR">Raw Wood Guidelines</a> to see if they apply to your pallet</p>
+
+
+    <!-- ************************************** -->
+    <!-- REDESIGN EDIT: End part of re-design -->
+    <!-- ************************************** -->
+
+{{/if}}

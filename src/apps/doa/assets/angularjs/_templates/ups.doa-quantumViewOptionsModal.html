@@ -1,0 +1,107 @@
+<!-- The controller for this modal is located at src/apps/doa/assets/angularjs/controllers/ups.DoApp.signup.controller.js -->
+
+<!-- Begin Quantum View Options Modal -->
+<div class="ups-box-modal  ups-modal-container">
+    <form error-on-submit name="formObj.ups_quantumViewOptionModalForm" novalidate>
+        <div class="ups-modal-container">
+            <!-- Page Level Error Handling -->
+            <div data-ng-if="clicked && checkFormErrors()">
+                <h3 class="ups-invalid_color-list ups-error_alert-list">
+                    <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                    Please correct the following errors
+                </h3>
+                <ul class="ups-icons-error">
+                    <li data-ng-if="clicked && formObj.ups_quantumViewOptionModalForm.ups_company_name.$invalid"><span             data-ng-show="(formObj.ups_quantumViewOptionModalForm.ups_company_name.$invalid && clicked)"> <a
+                       focus-attr="ups_company_name" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color">Company Name is required.</a></span></li>
+                    <li data-ng-if="!checkOneQVAppServiceChecked()"><span> <a
+                        focus-attr="ups_quantumViewOption0" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color">At least one of the Quantum View Applications and Services must be selected.</a></span></li>
+                </ul>
+            </div>
+            <!-- Page Level Error Handling -->
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_company_name" class="ups-form_label">
+                            Company Name
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+                            <input type="text" name="ups_company_name"
+							class="ups-form_input" id="ups_company_name"
+							aria-required="true" required
+                            aria-describedby="ups_company_name-error" data-ng-model="ups_quantumViewOptionModal.ups_company_name_input" data-ng-class="{'ups-bodError' : (formObj.ups_quantumViewOptionModalForm.ups_company_name.$invalid && clicked)}">
+                            <div data-ng-if="formObj.ups_quantumViewOptionModalForm.ups_company_name.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                            <span id="ups_company_name-error" role="alert">
+                                <span class="ups-invalid_color"
+                                data-ng-show="(!formObj.ups_quantumViewOptionModalForm.ups_company_name.$pristine && formObj.ups_quantumViewOptionModalForm.ups_company_name.$invalid) || (formObj.ups_quantumViewOptionModalForm.ups_company_name.$invalid && clicked)">
+                                <span class="icon ups-error_exclamation">
+                                    <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                </span>
+                                <span class="ups-readerTxt">Invalid</span>
+                                <span data-ng-if="formObj.ups_quantumViewOptionModalForm.ups_company_name.$error.required">Company Name is required.</span>
+                                </span>
+                                <span data-ng-if="formObj.ups_quantumViewOptionModalForm.ups_company_name.$valid">
+                                    <span class="ups-readerTxt">Check</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group">
+                        <label for="ups_company_nickname" class="ups-form_label">
+                            Company Nickname
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="ups_company_nickname"
+    							class="ups-form_input" id="ups_company_nickname">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <fieldset class="ups-form_group ups-form_required">
+                <legend class="ups-form_label">Quantum View Applications and Services <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">(One of the services must be selected.)</span></legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper" ng-repeat="i in quantumViewSelections">
+                    <input check-verify id="ups_quantumViewOption{{i.id}}"
+                        class="ups-checkbox-custom" name="ups_quantumViewOption{{i.id}}" value="{{i.id}}"
+                        type="checkbox"
+                        aria-describedby="quantumViewAppServices_error"
+                        data-ng-model="i.selected"
+                        data-ng-class="{'ups-bodError' : ((checkOneQVAppServiceTouched() && !checkOneQVAppServiceChecked()) || !checkOneQVAppServiceChecked() && clicked)}"/>
+                    <label for="ups_quantumViewOption{{i.id}}"
+                        class="ups-checkbox-custom-label">
+                        {{ i.quantumViewSelectionsLabel }}
+                    </label>
+                </div>
+            </fieldset>
+            <!-- Start Field Level Error -->
+
+            <span class="ups-icons-error" id="quantumViewAppServices_error" role="alert">
+                <span class="ups-invalid_color" data-ng-show="(checkOneQVAppServiceTouched() && !checkOneQVAppServiceChecked() || !checkOneQVAppServiceChecked() && clicked)">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    <span>At least one of the Quantum View Applications and Services must be selected.</span>
+                </span>
+            </span>
+            <!-- End Field Level Error -->
+        </div>
+         <div class="ups-form_ctaGroup text-center">
+             <button type="button" class="ups-cta ups-cta_tertiary" data-ng-click="cancel()">Back</button>
+             <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="submitBtn(formObj.ups_quantumViewOptionModalForm.ups_company_name.$valid)">Next</button>
+    	</div>
+    </form>
+</div>
+<!-- End Quantum View Options Modal -->

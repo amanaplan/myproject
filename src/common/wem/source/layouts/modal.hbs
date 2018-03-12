@@ -1,0 +1,89 @@
+{{> global_html_header }}
+
+<!-- Modal template.  full documentation can be found at -->
+<!-- ../source/layouts/modal.hbs -->
+
+<div class="iw_viewport-wrapper" aria-hidden="false">
+
+<!-- Begin WEM Header -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M01_main_nav mainNav}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Header -->
+
+<!-- Begin WEM Neck -->
+	{{> ts_container_start}}
+
+        {{#if breadcrumb}}
+            {{> ts_component_start}}
+            {{> M14_breadcrumb}}
+            {{> ts_component_end}}
+        {{/if}}
+
+        {{#unless noPageTitle}}
+            {{> ts_component_start}}
+            {{#if this.share}}
+                {{#compare this.share.length ">" 0}}
+                    {{> M07_page_title_share}}
+                {{else}}
+                    {{> M07_page_title}}
+                {{/compare}}
+            {{else}}
+                {{> M07_page_title}}
+            {{/if}}
+            {{> ts_component_end}}
+        {{/unless}}
+
+	{{> ts_container_end}}
+<!-- End WEM Neck -->
+
+<!-- Begin WEM Body -->
+    <!--<main id="ups-main">-->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+
+        <div class="ups-wrap ups-application_wrapper ups-form_wrap">
+			<div class="ups-wrap_inner">
+
+    			<div class="ups-form_ctaGroup">
+					<button type="button" id="test"class="ups-cta ups-cta_primary" data-toggle="modal" data-target="#ups-test_modal"> Launch Modal </button>
+                </div>
+            </div>
+        </div>
+
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+    <!--</main>-->
+<!-- End WEM Body -->
+
+<!-- Begin WEM Footer -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M02_footer footer}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Footer -->
+</div>
+
+<!-- Added .ups-appliction_wrapper for Social Icons Update (TFS: 450058) to work with LASSO Modals -->
+<!-- (TFS:463374) Removed .ups-application_wrapper to revert all work done in TFS:450058 -->
+<div class="modal fade ups-form_wrap" id="ups-test_modal" tabindex="-1" role="dialog" aria-labelledby="ups-modal_title">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close"> <span class="ups-readerTxt">Close</span> </button>
+				<h2 class="modal-title" id="ups-modal_title">{{title}}</h2>
+			</div> <!-- modal-header -->
+			<div class="modal-body">
+				<div class="ups-form_wrap ups-application_wrapper">
+       				{{ body }}
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{> global_html_footer}}

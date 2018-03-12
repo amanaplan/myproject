@@ -1,0 +1,1791 @@
+---
+title: Legacy Pickup
+dir: ltr
+lang: en
+layout: legacy.hbs
+appCSS: pickUp
+app: true
+original: true
+---
+
+{{> M14_breadcrumb}}
+
+{{> M07_page_title}}
+
+<div class="ups-wrap">
+    <div class="ups-wrap_inner">
+
+<div id="ccCntMod">
+<div id="main">
+<h1>Schedule a Pickup</h1>
+<input type="hidden" id="defaultAddress" value="">
+<input type="hidden" id="defaultPd2" value="">
+<input type="hidden" id="defaultPd1" value="">
+<input type="hidden" id="defaultPostal" value="">
+<input type="hidden" id="defaultCountry" value="">
+
+<input type="hidden" value="IPA" id="mnmAppID" name="IPA">
+<input type="hidden" id="allowedCountries" value="">
+<input type="hidden" value="ALERT" id="mnmMobileProgramType" name="mnmMobileProgramType">
+<input type="hidden" value="OPTIN" id="mnmServiceType" name="mnmServiceType">
+<input type="hidden" value="" id="mnmMobilePhoneNumber" name="mnmMobilePhoneNumber">
+<input type="hidden" value="true" id="mnmRememberMe" name="mnmRememberMe">
+<input type="hidden" value="true" id="termsValueId" name="termsValueId">
+<input type="hidden" value="" id="availableNumbers" name="availableNumbers">
+<input type="hidden" value="false" id="loggedIn" name="loggedIn">
+<input type="hidden" value="false" id="reqPck" name="reqPck">
+<input type="hidden" value="true" id="firstTime" name="firstTime">
+<input type="hidden" value="false" id="altAddr" name="altAddr">
+<input type="hidden" value="false" id="useAcctAddr" name="useAcctAddr">
+
+
+
+
+<!-- Jia ER7407 TBD************************* -->
+<form action="processinfo?loc=en_US" method="post" name="info" id="infoFormId" onsubmit="return com_ups_ipa_smart.initialPageNextClicked();">
+
+<input type="hidden" name="gotoapp" id="gotoappId"> 
+<input type="hidden" id="acctInfoDetails" name="acctInfoDetails"> 
+<input type="hidden" id="pickupInfoPageScheme" name="pickupInfoPageScheme" value="">
+	 
+<input type="hidden" id="selectedServices" name="selectedServices" value="null"> 
+<input type="hidden" name="EDITABLE_ACCTNUM" value="FALSE"> 
+<input type="hidden" value="en_US" id="localeValue" name="localeValue">
+<input type="hidden" value="false" id="showPopup" name="showPopup">
+<input type="hidden" value="false" id="facclosed" name="facclosed">
+<input type="hidden" value="null" id="destslic" name="destslic">
+
+ <div id="message4000" class="hidden" style="display:none">
+ <!-- cms: id="ct1_shi_wwef_weight_fra_en_us" actiontype="0" -->
+				Your total shipment is more than 4400 lbs or 2000 kgs and requires approval. When you've completed your shipment, please contact UPS Customer Service at 1-800-782-7892. 
+ </div>          
+
+			   <div style="display:none">			   
+				   			   
+			   
+			   
+			   </div>
+
+	
+
+
+
+<ul class="subTab">
+	<li class="tab-on">Package</li>
+	<li class="tab-off"><a id="freightPickupLinkId" href="javascript: void(0);" style="cursor: default;">Freight</a></li>
+</ul>
+
+<div class="appLvl tab">
+
+
+
+
+
+
+<div class="appHead clearfix">
+			
+
+					<h2>Enter Pickup Information</h2>
+		
+</div>
+ 
+
+
+<div class="appBody clearfix">
+
+<p>Required fields are indicated with <img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">.</p>
+	
+<p id="reqMissingId" style="display: none">&gt;&gt;&gt; One or more required field(s) are missing.  Please provide the information in the field(s) shown in red with arrows (&gt;&gt;&gt;) below.</p>
+
+
+
+
+<!-- ER7407:  Jia wait to understand this line for smartStatus-- why? -->
+
+
+<p class="error">
+</p><p>  
+</p><div id="labelModuleDiv">
+<fieldset>
+<div class="secLvl step">
+	
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber" id="labelStep">1</span></div>
+			<h3>Shipping Label Questions</h3>
+	</div>
+	
+	
+	<div class="secBody clearfix">
+		<dl>
+			<dt><label>Do you have pre-printed </label>
+
+<div id="fra_pic_shiplab1_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_shiplab1_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_shiplab1_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_shiplab1_en_us" actiontype="0" -->		<h3>			Pre-Printed Labels		</h3>				A UPS shipping label is needed to process your shipment. <br><br>You can create and print a shipping label using <strong>Create a Shipment</strong> on ups.com, UPS WorldShip<sup>®</sup>, or UPS CampusShip<sup>®</sup>. <span lang="EN">If your shipment is a pre-arranged product return, a pre-printed shipping label may have been provided to you by the vendor.<br><br></span>This is&nbsp;what&nbsp;a valid UPS shipping label looks like.					<br><br><img src="https://wwwapps.ups.com/img/inf_lab_smart_l.jpg" width="132" height="198" alt="Smart Label" border="0"></div>
+</div>
+
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_shiplab1_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_shiplab1_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_shiplab1_en_us_pgx_hh_linkedText">UPS Shipping Labels</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9">&nbsp;<label> for your shipment?	
+			
+			
+			</label>
+			<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon"></dt>
+			<dd><input name="radioShipping" type="radio" value="Y" id="radioShippingY" checked=""><label for="radioShippingY" class="sel">Yes</label></dd>
+			<dd><input name="radioShipping" type="radio" value="N" id="radioShippingN"><label for="radioShippingN" class="sel">No</label></dd>
+		</dl>
+		
+				<div id="trkDiv">
+					<dl>
+						<dt><label>Optional: Enter tracking numbers separated by commas, to check if pickup charges are prepaid.</label></dt>
+						<label class="reqTxtInst" id="" for="">(If you have <div id="fra_pic_retlabel1_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_retlabel1_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_retlabel1_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_retlabel1_en_us" actiontype="0" -->		<h3>			Return Labels		</h3>				Return labels are provided to you by a vendor to use when shipping a product you are returning. Enter the tracking number printed on the return label to find out if the UPS pickup charges have been prepaid by the vendor.</div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_retlabel1_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_retlabel1_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_retlabel1_en_us_pgx_hh_linkedText">return label</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9"> tracking numbers, enter them here)</label>
+						<dd>
+						<textarea name="tracknumlist" cols="32" rows="3" class="" id="trkNbrAreaId"></textarea>
+						</dd>
+						<label class="reqTxtInst" id="" for="">(Maximum 30 tracking Numbers)</label>
+					</dl>
+				</div>
+				
+				
+				
+				<div id="trkErrDiv" style="display:none">
+					<label>Correct the Tracking Numbers as indicated:</label>
+				</div>
+				<div id="badTrkNbrDiv">
+				</div>
+				<div id="retNoPaidDiv" style="display:none">
+					<p class="error">Note: Pickup charges will apply for the tracking number(s) entered. To avoid additional charges, you may drop your package at a nearby location.</p>
+				</div>
+				
+		
+				
+		
+    	
+        
+		<div id="noShippingLabelDiv" style="display:none" class="secLvl message clearfix">
+        	<fieldset>
+        
+        		
+                <div class="secHead clearfix">
+                	<h4>You selected no pre-printed labels.</h4>
+                </div>
+                
+                
+        		
+                 
+				<div class="secBody">
+					<p class="criticalMessage">Did you know you can create labels and schedule a pickup using UPS Internet Shipping?  </p>
+                    	
+                    <p>You will need to  Log in for this option.</p>
+                    
+                    <p>Continue scheduling a pickup using <a id="uisLinkId" class="btnlnkR newwindowIconR" style="cursor: default; text-decoration: underline;">UPS Internet Shipping</a>.</p>
+                </div>
+                
+                
+        		
+                
+                
+              </fieldset>
+        </div>                                    
+        
+                        
+	  	    <div id="payCashCheckDiv" style="display:none">
+	        <dl>To schedule a pickup without labels (your driver will bring shipping documents), continue below.
+	        	
+	        	<dt>
+	        		
+	                	<input name="chkPayCheck" type="checkbox" value="Y" id="chkPayCheck">I will <div id="fra_pic_paydriver_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_paydriver_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_paydriver_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_paydriver_en_us" actiontype="0" -->		<h3>			Pay My Driver		</h3>				 <table border="0" cellpadding="0" cellspacing="0" width="100%">		<tbody><tr>			<td colspan="3">If you want to use a <b>check</b> or <b>money order</b> to pay your driver for package pickup charges (and shipping charges if applicable), select the appropriate check box. Do not select one of these payment methods if you want to use a <b>payment card</b> or a <strong>UPS account</strong> to pay for pickup charges. <br><br>The total amount due to the driver will be listed when you finish and verify your pickup request details. Your driver will bring the required shipping documents.<br><br></td>		</tr>	<tr>		<td colspan="3"><img alt="" border="0" height="10" src="https://wwwapps.ups.com/img/1.gif" width="1"></td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr><td>	</td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	 			</table>					<br><br>						<br><br>						<br><br>						<br><br>						<br><br></div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_paydriver_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_paydriver_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_paydriver_en_us_pgx_hh_linkedText">pay my driver</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9"> using Check or Money Order
+	        			
+
+
+
+
+
+
+
+	            </dt>
+	            
+	        	
+	        </dl>
+	    </div>                                                  
+        
+		
+	</div>
+	
+	
+</div>
+</fieldset>
+
+
+</div>
+
+
+<!-- ER7407, Jia how can I do not display below for smart ??  -->
+<div id="addrModuleDiv">
+
+<fieldset>
+<div class="secLvl step">
+	
+	<a name="pickupaddress"></a>
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber" id="addrStep">2</span></div>
+			<h3>Pickup Information and Location</h3>
+	</div>
+	
+	
+	<div class="secBody clearfix">
+		<div id="acctZipErrorDiv" style="display:none">
+			<p class="error">&gt;&gt;&gt; Charges can not be billed to this account, please select another account or payment option.</p>
+		</div>
+	
+	
+		
+		<fieldset>
+		<div id="acctInfoDiv">
+		<h4>UPS Account Information</h4>
+		
+			<div class="subcol9 marginBegin">
+				<dl>
+					<dt><label for="">UPS Account Number:</label></dt>
+					<dd><input name="accountnumber" value="" type="text" size="" id="acctNbrId" maxlength="6"></dd>
+				</dl>
+			</div>
+		
+		
+		
+		
+			<div class="subcol9" id="acctZipDiv" style="display:none">
+				<dl>
+					<dt>
+						<label for="">UPS Account ZIP Code:</label>
+					</dt>
+					<dd>
+						<input name="paramAcctZip" type="text" size="" value="" id="acctZipId" maxlength="10">
+						<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+					</dd>
+				</dl>
+			</div>
+		
+		</div>
+		</fieldset>
+		
+		
+		<div id="useAcctDiv" style="display:none">
+			<p><input name="chkUseAcct" type="checkbox" value="Y" id="chkUseAcctId"><label for="chkUseAcct">Schedule your <a>On-Call Pickup</a> using this account's Pickup Location</label></p>
+		</div>
+		<p>
+		</p><div id="acctNoLoginSmartDiv" style="display:none">
+			To request a Smart Pickup for this Pickup Location, go to <a href="https://wwwapps.ups.com/pickup/schedulegwn" id="linkSmartPickupId" class="btnlnkR helpIconR">Request a Smart Pickup</a>.
+		</div>
+		<div id="acctNoLoginDiv" style="display:none">			
+			To view the Pickup Location details for an entered UPS Account Number, you must be <div id="fra_pic_loggedin_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_loggedin_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_loggedin_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_loggedin_en_us" actiontype="0" -->				 <table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr>		<td><a name="Logged+Into+My+UPS"><span class="standardheader">Logged Into My UPS</span><br></a>		</td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">		<tbody><tr>			<td colspan="3">To view details about your UPS account, you must be logged into My UPS. Select the <strong>Log-In</strong> link at the top of the page. You will need your User ID and Password to proceed.</td>		</tr>	<tr>		<td colspan="3"><img alt="" border="0" height="10" src="https://wwwapps.ups.com/img/1.gif" width="1"></td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr><td>	</td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	 			</table></div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_loggedin_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_loggedin_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_loggedin_en_us_pgx_hh_linkedText">logged into My UPS</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9">.
+		</div>
+		<p></p>
+		
+		
+		
+		
+		
+		
+		<fieldset>
+		<div id="addrHeaderDiv">
+		<h4>Pickup Address:</h4>
+		</div>
+		
+		
+		
+		
+			<div class="subcol9 marginBegin" id="addrCol1Div">
+				<dl id="lnAmAdCoId" class="group">
+					<dt>
+						<label for=""><span id="companySpanId"><span id="companyErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>Company or Name:</span></label>
+					</dt>
+					<dd>
+						<input name="company" type="text" value="" size="" id="addrMDCompanyId" maxlength="27">
+						<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon"></dd>
+				</dl>
+				<dl class="group">			
+					<dt>
+						<label for=""><span id="contSpanId"><span id="contErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>Contact Name:</span></label>
+					</dt>
+					<dd>
+						<input name="custname" type="text" value="" size="" id="addrMDCustNameId" maxlength="22">
+						
+					</dd>
+				</dl>
+				<dl id="lnAmAdLnId" class="group">					
+					<dt>
+						<label for=""><span id="strAddrSpanId"><span id="strAddrErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>Street Address:</span></label>
+					</dt>
+					<dd>
+						<input name="address" type="text" value="" size="" id="addressId" maxlength="73">
+						<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon"></dd>
+				</dl>
+				<dl class="group">
+					<dt>
+						<label for="">Suite/Room:</label>
+					</dt>
+					<dd>
+						<input name="room" type="text" value="" maxlength="8" size="15" id="addrMDRoomId">
+					</dd>
+					<dd><input type="hidden" name="ROOM" id="roomID" maxlength="8" size="15" value=""> </dd>
+				</dl>
+				<dl class="group">
+					<dt>
+						<label for="">Floor:</label>
+					</dt>
+					<dd>
+						<input name="floor" value="" type="text" maxlength="3" size="15" id="addrMDFloorId">
+					</dd>					
+					<dd><input type="hidden" name="FLOOR" maxlength="3" size="15" id="floorID" value=""> </dd> 
+				</dl>
+				
+			</div>
+		
+		
+		
+			<div class="subcol9" id="addrCol2Div">
+				<dl class="group">
+					<dt>
+						<label for="">Country:</label>
+					</dt>
+					<dd>United States</dd>
+				</dl>
+				
+				  <dl class="group">		
+							
+					   	            			  
+				  </dl>
+				
+				<div id="lnAmAdCSPId">
+				  				  				  
+				  <dl class="group">					
+					
+	        	        <dt>
+							<label for=""><span id="pd2SpanId"><span id="pd2ErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>City:</span></label>
+						</dt>
+						<dd>
+							<input name="pd2" value="" type="text" size="" id="pd2Id" maxlength="30">
+							<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+	    	            </dd>
+    	              	            
+		  </dl>
+    	          
+    	          <dl class="group">
+					<dt>
+						
+							<label for=""><span id="pd1SpanId"><span id="pd1ErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>State:</span></label>
+						
+					</dt>
+					<dd>
+						
+							
+								<select class="modSelMedium" name="pd1" id="pd1" onkeyup="this.blur();this.focus();">
+<option value="" selected="">Choose One&nbsp;&nbsp;</option>
+<option value="AL">Alabama&nbsp;&nbsp;</option>
+<option value="AK">Alaska&nbsp;&nbsp;</option>
+<option value="AZ">Arizona&nbsp;&nbsp;</option>
+<option value="AR">Arkansas&nbsp;&nbsp;</option>
+<option value="CA">California&nbsp;&nbsp;</option>
+<option value="CO">Colorado&nbsp;&nbsp;</option>
+<option value="CT">Connecticut&nbsp;&nbsp;</option>
+<option value="DE">Delaware&nbsp;&nbsp;</option>
+<option value="DC">District of Columbia&nbsp;&nbsp;</option>
+<option value="FL">Florida&nbsp;&nbsp;</option>
+<option value="GA">Georgia&nbsp;&nbsp;</option>
+<option value="HI">Hawaii&nbsp;&nbsp;</option>
+<option value="ID">Idaho&nbsp;&nbsp;</option>
+<option value="IL">Illinois&nbsp;&nbsp;</option>
+<option value="IN">Indiana&nbsp;&nbsp;</option>
+<option value="IA">Iowa&nbsp;&nbsp;</option>
+<option value="KS">Kansas&nbsp;&nbsp;</option>
+<option value="KY">Kentucky&nbsp;&nbsp;</option>
+<option value="LA">Louisiana&nbsp;&nbsp;</option>
+<option value="ME">Maine&nbsp;&nbsp;</option>
+<option value="MD">Maryland&nbsp;&nbsp;</option>
+<option value="MA">Massachusetts&nbsp;&nbsp;</option>
+<option value="MI">Michigan&nbsp;&nbsp;</option>
+<option value="MN">Minnesota&nbsp;&nbsp;</option>
+<option value="MS">Mississippi&nbsp;&nbsp;</option>
+<option value="MO">Missouri&nbsp;&nbsp;</option>
+<option value="MT">Montana&nbsp;&nbsp;</option>
+<option value="NE">Nebraska&nbsp;&nbsp;</option>
+<option value="NV">Nevada&nbsp;&nbsp;</option>
+<option value="NH">New Hampshire&nbsp;&nbsp;</option>
+<option value="NJ">New Jersey&nbsp;&nbsp;</option>
+<option value="NM">New Mexico&nbsp;&nbsp;</option>
+<option value="NY">New York&nbsp;&nbsp;</option>
+<option value="NC">North Carolina&nbsp;&nbsp;</option>
+<option value="ND">North Dakota&nbsp;&nbsp;</option>
+<option value="OH">Ohio&nbsp;&nbsp;</option>
+<option value="OK">Oklahoma&nbsp;&nbsp;</option>
+<option value="OR">Oregon&nbsp;&nbsp;</option>
+<option value="PA">Pennsylvania&nbsp;&nbsp;</option>
+<option value="RI">Rhode Island&nbsp;&nbsp;</option>
+<option value="SC">South Carolina&nbsp;&nbsp;</option>
+<option value="SD">South Dakota&nbsp;&nbsp;</option>
+<option value="TN">Tennessee&nbsp;&nbsp;</option>
+<option value="TX">Texas&nbsp;&nbsp;</option>
+<option value="UT">Utah&nbsp;&nbsp;</option>
+<option value="VA">Virginia&nbsp;&nbsp;</option>
+<option value="VT">Vermont&nbsp;&nbsp;</option>
+<option value="WA">Washington&nbsp;&nbsp;</option>
+<option value="WV">West Virginia&nbsp;&nbsp;</option>
+<option value="WI">Wisconsin&nbsp;&nbsp;</option>
+<option value="WY">Wyoming&nbsp;&nbsp;</option>
+</select>
+							
+							<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+						
+					</dd>
+				</dl>
+					
+				
+					
+				<dl class="group">
+					<dt>
+						<label for="">
+						<span id="postalSpanId"><span id="postalErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>
+						
+							ZIP Code:
+						
+						</span>
+						</label>
+					</dt>
+					<dd>
+						
+						<input type="text" name="postalcode" id="postalcode" value="" size="10" maxlength="10">
+
+						 <img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+						 
+					</dd>
+				
+				</dl>
+				</div>
+				
+				<dl id="lnAmPhoneId" class="flexFirst group">
+					<dt>
+						<label for=""><span id="phSpanId"><span id="phErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>Telephone:</span></label>
+					</dt>
+					<dd>
+						<input name="phone" value="" type="text" size="15" id="addrMDPhoneId" maxlength="15"> <img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+					</dd>
+				</dl>
+				<dl id="lnAmPhoneExtId" class="flexAfter group">
+					<dt>
+						<label for="">Ext.:</label>
+					</dt>
+					<dd>
+						<input name="extension" value="" type="text" size="5" id="addrMDExtId" maxlength="4">
+					</dd>
+				</dl>
+
+					
+			</div>
+		
+		</fieldset>
+		
+		<div id="resiDiv">
+		<p id="resiDivPg"><input name="chkResiAddr" type="checkbox" value="Y" id="chkResiAddr"> <label for="chkResiAddr" class="sel">Residential Address</label></p>
+		</div>
+
+		
+			
+	
+		<div id="addrErrorDiv" style="display:none">
+		<p class="error">&gt;&gt;&gt; We could not match the City, State, or Zip Code combination in any address database. You can use the address as entered, modify the address, or select from suggested address options to continue. </p>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr class="odd">
+				<td valign="top"><input name="addrSuggestRadio" type="radio" value="1" id="radioUseFromList" checked=""></td>
+				<td>
+					<dl>
+						<dt><label for="radioUseFromList" class="sel">Use one of the suggested combinations below:</label></dt>
+						<dd>
+						<div id="avSuggestDiv">
+							<select name="repl_name" id="">
+								<option value="" selected="">{City}, {State} {ZIP}</option>
+								
+							</select>
+						</div>
+						</dd>
+					</dl></td>
+			</tr>
+			<tr>
+				<td valign="top"><input name="addrSuggestRadio" type="radio" value="" id="origSuggestId"></td>
+				<td>
+					<dl>
+						<dt><label for="" class="sel">Use or change the original combination entered.</label></dt>
+						<dd><div id="origSuggestDiv">{City}, {State} {ZIP}</div></dd>
+					</dl></td>
+			</tr>
+		</tbody></table>
+		</div>
+		
+		
+	
+	</div>
+	
+	
+	
+</div>
+</fieldset>
+
+
+</div>
+<div id="srvModuleDiv">
+<fieldset>
+<div class="secLvl step">
+ <a name="shipmetinfo"></a>
+	
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber" id="serviceStep">3</span></div>
+			<h3>Service and Package Information</h3>
+	</div>
+	
+	<div id="srvErrorDiv" style="display:none">
+            <p class="error" id="noServicesError">&nbsp;</p>
+	</div>
+	<div id="weightErrorDiv" style="display:none">
+	<p class="error">&gt;&gt;&gt; Weight must be entered as a whole or half number in your country's supported delimiter format, for example (1 or 1.5) and (1 or 1,5) where applicable. Please correct and submit again.</p>
+	</div>
+	
+	<div id="maxWeightErrorDiv" style="display:none">
+	<p class="error">&gt;&gt;&gt; The weight of all your pallets combined may not exceed the numeric value 99999 in lbs or kg. Correct value to continue.
+	</p>
+	</div>
+	
+	<div id="srvBodyDiv" class="secBody clearfix">
+		<p id="srvBodyHeaderDiv">Select the number of packages in your pickup, as well as the UPS Services indicated by your UPS Shipping Labels.</p>
+		
+		<div id="palletModifyHeaderDiv" style="display:none">
+		<p>Select the number of pallets in your pickup, as indicated by your UPS Shipping Labels.</p>
+		<p>UPS Worldwide Express Freight only accepts pallets, you must create separate pickup requests for other package types.</p>
+		</div>
+		<fieldset>
+		
+			<div class="subcol9 marginBegin" id="pkgModule">
+				<dl>
+					<dt>
+						<label id="ltotalpkgs" for=""><span id="pkgCountId"><span id="pkgCountErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Package(s) in Your Pickup:</span></label>
+					</dt>
+					<dd>
+					  <select name="numberOfPackages" id="dtotalpkgs">
+						
+							<option value="1" selected="">1</option>
+						
+							<option value="2">2</option>
+						
+							<option value="3">3</option>
+						
+							<option value="4">4</option>
+						
+							<option value="5">5</option>
+						
+							<option value="6">6</option>
+						
+							<option value="7">7</option>
+						
+							<option value="8">8</option>
+						
+							<option value="9">9</option>
+						
+							<option value="10">10</option>
+						
+							<option value="11">11</option>
+						
+							<option value="12">12</option>
+						
+							<option value="13">13</option>
+						
+							<option value="14">14</option>
+						
+							<option value="15">15</option>
+						
+							<option value="16">16</option>
+						
+							<option value="17">17</option>
+						
+							<option value="18">18</option>
+						
+							<option value="19">19</option>
+						
+							<option value="20">20</option>
+						
+							<option value="21">21</option>
+						
+							<option value="22">22</option>
+						
+							<option value="23">23</option>
+						
+							<option value="24">24</option>
+						
+							<option value="25">25</option>
+						
+							<option value="26">26</option>
+						
+							<option value="27">27</option>
+						
+							<option value="28">28</option>
+						
+							<option value="29">29</option>
+						
+							<option value="30">30</option>
+						
+						</select>
+					</dd>
+				</dl>
+			</div>
+		
+		
+		
+		
+		
+		</fieldset>
+		
+		
+		<fieldset>
+		<h4><p id="srvLabelId"><span id="srvLabelErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>UPS Services in Your Pickup:</p></h4>
+		<p id="serviceMismatchID" class="error" style="display:none"> <strong>Note:</strong>  The UPS Service(s) you have selected do not match the services associated to the Shipping label(s) entered above. </p>
+			
+		
+		    
+		    <div id="palletSrvDiv" style="display:none">
+				
+
+<div class="group clearfix">
+	<table cellpadding="0" cellspacing="0" border="0">
+    	<tbody><tr class="odd">
+        	<td><input type="checkbox" name="paramServices" value="096" id="chkSrvPalletId0"></td>
+            <td><label class="sel" for="chkSrvPalletId0">This is a pallet pickup request</label></td>
+            <td><span style="inline:block;margin-left:50px;"><a href="javascript:helpModLvl('http://www.ups.com/content/us/en/shipping/pickup/what_is_a_pallet.html');" alt="What is a pallet" class="btnlnkR helpIconR">What is a pallet</a></span></td>
+        </tr>
+    </tbody></table>
+    <div id="expFreightWarningMessageDiv" class="secLvl clearfix message sell" style="display: none;">
+    	<fieldset>
+    		<legend></legend>
+        	<div class="secHead clearfix">
+        		<h4>UPS Worldwide Express Freight<span style="font-size:12px;"><sup>TM</sup></span> Pallet Request</h4>
+        	</div>
+        	<div class="secbody">
+            	<fieldset><legend></legend>
+               		<p>
+                   		<strong>Note:</strong> Pallet pickup requests are only valid with the UPS Worldwide Express Freight<span style="font-size:10px;"><sup>TM</sup></span> service, and must be for international air freight shipments secured on pallets.
+                   	</p>
+                   	<p>If yours isn't a UPS Worldwide Express Freight shipment, deselect the pallet pickup request checkbox to choose from other UPS services or package types. Review the <a href="javascript:newWindow('http://www.ups.com/content/us/en/resources/ship/packaging/weight_size.html');" alt="Weight and size limits">weight and size limits</a> for details on size limits for your shipment.</p>
+                   	
+                   	
+                   	<p>If you have a domestic ground/LTL freight shipment, you may <a href="https://www.ups.com/frpkup?loc=en_US" alt="Schedule a freight pickup">schedule a freight pickup</a> now.</p>
+                   	
+                </fieldset>
+            </div>
+        </fieldset>
+    </div>     
+</div>
+
+		    </div>
+		    
+		    <div id="expFreight" style="display:none">
+		    <div id="expFreightBtn" class="clearfix">
+				<dl>
+					<dt>
+					<input name="expSrvButton" id="expSrvButtonId" type="button" value="UPS Pallet Service" class="btnlnkL expandIcon" disabled="disabled">
+					</dt>
+					<dd>
+						<div id="expSrvDiv" style="display:none">
+						</div>
+					</dd>
+				</dl>
+			</div>
+			<div class="clear"></div>
+			<div class="clearfix" id="expFreightPkgs">
+                                  <dl class="flexFirst">
+                                    <dt><label for="repl_id05">Pallet(s) in Your Pickup</label></dt>
+                                    <dd>
+                                    <select name="numberOfPallets" id="dtotalpallets">
+									
+									<option value="1" selected="">1
+									</option>
+									
+									<option value="2">2
+									</option>
+									
+									<option value="3">3
+									</option>
+									
+									<option value="4">4
+									</option>
+									
+									<option value="5">5
+									</option>
+									
+									<option value="6">6
+									</option>
+									
+									<option value="7">7
+									</option>
+									
+									<option value="8">8
+									</option>
+									
+									<option value="9">9
+									</option>
+									
+									<option value="10">10
+									</option>
+									
+									<option value="11">11
+									</option>
+									
+									<option value="12">12
+									</option>
+									
+									<option value="13">13
+									</option>
+									
+									<option value="14">14
+									</option>
+									
+									<option value="15">15
+									</option>
+									
+									<option value="16">16
+									</option>
+									
+									<option value="17">17
+									</option>
+									
+									<option value="18">18
+									</option>
+									
+									<option value="19">19
+									</option>
+									
+									<option value="20">20
+									</option>
+									
+									<option value="21">21
+									</option>
+									
+									<option value="22">22
+									</option>
+									
+									<option value="23">23
+									</option>
+									
+									<option value="24">24
+									</option>
+									
+									<option value="25">25
+									</option>
+									
+									<option value="26">26
+									</option>
+									
+									<option value="27">27
+									</option>
+									
+									<option value="28">28
+									</option>
+									
+									<option value="29">29
+									</option>
+									
+									<option value="30">30
+									</option>
+									
+									</select>
+                                     </dd>                                
+                                 </dl>
+                                 
+                                 <div id="pallweight">
+                                 <dl class="flexAfter">
+                                    <dt><label><span id="pwtSpan"><span id="pwtErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Pallet Weight:</span></label></dt>
+                                    <dd><input name="palletweight" id="palletweight" class="formcol3" value="" type="text" size="5" maxlength="5" width="5">
+                                    	<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+                                    	<div id="pallwtdef">
+                                    	
+										lbs.
+										
+										</div>
+										<div id="pallwtchosenlb" style="display:none">
+										lbs.
+										</div>
+										<div id="pallwtchosenkg" style="display:none">
+										Kg.
+										</div>
+                                    </dd>
+                                </dl>
+                                </div>
+                                <!-- //////////////////////////////////////// -->
+                            		<!-- Begin Pickup Modules - WW Freight (1304) -->
+                            		
+                            		
+                                     	
+		                             	<!-- <div class="subcol9">  -->
+		                             	<div id="palltotwt">
+										<dl class="flexAfter">
+										<dt>
+																
+										<label for=""><span id="pTotwtSpan"><span id="pTotwtErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Total Weight of Your Pickup:</span></label>		
+										</dt>
+										<dd><input name="pallettotweight" type="text" size="7" maxlength="7" width="7" value="" id="pTotweightId">
+										<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+										<div id="palltotwtdef">
+										
+										lbs.
+										
+										</div>
+										<div id="palltotwtchosenlb" style="display:none">
+										lbs.
+										</div>
+										<div id="palltotwtchosenkg" style="display:none">
+										Kg.
+										</div>
+										</dd>
+										</dl>
+										</div>
+										<!-- </div> -->
+										
+                                    <!-- End Pickup Modules - WW Freight (1304) -->
+                                    <!-- ////////////////////////////////////// -->
+         </div>
+         <div class="clear"></div>
+		  
+		  <div class="clearfix" id="expFreightDim">
+                            	<div id="palldim">
+                            	<dl class="clearfix">
+                            	<div id="labelPalletDim" style="display:none">
+                                	<label for=""><a href="javascript:palletDimensionsLinkClicked()" class="btnlnkR helpIconR">Dimensions of your Largest Pallet:</a></label>
+                                </div>
+                                </dl>
+                                
+                                <dl class="clearfix">
+                            	<div id="nonlabelPalletDim" style="display:none">
+                                	<label for=""><a href="javascript:palletDimensionsLinkClicked()" class="btnlnkR helpIconR">Pallet Dimensions:</a></label>
+                                </div>
+                                </dl>                       
+                                                           
+                                <dl class="flexFirst clearfix">
+                                	<dt><label><span id="lenSpan"><span id="lenErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Length:</span></label></dt>
+                            		<dd><input id="length" name="length" value="" type="text" size="5" maxlength="4" width="5" onkeypress="return allowOnlyInt(event)"><img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">&nbsp;&nbsp;&nbsp;X
+                                    <div id="pallltdef">
+                            		
+										in
+										
+									</div>
+									<div id="pallltchosenin" style="display:none">
+									in
+									</div>
+									<div id="pallltchosencm" style="display:none">
+									cm
+									</div>
+                            		</dd>
+                            	 </dl>
+                                <dl class="flexAfter clearfix">
+						        <dt><label><span id="widSpan"><span id="widErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Width:</span></label></dt>
+                                    <dd><input id="width" name="width" value="" type="text" size="5" maxlength="4" width="5" onkeypress="return allowOnlyInt(event)"><img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">&nbsp;&nbsp;&nbsp;X
+                                    <div id="pallwddef">
+                                    
+										in
+										
+									</div>
+									<div id="pallwdchosenin" style="display:none">
+									in
+									</div>
+									<div id="pallwdchosencm" style="display:none">
+									cm
+									</div>
+                                   </dd>
+                                </dl>
+                                <dl class="flexAfter clearfix">
+                                    <dt><label><span id="heiSpan"><span id="heiErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Height:</span></label></dt>
+                                    <dd><input id="height" name="height" value="" type="text" size="5" maxlength="4" width="5" onkeypress="return allowOnlyInt(event)"><img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+                                    <div id="pallhtdef">
+                                    
+										in
+										
+									</div>
+									<div id="pallhtchosenin" style="display:none">
+									in
+									</div>
+									<div id="pallhtchosencm" style="display:none">
+									cm
+									</div>
+                                   </dd>
+                                </dl>
+                                
+                                </div>
+                                
+                                
+                               <div id="showPalletSizeOpt" style="display:none">
+                               <dl class="flexAfter clearfix">
+                               <dt><label for="">Use the same values for all pallets?</label></dt>
+                                <dd><select name="palletSizeOpts" id="exppickuppalletsize">
+                                		<option value="0" selected="">Yes</option>
+                                		<option value="1">No</option>
+                                	</select>
+                               </dd>
+       						   </dl>
+                               </div>       						   
+         </div>
+         <div class="clear"></div>
+                                <!-- ///////////////////////////////////////// -->
+        <div for="repl_id" class="reqTxtInst" id="lengthWidth">(For pallets, the value entered for Length must be greater than or equal to the width value.)</div>
+        <div class="clear"></div>
+         <div class="group clearfix" id="expFreightDangGoods">
+         	<dl class="outHozFlex">
+                 <dt><table border="0" cellpadding="0" cellspacing="0">
+                     <tbody><tr>
+                         <td><input id="dangGoods" type="checkbox" value="Y" name="dangGoods"></td>
+                         <td><label class="sel">Pallet Contains Dangerous Goods</label></td>
+                     </tr>
+                 </tbody></table></dt>
+                 <dd><a href="javascript:dangGoodsLinkClicked()" class="btnlnkR helpIconR">what's this</a></dd>
+             </dl>
+         </div>
+         <div class="clear"></div>
+         <div class="subcol9 marginBegin">
+         	<p>Review the <a class="btnlnkR newWindowIconR" href="javascript:rawwoodGuideLinkClicked();">Raw Wood Guidelines</a> to see if they apply to your pallet.</p>
+         </div>
+		</div>	
+		  
+			
+			<div class="subcol9 marginBegin" id="domestic">
+				<dl>
+					<dt>
+					
+					<input name="domSrvButton" id="domSrvButtonId" type="button" value="UPS Domestic Services" class="btnlnkL expandIcon">
+					</dt>
+					<dd>
+						<div id="domSrvDiv" style="display:none">
+						</div>
+					</dd>
+				</dl>
+			</div>
+		
+		
+		
+			<div class="subcol9" id="international">
+				<dl>
+					<dt>
+						<input name="intlSrvButton" id="intlSrvButtonId" type="button" value="UPS International Services" class="btnlnkL expandIcon">
+					</dt>
+					<dd>
+						<div id="intlSrvDiv" style="display:none">
+						</div>
+					</dd>
+				</dl>
+					<div id="euDiv" style="display:none">
+						<dl>
+						<dt>
+							<input name="euSrvButton" id="euSrvButtonId" type="button" value="UPS EU Transborder Services" class="btnlnkL expandIcon">
+						</dt>
+						<dd>
+							<div id="euSrvDiv">
+							</div>
+						</dd>
+						</dl>
+					</div>
+				
+			</div>
+		
+		
+		</fieldset>
+		<fieldset>
+		<div id="additionalFields">
+		<h4>Does your pickup contain:</h4>
+		
+			<div class="subcol9 marginBegin">
+				<dl>
+					<dt><label>
+					
+						Items that weigh more than 70 lbs.?
+					
+					</label></dt>
+						<dd><input name="radioWeight70" type="radio" value="Y" id="radioWeight70Y"><label for="radioWeight70Y" class="sel">Yes</label></dd>
+						<dd><input name="radioWeight70" type="radio" value="N" id="radioWeight70N" checked=""><label for="radioWeight70N" class="sel">No</label></dd>
+				</dl>
+			</div>
+		</div>	
+		
+		
+		
+			
+			
+		
+		</fieldset>
+
+											
+									
+									
+											
+											
+											
+											
+											
+									
+									
+		
+	
+</div>
+</div></fieldset>
+
+
+</div>
+
+<div id="timeModuleDiv">
+
+
+
+
+<fieldset>
+<div class="secLvl step">
+	
+	<a name="pickupdatetime"></a>
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber" id="dateTimeStep">4</span></div>
+		<h3>Pickup Date and Time</h3>
+	</div>
+	
+	<div id="dateTimeErrorDiv" style="display:none">
+    	<p class="error" id="noDatesError">&nbsp;</p>
+	</div>
+	<div id="puTimeDiffErrDiv" style="display:none">
+		<p class="error" id="puTimeDiffId">&gt;&gt;&gt; There must be a difference of {0} hours or more between Earliest Pickup Time and Latest Pickup Time.  Please select different times for either or both.</p>
+	</div>
+	
+	<div class="secBody clearfix" id="dateTimeBodyDiv">
+	    
+	    <div id="pickupOpt" style="display:none">
+			<dl>
+        		<dt>
+        			<label for="">
+        				<a href="javascript:expPickupPrefLinkClicked()" class="btnlnkR helpIconR">
+        					<span id="pickOptSpan">
+        						<span id="pickOptErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Pickup Options:
+        					</span>
+        				</a>
+        			</label>
+        		</dt>
+                <dd>
+                	<select name="exppickup" id="exppickup" disabled="disabled">
+                		<option value="0" selected="">UPS will Pickup</option>
+                		<option value="1">I will drop-off at UPS Location</option>
+                	</select>
+                	<img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">
+                </dd>
+       		</dl>
+       
+     		<div id="liftGatePkp" style="">
+           		<table border="0" cellpadding="0" cellspacing="0"> 
+                  	<tbody><tr>
+	                   	<td><input id="liftGatePkp" type="checkbox" value="Y" name="liftGatePkp" disabled="disabled"></td>
+	                    <td><label class="sel" for="repl_id02">Liftgate on Pickup</label></td>
+                   </tr>
+           		</tbody></table>
+      		</div>
+       	</div>	
+    	<div class="clear"></div>
+    	<div id="dropoffDetails" style="display:none">
+			<dl>
+           		<dt>
+           			<label for="">
+           				<span id="dtDropSpan">
+           					<span id="dtDropErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Drop-off Date:
+           				</span>
+           			</label>
+           		</dt>
+           		
+           		<dd>
+              		<div id="dropDateDiv"> 
+      					<select class="modSelLarge" name="dropoffdate" id="dropoffdate" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="20150828" selected="">Monday, September 28, 2015&nbsp;&nbsp;</option>
+</select>
+      				</div>
+           		</dd>
+          	</dl>
+			<dl>
+            	<dt><label for=""><a href="javascript:expDropoffLocationsLinkClicked()" class="btnlnkR helpIconR">Drop-off Locations:</a></label></dt>
+                <dd id="ieorigfacilites">
+                	<select name="" id="origslic" disabled="disabled">
+                    	<option value="" selected="">Select One</option>
+                    </select>
+				</dd>
+            </dl>
+            <div id="ErrorModuleOrg" class="secLvl message clearfix" style="display:none">
+            	<fieldset>
+                    <!-- DIV ERROR LAUNCH -->
+                    <p class="criticalMessage">&nbsp;&nbsp;&nbsp;<b>No UPS Facility results were found.</b></p>
+					<div class="secBody" id="iplaunch_nojs_div" name="iplaunch_nojs_div">
+						
+							<!-- cms: id="ct1_shi_wwef_contact_fra_en_us" actiontype="0" -->
+				This UPS Worldwide Express Freight™ shipment requires assistance. When you've completed your shipment, please contact UPS Customer Service at 1-800-782-7892. 
+						
+					</div> 
+            	</fieldset>
+			</div>
+			
+			<div id="orgFacDetails" class="marginBegin col6 clearfix">		
+	            <dl>
+	                <dt><label for="repl_id"><div id="orgFacName"></div></label></dt>
+	                <dd id="orgFacAdd1"></dd>
+	                <dd id="orgFacAdd2"></dd>
+	                <dd id="orgFacAdd3"></dd>
+	                <dd id="orgFacStateCityZip"></dd>
+	                <dd id="orgFacCountry"></dd>
+	                <dd id="orgFacTelPhNum"></dd>
+	                <dd id="orgFacFaxNum"></dd>
+	            </dl>
+	            <div id="facDirections" class="appLvl mod modal col18 dialog" style="display:none"></div>
+	            <div id="orgFacDirections" style="display:none">
+					<p><a class="btnlnkR newWindowIconR" href="javascript:launchDirectionsModal('O')">Directions to Loading/Unloading Area</a></p> 
+				</div>
+	            <dl>
+	                <dt><label for="repl_id">Hours of Operation:</label></dt>
+	                <dd id="orgFacHHOper"></dd>
+	            </dl>
+	            <dl>
+	                <dt><label for="repl_id">UPS Location Latest Drop-off Time:</label></dt>
+	                <dd id="orgFacCutOffTime"></dd>
+	            </dl>
+          	</div>
+          	<div class="marginEnd clearfix">
+            	<dl>
+            		<dd id="orgFacDistance"></dd>
+            	</dl>
+            </div>             
+            <div id="dropTimeDiv" class="group clearfix">
+            	<p><label for="repl_id">What time will your shipment be dropped off?</label></p>
+                <dl class="flexFirst">
+                	<dt></dt>
+                	<dd>
+                		<select class="modSelSmall" name="dropHour" id="dropHour" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="0">12&nbsp;&nbsp;</option>
+<option value="1">1&nbsp;&nbsp;</option>
+<option value="2">2&nbsp;&nbsp;</option>
+<option value="3">3&nbsp;&nbsp;</option>
+<option value="4">4&nbsp;&nbsp;</option>
+<option value="5">5&nbsp;&nbsp;</option>
+<option value="6">6&nbsp;&nbsp;</option>
+<option value="7">7&nbsp;&nbsp;</option>
+<option value="8">8&nbsp;&nbsp;</option>
+<option value="9">9&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="11" selected="">11&nbsp;&nbsp;</option>
+</select>
+                    </dd>
+                </dl>
+                <dl class="flexAfter">
+            		<dd>
+            			<select class="modSelSmall" name="dropMin" id="dropMin" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="00" selected="">00&nbsp;&nbsp;</option>
+<option value="05">05&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="15">15&nbsp;&nbsp;</option>
+<option value="20">20&nbsp;&nbsp;</option>
+<option value="25">25&nbsp;&nbsp;</option>
+<option value="30">30&nbsp;&nbsp;</option>
+<option value="35">35&nbsp;&nbsp;</option>
+<option value="40">40&nbsp;&nbsp;</option>
+<option value="45">45&nbsp;&nbsp;</option>
+<option value="50">50&nbsp;&nbsp;</option>
+<option value="55">55&nbsp;&nbsp;</option>
+</select>
+            		</dd>
+                </dl>
+                <dl class="flexAfter">
+                    <dd>
+                    	<table border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+                            	<td class="alignTop">
+                            	    <input id="dropAMId" type="radio" name="dropAMPM" checked="" value="AM" disabled="disabled">                         	
+                                    <label class="sel" for="repl_id01">AM</label>
+                                </td>
+                            	<td class="alignTop">                          	
+                            	   <input id="dropPMId" type="radio" name="dropAMPM" value="PM" disabled="disabled">                          	
+                                <label class="sel" for="repl_id02">PM</label>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </dd>
+                </dl>
+            	<div class="clear"></div>
+                <p>(local time)</p>
+			</div>             
+		</div>  
+    	
+    	<div class="clear"></div>
+    	<div id="pickupDetails" style="">	
+			<dl>
+				<dt>
+					<label for="">Pickup Date:</label>
+				</dt>
+				<dd>
+					<div id="pickupDateDiv">
+					
+					 	<select class="modSelLarge" name="pickupdate" id="pickupdate" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="20150828" selected="">Monday, September 28, 2015&nbsp;&nbsp;</option>
+</select>
+				 				
+	 	
+					</div>
+				</dd>
+			</dl>
+					
+		
+		
+		<p id="puCurrentDateNotePara" style="display:none"></p>
+		<div id="pickupTimeDiv">
+		<fieldset>
+		
+			<div class="subcol9 marginBegin">
+				<dl>
+					<dt>
+					<label><div id="fra_pic_earliesttime_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_earliesttime_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_earliesttime_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_earliesttime_en_us" actiontype="0" -->				 <table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr>		<td><a name="Earliest+Pickup+Time"><span class="standardheader">Earliest Pickup Time</span><br></a>		</td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">		<tbody><tr>			<td colspan="3">Select the earliest time that your shipment will be ready for pickup.</td>		</tr>	<tr>		<td colspan="3"><img alt="" border="0" height="10" src="https://wwwapps.ups.com/img/1.gif" width="1"></td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr><td>	</td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	 			</table></div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_earliesttime_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_earliesttime_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_earliesttime_en_us_pgx_hh_linkedText">Earliest Pickup Time:</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9"> </label> <img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon"></dt>
+
+					<dd>
+						
+					<select class="modSelSmall" name="readyHours" id="readyHours" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="0">12&nbsp;&nbsp;</option>
+<option value="1">1&nbsp;&nbsp;</option>
+<option value="2">2&nbsp;&nbsp;</option>
+<option value="3">3&nbsp;&nbsp;</option>
+<option value="4">4&nbsp;&nbsp;</option>
+<option value="5">5&nbsp;&nbsp;</option>
+<option value="6">6&nbsp;&nbsp;</option>
+<option value="7">7&nbsp;&nbsp;</option>
+<option value="8">8&nbsp;&nbsp;</option>
+<option value="9" selected="">9&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="11">11&nbsp;&nbsp;</option>
+</select>
+					 
+						&nbsp;:&nbsp;
+							
+						<select class="modSelSmall" name="readyMinutes" id="readyMinutes" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="00" selected="">00&nbsp;&nbsp;</option>
+<option value="05">05&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="15">15&nbsp;&nbsp;</option>
+<option value="20">20&nbsp;&nbsp;</option>
+<option value="25">25&nbsp;&nbsp;</option>
+<option value="30">30&nbsp;&nbsp;</option>
+<option value="35">35&nbsp;&nbsp;</option>
+<option value="40">40&nbsp;&nbsp;</option>
+<option value="45">45&nbsp;&nbsp;</option>
+<option value="50">50&nbsp;&nbsp;</option>
+<option value="55">55&nbsp;&nbsp;</option>
+</select>
+						 
+						&nbsp;
+						<input id="readyAMId" type="radio" name="readyAMPM" checked="" value="AM" disabled="disabled">AM
+						<input id="readyPMId" type="radio" name="readyAMPM" value="PM" disabled="disabled">PM
+
+					</dd>
+
+					<dt><label><div id="fra_pic_latesttime_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_latesttime_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_latesttime_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_latesttime_en_us" actiontype="0" -->				 <table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr>		<td><a name="Latest+Pickup+Time"><span class="standardheader">Latest Pickup Time</span><br></a>		</td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">		<tbody><tr>			<td colspan="3">Select the&nbsp;latest time&nbsp;at which UPS will be able to gain access to your shipment.</td>		</tr>	<tr>		<td colspan="3"><img alt="" border="0" height="10" src="https://wwwapps.ups.com/img/1.gif" width="1"></td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr><td>	</td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	 			</table></div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_latesttime_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_latesttime_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_latesttime_en_us_pgx_hh_linkedText">Latest Pickup Time:</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9"> </label> <img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon"></dt>
+
+					<dd>
+						
+						<select class="modSelSmall" name="closeHours" id="closeHours" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="0">12&nbsp;&nbsp;</option>
+<option value="1">1&nbsp;&nbsp;</option>
+<option value="2">2&nbsp;&nbsp;</option>
+<option value="3">3&nbsp;&nbsp;</option>
+<option value="4">4&nbsp;&nbsp;</option>
+<option value="5" selected="">5&nbsp;&nbsp;</option>
+<option value="6">6&nbsp;&nbsp;</option>
+<option value="7">7&nbsp;&nbsp;</option>
+<option value="8">8&nbsp;&nbsp;</option>
+<option value="9">9&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="11">11&nbsp;&nbsp;</option>
+</select>
+						  
+						&nbsp;:&nbsp;
+						
+						<select class="modSelSmall" name="closeMinutes" id="closeMinutes" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="00" selected="">00&nbsp;&nbsp;</option>
+<option value="05">05&nbsp;&nbsp;</option>
+<option value="10">10&nbsp;&nbsp;</option>
+<option value="15">15&nbsp;&nbsp;</option>
+<option value="20">20&nbsp;&nbsp;</option>
+<option value="25">25&nbsp;&nbsp;</option>
+<option value="30">30&nbsp;&nbsp;</option>
+<option value="35">35&nbsp;&nbsp;</option>
+<option value="40">40&nbsp;&nbsp;</option>
+<option value="45">45&nbsp;&nbsp;</option>
+<option value="50">50&nbsp;&nbsp;</option>
+<option value="55">55&nbsp;&nbsp;</option>
+</select>
+						  
+						&nbsp;
+<input id="closeAMId" type="radio" name="closeAMPM" value="AM" disabled="disabled">AM
+						<input id="closePMId" type="radio" name="closeAMPM" checked="" value="PM" disabled="disabled">PM
+						
+
+					</dd>
+				</dl>
+			</div>
+		
+		
+		
+		
+		
+		</fieldset>
+
+		<fieldset>
+		<h4>Additional Pickup Information</h4>
+		
+			<div class="subcol9 marginBegin">
+				<dl>
+					<dt>
+						<label for="">Preferred Pickup Location:</label>
+					</dt>
+					<dd>
+						<select class="modSelMedium" name="pickuppoint" id="pickuppoint" onkeyup="this.blur();this.focus();" disabled="disabled">
+<option value="">Choose One&nbsp;&nbsp;</option>
+<option value="Front Door">Front Door&nbsp;&nbsp;</option>
+<option value="Back Door">Back Door&nbsp;&nbsp;</option>
+<option value="Side Door">Side Door&nbsp;&nbsp;</option>
+<option value="Shipping">Shipping&nbsp;&nbsp;</option>
+<option value="Receiving">Receiving&nbsp;&nbsp;</option>
+<option value="Reception">Reception&nbsp;&nbsp;</option>
+<option value="Office">Office&nbsp;&nbsp;</option>
+<option value="Mail Room">Mail Room&nbsp;&nbsp;</option>
+<option value="Garage">Garage&nbsp;&nbsp;</option>
+<option value="Upstairs">Upstairs&nbsp;&nbsp;</option>
+<option value="Downstairs">Downstairs&nbsp;&nbsp;</option>
+<option value="Guard Room">Guard Room&nbsp;&nbsp;</option>
+<option value="Third Party">Third Party&nbsp;&nbsp;</option>
+<option value="Warehouse">Warehouse&nbsp;&nbsp;</option>
+</select>
+					</dd>
+				</dl>
+			</div>
+		
+		
+		
+			<div class="subcol9">
+				<dl>
+					<dt>
+						<label for="">
+						<div id="fra_pic_pickupref_en_us" class="pgx_hh" style="visibility:hidden;display:none;">
+<div id="fra_pic_pickupref_en_us_pgx_hh_contentDivHolder" class="pgx_hh_contentDivHolder">
+<div id="fra_pic_pickupref_en_us_pgx_hh_contentDiv" class="pgx_hh_contentDiv">
+<!-- cms: id="fra_pic_pickupref_en_us" actiontype="0" -->				 <table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr>		<td><a name="Pickup+Reference"><span class="standardheader">Pickup Reference</span><br></a>		</td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">		<tbody><tr>			<td colspan="3">A pickup reference is an identifier that you define when you are scheduling a pickup. This reference could be a purchase order (PO) number, a customer number, a company name, a Bill of Lading number, or a phrase that identifies that shipment -- such as "10 crates" or "gift for Mom." A pickup reference can be any combination of letters and numbers up to 35 characters.</td>		</tr>	<tr>		<td colspan="3"><img alt="" border="0" height="10" src="https://wwwapps.ups.com/img/1.gif" width="1"></td>	</tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	<tbody><tr><td>	</td></tr></tbody></table><table border="0" cellpadding="0" cellspacing="0" width="100%">	 			</table></div>
+</div>
+</div>
+<a class="anchor" onmouseover="PGX.hh_open(this,'fra_pic_pickupref_en_us',0,event)" onclick="PGX.hh_open(this,'fra_pic_pickupref_en_us',0,event)" onmouseout="PGX.hh_hide()" id="fra_pic_pickupref_en_us_pgx_hh_linkedText">Pickup Reference:</a> <img alt="help" border="0" height="9" src="https://www.ups.com/img/icn_help_blue.gif" width="9">
+						</label>
+					</dt>
+					<dd>
+						<input id="pickupReferenceId" name="paramPickupReference" value="" type="text" size="" maxlength="35" disabled="disabled">
+					</dd>
+				</dl>
+			</div>
+		
+		</fieldset>
+		
+		<dl>
+			<dt>
+				<label for="">Enter any special instructions to the UPS Driver:</label>
+			</dt>
+			<dd>
+				<textarea id="spInstrId" name="specialinstructions" maxlength="57" cols="32" rows="3" class="full" disabled="disabled"></textarea>
+			</dd>
+		</dl>
+		</div>
+	</div>
+	
+	</div> 
+	
+	
+	
+</div>
+</fieldset>
+
+ </div>
+
+
+<div id="destModuleDiv">
+
+
+
+
+<fieldset>
+	
+     <div id="destMod" style="display:none">
+     	<div class="secLvl step">
+			
+			<div class="secHead clearfix">
+				<div class="stepNumberDiv"><span class="stepNumber">5</span></div>
+   				<h3>Destination Options</h3>
+			</div>
+			<div class="secBody clearfix">
+				<dl>
+	           		<dt>
+	           			<label for="">
+	           				<a href="javascript:expDeliveryPrefLinkClicked()" class="btnlnkR helpIconR">
+	           					<span id="destOptSpan">
+	           						<span id="destOptErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>
+	           						Delivery Options:
+	           					</span>
+	           				</a>
+	           			</label>
+	           		</dt>
+					<dd>
+						<select name="expdeliver" id="expdeliver">
+	                   		<option value="0" selected="">UPS will Deliver</option>
+	                   		<option value="1">Hold for Customer Pickup at UPS Location</option>
+	                   	</select>
+	                   	<img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">
+					</dd>
+	   			</dl>
+								
+				<div class="clear"></div>
+				<h4>Ultimate Destination Address Information</h4>			
+				<div class="flexFirst clearfix">
+					<dl>
+		          		<dt>
+		          			<span id="destCountrySpan">
+		          				<span id="destCountryErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>
+		          				<label id="destCountryLable" for="">
+		          					Country:
+		          				</label>
+		          			</span>
+		          		</dt>
+						<dd>
+							<select class="modSelMedium" name="dc1" id="dc1" onkeyup="this.blur();this.focus();">
+<option value=" ">Select One&nbsp;&nbsp;</option>
+<option value="AR">Argentina&nbsp;&nbsp;</option>
+<option value="AU">Australia&nbsp;&nbsp;</option>
+<option value="AT">Austria&nbsp;&nbsp;</option>
+<option value="BE">Belgium&nbsp;&nbsp;</option>
+<option value="BR">Brazil&nbsp;&nbsp;</option>
+<option value="CA">Canada&nbsp;&nbsp;</option>
+<option value="CL">Chile&nbsp;&nbsp;</option>
+<option value="CN">China, People's Republic of&nbsp;&nbsp;</option>
+<option value="CO">Colombia&nbsp;&nbsp;</option>
+<option value="CR">Costa Rica&nbsp;&nbsp;</option>
+<option value="CZ">Czech Republic&nbsp;&nbsp;</option>
+<option value="DK">Denmark&nbsp;&nbsp;</option>
+<option value="DO">Dominican Republic&nbsp;&nbsp;</option>
+<option value="EC">Ecuador&nbsp;&nbsp;</option>
+<option value="FI">Finland&nbsp;&nbsp;</option>
+<option value="FR">France&nbsp;&nbsp;</option>
+<option value="DE">Germany&nbsp;&nbsp;</option>
+<option value="GR">Greece&nbsp;&nbsp;</option>
+<option value="HK">Hong Kong&nbsp;&nbsp;</option>
+<option value="HU">Hungary&nbsp;&nbsp;</option>
+<option value="IN">India&nbsp;&nbsp;</option>
+<option value="ID">Indonesia&nbsp;&nbsp;</option>
+<option value="IE">Ireland, Republic of&nbsp;&nbsp;</option>
+<option value="IL">Israel&nbsp;&nbsp;</option>
+<option value="IT">Italy&nbsp;&nbsp;</option>
+<option value="JP">Japan&nbsp;&nbsp;</option>
+<option value="LI">Liechtenstein&nbsp;&nbsp;</option>
+<option value="LU">Luxembourg&nbsp;&nbsp;</option>
+<option value="MY">Malaysia&nbsp;&nbsp;</option>
+<option value="MX">Mexico&nbsp;&nbsp;</option>
+<option value="NL">Netherlands&nbsp;&nbsp;</option>
+<option value="NZ">New Zealand&nbsp;&nbsp;</option>
+<option value="NO">Norway&nbsp;&nbsp;</option>
+<option value="PH">Philippines&nbsp;&nbsp;</option>
+<option value="PL">Poland&nbsp;&nbsp;</option>
+<option value="PT">Portugal&nbsp;&nbsp;</option>
+<option value="SA">Saudi Arabia&nbsp;&nbsp;</option>
+<option value="SG">Singapore&nbsp;&nbsp;</option>
+<option value="SK">Slovakia&nbsp;&nbsp;</option>
+<option value="KR">South Korea&nbsp;&nbsp;</option>
+<option value="ES">Spain&nbsp;&nbsp;</option>
+<option value="SE">Sweden&nbsp;&nbsp;</option>
+<option value="CH">Switzerland&nbsp;&nbsp;</option>
+<option value="TW">Taiwan&nbsp;&nbsp;</option>
+<option value="TH">Thailand&nbsp;&nbsp;</option>
+<option value="TR">Turkey&nbsp;&nbsp;</option>
+<option value="AE">United Arab Emirates&nbsp;&nbsp;</option>
+<option value="GB">United Kingdom&nbsp;&nbsp;</option>
+<option value="VN">Vietnam&nbsp;&nbsp;</option>
+</select>
+							<img alt="" border="0" height="11" width="12" src="https://wwwapps.ups.com/img/1.gif" class="requiredIcon">
+						</dd>
+		      		</dl>
+	      		</div>
+      						
+      			<div class="clear"></div>				
+			 
+				<div class="subcol9 marginBegin clearfix" id="nonPostal" style="display:none">
+					<dl>
+	                	<dt>
+	                		<span id="destStateSpan"><span id="destStateErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>
+	                			<label for="repl_id04">
+	                				State:
+	                			</label>
+	                		</span>
+	                	</dt>
+	                    <dd id="iehkdestpd1div">
+	                    	<select id="" disabled="">
+	                        	<option value="" selected="">Select One</option></select>
+	                        	<img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">
+						</dd>
+						<dt>
+							<span id="destCitySpan">
+								<span id="destCityErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>
+								<label for="repl_id03">
+									City:
+								</label>
+							</span>
+						</dt>
+						<dd id="iehkdestpd2div">
+	                       	<select id="" disabled="">
+	                           	<option value="" selected="">Select One</option>
+	                        </select>
+	                        <img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">
+	           			</dd>
+					</dl>
+	                <dl>
+						<dd>
+						</dd>
+					</dl>
+				</div>
+        					
+	   			<div class="subcol9 marginBegin clearfix" id="cityOnly" style="display:none">
+					<dl>
+						<dt>
+							<label for="">
+							<span id="destcitySpanIdUs">
+								<span id="destcityErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>
+								City:
+							</span>
+				
+							</label>
+						</dt>
+						<dd>
+							<input name="dcpd2" type="text" id="dcpd2Only" value="" size="" maxlength="30">
+							<img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">								
+						</dd>
+					</dl>
+				</div>
+									
+				<div class="subcol9 marginBegin clearfix" id="Postal" style="display:none">
+					<dl>
+						<dt>
+							<label for="">
+								<span id="destpostalSpanIdUs"><span id="destpostalErrSpanId" style="display:none;color:red">&gt;&gt;&gt; </span>
+									Zip Code:
+								</span>
+				
+							</label>
+						</dt>
+						<dd>
+							<input type="text" name="dcpostalcode" id="dcpostalcode" value="" size="10" maxlength="10">
+<img class="requiredIcon" width="12" height="11" border="0" src="https://wwwapps.ups.com/img/1.gif" alt="">
+						</dd>
+					</dl>
+				</div>
+			
+				<div class="clear"></div>
+								
+				<div class="subcol9 marginBegin clearfix" id="holdforpickup" style="display:none">
+					<dl>
+						<dd>
+							<span id="findLocSpan">
+								<span id="findLocErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>
+								<input type="button" id="findLoc" value="Find Location" class="btnArw">
+							</span>
+						</dd>
+					</dl>	
+			    </div>
+			
+				<div class="subcol9 marginEnd clearfix" id="destDetails" style="display:none">
+					<dl>
+						<p><span class="label">Shipment will be held for pickup at this UPS Location:</span></p>
+							<dt>
+								<label for=""><div id="destFacName"></div></label>
+		                	</dt>
+		                   <dd id="destFacAdd1"></dd>
+		                   <dd id="destFacAdd2"></dd>
+		                   <dd id="destFacAdd3"></dd>
+		                   <dd id="destFacStateCityZip"></dd>
+		                   <dd id="destFacCountry"></dd>
+		                   <dd id="destFacPhNum"></dd>
+		                   <dd id="destFacFaxNum"></dd>
+					</dl>
+		            <div id="destDetailsHrs" style="display:none"></div>
+				</div>
+							    
+				<div class="clear"></div>
+				<div class="secLvl message clearfix" id="ErrorModuleDest" style="display:none">
+				    <p class="criticalMessage">&nbsp;&nbsp;&nbsp;<b>No UPS Facility results were found.</b></p>
+			       	<div class="secBody" id="iplaunch_nojs_div" name="iplaunch_nojs_div">
+        				<!-- cms: id="ct1_shi_wwef_contact_fra_en_us" actiontype="0" -->
+				This UPS Worldwide Express Freight™ shipment requires assistance. When you've completed your shipment, please contact UPS Customer Service at 1-800-782-7892. 
+					</div> 
+				</div>														
+			</div>
+		</div>
+	</div>
+	
+</fieldset>	
+
+
+
+</div>
+
+<div id="notiModuleDiv">
+<fieldset>
+<a name="notification"></a>
+<div class="secLvl step">
+	
+	<div class="secHead clearfix">
+		<div class="stepNumberDiv"><span class="stepNumber" id="notiStep">6</span></div>
+			<h3>Pickup Notifications</h3>
+		<ul>
+			<li>
+				
+					
+					<input name="showHideNoti" id="showHideNotiId" type="button" class="btnlnkL expandIcon" hideval="Hide" showval="Show Pickup Notifications" value="Show Pickup Notifications">
+			</li>
+		</ul>
+	</div>
+	
+	
+	<div class="secBody clearfix" id="notiBodyDiv" style="display:none">
+		<h4>Pickup Request Confirmations</h4>		
+		
+	<fieldset>
+			<p>Enter a mobile device number to receive SMS confirmation of this Pickup Request.</p>			
+			<dl class="flexFirst" id="phoneNumId">				
+				<dt><label>Mobile Device Number:</label></dt>				
+				<dd>
+				<select class="modSelMedium" name="phoneList" id="phoneList" onkeyup="this.blur();this.focus();">
+<option value="0" selected="">Select One&nbsp;&nbsp;</option>
+<option value="1">Add New Entry&nbsp;&nbsp;</option>
+</select>
+				</dd>
+			</dl>	
+			<dl class="flexAfter" id="countryLanguageId">
+						<dt><label>Language Format:</label></dt>
+						<dd id="countryLanguage" name="countryLanguage" style="display: block;"></dd>											              
+                                             
+            </dl>					
+	</fieldset>
+		
+		<fieldset>
+			<p>Enter up to five e-mail addresses to receive e-mail confirmation of this Pickup Request.</p>
+
+			<dl>
+				<dt>
+					<p id="eLabelErrId"><span id="eLabelErrSpan" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><label for="">E-mail Addresses</label></p>
+				</dt>
+				<dd>
+					<span id="e1ErrId" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><input name="email1" value="" type="text" maxlength="50" size="" id="email1Id">
+				</dd>
+				<dd>
+					<span id="e2ErrId" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><input name="email2" value="" type="text" maxlength="50" size="" id="email2Id">
+				</dd>
+				<dd>
+					<span id="e3ErrId" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><input name="email3" value="" type="text" maxlength="50" size="" id="email3Id">
+				</dd>
+				<dd>
+					<span id="e4ErrId" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><input name="email4" value="" type="text" maxlength="50" size="" id="email4Id">
+				</dd>
+				<dd>
+					<span id="e5ErrId" style="display:none;color:red;font-weight:bold">&gt;&gt;&gt; </span><input name="email5" value="" type="text" maxlength="50" size="" id="email5Id">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>
+					<label for="">Enter a personalized message to be included in your e-mail confirmation.*</label>
+				</dt>
+				<dd>
+					<textarea id="emailmessageId" name="emailmessage" cols="32" rows="3" class="full"></textarea>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>
+					<p id="feId"><label for=""><span id="feErrSpan" style="display:none;color:red">&gt;&gt;&gt; </span>Your E-mail Address:</label></p>
+				</dt>
+				<dd><input name="failedemail" value="" type="text" maxlength="50" size="" id="failedemailId">
+					<br>
+					<div class="reqTxtInst">UPS will notify you if there is a problem sending any of the e-mail notifications you requested for this pickup request.</div>
+				</dd>
+			</dl>
+		</fieldset>
+
+	</div>
+	
+	
+</div>
+</fieldset>
+
+
+</div>
+
+</div>
+ 
+<div class="appFooter">
+		
+		<div class="btnBar"> 
+				<input type="image" name="" src="https://wwwapps.ups.com/img/1.gif" width="1" height="1" border="0" alt="">
+	<div id="valNext" style="display: block;">
+	<input id="nextButtonId" name="SUBMIT_BUTTON" type="submit" value="Next" class="btnArw" style="display: inline-block;">
+	</div>
+	<div id="valSubmit" style="display:none">
+	<input id="nextButtonId" name="SUBMIT_BUTTON" type="submit" value="Submit" class="btnArw">
+	</div>
+		</div>  
+</div>
+
+<!-- Hasnain  -->
+
+</div>
+<div class="note"><strong>*</strong> - This application provides you with the ability to send a message via electronic mail to a contact person at the requested pickup location. You agree to use this message service solely to communicate information related to the shipment and to transmit only lawful messages that do not include lewd, offensive or illegal content. In no event shall UPS be liable for the content of the message or any failure or delay in the transmission or receipt of the message.</div>
+</form>
+
+
+<form id="secondFormId" name="secondFormId" action="/pickup/pending?loc=en_US" method="post">
+<input id="secondFormIanId" type="hidden" name="ian" value="">
+<input id="secondFormReturntoId" type="hidden" name="returnto" value="/pickup/request?loc=en_US">
+</form>
+
+<form id="thirdFormId" name="thirdFormId" action="https://www.ups.com/dropoff?loc=en_US" method="post"></form>
+</div>
+</div>
+    
+
+    </div>
+</div>

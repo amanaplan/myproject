@@ -1,0 +1,109 @@
+<div data-ng-controller="paymentCtrl"
+	data-ng-class="{'ups-payment ':!ischoosePayment}" data-page-title="{{isAddCard?'Add':'Edit'}} a payment card"> <a point-focus="" href="#/paymentPage" class="ups-previous_page"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back to Payment Options </a>
+	<form error-on-submit
+		data-ng-class="{'ups-form_wrap':!ischoosePayment}" name="ups_Cardform"
+		class="ups-cardPayment  ups-offset-0" novalidate>
+		<div class="ng-scope" data-ng-if="clicked || errorList.length>0">
+			<!-- ngIf: ups_signupform.$invalid || errorList.length>0 -->
+			<!--<h3 data-ng-if="ups_signupform.$invalid || errorList.length>0" class="ups-invalid_color-list ups-error_alert-list icon ups-icon-exclamation ng-scope"> -->
+			<h3 class="ups-invalid_color-list ups-error_alert-list ng-scope">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors
+				<!-- end ngIf: ups_signupform.$invalid || errorList.length>0 -->
+				<!-- ngRepeat: err in errorList -->
+				<!-- ngIf: (ups_signupform.firstName.$invalid && clicked) --></h3>
+			<ul class="ups-icons-error">
+				<li data-ng-if="(ups_Cardform.cardType.$invalid && clicked)"><span
+                    data-ng-show="ups_Cardform.cardType.$error.required"> <a
+                        href="#" onclick="return false;" focus-attr="ups-cardType" error-on-submit-anchor class="ups-invalid_color"> Card Type </a> is
+					required. </span></li>
+				<li data-ng-if="ups_Cardform.Cardholder.$invalid && clicked"><span
+                    data-ng-show="ups_Cardform.Cardholder.$error.required"> <a
+                         focus-attr="ups-card_name" href="#" onclick="return false;" error-on-submit-anchor class="ups-invalid_color">Cardholder Name </a> is required. </span></li>
+				<li
+                    data-ng-if="(clicked && ups_Cardform.cardNumber.$invalid)||(clicked && invalidCard)"> <span data-ng-show="ups_Cardform.cardNumber.$error.required"> <a focus-attr="ups-card_cardNumber" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Card
+					Number </a> is required. </span> <span data-ng-show="invalidCard && clicked"> <a
+                        focus-attr="ups-card_cardNumber" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Card </a> is
+					invalid. </span> </li>
+				<li data-ng-if="clicked && ups_Cardform.month.$invalid"><span
+                    data-ng-show="ups_Cardform.month.$invalid && clicked"> <a
+                        focus-attr="ups-month" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Month </a> is
+					required. </span></li>
+				<li data-ng-if="clicked && ups_Cardform.Year.$invalid"><span
+                    data-ng-show="ups_Cardform.Year.$invalid && clicked"> <a
+                        focus-attr="ups-year" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Year </a> is required. </span></li>
+				<li
+                    data-ng-if="(clicked && ups_Cardform.verify.$invalid)||(clicked && invalidCode)"> <span
+                    data-ng-show="ups_Cardform.verify.$invalid && clicked && !ischoosePayment"> <a focus-attr="ups-code" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Verification
+					Code </a> is required. </span> <span
+                    data-ng-show="ups_Cardform.verify.$invalid && clicked && ischoosePayment"> <a focus-attr="ups-code" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> CCV </a> is
+					required. </span> <span data-ng-show="invalidCode && clicked && !ischoosePayment"> <a focus-attr="ups-code" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Code </a> is
+					invalid. </span> <span data-ng-show="invalidCode && clicked && ischoosePayment"> <a focus-attr="ups-code" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> CCV </a> is invalid. </span> </li>
+				<li data-ng-if="clicked && ups_Cardform.address0.$invalid"><span
+                    data-ng-show="ups_Cardform.address0.$invalid && clicked"> <a
+                        focus-attr="ups-address" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address </a> is
+					required. </span></li>
+				<li data-ng-if="clicked && ups_Cardform.city.$invalid"><span
+                    data-ng-show="ups_Cardform.city.$invalid && clicked"> <a
+                        focus-attr="ups-city" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> City </a> is required. </span></li>
+				<li data-ng-if="clicked && ups_Cardform.state.$invalid"><span
+                    data-ng-show="ups_Cardform.state.$invalid && clicked && setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> State </a> is
+					required. </span> <span
+                    data-ng-show="ups_Cardform.state.$invalid && clicked && !setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address
+					Information </a> is required. </span></li>
+				<li data-ng-if="clicked && ups_Cardform.zipCode.$invalid"><span
+                    data-ng-show="ups_Cardform.zipCode.$invalid && clicked"> <a
+                        focus-attr="ups-zipcode" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Code </a> is
+					required. </span></li>
+			</ul>
+		</div>
+		<p> <em> <span aria-hidden="true">*</span> <span class="ups-readerTxt">Required</span> Indicates required field </em> </p>
+
+		<!-- ///////////////////////////////////////////////// -->
+		<!-- //// Begin Payment component                 //// -->
+		<!-- ///////////////////////////////////////////////// -->
+
+		<ups-cpc></ups-cpc>
+
+		<!-- ///////////////////////////////////////////////// -->
+		<!-- //// End Payment component                   //// -->
+		<!-- //// Begin Address component                 //// -->
+		<!-- ///////////////////////////////////////////////// -->
+		<!--        <div class="row">
+        	<div class="col-md-5">
+        		<ups-cac></ups-cac>
+        	</div>
+        </div> -->
+		<div class="row ups-cac_address" data-ng-if="!ischoosePayment" data-ng-show="diffAddress">
+			<div class="col-md-5">
+				<ups-cac></ups-cac>
+			</div>
+		</div>
+		<!-- ///////////////////////////////////////////////// -->
+		<!-- //// End Address component                   //// -->
+		<!-- ///////////////////////////////////////////////// -->
+
+		<div class="ups-form_ctaGroup">
+			<div data-ng-if="!ischoosePayment" class="row">
+				<div class="col-md-5">
+					<button type="submit"
+						data-ng-click="saveMethods(ups_Cardform.$valid,invalidCard,invalidCode);"
+						class="ups-cta ups-cta_primary">Save</button>
+					<button type="button" data-ng-click="cancel()"
+						class="ups-cta ups-cta_secondary">Cancel</button>
+				</div>
+			</div>
+			<div data-ng-if="ischoosePayment" class="text-center">
+				<button type="button" data-ng-click="ModalService.back()"
+					class="ups-cta ups-cta_tertiary ">Back</button>
+				<button type="submit"
+					data-ng-click="saveMethods(ups_Cardform.$valid,invalidCard,invalidCode);clicked=true;"
+					class="ups-cta ups-cta_primary ">Next</button>
+			</div>
+			<div data-ng-if="ischoosePayment" class="text-center">
+				<button type="submit" class="ups-cta ups-cta_secondary"
+					data-ng-click="ModalService.dismiss()">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>

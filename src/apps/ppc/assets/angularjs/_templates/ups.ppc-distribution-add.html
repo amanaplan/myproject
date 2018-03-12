@@ -1,0 +1,104 @@
+<div class="ups-application_wrapper ups-form_wrap ups-distribution-list"
+	data-ng-controller="distributionAddCtrl" data-page-title="{{isAddDistribution?'Add':'Edit'}} a distribution list">
+	<!-- CONTACT EDIT CONTENT -->
+
+	<form name="ups_addDistibutionList" error-on-submit novalidate>
+        <p>
+            <em>
+                <span aria-hidden="true">*</span>
+                <span class="ups-readerTxt">Required</span>
+                Indicates required field
+            </em>
+        </p>
+        
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required"
+					data-ng-class="{ 'has-error' : ups_addDistibutionList.nickName.$invalid && !ups_addDistibutionList.nickName.$pristine }">
+					<label for="ups-nick_name_input" class="ups-form_label">Nickname
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="nickName"
+							class="ups-form_input" id="ups-nick_name_input" value="" aria-required="true" required
+							data-ng-model="formObj.nick_name"
+							data-ng-blur="checkLength(form.nickName)" maxlength="35"
+							data-ng-model-options="{updateOn: 'blur'}"> <span
+							class="ups-invalid_color"
+							data-ng-show="!ups_addDistibutionList.nickName.$pristine && ups_addDistibutionList.nickName.$invalid" role="alert">
+							<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+							<span
+							data-ng-show="ups_addDistibutionList.nickName.$error.required">Nickname
+								is required.<span class="ups-readerTxt">Nickname is
+									required.</span>
+						</span><span
+							data-ng-hide="ups_addDistibutionList.nickName.$error.required">Invalid
+								Nickname.<span class="ups-readerTxt">Invalid Nickname.</span>
+						</span>
+						</span>
+						<div data-ng-if="(ups_addDistibutionList.nickName.$valid)">
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+            </div>
+        </div>
+        
+        <p>Choose one or more contacts and select Save. Use the Search field to find specific contacts quickly.</p>
+        
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group">
+					<label for="ups-search_contact" class="ups-form_label">Search</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input class="ups-form_input" type="text"
+							data-ng-model="contacts.search" maxlength="35"
+							id="ups-search_contact" aria-describedby="searchContactsHelperTxt">
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+                
+				<h2>Contacts</h2>
+				<div class="ups-table ups-table-responsive ups-tableScroll">
+					<table class="table table-striped">
+						<!-- <caption class="ups-readerTxt">Search contacts table</caption> -->
+						<tbody>
+							<tr
+								data-ng-repeat="item in contacts.list | orderBy:contacts.sortType:contacts.sortReverse | filter:contacts.search">
+								<td><input check-verify id="{{'ups-con'+$index}}"
+									class="ups-checkbox-custom" name="ups-uid" type="checkbox"
+									data-ng-model="item.Selected"
+									data-ng-click="checkUncheck(item.Selected)"
+									data-ng-checked="item.Selected"> <label
+									for="{{'ups-con'+$index}}"
+									class="ups-checkbox-custom-label ups-offset-01"><span
+										class="ups-readerTxt">Select {{item.first_name }} ,
+											{{item.city }} , {{item.state_select}}</span></label></td>
+								<td>{{ item.first_name | capFirstLetter}}</td>
+								<td>{{ item.city | capFirstLetter}},&nbsp;{{
+									item.state_select | uppercase}}</td>
+							</tr>
+							<tr data-ng-if="contacts.list.length === 0">
+								<td colspan="3">You haven't added any contacts yet.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary"
+                data-ng-click="submitForm(true)">Save to My List</button>
+                <!--
+                data-ng-disabled="!ups_addDistibutionList.$valid || !selected || !ups_addDistibutionList.$dirty "
+                -->
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="submitForm(false)">Cancel</button>
+		</div>
+	</form>
+</div>

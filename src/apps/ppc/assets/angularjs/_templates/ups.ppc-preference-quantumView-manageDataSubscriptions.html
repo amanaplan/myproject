@@ -1,0 +1,34 @@
+<div data-ng-controller="quantumViewAdministrationManageDataSubscriptionsCtrl">
+    <!-- Table -->
+    <div class="ups-table table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="col" class="ups-table_header_tertiary">
+                        <button class="ups-link"
+                            data-ng-click="sortBy('subscriptionName')"><span
+                                class="ups-readerTxt">Sort By </span>Subscription Name
+                                <span aria-hidden="true" class="icon" ng-class="{'ups-icon-chevrondown': reverse, 'ups-icon-chevronup': !reverse}"></span>
+                        </button>
+                    </th>
+                    <th scope="col" class="ups-table_header_tertiary">Type</th>
+                    <th scope="col" class="ups-table_header_tertiary">Status</th>
+                    <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                </tr>
+                <tr data-ng-repeat="subscription in manageDataSubscriptions | orderBy:propertyName:!reverse">
+                    <th scope="row">{{subscription.subscriptionName}}</th>
+                    <td>{{subscription.type}}</td>
+                    <td>Active</td>
+                    <td>
+                        <a href="#/preferencePage/quantumView/userAdministration/editDataSubscription">Edit<span class="ups-readerTxt">{{subscription.subscriptionName}}</span></a>| <button type="button" class="ups-button_link" data-ng-click="deleteSubscriptionConfirmation();">Delete <span class="ups-readerTxt">{{subscription.subscriptionName}}</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- End of Table -->
+    <div class="ups-form_ctaGroup">
+        <a href="#/preferencePage/quantumView/userAdministration/editDataSubscription" class="ups-cta ups-cta_primary">Add Subscription</a>
+    </div>
+</div>

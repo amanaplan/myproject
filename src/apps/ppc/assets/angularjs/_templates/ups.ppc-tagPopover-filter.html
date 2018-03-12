@@ -1,0 +1,24 @@
+<div data-ng-controller="popoverCtrl">
+	<button type="button" id="closeBtn" class="ups-close" data-ng-click="closePopover('addTag')">
+        <span class="icon ups-icon-x" aria-hidden="true"></span>
+        <span class="ups-readerTxt">Close</span>
+    </button>
+	<div class="ups-tag-close">
+		<fieldset>
+			<legend class="ups-form_label">Tags</legend>
+			<span class="ups-tag_content"
+				data-ng-repeat="item in tags.content track by $index"> <span
+				data-ng-show="!item.editable"> <input type="checkbox"
+					check-verify id="{{'ups-tag_'+$index}}" class="ups-checkbox-custom"
+					data-ng-model="item.Selected"
+					data-ng-change="tags.filterChanged(tags.content)"
+					data-ng-checked="item.Selected"
+					data-ng-blur="($index === tags.content.length-1) && closeFocus()">
+					<label for="{{'ups-tag_'+$index}}"
+					class="ups-checkbox-custom-label">{{item.name |
+						capFirstLetter}} </label>
+			</span>
+			</span>
+		</fieldset>
+	</div>
+</div>

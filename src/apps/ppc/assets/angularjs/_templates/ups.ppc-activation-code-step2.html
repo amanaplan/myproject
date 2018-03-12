@@ -1,0 +1,107 @@
+<div class="ups-activationCode ups-form_wrap ups-application_wrapper ups-tab-container" data-ng-controller="activationCodeCtrl" data-page-title="Activate My Membership">
+	<!-- //// begin ups.ppc-activation-code-step //// -->
+    <div class="ups-form_group" data-ng-if='!multipleEnrollment'>
+        <p>Almost there. Enter your activation code so we can verify your membership.</p>
+    </div>
+    <div class="ups-form_group" data-ng-if='multipleEnrollment'>
+        <p>Welcome back. You have multiple UPS My Choice enrollments that are currently pending. Please select the enrollment address below, enter the activation code for that address, and select <strong>Verify Your Membership Now.</strong></p>
+    </div>
+<!--
+	<p data-ng-if='invalidCode'>The activation code you entered is not valid for this enrollment. Please check the code and try again.</p>
+	<p data-ng-if='expiredCode'>The activation code you entered has expired. Please select "I need a new verification code" below to continue.</p>
+	<p data-ng-if='tooManyTries'>You have entered an invalid activation code too many times. To protect you from fraud you must request a new activation code. Please select 'I need a new activation code' below to continue.</p>
+	<p data-ng-if='cantRequest'>You have entered an invalid activation code too many times. To protect you from fraud you must start the UPS My Choice enrollment process over. Select Start Over to continue.</p>
+	<p data-ng-if='expiredCantRequest'>The activation code you entered has expired. To protect you from fraud you must start the UPS My Choice enrollment process over. Select Start Over to continue.</p>
+-->
+	<p  class="ups-invalid_color"></p>
+	<h3 data-ng-if="invalidCode"><span class="ups-invalid_color-list ups-error_alert-list" id="otpNumber-error">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+        {{ErrorMessage}}
+	</span></h3>
+	<form name="ups_Activation" error-on-submit novalidate>
+        <div class="ups-group" data-ng-if="!multipleEnrollment">
+            <p class="ups-group_label">Name and Address</p>
+            <address>
+            	{{address[0].AddressLine1}}<br>
+            	{{address[0].AddressLine2}}<br>
+            	{{address[0].AddressLine3}}
+            </address>
+        </div>
+        
+        <fieldset class="ups-form_group" data-ng-if="multipleEnrollment">
+            <legend class="ups-form_label">Select Enrollment</legend>
+            
+            <div class="ups-checkbox ups-input_wrapper ups-signup_check-in ups-display-inline" data-ng-repeat="enroll in enrollment">
+                <div class="ups-radio_column">
+                    <input id="{{$index}}" 
+                        class="ups-radio-custom"
+                        type="radio" 
+                        name="enroll" 
+                        value="$index"
+                        data-ng-model="formObj.enroll_$index" /> 
+                    <label for="{{$index}}" class="ups-form_label ups-radio-custom-label ups-width_auto">{{enroll}}</label>
+                    <address>
+                    	{{address[$index].AddressLine1}}<br>
+                    	{{address[$index].AddressLine2}}<br>
+                    	{{address[$index].AddressLine3}}
+                    </address>
+                </div>
+            </div>
+        </fieldset>
+        
+        <p data-ng-if="multipleEnrollment" class="ups-form_label">Enter your activation Code</p>
+
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-activationCode"  data-ng-class="{'ups-invalid_Code ': invalidCode, 'ups-form_label':!invalidCode}">
+                    	Activation code
+                    	<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur type="text" name="upsActivationCode" class="ups-form_input"
+						id="ups-activationCode" aria-describedby="upsActivationCode-error" data-ng-pattern="/^[a-zA-Z0-9]+$/"	maxlength="8" data-ng-model="Activation_Code" data-ng-blur="disableVerification=false" aria-required="true" required>
+						<span
+							id="upsActivationCode-error" role="alert"><span class="ups-invalid_color"
+							data-ng-if="!ups_Activation.upsActivationCode.$pristine && ups_Activation.upsActivationCode.$invalid ">
+								<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span class="ups-readerTxt">Invalid</span> <span
+								data-ng-show="ups_Activation.upsActivationCode.$error.required">This field is required.</span>
+									<span
+								data-ng-hide="ups_Activation.upsActivationCode.$error.invalid">Wrong Code Entry.</span>
+						</span>
+						<span data-ng-if="ups_Activation.upsActivationCode.$valid" >
+							<span class="ups-readerTxt">Check</span>
+							</span>
+
+						 </span>
+						<div data-ng-if="(ups_Activation.upsActivationCode.$valid)">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+                
+                <div class="ups-form_ctaGroup">
+                    <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="VerifyCode()">Submit</button>
+                    <!--data-ng-disabled="!Activation_Code || disableVerification"-->
+                    
+                    <button type="submit" data-ng-if="startOverProcess" class="ups-cta ups-cta_secondary"
+						data-ng-click="startOver()">Start Over</button>
+                    
+                    <button class="ups-cta ups-cta_secondary" data-ng-click="newCode()" data-ng-if='!startOverProcess'>Send Me a New Code</button>
+                </div>
+                <!-- ups-form_ctaGroup -->
+                
+				
+			</div>
+		</div>
+	</form>
+	<!-- //// end ups.ppc-activation-code-step //// -->
+	<modal class="ups-wrap ups-application_wrapper ups-app_onboarding ups-form_wrap"
+		visible="showModal" value="modalValue"> </modal>
+</div>

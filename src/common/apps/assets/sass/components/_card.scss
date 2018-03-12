@@ -1,0 +1,84 @@
+.ups-card {
+    box-shadow: 1px 3px 4px 2px rgba(0,0,0,.1); //still correct for LTR and RTL
+    margin-bottom: 25px;
+    background-color: $white;
+
+    &.ups-card_flat {
+        box-shadow: none;
+        border: 1px solid $stone_s3;
+    }
+
+    .ups-card_header {
+        background-color: $stone_s3;
+        padding: 8px 20px;
+    }
+
+    .ups-card_content {
+        padding: 20px;
+
+        &.ups-card_content_no_separate {
+            padding-top: 0;
+        }
+    }
+
+    .ups-card_hr {
+        margin: 0;
+        border-top: 1px solid $stone_s3;
+
+        &.ups-card_hr_pad {
+            margin: 0 20px;
+        }
+
+        &.ups-card_hr_col {
+            margin: 0;
+            border: none;
+            position: relative;
+            box-sizing: border-box;
+
+            &:after {
+                content: " ";
+                position: absolute;
+                top: 0;
+                #{$default-float}: 0;
+                #{$opposite-direction}: 0;
+                height: 1px;
+                background-color: $stone_s3;
+            }
+
+            &.ups-card_hr_pad:after {
+                #{$default-float}: 20px;
+                #{$opposite-direction}: 20px;
+            }
+        }
+    }
+}
+
+.ups-card.ups-card_row {
+    margin: 0;
+}
+
+.ups-card_table_container {
+    overflow: auto;
+
+    .ups-card_table {
+        width: 100%;
+        min-width: 768px;
+        font-size: 14px;
+
+        thead {
+            border-bottom: 1px solid $ups_stone;
+        }
+
+        th, td {
+            padding: 15px 12px;
+        }
+
+        tbody {
+            th {
+                text-transform: none;
+                font-weight: normal;
+                border: none;
+            }
+        }
+    }
+}

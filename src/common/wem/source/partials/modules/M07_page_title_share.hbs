@@ -1,0 +1,87 @@
+<!-- ************************************************************************************ -->
+<!-- M07 PAGE TITLE AND SHARE                                                             -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M07 PAGE TITLE AND SHARE: -LAYOUT-
+********************************************************************************
+
+| 15px
+-breadcrumb-
+| 15px
+-page title and share-
+| 15px
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M07 PAGE TITLE: HEADING
+********************************************************************************
+
+M07 Page Title uses h1 for the main page.
+
+'page-title_cell' is a 'table-cell' for when share is aligned next to header.
+
+********************************************************************************
+--}}
+
+<div class="ups-page-title ups-wrap">
+    <div class="ups-wrap_inner">
+        <div class="page-title_table">
+            <div class="page-title_cell">
+                <h1>{{title}}</h1>
+            </div>
+
+
+{{!--
+********************************************************************************
+M07 PAGE TITLE: SHARE
+********************************************************************************
+
+btn.share_open opens the Share Container
+
+btn.share_close (both) closes the Share Container.
+2 Btns are used for LVP and SVP
+
+using 'page-title_cell' allows for the expansion of the share container to wrap
+the M07 Page Title Heading
+
+'ups-share_social-""' utlizes the social icon grid pngs inside our sass to find
+the specific social icon based on what type
+
+********************************************************************************
+--}}
+
+            <div class="ups-page-share page-title_cell">
+                <div class="share-container">
+                    <div class="share-btn-container clearfix">
+                        <button class="share_open">
+                            <span class="icon ups-icon-share" aria-hidden="true"></span>
+                            Share
+                        </button>
+                    </div>
+                    <div class="share_list clearfix">
+                        <ul class="list">
+                            {{#each share}}
+                            	<li>
+	                                <a class="{{#compare this '!==' 'email'}}ups-share_social-{{this}}{{/compare}}" href="#share-{{this}}">
+	                                    {{#compare this '===' 'email'}}<span class="icon ups-icon-email" aria-hidden="true"></span>{{/compare}}
+	                                    <span class="ups-readerTxt">{{this}}</span>
+	                                </a>
+                                </li>
+                            {{/each}} 
+                        </ul>
+                        <button class="share_close share_close_main">
+                            <span class="icon ups-icon-xcircle ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- @end .ups-page-title -->

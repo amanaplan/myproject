@@ -1,0 +1,61 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+    <div class="ups-introductory ups-offset-03">
+        <p> <strong>Note: </strong>Your selections here will be reflected in your
+            Shipping and Freight Preferences as well. </p>
+    </div>
+    <ng-form name="ups_ratingOptionform" data-novalidate>
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Quote Type</legend>
+            <span
+						data-ng-repeat="i in formObj.ratingOption.defaultRatingRequest"
+						class="ups-checkbox ups-input_wrapper  ups-display-inline">
+            <input id="{{i.text}}" class="ups-radio-custom" type="radio"
+						name="deafultRatingReq" value="{{$index}}"
+						data-ng-model="formObj.deafultRatingReq"
+						data-ng-checked="formObj.deafultRatingReq" />
+            <label
+						for="{{i.text}}" class="ups-form_label ups-radio-custom-label">{{i.text}} </label>
+            </span>
+        </fieldset>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-default_shipFromAddr" class="ups-form_label"> Ship From Address</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-state_select" id="ups-default_shipFromAddr"
+						class="ups-dropdown" data-ng-model="formObj.defaultShipAdd">
+                            <option
+							data-ng-repeat="default_shipFromAddr in formObj.ratingOption.defaultShipAddress"
+							value="{{default_shipFromAddr.shipAddress}}">{{default_shipFromAddr.shipAddress}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+                <div class="ups-form_group ups-help_wrapper">
+                    <label for="ups-default_shipAccNum" class="ups-form_label">Account
+                        Number</label>
+                    <div class="ups-help"> <a href="#" onclick="return false;"
+						class="ups-help_link icon ups-form_link-noDecoration"
+						data-ng-click="helpLink()">Help <span class="ups-icon-questioncircle" aria-hidden="true"></span><span class="ups-readerTxt">about
+                        Default UPS Account Number</span></a> </div>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-state_select" id="ups-default_shipAccNum"
+						class="ups-dropdown" data-ng-model="formObj.defaultAccntNum">
+                            <option
+							data-ng-repeat="defaultUPSAccountNum in formObj.ratingOption.defaultUPSAccountNum"
+							value="{{defaultUPSAccountNum.accNum}}">{{defaultUPSAccountNum.accNum}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+            class="ups-cta ups-cta_primary ups-form-offset"
+            data-ng-click="saveRatingOption()">Save</button>
+            <!-- data-ng-disabled="!(ups_ratingOptionform.$dirty)" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+    </ng-form>
+</div>

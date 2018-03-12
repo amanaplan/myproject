@@ -1,0 +1,215 @@
+<!-- <div class="ups-toggle_view_content" *ngIf="findLocation"> -->
+    <!-- <button class="ups-link" (click)="findLocation = false; focusFindLoc();" id="backLocationBtn"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back </button> -->
+    <div class="row">
+        <div class="col-md-7">
+            <h2 class="h4">Find a Location</h2>
+            <p> We found the following UPS locations near your delivery address. If you'd like to see other options, enter a different address or postal code below. </p>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <div class="ups-form_group">
+                <fieldset class="ups-toggle_fieldset">
+                    <legend class="ups-readerTxt"> Results View </legend>
+                    <div class="ups-toggle well">
+                        <input id="resultsViewList"
+                                name="resultsView"
+                                type="radio"
+                                value="1"
+                                checked
+                                [(ngModel)]="resultsView"
+                                (change)="changeResultsView()">
+                        <label for="resultsViewList" onclick="">List View</label>
+                        <input id="resultsViewMap"
+                                name="resultsView"
+                                type="radio"
+                                value="2"
+                                [(ngModel)]="resultsView"
+                                (change)="changeResultsView()">
+                        <label for="resultsViewMap" onclick="">Map View</label>
+                        <div class="switch-bg"></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-form_group" *ngIf="!resultsMapView">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="ups-form_group">
+                            <label class="ups-readerTxt" for="resultAddress"> Location </label>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                                <input class="ups-form_input" id="resultAddress" name="resultAddress" type="text">
+                                <button class="ups-input_action ups-input_action_invert"> <span class="icon ups-icon-locator" aria-hidden="true"></span> <span class="ups-readerTxt">Click to use GPS location</span> </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <button class="ups-cta ups-cta_primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!resultsMapView">
+        <hr class="ups-hr_defined">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="h4"> The UPS Store&reg; </p>
+            </div>
+            <div class="col-md-3">
+                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+            </div>
+            <div class="col-md-3"> 0.8 miles away </div>
+            <div class="col-md-3">
+                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+            </div>
+        </div>
+        <hr class="ups-hr_defined">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="h4"> UPS Drop Box </p>
+            </div>
+            <div class="col-md-3">
+                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+            </div>
+            <div class="col-md-3"> 1.0 miles away </div>
+            <div class="col-md-3">
+                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+            </div>
+        </div>
+        <hr class="ups-hr_defined">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="h4"> The UPS Store&reg; </p>
+            </div>
+            <div class="col-md-3">
+                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+            </div>
+            <div class="col-md-3"> 1.5 miles away </div>
+            <div class="col-md-3">
+                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+            </div>
+        </div>
+        <hr class="ups-hr_defined">
+        <button class="ups-cta ups-cta_primary">Show More</button>
+    </div>
+    <div class="ups-toggle_view_stretch" *ngIf="resultsMapView">
+        <div class="row">
+            <!-- DT NOTE: col-xs-12 added on purpose for positioning -->
+            <div class="col-md-7 col-xs-12 pull-right">
+                <div class="ups-map_container">
+                    <!-- div with class ups-cms-demo below should be replaced with map html code -->
+                    <div class="ups-cms-demo"> Map should go here </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="ups-toggle_view_stretch_inner">
+                    <div class="ups-group hidden-xs hidden-sm"> <strong>Looking for somewhere else?</strong> </div>
+                    <div class="ups-form_group">
+                        <label class="ups-readerTxt" for="resultAddress"> Location </label>
+                        <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                            <input class="ups-form_input" id="resultAddress" name="resultAddress" type="text">
+                            <button class="ups-input_action ups-input_action_invert"> <span class="icon ups-icon-locator" aria-hidden="true"></span> <span class="ups-readerTxt">Click to use GPS location</span> </button>
+                        </div>
+                    </div>
+                    <!-- <div class="ups-form_ctaGroup col-lg-12">
+                        <button class="ups-cta ups-cta_primary">Submit</button>
+                    </div> -->
+                    <div class="ups-locator_container">
+                        <hr class="ups-hr_defined visible-sm visible-xs">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="ups-circle_number"> 1 </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>The UPS Store&reg;</strong> </p>
+                                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>0.8 miles away</strong> </p>
+                                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+                            </div>
+                        </div>
+                        <hr class="ups-hr_defined">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="ups-circle_number"> 2 </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>UPS Drop Box</strong> </p>
+                                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>1.0 miles away</strong> </p>
+                                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+                            </div>
+                        </div>
+                        <hr class="ups-hr_defined">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div class="ups-circle_number"> 3 </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>The UPS Store&reg;</strong> </p>
+                                <p> {{ "{" }}Address Line 1{{ "}" }}<br>
+                                    {{ "{" }}Address Line 2{{ "}" }}<br>
+                                    {{ "{" }}City, State, Zip Code{{ "}" }} </p>
+                            </div>
+                            <div class="col-xs-5">
+                                <p> <strong>1.5 miles away</strong> </p>
+                                <p> <a href="#" class="ups-link">View Location Details</a> </p>
+                                <p> <a href="#" class="ups-link">Get Directions</a> </p>
+                            </div>
+                        </div>
+                        <hr class="ups-hr_defined">
+                    </div>
+
+                    <!--<div class="row">
+                        <div class="col-md-4">
+                            <button class="ups-link">
+                                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                                Previous
+                            </button>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            1-20 of 100
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="ups-link">
+                                Next
+                                <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>-->
+
+                    <div class="ups-locator_pager" *ngIf="mdVP">
+                        <div class="ups-locator_previous_page ups-btn_has_icon">
+                            <button type="button" class="ups-link"> <span class="icon ups-icon-chevronleft-thin" aria-hidden="true"></span> Previous </button>
+                        </div>
+                        <div class="ups-locator_next_page ups-btn_has_icon">
+                            <button type="button" class="ups-link"> Next <span class="icon ups-icon-chevronright-thin" aria-hidden="true"></span> </button>
+                        </div>
+                        <div class="ups-locator_current_page"> 1-10 of 100 </div>
+                    </div>
+                    <button type="button" class="ups-cta ups-cta_primary ups-locator_more"  *ngIf="!mdVP"> Show More </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

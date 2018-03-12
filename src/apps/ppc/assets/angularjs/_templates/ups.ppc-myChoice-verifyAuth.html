@@ -1,0 +1,312 @@
+<div class="ups-verifyAuthentication">
+    <h2>Verify Your Identity</h2>
+    <div class="ups-verifyAuth_body">
+        <h3>How would you like to verify your identity?</h3>
+        <p>In order to ensure you are the only person able to reroute your packages, we need to confirm your identity. You can choose to have a PIN sent to your phone or take a security quiz.</p>
+    </div>
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+    <div class="ups-tabs">
+        <div class="ups-tab-headers ups-wrap">
+            <ul class="ups-wrap_inner" role="tablist">
+                <li class="tab-header ups-tab_borderOrng ups-onboard_tabs"
+					role="tab" aria-selected="true" aria-controls="auth_tab_1"
+					id="tab_1" tabindex="0" data-tab="Send Activation code to My phone"
+					data-open="true"><span class="tab-title">Send
+                    a PIN to My Phone</span> <span class="tab-border"></span></li>
+                <li class="tab-header ups-tab_borderBlue ups-onboard_tabs"
+					id="tab_2" role="tab" aria-controls="auth_tab_2" tabindex="0"
+					aria-selected="false" data-tab="Take Security Quiz"
+					data-open="false"><span class="tab-title">Take Security
+                    Quiz</span> <span class="tab-border"></span></li>
+            </ul>
+        </div>
+        <div class="ups-tab-content top-tab" aria-labelledby="tab_1"
+			id="auth_tab_1" role="tabpanel" aria-hidden="false"
+			data-tab="Send Activation code to My phone" data-open="true"
+			data-content-selected="true" data-prev-active="false">
+            <div class="tab-header ups-tab_borderOrng" aria-selected="true"
+				aria-controls="auth_tab_1_panel" id="tab_1_panel"
+				data-tab="Send Activation code to My phone">
+                <div class="tab-title">Send a PIN to My Phone</div>
+                <button class="ups-med_show "> <span class="ups-iconAlone ups-icon-minus" aria-hidden="true"></span> <span class="ups-readerTxt">Collapse Send a PIN to My Phone</span> </button>
+            </div>
+            <!-- @end ups-tab-header for mobile -->
+            <div class="sub-detail-container" aria-labelledby="tab_1_panel"
+				id="auth_tab_1_panel" aria-hidden="false">
+                <div
+					class="ups-verifyAuth_box_hidden ups-application_wrapper ups-form_wrap">
+                    <div data-ng-if="isOTPProcess">
+                        <form error-on-submit name="otpForm">
+                            <h3 class="ups-invalid_color-list ups-error_alert-list"> <span id="otpNumber-error"
+										data-ng-if="(!(otpForm.otpNumber.$pristine) && otpForm.otpNumber.$invalid) && isError==false"><span class="ups-icon-exclamation ups-invalid_color" aria-hidden="true"></span>This PIN is not valid. Please check the number and try again.</span> </h3>
+                            <h3> <span id="otpSubmit-error"
+										class="ups-invalid_color-list ups-error_alert-list"
+										data-ng-if="isError"><span class="icon ups-icon-exclamation" aria-hidden="true"></span>{{errorOTPText}} </span> </h3>
+                            <p> Enter your PIN within five
+                                minutes of receipt. </p>
+                            <div class="row ups-otp_input">
+                                <div class="col-md-7">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="otpNumber">
+                                            PIN
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input error-on-blur type="text" id="otpNumber"
+													aria-describedby="otpNumber-error" name="otpNumber"
+													class="ups-form_input ups-buttonList_wrapper"
+													data-ng-model="otp.otpNumber" aria-required="true" required
+													data-ng-model-options="{updateOn: 'blur'}">
+                                            <span
+													id="otpNumber-error" role="alert"> <span
+													class="ups-invalid_color"
+													data-ng-if="!(otpForm.otpNumber.$pristine) && otpForm.otpNumber.$invalid "> <span
+														class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span>Please enter a valid verification code.</span> </span> <span data-ng-if="otpForm.otpNumber.$valid"> <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </span> </span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="ups-form_ctaGroup">
+                                        <button type="submit" class="ups-link"
+											data-ng-click="resendOTP()">Resend PIN</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="ups-form_ctaGroup ">
+                                    <button type="button" class="ups-cta ups-cta_primary"
+											data-ng-click="submitOTPCode()"
+											aria-describedby="otpSubmit-error"
+											data-ng-model-options="{updateOn: 'click'}">Submit</button>
+                                    <!-- data-ng-disabled="!(otpForm.$valid)" --> 
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div data-ng-if="!isOTPProcess">
+                        <form error-on-submit name="validatePhone">
+                            <div class="ups-verifyAuth_phone">
+                                <div data-ng-if="!user.isPhoneValidated">
+                                    <h3> <span
+											class="ups-invalid_color-list ups-error_alert-list"
+											data-ng-if="!(validatePhone.phoneNumber.$pristine) && validatePhone.phoneNumber.$invalid "><span class="icon ups-icon-exclamation" aria-hidden="true"></span>The
+                                        phone number you entered isn't a valid phone number. </span> </h3>
+                                    <p>The billing address for your phone must match your enrollment address.</p>
+                                </div>
+                                <div data-ng-if="user.phone && user.isPhoneValidated">
+                                    <p class="ups-form_label">Phone Number</p>
+                                    <p>{{user.phone}}</p>
+                                </div>
+                                <div class="row" data-ng-if="!user.isPhoneValidated">
+                                    <div class="col-md-3">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="ups-verify_checkMobile" class="ups-form_label">Phone Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input error-on-blur type="text" name="phoneNumber"
+													class="ups-form_input" data-ng-blur="checkPhoneNumber()"
+													aria-describedby="phoneNumber-error" aria-required="true"
+													id="ups-verify_checkMobile" data-ng-model="user.phone"
+													required number-mask maxLength="15" />
+                                                    
+                                                <span data-ng-if="(validatePhone.phoneNumber.$valid && validatePhone.phoneNumber!='')"> <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </span>
+                                            </div>
+                                            <span
+													id="phoneNumber-error" role="alert"> <span class="ups-invalid_color"
+													data-ng-show="!(validatePhone.phoneNumber.$pristine) && validatePhone.phoneNumber.$invalid "> <span
+													class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> </span> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ups-verifyAuth_phone_options">
+                                <fieldset class="ups-form_group ">
+                                    <!--<p>Select how you would you like to receive your activation code. Message and data rates may apply.</p>-->
+                                    <legend class="ups-form_label"> How would you like to get your PIN? (Message and data rates may apply) </legend>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" data-ng-checked="verifyAuth.txtmsg"
+											name="message" id="ups-verify_messages"
+											class="ups-radio-custom" data-ng-required="true" />
+                                        <label
+											for="ups-verify_messages" class="ups-radio-custom-label">Text
+                                            message</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" data-ng-checked="verifyAuth.vcemsg"
+											name="message" id="ups-verify_voice" class="ups-radio-custom"
+											data-ng-required="true" />
+                                        <label for="ups-verify_voice"
+											class="ups-radio-custom-label">Voice message</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="ups-form_ctaGroup ">
+                                <button type="button" class="ups-cta ups-cta_primary"
+										data-ng-click="sendOTPCode()">Send PIN</button>
+                                <!-- data-ng-disabled="!(validatePhone.$valid)" -->
+                                <button type="button" class="ups-cta ups-cta_secondary"
+										data-ng-click="openCancelPopUp()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- @end ups-tab-content -->
+        <div class="ups-tab-content" aria-labelledby="tab_2" id="auth_tab_2"
+			role="tabpanel" aria-hidden="true" data-tab="Take Security Quiz"
+			data-prev-active="true" data-open="false"
+			data-content-selected="false">
+            <div class="tab-header ups-tab_borderBlue" aria-selected="false"
+				aria-controls="auth_tab_2_panel" id="tab_2_panel"
+				data-tab="Take Security Quiz">
+                <div class="tab-title">Take Security Quiz</div>
+                <button class="ups-med_show "> <span class="ups-iconAlone ups-icon-plus" aria-hidden="true"></span> <span class="ups-readerTxt">Expand Take Security Quiz</span> </button>
+            </div>
+            <!-- @end ups-tab-header for mobile -->
+            <div class="sub-detail-container" aria-labelledby="tab_2_panel"
+				id="auth_tab_2_panel" aria-hidden="true">
+                <div class="ups-verifyAuth_box_hidden ups-form_wrap">
+                    <div data-ng-if="!showQuestions">
+                        <h3> <span
+								class="ups-invalid_color-list ups-error_alert-list"><span class="icon ups-icon-exclamation" aria-hidden="true"></span>{{errorQuizMessage}} </span> </h3>
+                        <!--<p> Select <strong>'Generate Quiz'</strong> to answer a short series
+                            of multiple-choice questions concerning your membership
+                            information. </p>-->
+                        <div class="ups-form_ctaGroup ">
+                            <button type="button" class="ups-cta ups-cta_primary"
+									data-ng-click="generateQuiz()">Generate Quiz</button>
+                        </div>
+                    </div>
+                    <div data-ng-if="showQuestions">
+                        <form error-on-submit name="upsQuiz"
+							class="ups-application_wrapper">
+                            <div class="ups-verifyAuth_phone" tabindex='0'> <strong>Name : {{user.user_name}}</strong> </div>
+                            <div class="ups-verifyAuth_phone_options">
+                                <fieldset>
+                                    <!--<p>Which of the following streets have you lived on?</p>-->
+                                    <legend class="ups-form_label"> Which of the following
+                                    streets have you lived on? </legend>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="streetslived"
+											data-ng-model="streets.streetslived"
+											value="Apple Blossoms Lane"
+											data-ng-required="!streets.streetslived"
+											id="ups-verify_streets" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_streets" class="ups-radio-custom-label">Apple
+                                            Blossoms Lane</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="streetslived"
+											data-ng-model="streets.streetslived"
+											value="Cherry Hill Street"
+											data-ng-required="!streets.streetslived"
+											id="ups-verify_streets1" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_streets1" class="ups-radio-custom-label">Cherry
+                                            Hill Street</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="streetslived"
+											data-ng-model="streets.streetslived" value="Orange Boulevard"
+											data-ng-required="!streets.streetslived"
+											id="ups-verify_streets2" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_streets2" class="ups-radio-custom-label">Orange
+                                            Boulevard</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="ups-verifyAuth_phone_options">
+                                <fieldset>
+                                    <!--<p>Which of the following is/was your phone number?</p>-->
+                                    <legend class="ups-form_label"> Which of the following
+                                    is/was your phone number? </legend>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="phoneNumberChecked"
+											data-ng-model="streets.phoneNumberChecked"
+											value="770-123-4567"
+											data-ng-required="!streets.phoneNumberChecked"
+											id="ups-verify_phoneNumber" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_phoneNumber" class="ups-radio-custom-label">770-123-4567</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="phoneNumberChecked"
+											data-ng-model="streets.phoneNumberChecked"
+											value="212-343-1119"
+											data-ng-required="!streets.phoneNumberChecked"
+											id="ups-verify_phoneNumber1" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_phoneNumber1" class="ups-radio-custom-label">212-343-1119</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                        <input type="radio" name="phoneNumberChecked"
+											data-ng-model="streets.phoneNumberChecked"
+											value="404-987-6543"
+											data-ng-required="!streets.phoneNumberChecked"
+											id="ups-verify_phoneNumber2" class="ups-radio-custom" />
+                                        <label
+											for="ups-verify_phoneNumber2" class="ups-radio-custom-label">404-987-6543</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <fieldset class="ups-verifyAuth_phone_options">
+                                <!--<p>Which of the following cities have you NEVER lived in or used as your address?</p>-->
+                                <legend class="ups-form_label"> Which of the following
+                                cities have you NEVER lived in or used as your address? </legend>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                    <input type="radio" name="cityAddress"
+											data-ng-model="streets.cityAddress" value="Butte"
+											data-ng-required="!streets.cityAddress"
+											id="ups-verify_address" class="ups-radio-custom" />
+                                    <label
+											for="ups-verify_address" class="ups-radio-custom-label">Butte</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                    <input type="radio" name="cityAddress"
+											data-ng-model="streets.cityAddress" value="Portland"
+											data-ng-required="!streets.cityAddress"
+											id="ups-verify_address1" class="ups-radio-custom" />
+                                    <label
+											for="ups-verify_address1" class="ups-radio-custom-label">Portland</label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper ">
+                                    <input type="radio" name="cityAddress"
+											data-ng-model="streets.cityAddress" value="Roswell"
+											data-ng-required="!streets.cityAddress"
+											id="ups-verify_address2" class="ups-radio-custom" />
+                                    <label
+											for="ups-verify_address2" class="ups-radio-custom-label">Roswell</label>
+                                </div>
+                            </fieldset>
+                            <div class="ups-form_ctaGroup ">
+                                <button type="button" class="ups-cta ups-cta_primary"
+										data-ng-click="validateQuiz()">Submit</button>
+                                <!-- data-ng-disabled="!(upsQuiz.$valid)" -->
+                                <button type="button" class="ups-cta ups-cta_secondary "
+										data-ng-click="openCancelPopUp()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- @end ups-tab-content --> 
+    </div>
+</div>
+
+<div class="ups-cms-demo">
+    <button class="ups-cta ups-cta_secondary" data-ng-click="myChoiceLite = true">My Choice Lite (Cancel button Action)</button>
+    <button class="ups-cta ups-cta_secondary" data-ng-click="myChoiceLite = false">Default (Cancel button Action)</button><br><br>
+    <button class="ups-cta ups-cta_secondary" data-ng-click="user.isPhoneValidated = false">Phone number not pre-validated</button>
+    <button class="ups-cta ups-cta_secondary" data-ng-click="user.isPhoneValidated = true">Phone number validated</button>
+    <hr>
+    <button class="ups-cta ups-cta_secondary" data-ng-click="showQuestions = false">Quiz needs to be generated</button>
+    <button class="ups-cta ups-cta_secondary" data-ng-click="showQuestions = true">Quiz does not need to be generated</button>
+</div>

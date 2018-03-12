@@ -1,0 +1,109 @@
+<!-- ************************************************************************************ -->
+<!-- M03 BANNER                                                                           -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M03 BANNER: -LAYOUT-
+********************************************************************************
+
+| 30px
+-banner content-
+| 30px
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M03 BANNER: LINK
+********************************************************************************
+
+M03 Banners are links. Therefore, the banner must be wrapped in an anchor tag.
+M03 Banners have the option to be internal or external links.
+
+********************************************************************************
+--}}
+
+{{#if link}}
+<div class="ups-banner {{type}}">
+{{/if}}
+
+{{!--
+********************************************************************************
+M03 BANNER: IMAGE
+********************************************************************************
+
+M03 Banners use three pictures; small, medium and large for viewports.
+No Javascript plugin is used.
+
+********************************************************************************
+--}}
+
+    {{#if image}}
+        <picture class="ups-imgFrame" data-sm="{{image.small}}" data-md="{{image.medium}}" data-lg="{{image.large}}">
+            <source srcset="{{image.large}}" media="(min-width: 992px)">
+            <source srcset="{{image.medium}}" media="(min-width: 480px)">
+            <img srcset="{{image.small}}" src="{{image.small}}" alt="{{image.alt}}">
+        </picture>
+    {{/if}}
+
+
+{{!--
+********************************************************************************
+M03 BANNER: TEXT
+********************************************************************************
+
+M03 Banners use 1 h2 and 1 paragraph
+M03 Banners can have 1 CTA, although the main link is the larger anchor tag
+
+********************************************************************************
+--}}
+
+    <div class="ups-banner_container ups-wrap">
+        <div class="ups-wrap_inner">
+            <div class="ups-banner_main">
+                <div class="text-container {{#if symbol}} {{this.symbol}} {{/if}}">
+                	<div class="ups-banner-image">
+	                	{{#if icon}}
+							<img src="{{icon}}" alt="{{iconalt}}" title="{{iconalt}}" />
+	                	{{/if}}
+                	</div>
+                	<div class="ups-content">
+	                    {{#if title}}
+	                    <h2 id="ups-banner-head">{{title}}</h2> {{/if}} {{#if txt}}
+	                    <p>
+	                        {{txt}}
+	                        {{#compare link.type "==" "external"}}
+	                            <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+	                        {{/compare}}
+	                    </p>
+	                   {{/if}}
+                    </div>
+                    <div class="ups-cta-styling">
+                    	{{#if cta}}
+		                <a class="ups-cta" aria-labelledby="ups-banner-head ups-banner-ctatxt" href="{{link.url}}" {{#compare link.type "==" "external"}}target="_blank" {{/compare}}>
+		                    <span id="ups-banner-ctatxtid" class="ups-banner-ctatxtclass">{{cta}}</span>
+		                    {{#compare link.type "==" "external"}}
+		                        <span class="icon ups-link_newwindow" aria-hidden="true"></span>
+                                <span class="ups-readerTxt" aria-hidden="true">Opens in a new window</span>
+		                    {{/compare}}
+		                </a>
+		                {{/if}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</div>
+
+{{#compare link.type "==" "external"}}
+    <span class="ups-readerTxt">Open the link in a new window</span>
+{{/compare}}
+
+{{#if link}}
+</div>
+{{/if}}
+
+

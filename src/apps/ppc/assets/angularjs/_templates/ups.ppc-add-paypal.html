@@ -1,0 +1,76 @@
+<div data-ng-controller="paymentCtrl"
+	class="ups-payment ups-form_wrap ups-application_wrapper" data-page-title="{{paypalAdd?'Add a':'Edit this'}} PayPal account"> 
+    <!-- //// begin ups.ppc-add-paypal //// -->
+    <form name="ups_PaypalAdd" class="ups-cardPayment  ups-offset-0"
+		error-on-submit novalidate>
+        <a point-focus="" href="#/paymentPage" class="ups-previous_page"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back to Payment Options </a>
+        <p> <em> <span aria-hidden="true">*</span> <span class="ups-readerTxt">Required</span> Indicates required field </em> </p>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-card_input" class="ups-form_label"> Nickname <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+						data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="nickname"
+							class="ups-form_input" id="ups-card_input" maxlength="35"
+							data-ng-model="obj.payementNickName" aria-required="true" required aria-describedby="ups-add-paypal-nickname-error">
+                        <span id="ups-add-paypal-nickname-error" role="alert"><span
+							class="ups-invalid_color"
+							data-ng-show="!ups_PaypalAdd.nickname.$pristine && ups_PaypalAdd.nickname.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_PaypalAdd.nickname.$error.required">Nickname is required.</span> </span> <span data-ng-if="ups_PaypalAdd.nickname.$valid" > <span class="ups-readerTxt">Check</span> </span> </span>
+                        <div data-ng-if="(ups_PaypalAdd.nickname.$valid)"> 
+                            <!-- @Note: screen reader text needs to be translated as well --> 
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                
+                <div class="ups-form_wrap ups-form_group">
+                    <div class="ups-checkbox ups-input_wrapper  "
+                        data-errormsg="Remember Me">
+                        <input check-verify id="ups-offers_checkbox_non-US"
+                            class="ups-checkbox-custom" type="checkbox" name="makeDefault"
+                            data-ng-pattern="" data-ng-model="obj.makeDefault"
+                            data-ng-checked="obj.makeDefault">
+                        <label
+                            for="ups-offers_checkbox_non-US" class="ups-checkbox-custom-label"> Make this my default payment method.</label>
+                    </div>
+                    <!-- ups-form_group ups-form_required --> 
+                </div>
+                
+                <hr>
+                <!-- data-ng-if="isPortugal && paypalAdd" 
+                <!-- does not seem to be in spec
+                <!-- <div class="ups-form_group" data-ng-if="isPortugal && paypalAdd"> -->
+                <div class="ups-form_group">
+                    <label for="ups-vat_id" class="ups-form_label">VAT ID </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input number-mask type="text" name="vatID"
+							class="ups-form_input" id="ups-vat_id" maxlength="9"
+							data-ng-model="obj.vatID">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper -->
+            		<p>If you don't provide a VAT ID,
+                		we'll send you a consumer invoice.</p> 
+                </div>
+            </div>
+        </div>
+        
+        <div class="ups-form_ctaGroup" data-ng-if='paypalAdd'>
+            <button type="button" data-ng-click="savePaypal()"
+				class="ups-cta ups-cta_primary">Next</button>
+            <!-- data-ng-disabled="!ups_PaypalAdd.$valid || invalidCard || invalidCode"-->
+            <button type="button" data-ng-click="cancel()"
+				class="ups-cta ups-cta_secondary text-center">Cancel</button>
+        </div>
+        
+        <div class="ups-form_ctaGroup" data-ng-if='!paypalAdd'>
+            <button type="button" data-ng-click="savePaypal()"
+            	class="ups-cta ups-cta_primary">Save My Changes</button>
+            <!-- data-ng-disabled="!ups_PaypalAdd.$valid || invalidCard || invalidCode"-->
+            <button type="button" data-ng-click="cancel();ok()"
+				class="ups-cta ups-cta_secondary">Cancel</button>
+        </div>
+    </form>
+    <!-- //// end ups.ppc-add-paypal //// --> 
+</div>

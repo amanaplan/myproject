@@ -1,0 +1,646 @@
+<!--
+    getNbsInSinglePg() = true
+        adds classes specific to SPA version
+    getNbsInSinglePg() = false
+        adds classes specific to Guided Flow version
+-->
+
+<div [formGroup]="nbsDetailsOptions">
+    <!-- BEGIN error handling -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit &amp;&amp; !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+
+        <ul class="ups-icons-error">
+            <li *ngIf="(!nbsDetailsOptions.controls['notifyProblemEmailAddress'].valid && nbsDetailsOptions.controls['notifyProblemEmailAddress'].hasError('required') && addonsNotifyEmailProblem)">
+                <a href="#notifyProblemEmailAddress" class="ups-invalid_color" pointIdClick>Email Address <span class="ups-readerTxt">field</span> is required.</a>
+            </li>
+            <li *ngIf="(!nbsDetailsOptions.controls['notifyProblemEmailAddress'].valid && nbsDetailsOptions.controls['notifyProblemEmailAddress'].hasError('pattern') && addonsNotifyEmailProblem)">
+                <a href="#notifyProblemEmailAddress" class="ups-invalid_color" pointIdClick>Email Address <span class="ups-readerTxt">field</span> is invalid.</a>
+            </li>
+            <li *ngIf="(!nbsDetailsOptions.controls['codCurrency'].valid && nbsDetailsOptions.controls['codCurrency'].hasError('pattern') && addonsCOD)">
+                <a href="#codAmount" class="ups-invalid_color" pointIdClick>Amount to Collect on Delivery <span class="ups-readerTxt">field</span> is invalid.</a>
+            </li>
+            <li *ngIf="(!nbsDetailsOptions.controls['bocInput'].valid && nbsDetailsOptions.controls['bocInput'].hasError('required') && bocToggle)">
+                <a href="#ups-bocInput" class="ups-invalid_color" pointIdClick>Cosignee Enabled Account Number <span class="ups-readerTxt">field</span> is required.</a>
+            </li>
+        </ul>
+    </div>
+    <!-- END error handling -->
+    <!-- BEGIN complete view -->
+    <div *ngIf="!detailsEditable">
+        <div class="row">
+            <div class="col-xs-10">
+                <ul class="ups-list_style_none">
+                    <li *ngFor="let option of options;">
+                        <div class="ups-group">
+                            <div class="row">
+                                <div class="col-xs-9 col-md-8">
+                                    &#8226; {{option.copy}}
+                                </div>
+                                <div class="col-xs-3 col-md-4">
+                                    <button class="ups-link ups-btn_has_icon" type="button">
+                                        <span aria-hidden="true" class="icon ups-icon-xcircle"></span>
+                                            <span class="hidden-xs hidden-sm">Remove</span>
+                                        <span class="ups-readerTxt">{{option.copy}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="ups-link pull-right" (click)="detailsEditable = !detailsEditable">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Edit All</span>
+                    <span class="ups-readerTxt"> Addon Options</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- END complete view -->
+    <!-- BEGIN editable view -->
+    <div *ngIf="detailsEditable">
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsAddEmailNotifications">
+                <input type="checkbox"
+                    id="addonsAddEmailNotifications"
+                    name="addonsAddEmailNotifications"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="addonsAddEmailNotifications"
+                    [ngModelOptions]="{'standalone': true}">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Add or modify email notifications</strong>
+                    <p class="ups-lever_subheader">Manage updates for this shipment.</p>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="addonsAddEmailNotifications">
+            <div class="row" *ngIf="(addonsNotificationsEmails.length > 0)">
+                <div class="col-md-6"
+                    id="emailTile{{ j }}"
+                    *ngFor="let email of addonsNotificationsEmails; let j = index">
+                    <div class="ups-tile">
+                        <div class="ups-tile_content">
+                            <div class="ups-form_group">
+                                <label for="shipEmailAddress{{ j }}"
+                                    class="ups-form_label">Email</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text"
+                                        name="shipEmailAddress{{ j }}"
+                                        class="ups-form_input"
+                                        id="shipEmailAddress{{ j }}"
+                                        value="{{ email.value }}">
+                                </div>
+                            </div>
+                            <fieldset class="ups-form_group">
+                                <legend class="ups-form_label">Notify for:</legend>
+                                <div class="ups-input_wrapper">
+                                    <input id="shipperNotifyShipped{{ j }}"
+                                        class="ups-checkbox-custom"
+                                        name="shipperNotifyShipped{{ j }}"
+                                        type="checkbox"
+                                        value="1">
+                                    <label for="shipperNotifyShipped{{ j }}"
+                                        class="ups-checkbox-custom-label">Ship</label>
+                                </div>
+                                <div class="ups-input_wrapper">
+                                    <input id="shipperNotifyException{{ j }}"
+                                        class="ups-checkbox-custom"
+                                        name="shipperNotifyException{{ j }}"
+                                        type="checkbox"
+                                        value="1">
+                                    <label for="shipperNotifyException{{ j }}"
+                                        class="ups-checkbox-custom-label">Exception</label>
+                                </div>
+                                <div class="ups-input_wrapper">
+                                    <input id="shipperNotifyDelivery{{ j }}"
+                                        class="ups-checkbox-custom"
+                                        name="shipperNotifyDelivery{{ j }}"
+                                        type="checkbox"
+                                        value="1">
+                                    <label for="shipperNotifyDelivery{{ j }}"
+                                        class="ups-checkbox-custom-label">Delivery</label>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                        <button type="button"
+                            class="ups-tile_icon ups-link"
+                            (click)="addonsRemoveEmail(addonsNotificationsEmails.indexOf(email))">
+                            <span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Remove email</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="ups-group"
+                *ngIf="addonsNotificationsEmails.length < 5">
+                <button type="button"
+                    class="ups-cta ups-cta_secondary ups-btn_has_icon"
+                    (click)="addonsAddEmail()">
+                    <span class="icon ups-icon-plus" aria-hidden="true"></span>Add Another Email
+                </button>
+            </div>
+            <div class="ups-input_wrapper">
+                <input id="message_cb"
+                    class="ups-checkbox-custom"
+                    name="message_cb"
+                    type="checkbox"
+                    value="1"
+                    [(ngModel)]="addonsEmailPersonalMessage"
+                    [ngModelOptions]="{'standalone': true}">
+                <label for="message_cb" class="ups-checkbox-custom-label">Include my personal message with my notifications.</label>
+            </div>
+            <div [ngClass]="{ 'row' : nbsBase.getNbsInSinglePg() }"
+                *ngIf="addonsEmailPersonalMessage">
+                <div [ngClass]="{ 'col-md-5' : nbsBase.getNbsInSinglePg() }">
+                    <div class="ups-form_group">
+                        <div class="ups-textArea_wrapper ups-input_wrapper">
+                            <label for="personalEmailMessage" class="ups-form_label">Personal Message</label>
+                            <p class="ups-form_subheader">Max 150 characters</p>
+                            <textarea class="ups-textArea" id="personalEmailMessage" rows="4" maxlength="150" name="personalEmailMessage"></textarea>
+                            <!--<p class="ups-textArea_characters">(Max 500 characters)</p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ups-form_group">
+                <div class="ups-input_wrapper">
+                    <input id="notifyProblemEmail"
+                        class="ups-checkbox-custom"
+                        name="notifyProblemEmail"
+                        type="checkbox"
+                        value="1"
+                        [(ngModel)]="addonsNotifyEmailProblem"
+                        [ngModelOptions]="{'standalone': true}">
+                    <label for="notifyProblemEmail" class="ups-checkbox-custom-label">
+                        Notify me if there is a problem delivering any of these emails.
+                    </label>
+                </div>
+            </div>
+            <div class="row"
+                *ngIf="addonsNotifyEmailProblem">
+                <div class="col-sm-6">
+                    <div class="ups-form_group ups-form_required" id="notifyProblemEmail_input">
+                        <label for="notifyProblemEmailAddress" class="ups-form_label">
+                            Email Address
+                            <span aria-hidden="true"
+                                class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text"
+                                name="notifyProblemEmailAddress"
+                                class="ups-form_input"
+                                id="notifyProblemEmailAddress"
+                                aria-required="true"
+                                required
+                                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                aria-describedby="notifyProblemEmailAddress_error"
+                                formControlName="notifyProblemEmailAddress"
+                                [ngClass]="{'ups-bodError':  (!nbsDetailsOptions.controls['notifyProblemEmailAddress'].valid && nbsDetailsOptions.controls['notifyProblemEmailAddress'].touched)}">
+                        </div>
+                        <span class="ups-icons-error" id="notifyProblemEmailAddress_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!nbsDetailsOptions.controls['notifyProblemEmailAddress'].valid &amp;&amp; nbsDetailsOptions.controls['notifyProblemEmailAddress'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="nbsDetailsOptions.controls['notifyProblemEmailAddress'].hasError('required')">
+                                    Email Address is required.
+                                </span>
+                                <span *ngIf="nbsDetailsOptions.controls['notifyProblemEmailAddress'].hasError('pattern')">
+                                    Email Address is invalid.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsRequireSignature">
+                <input type="checkbox" id="addonsRequireSignature" name="addonsRequireSignature" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Require a signature ($nn.nn USD)</strong>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsCOD">
+                <input type="checkbox"
+                    id="addonsCOD"
+                    name="addonsCOD"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="addonsCOD"
+                    [ngModelOptions]="{'standalone': true}">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">C.O.D. (+$)</strong>
+                    <p class="ups-lever_subheader">
+                        UPS will collect payment at the time of delivery.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="addonsCOD">
+            <div *ngIf="addonsCODLocationAccept">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-form_group ups-input_has_unit">
+                            <label for="codCurrency" class="ups-form_label">
+                                C.O.D. Currency
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select id="codCurrency"
+                                    name="codCurrency"
+                                    class="ups-dropdown">
+                                    <option value="0">CAD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="ups-form_group ups-form_required ups-input_has_unit">
+                            <label for="codAmount" class="ups-form_label">
+                                Amount to Collect on Delivery
+                                <span class="ups-required_indicator" aria-hidden="true"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    name="codAmount"
+                                    class="ups-form_input"
+                                    id="codAmount"
+                                    required
+                                    aria-required="true"
+                                    aria-describedby="codAmount_error"
+                                    formControlName="codCurrency"
+                                    [ngClass]="{'ups-bodError':  (!nbsDetailsOptions.controls['codCurrency'].valid && nbsDetailsOptions.controls['codCurrency'].touched)}">
+                                <span class="ups-input_unit_measure">{{ '{' }}CAD{{ '}' }}</span>
+                            </div>
+                            <span class="ups-icons-error" id="codAmount_error" role="alert">
+                                <span class="ups-invalid_color"
+                                    *ngIf="(!nbsDetailsOptions.controls['codCurrency'].valid &amp;&amp; nbsDetailsOptions.controls['codCurrency'].touched)">
+                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    <span *ngIf="nbsDetailsOptions.controls['codCurrency'].hasError('required')">
+                                        Amount to Collect on Delivery is required.
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+
+                        <div class="ups-form_group ups-input_has_unit">
+                            <label for="codPaymentMethod" class="ups-form_label">
+                                C.O.D. Payment Method
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select id="codPaymentMethod"
+                                    name="codPaymentMethod"
+                                    class="ups-dropdown">
+                                    <option value="0">Cashier's check or money order</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="!addonsCODLocationAccept">
+                <p>
+                    <span class="icon ups-icon-alert" aria-hidden="true"></span>
+                    The location selected does not accept C.O.D. payments.
+                </p>
+                <p>
+                    <a href="#" class="ups-link ups-new-window">
+                        Select a location that accepts C.O.D. payments.
+                        <span class="ups-readerTxt">This will open in a new window</span>
+                        <span class="ups-icon-newwindow" aria-hidden="true"></span>
+                    </a>
+                </p>
+            </div>
+
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsDeliverReceiversAddress">
+                <input type="checkbox" id="addonsDeliverReceiversAddress" name="addonsDeliverReceiversAddress" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Deliver only to receiver's address ($nn.nn USD)</strong>
+                    <p class="ups-lever_subheader">
+                        Do not allow package to be rerouted to another location for pickup.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsCarbonNeutral">
+                <input type="checkbox" id="addonsCarbonNeutral" name="addonsCarbonNeutral" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">UPS carbon neutral (+$)</strong>
+                    <p class="ups-lever_subheader">
+                        Offset the climate impact of this shipment.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsSaturdayDelivery">
+                <input type="checkbox" id="addonsSaturdayDelivery" name="addonsSaturdayDelivery" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Saturday Delivery ($nn.nn USD)</strong>
+                    <p class="ups-lever_subheader">
+                        {{'{'}}Remember to put a Saturday Delivery sticker on your packages.{{'}'}}
+                    </p>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsNoThirdParty">
+                <input type="checkbox" id="addonsNoThirdParty" name="addonsNoThirdParty" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">No third party pickup (+$)</strong>
+                    <p class="ups-lever_subheader">
+                        Release only to the person addressed on the shipment.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsPackageReleaseCode">
+                <input type="checkbox"
+                    id="addonsPackageReleaseCode"
+                    name="addonsPackageReleaseCode"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="addonsPackageReleaseCode"
+                    [ngModelOptions]="{'standalone': true}">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Add a Package Release Code</strong>
+                    <p class="ups-lever_subheader">
+                        Release only with a 4-6 number pass code.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="addonsPackageReleaseCode">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="packageReleaseCodeTxt" class="ups-form_label">
+                            Package Release Code
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="packageReleaseCodeTxt" class="ups-form_input" id="packageReleaseCodeTxt">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsReturnsExchange">
+                <input type="checkbox"
+                    id="addonsReturnsExchange"
+                    name="addonsReturnsExchange"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="addonsReturnsExchange"
+                    [ngModelOptions]="{'standalone': true}">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Returns {{'{'}}Exchange/Pack and Collect{{'}'}} Notification (+$)</strong>
+                    <p class="ups-lever_subheader">
+                        UPS will contact and remind so merchandise is ready for the exchange.
+                    </p>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="addonsReturnsExchange">
+            <p>Please provide a contact method.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group">
+                        <label for="exchangeSMSNumber" class="ups-form_label">
+                            SMS Mobile Number
+                        </label>
+                        <p id="smsMobileNumberHelperTxt" class="ups-form_subheader">
+                            Standard text messaging rates apply
+                        </p>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="exchangeSMSNumber" class="ups-form_input" id="exchangeSMSNumber" aria-describedby="smsMobileNumberHelperTxt">
+                        </div>
+                    </div>
+                    <div class="ups-form_group">
+                        <label for="exchangeEmail" class="ups-form_label">Email</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="exchangeEmail" class="ups-form_input" id="exchangeEmail">
+                        </div>
+                    </div>
+                    <div class="ups-form_group">
+                        <label for="exchangePhoneNumber" class="ups-form_label">Phone</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="exchangePhoneNumber" class="ups-form_input" id="exchangePhoneNumber">
+                        </div>
+                    </div>
+                <!--</div>
+                <div class="col-md-6">-->
+                    <div class="ups-form_group ups-no_label">
+                        <label for="exchangeAlertLanguage" class="ups-form_label">Pre-Alert Language</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="exchangeAlertLanguage" name="exchangeAlertLanguage" class="ups-dropdown">
+                                <option>United States</option>
+                            </select>
+                        </div>
+                    </div>
+                <!--</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">-->
+
+                <!--</div>
+                <div class="col-md-6">-->
+
+                </div>
+            </div>
+            <div class="ups-form_group">
+                <div class="ups-input_wrapper">
+                    <input id="notifyProblem" class="ups-checkbox-custom" name="notifyProblem" type="checkbox" value="1">
+                    <label for="notifyProblem" class="ups-checkbox-custom-label">Notify me if there is a problem delivering pre-alert email.</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="notifyProblemEmail" class="ups-form_label">
+                            Email Address
+                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="notifyProblemEmail" class="ups-form_input" id="notifyProblemEmail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="ups-buttonList_wrapper ups-form_group">
+                <legend class="ups-form_label">Instructions to Appear on Label:</legend>
+                <div class="ups-input_wrapper">
+                    <input id="returnLikeItems" class="ups-radio-custom" name="returnExchange" type="radio" value="1">
+                    <label for="returnLikeItems" class="ups-radio-custom-label">UPS Returns&reg; Exchange - Like Item Only</label>
+                </div>
+                <div class="ups-input_wrapper">
+                    <input id="returnDriverInstructions" class="ups-radio-custom" name="returnExchange" type="radio" value="1">
+                    <label for="returnDriverInstructions" class="ups-radio-custom-label">UPS Returns&reg; Exchange - Driver Instructions Inside</label>
+                </div>
+            </fieldset>
+
+            <!--<div class="ups-form_group">
+                <label for="exchangeAlertEmail" class="ups-form_label"> Email Address </label>
+                <p id="emailAddressHelperTxt" class="ups-form_subheader">UPS will notify you if there is a problem sending a pre-alert email.</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="exchangeAlertEmail" class="ups-form_input" id="exchangeAlertEmail" {{#if error}}aria-describedby="emailAddressHelperTxt"{{/if}}>
+                </div>
+            </div>-->
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsProactiveResponse">
+                <input type="checkbox"
+                    id="addonsProactiveResponse"
+                    name="addonsProactiveResponse"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="addonsProactiveResponse"
+                    [ngModelOptions]="{'standalone': true}">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">[Proactive Response with Refrigeration/Proactive Response]</strong>
+                </div>
+            </label>
+        </div>
+        <div *ngIf="addonsProactiveResponse">
+            <div class="ups-form_group">
+                <div class="ups-input_wrapper">
+                    <input id="refrigerationNeeded" class="ups-checkbox-custom" name="refrigerationNeeded" type="checkbox" value="1">
+                    <label for="refrigerationNeeded" class="ups-checkbox-custom-label">Refrigeration Needed</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="addonsCommercialInvoiceRemoval">
+                <input type="checkbox" id="addonsCommercialInvoiceRemoval" name="addonsCommercialInvoiceRemoval" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">Commercial Invoice Removal</strong>
+                </div>
+            </label>
+        </div>
+        <hr>
+        <div class="ups-form_group">
+            <label class="ups-lever" onclick="" for="upsPremiumCare">
+                <input type="checkbox" id="upsPremiumCare" name="upsPremiumCare" class="ups-lever_checkbox">
+                <!-- if checked then yes -->
+                <span aria-hidden="true" class="ups-lever_switch">
+                    <span class="ups-lever_switch_yes">Yes</span>
+                    <span class="ups-lever_switch_bg"></span>
+                    <span class="ups-lever_switch_no">No</span>
+                </span>
+                <div class="ups-lever_rlabel">
+                    <strong class="ups-form_label ups-lever_label">UPS Premium Care<sup>TM</sup> (+$)</strong>
+                </div>
+            </label>
+        </div>
+    </div>
+    <!-- END editable view -->
+    <div class="ups-cms-demo">
+        <button type="button"
+            class="ups-cta ups-cta_secondary"
+            (click)="detailsEditable = !detailsEditable">
+            Toggle Editable
+        </button><br><br>
+        <button type="button"
+            class="ups-cta ups-cta_secondary"
+            (click)="addonsCODLocationAccept = true">
+            COD - Location accepts it
+        </button><br><br>
+        <button type="button"
+            class="ups-cta ups-cta_secondary"
+            (click)="addonsCODLocationAccept = false">
+            COD - Location does not accept it
+        </button>
+    </div>
+</div>

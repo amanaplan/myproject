@@ -1,0 +1,313 @@
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// Begin UPS CAC form                            //// -->
+<!-- /////////////////////////////////////////////////////// -->
+<section [formGroup]="cacForm">
+    <div class="row">
+        <div class="col-xs-10">
+            <div class="ups-form_group ups-form_required" *ngIf="!staticCountryTxt">
+                <label [attr.for]="'ups-cac-country' + idAppend" class="ups-form_label">
+                    Country or Territory
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper">
+                    <select [attr.id]="'ups-cac-country' + idAppend"
+                        class="ups-dropdown"
+                        [attr.name]="'ups-cac-country' + idAppend"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cac-country-error"
+                        formControlName="countrySelect"
+                        [(ngModel)]="cac.countrySelect"
+                        [ngClass]="{'ups-bodError':  (!cacForm.controls['countrySelect'].valid && cacForm.controls['countrySelect'].touched)}">
+                        <option *ngFor="let country of countries"
+                            value="{{ country.code }}">
+                            {{ country.countryName }}
+                        </option>
+                    </select>
+                    <div *ngIf="cacForm.controls['countrySelect'].valid">
+                        <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cac-country-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cacForm.controls['countrySelect'].valid &amp;&amp; cacForm.controls['countrySelect'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cacForm.controls['countrySelect'].hasError('required')">
+                            Country is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+            <div *ngIf="staticCountryTxt" class="ups-form_group ups-form_required">
+                <p class="ups-form_label">
+                    Country
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </p>
+                <p>{{ cac.country }}</p>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="ups-no_label pull-right">
+                <img alt="flag alt text" height="35px" src="/assets/resources/images/placeholder-icon.jpg" width="50px">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+                <label class="ups-form_label" [attr.for]="'ups-cac-name' + idAppend">Name or Company
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        [attr.id]="'ups-cac-name' + idAppend"
+                        [attr.name]="'ups-cac-name' + idAppend"
+                        aria-describedby="ups-cac-name_error"
+                        aria-required="true"
+                        required
+                        class="ups-form_input"
+                        formControlName="name"
+                        [ngClass]="{'ups-bodError': (!cacForm.controls['name'].valid && cacForm.controls['name'].touched)}">
+                    <div *ngIf="cacForm.controls['name'].valid">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cac-name_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cacForm.controls['name'].valid &amp;&amp; cacForm.controls['name'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cacForm.controls['name'].hasError('required')">
+                            Name or Company is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label class="ups-form_label" [attr.for]="'ups-cac-contactname' + idAppend">
+                    Contact Name
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        class="ups-form_input"
+                        [attr.id]="'ups-cac-contactname' + idAppend"
+                        [attr.name]="'ups-cac-contactname' + idAppend">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_group ups-form_required">
+        <label [attr.for]="'ups-cac-address' + idAppend" class="ups-form_label">
+            Address
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+        </label>
+        <div class="ups-text_wrapper ups-input_wrapper">
+            <input [attr.id]="'ups-cac-address' + idAppend"
+                type="text"
+                [attr.name]="'ups-cac-address' + idAppend"
+                class="ups-form_input"
+                maxlength="35"
+                required
+                aria-required="true"
+                placeholder="Street Address"
+                aria-describedby="ups-cac-address-error"
+                formControlName="address0"
+                [ngClass]="{'ups-bodError': (!cacForm.controls['address0'].valid && cacForm.controls['address0'].touched)}">
+            <div *ngIf="cacForm.controls['address0'].valid">
+                <span class="icon ups-icon-check" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Check</span>
+            </div>
+        </div>
+        <span class="ups-icons-error" id="ups-cac-address-error" role="alert">
+            <span class="ups-invalid_color"
+                *ngIf="(!cacForm.controls['address0'].valid &amp;&amp; cacForm.controls['address0'].touched)">
+                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                <span class="ups-readerTxt"> Invalid</span>
+                <span *ngIf="cacForm.controls['address0'].hasError('required')">
+                    Street Address is required.
+                </span>
+            </span>
+        </span>
+    </div>
+    <div class="ups-form_group">
+        <label [attr.for]="'ups-cac-address1' + idAppend" class="ups-readerTxt">
+            Address line 1
+        </label>
+        <div class="ups-text_wrapper ups-input_wrapper">
+            <input [attr.id]="'ups-cac-address1' + idAppend"
+                type="text"
+                [attr.name]="'ups-cac-address1' + idAppend"
+                data-ng-pattern=""
+                class="ups-form_input"
+                maxlength="35"
+                placeholder="Apt., Suite, Unit">
+        </div>
+    </div>
+    <div class="ups-form_group">
+        <label [attr.for]="'ups-cac-address2' + idAppend" class="ups-readerTxt">
+            Address line 2
+        </label>
+        <div class="ups-text_wrapper ups-input_wrapper">
+            <input [attr.id]="'ups-cac-address2' + idAppend"
+                type="text"
+                [attr.name]="'ups-cac-address2' + idAppend"
+                class="ups-form_input"
+                maxlength="35"
+                placeholder="Dept., c/o, etc.">
+        </div>
+    </div>
+
+    <div class="ups-form_group">
+        <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="visibleSurePost">
+            <input [attr.id]="'ups-cac-surePost' + idAppend"
+                    class="ups-checkbox-custom" 
+                    [attr.name]="'ups-cac-surePost' + idAppend"
+                    type="checkbox" 
+                    value="1" 
+                    checked=""
+                    [(ngModel)]="toSavNewEntery"
+                    [ngModelOptions]="{'standalone': true}">
+            <label [attr.for]="'ups-cac-surePost' + idAppend" class="ups-checkbox-custom-label">
+                <strong>This is a USPS P.O. box</strong>
+            </label>
+            <p class="ups-form_subheader">For selected contract services only</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label [attr.for]="'ups-cac-zipcode' + idAppend"
+                            class="ups-form_label"
+                            *ngIf="(cac.countrySelect == 'us')">
+                            ZIP Code
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <label [attr.for]="'ups-cac-zipcode' + idAppend"
+                            class="ups-form_label"
+                            *ngIf="(cac.countrySelect != 'us')">
+                            Postal Code
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input [attr.id]="'ups-cac-zipcode' + idAppend"
+                                type="text"
+                                [attr.name]="'ups-cac-zipcode' + idAppend"
+                                pattern="^[a-zA-Z0-9-]*$"
+                                class="ups-form_input"
+                                maxlength="15"
+                                required
+                                aria-required="true"
+                                aria-describedby="ups-cac-zipcode-error"
+                                formControlName="zipcode"
+                                [ngClass]="{'ups-bodError': (!cacForm.controls['zipcode'].valid && cacForm.controls['zipcode'].touched)}">
+                            <div *ngIf="cacForm.controls['zipcode'].valid">
+                                <span class="icon ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="ups-cac-zipcode-error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!cacForm.controls['zipcode'].valid &amp;&amp; cacForm.controls['zipcode'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="cacForm.controls['zipcode'].hasError('required') && (cac.countrySelect == 'us')">
+                                    Zip Code is required.
+                                </span>
+                                <span *ngIf="cacForm.controls['zipcode'].hasError('required') && (cac.countrySelect != 'us')">
+                                    Postal Code is required.
+                                </span>
+                                <span *ngIf="cacForm.controls['zipcode'].hasError('pattern') && (cac.countrySelect == 'us')">
+                                    Zip Code is invalid.
+                                </span>
+                                <span *ngIf="cacForm.controls['zipcode'].hasError('pattern') && (cac.countrySelect != 'us')">
+                                    Postal Code is invalid.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+
+                 </div>
+                 <div class="col-sm-7">
+                    <div class="ups-form_group ups-form_required">
+                        <label class="ups-form_label" [attr.for]="'ups-cac-state' + idAppend">
+                            State
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select class="ups-dropdown"
+                                [attr.id]="'ups-cac-state' + idAppend"
+                                [attr.name]="'ups-cac-state' + idAppend"
+                                required
+                                aria-required="true"
+                                aria-describedby="ups-cac-state-error"
+                                formControlName="state"
+                                [ngClass]="{'ups-bodError': (!cacForm.controls['state'].valid && cacForm.controls['state'].touched)}">
+                                <option>Select</option>
+                                <option value="al">Alabama</option>
+                            </select>
+                        </div>
+                        <span class="ups-icons-error" id="ups-cac-state-error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!cacForm.controls['state'].valid &amp;&amp; cacForm.controls['state'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="cacForm.controls['state'].hasError('required')">
+                                    State is required.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="ups-form_group ups-form_required">
+                <label class="ups-form_label" [attr.for]="'ups-cac-city' + idAppend">
+                    City
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        class="ups-form_input"
+                        [attr.id]="'ups-cac-city' + idAppend"
+                        [attr.name]="'ups-cac-city' + idAppend"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cac-city-error"
+                        formControlName="city"
+                        [ngClass]="{'ups-bodError': (!cacForm.controls['city'].valid && cacForm.controls['city'].touched)}">
+                </div>
+                <span class="ups-icons-error" id="ups-cac-city-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cacForm.controls['city'].valid &amp;&amp; cacForm.controls['city'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cacForm.controls['city'].hasError('required')">
+                            City is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// End UPS CAC form                              //// -->
+<!-- /////////////////////////////////////////////////////// -->

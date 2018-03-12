@@ -1,0 +1,38 @@
+<p>
+    {{modal_content.cancel}}
+</p>
+<div class="ups-address_block">
+        <div class="ups-group" data-ng-if="EmailAndPhone">
+            <p class="ups-group_label">Email</p>
+            <p>{{address.email}}</p>
+        </div>
+        <div class="ups-group" data-ng-if="EmailAndPhone">
+            <p class="ups-group_label">Phone</p>
+            <p>{{address.phoneNumber}}</p>
+        </div>
+        <div class="ups-group" data-ng-if="!EmailAndPhone">
+            <p class="ups-group_label">Address</p>
+            <p>{{address.street}}<br>
+            	{{address.city}}, {{address.stateCode}} {{address.pCode}}
+            </p>
+        </div>
+        <div class="ups-group">
+            <p class="ups-group_label">Location Nickname</p>
+            <p>{{address.house}}</p>
+        </div>
+</div>
+
+<div class="ups-form_ctaGroup text-center">
+    <button type="submit" class="ups-cta ups-cta_primary"
+        data-ng-click="cancelMembership();">Yes</button>
+    <button type="submit" class="ups-cta ups-cta_tertiary"
+        data-ng-click="cancel();">No</button>
+</div>
+<!-- DO NOT INCLUDE IN PRODUCTION -->
+<div class="ups-cms-demo">
+    <h4>Do Not Include In Production</h4>
+    <button type="button" class="ups-cta ups-cta_secondary" ng-click="EmailAndPhone = true">Email and Phone</button>
+    <button type="button" class="ups-cta ups-cta_secondary" ng-click="EmailAndPhone = false">Name and Address</button>
+</div>
+<!-- DO NOT INCLUDE IN PRODUCTION -->
+<!-- ups-form_ctaGroup -->

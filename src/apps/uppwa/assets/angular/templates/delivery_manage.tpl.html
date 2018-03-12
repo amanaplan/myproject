@@ -1,0 +1,445 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pickupModalHeading" id="pickupModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close" id="closePickupModal"> <span class="ups-readerTxt">Close</span> </button>
+				<h2 id="pickupModalHeading" class="modal-title">Success</h2>
+			</div>
+			<div class="modal-body">
+				<div class="ups-group">
+					<p>Placard ID: 5614-55</p>
+					<p>Postal Code: 78555</p>
+				</div>
+				<p> <strong>Reminder:</strong> Pickup Point information is saved on your brower through cookies. For continual use we recommend: </p>
+				<ul>
+					<li> Saving the above information </li>
+					<li> Selecting "Remember me" and bookmarking this page. </li>
+				</ul>
+				<div class="ups-form_ctaGroup text-center">
+					<button type="button" class="ups-cta ups-cta_primary" data-dismiss="modal">Continue</button>
+				</div>
+			</div>
+			<!--<div class="modal-footer">
+
+            </div>-->
+		</div>
+	</div>
+</div>
+<!-- End of Modal -->
+
+<div class="ups-pickup_top_status">
+	<div class="row ups-pickup_top_row">
+        <!-- col-xs-12 is needed for correct positioning -->
+        <div class="col-xs-12 text-center">
+            <!--<p class="hidden-xs hidden-sm"> UPS Pickup Point ID {{ '{' }}1234-56{{ '}' }}: </p>-->
+            <p class="ups-font_equalizer"> ID Code: <strong>{{ '{' }}1234-56{{ '}' }}</strong> </p>
+            <!--<p class="visible-xs visible-sm"> Pickup Point: </p>-->
+            <p class="h4"> {{ '{' }}555 Main Ave Austin, TX 78555{{ '}' }} </p>
+            <!--<p class="hidden-xs hidden-sm"> Welcome to your Pickup Point! Placeholder text giving more explanation. </p>-->
+        </div>
+		<div class="col-md-7 hidden-xs hidden-sm">
+			<div class="row">
+				<!--<div class="col-md-2 hidden-xs hidden-sm"> <img src="/assets/resources/images/placeholder-icon.jpg"
+                        alt="Pickup Picture"
+                        width="100%"
+                        class="img-responsive"> </div>-->
+				<!--<div class="col-md-10 text-center ups-text-md-left">
+					<p class="hidden-xs hidden-sm"> UPS Pickup Point ID {{ '{' }}1234-56{{ '}' }}: </p>
+					<p class="visible-xs visible-sm ups-font_equalizer"> ID Code: <strong class="h4">{{ '{' }}1234-56{{ '}' }}</strong> </p>
+					<!--<p class="visible-xs visible-sm"> Pickup Point: </p>-->
+					<!--<p class="h4"> {{ '{' }}555 Main Ave Austin, TX 78555{{ '}' }} </p>-->
+					<!--<p class="hidden-xs hidden-sm"> Welcome to your Pickup Point! Placeholder text giving more explanation. </p>
+				</div>-->
+                <div class="col-md-10 text-center ups-text-md-left" *ngIf="!pickupStatusNone && !pickupHistory">
+        			<p class="ups-font_equalizer"><strong>Status:</strong> <span *ngIf="pickupStatusToday">Pickup request confirmed.</span> <span *ngIf="pickupStatusTomorrow">{{ '{' }}Next Business Days{{ '}' }}'s pickup confirmed.</span> <span *ngIf="pickupStatusPassed">Today's deadline has passed.</span> <span *ngIf="pickupStatusServicePassed">Today's service time has passed.</span> <span *ngIf="pickupStatusNotToday">No time scheduled for today.</span> <span *ngIf="pickupStatusError">Request failed.</span> <span *ngIf="pickupStatusDefault">[No service requested for today yet/Service scheduled for today/Too late for service today]</span>
+
+                    </p>
+        		</div>
+                <div class="col-md-10 text-center ups-text-md-left" *ngIf="pickupStatusNone">
+                    <p class="ups-font_equalizer"><strong>Status:</strong> <span>No pickup requested yet</span></p>
+                </div>
+			</div>
+		</div>
+		<!-- col-xs-12 is needed for correct positioning -->
+		<div class="col-xs-12 visible-xs visible-sm text-center ups-text-md-left ups-pickup_full_status" *ngIf="!pickupHistory">
+            <p *ngIf="pickupStatusDefault" class="ups-font_equalizer"> <strong>Status:</strong> [No service requested for today yet/Service scheduled for today/Too late for service today]</p>
+			<p *ngIf="pickupStatusToday" class="ups-font_equalizer"> <strong>Status:</strong> [Service scheduled for today] </p>
+			<p *ngIf="pickupStatusConfirmed" class="ups-font_equalizer"> <strong>Status:</strong> Pickup request confirmed. </p>
+			<p *ngIf="pickupStatusTomorrow" class="ups-font_equalizer"> <strong>Status:</strong> [Service scheduled for tomorrow]</p>
+			<p *ngIf="pickupStatusPassed"> <strong>Status:</strong> Today's deadline has passed.</p>
+            <p *ngIf="pickupStatusServicePassed" class="ups-font_equalizer"><strong>Status:</strong> Today's service time has passed.</p>
+			<p *ngIf="pickupStatusNotToday" class="ups-font_equalizer"> <strong>Status:</strong> No time scheduled for today. </p>
+			<p *ngIf="pickupStatusError" class="ups-font_equalizer"> <strong>Status:</strong> Request failed. </p>
+            <p *ngIf="pickupStatusNone" class="ups-font_equalizer"> <strong>Status:</strong> No pickup requested yet</p>
+            <hr/>
+		</div>
+		<!-- col-xs-12 is needed for correct positioning -->
+		<div class="col-xs-12 col-md-5 text-center" [ngClass]="{'hidden-xs hidden-sm' : pickupHistory}">
+			<p> This pickup point location is serviced by: </p>
+			<p class="h4"><strong> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }}
+				{{ '{' }}weekday{{ '}' }}</strong> </p>
+		</div>
+	</div>
+	<!-- <div class="row hidden-sm hidden-xs ups-pickup_bottom_row" *ngIf="!pickupHistory">
+		<div class="col-md-7" *ngIf="pickupStatusNone">
+			<p> <img src="/assets/resources/images/placeholder-icon.jpg"
+                    alt="Pickup Picture"
+                    width="30"
+                    height="30"
+                    class="ups-pickup_status_pic"> <strong>Status:</strong> No pickup requested yet </p>
+		</div>
+		<div class="col-md-5 text-center ups-pickup_history_col" *ngIf="pickupStatusNone"> <a href="#" class="ups-link">View History</a> </div>
+		<div class="col-md-12" *ngIf="!pickupStatusNone">
+			<p> <img src="/assets/resources/images/placeholder-icon.jpg"
+                    alt="Pickup Picture"
+                    width="30"
+                    height="30"
+                    class="ups-pickup_status_pic"> <strong>Status:</strong> <span *ngIf="pickupStatusToday">Pickup request confirmed.</span> <span *ngIf="pickupStatusTomorrow">{{ '{' }}Next Business Days{{ '}' }}'s pickup confirmed.</span> <span *ngIf="pickupStatusPassed">Today's deadline has passed.</span> <span *ngIf="pickupStatusServicePassed">Today's service time has passed.</span> <span *ngIf="pickupStatusNotToday">No time scheduled for today.</span> <span *ngIf="pickupStatusError">Request failed.</span> <span *ngIf="pickupStatusDefault">[No service requested for today yet/Service scheduled for today/Too late for service today]1</span> </p>
+		</div>
+		<div class="col-md-12" *ngIf="missedDisplay">
+            <p>
+                <img src="/assets/resources/images/placeholder-icon.jpg"
+                    alt="Pickup Picture"
+                    width="30"
+                    height="30"
+                    class="ups-pickup_status_pic">
+                <strong>Status:</strong> Today's deadline has passed.
+            </p>
+        </div>
+	</div> -->
+</div>
+<div class="text-center ups-pickup_request" *ngIf="pickupDefault">
+	<div class="ups-app_inner">
+		<div class="ups-group">
+			<p class="h3 hidden-xs hidden-sm">Ready to Request Pickup?</p>
+			<p> Placeholder instructional text on how to trigger pickup </p>
+			<button class="ups-cta ups-cta_primary"> Request Pickup </button>
+		</div>
+		<!--<a href="#" class="ups-link visible-xs visible-sm">View History</a>--> </div>
+</div>
+<div class="ups-pickup_history" *ngIf="pickupHistory">
+	<!-- Previous Link Starts -->
+	<a *ngIf="pickupHistory" href="repl_href" class="ups-previous_page"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back to Main Page </a>
+	<!-- Previous Link Ends -->
+	<p class="h3"> Pickup History for Placard {{ '{' }}1234-56{{ '}' }} </p>
+	<div class="ups-contentBlock">
+		<div class="ups-group">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="ups-table">
+						<table border="0">
+							<tbody>
+								<tr>
+									<th> Date </th>
+									<th> Status </th>
+								</tr>
+								<tr>
+									<td> {{ '{' }}Today{{ '}' }} </td>
+									<td> {{ '{' }}Pending{{ '}' }} </td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-sm-6 hidden-xs">
+					<div class="ups-table">
+						<table border="0">
+							<tbody>
+								<tr>
+									<th> Date </th>
+									<th> Status </th>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+								<tr>
+									<td> {{ '{' }}mm/dd/yyyy{{ '}' }} </td>
+									<td><p> {{ '{' }}Completed{{ '}' }} </p>
+										<p> {{ '{' }}HH:00{{ '}' }}{{ '{' }}am / pm{{ '}' }} </p></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button type="button" class="ups-cta ups-cta_tertiary"> Load More </button>
+	</div>
+</div>
+<div class="text-center ups-pickup_request" *ngIf="pickupSuccess">
+	<div class="ups-app_inner">
+		<div class="ups-group">
+			<div *ngIf="!pickupSuccessNoAction">
+				<p class="h3"> <span class="icon ups-icon-check ups-position-normal hidden-xs hidden-sm" aria-hidden="true"></span> Success! </p>
+				<p *ngIf="!pickupSuccessOnDemandSuccess"> Your pickup point is scheduled for <span *ngIf="!pickupSuccessOnDemandOtherDay">today</span><span *ngIf="pickupSuccessOnDemandOtherDay">{{ '{' }}Day{{ '}' }}</span>. </p>
+				<p *ngIf="pickupSuccessOnDemandSuccess"> Your On-Demand pickup is confirmed. </p>
+			</div>
+			<div *ngIf="pickupSuccessNoAction">
+				<p class="h3"> <span class="icon ups-icon-check ups-position-normal hidden-xs hidden-sm" aria-hidden="true"></span> No Action Needed </p>
+				<p> Your pickup point is already scheduled for today. </p>
+			</div>
+			<p> Confirmation number: <strong>2949O2PA7QA</strong> </p>
+			<p> Place your package(s) at the pickup point by <strong>{{ '{' }}00:00{{ '}' }}{{ '{' }}PM{{ '}' }}{{ '{' }}Day{{ '}' }}</strong> </p>
+			<!--<p>
+				<button type="button" class="ups-cta ups-cta_primary visible-xs" disabled> Requested </button>
+			</p>-->
+		</div>
+	</div>
+</div>
+<div class="text-center ups-pickup_request" *ngIf="pickupMissed">
+	<div *ngIf="!pickupMissedPassed">
+		<!-- <p class="h3"> <span *ngIf="!pickupMissedNotSet"><span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> Deadline missed.</span> On-Demand still available </p> -->
+        <p class="h3"> <span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> Sorry! </p>
+		<p> All possible service options for this location have passed for today. </p>
+        <p> To request a pickup for [next business day], select the button below and place your package(s) at the pickup point location by <strong>{{ '{' }}00:00{{ '}' }}{{ '{' }}PM{{ '}' }}</strong> </p>
+		<p>
+            <button type="button" class="ups-cta ups-cta_primary" (click)="demoSuccessDisplay()"> Request Service </button>
+        </p>
+        <p>Call <a href="tel:+18000000000" class="ups-link">1-800-000-0000</a> for alternate local drop-off location suggestions for service today.</p>
+	</div>
+	<div *ngIf="pickupMissedPassed">
+		<p class="h3"> <span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> Sorry! </p>
+		<p class="hidden-xs hidden-sm"> The regularly scheduled pickup time has passed for today </p>
+		<p class="hidden-md hidden-lg">All possible service options for this location has passed for today.</p>
+		<p> To request a pickup for Saturday, select the button below and place your package(s) at the pickup point location by <strong>2:00 PM</strong>.</p>
+        <!--<p>{{ '{' }}Next Business Day{{ '}' }} at <strong>{{ '{' }}00:00{{ '}' }}{{ '{' }}PM{{ '}' }}</strong>, select the button below. <span class="hidden-sm hidden-xs">(Might not be your regular UPS driver)</span> </p>-->
+		<div class="ups-pickup_request_options" *ngIf="pickupMissedPassedDayChoices">
+			<fieldset class="ups-form_group">
+				<legend class="ups-readerTxt"> Day Choices </legend>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input id="pickupSat2p" class="ups-radio-custom" name="pickupDay" value="0" type="radio">
+					<label for="pickupSat2p" class="ups-radio-custom-label"> Choose Pickup for <strong>{{ '{' }}2:00{{ '}' }}{{ '{' }}pm{{ '}' }} {{ '{' }}Saturday{{ '}' }} </strong></label>
+				</div>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input id="pickupSun4p" class="ups-radio-custom" name="pickupDay" value="1" type="radio">
+					<label for="pickupSun4p" class="ups-radio-custom-label"> Choose Pickup for <strong>{{ '{' }}4:00{{ '}' }}{{ '{' }}pm{{ '}' }} {{ '{' }}Sunday{{ '}' }} </strong></label>
+				</div>
+			</fieldset>
+		</div>
+		<p>
+			<button type="button" class="ups-cta ups-cta_primary" (click)="demoRequestPickupAfterMissed()"> Request Service </button>
+		</p>
+		<p>Call <a href="tel:+18000000000" class="ups-link">1-800-000-0000</a> for alternate local drop-off location suggestions for service today.</p>
+	</div>
+</div>
+<div class="text-center ups-pickup_request" *ngIf="pickupAdditionalResults">
+    <div *ngIf="pickupOnCall">
+        <p class="h3"> <span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> Sorry! </p>
+        <p> The regularly scheduled pickup time has passed for today. </p>
+        <p> To request an on-call pickup, select the button below. <span class="hidden-sm hidden-xs">(Might not be your regular UPS driver)</span> </p>
+        <p>
+            <button type="button" class="ups-cta ups-cta_primary" (click)="demoRequestOnCallService()"> Request On-Call Service</button>
+        </p>
+    </div>
+    <div *ngIf="pickupRequestOnCallServiceResults">
+        <p class="h3"> Save - </p>
+        <p>We have re-routed a driver to service your on-call pickup request.</p>
+        <p> Confirmation number: <strong>2949O2PA7QA</strong> </p>
+        <p> Place your package(s) at the pickup point by <strong>{{ '{' }}00:00{{ '}' }}{{ '{' }}PM{{ '}' }}{{ '{' }}Day{{ '}' }}</strong> </p>
+    </div>
+    <div *ngIf="pickupExamples">
+            <p class="h3"> <span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> Sorry! </p>
+            <p> All possible service options for this location have passed for today.</p>
+            <p> Your pickup point is already scheduled for service tomorrow.</p>
+            <p> Confirmation number: <strong>2949O2PA7QA</strong> </p>
+            <p> Place your package at the pickup point location by <strong *ngIf="pickupExamplesOne">[00:00][PM][tomorrow]</strong><strong *ngIf="pickupExamplesTwo">{{ '{' }}2:00{{ '}' }}{{ '{' }}PM{{ '}' }} {{ '{' }}Saturday{{ '}' }} </strong>.</p>
+            <p *ngIf="pickupExamplesTwo">To request a pickup for [<strong>Monday</strong>], select the button below and place your package(s) at the pickup point location by <strong>{{ '{' }}4:00{{ '}' }}{{ '{' }}pm{{ '}' }}</strong></p>
+            <p *ngIf="pickupExamplesTwo">
+                <button type="button" class="ups-cta ups-cta_primary" (click)="demoSuccessDisplay()"> Request Service</button>
+            </p>
+            <p>Call <a href="tel:+18000000000" class="ups-link">1-800-000-0000</a> for alternate local drop-off location suggestions for service today.</p>
+    </div>
+</div>
+<div class="text-center ups-pickup_request" *ngIf="pickupError">
+	<p class="h3"> <span class="icon ups-icon-alert hidden-xs hidden-sm" aria-hidden="true"></span> ERROR: Request failed. </p>
+	<p> We are unable to process your request. Please, try again later. </p>
+	<p> Or call <strong>1-800-PICK-UPS&reg;</strong> or 1-800-742-5877 and a customer service agent can assist you to schedule a pickup. </p>
+	<p>
+		<button type="button" class="ups-cta ups-cta_primary">Refresh Screen</button>
+	</p>
+</div>
+<div class="ups-section ups-app_inner" *ngIf="!pickupHistory">
+	<!--<div class="ups-section-header">
+		<h2 class="ups-section_heading">Get alerts for this Pickup Point:</h2>
+	</div>-->
+	<div *ngIf="!alertsSignedUp && !alertsError">
+        <!--<p> Select the button below and fill out the form to receive pickup point alerts. </p>-->
+		<div class="ups-form_ctaGroup text-center">
+		<button type="button" class="ups-cta ups-cta_secondary" (click)="demoHistoryDisplay()"> View History</button>
+
+		<button type="button" class="ups-cta ups-cta_secondary" (click)="alertsShown = !alertsShown"> Sign up for Alerts </button>
+		</div>
+		<div class="ups-toggle_view_state ups-toggle_view_left" *ngIf="alertsShown">
+            <p>Send me alerts via:</p>
+			<div class="row">
+				<div class="col-md-7">
+					<div class="ups-form_group">
+						<label class="ups-form_label" for="alertEmail"> Email </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input type="text"
+                                name="alertEmail"
+                                class="ups-form_input"
+                                id="alertEmail"
+                                placeholder="john123@email.com">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="ups-form_group">
+						<label class="ups-form_label" for="alertPhone"> Mobile Phone Number </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input type="text"
+                                name="alertPhone"
+                                class="ups-form_input"
+                                id="alertPhone"
+                                placeholder="(555) 555 - 5555">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<fieldset class="ups-form_group">
+						<legend class="ups-form_label"> Pickup Status Alerts </legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input type="checkbox"
+                                id="pickupAlertStatus"
+                                name="pickupAlertStatus"
+                                value="1"
+                                class="ups-checkbox-custom">
+							<label class="ups-checkbox-custom-label" for="pickupAlertStatus"> when pickup is completed, becomes at risk, or if the pickup is missed. </label>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-md-6">
+					<fieldset class="ups-form_group">
+						<legend class="ups-form_label"> Service Deadline Reminders </legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input type="checkbox"
+                                id="pickupServiceReminder"
+                                name="pickupServiceReminder"
+                                value="1"
+                                class="ups-checkbox-custom">
+							<label class="ups-checkbox-custom-label" for="pickupServiceReminder"> 30 minutes before this pickup point's deadline and the UPS service deadline. </label>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<button type="button" class="ups-cta ups-cta_primary" (click)="alertSubscribe()"> Subscribe </button>
+		</div>
+	</div>
+	<div *ngIf="alertsSignedUp && !alertsError">
+		<p> <span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span> Thank you for signing up! </p>
+		<p> The email address or phone number you provided will now receive alerts. </p>
+		<button type="button" class="ups-cta ups-cta_secondary"> Add Another Email </button>
+	</div>
+	<div *ngIf="alertsError">
+		<h3 class="ups-invalid_color-list ups-error_alert-list"> <span class="icon ups-icon-exclamation" aria-hidden="true"></span> Error: Request Failed </h3>
+		<p> We are unable to process your request. Please try again later. </p>
+		<button type="button" class="ups-cta ups-cta_secondary"> Refresh Screen </button>
+	</div>
+</div>
+<div class="ups-cms-demo">
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="alertsError = true"> Alert Error Message </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="alertsError = false"> No Alert Error Message </button>
+	<hr>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoHistoryDisplay()"> History Display </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoDefaultDisplay()"> Default Display </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoSuccessDisplay()"> Success Display </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoSuccessNoActionDisplay()"> No Action Needed Display </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoPastCutOffA()"> Past Cut-Off A  </button>
+	<br>
+	<br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoPastCutOffB()"> Past Cut-Off B (Radio Buttons)</button>
+    <br>
+    <br>
+	<!-- <button type="button" class="ups-cta ups-cta_secondary" (click)="demoMissedNoChoicesDisplay()"> Missed Pickup Time - Deadline Passed (Available Tomorrow) Display </button>
+	<br>
+	<br> -->
+	<!-- <button type="button" class="ups-cta ups-cta_secondary" (click)="demoMissedChoicesDisplay()"> Request Denied - Tomorrow Capability - Options </button>
+	<br>
+	<br> -->
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoOnCall()"> On Call </button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoOnDemandNoPickuptimeDisplay()"> No Pickup Time Set </button>
+	<br>
+	<br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoExamplesOne()"> Examples - One Alternate Service Day Available, Already Scheduled</button>
+	<br>
+	<br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoExamplesTwo()"> Examples - Two Alternate Service Days Available, Already Scheduled</button>
+	<br>
+	<br>
+	<button type="button" class="ups-cta ups-cta_secondary" (click)="demoErrorDisplay()"> Error </button>
+	<br>
+	<br>
+
+	<!--
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="historyDisplay = false; successDisplay = false; noAction = false; missedDisplay = true; onDemandSuccess=false; passed=true; dayChoices = true; nextday=false;">
+        Missed Pickup Time - Deadline Passed (Show Choices) Display
+    </button><br><br>
+
+
+
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="historyDisplay = false; successDisplay = false; noAction = false; missedDisplay = true; onDemandSuccess=false; passed=true; dayChoices = true; nextday=false;">
+        Error
+    </button><br><br>-->
+</div>

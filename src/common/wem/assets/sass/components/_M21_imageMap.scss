@@ -1,0 +1,258 @@
+// ----------------------------------------------------
+// MAIN NAV - COUNTRY/LANGUAGE SELECTOR
+// ----------------------------------------------------
+
+.ups-langSelect_map {
+    position: relative;
+    height: 0;
+    width: 100%;
+    padding-top: 55%;
+}
+
+#ups-langSelect {
+
+    margin-bottom: 60px;
+
+    @media #{$media-medium} {
+        margin: 30px 0;
+    }
+
+    h1 {
+        margin: 0 0 20px;
+        padding-bottom: 6px;
+        font-size: 1.2em;
+        // text-transform: uppercase;
+        position: relative;
+
+        &:before {
+            content: '';
+            height: 1px;
+            width: 120px;
+            position: absolute;
+            bottom: 0;
+            #{$default-float}: 0;
+            background: $ups_gold;
+        }
+
+        @media #{$media-medium} {
+            text-transform: none;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+    }
+
+    .ups-langSelect_back {
+        // @include unbutton;
+        display: none;
+        position: relative;
+        margin-bottom: 24px;
+        padding-#{$default-float}: 18px;
+        line-height: 15px;
+        color: $black_s3;
+
+        &.ups-active {
+            display: inline-block;
+        }
+
+        span {
+            border-bottom: 1px solid $black_s3;
+            @include transition-property(all);
+            @include transition-duration($main-transition-speed);
+        }
+
+        &:before {
+            @include ups-icons;
+            content: '\e627';
+            position: absolute;
+            #{$default-float}: 0;
+            top: 0;
+            text-decoration: none;
+
+            .ups-rtl & {
+                content: '\e629';
+            }
+        }
+
+        &:hover, &:focus {
+            text-decoration: none;
+            span {
+                border-color: $black_s1;
+                color: $black_s1;
+            }
+        }
+    }
+
+    #ups-svg-countries {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+
+        g * {
+            fill: $black_s1;
+            cursor: pointer;
+        }
+
+        g.ups-svg_disabled *,
+        g.ups-svg_disabled:hover * {
+            fill: $black_s1;
+            cursor: default;
+        }
+
+        g:hover *,
+        g.ups-mousein * { fill: lighten($black_s1, 10%); }
+
+        g.ups-active {
+            * { fill: $ups_gold; }
+            &:hover * { fill: lighten($ups_gold, 10%); }
+        }
+
+    }
+
+    .ups-langSelect_accordion {
+        border: none;
+        padding: 0 15px;
+
+        @media #{$media-small} {
+            padding: 0;
+            margin: 0 -5px;
+        }
+
+        .ups-accordion_content {
+            background: $brown_s4;
+            color: $white;
+        }
+
+        .ups-accordion_item {
+            max-height: none;
+            margin: 0;
+            border-top: 1px solid $ups_stone;
+
+            &:first-child { border: none; }
+
+            &.ups-active {
+                .ups-accordion_expand {
+                    visibility: visible;
+                    max-height: 260px;
+                    margin: 12px 15px;
+                    -webkit-overflow-scrolling: touch;
+                    li{
+                        list-style:none;
+                    }
+                }
+            }
+        }
+
+        .ups-accordion_toggle {
+            @include unbutton;
+            padding: 14px;
+            padding-#{$opposite-direction}: 50px;
+            width: 100%;
+            margin: 0;
+            background: $ups_brown;
+            text-decoration: none;
+            text-align: $default_float;
+            padding: 12px 14px;
+            padding-#{$opposite-direction}: 50px;
+            line-height: 1.5;
+            &:focus{
+              outline: 2px solid $ups-gold;
+              outline-offset: -3px;
+            }
+            
+            @media #{$media-small} {
+                padding-#{$default-float}: 20px;
+            }
+
+
+            i {
+                height: 16px;
+                top: 50%;
+                line-height: 16px;
+                margin-top: -8px;
+            }
+
+            &.ups-active {
+                background: none;
+                border-color: transparent;
+                color: $ups-gold;
+
+                i {
+                    color: $white;
+                }
+            }
+
+            .no-touch &:hover,
+            .no-touch &:focus,
+            &.ups-mousein { color: $ups_gold; }
+        }
+
+        .ups-accordion_expand {
+            visibility: hidden;
+            background: none;
+            max-height: 0;
+            margin: 0 22px;
+            padding: 0 15px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+
+            @include transition-property(max-height,margin);
+            @include transition-duration(0.3s);
+
+            a {
+                color: $white;
+                display: block;
+                height: auto;
+                line-height: 1.5;
+                padding: 8px 0;
+
+                &:hover {
+                    color: $stone_40;
+                }
+
+                &.ups-active {
+                    color: $ups_gold;
+                }
+            }
+
+            &::-webkit-scrollbar {
+                -webkit-appearance: none;
+                width: 18px;
+                background: $ups_brown;
+                border: 4px solid $ups_brown;
+            }
+
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: none;
+                border-radius: 0;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                -webkit-box-shadow: none;
+                border-radius: 0;
+                background: $ups_stone;
+            }
+
+        }
+
+    }
+
+}
+
+/*
+ * Let's target IE to respect aspect ratios and sizes for img tags containing SVG files
+ *
+ * [1] IE9
+ * [2] IE10+
+ */
+/* 1 */
+// .ie9 img[src*=".svg"] {
+//   width: 100%;
+// }
+// /* 2 */
+// @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+//   img[src*=".svg"] {
+//     width: 100%;
+//   }
+// }

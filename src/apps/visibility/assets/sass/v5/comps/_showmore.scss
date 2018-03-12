@@ -1,0 +1,108 @@
+@mixin showmore_showall() {
+    &.ups-showmore_showall {
+        max-height: none;
+        overflow: visible;
+
+        .ups-showmore_button {
+            display: block;
+            width: 100%;
+            text-align: #{$opposite-direction};
+            position: static;
+
+            &:before {
+                content: none;
+                display: none;
+            }
+        }
+    }
+
+    @media #{$not-mobile} {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.ups-showmore_container {
+    position: relative;
+
+    .ups-showmore_button {
+        position: absolute;
+        bottom: 0;
+        #{$opposite-direction}: 0;
+        padding-#{$default-float}: 10px;
+        height: 1.25em;
+        background-color: $white;
+
+        &:before {
+            content: "... ";
+            height: 1.25em;
+            display: inline-block;
+            margin-#{$opposite-direction}: 5px;
+            margin-top: 2px;
+            text-decoration: underline; //!!must be set to underline for IE 8-11 fix below
+        }
+
+        /*
+        IE 8-11 fix for underlines on child elements
+        */
+        &:before {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        /*
+        end for IE 8-11 fix
+        */
+    }
+}
+
+.ups-showmore_one_line {
+    max-height: 1.25em;
+    overflow: hidden;
+
+    @include showmore_showall();
+}
+
+.ups-showmore_two_lines {
+    max-height: 2.5em;
+    overflow: hidden;
+
+    @include showmore_showall();
+}
+
+.ups-showmore_three_lines {
+    max-height: 3.75em;
+    overflow: hidden;
+
+    @include showmore_showall();
+}
+
+.ups-list_box {
+    border: 1px solid $black_s1;
+
+    .ups-list_box_content {
+        padding: 15px;
+    }
+
+    .ups-list_box_show_all {
+        border: none;
+        //border-top: 1px solid $black_s1;
+        display: block;
+        width: 100%;
+        //background-color: $stone_s3;
+        //padding: 5px;
+        padding: 0;
+        text-align: #{$default-float};
+        border-radius: 1px;
+    }
+}
+
+.ups-list_box_more {
+    overflow: hidden;
+}
+
+.ups-slide_open_collapsed {
+    height: 0;
+}

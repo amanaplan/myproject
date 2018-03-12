@@ -1,0 +1,103 @@
+<div [formGroup]="formsWizStep2_1">
+    <!-- -->
+    <!-- Page level error handling will go here once we complete it -->
+    <!-- -->
+    <p>Some destinations require a Certificate of Origin (CO) for certain commodities; you can complete this form online for commodities whose origin is in the U.S. or Puerto Rico.</p>
+    <p>{{'{'}}Optional display of tariff code definition when code is known{{'}'}}.</p>
+    <div class="alert alert-warning " role="alert">
+        <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+        </div>
+        <button type="button"
+                class="ups-alert_collapse"
+                aria-expanded="false"
+                (click)="formsWizStep2_1ShipTip = !formsWizStep2_1ShipTip">
+            <span class="ups-readerTxt">Click to expand</span>
+            <span [ngClass]="{ 'ups-icon-wedgeup' : formsWizStep2_1ShipTip, 'ups-icon-wedgedown' : !formsWizStep2_1ShipTip }" class="icon " aria-hidden="true"></span>
+        </button>
+        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong>When do I need a U.S. Certificate of Origin?</p></div>
+        <div class="alert-content ups-alert_has_icon" *ngIf="formsWizStep2_1ShipTip">
+            <p>Depending on the commodity and country or territory of destination, certain exports from the United States may require a U.S. Certificate of Origin.</p>
+            <a href="#" class="ups-link">See Country or Territory Specific Regulations and Restrictions</a>
+        </div>
+    </div>
+    <div class="ups-form_group">
+        <label class="ups-lever" onclick="" for="co_switch">
+            <input type="checkbox"
+                    id="co_switch"
+                    name="co_switch"
+                    class="ups-lever_checkbox"
+                    [(ngModel)]="co_switch"
+                    [ngModelOptions]="{'standalone': true}">
+            <strong class="ups-form_label ups-lever_label">Would you like to complete this now?</strong>
+            <!-- if checked then yes -->
+            <span aria-hidden="true" class="ups-lever_switch">
+                <span class="ups-lever_switch_yes">Yes</span>
+                <span class="ups-lever_switch_bg"></span>
+                <span class="ups-lever_switch_no">No</span>
+            </span>
+        </label>
+    </div>
+    <div class="row" *ngIf="co_switch">
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                <label for="co_item_num" class="ups-form_label"> How many of your packages contain this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                <div class="ups-help" upsHelpBtn="">
+                    <button type="button"
+                            class="ups-help_link icon ups-icon-questioncircle"
+                            (click)="co_item_num_help = !co_item_num_help">Help</button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft" *ngIf="co_item_num_help">
+                        <button type="button" class="ups-help_close" (click)="co_item_num_help = false">
+                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Count the number of shipping containers holding at least one of this commodity.</p>
+                    </div>
+                </div>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                            name="co_item_num"
+                            class="ups-form_input"
+                            id="co_item_num"
+                            aria-required="true"
+                            required
+                            aria-describedby="co_item_num_error"
+                            formControlName="co_item_num"
+                            [ngClass]="{'ups-bodError': (!formsWizStep2_1.controls['co_item_num'].valid && formsWizStep2_1.controls['co_item_num'].touched)}">
+                </div>
+            </div>
+            <div class="ups-form_group ups-form_required ups-help_wrapper ups-input_has_unit">
+                <label for="co_item_weight" class="ups-form_label"> How many of your packages contain this item? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                <div class="ups-help" upsHelpBtn="">
+                    <button type="button"
+                            class="ups-help_link icon ups-icon-questioncircle"
+                            (click)="co_item_weight_help = !co_item_weight_help">Help</button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft" *ngIf="co_item_weight_help">
+                        <button type="button" class="ups-help_close" (click)="co_item_weight_help = false">
+                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Add up what this item weighs, in its retail packaging, in the quantity you are shipping it. Then include the weight of the shipping containers they are in. If a package contains only that commodity, "gross weight" is the same as package weight. </p>
+                    </div>
+                </div>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                            name="co_item_weight"
+                            class="ups-form_input"
+                            id="co_item_weight"
+                            aria-required="true"
+                            required
+                            aria-describedby="co_item_weight_error"
+                            formControlName="co_item_weight"
+                            [ngClass]="{'ups-bodError': (!formsWizStep2_1.controls['co_item_weight'].valid && formsWizStep2_1.controls['co_item_weight'].touched)}">
+                    <span class="ups-input_unit_measure">[lbs/kg]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_tertiary" type="button">Back</button>
+        <button class="ups-cta ups-cta_primary" type="button">Next</button>
+    </div>
+</div>

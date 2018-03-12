@@ -1,0 +1,37 @@
+{{> "background_modal_content"}}
+
+<div class="appLvl modal-dialog mod modal dialog">
+
+    <div class="appHead clearfix">
+        <h2 class="ups-modal_heading">Report a Claim</h2>
+        <button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span class="ups-readerTxt ng-binding">Close This Dialog</span> </button>
+    </div>
+
+    <div class="appBody ups-form_wrap ups-application_wrapper">
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+			<input id="ups-report_claim_cb" class="ups-checkbox-custom" name="ups-report_claim_cb" type="checkbox">
+			<label for="ups-report_claim_cb" value="1" class="ups-checkbox-custom-label">
+                By Selecting this box, I certify that the information provided in this submission for Claim Payment and all communications related to this Request, including but not limited to statements as to the actual content and value of items that have been lost or damaged, are true and accurate to the best of my knowledge, and that this Request has been submitted in good faith.
+            </label>
+		</div>
+    </div>
+
+    <div class="appFooter">
+
+        <div class="ups-form_ctaGroup text-center">
+    		<button type="button" class="ups-cta ups-cta_primary">okay</button>
+    	</div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:710});
+      $('#modalClose').click(function(e){
+              modal.dialog('close');
+      });
+  });
+</script>

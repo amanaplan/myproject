@@ -1,0 +1,236 @@
+<form error-on-submit name="ups_editAccount" novalidate
+	class="ups-application_wrapper ups-cardPayment ups-offset-0">
+    <!-- //// begin ups.ppc-account-types //// -->
+    <div data-ng-if="clicked && !ups_editAccount.$valid">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+        <ul class="ups-icons-error"> 
+            <li data-ng-if="ups_editAccount.industry.$error.required"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="selectList" error-on-submit-anchor class="ups-invalid_color"> Industry</a> is required.
+                </span>
+            </li>
+            <li data-ng-if="ups_editAccount.employee.$error.required"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-company-size" error-on-submit-anchor class="ups-invalid_color"> Company Size</a> is required.
+                </span>
+            </li>
+            <li data-ng-if="ups_editAccount.ground.$invalid"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-ground" error-on-submit-anchor class="ups-invalid_color"> Ground</a> is required.
+                </span>
+            </li>
+            <li data-ng-if="ups_editAccount.air.$invalid"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-air" error-on-submit-anchor class="ups-invalid_color"> Air</a> is required.
+                </span>
+            </li>
+            <li data-ng-if="ups_editAccount.international.$invalid"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-international" error-on-submit-anchor class="ups-invalid_color"> International</a> is required.
+                </span>
+            </li>
+        </ul>
+    </div>
+    <p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+	<div class="row">
+		<div class="col-md-5">
+			<fieldset class="ups-form_group ups-form_required">
+				<legend class="ups-form_label ">
+                	Is this for personal use or business shipping?
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </legend>
+                <div data-ng-repeat="i in accountType"
+                    class="ups-radio ups-input_wrapper  ups-display-inline">
+                    <div class="ups-radio_column">
+                        <input id="{{i.type}}" class="ups-radio-custom" type="radio"
+                            name="accUsage" value="{{i.type}}"
+                            data-ng-model="formObj.account_type.type"
+                            data-ng-click="toggleAccountType($index)"
+                            data-ng-checked="{{i.isSelected}}"
+                            data-ng-disabled="{{i.isDisabled}}"
+                            aria-required="true" required /> 
+                        <label for="{{i.type}}"
+                            class="ups-radio-custom-label ups-width_auto">{{i.type}}
+                        </label>
+                    </div>
+                </div>
+			</fieldset>
+			
+            <div class="ups-form_group ups-form_required ups-help_wrapper" data-ng-if="formObj.account_type.type!=='Personal'">
+				<label class="ups-form_label ups-form_label" for="selectList">
+                	Industry
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+					<span class="ups-help"> <a href="#" onclick="return false;"
+						class="ups-help_link  ups-form_link-noDecoration"
+						data-ng-click="helpLink()">Help <span
+							class="ups-icon-questioncircle" aria-hidden="true"></span><span
+							class="ups-readerTxt">about Industry</span></a>
+					</span>
+				</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+					<select
+                        error-on-blur
+                        data-ng-class="{'ups-bodError':(ups_editAccount.industry.$invalid && clicked)}"
+                        data-ng-model="formObj.account_type.industry"
+						class="ups-dropdown" name="industry"
+						data-ng-options="x for x in industry" data-ng-change=""
+						id="selectList" aria-required="true" required>
+						<option value="" selected>---Select One---</option>
+					</select>
+                    <span class="ups-invalid_color"
+                          data-ng-show="(!ups_editAccount.industry.$pristine && ups_editAccount.industry.$invalid) || (ups_editAccount.industry.$invalid && clicked)" role="alert">
+                        <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                        <span data-ng-show="ups_editAccount.industry.$error.required">This
+                            field is required.</span>
+                    </span>
+				</div>
+			</div>
+			
+            <div class="ups-form_group ups-form_required"
+                data-ng-class="{ 'has-error' : ups_editAccount.employee.$invalid && !ups_editAccount.employee.$pristine }"
+                data-ng-if="formObj.account_type.type!=='Personal'">
+				<label for="ups-company-size" class="ups-form_label">
+                	Company Size
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+					<select
+                        error-on-blur
+                        data-ng-class="{'ups-bodError':(ups_editAccount.employee.$invalid && clicked)}"
+                        data-ng-model="formObj.account_type.employee"
+						class="ups-dropdown" name="employee"
+						data-ng-options="x for x in employee" data-ng-change=""
+						id="ups-company-size" aria-required="true" required>
+						<option value="" selected>---Select One---</option>
+					</select>
+                    <span class="ups-invalid_color"
+                          data-ng-show="(!ups_editAccount.employee.$pristine && ups_editAccount.employee.$invalid) || (ups_editAccount.employee.$invalid && clicked)" role="alert">
+                        <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                        <span data-ng-show="ups_editAccount.employee.$error.required">This
+                            field is required.</span> 
+                    </span>
+				</div>
+			</div>
+            
+            <fieldset data-ng-if="formObj.account_type.type!=='Personal'" class="ups-form_group ups-form_required">
+                <legend class="ups-form_label">
+                    Expected Number of Packages Shipped Each Week
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                    <span class="ups-readerTxt">Required</span>
+                </legend>
+                
+                <div class="ups-form_group">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!--data-ng-class="{ 'has-error' : (ups_editAccount.ground.$invalid && clicked) || (ups_editAccount.ground.$invalid && !ups_editAccount.ground.$pristine)}" -->
+                            <label for="ups-ground" class="ups-form_label"><span><span
+                                    class="ups-readerTxt">Expected Number of Packages Shipped Each Week by</span>Ground</span>
+                            </label>
+                            <div class="ups-form_group ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur type="text" name="ground" number-mask
+                                    class="ups-form_input" id="ups-ground" value=""
+                                    data-ng-model="formObj.account_type.Number" required maxlength="2"
+                                    aria-describedby="ground-error" aria-required="true"
+                                    data-ng-model-options="{updateOn: 'blur'}"
+                                    data-ng-class="{'ups-bodError':(ups_editAccount.ground.$invalid && clicked)}"> <span
+                                    id="ground-error" role="alert"><span class="ups-invalid_color"
+                                    data-ng-if="(!ups_editAccount.ground.$pristine && ups_editAccount.ground.$invalid) || (ups_editAccount.ground.$invalid && clicked)">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        class="ups-readerTxt">Invalid</span> <span
+                                        data-ng-if="ups_editAccount.ground.$error.required">This is
+                                            a required field.</span>
+                                </span></span>
+                                <div data-ng-if="(ups_editAccount.ground.$valid && formObj.account_type.Number)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="ups-air" class="ups-form_label"><span><span
+                                    class="ups-readerTxt">Expected Number of Packages Shipped Each Week by</span>Air</span>
+                            </label>
+                            <div class="ups-form_group ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur type="text" name="air" class="ups-form_input"
+                                    id="ups-air" value="" number-mask
+                                    data-ng-model="formObj.account_type.air" required maxlength="2"
+                                    aria-describedby="air-error" aria-required="true"
+                                    data-ng-model-options="{updateOn: 'blur'}"
+                                    data-ng-class="{'ups-bodError':(ups_editAccount.air.$invalid && clicked)}"> <span
+                                    id="air-error" role="alert"><span class="ups-invalid_color"
+                                    data-ng-if="(!ups_editAccount.air.$pristine && ups_editAccount.air.$invalid) || (ups_editAccount.air.$invalid && clicked)">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        class="ups-readerTxt">Invalid</span> <span
+                                        data-ng-if="ups_editAccount.air.$error.required">This is a
+                                            required field.</span>
+                                </span></span>
+                                <div data-ng-if="(ups_editAccount.air.$valid && formObj.account_type.air)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="ups-international" class="ups-form_label"><span><span
+                                    class="ups-readerTxt">Expected Number of Packages Shipped Each Week</span>International</span>
+                            </label>
+                            <div class="ups-form_group ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur type="text" name="international" number-mask
+                                    class="ups-form_input" id="ups-international" value=""
+                                    data-ng-model="formObj.account_type.international" required
+                                    maxlength="2" aria-describedby="international-error"
+                                    aria-required="true" data-ng-model-options="{updateOn: 'blur'}"
+                                    data-ng-class="{'ups-bodError':(ups_editAccount.international.$invalid && clicked)}">
+                                <span id="international-error" role="alert"><span
+                                    class="ups-invalid_color"
+                                    data-ng-if="(!ups_editAccount.international.$pristine && ups_editAccount.international.$invalid) || (ups_editAccount.international.$invalid && clicked)">
+                                        <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        class="ups-readerTxt">Invalid</span> <span
+                                        data-ng-if="ups_editAccount.international.$error.required">This
+                                            is a required field.</span>
+                                </span></span>
+                                <div data-ng-if="(ups_editAccount.international.$valid && formObj.account_type.international)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+<!--
+            <div class="ups-form_group ups-form_required" data-ng-if="formObj.account_type.type!=='Personal'">
+                <label class="ups-form_label">Expected Number of Packages
+                    Shipped Each Week<em class="ups-required_indicator"><span
+                        class="ups-readerTxt"> Required</span></em>
+                </label>
+            </div>
+ -->
+    	</div>
+    </div>
+    
+	<button type="submit" data-ng-click="clicked=true; saveAccount(ups_editAccount)"
+		class="ups-cta ups-cta_primary">Save</button>
+        <!-- data-ng-disabled="!ups_editAccount.$valid" -->
+    <!-- //// end ups.ppc-account-types //// -->
+</form>

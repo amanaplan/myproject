@@ -1,0 +1,301 @@
+---
+title: A11 Field Level Error
+dir: ltr
+lang: en
+---
+
+<!-- ************************************************************************************ -->
+<!-- A11 Field Level Error                                                                -->
+<!-- For full documentation  partials/app_components/A11_field_lvl_error.hbs              -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+OPTIONS
+********************************************************************************
+
+A11 Field Level Error
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+A11 Field Level Error
+********************************************************************************
+--}}
+
+<main id="ups-main">
+	<div class="ups-form_wrap ups-wrap  ups-application_wrapper">  
+		<div class="ups-wrap_inner">
+			<p>Feild level error is a red icon (<span aria-hidden="true" class="icon ups-icon-exclamation"></span><span class="ups-readerTxt">exclamation</span>) and an error message.</p>
+			<p>A11_field_lvl_error this.[object].error_option</p>
+			<hr>
+			
+			{{> A04_page_level_required_message}}
+			{{#if error}}
+				{{> A03_page_level_error this.error.error_option }}
+			{{/if}}
+			
+			<!-- //// Begin Select Box Example //// -->
+            <h2>Select Box</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="ups-form_group  ups-form_required">
+						<label for="selectbox_default" class="ups-form_label">
+							Default Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select select-on-click="" name="selectbox_default" class="ups-dropdown ng-invalid ng-dirty" id="selectbox_default" aria-describedby="selectbox_default_error" aria-required="true" required>
+								<option value="select">Select One</option>
+							</select>
+						</div>
+						{{> A11_field_lvl_error this.error_option }}  
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<div class="ups-form_group  ups-form_required">
+						<label for="selectbox_custom" class="ups-form_label">
+							Custom Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+							<select select-on-click="" name="selectbox_custom" class="ups-dropdown ng-invalid ng-dirty" id="selectbox_custom" aria-describedby="selectbox_custom_error" aria-required="true" required>
+								<option value="select">Select One</option>
+							</select>
+						</div>
+						{{> A11_field_lvl_error this.error.error_option }}  
+					</div>
+				</div>
+			</div>
+			<!-- //// End Select Box Example //// -->
+			<hr>
+			<!-- //// Begin Input Box Example //// -->
+            <h2>Input Box</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="ups-form_group ups-form_required">
+						<label for="input_default" class="ups-form_label">
+							Default Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input name="input_default" class="ups-form_input ng-invalid ng-dirty" id="input_default" value="" aria-describedby="input_default_error" aria-required="true" required="">
+						</div>
+						{{> A11_field_lvl_error this.error.error_option }} 
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<div class="ups-form_group ups-form_required">
+						<label for="input_custom" class="ups-form_label">
+							Custom Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input name="input_custom" class="ups-form_input ng-invalid ng-dirty" id="input_custom" value="" aria-describedby="input_custom_error" aria-required="true" required="">
+						</div>
+						{{> A11_field_lvl_error this.error.error_option }} 
+					</div>
+				</div>
+			</div>
+			<!-- //// End Input Box Example //// -->
+			<hr>
+			<!-- //// Begin Date Picker Example //// -->
+            <h2>Date Picker</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="ups-form_group ups-form_required" name="ups-date_picker">
+						<label for="datePicker_default" class="ups-form_label">
+							Default Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<p id="dropOffHelperTxt" class="ups-form_subheader">mm/dd/yyyy</p>
+						<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+							<input type="text" 
+							name="datePicker_default" 
+							class="ups-form_input ng-invalid ng-dirty" 
+							id="datePicker_default" 
+							value=""  
+							aria-describedby="ups-dateFrom-help datePicker_default_error" 
+							aria-label="Please enter date in mm/dd/yyyy format"
+							required> 
+							<button type="button" class="ups-date_picker_button" aria-describedby="dropOffHelperTxt">
+								<span class="icon ups-icon-calendar" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Select date from a calendar</span>
+							</button>
+						</div>
+						{{> A11_field_lvl_error this.error.error_option }} 
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<div class="ups-form_group ups-form_required" name="ups-date_picker">
+						<label for="datePicker_custom" class="ups-form_label">
+							Custom Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>
+						<p id="dropOffHelperTxt" class="ups-form_subheader">mm/dd/yyyy</p>
+						<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+							<input type="text" 
+							name="datePicker_custom" 
+							class="ups-form_input ng-invalid ng-dirty" 
+							id="datePicker_custom" 
+							value=""  
+							aria-describedby="ups-dateFrom-help datePicker_custom_error" 
+							aria-label="Please enter date in mm/dd/yyyy format"
+							required> 
+							<button type="button" class="ups-date_picker_button" aria-describedby="dropOffHelperTxt">
+								<span class="icon ups-icon-calendar" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Select date from a calendar</span>
+							</button>
+						</div>
+						{{> A11_field_lvl_error this.error.error_option }} 
+					</div>
+				</div>
+			</div>
+			<!-- //// End Input Box Example //// -->
+			<hr>
+			<!-- //// Begin Textarea Example //// -->
+            <h2>Textarea</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="ups-form_group ups-form_required">
+						<label for="textarea_default" class="ups-form_label">
+							Default Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>									
+						<div class="ups-textArea_wrapper ups-input_wrapper">
+							<textarea class="ups-textArea ng-invalid ng-dirty" 
+							id="textarea_default" 
+							name="textarea_default" 
+							rows="8" 
+							maxlength="500" 
+							aria-describedby="textarea_default_error" 
+							aria-required="true" 
+							required=""></textarea>
+							<p class="ups-textArea_characters">Enter up to 500 characters.</p>
+                            {{> A11_field_lvl_error this.error.error_option }} 
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<div class="ups-form_group ups-form_required">
+						<label for="textarea_custom" class="ups-form_label">
+							Custom Error
+							<span aria-hidden="true" class="ups-required_indicator"></span>
+						</label>									
+						<div class="ups-textArea_wrapper ups-input_wrapper">
+							<textarea class="ups-textArea ng-invalid ng-dirty" 
+							id="textarea_custom" 
+							name="textarea_custom" 
+							rows="8" 
+							maxlength="500" 
+							aria-describedby="textarea_custom_error" 
+							aria-required="true" 
+							required=""></textarea>
+							<p class="ups-textArea_characters">Enter up to 500 characters.</p>
+                            {{> A11_field_lvl_error this.error.error_option }} 
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //// End Textarea Example //// -->
+			<hr>
+			<!-- //// Begin Radio Button Example //// -->
+            <h2>Radio Button Group</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label">Default Error</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="radio_default-yes" class="ups-radio-custom ng-invalid ng-dirty" name="radio_default" type="radio" value="yes">
+							<label for="radio_default-yes" class="ups-radio-custom-label">Yes</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="radio_default-no" class="ups-radio-custom ng-invalid ng-dirty" name="radio_default" type="radio" value="no">
+							<label for="radio_default-no" class="ups-radio-custom-label">No</label>
+						</div>
+					</fieldset>
+					{{> A11_field_lvl_error this.error.error_option }} 
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label">Custom Error</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="radio_custom-yes" class="ups-radio-custom ng-invalid ng-dirty" name="radio_custom" type="radio" value="yes">
+							<label for="radio_custom-yes" class="ups-radio-custom-label">Yes</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="radio_custom-no" class="ups-radio-custom ng-invalid ng-dirty" name="radio_custom" type="radio" value="no">
+							<label for="radio_custom-no" class="ups-radio-custom-label">No</label>
+						</div>
+					</fieldset>
+					{{> A11_field_lvl_error this.error.error_option }} 
+				</div>
+			</div>
+			<!-- //// End Radio Button Example //// -->
+			<hr>
+			<!-- //// Begin Checkbox Example //// -->
+            <h2>Checkbox Group</h2>
+			<div class="row">
+				<div class="col-md-5">
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label">Default Error</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+							<input id="checkbox_default00" class="ups-checkbox-custom ng-invalid ng-dirty" name="check" type="checkbox">
+							<label for="checkbox_default00" value="1" class="ups-checkbox-custom-label">Checkbox 1</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="checkbox_default01" class="ups-checkbox-custom ng-invalid ng-dirty" name="check" type="checkbox">
+							<label for="checkbox_default01" value="2" class="ups-checkbox-custom-label">Checkbox 2</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="checkbox_default02" class="ups-checkbox-custom ng-invalid ng-dirty" name="check" type="checkbox">
+							<label for="checkbox_default02" value="3" class="ups-checkbox-custom-label">Checkbox 3</label>
+						</div>
+					</fieldset>
+					{{> A11_field_lvl_error this.error.error_option }} 
+				</div>
+				<div class="col-md-5 col-md-offset-2">
+					<fieldset class="ups-form_group ups-form_required">
+						<legend class="ups-form_label">custom Error</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+							<input id="checkbox_custom00" class="ups-checkbox-custom ng-invalid ng-dirty" name="checkbox_custom00" type="checkbox">
+							<label for="checkbox_custom00" value="1" class="ups-checkbox-custom-label">Checkbox 4</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="checkbox_custom01" class="ups-checkbox-custom ng-invalid ng-dirty" name="checkbox_custom01" type="checkbox">
+							<label for="checkbox_custom01" value="2" class="ups-checkbox-custom-label">Checkbox 5</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="checkbox_custom02" class="ups-checkbox-custom ng-invalid ng-dirty" name="checkbox_custom02" type="checkbox">
+							<label for="checkbox_custom02" value="3" class="ups-checkbox-custom-label">Checkbox 6</label>
+						</div>
+					</fieldset>
+					{{> A11_field_lvl_error this.error.error_option }} 
+				</div>
+			</div>
+			<!-- //// End Checkbox Example //// -->
+            <hr>
+			<!-- //// Begin Checkbox Example //// -->
+            <h2>Single Checkbox</h2>
+            <div class="row">
+				<div class="col-md-5">
+                    <div class="ups-form_group">
+                        <div class="ups-input_wrapper ups-checkbox">
+							<input id="checkbox_custom10" class="ups-checkbox-custom ng-invalid ng-dirty" name="checkbox_custom10" type="checkbox">
+							<label for="checkbox_custom10" value="1" class="ups-checkbox-custom-label">Checkbox 4</label>
+                            {{> A11_field_lvl_error this.error.error_option }}
+						</div>
+                    </div>
+                </div>
+            </div>
+            <!-- //// End Checkbox Example //// -->
+		</div>
+	</div>
+</main>
+
+
+

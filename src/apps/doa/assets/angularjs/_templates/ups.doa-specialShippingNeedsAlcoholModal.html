@@ -1,0 +1,16 @@
+<div data-ng-controller="accountCtrl">
+	<p>Since you're planning to ship one or more of the regulated items
+		below, we need additional information from you. Call [CUSTOMER SVC #]
+		to continue this process.</p>
+	<ul>
+		<li data-ng-if="!isCA">Alcoholic beverages or tobacco products</li>
+		<li data-ng-if="isCA">Alcoholic beverages, tobacco products, or
+			dangerous goods</li>
+	</ul>
+	<div class="ups-form_ctaGroup text-center">
+		<button class="ups-cta ups-cta_tertiary"
+			data-ng-click="ModalService.back()">Back</button>
+		<button type="submit" class="ups-cta ups-cta_primary "
+			data-ng-click="ModalService.dismiss()">Done</button>
+	</div>
+</div>

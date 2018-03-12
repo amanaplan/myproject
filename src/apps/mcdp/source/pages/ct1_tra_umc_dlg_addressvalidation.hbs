@@ -1,0 +1,81 @@
+---
+title: UPS My Choice Address Validation
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+       
+	{{> background_modal_content }}
+    
+	<div class="appLvl mod modal col18 dialog">
+	  <div class="appHead clearfix">
+		<h2>UPS My Choice Address Validation</h2>
+		<ul>
+		  <li>
+			<input type="button" class="btnlnkL closeIcon" title="Close" id="modalClose">
+		  </li>
+		</ul>
+	  </div>
+	  <div class="appBody">
+		<p>The City, State, and Postal code combination you entered was not found in our system, and a list of address suggestions has been provided.  To continue with the address you entered, select <strong>Use My Address</strong>.  To use one of the address suggestions, choose one and select <strong>Update</strong>.  To go back and correct the address yourself, select <strong>Cancel</strong>.</p>
+		<dl>
+		  <dt>
+			<label for="repl_id">Your Address:</label>
+		  </dt>
+		  <dd>1234 Apple Blossom Lane</dd>
+		  <dd>Roswell, GA 10101</dd>
+		</dl>
+		<dl>
+		  <dt>
+			<label for="repl_id">Nearby Addresses:</label>
+		  </dt>
+		  <dd>
+			<table>
+			  <tr>
+				<td class="sel" scope="row"><input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id8" checked></td>
+				<td><label for="repl_id8" class="sel">Roswell, GA 30076</label></td>
+			  </tr>
+			  <tr>
+				<td class="sel" scope="row"><input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id9"></td>
+				<td><label for="repl_id9" class="sel">Roswell, GA 30077</label></td>
+			  </tr>
+			  <tr>
+				<td class="sel" scope="row"><input name="repl_fname" type="radio" value="repl_fvalue" id="repl_id9"></td>
+				<td><label for="repl_id9" class="sel">Roswell, GA 30078</label></td>
+			  </tr>
+			</table>
+		  </dd>
+		</dl>
+		<dl>
+		  <dt>
+			<label for="repl_id">Nearby Addresses:</label>
+		  </dt>
+		  <dd>There are no address suggestions matching the address information you entered.</dd>
+		</dl>
+	  </div>
+	  <div class="appFooter">
+		<div class="btnBar alignCenter">
+		  <input name="" type="button" value="cancel" class="btn">
+		  <input name="" type="submit" value="use my address" class="btn">
+		  <input name="" type="submit" value="use selected address" class="btn">
+		</div>
+	  </div>
+	</div>
+
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:710});
+			$('#modalClose').click(function(e){
+					modal.dialog('close');
+			});
+		});
+
+	</script>
+</div>

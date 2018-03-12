@@ -1,0 +1,41 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+W16 SIMPLE TRACK
+================================================================================
+-------------------------------------------------------------------------------}}
+<!-- W16 Simple Track -->
+<!-- For full documentation app/source/partials/widgets/W16_simple_track.hbs -->
+<div class="ups-wrap ups-simpleTrack_wrap {{bg}}">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-simpleTrack ups-widget ">
+            <div class="ups-widget_header">
+                <h2><span class="icon" aria-hidden="true"></span>Track</h2>
+                {{#if this.help}}
+                   <button class="ups-help_button" id="ups-track-helpbutton" aria-expanded="false" aria-controls="ups-track-helppanel">
+                       <i class="icon ups-icon-questioncircle" aria-hidden="true"></i>
+                       <span class="ups-helpicon-text">Help</span>
+                   </button>
+                {{/if}}
+            </div>
+            <div class="ups-widget_panel" role="group">
+                {{#if this.help}}
+                    <div class="ups-help_panel" id="ups-track-helppanel" role="region" aria-labelledby="ups-track-helppanel"><p>{{this.help}}</p></div>
+                {{/if}}
+                <form method="post" action="https://wwwapps.ups.com/WebTracking/track" name="trackMod">
+                    <input type="hidden" name="HTMLVersion" value="5.0">
+                    <input type="hidden" name="loc" value="en_US">
+                    <label for="ups-track--qs" class="ups-readerTxt">Tracking Numbers</label>
+                    <div class="ups-simpleTrack_input_wrap">
+                        <textarea rows="1" name="trackNums" id="ups-track--qs" class="ups-simpleTrack_input ups-form_input" placeholder="Tracking Numbers"></textarea>
+                    </div>
+                    <button class="ups-simpleTrack_btn ups-cta" value="track" name="track.x" type="submit" id="ups-tracking-submit">
+                        <i aria-hidden="true"></i>
+                        <span class="ups-readerTxt">Go</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div> <!-- @end .ups-wrap_inner -->
+</div> <!-- @end .ups-wrap.ups-simpleTrack_wrap -->

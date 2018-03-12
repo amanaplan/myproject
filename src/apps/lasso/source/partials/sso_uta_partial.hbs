@@ -1,0 +1,55 @@
+<form class="ups-utaForm">
+    {{#if error }}
+    	{{> A03_page_level_error }}
+    {{/if}}
+    <p>
+        We've updated the agreement since your last login. You agree to the terms to continue.
+    </p>
+    {{!--
+    <p>Please take a moment to review and accept the new UPS Technology Agreement. As always, use of your information is governed by the <a href="#" onclick="return false;" class="ups-link ups-new-window">UPS Privacy Notice<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>.</p>--}}
+	<div tabindex="0" aria-describedby="ups-uta-agreement" class="ups-text_scroll ups-element_relative">
+        <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+
+        <p>
+            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+
+        <p>
+            Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+        <p>
+            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+    </div>
+    <div class="ups-form_group ups-form_required">
+		<div class="ups-checkbox ups-input_wrapper">
+			<input class="ups-checkbox-custom{{#if error}} ng-invalid ng-dirty{{/if}}"
+                name="ups-uta_checkbox"
+                type="checkbox"
+                {{#if error}}aria-describedby="cb_error"{{/if}}
+                aria-required="true"
+                required="">
+			<label for="ups-terms_checkbox" class="ups-form_label ups-checkbox-custom-label">
+                {{#if 14day}}
+                    I agree to and confirm that I've been given enough time to read and understand the UPS Technology Agreement, which contains important terms about my use of UPS Technologies, like terms limiting UPS's liability and my agreement on how disputes between UPS and me will be handled. Since I'd like immediate access to the UPS technologies and services, I waive my right to a 14-day period for withdrawal from the UPS Technology Agreement.<sup>&lowast;</sup>
+                {{else}}
+                    I agree to and confirm that I've been given enough time to read and understand the UPS Technology Agreement, which contains important terms about my use of UPS Technologies, like terms limiting UPS's liability and my agreement on how disputes between UPS and me will be handled.<sup>&lowast;</sup>
+
+                    {{!--
+                    I confirm that I've been given enough time to read and understand
+    				the UPS Technology Agreement, which contains important terms about
+    				my use of UPS technologies like terms limiting UPS's liability and
+    				my agreement on how disputes between UPS and me will be handled.--}}
+                {{/if}}
+            </label>
+			<a href="https://www.ups.com/us/en/help-center/legal-terms-conditions/technology-agreement.html" class="ups-link ups-new-window">Download the UPS Technology Agreement<span class="ups-readerTxt">This will open in a new window</span><span class="ups-link ups-icon-newwindow" aria-hidden="true"></span></a>
+            {{#if error}}
+                {{>A11_field_lvl_error cb_error}}
+            {{/if}}
+        </div>
+	</div>
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+		<button type="submit" class="ups-cta ups-cta_primary">Next</button>
+		<!-- data-ng-disabled="!checkAgr" -->
+		<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+	</div>
+</form>

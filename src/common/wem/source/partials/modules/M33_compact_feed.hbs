@@ -1,0 +1,54 @@
+<!-- ************************************************************************************ -->
+<!-- M33 COMPACT FEED                                                                     -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M33 COMPACT FEED: -LAYOUT-
+********************************************************************************
+
+| 60px
+-header-
+| 15px
+-feed desc-
+| 60px
+-feed-
+| 60px
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-compact_feed ups-wrap">
+    <div class="ups-wrap_inner">
+       {{#if title}}<h3>{{title}}</h3>{{/if}}
+        <div class="ups-tabs">
+            <p>{{copy}}</p>
+            <div class='ups-tab-headers clearfix'>
+                {{#each tabs}}
+                <button class="tab-header" data-tab="{{tab}}" {{#if @first}} data-open="true" {{else}} data-open="false" {{/if}}>
+                    <span class="tab-iconWrap">
+                       <span class="tab-icon">
+                            {{#if inactiveIcon}}<img class="inactive-icon" src="{{inactiveIcon}}" alt="">{{/if}}
+                            {{#if activeIcon}}<img class="active-icon" src="{{activeIcon}}" alt="{{feedSrc}}">{{/if}}
+                       </span>
+                    </span>
+                </button>
+                {{/each}}
+            </div>
+            <!-- @end ups-tab-headers for desktop -->
+
+            {{#each tabs}}
+            <div class="ups-tab-content" data-tab="{{tab}}" {{#if @first}} data-open="true" data-content-selected="true" {{else}}{{#isNthChild @index 1}} data-prev-active="true" {{/isNthChild}}{{#isNotNthChild @index 1}} data-prev-active="false" {{/isNotNthChild}} data-open="false" data-content-selected="false" {{/if}}>
+                <div class="sub-detail-container">
+                   {{{feedSrc}}}
+                </div>
+            </div>
+            <!-- @end ups-tab-content -->
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+
+

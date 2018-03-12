@@ -1,0 +1,98 @@
+---
+title: UPS Alert Customization Tool
+layout: legacy.hbs
+version: v4
+appID: com.ups.SCT
+appCSS: ups.legacy_overrideACT
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+      <form action="repl_fname">
+        
+        <!-- Begin Application Module -->
+        <div class="appLvl appLvlPlain clearfix">
+        
+        <!-- Begin Application Body -->
+        <div class="appBody clearfix">
+          <p>You have succefully submitted your UPS delivery alert email request.</p>
+          <p><a href="repl_href" class="btnlnkL arrowIcon">Create a another UPS Delivery Alert Email</a><p>
+          <!-- End Application Body --> 
+          
+        </div>
+        <!-- End Application Module -->
+      </form>
+    </div>
+    <!-- /main end --> 
+    
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    <!-- /contentArea --> 
+    
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+
+	// Datepicker
+	$('.datePicker').datepicker({
+		inline: true,
+		numberOfMonths: 1,
+		showButtonPanel: true,
+		closeText: 'Close',
+		showOn: 'button',
+		buttonImage: '/img/icn_calendar.gif',
+		buttonImageOnly: true
+
+	});
+	
+});
+
+function showButton() {
+   document.getElementById('add_image').style.display = "inline-block";
+}
+
+function showDiv() {
+   document.getElementById('email_preview').style.display = "block";
+}
+
+function hideDiv() {
+   document.getElementById('email_preview').style.display = "none";
+   document.getElementById('add_image').style.display = "none";
+}
+ 
+ 
+ 
+ $(document).ready(function () {
+    $('#selectall').click(function () {
+        $('.selectedId').prop('checked', this.checked);
+    });
+
+    $('.selectedId').change(function () {
+        var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+        $('#selectall').prop("checked", check);
+    });
+});
+
+
+</script> 
+<script type="text/javascript">
+
+$('.scrollTable .dataTable').fixedHeaderTable({height: 170});
+		
+</script>
+
+
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->

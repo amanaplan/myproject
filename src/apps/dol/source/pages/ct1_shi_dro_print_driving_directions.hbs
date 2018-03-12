@@ -1,0 +1,323 @@
+---
+title: ct1_shi_dro_print_driving_directions
+layout: legacy.hbs
+version: v4
+appID: com.ups.dol
+appCSS: ups.legacy_overrideDOL
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+
+<div id="printMain">
+	<div id="printCP" class="clearfix">
+		<div class="floatRight">
+			<input class="btn" type="button" value="Print" onClick="window.print()">
+		</div>
+		<div class="printOptions">
+			<dl class="inlineDefList">
+				<dt><span class="label">Print Display Options:</span></dt>
+				<dd><input id="showMapCB" type="checkbox" onClick="if (this.checked) {document.getElementById('msveMap').style.display='inline-block';} else {document.getElementById('msveMap').style.display='none';}"><label for="showMapCB" class="sel">Show Map</label></dd>
+				<dd><input id="showLocDetailsCB" type="checkbox" onClick="if (this.checked) {document.getElementById('locDetails').style.display='inline-block';} else {document.getElementById('locDetails').style.display='none';}"><label for="showLocDetailsCB" class="sel">Location Details</label></dd>
+			</dl>
+		</div>
+	</div>
+	
+	
+	
+	<div class="appLvl appLvlPlain">
+		<!--<div class="appHead"></div>-->
+		<div class="appBody">
+			<div class="secLvl secLvlPlain">
+				<!--<div class="secHead"></div>-->
+				<div class="secBody">
+						<table class="valignTop headerTable" width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tbody>
+								<tr>
+									<td>
+										<img width="42" height="55" border="0" src="/img/glo_ups_brandmark_pfv.gif" alt="UPS">
+									</td>
+									<td align="right">
+										<strong>Start:&nbsp;</strong>
+									</td>
+									<td>
+										<select id="repl_id" class="ui-combobox">
+											<option value="">902 Main Street, Houston, TX 12345</option>
+											<option value="">902 Mall Blvd., Houston, TX 12345</option>
+											<option value="">Saved Locations</option>
+											<option value="">Near home</option>
+											<option value="">Near work</option>
+											<option value="">Work2</option>
+											<option value="">The UPS Store 128050 Highway 9...</option>
+											<option value="">Near dad's house</option>
+											<option value="">Recent Searches</option>
+											<option value="">30005</option>
+											<option value="">Houston, TX</option>
+											<option value="">128050 Highway 9 N, S-600, Aplh...</option>
+											<option value="">12380 Morris Road, GA</option>
+											<option value="">90210</option>
+										</select>
+										
+										<!-- This is an example of what should be output by the JQuery autocomplete -->
+										<!-- Actual location should be set dynamically based on input's location -->
+										<ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1;display: none; width: 221px;">
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">902 Main Street, Houston, TX 12345</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">902 Mall Blvd., Houston, TX 12345</a></li>
+											<li class="ui-menu-item-category" role="menuitem">
+												<hr>
+											</li>
+											<li class="ui-menu-item-category" role="menuitem">Saved Locations</li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near home</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near work</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Work2</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">The UPS Store 128050 Highway 9...</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Near dad's house</a></li>
+											<li class="ui-menu-item-category" role="menuitem">
+												<hr>
+											</li>
+											<li class="ui-menu-item-category" role="menuitem">Recent Searches</li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">30005</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">Houston, TX</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">128050 Highway 9 N, S-600, Aplh...</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">12380 Morris Road, GA</a></li>
+											<li class="ui-menu-item" role="menuitem"><a class="ui-corner-all" tabindex="-1">90210</a></li>
+										</ul>
+										<p class="noPrint"><a href="repl_href" class="btnlnkL currentLocationIcon">use my current location</a></p>
+										
+									</td>
+									<td align="right">
+										<strong>End:&nbsp;</strong>
+									</td>
+									<td>
+										1425 Market Blvd
+										<br>
+										Ste #330
+										<br>
+										Roswell, GA 30076
+										<br>
+										770-642-6886
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><input name="radio_group_name" type="radio" value="" id="radio1" checked="checked"> <label for="radio1" class="sel">driving</label></td>
+							<td><input name="radio_group_name" type="radio" value="" id="radio2"> <label for="radio2" class="sel">mass transit</label></td>
+							<td><input name="radio_group_name" type="radio" value="" id="radio3"> <label for="radio3" class="sel">walking</label></td>
+						</tr>
+					</table>
+					<div id="msveMap">
+						<img src="/img_fpo/other/fpo-970x572.gif" width="710" height="450" alt="">
+					</div>
+					<!-- 6.3.1. Turn By Turn Available -->
+					<table cellspacing="0" cellpadding="0" border="0" class="dataTable valignTop separateTotals" width="100%">
+						<tr class="odd">
+							<td>1.</td>
+							<td>{directions directions directions directions directions directions directions directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr>
+							<td>2.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr class="odd">
+							<td>3.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr>
+							<td>4.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr class="odd">
+							<td>5.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr>
+							<td>6.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr class="odd">
+							<td>7.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+						<tr>
+							<td>8.</td>
+							<td>{directions}</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+					</table>
+					<table cellspacing="0" cellpadding="0" border="0" class="dataTable valignTop" width="100%">
+						<tr class="totals">
+							<td class="alignBegin">travel time: x hrs xx mins</td>
+							<td>Total Driving Distance:</td>
+							<td class="alignEnd">{distance}</td>
+						</tr>
+					</table>
+					
+					<p class="noPrint"><a href="repl_href">email directions</a></p>
+					
+					<div id="locDetails" class="clearfix">
+						<div class="secLvl secLvlPlain subcol9 marginBegin">
+							<!--<div class="secHead"></div>-->
+							<div class="secBody">
+								<div class="locLocation">
+									<div class="subcol3 marginBegin">
+										<p><img src="/img_fpo/other/fpo_134_134.gif" height="64" width="64" alt="repl_alt"></p>
+									</div>
+									<div class="subcol5 marginEnd">
+										<p>
+											<strong>The UPS Store</strong>
+											<br>
+											1425 Market Blvd
+											<br>
+											Ste #330
+											<br>
+											Roswell, GA 30076
+											<br>
+											770-642-6886
+										</p>
+										<p>{additional comments that may display from scl for a particular location.</p>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<dl>
+									<dt><span class="label">UPS Services</span></dt>
+									<dd>Air, Ground, International</dd>
+								</dl>
+								<span class="label">Additional Services and Programs</span>
+								<dl>
+									<dt><span class="label">Programs:</span></dt>
+									<dd>None at this time.</dd>
+								</dl>
+								<dl>
+									<dt><span class="label">Additional Services:</span></dt>
+									<dd>Packing Supplies, Mailbox Services, Packing Services, Copying, Faxing, Postal Services, Custom Printing, Moving Supplies, Freight Services, Binding, Collating, Laminating, UPS ReturnsSM (Air and Ground).</dd>
+								</dl>
+							
+							</div>
+							<!--<div class="secFooter"></div>-->
+						</div>
+						<div class="secLvl secLvlPlain subcol9 marginEnd">
+							<!--<div class="secHead"></div>-->
+							<div class="secBody">
+								<table class="scheduleTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr class="secondaryHeaderRow">
+										<td colspan="4">
+											<h3>operating hours</h3>
+										</td>
+									</tr>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">open</th>
+										<th scope="col">break</th>
+										<th scope="col">close</th>
+									</tr>
+									<tr>
+										<td nowrap><strong>mon-fri</strong></td>
+										<td nowrap>8:00 am</td>
+										<td nowrap>1 pm - 2 pm</td>
+										<td nowrap>9:00 pm</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sat</strong></td>
+										<td nowrap>8:00 am</td>
+										<td nowrap>--</td>
+										<td nowrap>12:00 pm</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sun</strong></td>
+										<td nowrap>closed</td>
+										<td nowrap>--</td>
+										<td nowrap>--</td>
+									</tr>
+								</table>
+								<table class="scheduleTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr class="secondaryHeaderRow">
+										<td colspan="4">
+											<h3>latest drop-off times</h3>
+										</td>
+									</tr>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">air</th>
+										<th scope="col">ground</th>
+									</tr>
+									<tr>
+										<td nowrap><strong>mon-fri</strong></td>
+										<td nowrap>6:30 pm</td>
+										<td nowrap>5:15 pm</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sat</strong></td>
+										<td nowrap>1:00 pm</td>
+										<td nowrap>--</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sun</strong></td>
+										<td nowrap>--</td>
+										<td nowrap>--</td>
+									</tr>
+								</table>
+								<table class="scheduleTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+									<tr class="secondaryHeaderRow">
+										<td colspan="4">
+											<h3>will call hours</h3>
+										</td>
+									</tr>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">open</th>
+										<th scope="col">break</th>
+										<th scope="col">close</th>
+									</tr>
+									<tr>
+										<td nowrap><strong>mon-fri</strong></td>
+										<td nowrap>8:00 am</td>
+										<td nowrap>1 pm - 2 pm</td>
+										<td nowrap>9:00 pm</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sat</strong></td>
+										<td nowrap>8:00 am</td>
+										<td nowrap>--</td>
+										<td nowrap>12:00 pm</td>
+									</tr>
+									<tr>
+										<td nowrap><strong>sun</strong></td>
+										<td nowrap>closed</td>
+										<td nowrap>--</td>
+										<td nowrap>--</td>
+									</tr>
+								</table>
+							</div>
+							<!--<div class="secFooter"></div>-->
+						</div>
+					</div>
+				</div>
+				<div class="secFooter">
+					<div class="note">
+						<p>These directions are informational only. The information is provided "AS IS", and no representation is made or warranty given as to the information provided. These directions show one possible route to the locations. They are based on data that may not account for weather conditions, construction, detours, one-way streets, turn restrictions or other local conditions. You assume all risk of use. UPS and its suppliers assume no responsibility for any loss or damages resulting from your use of the information provided, even if UPS or its suppliers have been advised of the possibility of such loss or damages.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="appFooter"></div>-->
+	</div>
+</div>
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->

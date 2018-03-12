@@ -1,0 +1,893 @@
+---
+title: Legacy Mobile Global Locator with Search Results
+dir: ltr
+lang: en
+layout: legacy.hbs
+appCSS: globalLocatorMobile
+mobileApp: true
+---
+
+<!-- SearchBodyStart -->
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Mobile Application Version = 16.03.02.00 -->
+
+
+<script src="../javascript/libs/modernizr-2.8.3.min.js"></script>
+<script src="../javascript/libs/jquery/jquery-1.11.1.min.js"></script>
+
+
+
+
+
+
+
+
+ 
+<script type="text/javascript">
+$(document).ready(function() { 
+ var d = new Date();
+ document.getElementById("currentDay").value=d.getDay();
+ isHTMLCompatible();
+ getCurrentTime();
+ } );
+function getLocation()
+ {
+ if (navigator.geolocation)
+ {
+ navigator.geolocation.getCurrentPosition(
+ function(position) {
+ document.getElementById("latitude").value=position.coords.latitude;
+ document.getElementById("longitude").value=position.coords.longitude; 
+
+ if(document.getElementById("latitude").value != "" && document.getElementById("longitude").value != ""){
+ $('#loc_form').append('<input type="hidden" id="my_current_location" name="search_location" value="My Current Location"/>');
+ document.forms["loc_form"].submit(); 
+ } },
+ function error(error) {
+ showErrorMessage("We are currently unable to determine your GPS location. Please search for a UPS location by address instead.");
+ },
+ {
+ timeout:15000
+ }
+ );
+ }
+ return false;
+ }
+
+function isHTMLCompatible()
+{
+ if (navigator.geolocation)
+ {
+ document.getElementById("hide_optional").style.display = 'block';
+ }
+}
+
+ function getCurrentTime()
+ {
+ var d = new Date();
+ var halfHour = Math.round(d.getMinutes()/30);
+ if(halfHour == 0)
+ {
+ halfHour = '00';
+ }else{
+ halfHour = '30';
+ }
+ 
+ var hour = d.getHours();
+ if("US" == "US"){
+ var ampm = ' AM';
+ if(hour > 12) 
+ {
+ ampm = ' PM';
+ }
+ 
+ hour = hour % 12;
+ hour = hour ? hour : 12;
+ } 
+ hour = hour < 10 ? '0'+hour : hour;
+ var finalString = hour.toString();
+ finalString = finalString.concat(":");
+ finalString = finalString.concat(halfHour.toString());
+ if("US" == "US"){
+ finalString = finalString.concat(ampm.toString());
+
+ }
+ document.getElementById("currentTime").value=finalString;
+ } 
+</script>
+
+
+
+
+
+ <form name="loc_form" id="loc_form" action="../mobile/locator?loc=en_US" method="POST" class="global_form">
+
+ <div class="subhead">
+ <div class="back">
+ <a href="/mobile/home?loc=en_US">Back</a>
+ </div>
+
+
+
+ <h1 class="no-pad-right">Find UPS Locations</h1>
+
+ <div class="country-selector">
+ <div class="custom-select">
+ <select class="show-value" id="locCountry" name="locCountry">
+ 
+ <option value="DZ" >Algeria</option>
+ 
+ <option value="AR" >Argentina</option>
+ 
+ <option value="AU" >Australia</option>
+ 
+ <option value="AT" >Austria</option>
+ 
+ <option value="AZ" >Azerbaijan</option>
+ 
+ <option value="BE" >Belgium</option>
+ 
+ <option value="BO" >Bolivia</option>
+ 
+ <option value="BR" >Brazil</option>
+ 
+ <option value="CA" >Canada</option>
+ 
+ <option value="CL" >Chile</option>
+ 
+ <option value="CO" >Colombia</option>
+ 
+ <option value="CR" >Costa&#32;Rica</option>
+ 
+ <option value="HR" >Croatia</option>
+ 
+ <option value="DK" >Denmark</option>
+ 
+ <option value="DO" >Dominican&#32;Republic</option>
+ 
+ <option value="EC" >Ecuador</option>
+ 
+ <option value="EG" >Egypt</option>
+ 
+ <option value="SV" >El&#32;Salvador</option>
+ 
+ <option value="FI" >Finland</option>
+ 
+ <option value="FR" >France</option>
+ 
+ <option value="DE" >Germany</option>
+ 
+ <option value="GH" >Ghana</option>
+ 
+ <option value="GT" >Guatemala</option>
+ 
+ <option value="HN" >Honduras</option>
+ 
+ <option value="ID" >Indonesia</option>
+ 
+ <option value="IE" >Ireland&#44;&#32;Republic&#32;of</option>
+ 
+ <option value="IT" >Italy</option>
+ 
+ <option value="KZ" >Kazakhstan</option>
+ 
+ <option value="KE" >Kenya</option>
+ 
+ <option value="KW" >Kuwait</option>
+ 
+ <option value="LU" >Luxembourg</option>
+ 
+ <option value="MY" >Malaysia</option>
+ 
+ <option value="MX" >Mexico</option>
+ 
+ <option value="MA" >Morocco</option>
+ 
+ <option value="NL" >Netherlands</option>
+ 
+ <option value="NZ" >New&#32;Zealand</option>
+ 
+ <option value="NI" >Nicaragua</option>
+ 
+ <option value="NG" >Nigeria</option>
+ 
+ <option value="NO" >Norway</option>
+ 
+ <option value="OM" >Oman</option>
+ 
+ <option value="PK" >Pakistan</option>
+ 
+ <option value="PA" >Panama</option>
+ 
+ <option value="PY" >Paraguay</option>
+ 
+ <option value="PE" >Peru</option>
+ 
+ <option value="PH" >Philippines</option>
+ 
+ <option value="PL" >Poland</option>
+ 
+ <option value="PT" >Portugal</option>
+ 
+ <option value="PR" >Puerto&#32;Rico</option>
+ 
+ <option value="QA" >Qatar</option>
+ 
+ <option value="SA" >Saudi&#32;Arabia</option>
+ 
+ <option value="SG" >Singapore</option>
+ 
+ <option value="ZA" >South&#32;Africa</option>
+ 
+ <option value="ES" >Spain</option>
+ 
+ <option value="SE" >Sweden</option>
+ 
+ <option value="CH" >Switzerland</option>
+ 
+ <option value="TH" >Thailand</option>
+ 
+ <option value="AE" >United&#32;Arab&#32;Emirates</option>
+ 
+ <option value="GB" >United&#32;Kingdom</option>
+ 
+ <option value="US" selected>United&#32;States</option>
+ 
+ <option value="UY" >Uruguay</option>
+ 
+ <option value="VE" >Venezuela</option>
+  
+ </select>
+ <span class="select-value">US</span>
+
+ </div>
+ </div>
+ </div>
+ 
+ <div class="content">
+ 
+ 
+ 
+ 
+ <div>
+ <h2>Search for locations near:</h2>
+
+ <div class="locator">
+ <div id="hide_optional" style="display:none;">
+ 
+ <button class="btn" onclick="getLocation();" type="button">Current Location</button>
+ </div>
+ <input type="search" name="oneLineSearchLocator" placeholder="Enter search location" class="form-control" />
+ </div>
+
+
+
+
+ <input type="hidden" id="currentDay" name="currentDay" value=""/>
+ <input type="hidden" id="currentTime" name="currentTime" value=""/>
+ <input name="t" type="hidden" value="t"/>
+ 
+ <input type="hidden" id="latitude" name="latitude" value=""/>
+ <input type="hidden" id="longitude" name="longitude" value=""/>
+
+ <button type="submit" class="btn btn-aqua">Find</button>
+ </div>
+
+ <section class="divider full-width pad-horiz max-left">
+ <div>
+ <h2>Results near: <span>ATLANTA, GA</span></h2>
+ </div>
+ 
+ <div>
+ <a href="/mobile/locatorfilter?loc=en_US" class="btn btn-aqua">Filter</a>
+ </div>
+ </section>
+ 
+ <div class="list-group list-group-selectors location-results full-width">
+ 
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=0">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>GEORGIA&#32;STATE&#32;CAPITAL&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">1&#32;WASHINGTON&#32;ST&#32;SW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;1 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>5:30 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>5:30 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=1">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>JUDICIAL&#32;BUILDING&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">244&#32;WASHINGTON&#32;ST&#32;SW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30334&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;1 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>7:45 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>7:45 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=2">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>M&#32;RICH&#32;BUILDING&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">115&#32;MARTIN&#32;LUTHER&#32;KING&#32;JR&#32;DR&#32;SW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#3#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;2 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>5:45 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>5:45 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=3">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>GSA&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">77&#32;FORSYTH&#32;ST&#32;SW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;3 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>4:15 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>4:15 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=4">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>GA&#32;BLDG&#32;AUTHORITY&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">200&#32;PIEDMONT&#32;AVE&#32;SE</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30334&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;3 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>4:00 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>4:00 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=5">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>GA&#32;STATE&#32;UNIV&#x2f;LIBRAR&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">100&#32;DECATUR&#32;ST&#32;SE</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;4 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>7:15 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>7:15 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=6">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>RICHARD&#32;B&#32;RUSSELL&#32;FED&#32;BLDG&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">75&#32;SPRING&#32;ST&#32;SW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;4 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>5:00 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>5:00 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=7">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>THE&#32;HURT&#32;BUILDING&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">50&#32;HURT&#32;PLZ&#32;SE</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;5 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>7:30 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>7:30 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=8">
+ 
+ 
+ 
+ 
+ <h3>UPS Drop Box</h3>
+ 
+ <h3>55&#32;MARIETTA&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">55&#32;MARIETTA&#32;ST&#32;NW</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30303&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;5 mi)
+ </div>
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>5:00 P.M. </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>5:00 P.M.</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ <div class="list-group-item">
+ 
+ <a href="/mobile/locationdetails?loc=en_US&locCountry=US&chooseLoc=9">
+ 
+ 
+ 
+ 
+ <h3>UPS Access Point™</h3>
+ 
+ <h3>SUPER&#32;7&#32;PIZZA&#32;SHOPPE&#32;</h3>
+ 
+ <div class="address max-left">
+ 
+ <div class="street-level">
+ 
+ 
+ <span class="address1">110&#32;CENTENNIAL&#32;OLYMPIC&#32;PARK&#32;DR&#32;SW&#xa;104&#32;A</span>
+ 
+ 
+ <span class="address1">ATLANTA&#44;&#32;GA&#44;&#32;30313&#44;&#32;US</span>
+ 
+ </div>
+ 
+ 
+ <div class="distance">
+ (0&#46;5 mi)
+ </div>
+ </div>
+ 
+ <div class="hours max-left">
+ <div class="today">Hours Today:</div>
+ </div>
+ 
+ <div class="hours max-left">
+ <div>Store hours</div>
+ <div>11:30 A.M.-8:00 P.M.</div> 
+ </div>
+ 
+ 
+ 
+ <div class="hours max-left">
+ <div>Air deadline</div>
+ <div>No Pickup </div>
+ </div>
+ 
+ 
+ <div class="hours max-left">
+ <div>Ground deadline</div>
+ <div>No Pickup</div>
+ </div>
+ 
+ 
+ 
+ 
+ </a>
+ </div>
+ 
+ </div>
+ 
+ </div>
+ 
+ </form>
+ 
+ 
+ 
+ 
+ <script src="../javascript/production.min.js"></script>
+
+
+<!-- SearchBodyEnd -->
+<div style="clear:both;"></div>
+
+
+
+
+
+
+<!-- If applicable Ghostery script goes here -->
+<!-- Locale: en_US -->
+<!-- IsLocaleEnabled false -->
+
+
+<script type="text/javascript">
+function enableShareLinks(){
+  var facebookURL = "http://www.facebook.com/ups";
+  $("a#dynamic_facebook_link").attr("href", facebookURL); 
+  var twitterURL = "https://twitter.com/UPS";
+  $("a#dynamic_twitter_link").attr("href", twitterURL); 
+  var linkedInURL = "http://www.linkedin.com/company/ups";
+  $("a#dynamic_linkedin_link").attr("href", linkedInURL); 
+  var googlePlusURL = "https://plus.google.com/+UPS/posts";
+  $("a#dynamic_googleplus_link").attr("href", googlePlusURL);
+  var youtubeURL = "http://www.youtube.com/UPS";
+  $("a#dynamic_youtube_link").attr("href", youtubeURL);
+   
+}
+</script>
+  <footer>
+        <p>
+<a id="" href="https://m.ups.com/mobile/contact?loc=en_US">Contact UPS</a>                    | 
+<a id="language" href="/mobile/global?change=true">Country</a>                    | 
+<a id="" href="https://www.ups.com/content/us/en/index.jsx">View Full Site</a>        </p>
+        <p>
+<a id="" href="/content/us/en/web_site_terms.html">Web Site Terms of Use</a>                    | 
+<a id="" href="/content/us/en/privacy_notice.html">Privacy</a>        </p>
+    <p class="legal">
+                Copyright &copy; 1994-2016 United Parcel Service of America, Inc. All rights reserved.
+    </p>
+    <ul id="social-nav">
+            <li class="facebook"><a id="dynamic_facebook_link"
+              href="javascript:void(0)" onclick="enableShareLinks();"
+              target="_blank"> 
+            </a></li>
+            <li class="twitter"><a id="dynamic_twitter_link"
+              href="javascript:void(0)" onclick="enableShareLinks();"
+              target="_blank"> 
+            </a></li>
+            <li class="googleplus"><a id="dynamic_googleplus_link"
+              href="javascript:void(0)" onclick="enableShareLinks();"
+              target="_blank"> 
+            </a></li>
+            <li class="linkedin"><a id="dynamic_linkedin_link"
+              href="javascript:void(0)" onclick="enableShareLinks();"
+              target="_blank"> 
+            </a></li>
+            <li class="youtube"><a id="dynamic_youtube_link"
+              href="javascript:void(0)" onclick="enableShareLinks();"
+              target="_blank"> 
+            </a></li>
+    </ul>
+  </footer>
+
+
+
+
+<script> var preferred=false; var national=false; var worldship=false; </script>
+
+
+
+
+</div>

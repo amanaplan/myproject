@@ -1,0 +1,318 @@
+{{> "background_modal_content" }}
+
+<!-- Begin Application Module -->
+<div class="appLvl modal-dialog mod modal dialog"> 
+	
+	<!-- Begin Application Header -->
+	<div class="appHead clearfix">
+		<h2 class="ups-modal_heading">Address Entry</h2>
+		
+		<!-- Old legacy close button implementation -->
+		<!--<ul>
+			<li>
+				<input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+			</li>
+		</ul>-->
+		
+		<!-- New WEM close button implementation -->
+		<button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span class="ups-readerTxt ng-binding">Close This Dialog</span> </button>
+	</div>
+	<!-- End Application Header --> 
+	
+	<!-- Begin Application Body -->
+	<div class="appBody ups-application_wrapper ups-form_wrap clearfix"> 
+	
+		<!-- <p class="error">>>> error message</p> --> 
+		<!--<p>required fields are indicated with <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon">.</p>-->
+		
+		
+		<!-- Begin Section Module -->
+		<div class="secLvlPlain marginBegin clearfix"> 
+			
+			<!-- Begin Section Body -->
+			<div class="secBody"> 
+			
+				<!-- New WEM/Legacy Hybrid Implementation -->
+					<!-- Begin Row -->
+					<div class="row">
+							<!-- Begin First Column -->
+							<div class="col-md-5">
+								<div class="ups-form_group ups-form_required ">
+									<label for="companyOrName" class="ups-form_label">Company or Name <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="text" name="companyOrName" class="ups-form_input" id="companyOrName" aria-required="true" required="">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="contact" class="ups-form_label">Contact</label>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="text" name="contact" class="ups-form_input" id="contact">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="country" class="ups-form_label">Country or Territory</label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="country" class="ups-dropdown" id="country">
+											<option value="most_recent">United States</option>
+											<option value="option_1">Option 1</option>
+											<option value="option_2">Option 2</option>
+											<option value="option_3">Option 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="ups-form_group ups-form_required ">
+									<label for="addressLine1" class="ups-form_label">Address Line 1 <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="text" name="addressLine1" class="ups-form_input" id="addressLine1" aria-required="true" required="">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="addressLine2" class="ups-form_label">Address Line 2</label>
+									<p class="ups-form_subheader" aria-hidden="true">Apt., Suite, Unit, Building, Floor</p><span class="ups-readerTxt">Apartment, Suite, Unit, Building, Floor</span>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="text" name="addressLine2" class="ups-form_input" id="addressLine2">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="addressLine3" class="ups-form_label">Address Line 3</label>
+									<p class="ups-form_subheader">Department, c/o, etc.</p>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="text" name="addressLine3" class="ups-form_input" id="addressLine3">
+									</div>
+								</div>
+							</div>
+							<!-- End First Column -->
+							
+							<!-- Begin Second Column -->
+							<div class="col-md-5 col-md-offset-1">
+								<div class="ups-form_group ups-form_required ">
+									<label for="city" class="ups-form_label">City <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class=" ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="city" class="ups-form_input" id="city" aria-required="true" required="">
+										<button type="button" class="ups-date_picker_button">
+											<span class="icon ups-icon-search" aria-hidden="true"></span>
+											<span class="ups-readerTxt">Search for your city</span>
+										</button>
+									</div>
+								</div>
+								<div class="ups-form_group ups-form_required">
+									<label for="city" class="ups-form_label">City <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="citySB" class="ups-dropdown" id="citySB">
+											<option value="most_recent">Atlanta</option>
+											<option value="option_1">Option 1</option>
+											<option value="option_2">Option 2</option>
+											<option value="option_3">Option 3</option>
+										</select>
+										
+									</div>
+								</div>
+								<div class="ups-form_group ups-form_required ">
+									<label for="state" class="ups-form_label">State <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select name="state" class="ups-dropdown" id="state">
+											<option value="most_recent">Select One</option>
+											<option value="option_1">Option 1</option>
+											<option value="option_2">Option 2</option>
+											<option value="option_3">Option 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="zipCode" class="ups-form_label">Zip Code <span aria-hidden="true" class="ups-required_indicator"><span class="ups-readerTxt">Required</span></span></label>
+									<div class=" ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+										<input type="text" name="zipCode" class="ups-form_input" id="zipCode">
+										<button type="button" class="ups-date_picker_button">
+											<span class="icon ups-icon-search" aria-hidden="true"></span>
+											<span class="ups-readerTxt">Search for your zip code</span>
+										</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<div class="ups-form_group">
+											<label for="telephone" class="ups-form_label">Telephone</label>
+											<div class=" ups-text_wrapper ups-input_wrapper ">
+												<input type="text" name="telephone" class="ups-form_input" id="telephone">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-5">
+										<div class="ups-form_group">
+											<label for="ext" class="ups-form_label">Ext</label>
+											<div class=" ups-text_wrapper ups-input_wrapper ">
+												<input type="text" name="ext" class="ups-form_input" id="ext">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="email" class="ups-form_label">E-mail</label>
+									<div class=" ups-text_wrapper ups-input_wrapper ">
+										<input type="email" name="email" class="ups-form_input" id="email">
+									</div>
+								</div>
+							</div>
+							<!-- End Second Column -->
+						</div>
+					<!-- End Row --> 
+		
+				<!-- Old Legacy Implementation -->
+				<!-- Begin Sub Module --
+				<div class="secLvlPlain subcol9 marginBegin clearfix"> 
+					<!-- Begin Sub Body --
+					<div class="secBody">
+						<dl class="clearfix">
+							<dt>
+								<label for="repl_id1">company or name:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id1">
+								<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dd>
+							<dt>
+								<label for="repl_id2">contact:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id2">
+							</dd>
+							<dt>
+								<label for="repl_id3">country or territory:</label>
+							</dt>
+							<dd>
+								<select id="repl_id3">
+									<option value="repl_value">united states</option>
+								</select>
+								<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dd>
+							<dt>
+								<label for="repl_id4">address line 1:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id4">
+								<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dd>
+							<dt>
+								<label for="repl_id5">address line 2:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id5">
+								<br>
+								<span class="reqTxtInst">apartment, suite, unit, building, floor, etc.</span> </dd>
+							<dt>
+								<label for="repl_id6">address line 3:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id6">
+								<br>
+								<span class="reqTxtInst">department, c/o, etc.</span> </dd>
+						</dl>
+					</div>
+					<!-- End Sub Body --
+				</div>
+				<!-- End Sub Module --> 
+				
+				<!-- Begin Sub Module --
+				<div class="secLvlPlain subcol9 marginEnd clearfix"> 
+					<!-- Begin Sub Body --
+					<div class="secBody">
+						<dl class="clearfix">
+							<dt>
+								<label for="repl_id7">city:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id7">
+								<img alt="" border="0" height="12" width="11" src="/img/btn_details_mini.gif" class="search"> <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"></dd>
+							<dd>
+								<select id="repl_id8" onChange="">
+									<option value="repl_value">atlanta</option>
+									<option value="repl_value">atlantic city</option>
+									<option value="atoka">atoka</option>
+								</select>
+								<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dd>
+							<dt>
+								<label for="repl_id9">state:</label>
+							</dt>
+							<dd>
+								<select id="repl_id9">
+									<option value="repl_value">select one</option>
+									<option value="repl_value">another state</option>
+								</select>
+								<img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"> </dd>
+							
+							<dt>
+								<label for="repl_id11">zip code:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id11">
+								<img alt="" border="0" height="12" width="11" src="/img/btn_details_mini.gif" class="search"> <img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon"></dd>
+						</dl>
+						<dl class="flexFirst clearfix">
+							<dt>
+								<label for="repl_id12">telephone:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id12">
+							</dd>
+						</dl>
+						<dl class="flexAfter clearfix">
+							<dt>
+								<label for="repl_id13">ext:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id13" class="formcol2">
+							</dd>
+						</dl>
+						<div class="clear"></div>
+						<dl>
+							<dt>
+								<label for="repl_id14">e-mail:</label>
+							</dt>
+							<dd>
+								<input type="text" id="repl_id14">
+							</dd>
+						</dl>
+					</div>
+					<!-- End Sub Body --
+				</div>
+				<!-- End Sub Module -->
+				<!-- End of Old Legacy Implementation -->
+			</div>
+			<!-- End Section Body --> 
+			
+		</div>
+		<!-- End Section Module --> 
+		
+	</div>
+	<!-- End Application Body --> 
+	
+	<!-- Begin Application Footer -->
+	
+	<!-- ------------------------------- -->
+	<!-- Begin Old Legacy Implementation -->
+	<!-- ------------------------------- -->
+	<!--<div class="appFooter">
+		<div class="btnBar alignCenter">
+			<input id="repl_id" name="repl_name" type="button" value="close" class="btn">
+		</div>
+	</div>-->
+	<!-- ----------------------------- -->
+	<!-- End Old Legacy Implementation -->
+	<!-- ----------------------------- -->
+	
+	<!-- New WEM Legacy Hybrid -->
+	<div class="appFooter">
+		<div class="ups-form_ctaGroup text-center">
+			<button type="button" class="ups-cta ups-cta_primary">Close</button>
+		</div>
+	</div>
+	<!-- End Application Footer --> 
+	
+</div>
+<!-- End Application Module --> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+</script> 

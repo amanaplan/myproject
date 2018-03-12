@@ -1,0 +1,104 @@
+<!-- ************************************************************************************ -->
+<!-- M28 SITE MAPP                                                                        -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M28 SITE MAP: -LAYOUT-
+********************************************************************************
+
+| 60px
+-category header-
+| 30px
+-category subheader-
+| 5px
+| 15px
+-site map links-
+| 15px
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-site-map ups-wrap">
+    <div class="ups-wrap_inner">
+        
+        {{#each this}}
+        <div class="site-map_section">
+
+{{!--
+********************************************************************************
+M28 SITE MAP: CATEGORY HEADER
+********************************************************************************
+
+Category Header can include a link or no link
+
+********************************************************************************
+--}}
+            
+            {{#if title.link}}
+            <h2><a href="{{title.url}}">{{title.text}}</a></h2>
+            {{else}}
+            <h2>{{title.text}}</h2>
+            {{/if}}
+            
+            <div class="row">
+                {{#each categories}}
+                {{../sitemap_cols}}
+                <div class="{{#compare sitemap_cols '===' 1}}col-sm-12{{/compare}}{{#compare sitemap_cols '===' 2}}col-sm-6{{/compare}}{{#compare sitemap_cols '===' 3}}col-sm-4{{/compare}}{{#compare sitemap_cols '===' 4}}col-sm-3{{/compare}} site-map_category clearfix">
+
+{{!--
+********************************************************************************
+M28 SITE MAP: CATEGORY SUB HEADER
+********************************************************************************
+
+Category Sub Header can include a link or no link
+Category Sub Header converts into accordion in SVP
+
+********************************************************************************
+--}}
+                    <div class="site-map_title">
+                        {{#if header.link}}
+                        <h3><a href="{{header.url}}">{{header.text}}</a></h3>
+                        {{else}}
+                        <h3>{{header.text}}</h3>
+                        {{/if}}
+
+                        <button class="site-map_toggle ups-sm_show">
+                            <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Expand Site Map Category</span>
+                        </button>
+                    </div>
+
+{{!--
+********************************************************************************
+M28 SITE MAP: LINKS
+********************************************************************************
+
+Each M28 Site Map has a link to a site map page. 
+
+For full documentation of Site Map Links see partial 
+partials/assets/sitemap-list.hbs                                     
+
+********************************************************************************
+--}}
+                    <ul class="site-map_links">
+                        {{#each links}}
+                        {{> sitemap-list this}}
+                        {{/each}}
+                    </ul>
+                </div>
+                {{/each}}
+            </div>
+            
+        </div>
+        {{/each}}
+
+    </div>
+</div>
+
+
+
+            
+                    
+                

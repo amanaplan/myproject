@@ -1,0 +1,113 @@
+---
+title: Address Modification
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+	{{> background_modal_content }}
+
+<div id="HPDCR_Dialog" class="appLvl mod modal dialog">
+  <div class="appHead clearfix">
+    <h2>{{title}}</h2>
+    <ul>
+      <li>
+        <input type="button" class="btnlnkL closeIcon" title="Close" id="modalClose">
+      </li>
+    </ul>
+  </div>
+  <div class="appBody clearfix">
+    
+    <!-- Begin New Delivery Address Information Module -->
+    <div class="secLvl secLvlPlain clearfix">
+      
+      <!-- Begin Section Body -->
+      <div class="secBody">
+        <p>Options are available below for correcting your address.</p>
+        <p class="error">&gt;&gt;&gt; The delivery address provided was not found in our address database. You may go back and modify your address, or proceed by selecting Use Updated Address below, or call Customer Service for further assistance.(UPS: 80333)</p>
+        <div class="group clearfix">
+          <dl class="outHozFixed clearfix">
+            <dt>
+              <label for="repl_id">Tracking Number:</label>
+            </dt>
+            <dd id="repl_id">1Z18239X0397528297</dd>
+          </dl>
+          <dl class="outHozFixed clearfix">
+            <dt>
+              <label for="repl_id">Status:</label>
+            </dt>
+            <dd id="repl_id"><strong>Exception: Action Required</strong></dd>
+          </dl>
+          <dl class="outHozFixed clearfix">
+            <dt>
+              <label for="repl_id">Original Delivery Address:</label>
+            </dt>
+            <dd id="repl_id">270 Marvin Miller Dr.<br>
+              Atlanta, GA, 30336	 US</dd>
+          </dl>
+        </div>
+        <div class="group  nohead clearfix">
+          <dl class="outHozFixed clearfix">
+            <dt>
+              <label for="repl_id">New Delivery Address:</label>
+            </dt>
+            <dd id="repl_id">11270 Marvin Miller Dr.<br>
+              Atlanta, GA, 30336	 US</dd>
+          </dl>
+        </div>
+        <div class="nohead clearfix">
+          <dl class="outHozFixed clearfix">
+            <dt>
+              <label for="repl_id" class="error">Select a city:</label>
+            </dt>
+            <dd id="repl_id">
+              <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="sel"><input name="city" type="radio" value="" id="" checked="checked"></td>
+                  <td><label for="" class="sel">Alpharetta, GA</label></td>
+                </tr>
+                <tr>
+                  <td class="sel"><input name="city" type="radio" value="" id=""></td>
+                  <td><label for="" class="sel">Roswell, GA</label></td>
+                </tr>
+              </table>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <!-- End Section Body -->
+    </div>
+    <!-- End New Delivery Address Information Module -->
+    
+  </div>
+  <!-- End Application Body -->
+  
+  <!-- Begin Application Footer -->
+  <div class="appFooter">
+    <!-- Begin Button Bar Row -->
+    <div class="btnBar alignCenter">
+      <input name="" type="button" value="Back" class="btnBackArw">
+      <input name="" type="button" value="Cancel" class="btn">
+      <input name="" type="submit" value="Next/Use Updated Address" class="btnArw">
+    </div>
+    <!-- End Button Bar Row -->
+  </div>
+  <!-- End Application Footer -->
+  
+</div>
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:510});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+
+</script>
+</div>

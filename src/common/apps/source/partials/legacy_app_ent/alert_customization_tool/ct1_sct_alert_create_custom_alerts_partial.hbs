@@ -1,0 +1,130 @@
+<form action="repl_fname">        
+        <!-- Begin Section Bookmark-->
+        <!-- <div class="appLvl message clearfix">
+          <div class="appBody clearfix" style="padding-top:10px; ">
+            <p>Please <strong>bookmark</strong> this page for future reference. <a href="repl_href">{Don't show this message again}</a> </p>
+          </div>
+        </div> -->
+        <!-- End Section Bookmark --> 
+        
+        <!-- Begin Application Module -->
+        <div class="appLvl col24 mod clearfix">
+        <!-- Begin Application Header -->
+        <div class="appHead clearfix">
+          <!-- <h2>And your company's content to UPS delivery alerts emailed to your customers.</h2> -->
+			<h2>UPS Alert Message Builder</h2>
+          <ul class="clearfix">
+            <li> <a href="repl_href" class="btnlnkR helpIconR">Help</a> </li>
+          </ul>
+        </div>
+        <!-- End Application Header --> 
+        
+        <!-- Begin Application Body -->
+        <div class="appBody clearfix">
+			<p><img alt="" border="0" height="12" width="11" src="/img/1.gif" class="requiredIcon" title="Required"> Indicates a required field.</p>
+			<p class="error">&gt;&gt;&gt; Error messages display here</p>	
+          
+          <!-- Begin Section Module -->
+          <div class="secLvl step clearfix"> 
+            <!-- Begin Section Header -->
+            <div class="secHead clearfix">
+              <!-- <div class="stepNumberDiv"> <span class="stepNumber">1</span> </div> -->
+              <!-- <h3>Add an image and a Web Address (URL)</h3> -->
+				<h3>Build Your Custom Alert</h3>
+			  </div>
+           
+            <!-- End Section Header --> 
+            <!-- Begin Section Body -->
+            	<div class="secBody">
+              	<!-- <p> Enter the web address (URL) you wish to link to the image. </p> -->
+				<p>For each country/language combination, you may upload an image file and add an optional Web Address (URL) to link to from the image.  Upload PNG files only.  The maximum file size is 75KB and the pixel ratio must be 570 wide x 95 high.</p>
+				<p>Once you upload a file, you can select <strong>Set as Default Image</strong> to apply image to all country/language combinations you've selected.</p>
+              
+                <table border="0" cellpadding="0" cellspacing="0" class="dataTable full">
+              	 	<tbody>
+					 {{#each customAlert}}
+						<tr class="{{#if type}}odd{{/if}}">
+							<td>
+								{{#each lang}}
+								<div class="marginBegin floatBegin subcol9 clearfix">
+									<div class="group">
+												<div class="floatBegin">
+												<p><strong>{{country}} - {{language}}</strong></p>
+													{{#if not_upload_image}}
+														<p>Upload Image: *</p>	
+													{{/if}}
+													{{#if no_file_uploaded}}
+														<p>No file uploaded</p>
+													{{/if}}
+													{{#if uploaded}}
+														<p>{{uploaded_file}}</p>
+														<p><a href="#">Remove Image</a></p>
+														{{#if set_as_default}}
+															<p><a href="#">Set as Default Image</a></p>
+														{{/if}}
+													{{/if}}
+												</div>
+											{{#unless uploaded}}
+												{{#unless filename}}
+													<div class="floatEnd"><input type="button" name="repl_name" id="repl_id" class="btn" value="Choose File"></div>
+											{{/unless}}
+											{{/unless}}
+											{{#if filename}}
+												<div class="floatEnd">
+													<p>{{filename}}</p>
+												</div>
+											{{/if}}
+											<div class="clear"></div>
+									</div>
+								</div>
+								<div class="marginEnd floatEnd subcol14 clearfix">
+									{{#if inputbox }}<label for="txtbox">Enter the Web address to link to from the image:</label> {{/if}}
+									<div class="floatBegin">
+										{{#if inputbox }}
+											<input type="text" name="repl_name" id="txtbox" class="formcol10">
+										{{/if}}
+										{{#if image_url}}<p>Image URL not allowed due to local legal requirements.</p>{{/if}}
+										{{#if image_link}}
+											<p>{{image_link}}</p>
+										{{/if}}
+									</div>
+									<div class="floatEnd">
+										{{#if alert }}<input type="button" name="repl_name" id="repl_id" class="btn" value="Add Alert">{{/if}}
+										{{#if set_default_image}}
+											<p><a href="#">Set as Default Image</a> | <a href="#">Preview</a> | <a href="#">Edit</a></p>
+										{{/if}}
+										{{#if not_default_image}}
+											<p><a href="#">Preview</a> | <a href="#">Edit</a></p>
+										{{/if}}
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="clear"></div>
+								{{/each}}
+							</td>
+						 </tr>
+					 {{/each}}
+					 </tbody>
+				</table>
+            </div>
+            </div>
+            </div>
+            <!-- End Section Body --> 
+            
+          <!-- End Section Module --> 
+          
+          <!-- Begin Application Footer -->
+          <div class="appFooter"> 
+			  <!-- <p><strong>Note:</strong> Clicking "Next" will take you to the custom alert builder where you can upload and specify a default image, or you can upload an image for each country/language combination that you selected.</p> -->
+            <!-- Begin Button Bar Row -->
+            <div class="btnBar">
+              <input name="" type="button" value="Back" class="btn">
+              <input name="" type="submit" value="Submit" class="btn">
+            </div>
+            <!-- End Button Bar Row --> 
+          </div>
+          <!-- End Application Footer --> 
+        </div>
+        <!-- End Application Module -->
+</form>
+    <!-- /main end --> 

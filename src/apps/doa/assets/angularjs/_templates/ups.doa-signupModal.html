@@ -1,0 +1,568 @@
+<script type="text/ng-template" id="userIdHintPopover.html">
+    <div class="ups-hintPopover" id="userIdHintPopover" role="tooltip">
+	    <span>Your user ID must be 1-16 characters long and include:</span>
+        <!-- Code below is for Voiceover in Safari -->
+        <span class="ups-readerTxt">No spaces.</span>
+        <span class="ups-readerTxt">No email addresses.</span>
+        <span class="ups-readerTxt">No special characters (:;&lt;&gt;&quot;&amp;\%).</span>
+	    <ul class="ups-credential_hint" aria-hidden="true">
+		    <li data-ng-class="{'ups-active': noSpace}"><span
+			    class="ups-readerTxt"></span>No spaces</li>
+		    <li data-ng-class="{'ups-active': noEmail}"><span
+			    class="ups-readerTxt"></span>No email addresses</li>
+		    <li data-ng-class="{'ups-active': noSpecialChar}"><span
+			    class="ups-readerTxt"></span>No special characters
+			    (:;&lt;&gt;&quot;&amp;\%)</li>
+	    </ul>
+    </div>
+</script>
+<script type="text/ng-template" id="passwordHintPopover.html">
+    <div class="ups-hintPopover" id="passwordHintPopover" role="tooltip">
+        <span>Passwords must be 7-26 characters long and include at
+            least three of the following:</span>
+        <!-- Code below is for Voiceover in Safari -->
+        <span class="ups-readerTxt">One lowercase letter.</span>
+        <span class="ups-readerTxt">One uppercase letter.</span>
+        <span class="ups-readerTxt">One number.</span>
+        <span class="ups-readerTxt">One special character (!@#$%&amp;*).</span>
+        <ul class="ups-credential_hint" aria-hidden="true">
+            <li data-ng-class="{'ups-active': lowercase}"><span
+                class="ups-readerTxt"></span>One lowercase letter</li>
+            <li data-ng-class="{'ups-active': uppercase}"><span
+                class="ups-readerTxt"></span>One uppercase letter</li>
+            <li data-ng-class="{'ups-active': number}"><span
+                class="ups-readerTxt"></span>One number</li>
+            <li data-ng-class="{'ups-active': special}"><span
+                class="ups-readerTxt"></span>One special character (!@#$%&amp;*)</li>
+        </ul>
+        <span>Passwords cannot contain your first or last name, user Id,
+            or email address used to log in to ups.com</span>
+    </div>
+</script>
+
+<div data-ng-controller="StandaloneSignupCtrl"
+	data-ng-class="{'ups-application_wrapper ups-form_wrap ups-app_onboarding':Standalone}" resize> <!-- removed .ups-onboApp-wrap-ppc  --> 
+	<!-- //// begin ups.doa-signupModal //// --> 
+	<!--   <h2 data-ng-class="{'ups-no-modal':Standalone}"
+		data-ng-if="Standalone === true">Sign up.</h2>--> 
+	<span class="ups-modal_subtitle"
+		data-ng-if="data=== 'signup' || data=== 'hide' ||hideHeader === true"> Already have an ID? <a href="#" onclick="return false;" data-ng-click="redirectToLoginForm()" class="ups-link"> Log in</a> </span>
+	<h3 data-ng-if="data === 'signup' || hideHeader === true">Use one of these trusted sites.</h3>
+	<social data-ng-class="{'social-icons-content-header':hideHeader}"></social>
+	<hr>
+	<div data-ng-show="hideInfo">
+		<h3>Or enter your own information.</h3>
+	</div>
+	<div data-ng-show="hideInfo">
+		<p> <em> <span aria-hidden="true">*</span> <span class="ups-readerTxt">Required</span> Indicates required field </em> </p>
+	</div>
+	<form name="ups_signupform" error-on-submit novalidate>
+		<div class="ng-scope" data-ng-if="clicked || errorList.length>0"> 
+			<!-- ngIf: ups_signupform.$invalid || errorList.length>0 --> 
+			<!--<h3 data-ng-if="ups_signupform.$invalid || errorList.length>0" class="ups-invalid_color-list ups-error_alert-list icon ups-icon-exclamation ng-scope"> -->
+			<h3 class="ups-invalid_color-list ups-error_alert-list ng-scope"> <span class="icon ups-icon-exclamation" aria-hidden="true"></span> Please correct the following errors: 
+				<!-- end ngIf: ups_signupform.$invalid || errorList.length>0 --> 
+				<!-- ngRepeat: err in errorList --> 
+				<!-- ngIf: (ups_signupform.firstName.$invalid && clicked) --></h3>
+			<ul class="ups-icons-error">
+				<li data-ng-repeat="err in errorList">
+					<h3>{{err.errorCode}}:{{err.errorMessage}}</h3>
+				</li>
+				<li data-ng-if="(ups_signupform.firstName.$invalid && clicked)"> <span data-ng-show="ups_signupform.firstName.$error.required"> <a href="#" onclick="return false;" focus-attr="ups-first_name_input" error-on-submit-anchor class="ups-invalid_color"> Name <span class="ups-readerTxt">is required, click here to enter your first name</span></a> is required. </span> <span data-ng-hide="ups_signupform.firstName.$error.required"> Invalid <a href="#" onclick="return false;" focus-attr="ups-first_name_input" error-on-submit-anchor  class="ups-invalid_color">name<span class="ups-readerTxt">is invalid, click here to enter your first name</span></a>. </span> </li>
+				<!-- Commenting out this because v1.09 requires a switch from multiple naming fields to just one name field --> 
+				
+				<!--              Last Name
+				<li data-ng-if="(ups_signupform.lastName.$invalid && clicked)">
+                    <span data-ng-show="ups_signupform.lastName.$error.required">
+                        <a href="" focus-attr="ups-last_name_input" error-on-submit-anchor  class="ups-invalid_color"> Last Name <span class="ups-readerTxt">is required, click here to enter your last name</span></a> is required.
+                	</span>
+                    <span data-ng-hide="ups_signupform.lastName.$error.required">Invalid <a href="" focus-attr="ups-last_name_input" error-on-submit-anchor class="ups-invalid_color"> last name <span class="ups-readerTxt">is invalid, click here to enter your last name</span></a>.
+                	</span>
+                </li>
+-->
+				<li data-ng-if="(clicked && ups_signupform.email_input.$invalid)"> <span data-ng-show="ups_signupform.email_input.$error.required"> <a href="#" onclick="return false;" focus-attr="ups-email_input" error-on-submit-anchor class="ups-invalid_color">Email <span class="ups-readerTxt">is required, click here to enter your email</span></a> is required. </span> <span data-ng-hide="ups_signupform.email_input.$error.required"> Please enter a valid <a  href="#" onclick="return false;" focus-attr="ups-email_input" error-on-submit-anchor class="ups-invalid_color">email <span class="ups-readerTxt">address is invalid, click here to enter your email</span></a>address. </span> </li>
+				<li data-ng-if="(clicked && ups_signupform.user_id_input.$invalid)|| (!ups_signupform.user_id_input.$pristine && ups_signupform.user_id_input.$invalid) || !validEmailContent"> <span data-ng-show="ups_signupform.user_id_input.$error.required"> <a  href="#" onclick="return false;" focus-attr="ups-user_id_input" error-on-submit-anchor class="ups-invalid_color"> User Id <span class="ups-readerTxt">is required, click here to enter your User ID</span></a> is required. </span> <span data-ng-hide="ups_signupform.user_id_input.$error.required"> <a class="ups-invalid_color" focus-attr="ups-user_id_input" error-on-submit-anchor href="#" onclick="return false;" >{{errorEmail}}</a> </span> </li>
+				<li data-ng-if="(ups_signupform.password_input.$invalid && clicked)"> <span data-ng-show="ups_signupform.password_input.$error.required"> <a href="#" onclick="return false;" focus-attr="ups-user_password_input" error-on-submit-anchor class="ups-invalid_color">Password<span
+                            class="ups-readerTxt">is required, click here to enter your password</span></a> is required. </span> <span data-ng-hide="ups_signupform.password_input.$error.required"> Please enter a valid <a href="#" onclick="return false;" focus-attr="ups-user_password_input" error-on-submit-anchor class="ups-invalid_color"> password<span class="ups-readerTxt">is invalid, click here to enter your password</span></a> . </span> </li>
+				<li data-ng-if="!formObj.tnc"> <span > <a href="#" onclick="return false;" focus-attr="ups-terms_checkbox" error-on-submit-anchor  class="ups-invalid_color"> UPS Technology Agreement <span class="ups-readerTxt">is not checked,click here to check UPS Technology agreement</span></a> is required. </span> </li>
+			</ul>
+		</div>
+		
+		<!-- Old Naming Fields --> 
+		<!--
+					<div class="row">
+						<div class="col-md-3">
+							<div class="ups-form_group ups-form_required"
+								data-ng-class="{ 'has-error' : ups_signupform.firstName.$invalid && !ups_signupform.firstName.$pristine }">
+								<label for="ups-first_name_input" class="ups-form_label">
+									First Name
+									<span aria-hidden="true" class="ups-required_indicator"></span>
+								</label>
+								<div class="ups-text_wrapper ups-input_wrapper"
+									data-errormsg="This field is required">
+									<input
+										data-ng-class="{'ups-bodError':(ups_signupform.firstName.$invalid && clicked)}"
+										error-on-blur focus-on-error type="text" name="firstName"
+										class="ups-form_input" id="ups-first_name_input" value=""
+										data-ng-model="formObj.first_name" required maxlength="35"
+										aria-describedby="FirstName-error" aria-required="true"
+										data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+										data-ng-model-options="{updateOn: 'blur'}"> <span
+										id="FirstName-error"> <span class="ups-invalid_color"
+										data-ng-if="(ups_signupform.firstName.$invalid && clicked) || (!ups_signupform.firstName.$pristine && ups_signupform.firstName.$invalid) ">
+											<span class="icon ups-error_exclamation"> <span
+												class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+											data-ng-show="ups_signupform.firstName.$error.required">First
+												Name is required.</span> <span
+											data-ng-hide="ups_signupform.firstName.$error.required">Invalid
+												first name.</span>
+									</span> <span data-ng-if="ups_signupform.firstName.$valid"> <span
+											class="ups-readerTxt">Check</span>
+									</span>
+									</span>
+									<div data-ng-if="(ups_signupform.firstName.$valid)">
+										!-- @Note: screen reader text needs to be translated as well --
+										<span class="ups-icon-check" aria-hidden="true"></span> <span
+											class="ups-readerTxt">Check</span>
+									</div>
+								</div>
+								!-- ups-text_wrapper ups-input_wrapper --
+							</div>
+							!-- ups-form_group ups-form_required --
+						</div>
+						<div class=" col-md-1">
+							<div class="ups-form_group ">
+								<label for="ups-middle_name_input" class="ups-form_label ups-form_label_dpblock">
+									<span aria-hidden="true">MI</span>
+									<span class="ups-readerTxt">Middle Initial</span>
+								</label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="middle_name" class="ups-form_input"
+										id="ups-middle_name_input" maxlength="35"
+										data-ng-model="formObj.middle_name"
+										data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+										data-ng-model-options="{updateOn: 'blur'}"
+										aria-describedby="MiddleName-error" aria-required="true">
+									<span id="MiddleName-error"> <span
+										class="ups-invalid_color"
+										data-ng-if="!ups_signupform.middle_name.$pristine && ups_signupform.middle_name.$invalid">
+											<span class="icon ups-error_exclamation"> <span
+												class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+											data-ng-show="ups_signupform.middle_name.$invalid">Invalid
+												middle initial.</span>
+									</span>
+									</span>
+									!-- ups-icon-check --
+								</div>
+								!-- ups-text_wrapper ups-input_wrapper --
+							</div>
+							!-- ups-form_group --
+						</div>
+						<div class="col-md-3">
+							<div class="ups-form_group ups-form_required">
+								<label for="ups-last_name_input" class="ups-form_label">
+									Last Name
+									<span aria-hidden="true" class="ups-required_indicator"></span>
+								</label>
+								<div class="ups-text_wrapper ups-input_wrapper"
+									data-errormsg="This field is required">
+									<input
+										data-ng-class="{'ups-bodError':(ups_signupform.lastName.$invalid && clicked)}"
+										error-on-blur type="text" name="lastName" class="ups-form_input"
+										id="ups-last_name_input" value=""
+										data-ng-model="formObj.last_name" required maxlength="35"
+										aria-describedby="lastname-error" aria-required="true"
+										data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+										data-ng-model-options="{updateOn: 'blur'}"> <span
+										id="lastname-error"> <span class="ups-invalid_color"
+										data-ng-if="(clicked && ups_signupform.lastName.$invalid)|| (!ups_signupform.lastName.$pristine && ups_signupform.lastName.$invalid)">
+											<span class="icon ups-error_exclamation"> <span
+												class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+											data-ng-show="ups_signupform.lastName.$error.required">Last
+												Name is required.</span> <span
+											data-ng-hide="ups_signupform.lastName.$error.required">Invalid
+												last name.</span>
+									</span> <span data-ng-if="ups_signupform.lastName.$valid"> <span
+											class="ups-readerTxt">Check</span>
+									</span>
+									</span>
+									<div data-ng-if="(ups_signupform.lastName.$valid)">
+										<span class="ups-icon-check" aria-hidden="true"></span> <span
+											class="ups-readerTxt">Check</span>
+									</div>
+								</div>
+								!-- ups-text_wrapper ups-input_wrapper --
+							</div>
+							!-- ups-form_group ups-form_required --
+						</div>
+						<div class="col-md-2">
+							<div class="ups-form_group  suffix" data-ng-show="isUS">
+								<label for="ups-suffix_select" class="ups-form_label">Suffix</label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper">
+									<select name="select" class="ups-dropdown" id="ups-suffix_select"
+										data-ng-model="formObj.name_suffix" aria-required="true" required>
+										<option data-ng-repeat="suffixVal in suffixVals"
+											value="{{suffixVal.value}}">{{suffixVal.option}}</option>
+									</select>
+								</div>
+								!-- ups-dropdown_wrapper ups-input_wrapper --
+							</div>
+							<div class="ups-form_group  suffix" data-ng-show="!isUS">
+								<label for="ups-suffix_input_non-US" class="ups-form_label">Suffix</label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="suffix" class="ups-form_input"
+										data-ng-model="formObj.name_suffix" id="ups-suffix_input_non-US"
+										maxlength="5">
+
+								</div>
+								!-- ups-text_wrapper ups-input_wrapper --
+							</div>
+							!-- ups-form_group --
+						</div>
+					</div>	--> 
+		<!-- New Name Field as of v 1.09-->
+		<div class="row">
+			<div class="col-md-5">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-name_input" class="ups-form_label"> Name <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur
+                            focus-on-error
+                            type="text"
+                            name="firstName"
+							class="ups-form_input"
+                            id="ups-name_input"
+                            value=""
+                            maxlength="35"
+							aria-describedby="FirstName-error"
+                            aria-required="true"
+							data-ng-class="{'ups-bodError':(ups_signupform.firstName.$invalid && clicked)}"
+							data-ng-model="formObj.first_name"
+							data-ng-pattern="/^[a-zA-Z0-9]{1,35}$/"
+							data-ng-model-options="{updateOn: 'blur'}"
+                            required >
+						<span id="FirstName-error" role="alert"> <span class="ups-invalid_color" data-ng-if="(ups_signupform.firstName.$invalid && clicked) || (!ups_signupform.firstName.$pristine && ups_signupform.firstName.$invalid) "> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span data-ng-show="ups_signupform.firstName.$error.required"> Name is required.</span> <span data-ng-hide="ups_signupform.firstName.$error.required">Invalid name.</span> </span> <span data-ng-if="ups_signupform.firstName.$valid"> <span class="ups-readerTxt">Check</span> </span> </span>
+						<div data-ng-if="(ups_signupform.firstName.$valid)"> 
+							<!-- @Note: screen reader text needs to be translated as well --> 
+							<span class="ups-icon-check" aria-hidden="true"></span> <span
+								class="ups-readerTxt">Check</span> </div>
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper --> 
+				</div>
+				<!-- ups-form_group ups-form_required -->
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-email_input" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+					<div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur
+                            validate-email
+                            type="email"
+                            name="email_input"
+							class="ups-form_input"
+                            id="ups-email_input"
+                            value=""
+							maxlength="50"
+							title="address@domail.com"
+                            data-ng-model="formObj.email"
+							data-ng-model-options="{updateOn: 'blur'}"
+							data-ng-class="{'ups-bodError':(ups_signupform.email_input.$invalid && clicked)}"
+							aria-describedby="email-error"
+                            aria-required="true"
+                            required >
+						<span id="email-error" role="alert"> <span class="ups-invalid_color" data-ng-if="(clicked && ups_signupform.email_input.$invalid)|| (!ups_signupform.email_input.$pristine && ups_signupform.email_input.$invalid)"> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span data-ng-show="ups_signupform.email_input.$error.required">Email is required.</span> <span data-ng-hide="ups_signupform.email_input.$error.required">Please enter a valid email address.</span> </span> <span data-ng-if="ups_signupform.email_input.$valid"> <span class="ups-readerTxt">Check</span> </span> </span>
+						<div data-ng-if="(ups_signupform.email_input.$valid)"> <span class="ups-icon-check" aria-hidden="true"></span> 
+							<!-- @Note: screen reader text needs to be translated as well --> 
+							<span class="ups-readerTxt">Check</span> </div>
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper --> 
+				</div>
+				<!-- ups-form_group ups-form_required -->
+				<div class="ups-form_group ups-form_required ups-form_popover">
+					<label for="ups-user_id_input" class="ups-form_label"> User ID <span aria-hidden="true" class="ups-required_indicator"></span> 
+						<!--<span class="ups-readerTxt">
+                        	<span>Your user ID must be 1-16 characters long and include:</span>
+                            <span>No spaces</span>
+                            <span>No email addresses</span>
+                            <span>No special characters (:;&lt;&gt;</span>
+						</span>--> 
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper ups-hintPopover"
+						data-errormsg="This field is required">
+						<input error-on-blur
+                            type="text"
+                            name="user_id_input"
+                            class="ups-form_input"
+							id="ups-user_id_input"
+							maxlength="16"
+							data-ng-model="formObj.userId"
+							data-ng-class="{'ups-bodError':(ups_signupform.user_id_input.$invalid && clicked) || !validEmailContent}"
+							data-ng-keyup="useridCheck($event)"
+                            data-ng-trim="false"
+							data-ng-model-options="{updateOn: 'blur'}"
+							data-uib-popover-template="tags.templateUrl"
+							data-popover-placement="{{tags.position}}"
+							data-ng-blur="errorMsg($event)"
+                            aria-required="true"
+                            aria-describedby="userId-error userIdHintPopover"
+                            popover-trigger="focus"
+                            required >
+						<span id="userId-error" role="alert"> <span class="ups-invalid_color" data-ng-if="(clicked && ups_signupform.user_id_input.$invalid)|| (!ups_signupform.user_id_input.$pristine && ups_signupform.user_id_input.$invalid) || !validEmailContent"> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span>{{errorEmail}}</span> </span> <span data-ng-if="ups_signupform.user_id_input.$valid && validEmailContent"> <span class="ups-readerTxt">Check</span> </span> </span> <span data-ng-show="ups_signupform.user_id_input.$pending.username">Checking if this name is available...</span> <span data-ng-show="ups_signupform.user_id_input.$error.username">This username is already taken!</span>
+						<div data-ng-if="(ups_signupform.user_id_input.$valid && validEmailContent)"> <span class="ups-icon-check" aria-hidden="true"></span> 
+							<!-- @Note: screen reader text needs to be translated as well --> 
+							<span class="ups-readerTxt"></span> </div>
+					</div>
+				</div>
+				<div class="ups-uidSuggestions" data-ng-show="uidSuggestions"> <em class="ups-invalid_color"> The User ID is already in use.
+					Choose one of the following suggestions or enter your own.</em>
+					<fieldset class="ups-form_group">
+						<legend class="ups-readerTxt">Use one of the below User IDs</legend>
+						<input check-verify id="ups-uidSuggestion"
+							class="ups-checkbox-custom" name="ups-uid" type="checkbox"
+							data-ng-model="uidCheck" data-ng-checked="uidCheck"
+							data-ng-click="toggleUID(uidCheck)">
+						<label
+							for="ups-uidSuggestion" class="ups-checkbox-custom-label">Use
+							one of the following User IDs</label>
+						<div data-ng-repeat="i in uidSuggestions" class="ups-indent">
+							<input id="{{i}}" type="radio" name="uid" value="{{i}}"
+								data-ng-model="formObj.userId" data-ng-click="userIdChanged()"
+								class="ups-radio-custom" data-ng-disabled="!uidCheck">
+							<label for="{{i}}" class="ups-radio-custom-label">{{i}}</label>
+						</div>
+					</fieldset>
+				</div>
+				<div class="ups-form_group ups-form_required ups-form_popover ups-form_user_password ups-hintPopover"
+					data-ng-hide="isSocialLogin">
+					<label for="ups-user_password_input" class="ups-form_label"> Password <span aria-hidden="true" class="ups-required_indicator"></span> 
+						<!--<span class="ups-readerTxt"> <span>Passwords
+								must be 7-26 characters long and include at least three of the
+								following:</span> <span>One lowercase letter</span> <span>One
+								uppercase letter</span> <span>One number</span> <span>One
+								special character (!@#$%&amp;*)</span> <span>Passwords cannot
+								contain your first or last name, user Id, or email address used
+								to log in to ups.com</span>
+						</span>--> 
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper ups-input_side_link_wrapper ups-show_password_wrapper"
+						data-errormsg="This field is required">
+						<input error-on-blur
+                            type="{{inputType}}"
+                            name="password_input"
+							class="ups-form_input"
+                            id="ups-user_password_input"
+                            title=""
+                            maxlength="26"
+							data-original-title=""
+                            data-ng-keyup="passwordValidation($event)"
+							data-ng-model="formObj.password"
+							data-ng-blur="check;errorPassword($event)"
+							data-ng-cut="$event.preventDefault()"
+							data-ng-copy="$event.preventDefault()"
+							data-ng-paste="$event.preventDefault()"
+							data-ng-model-options="{updateOn: 'blur'}"
+							data-uib-popover-template="passwordTags.templateUrl"
+							data-popover-placement="{{passwordTags.position}}"
+							data-ng-class="{'ups-bodError':(ups_signupform.password_input.$invalid && clicked) || !validContent}"
+							popover-trigger="focus"
+							aria-describedby="password-error passwordHintPopover"
+                            aria-required="true"
+                            required>
+						<button type="button" id="showButton"
+							class="ups-cta ups-cta_secondary ups-questions_showhide"
+							data-ng-click="showHide($event)" value="Show"
+							aria-describedby="ups-show-hide-text">Show</button>
+						<span id="ups-show-hide-text" class="ups-readerTxt">password in plain text</span> <span id="password-error" data-ng-hide="check" role="alert"> <span class="ups-invalid_color ups-error_display"
+								data-ng-if="(clicked && ups_signupform.password_input.$invalid)|| (!ups_signupform.password_input.$pristine && ups_signupform.password_input.$invalid) || !validContent"> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span>{{errorPswd}}</span> </span> <span data-ng-if="ups_signupform.password_input.$valid && validContent"> <span class="ups-readerTxt">Check</span> </span> </span> <span class="ups-invalid_color ups-error_display" data-ng-show="check"> For your security, please do not include any profile information in your password. </span>
+						<div data-ng-if="(ups_signupform.password_input.$valid && validContent)"> 
+							<!-- @Note: screen reader text needs to be translated as well --> 
+							<span class="ups-icon-check" aria-hidden="true"></span> <span
+								class="ups-readerTxt"></span> </div>
+						<!-- ups-icon-check --> 
+						<!-- ups-text_wrapper ups-input_wrapper --> 
+					</div>
+					<!-- ups-form_group ups-form_required --> 
+				</div>
+			</div>
+			<!-- Non-Unique Email Message -->
+			<div data-ng-if="clicked || Standalone === true">
+				<div class="col-md-5 col-md-offset-1" data-ng-if="nonUniqueEmailPanel" role="alert">
+					<section class="panel panel-default">
+						<div class="panel-body">
+							<p>You already have a ups.com ID linked to this email address. If you continue, you'll need to log in with your
+								new user ID to access this profile.</p>
+							<button type="button" id="" class="ups-link" >Send a List of My User IDs</button>
+						</div>
+					</section>
+				</div>
+			</div>
+			<!-- End of Non-Unique Email Message --> 
+		</div>
+		<div data-ng-if="isUS">
+			<div class="ups-form_group ups-form_required ups-checkbox_group">
+				<div class="ups-checkbox ups-input_wrapper "
+                    data-errormsg="Agreement to Terms &amp; Conditions is required.">
+					<input check-verify
+                        id="ups-terms_checkbox"
+                        class="ups-checkbox-custom"
+                        name="ups-terms_checkbox"
+                        value="1"
+                        type="checkbox"
+                        data-ng-class="{'ups-bodError':(!formObj.tnc && clicked)}"
+                        data-ng-model="formObj.tnc"
+                        data-ng-checked="formObj.tnc"
+                        data-ng-required="true"
+                        aria-required="true"
+                        required>
+					<label for="ups-terms_checkbox" class="ups-form_label ups-checkbox-custom-label"> I confirm that I've been given enough time to read and understand the UPS Technology
+						Agreement, which contains important terms about my use of UPS technologies like terms
+						limiting UPS's liability and my agreement on how disputes between UPS and me will be handled. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+					<a href data-ng-click="openTermsAndConditions()" class="ups-link ups-new-window"> Download the UPS Technology Agreement <span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span> </a> <span role="alert"> <span class="ups-invalid_color ups-error_display"
+                          data-ng-if="(clicked && !formObj.tnc)"> <span class="icon ups-error_exclamation"> <span class="ups-icon-exclamation" aria-hidden="true"></span> </span> <span class="ups-invalid_color" data-ng-hide="ups_signupform.ups-terms_checkbox.$error.required">Please Accept UPS Agreement.</span> </span></span> </div>
+				<!-- ups-checkbox ups-input_wrapper --> 
+			</div>
+			<!-- ups-form_group ups-form_required --> 
+		</div>
+		<div data-ng-if="isEU || !isUS">
+			<div class="ups-form_group ups-form_required">
+				<div class="ups-checkbox ups-input_wrapper "
+                    data-errormsg="Agreement to Terms &amp; Conditions is required.">
+					<input
+                        data-ng-class="{'ups-bodError':(!formObj.tnc && clicked)}"
+                        check-verify id="ups-terms_uta_checkbox"
+                        class="ups-checkbox-custom" name="ups-terms_uta_checkbox"
+                        value="1" type="checkbox" data-ng-model="formObj.tnc"
+                        data-ng-checked="formObj.tnc" data-ng-required="true" aria-required="true" required>
+					<label
+                        for="ups-terms_uta_checkbox"
+                        class="ups-form_label ups-checkbox-custom-label"> I confirm that I've been given enough time to read and understand the UPS Techology
+						Agreement, which contains important terms about my use of UPS technologies like terms
+						limiting UPS's liability and my agreement on how disputes between UPS and me will be
+						handled. Since I'd like immediate access to the UPS technologies and services, I waive
+						my right to a
+						14-day period for withdrawal from the UPS Technology Agreement. <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+					<a href
+                        data-ng-click="openTermsAndConditions()" class="ups-link ups-new-window">Download
+					the UPS Technology Agreement<span class="ups-readerTxt">This will open
+					in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> <span role="alert"> <span class="ups-invalid_color ups-error_display"
+                        data-ng-if="(clicked && formObj.tnc)"> <span class="icon ups-error_exclamation"><span
+                            class="ups-icon-exclamation" aria-hidden="true"></span></span><span class="ups-invalid_color"
+                        data-ng-hide="ups_signupform.ups-terms_uta_checkbox.$error.required">Please
+					Accept UPS Agreement.</span></span> </span> </div>
+				<!-- ups-checkbox ups-input_wrapper --> 
+			</div>
+		</div>
+		
+		<!-- Non US "Send Me Offers" -->
+		<div class="ups-checkbox_reveal" data-ng-show="!isUS" data-ng-hide="isEU || isSocialLogin || Standalone === true || isUS">
+			<div class="ups-form_group">
+				<div class="ups-checkbox ups-input_wrapper  "
+                    data-errormsg="Agreement to Terms &amp; Conditions is required.">
+					<input check-verify id="ups-offers_checkbox_non-US"
+                        class="ups-checkbox-custom" name="ups-offers_checkbox" value="1"
+                        type="checkbox" data-ng-model="formObj.email_offers[0]"
+                        data-ng-change="offerscheckBox(formObj.email_offers[0], 13)"
+                        data-ng-checked="formObj.email_offers[0]">
+					<label
+                        for="ups-offers_checkbox_non-US"
+                        class="ups-form_label ups-checkbox-custom-label">Send me
+						offers, insights, and industry news that can help improve my
+						shipping.</label>
+				</div>
+				<!-- ups-checkbox ups-input_wrapper --> 
+			</div>
+			<!-- ups-form_group -->
+			
+			<fieldset class="ups-form_group ups-indent"
+                data-ng-show="offerscheckBoxvalue">
+				<legend class="ups-readerTxt">Send me the following email
+				communications</legend>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-offers_checkbox1_non-US"
+                        class="ups-checkbox-custom" name="ups-uid-form_title-unnamed"
+                        type="checkbox" value="1"
+                        data-ng-model="formObj.email_offers[1]"
+                        data-ng-checked="formObj.email_offers[1]">
+					<label
+                        for="ups-offers_checkbox1_non-US"
+                        class="ups-checkbox-custom-label">New Product
+						Announcements / Enhancements</label>
+				</div>
+				<!-- ups-buttonList_wrapper ups-input_wrapper -->
+				
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-offers_checkbox2_non-US"
+                        class="ups-checkbox-custom" name="ups-uid-form_title-unnamed"
+                        type="checkbox" value="2"
+                        data-ng-model="formObj.email_offers[2]"
+                        data-ng-checked="formObj.email_offers[2]">
+					<label
+                        for="ups-offers_checkbox2_non-US"
+                        class="ups-checkbox-custom-label">Promotions and Offers</label>
+				</div>
+				<!-- ups-buttonList_wrapper ups-input_wrapper -->
+				
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-offers_checkbox3_non-US"
+                        class="ups-checkbox-custom" name="ups-uid-form_title-unnamed"
+                        type="checkbox" value="3"
+                        data-ng-model="formObj.email_offers[3]"
+                        data-ng-checked="formObj.email_offers[3]">
+					<label
+                        for="ups-offers_checkbox3_non-US"
+                        class="ups-checkbox-custom-label">Newsletters</label>
+				</div>
+				<!-- ups-buttonList_wrapper ups-input_wrapper -->
+				
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input check-verify id="ups-offers_checkbox4_non-US"
+                        class="ups-checkbox-custom" name="ups-uid-form_title-unnamed"
+                        type="checkbox" value="3"
+                        data-ng-model="formObj.email_offers[4]"
+                        data-ng-checked="formObj.email_offers[4]">
+					<label
+                        for="ups-offers_checkbox4_non-US"
+                        class="ups-checkbox-custom-label">Service Updates /
+						Regulatory Changes</label>
+				</div>
+				<!-- ups-buttonList_wrapper ups-input_wrapper -->
+			</fieldset>
+			<!-- ups-form_group ups-reveal_content --> 
+		</div>
+		
+		<!-- Certain EU Countries "Send Me Offers" -->
+		<div  data-ng-show="isEU">
+			<fieldset class="ups-form_group ups-form_required">
+				<legend class="ups-form_label">Send me offers, insights, and industry news that can help improve my shipping</legend>
+				<div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+					<input id="ups-uid-form_title-yes" class="ups-radio-custom" name="ups-uid-form_title-radio_group2" type="radio" value="yes">
+					<label for="ups-uid-form_title-yes" class="ups-radio-custom-label">Yes, add my name to the list. I know I can change this selction
+						in my profile at any time.</label>
+				</div>
+				<div class="ups-buttonList_wrapper ups-input_wrapper">
+					<input id="ups-uid-form_title-no" class="ups-radio-custom" name="ups-uid-form_title-radio_group2" type="radio" value="no">
+					<label for="ups-uid-form_title-no" class="ups-radio-custom-label">No, thanks.</label>
+				</div>
+			</fieldset>
+			<!-- ups-form_group ups-reveal_content --> 
+		</div>
+		<!-- right side ends --> 
+		<!-- center side -->
+		<div data-ng-class="{'text-center':!Standalone , 'ups-CTA-button-margin':Standalone}" data-ng-hide="onboardingFlowSignUp">
+			<div class="ups-form_ctaGroup">
+				<button type="submit" class="ups-cta ups-cta_primary"
+                    data-ng-click="clicked=true;submitForm(ups_signupform.$valid, ups_signupform);standaloneNonUniqueEmailPanel()">Sign
+				up</button>
+			</div>
+			<!-- ups-form_ctaGroup --> 
+		</div>
+		<div data-ng-class="{'text-center':!Standalone}" data-ng-if="onboardingFlowSignUp">
+			<div class="ups-form_ctaGroup">
+				<button type="submit" class="ups-cta ups-cta_primary"
+                    data-ng-click="clicked=true;submitForm(ups_signupform.$valid, ups_signupform)">Next</button>
+			</div>
+			<!-- ups-form_ctaGroup --> 
+		</div>
+	</form>
+	<!-- //// end ups.doa-signupModal //// --> 
+</div>

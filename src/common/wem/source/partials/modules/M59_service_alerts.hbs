@@ -1,0 +1,127 @@
+<!-- ************************************************************************************ -->
+<!-- M59 Services Alerts                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M59 Services Alerts - Notes
+********************************************************************************
+
+ - Defined or Dynamic
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M59 Services Alerts - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    title                      = object     / YES           / {header,body}
+    title.header               = string     / YES           / title
+    title.body                 = string     / NO            / <h3>Pellentesque luctus ipsum felis, in bibendum tortor commodo.</h3>
+    items                      = array      / YES           / [{header, content{}},{header, content{},{header, content{},...]
+    this.header                = string     / YES           / Value-Added Services Alerts
+    this.content               = object     / YES           / {body}
+
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M59 Services Alerts - Layout
+********************************************************************************
+
+-Services Alerts-
+| 60px
+
+********************************************************************************
+--}}
+
+
+<div class="ups-service_alerts ups-wrap ">
+    <div class="ups-wrap_inner">
+
+    	<div class="ups-header_panel">
+    		<button type="button" class="slick-prev ups-iconAlone">
+                <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+                <span class="ups-btn">Prev</span>
+            </button>
+    		<h2 class="ups-header">{{this.title.header}} <span class="ups-counter"><span class="count">1</span>{{#if this.zip}}/{{else}} of {{/if}}{{this.items.length}}</span></h2>
+    		<button type="button" class="slick-next ups-iconAlone">
+                <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                <span class="ups-btn">Next</span>
+            </button>
+    	</div>
+
+    	<div class="ups-service-scroller">
+    		<ul class="ups-service-carousel">
+    			{{#each this.items}}
+    				<li class="ups-service-slick" id="{{this.id}}">
+    					<div class="ups-summary">
+    						<p>{{{this.summary.title}}} {{{this.summary.body}}}</p>
+    						{{#if this.zip}}
+	    						<div class="ups-zip-lookup">
+	    							<p>{{{this.zip.statement}}}</p>
+	    							<div class="ups-states-block">
+	    								{{#if this.zip.states}}
+		    								{{#each this.zip.states}}
+		    									<div class="ups-states-zip">
+		    										<a href="#" class="ups-display-states" role="tab" aria-controls="ups-serviceAlerts{{@index}}" aria-selected="false" aria-expanded="false" id="ups-serviceHead{{@index}}">{{this.state}} ({{this.zip.length}})  <span class="ups-icon-chevrondown" aria-hidden="true"></span><span class="ups-readerTxt" data-lang-show="expand {{this.state}}" data-lang-hide="collapse {{this.state}}">Expand {{this.state}}</span></a>
+		    										{{#if this.zip}}
+			    										<div class="ups-zip_codes" id="ups-serviceAlerts{{@index}}" role="tabpanel" aria-hidden="true" aria-labelledby="ups-serviceHead{{@index}}">
+		    												{{#each this.zip}}
+			    												<p>{{this}}</p>
+			    											{{/each}}
+			    										</div>
+		    										{{/if}}
+		    									</div>
+		    								{{/each}}
+		    							{{/if}}
+		    							<div class="ups-states-zip">
+		    								<a class="ups-showstates" data-show="{{this.zip.showZip}}" data-hide="{{this.zip.hideZip}}"><span>{{this.zip.showZip}}</span>  <span class=" icon ups-icon-chevrondown" aria-hidden="true"></span><span class="ups-readerTxt" data-lang-show="expand {{this.state}}" data-lang-hide="collapse {{this.state}}">Expand {{this.state}}</span></a>
+		    							</div>
+		    							<div class="ups-affected">
+											<div class="ups-download-csv">
+                        						<span class="ups-icon-download" aria-hidden="true"></span>
+												<a href="#" data-affected="{{this.id}}">{{this.zip.download}}</a>
+											</div>
+											<div class="ups-check-affected">
+												<label for="zipaffected">{{this.zip.affected}}</label>
+												<div class="ups-search-affected">
+													<input type="text" id="zipaffected" name="zipaffected"/>
+													<button type="button" class="ups-zip-search">GO</button>
+												</div>
+												<div class="ups-zip_lookUp_alert">
+							                        {{{this.zip.lookupAlert}}}
+							                        {{{this.zip.searchStatement}}}
+							                    </div>
+												<div class="ups-zip_lookUp_message">
+							                        {{{this.zip.lookupMessage}}}
+							                        {{{this.zip.searchStatement}}}
+							                    </div>
+											</div>
+		    							</div>
+	    							</div>
+	    						</div>
+	    					{{/if}}
+    					</div>
+
+    					<div class="ups-details">
+    						{{{this.details.body}}}
+    					</div>
+    				</li>
+    			{{/each}}
+    		</ul>
+    	</div>
+    </div>
+    <script>
+    	
+		var areasAffected =[{"id":"alert1","affected":[{"state":"India","zip":["110089","110065","110064"]}]}];			
+	
+    </script>
+</div>

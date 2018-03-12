@@ -1,0 +1,157 @@
+<div class="ups-application_wrapper ups-app_onboarding ups-leave_instructions" data-ng-controller='leaveInstructionCtrl'>
+    <ng-form name="ups_leaveInstructions" data-novalidate>
+        <h3>Gate or Building Security Code</h3>
+        <p>If you live in a gated community or neighborhood, make sure you send your driver the entry code.</p>
+        <div data-ng-if='VerificationReq'>
+            <p>In order to gain full access to this feature, please complete your enrollment.</p>
+            <a href="#/preferencePage/mychoice/activationCodeStep1" class="ups-link">{Verify Now / Activate My Membership}</a> </div>
+        <div class="row" data-ng-if='!VerificationReq'>
+            <div class="col-md-5">
+                <div class="ups-form_group ">
+                    <label for="ups-gate_security" class="ups-form_label">Entry Code</label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <input type="password" name="upsGateSecurity" class="ups-form_input"
+						id="ups-gate_security" maxlength="9" data-ng-model="formObj.gateSecutiy" data-ng-blur="gateSecurity()">
+                    </div>
+                    
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                <div class="ups-form_group ">
+                    <label for="ups-Regate_security" class="ups-form_label">Re-Enter Entry Code</label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <input error-on-blur type="password" name="upsReGateSecutiy" class="ups-form_input"
+						id="ups-Regate_security"	maxlength="9" data-ng-model="formObj.reGateSecutiy" data-ng-required="requiredSecond" data-ng-blur="gateSecurity()">
+                        <span class="ups-invalid_color"
+						data-ng-show="!ups_leaveInstructions.upsReGateSecutiy.$pristine && ups_leaveInstructions.upsReGateSecutiy.$invalid || wrongGate" role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span class="ups-readerTxt">Invalid</span> <span
+						data-ng-show="ups_leaveInstructions.upsReGateSecutiy.$error.required || wrongGate">To help protect your privacy, you must re-enter your correct Gate or Building Security Code.</span> </span> </div>
+                    
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <h3>Location for Package Delivery</h3>
+        <p>Let your driver know if you do not want your packages left at your front door. </p>
+        <div data-ng-if="VerificationReq">
+            <p>In order to gain full access to this feature, please complete your enrollment.</p>
+            <a href="#/preferencePage/mychoice/activationCodeStep1" class="ups-link">Verify Now</a> </div>
+        <div class="row" data-ng-if="(!VerificationReq)">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-leave_At" class="ups-form_label">Delivery Location</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <select  data-ng-model="formObj.leaveAt" class="ups-dropdown" name="upsLeaveAt" data-ng-options="options for options in formObj.leaveAtOptions" id="ups-leave_At">
+                            <option value="" selected>None Selected</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <h3>Shipment Release Authorization</h3>
+        <div data-ng-if="(!VerificationReq && !ASRnotAllowed && !SignatureRequired)">
+            <div data-ng-if="(formObj.countryCode.toLowerCase() == 'us')">
+                <p>I authorize UPS to release packages addressed to my residence when no one is present to accept delivery. UPS will make only one delivery attempt and will not obtain a signature upon delivery.</p>
+                <p>I understand that a UPS delivery record will be conclusive proof of delivery, and I accept all responsibility for loss or damage after the package has been released at the address.</p>
+                <p>I understand that UPS retains sole and unlimited discretion to honor my Autherized Shipment Release request for any package (and may not, for example, due to delivery conditions such as adverse weather or safety) and that Authorized Shipment Release is not available when a package requires an adult signature.</p>
+            	<p>For more information, refer to the UPS My Choice Service Terms</p>                
+				<a href="repl_href" class="ups-link">Download the UPS My Choice Service Terms</a> </div>
+            <div data-ng-if="(formObj.countryCode.toLowerCase() == 'at' || formObj.countryCode.toLowerCase() == 'be' || formObj.countryCode.toLowerCase() == 'ca' || formObj.countryCode.toLowerCase() == 'dk' || formObj.countryCode.toLowerCase() == 'fr' || formObj.countryCode.toLowerCase() == 'mx' || formObj.countryCode.toLowerCase() == 'nl' || formObj.countryCode.toLowerCase() == 'pr' || formObj.countryCode.toLowerCase() == 'es' || formObj.countryCode.toLowerCase() == 'se' || formObj.countryCode.toLowerCase() == 'ch' || formObj.countryCode.toLowerCase() == 'gb')">
+                <p>I authorize UPS to release packages addressed to my residence when no one is present to accept delivery. UPS will make only one delivery attempt and will not obtain a signature upon delivery.</p>
+                <p>I understand that a UPS delivery record will be conclusive proof of delivery, and I accept all responsibility for loss or damage after the package has been released at the address.</p>
+                <p>I understand that UPS retains sole and unlimited discretion to honor my Autherized Shipment Release request for any package (and may not, for example, due to delivery conditions such as adverse weather or safety) and that Authorized Shipment Release is not available when a package requires an adult signature.</p>
+                <p>For more information, refer to the UPS My Choice Service Terms</p>
+                <a href="repl_href" class="ups-link">Download the UPS My Choice Service Terms</a> </div>
+            <div data-ng-if="(formObj.countryCode.toLowerCase() == 'it')">
+                <p>I authorize UPS to release packages addressed to my residence when no one is present to accept delivery. UPS will make only one delivery attempt and will not obtain a signature upon delivery.</p>
+                <p>I understand that a UPS delivery record will be conclusive proof of delivery, and I accept all responsibility for loss or direct, indirect and consequential damage to the package, as well as for loss and direct, indirect, and consequential damage caused by the package, even to third parties, after the package has been released at the address.</p>
+                <p>I understand that UPS retains sole and unlimited discretion to honor my Autherized Shipment Release request for any package (and may not, for example, due to delivery conditions such as adverse weather or safety) and that Authorized Shipment Release is not available when a package requires an adult signature.</p>
+                <p>For more information, refer to the UPS My Choice Service Terms</p>
+                <a href="repl_href" class="ups-link">Download the UPS My Choice Service Terms</a> </div>
+            <div data-ng-if="(formObj.countryCode.toLowerCase() == 'pl')">
+                <p>I authorize UPS to release packages addressed to my residence when no one is present to accept delivery. UPS will make only one delivery attempt and will not obtain a signature upon delivery.</p>
+                <p>I understand that a UPS delivery record will be conclusive proof of delivery, and I accept all responsibility for loss or damage after the package has been released at the address.</p>
+                <p>I understand that UPS retains sole and unlimited discretion to honor my Autherized Shipment Release request for any package (and may not, for example, due to delivery conditions such as adverse weather or safety) and that Authorized Shipment Release is not available when a package requires an adult signature.</p>
+                <p>I understand that once the package in released, UPS is not able to ensure safety of my package and my package may be taken by a third party without any liability on the part of UPS or the shipper.</p>
+                <p>For more information, refer to the UPS My Choice Service Terms</p>
+                <a href="repl_href" class="ups-link">Download the UPS My Choice Service Terms</a> </div>
+            <div data-ng-if="(formObj.countryCode.toLowerCase() != 'pl' && formObj.countryCode.toLowerCase() != 'it' && formObj.countryCode.toLowerCase() != 'at' && formObj.countryCode.toLowerCase() != 'be' && formObj.countryCode.toLowerCase() != 'ca' && formObj.countryCode.toLowerCase() != 'dk' && formObj.countryCode.toLowerCase() != 'fr' && formObj.countryCode.toLowerCase() != 'mx' && formObj.countryCode.toLowerCase() != 'nl' && formObj.countryCode.toLowerCase() != 'pr' && formObj.countryCode.toLowerCase() != 'es' && formObj.countryCode.toLowerCase() != 'se' && formObj.countryCode.toLowerCase() != 'ch' && formObj.countryCode.toLowerCase() != 'gb' && formObj.countryCode.toLowerCase() != 'us')">
+                <p>I authorize UPS to release packages addressed to my residence when no one is present to accept delivery. UPS will make only one delivery attempt and will not obtain a signature upon delivery.</p>
+                <p>I accept all responsibility for loss or damage after the package has been released at the address.</p>
+                <p>I understand that in some cases, UPS may not follow the directions given in my release request, especially if there are indications that a delivery according to my directions may cause loss of, or damage to, the package, e.g. due to delivery conditions such as adverse weather or safety or due to a deviating agreement with the shipper, such as where the shipper has specified that an adult signature is required for a package or for cash on delivery shipments. I will be informed without undue delay when UPS decides not to follow my directions in this way.</p>
+                <p>For more information, refer to the UPS My Choice Service Terms</p>
+                <a href="repl_href" class="ups-link">Download the UPS My Choice Service Terms</a> </div>
+        </div>
+        <!--<p><strong>Note: </strong>The Leave At instructions will only be applied if you authorize shipment release.</p>-->
+        <div data-ng-if='VerificationReq && !ASRnotAllowed && !SignatureRequired'>
+            <p>In order to gain full access to this feature, please complete your enrollment</p>
+            <a href="#/preferencePage/mychoice/activationCodeStep1" class="ups-link">Verify Now</a> </div>
+        <p data-ng-if='!VerificationReq && ASRnotAllowed && !SignatureRequired'>Based on your selected delivery location, this option is not available. Someone must be available to sign for your packages.</p>
+        <p data-ng-if='!VerificationReq && !ASRnotAllowed && SignatureRequired'>Please know that someone at your chosen delivery location must be available to sign for your packages.</p>
+        <div class="ups-form_group" data-ng-if='!VerificationReq && !ASRnotAllowed && !SignatureRequired'>
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-Authorize" class="ups-checkbox-custom"
+                    name="ups-upsAuthorize" type="checkbox" value="1"
+                    data-ng-click="check()"
+                    data-ng-model="upsAuthorize"
+                    data-ng-checked="upsAuthorize">
+                <label for="ups-Authorize" class="ups-checkbox-custom-label">I authorize release of my shipments</label>
+            </div>
+        </div>
+        <div class="row ups-test_links">
+            <div class="col-md-3">
+                <div class="ups-form_ctaGroup" data-ng-if='!VerificationReq'>
+                    <button type="submit"
+							class="ups-cta ups-cta_primary ups-form-offset"
+							data-ng-click="saveLeaveInstruction()">Save
+                    </button>
+                    <!-- data-ng-disabled="!(ups_leaveInstructions.$dirty)||!checked || wrongGate" --> 
+                </div>
+                <!-- ups-form_ctaGroup --> 
+            </div>
+        </div>
+        
+        <!------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        --	Remove these buttons in production. 									  --
+        --																			  --
+        --------------------------------------------------------------------------------
+        --------------------------------------------------------------------------------
+        ------------------------------------------------------------------------------->
+        <div class="ups-cms-demo">
+            <div class="row ups-test_links" >
+                <div class="col-md-4">
+                    <p><a href="#" onclick="return false;" data-ng-click="formObj.countryCode = 'AT'" class="ups-link">ASR for AT, BE, CA, DK, FR, MX, NL, PR, ES, SE, CH, GB</a></p>
+                </div>
+                <div class="col-md-2">
+                    <p><a href="#" onclick="return false;" data-ng-click="formObj.countryCode = 'IT'" class="ups-link">ASR for IT </a></p>
+                </div>
+                <div class="col-md-2">
+                    <p><a href="#" onclick="return false;" data-ng-click="formObj.countryCode = 'PL'" class="ups-link">ASR PL</a></p>
+                </div>
+                <div class="col-md-2">
+                    <p><a href="#" onclick="return false;" data-ng-click="formObj.countryCode = 'UN'" class="ups-link">ASR for all others</a></p>
+                </div>
+                <div class="col-md-2">
+                    <p><a href="#" onclick="return false;" data-ng-click="formObj.countryCode = 'US'" class="ups-link">ASR for US</a></p>
+                </div>
+            </div>
+            <div class="row ups-test_links" >
+                <div class="col-md-3">
+                    <p><a href="#" onclick="return false;" data-ng-click="VerifyScreen()" class="ups-link">Verification Required</a></p>
+                </div>
+                <div class="col-md-3">
+                    <p><a href="#" onclick="return false;" data-ng-click="NotAllowed()" class="ups-link">ASR Not Allowed- Leave At </a></p>
+                </div>
+                <div class="col-md-3">
+                    <p><a href="#" onclick="return false;" data-ng-click="SignatureReq()" class="ups-link">ASR Not Allowed- Signature Required</a></p>
+                </div>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------
+    	-------------------------------------------------------------------------------> 
+    </ng-form>
+</div>

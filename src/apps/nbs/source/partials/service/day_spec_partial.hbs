@@ -1,0 +1,318 @@
+<div class="ups-toggle_view_right" id="pickupDailyAddOnCall">
+    <div class="ups-group">
+        <p>{(UPS Account FOO1030) is a {Daily Pickup} Account}. Your Pickups occur {once each business day}.</p>
+    </div>
+    <div class="ups-group ups-group_condensed">
+        <p class="ups-group_label">Pickup Location</p>
+        <p>{Company or Name}</p>
+        <address>
+            {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+        </address>
+    </div>
+
+    <fieldset class="ups-form_group">
+        <legend class="ups-form_label">What would you like to do?</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupIncludeNextPickup9"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption9"
+                value="0"
+                type="radio">
+            <label for="shipmentPickupIncludeNextPickup9" class="ups-radio-custom-label">
+                Include this shipment in one of my pending pickups.
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupScheduleAdditional9"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption9"
+                value="1"
+                type="radio">
+            <label for="shipmentPickupScheduleAdditional9" class="ups-radio-custom-label">
+                Schedule an additional UPS On-Call Pickup.
+            </label>
+        </div>
+    </fieldset>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="ups-form_group ups-form_required">
+                <label for="packagePickupDate3" class="ups-form_label">
+                    Pickup Date
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                    <input type="text" name="packagePickupDate3" class="ups-form_input" id="packagePickupDate3" aria-required="true" value="{Saturday 03/10/17}" required="" aria-label="Please enter date in mm/dd/yyyy format">
+                    <button type="button" class="ups-date_picker_button">
+                        <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Select date from a calendar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ups-section ups-section_condensed">
+        <div class="ups-section-header">
+            <!-- Edit Button spans are for translations & reader text -->
+            <button type="button" class="ups-link pull-right" id="editPickupBtn">
+                <span id="pickupInEditTxt" style="display: none;">Cancel</span>
+                <span id="pickupNotInEditTxt">Edit</span>
+                <span class="ups-readerTxt"> Pickup Address</span>
+            </button>
+            <p class="ups-subsection_heading ups-section_heading_label">Pickup Address</p>
+        </div>
+        <div id="noEditPickup">
+            {Company or Name}
+            <address class="ups-address_condensed">
+            {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+            </address>
+        </div>
+    </div>
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <!-- Edit Button spans are for translations & reader text -->
+            <button type="button" class="ups-link pull-right" id="pickupTimeEditBtn">
+                <span id="pickupTimeNotInEditTxt">Edit</span>
+                <span id="pickupTimeInEditTxt" style="display: none;">Cancel</span>
+                <span class="ups-readerTxt"> Pickup Details</span>
+            </button>
+            <p class="ups-subsection_heading ups-section_heading_label">Pickup Details</p>
+        </div>
+        <!--<div id="noEditPickupTime">
+            <p><strong>Your Pickup Window:</strong> 8:00AM - 6:00PM</p>
+            <p><strong>Pickup Location:</strong> Front Door</p>
+        </div>-->
+        <div class="row" id="noEditPickupTime">
+            <div class="col-md-4">
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                    Your Pickup Window
+                    </p>
+                    <p class="ups-group_value">
+                        8:00AM - 6:00PM
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                        Pickup Location
+                    </p>
+                    <p class="ups-group_value">
+                        Front Door
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ups-group">
+                    <p class="ups-group_label">
+                    {Pickup Reference}
+                    </p>
+                    <p class="ups-group_value">
+                        {pickup reference}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pickupDaySpecificScheduledToday">
+    <div class="ups-group">
+        <p class="h4">\{{UPS Account FOO100} is a {Day Specific Pickup} Account for {3 days}}</p>
+        <p>Your Pickups will occur on <strong>{Monday, Tuesday, Wednesday, Thursday, Friday}</strong></p>
+    </div>
+    <div class="ups-group ups-group_condensed">
+        <p class="ups-group_label">Pickup Location</p>
+        <p>{Company or Name}</p>
+        <address>
+            {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+        </address>
+    </div>
+    <div class="ups-form_group">
+        {{>A05_switch_lever includeCurrentShipmentLever }}
+    </div>
+    <fieldset class="ups-form_group" id="includeCurrentShipmentOptions">
+        <legend class="ups-form_label">What would you like to do?</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupIncludeNextPickup"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption"
+                value="0"
+                type="radio">
+            <label for="shipmentPickupIncludeNextPickup" class="ups-radio-custom-label">
+                Include this shipment with the next scheduled pickup on {weekday}. (Free)
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupDropOff"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption"
+                value="1"
+                type="radio">
+            <label for="shipmentPickupDropOff" class="ups-radio-custom-label">
+                Drop off my package at a UPS location. (Free)
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupScheduleAdditional"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption"
+                value="2"
+                type="radio">
+            <label for="shipmentPickupScheduleAdditional" class="ups-radio-custom-label">
+                Schedule a{n additional} UPS On-Call Pickup. (+ Fee)
+            </label>
+            <p class="ups-form_subheader ups-indent_with_input">You may schedule an Air or International pickup at no charge.</p>
+        </div>
+    </fieldset>
+</div>
+
+<div id="pickupDaySpecificNotScheduledToday">
+    <div class="ups-group">
+        <p class="h4">\{{UPS Account FOO100} is a {Day Specific Pickup} Account for {3 days}}</p>
+        <p>Your Pickups occur on <strong>{weekday, weekday, weekday}</strong></p>
+    </div>
+    <div class="ups-group ups-group_condensed">
+        <p class="ups-group_label">Pickup Location</p>
+        <p>{Company or Name}</p>
+        <address>
+            {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+        </address>
+    </div>
+    <div class="ups-form_group">
+        {{>A05_switch_lever shipmentGoOutTodayLever }}
+    </div>
+    <fieldset class="ups-form_group">
+        <legend class="ups-form_label">What would you like to do?</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper" id="shipmentPickupIncludeNextPickupOption">
+            <input id="shipmentPickupIncludeNextPickup2"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption2"
+                value="0"
+                type="radio">
+            <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+                Include this shipment with the next scheduled pickup on {weekday}. (Free)
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupDropOff2"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption2"
+                value="1"
+                type="radio">
+            <label for="shipmentPickupDropOff2" class="ups-radio-custom-label">
+                Drop off my package at a UPS location. (Free)
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="shipmentPickupScheduleAdditional2"
+                class="ups-radio-custom"
+                name="shipmentPickupScheduleOption2"
+                value="2"
+                type="radio">
+            <label for="shipmentPickupScheduleAdditional2" class="ups-radio-custom-label">
+                Schedule a{n additional} UPS On-Call Pickup. (+ Fee)
+            </label>
+            <p class="ups-form_subheader ups-indent_with_input">You may schedule an Air or International pickup at no charge.</p>
+        </div>
+    </fieldset>
+</div>
+
+<div id="pickupDaySpecificNotScheduledTodayOnCall">
+    <div class="ups-group">
+        <p class="h4">\{{UPS Account FOO100} is a {Day Specific Pickup} Account for {3 days}}</p>
+        <p>Your Pickups occur on <strong>{weekday, weekday, weekday}</strong></p>
+    </div>
+    <div class="ups-group ups-group_condensed">
+        <p class="ups-group_label">Pickup Location</p>
+        <p>{Company or Name}</p>
+        <address>
+            {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+        </address>
+    </div>
+    <div class="ups-form_group">
+        {{>A05_switch_lever shipmentGoOutToday2Lever }}
+    </div>
+    <div id="pickupDaySpecificNotScheduledTodayOnCallYes">
+        <div class="ups-group">
+            <p class="h4">We are on our way.</p>
+            <p>We are scheduled to pick up your shipment today</p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-group_label">Scheduled On-Call Pickups for {UPS Account Number}</p>
+            <p>{n} pickup for {weekday}{mm/dd/yyyy}</p>
+        </div>
+    </div>
+    <div id="pickupDaySpecificNotScheduledTodayOnCallNo">
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">What would you like to do?</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" id="shipmentPickupIncludeNextPickupOption">
+                <input id="shipmentPickupIncludeNextPickup3"
+                    class="ups-radio-custom"
+                    name="shipmentPickupScheduleOption3"
+                    value="0"
+                    type="radio">
+                <label for="shipmentPickupIncludeNextPickup3" class="ups-radio-custom-label">
+                    Include this shipment with the next scheduled pickup on {weekday}. (Free)
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="shipmentPickupDropOff3"
+                    class="ups-radio-custom"
+                    name="shipmentPickupScheduleOption3"
+                    value="1"
+                    type="radio">
+                <label for="shipmentPickupDropOff3" class="ups-radio-custom-label">
+                    Drop off my package at a UPS location. (Free)
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="shipmentPickupScheduleAdditional3"
+                    class="ups-radio-custom"
+                    name="shipmentPickupScheduleOption3"
+                    value="2"
+                    type="radio">
+                <label for="shipmentPickupScheduleAdditional3" class="ups-radio-custom-label">
+                    Schedule a{n additional} UPS On-Call Pickup. (+ Fee)
+                </label>
+                <p class="ups-form_subheader ups-indent_with_input">You may schedule an Air or International pickup at no charge.</p>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="ups-toggle_view_right" id="pickupDaySpecificOnePendingPickup">
+   <div class="ups-group">
+       <p>{ {UPS Account FOO100} is a {3} Day-Specific Pickup} Account}. Your Pickups will occur every {Weekday, Weekday, Weekday}.</p>
+   </div>
+   <div class="ups-group ups-group_condensed">
+       <p class="ups-group_label">Pickup Location</p>
+       <p>{Company or Name}</p>
+       <address>
+           {Address Line 1}, {City}, {State}, {ZIP Code}, {Country or Territory}
+       </address>
+   </div>
+   <fieldset class="ups-form_group">
+       <legend class="ups-form_label">What would you like to do?</legend>
+       <div class="ups-buttonList_wrapper ups-input_wrapper" id="shipmentPickupIncludeNextPickupOption">
+           <input id="shipmentPickupIncludeNextPickup8"
+               class="ups-radio-custom"
+               name="shipmentPickupScheduleOption8"
+               value="0"
+               type="radio">
+           <label for="shipmentPickupIncludeNextPickup8" class="ups-radio-custom-label">
+               Include this shipment in one of my pending pickups.
+           </label>
+       </div>
+       <div class="ups-buttonList_wrapper ups-input_wrapper">
+           <input id="shipmentPickupScheduleAdditional8"
+               class="ups-radio-custom"
+               name="shipmentPickupScheduleOption8"
+               value="1"
+               type="radio">
+           <label for="shipmentPickupScheduleAdditional8" class="ups-radio-custom-label">
+               Schedule an additional UPS On-Call Pickup.
+           </label>
+       </div>
+   </fieldset>
+</div>

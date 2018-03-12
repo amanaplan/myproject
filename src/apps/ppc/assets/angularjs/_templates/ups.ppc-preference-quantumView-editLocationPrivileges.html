@@ -1,0 +1,81 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewAdminEditLocationPrivileges">
+    <a point-focus="" href="#/preferencePage/quantumView/userAdministration" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to User Administration
+	</a>
+    <div class="ups-form_wrap">
+        <h2>Edit Location Privileges</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <p><strong>Name:</strong></p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <p>
+                            Abigail Smith
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <p><strong>User ID:</strong></p>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <p>
+                            asmith
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>This user will be able to view shipment information for the selected locations.</p>
+        <p>Displaying 1-nnn of nnn</p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="ups-table table-responsive ups-tableScroll">
+                    <table class="table table-striped">
+                         <caption class="ups-readerTxt">Edit Location Privileges table</caption>
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="col-xs-1 text-center"><input check-verify
+                                    id="ups-selectBox" class="ups-checkbox-custom" name="ups-selectBox"
+                                    type="checkbox"
+                                    data-ng-click="toggleSelect()"> <label
+                                    for="ups-selectBox" class="ups-checkbox-custom-label ups-table-checkbox-first-column"><span
+                                        class="ups-readerTxt">Select All</span></label>
+                                </th>
+                                <th scope="col" class="ups-table_header_tertiary">Location ID</th>
+                                <th scope="col" class="ups-table_header_tertiary">Company Name</th>
+                                <th scope="col" class="ups-table_header_tertiary">Address</th>
+                                <th scope="col" class="ups-table_header_tertiary">Country</th>
+                                <th scope="col" class="ups-table_header_tertiary">Status</th>
+                            </tr>
+                            <tr data-ng-repeat="privileges in editPrivileges">
+                                <td class="text-center"><input check-verify
+                                    id="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom"
+                                    name="ups-selectBox" type="checkbox" ng-model="privileges.selected"> <label
+                                    for="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom-label ups-table-checkbox-first-column"><span
+                                        class="ups-readerTxt">Select {{privileges.locationID}}</span></label>
+                                </td>
+                                <th scope="row">{{privileges.locationID}}</th>
+                                <td>{{privileges.companyName}}</td>
+                                <td>
+                                    {{privileges.streetAddress}}<br>
+                                    {{privileges.cityState}}<br>
+                                    {{privileges.postalCode}}
+                                </td>
+                                <td>{{privileges.country}}</td>
+                                <td data-ng-if="privileges.activeStatus">Active</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+         <div class="ups-form_ctaGroup">
+             <button type="button" class="ups-cta ups-cta_primary" data-ng-click="">Save</button>
+             <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="closeDialog()">Cancel</button>
+         </div>
+     </div>
+ </div>

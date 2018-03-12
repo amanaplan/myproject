@@ -1,0 +1,202 @@
+<div class="secLvl step">
+                <div class="secHead clearfix">
+                    <div class="stepNumberDiv"><span class="stepNumber">1</span></div>
+                    <h3>{{#unless shipping_label.no-printed }}Shipping Label Questions{{/unless}}{{#if shipping_label.no-printed }}Do you have UPS Shipping Labels?{{/if}}</h3>
+                </div>
+                <!-- End Header Bar --> 
+                
+                <div class="secBody clearfix">
+                    <fieldset class="ups-form_group">
+						<legend class="ups-form_label">Do you have pre-printed <a href="repl_href" class="btnlnkR helpIconR">UPS Shipping Labels</a> for your {{#unless shipping_label.no-printed }}shipment?{{/unless}}{{#if shipping_label.no-printed }}packages or letters?{{/if}}</legend>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="yesShippingLabels" class="ups-radio-custom" name="shippingLabelsQuestion" value="1" type="radio">
+							<label for="yesShippingLabels" class="ups-radio-custom-label">Yes</label>
+						</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input id="noShippingLabels" class="ups-radio-custom" name="shippingLabelsQuestion" value="2" type="radio">
+							<label for="noShippingLabels" class="ups-radio-custom-label">No</label>
+						</div>
+					</fieldset>
+                    {{#unless shipping_label.no-printed }}
+					<div class="ups-form_group">
+						<label class="ups-form_label" for="trackNumbers">Optional: Enter tracking numbers, separated by commas, to check if pickup charges are prepaid.</label>
+						<p><em><strong>(If you have <a href="repl_href"  class="btnlnkR helpIconR"> return label</a> tracking numbers, enter them here.)</strong></em></p>							
+						<div class="row">
+							<div class="col-xs-5">
+								<div class="ups-form_group">
+									<div class="ups-textArea_wrapper ups-input_wrapper">
+										<textarea class="ups-textArea" cols="32" id="trackNums" name="trackNums" rows="4"></textarea>
+										<p><em><strong>(Maximum 30 tracking numbers)</strong></em></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="error">Note: Pickup charges will apply for the tracking number(s) entered. To avoid charges, you may drop your package at a nearby location.</p>
+					</div>
+                    {{/unless}}
+					
+					{{#if shipping_label.no-printed }}
+					<p><strong>You selected no pre-printed labels.</strong></p>
+					<div class="indent secLvlPad">
+						<p><strong>Did you know you can create labels and schedule a pickup using UPS Internet Shipping?</strong></p>
+                        <p>You will need to Log in for this option</p>
+                        <p>Continue scheduling a pickup using <a href="repl_href" class="ups-link">UPS Internet Shipping</a>.</p>
+					</div>
+                    <p>To schedule a pickup without labels (your driver will bring shipping documents), continue below.</p>
+                    <div class="ups-form_group">
+						<div class="ups-checkbox ups-input_wrapper">
+							<input id="payMyDriver" class="ups-checkbox-custom" name="payMyDriver" type="checkbox">
+							<label for="payMyDriver" value="1" class="ups-checkbox-custom-label">I will <a href="repl_href" class="btnlnkR helpIconR">pay my driver</a> using [Cash], Check, or Money Order</label>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if shipping_label.no-printed-singapore-slovenia }}
+					<p>To schedule a collection for this UPS Worldwide Express Freight shipment <a href="#repl_href">contact UPS</a>.</p>
+					{{/if}}
+				
+					 {{#if shipping_label.non-duplicate}}
+                        <p>Note: You entered a tracking number that can be used for a pre-paid On-Call Pickup<sup>&reg;</sup>. No further payment is required.</p>
+                        <p>Note: Pickup charges might apply for the tracking number(s) entered. To avoid charges, enter a valid pre-paid tracking number or drop off your package at a nearby location.</p>
+                        <p>The tracking number(s) might require a pickup charge because they were used previously. To avoid charges, enter a valid pre-paid tracking number or drop off your package at a nearby location.</p>
+                        <p>The following tracking numbers have been used and were removed from the list:</p>
+                        <p>1Zaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <p>1Zaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    {{/if}}
+					
+					 {{#if shipping_label.redisplay}}
+					 <div class="ups-group">
+                     <p class="ups-group_label">Correct the Tracking Numbers as indicated:</p> 
+					 </div>
+                    <div class="row">
+						<div class="col-xs-5">
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum1" class="ups-form_label ups-input_number">1.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum1">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum2" class="ups-form_label ups-input_number error">&gt;&gt;&gt;2.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum2">
+								</div>
+							</div>
+							
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum3" class="ups-form_label ups-input_number">3.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum3">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum4" class="ups-form_label ups-input_number">4.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum4">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum5" class="ups-form_label ups-input_number">5.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum5">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum6" class="ups-form_label ups-input_number">6.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum6">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum7" class="ups-form_label ups-input_number">7.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum7">
+								</div>
+							</div>
+							<div class="ups-form_group ups-input_has_number">
+								<label for="trackNum8" class="ups-form_label ups-input_number">8.</label>
+								<div class=" ups-text_wrapper ups-input_wrapper ">
+									<input type="text" name="repl_name" class="ups-form_input" id="trackNum8">
+								</div>
+							</div>
+						</div>
+					</div>
+					 <p><strong>Note:</strong> None of the entered Tracking Numbers can accept return shipping or pickup charges. You will be prompted for a payment method on a subsequent page.</p>
+
+					{{/if}}
+					
+					<!-- ------------------------- -->
+					<!-- Old Legacy Implementation -->
+					<!-- ------------------------- -->
+					<!--<p><span class="label">Do you have pre-printed <a href="repl_href">UPS Shipping Labels</a> for your {{#unless shipping_label.no-printed }}shipment?{{/unless}}{{#if shipping_label.no-printed }}packages or letters?{{/if}}</span></p>
+                    <fieldset>
+                        <legend>Select an Option</legend>
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio1"/></td>
+                                    <td><label for="radio1" class="sel">Yes</label></td>
+                                </tr>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="radio_group_name" type="radio" value="" id="radio2"/></td>
+                                    <td><label for="radio2" class="sel">No</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+					
+					
+					
+                    
+                    {{#unless shipping_label.no-printed }}
+                    <label for="textarea1">Optional: Enter tracking number, separated by commas, to check if pickup charges are prepaid.</label>
+                    <p>(If you have <a href="repl_href">return label</a> tracking numbers, enter them here.)</p>
+                    <textarea id="textarea1" cols="32" rows="3" class="full reqTxtInst">enter tracking numbers here</textarea>
+                    <p class="reqTxtInst">(Maximum 30 tracking numbers)</p>
+                    {{/unless}}
+                    
+                    {{#if shipping_label.no-printed }}
+                        <p><span class="label">You selected no pre-printed labels.</span></p>
+                        <div class="indent secLvlPad">
+                            <p><span class="label">Did you know you can create labels and schedule a pickup using UPS Internet Shipping?</span></p>
+                            <p>You will need to Log in for this option</p>
+                            <p>Continue scheduling a pickup using <a href="repl_href">UPS Internet Shipping</a>.</p>
+                        </div>
+                        <p>To schedule a pickup without labels (your driver will bring shipping documents), continue below.</p>
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td class="sel" scope="row"><input name="repl_name" type="checkbox" value="" id="chxbox1"/></td>
+                                    <td><label for="chxbox1" class="sel">I will <a href="repl_href" class="btnlnkR helpIconR">pay my driver</a> using [Cash,] Check, or Money Order</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {{/if}}
+                    
+                    {{#if shipping_label.default}}
+                        <p><strong>Note: Pickup charges will apply for the tracking number(s) entered. To avoid charges, you may drop your package at a nearby location.</strong></p>
+                    {{/if}}
+                    
+                    {{#if shipping_label.non-duplicate}}
+                        <p>Note: You entered a tracking number that can be used for a pre-paid On-Call Pickup&reg. No further payment is required.</p>
+                        <p>Note: Pickup charges might apply for the tracking number(s) entered. To avoid charges, enter a valid pre-paid tracking number or drop off your package at a nearby location.</p>
+                        <p>The tracking number(s) might require a pickup charge because they were used previously. To avoid charges, enter a valid pre-paid tracking number or drop off your package at a nearby location.</p>
+                        <p>The following tracking numbers have been used and were removed from the list:</p>
+                        <p>1Zaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                        <p>1Zaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    {{/if}}
+                    
+                    {{#if shipping_label.redisplay}}
+                        <p><span class="label">Correct the Tracking Numbers as indicated:</span></p>
+                        <p><label for="trackNum1">1.</label><input type="text" name="repl_name" id="trackNum1" class="formcol5"></p>
+                        <p><label for="trackNum2"><span class="error">>>> 2.</span></label><input type="text" name="repl_name" id="trackNum2" class="formcol5"></p>
+                        <p><label for="trackNum3">3.</label><input type="text" name="repl_name" id="trackNum3" class="formcol5"></p>
+                        <p><label for="trackNum4">4.</label><input type="text" name="repl_name" id="trackNum4" class="formcol5"></p>
+                        <p><label for="trackNum5">5.</label><input type="text" name="repl_name" id="trackNum5" class="formcol5"></p>
+                        <p><label for="trackNum6">6.</label><input type="text" name="repl_name" id="trackNum6" class="formcol5"></p>
+                        <p><label for="trackNum7">7.</label><input type="text" name="repl_name" id="trackNum7" class="formcol5"></p>
+                        <p><label for="trackNum8">8.</label><input type="text" name="repl_name" id="trackNum8" class="formcol5"></p>
+                        <p><strong>Note:</strong> None of the entered Tracking Number can accept return shipping or pickup charges. You will be prompted for a payment method on a subsequent page.</p>
+                    {{/if}}-->
+                </div>
+            </div>

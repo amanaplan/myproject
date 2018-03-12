@@ -1,0 +1,56 @@
+{{> global_html_header }}
+
+<div class="iw_viewport-wrapper">
+
+<!-- Begin WEM Header -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M01_main_nav mainNav_de}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Header -->
+
+<!-- Begin WEM Neck -->
+	{{> ts_container_start}}
+
+        {{#if breadcrumb}}
+            {{> ts_component_start}}
+            {{> M14_breadcrumb}}
+            {{> ts_component_end}}
+        {{/if}}
+
+        {{#unless noPageTitle}}
+            {{> ts_component_start}}
+            {{#if this.share}}
+                {{#compare this.share.length ">" 0}}
+                    {{> M07_page_title_share}}
+                {{else}}
+                    {{> M07_page_title}}
+                {{/compare}}
+            {{else}}
+                {{> M07_page_title}}
+            {{/if}}
+            {{> ts_component_end}}
+        {{/unless}}
+
+	{{> ts_container_end}}
+<!-- End WEM Neck -->
+
+<!-- Begin WEM Body -->
+    <!--<main id="ups-main">-->
+	{{> ts_container_start}}
+        {{ body }}
+	{{> ts_container_end}}
+    <!--</main>-->
+<!-- End WEM Body -->
+
+<!-- Begin WEM Footer -->
+	{{> ts_container_start}}
+	{{> ts_component_start}}
+    	{{> M02_footer footer_de}}
+	{{> ts_component_end}}
+	{{> ts_container_end}}
+<!-- End WEM Footer -->
+</div>
+
+{{> global_html_footer }}

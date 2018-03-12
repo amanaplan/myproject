@@ -1,0 +1,203 @@
+<!-- //// start ups.ppc-mychoice-preference-packageMatchingOptions.html  //// -->
+<div class="ups-packageMatchingOptions" data-ng-controller="packageMatchingOptionsCtrl">
+    <ng-form error-on-submit name="ups_packageMatchingOptionsForm" novalidate>
+    <div data-ng-if="clicked && checkFormErrors()">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+        <ul class="ups-icons-error">
+            <li data-ng-if="clicked && ups_packageMatchingOptionsForm.upsEmailAddress.$invalid"><span> <a
+                    focus-attr="upsEmailAddress" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Email Address </a> is required. </span></li>
+
+            <li data-ng-if="clicked && ups_packageMatchingOptionsForm.upsPhoneNumberInput.$invalid"><span> <a
+                focus-attr="upsPhoneNumberInput" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Phone Number </a> is <span ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$error.required">required.</span><span ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$error.pattern">invalid.</span> </span></li>
+
+            <li data-ng-if="clicked && ups_editDiscounts.ups_phoneType.id == '0'"><span> <a
+                    focus-attr="ups_phoneType" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Type </a> is required. </span></li>
+        </ul>
+    </div>
+    <h3>Other Ways to Match Packages Coming to Your Location</h3>
+    <!-- Instructions -->
+    <p data-ng-if="pendingVerification">
+       You can link up to ten additional phone or email contacts to your address. Shipments listing one of these contacts be tracked and received on your behalf. (NOTE: package rerouting and certain other features may not be available to these users.)
+    </p>
+    <p data-ng-if="addEmailsPhone || Verified">
+       Provide information below regarding email addresses and phone number associated with your My Choice Membership location. You can have enhanced views of package status for packages that include these email addresses and phone numbers in their shipping label. <span data-ng-if="Verified">Enter up to 10 matching values, consisting of email addresses and phone numbers.</span></p>
+    <!-- End of Instructions -->
+
+    <!-- Email Section-->
+    <!-- Note: You can find the resize directive @ src/common/apps/assets/angularjs/Base/directives/ups.DOApp.directives.js -->
+    <div resize data-ng-class="{'ups-indent': windowWidth > 768}">
+       <fieldset class="ups-form_group">
+          <legend class="ups-form_label">Email</legend>
+          <p class="ups-group_value">jsmith@yahoo.com <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Delete</button><span class="h5" data-ng-if="pendingVerification" resize data-ng-class="{'ups-contact_edit_SVP': windowWidth < 768, 'ups-indent': windowWidth > 768 }" >VERIFIED</span></p>
+          <hr class="visible-xs" data-ng-if="pendingVerification" />
+          <p class="ups-group_value">janesmith@gmail.com <button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Delete</button><span data-ng-if="pendingVerification" class="h5" resize data-ng-class="{'ups-contact_edit_SVP': windowWidth < 768, 'ups-indent': windowWidth > 768 }" >PENDING VERIFICATION</span> <button resize data-ng-class="{'ups-indent': windowWidth > 768}" type="button" class="ups-link" data-ng-if="pendingVerification">Resend Verification Email</button></p>
+          <hr class="visible-xs" data-ng-if="pendingVerification" />
+          <div class="row" data-ng-if="Verified">
+             <div class="col-sm-5 pull-left">
+                <button type="button" class="ups-btn_has_icon ups-cta ups-cta_secondary ups-input_btn_action"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span> Add Email Address</button>
+             </div>
+          </div>
+          <div class="row" data-ng-if="addEmailsPhone">
+             <div class="col-sm-5">
+                 <div class="ups-form_group ups-form_required">
+                     <label for="upsEmailAddress" class="ups-form_label">
+                         Email Address
+                         <span aria-hidden="true" class="ups-required_indicator"></span>
+                     </label>
+                     <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+                         <input type="text" name="upsEmailAddress" class="ups-form_input" id="upsEmailAddress" aria-required="true" required data-ng-model="ups_editDiscounts.ups_EmailAddress_Input"
+                         data-ng-class="{'ups-bodError' : (ups_packageMatchingOptionsForm.upsEmailAddress.$invalid && clicked)}" aria-describedby="upsEmailAddress-error" maxlength="50" title="address@domain.com">
+                         <div data-ng-if="ups_packageMatchingOptionsForm.upsEmailAddress.$valid">
+                             <!-- @Note: screen reader text needs to be translated as well -->
+                             <span class="ups-icon-check" aria-hidden="true"></span>
+                             <span class="ups-readerTxt">Check</span>
+                         </div>
+                         <span id="upsEmailAddress-error" role="alert">
+                             <span class="ups-invalid_color"
+                                 data-ng-show="(!ups_packageMatchingOptionsForm.upsEmailAddress.$pristine && ups_packageMatchingOptionsForm.upsEmailAddress.$invalid) || (ups_packageMatchingOptionsForm.upsEmailAddress.$invalid && clicked)">
+                                 <span class="icon ups-error_exclamation">
+                                     <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                 </span>
+                                 <span class="ups-readerTxt">Invalid</span> <span
+                                 data-ng-if="ups_packageMatchingOptionsForm.upsEmailAddress.$error.required">Email Address is required.</span>
+                             </span>
+                             <span data-ng-if="ups_packageMatchingOptionsForm.upsEmailAddress.$valid">
+                                 <span class="ups-readerTxt">Check</span>
+                             </span>
+                         </span>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-4">
+                <div class="ups-form_ctaGroup ups-no_label ">
+                    <!-- Buttons can't be disabled since screen readers and keyboard users wouldn't be able to access them -->
+                   <button type="button" class="ups-cta ups-cta_primary" data-ng-click="clicked=true;proceedToEmailConfirmation(ups_packageMatchingOptionsForm.$valid);">Add</button>
+                   <!--data-ng-disabled="(ups_packageMatchingOptionsForm.upsEmailAddress.$pristine) || (ups_packageMatchingOptionsForm.upsEmailAddress.$invalid)"-->
+                </div>
+             </div>
+          </div>
+      </fieldset>
+       <section name="emailVerification" class="panel panel-default" tabindex="0" data-ng-if="pendingVerification">
+         <div class="panel-body">
+            Look for our verification message in your email inbox, and follow the link to complete your enrollment.</p>
+         </div>
+       </section>
+    </div>
+    <!-- End of Email Section -->
+
+    <!-- Phone Section -->
+    <div resize data-ng-class="{'ups-indent': windowWidth > 768}">
+       <fieldset class="ups-form_group">
+          <legend class="ups-form_label">Phone</legend>
+          <p class="ups-group_value">061-816-861-3538 <span class="ups-indent">Home</span><button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Delete</button><span class="h5" data-ng-if="pendingVerification" resize data-ng-class="{'ups-contact_edit_SVP': windowWidth < 793, 'ups-indent': windowWidth > 793 }">VERIFIED</span></p>
+          <hr class="visible-xs" data-ng-if="pendingVerification" />
+          <p data-ng-if="!addEmailsPhone" class="ups-group_value">061-816-921-0205 <span class="ups-indent">Home</span><button type="button" class="ups-btn_has_icon ups-link"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Delete</button><span resize data-ng-class="{'ups-contact_edit_SVP': windowWidth < 793, 'ups-indent': windowWidth > 793 }" data-ng-if="pendingVerification" class="h5">PENDING VERIFICATION</span><button type="button" data-ng-if="pendingVerification" class="ups-link" resize data-ng-class="{'ups-indent': windowWidth > 793}">Resend Verification to Phone </button>
+          </p>
+          <div class="row" data-ng-if="Verified">
+             <div class="col-sm-5 pull-left">
+                <button type="button" class="ups-btn_has_icon ups-cta ups-cta_secondary ups-input_btn_action"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span> Add Phone Number</button>
+             </div>
+          </div>
+          <hr class="visible-xs" data-ng-if="pendingVerification" />
+          <section name="phoneVerification" class="panel panel-default" tabindex="0" data-ng-if="pendingVerification">
+             <div class="panel-body">Instructions for completing your enrollment were sent to the phone number added above.
+             </div>
+          </section>
+          <div class="row" data-ng-if="addEmailsPhone">
+             <div class="col-md-3">
+                <div class="ups-form_group ups-form_required">
+                   <label for="country_lang_SB" class="ups-form_label">Country and Language <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                   <div class="ups-dropdown_wrapper ups-input_wrapper">
+                      <select name="country_lang_SB" class="ups-dropdown" id="country_lang_SB" required aria-required="true">
+                         <option value="0">Australia - English</option>
+                         <option value="1">Country - Language 3</option>
+                         <option value="2">Country - Language 4</option>
+                         <option value="3">Country - Language 5</option>
+                         <option value="4">Country - Language 6</option>
+                      </select>
+                   </div>
+                </div>
+             </div>
+             <div class="col-md-3">
+                <div class="ups-form_group ups-form_required" data-errormsg="This field is required">
+                    <label for="upsPhoneNumberInput" class="ups-form_label">
+                        Phone Number
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-input_has_unit_left ups-text_wrapper ups-input_wrapper">
+                        <span class="ups-input_group_addon">+061</span>
+                        <input type="text" name="upsPhoneNumberInput" class="ups-form_input_unit ups-form_input" id="upsPhoneNumberInput" aria-required="true" required maxlength="15" data-ng-pattern="/^[0-9|\s|\-|(|)]+$/" data-ng-model="ups_editDiscounts.ups_PhoneNumber"
+                        data-ng-class="{'ups-bodError' : (ups_packageMatchingOptionsForm.upsPhoneNumberInput.$invalid && clicked)}" aria-describedby="upsPhoneNumberInput-error">
+                        <div data-ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$valid">
+                            <!-- @Note: screen reader text needs to be translated as well -->
+                            <span class="ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span id="upsPhoneNumberInput-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_packageMatchingOptionsForm.upsPhoneNumberInput.$pristine && ups_packageMatchingOptionsForm.upsPhoneNumberInput.$invalid) || (ups_packageMatchingOptionsForm.upsPhoneNumberInput.$invalid && clicked)">
+                            <span class="icon ups-country_code_exclamation ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                            </span>
+                            <span class="ups-readerTxt">Invalid</span> <span
+                            class="ups-error_unit_left" data-ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$error.required">Phone Number is required.</span>
+                            <span class="ups-error_unit_left"
+                            data-ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$error.pattern">Phone Number is invalid.</span>
+                        </span>
+                        <span data-ng-if="ups_packageMatchingOptionsForm.upsPhoneNumberInput.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                    </span>
+                </div>
+             </div>
+             <div class="col-md-3">
+                <div class="ups-form_group ups-form_required">
+                   <label for="ups_phoneType" class="ups-form_label">Type <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                   <div class="ups-dropdown_wrapper ups-input_wrapper">
+                      <select name="ups_phoneType" class="ups-dropdown" id="ups_phoneType" aria-required="true" required error-on-blur data-ng-model="ups_editDiscounts.ups_phoneType"
+                      data-ng-class="{'ups-bodError' : (ups_editDiscounts.ups_phoneType.id == '0' && clicked)}"
+                      aria-describedby="ups_phoneType-error" data-ng-options="option.name for option in phoneTypeOptions.availableOptions track by option.id">
+                      </select>
+                   </div>
+                   <!-- Start Error Field Level Handling -->
+                   <span id="ups_phoneType-error" class="ups-invalid_color"
+                         data-ng-show="(!ups_packageMatchingOptionsForm.ups_phoneType.$pristine && ups_editDiscounts.ups_phoneType.id == '0')||(ups_editDiscounts.ups_phoneType.id == '0' && clicked) " role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="ups_editDiscounts.ups_phoneType.id == '0'">Type is required.</span> </span>
+                   <!-- End Error Field Level Handing -->
+                </div>
+             </div>
+             <div class="col-md-3">
+                <div class="ups-form_ctaGroup ups-no_label ">
+                    <!-- Buttons can't be disabled since screen readers and keyboard users wouldn't be able to access them -->
+                   <button type="button" class="ups-cta ups-cta_primary" data-ng-click="proceedToPhoneConfirmation(ups_editDiscounts.$valid);">Add</button>
+                   <!-- data-ng-disabled="(ups_packageMatchingOptionsForm.upsPhoneNumberInput.$pristine) && (ups_packageMatchingOptionsForm.ups_phoneType.$pristine) || (ups_packageMatchingOptionsForm.upsPhoneNumberInput.$invalid) || (ups_editDiscounts.ups_phoneType.id == '0')" -->
+                </div>
+            </div>
+       </div>
+    </div>
+    <!-- End of Phone Section -->
+
+    <!-- CTA Button Group Section -->
+    <div class="row" resize data-ng-class="{'ups-indent': windowWidth > 768}">
+       <div class="col-md-5">
+          <div class="ups-form_ctaGroup">
+             <button type="button" data-ng-click="saveChanges()" class="ups-cta ups-cta_primary">Save Changes</button>
+             <button class="ups-cta ups-cta_secondary"  type="button" data-ng-click="cancel()">Cancel</button>
+          </div>
+       </div>
+    </div>
+    <!-- End of CTA Button Group Section -->
+    <!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+    <div class="ups-cms-demo">
+       <h4>Do Not Include This In Production</h4>
+       <button class="ups-cta ups-cta_secondary" type="button" ng-click="pendingVerification = true; Verified = false; addEmailsPhone = false">Pending Verifications</button>
+       <button class="ups-cta ups-cta_secondary" type="button" ng-click="Verified = true; pendingVerification = false; addEmailsPhone = false">Verified</button>
+       <button class="ups-cta ups-cta_secondary" type="button" ng-click="addEmailsPhone = true; pendingVerification = false; Verified = false; ">Add Email or Phone</button>
+    </div>
+    <!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+</ng-form>
+</div>
+<!-- /// end ups.ppc-mychoice-preference-packageMatchingOptions.html /// -->

@@ -1,0 +1,286 @@
+---
+title: Create A Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+
+<h1>{{ title }}</h1>
+
+{{>"cam_shi_shi(1cre)_partial" cam_shi_shi1cre.cs_int_what_shipping_us_forward }}
+
+</div>
+
+<!-- Begin IC DEV Dynamic Panel Module -->
+<!--<div id="select_pnl_6">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_6">Ship To Address Module</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_6" class="formcol5">
+			<option value="" disabled>-- Campus Shipping --</option>
+			<option value="1">Default</option>
+			<option value="2">Saved Address Selected</option>
+			<option value="3">Enter a New Address</option>
+			<option value="4">Address List</option>
+			<option value="5">Service Verification - City</option>
+			<option value="6">Service Verification - City Plus Other</option>
+			<option value="" disabled>-- Internet Shipping --</option>
+			<option value="7">Default</option>
+			<option value="8">Address List Selected</option>	
+			<option value="9">Service Validation - City</option>	
+			<option value="10">Service Validation - City Plus</option>
+			<option value="11">Unregistered Shipper</option>	
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_2">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_2">Messaging Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_2" class="formcol5">
+			<option value="" disabled>-- Internet Shipping --</option>
+			<option value="1">Default - Set Your Shipping Preferences</option>
+			<option value="2">Unregistered Shipper</option>
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_3">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_3">Ship From/Return Address Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_3" class="formcol5">
+			<option value="" disabled>-- Campus Shipping --</option>		
+			<option value="1">Enter a Different Return Address - Traveling User</option>	
+			<option value="2">Enter a Different Return Address - Non-Traveling User</option>								
+			<option value="" disabled>-- Internet Shipping --</option>		
+			<option value="3">Default</option>		
+			<option value="4">Enter Different Return Address</option>
+			<option value="5">Different Stored</option>	
+			<option value="6">No Profile Address (1st Address Input)</option>
+			<option value="7">No Profile (Both Address Input)</option>
+			<option value="8">No Profile (1st Address w/ 2nd Replay)</option>	
+			<option value="9">Unregistered user</option>																																																																																																																																																																																																																																																																																																																																																																																																																																														
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_4">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_4">Package Information Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_4" class="formcol5">
+			<option value="" disabled>-- Campus Ship & Internet Shipping --</option>
+			<option value="1">1 Package</option>
+			<option value="2">1 Package - Lithium Battery Checkboxes Example</option>
+			<option value="3">2+ Packages - Same Values</option>	
+			<option value="4">2+ Packages - Different Values</option>			
+			<option value="5">Address List</option>
+			<option value="6">US/PR/CA to non US/PR/CA</option>															
+			<option value="7">US to PR/CA</option>															
+			<option value="8">Forward International Origin (non US/PR/CA)(non-pallet)1 Pkg</option>															
+			<option value="9">Forward International Origin (non US/PR/CA)(non-pallet)>1 Pkg</option>																						
+			<option value="10">DE to US Forward, Shipment Processing</option>																						
+			<option value="11">DE to FR - EU Transborder Forward, Shipment Processing</option>																						
+			<option value="12">DE to FR - EU Forward, Package Processing</option>																						
+			<option value="15">Dim Weight - Default</option>																						
+			<option value="16">Dim Weight - Pkg Dimensions</option>																						
+			<option value="24">Package Details - UPS Letter</option>
+			<option value="25">Package Details - UPS PAK</option>
+			<option value="26">Package Details - UPS Tube</option>
+			<option value="27">Package Details - UPS Express Box - Small</option>
+			<option value="28">Package Details - UPS Express Box - Medium</option>										
+			<option value="29">Package Details - UPS Express Box - Large</option>										
+			<option value="30">Package Details - Other Packaging</option>										
+			<option value="" disabled>-- Campus Shipping Only --</option>
+			<option value="13">UPS SurePost</option>	
+			<option value="14">WW Express Freight</option>																
+			<option value="17">Dim Weight - Default (2)</option>																						
+			<option value="18">Dim Weight - Pkg Dimensions (2)</option>	
+			<option value="19">Dim Weight - Default (3)</option>	
+			<option value="20">Dim Weight - Pkg Dimensions (3)</option>																						
+			<option value="21">Dim Weight - Default (4)</option>																						
+			<option value="22">Dim Weight - Pkg Dimensions (4)</option>
+			<option value="31">Package Details - Other Packaging - SurePost</option>					
+			<option value="32">Package Details - Pallet (WW Express Freight) US</option>																				
+			<option value="" disabled>-- Internet Shipping Only --</option>
+			<option value="33">Pallet - WW Express Freight</option>																	
+			<option value="34">Ground Freight Pricing</option>														
+			<option value="35">Density-based Rating</option>	
+			<option value="36">Package Details - Pallet (WW Express Freight)</option>												
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_5">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_5">How Would You<br>Like To Ship Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_5" class="formcol5">
+			<option value="" disabled>-- Campus Shipping --</option>
+			<option value="1">Default</option>
+			<option value="2">SurePost</option>
+			<option value="3">WW Express Freight</option>			
+			<option value="4">SDL or EEI</option>						
+			<option value="" disabled>-- Internet Shipping --</option>
+			<option value="5">Default</option>
+			<option value="6">WW Express Freight</option>						
+			<option value="7">EEI - SDL Filing</option>
+			<option value="8">Ground Freight Pricing</option>			
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_1">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_1">Payment Method Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_1" class="formcol5">
+			<option value="1">1 Default</option>
+			<option value="2">2 Use a UPS Shipper Account</option>
+			<option value="3">3 Bill Third Party</option>
+			<option value="4">4 Bill The Receiver</option>
+			<option value="5">5 Bill Consignee</option>
+			<option value="6">6 Use Another Payment Card</option>
+			<option value="7">7 PayPal - Saved PayPal Account</option>
+			<option value="8">8 PayPal - Use Another PayPal Account</option>
+			<option value="9">9 Pay at a UPS Access Point Location</option>
+			<option value="10">10 Unregistered Shipper</option>
+			<option value="11">11 Alt Use Another Payment Card</option>
+			<option value="12">12 Use a Payment Card from Profile</option>
+			<option value="23">13 Use a New Payment Method</option>			
+			<option value="24">14 Use a Payment Method from Profile</option>								
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_7">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_7">Reference Numbers:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_7" class="formcol5">
+			<option value="" disabled>-- Campus Shipping --</option>
+			<option value="1">Default</option>
+			<option value="" disabled>-- Internet Shipping --</option>			
+			<option value="2">Default</option>
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_8" style="margin-top: 2em">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_8">Pickup Options Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_8" class="formcol5">
+			<option value="" disabled>-- Campus Shipping and Internet Shipping --</option>
+			<option value="1">Payment Card - Default</option>
+			<option value="2">Payment Card - SAP</option>
+			<option value="3">UPS Account - Daily - Default</option>			
+			<option value="4"> UPS Account - Daily - SAP</option>
+			<option value="5"> UPS Account - Scheduled - Default</option>		
+			<option value="6"> UPS Account - Scheduled - SAP</option>	
+			<option value="8"> UPS Account - When Needed - Already Req Today</option>		
+			<option value="9"> UPS Account - When Needed - Already Req Today After Notify</option>		
+			<option value="10"> UPS Account - When Needed - After Notify Req Tomorrow</option>
+			<option value="11"> UPS Account - When Needed - On-Call</option>	
+			<option value="12"> UPS Account - When Needed - Drop-off</option>
+			<option value="13"> UPS WW Express Freight - UPS options "Pickup"</option>		
+			<option value="14"> UPS WW Express Freight - UPS options "Collection"</option>
+			<option value="" disabled>-- Campus Shipping Only --</option>
+			<option value="7"> UPS Account - Smart Pickup Prior to NBT</option>																									
+			<option value="" disabled>-- Internet Shipping Only --</option>
+			<option value="21">UPS Account - When Needed - Not Req Today</option>
+			<option value="27">Account - (Not Smart Pickup)</option>	
+			<option value="28">UPS Smart Pickup - Pickup Prior to NBT</option>
+			<option value="29">Not Smart Acct - Default</option>		
+			<option value="30">Non Smart Acct - Multi-accts, None Selected</option>
+			<option value="31">Non Smart Acct - Multi-accts, Selected</option>		
+			
+	</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_9">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_9">Pickup Module Title:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_9" class="formcol5">
+			<option value="" disabled>-- Campus Ship --</option>
+			<option value="1">Default</option>
+			<option value="2">"Getting your Shipment to UPS</option>
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_10">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_10">Button Bar:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_10" class="formcol5">
+			<option value="1">Default</option>
+			<option value="2">"Getting your Shipment to UPS</option>
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_11" style="margin-top:1.5em">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_11">Terms and Conditions:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_11" class="formcol5">
+			<option value="" disabled>-- Campus Shipping --</option>
+			<option value="1">Default</option>
+			<option value="" disabled>-- Internet Shipping --</option>
+			<option value="2">Default</option>
+		</select>
+	</dd>
+	</dl>
+</div>
+<div id="select_pnl_12">
+	<dl role="presentation">
+	<dt>
+		<label for="dyn_pnl_select_12">Promotion Code Module:</label>
+	</dt>
+	<dd>
+		<select id="dyn_pnl_select_12" class="formcol5">
+			<option value="1">Default</option>
+			<option value="2">With Promo Code Entered</option>
+			<option value="3">No Promotion Code</option>
+		</select>
+	</dd>
+	</dl>
+</div>-->

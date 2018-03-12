@@ -1,0 +1,124 @@
+<div class="ups-application_wrapper ">
+	<div class="ups-form_wrap">
+		<h2>{{dpShow?'Edit Location' :'Select a Location'}}</h2>
+		<ng-form name="ups_editADL" novalidate>
+        	<div class="ups-group">
+				<h2 class="ups-graybg-title">Preferred Location</h2>
+					<fieldset class="ups-form_group">
+						<legend class="ups-readerTxt">Preferred Location</legend>
+						<div data-ng-repeat="i in deliveryOptions"
+							class="ups-checkbox ups-input_wrapper">
+							<input id="{{$index}}" class="ups-radio-custom" type="radio"
+								name="deliveryOpt" value="{{$index}}"
+								data-ng-model="formObj.deliveryOpt"/>
+							<label for="{{$index}}" class="ups-form_label ups-radio-custom-label">{{i.text}}
+							</label>
+						</div>
+					</fieldset>
+
+					<p data-ng-if="formObj.deliveryOpt == '0' && (formObj.county===US && active_user_info.nonPremium)"><strong>Note: </strong>Additional transportation charges may apply.</p>
+
+					<p data-ng-if="formObj.deliveryOpt === '2' && (formObj.county===US && active_user_info.nonPremium)"><strong>Note: </strong>We'll make up to three delivery attempts for a one-time fee of 5.00 USD per package.</p>
+					<!-- && formObj.location.address1.length>1) -->
+					<div data-ng-if="dpShow && formObj.deliveryOpt !== '2'" class="ups-group">
+						<div class="ups-group_label">Preferred Delivery Location</div>
+                        <address>
+                        	{{formObj.location.address1}}<br>
+							{{formObj.location.address2}}<br>
+							{{formObj.location.address3}}<br>
+							{{formObj.location.state}}, {{formObj.location.county}} {{formObj.location.pincode}}<br>
+							{{formObj.location.tel}}<br>
+							{{formObj.location.email}}
+                        </address>
+					</div>
+                    
+					<button type="button" data-ng-hide="formObj.deliveryOpt === '2'" data-ng-click="chooseLocation('do')" class="ups-cta ups-cta_primary ups-no_animate">{{dpShow? 'Edit My Location':'Choose My Preferred Location'}}</button>
+                    <!-- <button
+                    	type="button"
+                        data-ng-hide="hideInlineMapBtn"
+                        data-ng-show="formObj.deliveryOpt !== '2'"
+                        data-ng-click="hideInlineMapBtn = true; inlineMapSection = true"
+                        class="ups-cta ups-cta_primary">
+                        Choose My Preferred Location
+                    </button> -->
+                    <!-- <button type="button" class="ups-cta ups-cta_primary" data-ng-click="inlineMapSection=true" data-ng-show="(!inlineMapSection && dpShow)">Edit My Location</button> -->
+                    <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="clearADL()" data-ng-show="(!inlineMapSection && dpShow)">Clear My Selection</button>
+            </div>
+            
+			<div class="ups-group" data-ng-if="(formObj.deliveryOpt === '0' || formObj.deliveryOpt === '1') ">
+				<h2 class="ups-graybg-title" data-ng-hide="dpShow && formObj.deliveryOpt === '1'">{{(!dpShow)||(!dpShow && formObj.deliveryOpt === '1') || (dpShow && formObj.deliveryOpt === '1') ? 'Secondary Location':'Secondary Location (Optional)'}}</h2>
+				<h2 data-ng-if="dpShow && formObj.deliveryOpt === '1'" class="ups-graybg-title">Secondary Location (Required)</h2>
+                    <p data-ng-hide="dpShow || formObj.deliveryOpt === '1'">Select a preferred UPS Access Point location above, then select an alternate in case your primary UPS Access Point location is at full capacity.</p>
+					<p data-ng-if="!dpShow && formObj.deliveryOpt === '1'">Choose your preferred location above, then select an alternate in case your primary UPS Access Point location is at full capacity.</p>
+					
+                    <!-- <p data-ng-if="selectPrimaryLoc" class="ups-invalid_Code">Select your preferred location to continue.</p> -->
+
+                    <p data-ng-if="selectSecLoc" class="ups-invalid_Code">Choose your preferred location above, then select an alternate in case your primary UPS Access Point location is at full capacity.</p>
+
+                    <div data-ng-if="dpShow">
+
+                        <h3 data-ng-if="sameAdd" class="ups-invalid_color-list ups-error_alert-list"><span class="icon ups-icon-exclamation" aria-hidden="true"></span> Secondary Location needs to be different from Preferred Location.</h3>
+
+                        <p data-ng-hide="dpShow && formObj.deliveryOpt === '1'">Choose another UPS Access Point location in case your preferred loaction is at full capacity, or skip this step, and we'll try to  deliver to your primary location the next business day.</p>                        
+                        <p data-ng-hide="dpShow && formObj.deliveryOpt !== '1'">Choose another UPS Access Point location in case your preferred location is unable to receive packages.</p>
+						<p data-ng-if="apshow && formObj.deliveryOpt === '1'">We'll only deliver packages here when your preferred location is unable to receive packages.  If you choose not to select a secondary location, we'll attempt another delivery to your preferred location the next business day.</p>
+                        <div data-ng-if="apShow" class="ups-group">
+                            <div class="ups-group_label">Secondary Delivery Location</div>
+                            <address>
+                            	{{altformObj.location.address1}}<br>
+                            	{{altformObj.location.address2}}<br>
+                            	{{altformObj.location.address3}}<br>
+                            	{{altformObj.location.state}}, {{altformObj.location.county}} {{altformObj.location.pincode}}<br>
+                            	{{altformObj.location.tel}}<br>
+                            	{{altformObj.location.email}}
+                            </address>
+                        </div>
+
+                        <button type="button" data-ng-click="chooseLocation('ap')" class="ups-cta ups-cta_primary">{{apShow? 'Edit My Location':
+                        'Choose Another Location'}}</button>
+                    </div>
+
+					<div class="ups-form_group" data-ng-if="formObj.deliveryOpt == '2'">
+						<p>Please enter your payment information below.</p>
+						<p data-ng-if="active_user_info.transportCharge"><strong>Note: </strong>Additional transportation charges are required for the selected UPS Access Point location.</p>
+						<div class="col-md-5">
+							<div class="ups-form_group">
+                            	<label for="ups-paymentMethod" class="ups-form_label">Payment Method</label>
+                            	<div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select  name="select" class="ups-dropdown"
+                                        id="ups-paymentMethod" data-ng-model="formObj.paymentMethod">
+                                        <option value="">Select One</option>
+                                    </select>
+                                </div>
+							</div>
+						</div>
+					</div>
+       			</div>
+			<div data-ng-if="paymentRequired || formObj.deliveryOpt == '2'">
+				<h2 class="ups-graybg-title">Payment Information</h2>
+						<p data-ng-if="active_user_info.transportCharge">Additional transportation charges are required for the selected UPS Access Point location.</p>
+                 <div class="row">
+					<div class="col-md-5">
+						<label for="ups-paymentMethod" class="ups-form_label">Payment Method</label>
+						<div class="ups-form_group ups-dropdown_wrapper ups-input_wrapper">
+							<select name="select" class="ups-dropdown"
+								id="ups-paymentMethod" data-ng-model="formObj.paymentMethod" data-ng-options="item.displayAccount for item in accountMethod">
+								<option value="" selected>Select One</option>
+							</select>
+						</div>
+					</div>
+                </div>
+			</div>
+			 <div class="ups-form_ctaGroup">
+				<button type="submit" class="ups-cta ups-cta_primary" data-ng-click="saveChanges()">Save</button>
+				<button type="button" class="ups-cta ups-cta_secondary" data-ng-click="cancel()">Cancel</button>
+			</div>
+            
+            <div class="ups-cms-demo">
+            	<button type="button" class="ups-cta ups-cta_secondary" data-ng-click="paymentRequired = true">Payment Required</button>
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="paymentRequired = false">Payment Not Required</button>
+            </div>
+
+		</ng-form>
+	</div>
+</div>

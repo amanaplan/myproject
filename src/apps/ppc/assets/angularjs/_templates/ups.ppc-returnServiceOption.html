@@ -1,0 +1,186 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+	<ng-form name="ups_returnServiceOptform" data-novalidate>
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-returnServiceOption //// -->
+    <!-- /////////////////////////////////////////// -->
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-serviceForReturn" class="ups-form_label">Return
+					Service</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-serviceForReturn" id="ups-serviceForReturn"
+						class="ups-dropdown" data-ng-model="formObj.serviceForReturn">
+						<option
+							data-ng-repeat="serviceForReturn in formObj.returnServiceOpt.serviceForReturn"
+							value="{{serviceForReturn.return}}">{{serviceForReturn.return}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-delivery_method" class="ups-form_label">Label
+					Delivery Method</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+					<select name="ups-deliveryMethod" id="ups-delivery_method"
+						class="ups-dropdown" data-ng-model="formObj.deliveryMethod">
+						<option
+							data-ng-repeat="deliveryMethod in formObj.returnServiceOpt.deliverMethod"
+							value="{{deliveryMethod.type}}">{{deliveryMethod.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-retrunPacakaging_type" class="ups-form_label">Packaging</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-returnPacakagingType"
+						id="ups-retrunPacakaging_type" class="ups-dropdown"
+						data-ng-model="formObj.returnPacakagingType">
+						<option
+							data-ng-repeat="packagingType in formObj.returnServiceOpt.packagingType"
+							value="{{packagingType.type}}">{{packagingType.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-returnToAddress" class="ups-form_label">Return
+					Address</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-return_toAddress" id="ups-returnToAddress"
+						class="ups-dropdown" data-ng-model="formObj.returnToAddress">
+						<option>Select One</option>
+						<option data-ng-repeat="returnAddress in nicknameArray"
+							value="{{returnAddress}}">{{returnAddress}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-default_merchandiseDes" class="ups-form_label">Merchandise
+					Description</label>
+				<div class="ups-text_wrapper ups-input_wrapper">
+					<input type="text" name="merchandiseDes" class="ups-form_input"
+						id="ups-default_merchandiseDes"
+						data-ng-model="formObj.merchandiseDes" maxlength="35">
+				</div>
+				<!-- ups-text_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+    </div>
+    <p>If you frequently create similar shipments, save processing
+        time by adding default reference information.</p>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-refForReturn" class="ups-form_label">Reference
+					#1</label>
+				<div class="ups-text_wrapper ups-input_wrapper">
+					<input type="text" name="refForReturn" class="ups-form_input"
+						id="ups-refForReturn" data-ng-model="formObj.refForReturn"
+						maxlength="35">
+				</div>
+				<!-- ups-text_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-refTypeReturn" class="ups-form_label">Reference
+					#1 Type</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-refTypeReturn" id="ups-refTypeReturn"
+						class="ups-dropdown" data-ng-model="formObj.refTypeReturn">
+						<option
+							data-ng-repeat="refTypeReturn in formObj.returnServiceOpt.reftypeForReturn"
+							value="{{refTypeReturn.type}}">{{refTypeReturn.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+	</div>
+    <fieldset class="ups-form_group">
+        <legend class="ups-readerTxt">Reference Options</legend>
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-reviewShipping"
+                    class="ups-checkbox-custom" name="ups-terms_checkbox"
+                    type="checkbox" data-ng-model="formObj.reviewShipping"> <label
+                    for="ups-reviewShipping"
+                    class="ups-form_label ups-checkbox-custom-label">Create a
+                    bar code for <strong>Reference #1</strong> when printing return
+                    labels.
+                </label>
+            </div>
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-offsetImpact"
+                    class="ups-checkbox-custom" name="ups-terms_checkbox"
+                    type="checkbox" data-ng-model="formObj.offsetImpact"> <label
+                    for="ups-offsetImpact"
+                    class="ups-form_label ups-checkbox-custom-label">Make <strong>Reference
+                        #1</strong> required for all returns.
+                </label>
+            </div>
+    </fieldset>
+    <hr>
+    <p>Because UPS Worldwide Express Freight shipments are so heavy,
+        you may want to set separate pickup and delivery preferences.</p>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group ups-help_wrapper">
+				<label for="ups-pickupOptions" class="ups-form_label">Pickup
+					Options</label>
+				<div class="ups-help">
+					<a href="#" onclick="return false;"
+						class="ups-help_link icon ups-form_link-noDecoration"
+						data-ng-click="returnPickupHelpLink()">Help <span class="ups-icon-newwindow" aria-hidden="true"></span><span
+						class="ups-readerTxt">This will open a new window</span></a>
+				</div>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-pickupOptions" id="ups-pickupOptions"
+						class="ups-dropdown" data-ng-model="formObj.pickupOptions">
+						<option
+							data-ng-repeat="pickupOpt in formObj.returnServiceOpt.pickupOption"
+							value="{{pickupOpt.type}}">{{pickupOpt.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+        <div class="col-md-5 col-md-offset-1">
+			<div class="ups-form_group ups-help_wrapper">
+				<label for="ups-deliveryOptions" class="ups-form_label">Delivery
+					Options</label>
+
+					<div class="ups-help">
+					<a href="#" onclick="return false;"
+						class="ups-link ups-help_link icon ups-form_link-noDecoration"
+						data-ng-click="returnDeliveryHelpLink()">Help <span class="ups-icon-newwindow" aria-hidden="true"></span><span
+						class="ups-readerTxt">This will open a new window</span></a>
+				</div>
+
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-deliveryOptions" id="ups-deliveryOptions"
+						class="ups-dropdown" data-ng-model="formObj.deliveryOptions">
+						<option
+							data-ng-repeat="deliveryOpt in formObj.returnServiceOpt.deliveryOption"
+							value="{{deliveryOpt.type}}">{{deliveryOpt.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+
+	</div>
+    <div class="ups-form_ctaGroup ">
+        <button type="submit"
+            class="ups-cta ups-cta_primary ups-form-offset"
+            data-ng-click="saveReturnServiceOptform()">Save
+        </button>
+        <!-- data-ng-disabled="!(ups_returnServiceOptform.$dirty)" -->
+    </div>
+    <!-- ups-form_ctaGroup -->
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-returnServiceOption   //// -->
+    <!-- /////////////////////////////////////////// -->
+	</ng-form>
+</div>

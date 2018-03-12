@@ -1,0 +1,29 @@
+<div class="ups-application_wrapper ups-form_wrap" data-page-title="Calculate Time & Cost">
+	<!--Previous Link Starts-->
+	<a point-focus="" href="#/preferencePage" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Preferences
+	</a>
+	<!--Previous Link Ends-->
+	<form class="" name="ups_ratingPref"
+		error-on-submit novalidate>
+		<div class="ups-accordion_list">
+			<div class="ups-accordion_wrapper">
+				<div class="ups-accordion_content">
+					<uib-accordion close-others="oneAtATime"> <uib-accordion-group
+						template-url="/app_assets/templates/ups.accordion.group.html"
+						data-ng-repeat="group in groups" is-open="group.active">
+					<uib-accordion-heading>
+					{{group.title}} 
+					<span class="icon" aria-hidden="true"
+					data-ng-class="{'ups-icon-minus ups-active': group.active, 'ups-icon-plus': !group.active}"></span>
+					<span class="ups-readerTxt" ng-if="group.active">collapse</span> 
+					<span class="ups-readerTxt" ng-if="!group.active">expand</span> 
+					</uib-accordion-heading>
+					<div data-ng-include="group.content"></div>
+					</uib-accordion-group> </uib-accordion>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

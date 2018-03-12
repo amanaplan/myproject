@@ -1,0 +1,163 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Mobile";
+
+#loc_form {
+    .subhead {
+        .country-selector {
+            padding-#{$opposite-direction}: 20px;
+
+            #locCountry {
+                background: transparent;
+                border: none;
+                background-image: none;
+            }
+        }
+        h1{
+            font-size: 24px;
+        }
+    }
+
+    .btn {
+        width: 100% !important;
+    }
+
+    .error-content {
+        margin: 0 !important;
+        padding-#{$default-float}: 20px !important;
+        padding-#{$opposite-direction}: 20px !important;
+        width: 100%;
+        color:#c91a13!important;
+        border:1px solid #c91a13!important;
+    }
+
+    .content {
+        span {
+            font-family: $sans;
+        }
+
+        & > * {
+            margin: 0 20px;
+            padding: 30px 0;
+        }
+
+        .locator {
+            #hide_optional {
+                .btn {
+                    background: none;
+                    text-indent: 0;
+                    color: transparent !important;
+                    height: 35px;
+                    width: 60px !important;
+                    min-width: auto;
+                    overflow: hidden;
+                    border-radius:0!important;
+
+                    &:before {
+                        color: $white;
+                        @include ups-iconFont("\e649");
+                        font-size: 24px;
+                        top: 2px;
+                        #{$default-float}: -11px;
+                        display: inline-block;
+                    }
+
+                    &:active {
+                        background-color: darken($water_s3, 5%) !important;
+                        border: none;
+                        &:before {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+
+        .list-group-item {
+            a {
+                background-image: none;
+
+                &:after {
+                    color: $black_s3;
+                    display: inline-block;
+                    @include ups-iconFont("\e629");
+                    position: absolute;
+                    #{$opposite-direction}: 0;
+                    top: 50%; //87px;
+                }
+            }
+        }
+
+        section.full-width {
+            width: auto;
+            div + div {
+                margin-#{$default-float}:inherit!important;
+                margin-#{$opposite-direction}:inherit!important;
+            }
+        }
+
+        .location-results .list-group-item {
+            a {
+                text-decoration: none;
+                .address .address1 {
+                    text-decoration: none;
+                }
+            }
+        }
+    } //end .content
+}
+
+#filter_form {
+
+    .custom-select {
+
+        &:before {
+            content: '';
+        }
+    }
+}
+
+.location-details {
+
+    .distance .btn {
+        margin: 15px 0;
+    }
+
+    .btn {
+        display: block !important;
+    }
+}
+
+.content section>* {
+    padding: 0;
+
+}
+.ups-headFixed .container-fluid.iw_section:nth-child(1) ~ .container-fluid.iw_section:nth-child(2){
+    padding-top:0
+}
+
+.hours.max-left{
+    //margin:0;
+    width:auto;
+}
+.accordion h2 a[data-toggle=collapse]:not(.collapsed), .accordion h3 a[data-toggle=collapse]:not(.collapsed) {
+    background-image: url("/assets/resources/images/legacyAppImages/minusIcon.gif")!important;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: 15px 15px;
+    border-bottom: 0;
+}
+
+.accordion h2 a[data-toggle=collapse].collapsed, .accordion h3 a[data-toggle=collapse].collapsed {
+    background-image: url("/assets/resources/images/legacyAppImages/plusIcon.gif")!important;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position: 100% 50%;
+}
+
+#main #filter_form .accordion h2 a[data-toggle='collapse'] {
+    text-decoration: none;
+}
+#ups-fw_legacy_app_wrap #main #loc_form .back a , .ups-fw_legacy_app_inner #main .subhead .back a{color:transparent!important}
+
+#ups-fw_legacy_app_wrap a.btn-aqua:not(.NavBar_button):not(.NavBar_compass):not(.locationPin) {color:#fff!important}
+
+

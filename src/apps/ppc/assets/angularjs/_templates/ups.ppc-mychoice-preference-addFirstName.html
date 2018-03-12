@@ -1,0 +1,57 @@
+<div class="ups-form_wrap" data-ng-controller="myChoiceAddNameCtrl">
+	<p>Tell us if there are nicknames or alternate first names that we should know. If someone's sending you a package and that first name isn't in the list below, the package won't be eligible for UPS My Choice notifications or delivery changes. For example, if your name is Robert, but some people call you Bob, then Bob is a name variation and should be on the list below.</p>
+    <div class="row">
+	<div class="col-md-5">
+		<!--<div class="ups-form_group ups-help_wrapper">
+			<h3>Your First Name Variation(s): (one per line)</h3>
+			<div class="ups-help">
+				<a href="#" onclick="return false;" data-ng-click="isPopoverOpen = !isPopoverOpen"
+					class="ups-help_link icon ups-active">Help <span class="ups-icon-questioncircle" aria-hidden="true"></span><span
+					class="ups-readerTxt">about Name Variation</span></a>
+				<div class="ups-help_tooltip ups-help_tooltip_bottomleft"
+					data-ng-style="isPopoverOpen ? {'display':'block'} :{'display':'none'}">
+					<button type="button" data-ng-click="isPopoverOpen = false"
+						class="ups-help_close icon ">
+						<span class=" ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+						<span class="ups-readerTxt">Close</span>
+					</button>
+					<p>Explanatory text lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+
+		</div>-->
+		<div class="ups-form_group">
+        	<p><strong>Name Variation</strong></p>
+            <p id="nameVariationHelperTxt" class="ups-form_subheader"> For Example Bob, Bobby, RJ </p>
+			<div class="ups-repeat-content" data-ng-repeat="item in nameReceiver">
+				<div class="ups-form_group">
+					<label for="ups-nameVariation{{$index}}" class="ups-form_label ups-readerTxt">
+                    	Name Variation #{{ $index }}
+                    </label>
+                    <div class="row">
+                    	<div class="col-md-7">
+                            <div class=" ups-text_wrapper ups-input_wrapper">
+                                <input type="text" class="ups-form_input" data-ng-model="item.nameVar" maxLength="35"  id="ups-nameVariation{{$index}}" aria-required="true" required aria-describedby="nameVariationHelperTxt">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <button class="ups-cta ups-cta_secondary"
+                                data-ng-click="deleteRow($index)" data-ng-show="(nameReceiver.length > 1)">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="ups-form_group">
+			<a href="#" onclick="return false;" data-ng-click="addNameVariation()"
+				data-ng-if="nameReceiver.length<10" class="ups-link">Add Another Name Variation</a>
+		</div>
+		<div class="ups-form_ctaGroup ">
+			<button type="submit" class="ups-cta ups-cta_primary"
+				data-ng-click="saveChanges()">Save Changes</button>
+		</div>
+	</div>
+    </div>
+</div>

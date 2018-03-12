@@ -1,0 +1,388 @@
+{{{pg_lvl_copy}}}
+
+<form name="">
+    <!-- BEGIN LOGIN CONTENT -->
+    {{>A04_page_level_required_message}}
+
+    {{#if error}}
+        {{>A03_page_level_error}}
+    {{/if}}
+
+    {{#if altError}}
+        {{>A03_page_level_error}}
+    {{/if}}
+
+        {{{form_lvl_copy}}}
+        {{#if new_acc_copy}}
+            <p><strong>New to UPS?</strong></p>
+            <p>We need a few more details before we can link a ups.com ID to your [Facebook] account.</p>
+        	<!-- begin button Group -->
+            <div class="ups-form_ctaGroup">
+                <button type="button" class="ups-cta ups-cta_primary">Sign up Now</button>
+            </div>
+            <!-- end button Group -->
+            <hr>
+        {{/if}}
+
+        {{#if existing_acc_copy}}
+            <p><strong>Already have ups.com ID?</strong></p>
+            <p>Login with your email address or user ID nd password.</p>
+        {{/if}}
+
+        {{#if bs_grid}}
+        	<div class="row">
+            	<div class="col-md-5">
+        {{/if}}
+
+        {{#if auth_user}}
+            <div class="ups-group">
+                <p class="ups-group_label">Email or User ID</p>
+                <p class="ups-group_value">{smithy_mcJsmith@gmail.com}</p>
+            </div>
+        {{/if}}
+
+        {{#if chg_pw}}
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-group">
+                        <p class="ups-group_label">User ID</p>
+                        <p class="ups-group_value">{smithy_mcJsmith}</p>
+                    </div>
+
+                    {{#each change_option}}
+                    <div class="ups-form_group ups-form_required ups-form_popover ups-form_user_password">
+                        <label for="{{this.for}}" class="ups-form_label">
+                            {{this.copy}}
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                          <input type="password" id="{{this.for}}" name="{{this.for}}" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+                          {{#if ../error}}
+                          <span class="ups-icons-error" role="alert">
+                            <span class="ups-invalid_color">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                <span class="ups-readerTxt">Invalid</span>
+                    			<span>{{this.input_error_copy}} is required.</span>
+                            </span>
+                          </span>
+                          {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if fuip}}
+            <div class="ups-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">{{fuip_header}}</h4>
+                            </div>
+                            <div class="panel-body">  
+                                <p>{{fuip_message}}</p>
+                                {{#each input}}
+                                    <div class="ups-form_group {{#if req}}ups-form_required{{/if}}">
+                                        <label for="{{id-name}}_email" class="ups-form_label">
+                                            {{label_copy}}
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" id="{{id-name}}_email" name="{{id-name}}_email" maxlength="50" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}"
+                                                aria-required="true" required> {{#if ../non_error}}
+                                            <div class="ups-check ups-active">
+                                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                                <span class="ups-readerTxt">Complete</span>
+                                            </div>
+                                            {{/if}} {{#if ../error}}
+                                            <span class="ups-icons-error" role="alert">
+                                                <span class="ups-invalid_color">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                                    <span class="ups-readerTxt">Invalid</span>
+                                                    <span>{{input_error_copy}} is required.</span>
+                                                </span>
+                                            </span>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                {{/each}}
+                                <!-- begin button Group -->
+                                <div class="ups-form_ctaGroup"> {{#each button1}}
+                                    <button type="{{button_type}}" class="ups-cta ups-cta_{{button_class}}">{{button_copy}}</button>
+                                    {{/each}}
+                                </div>
+                                <!-- end button Group -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">{{fuip_userId}}</h4>
+                            </div>    
+                            <div class="panel-body">  
+                                <p>{{fuip_userId_message}}</p> 
+                                {{#each email1}}
+                                <div class="ups-form_group {{#if req}}ups-form_required{{/if}}">
+                                    <label for="{{id-name}}_email" class="ups-form_label">
+                                        {{label_copy}}
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" id="{{id-name}}_email" name="{{id-name}}_email" maxlength="50" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}"
+                                            aria-required="true" required> {{#if ../non_error}}
+                                        <div class="ups-check ups-active">
+                                            <span class="ups-icon-check" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Complete</span>
+                                        </div>
+                                        {{/if}} {{#if ../error}}
+                                        <span class="ups-icons-error" role="alert">
+                                            <span class="ups-invalid_color">
+                                                <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                                <span class="ups-readerTxt">Invalid</span>
+                                                <span>{{input_error_copy}} is required.</span>
+                                            </span>
+                                        </span>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                                {{/each}}
+                                <div class="ups-form_ctaGroup">
+                                    <button type="button" class="ups-cta ups-cta_primary">Recover My ID</button>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if evr_fieldset}}
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">Where should we send this email?</legend>
+                <div class="ups-input_wrapper">
+                    <input id="saved_email" class="ups-radio-custom" name="email_radio" type="radio" value="0" checked="">
+                    <label for="saved_email" class="ups-radio-custom-label">[myemail@email.com]</label>
+                </div>
+                <div class="ups-input_wrapper">
+                    <input id="enter_new_email" class="ups-radio-custom" name="email_radio" type="radio" value="1">
+                    <label for="enter_new_email" class="ups-radio-custom-label">A new email address</label>
+                    <div class="ups-indent_with_input" id="enter_new_email_fields">
+                        <p><strong>Note:</strong> Once confirmed, we'll replace the current email address in your profile with this new information.</p>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                {{#each input}}
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="{{id-name}}_email" class="ups-form_label">
+                                        {{email_copy}}
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                      <input type="text" id="{{id-name}}_email" name="{{id-name}}_email" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+                                      {{#if ../non_error}}
+                                      <div class="ups-check ups-active">
+                                          <span class="ups-icon-check" aria-hidden="true"></span>
+                                          <span class="ups-readerTxt">Complete</span>
+                                      </div>
+                                      {{/if}}
+                                      {{#if ../error}}
+                                      <span class="ups-icons-error" role="alert">
+                                        <span class="ups-invalid_color">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                                            <span class="ups-readerTxt">Invalid</span>
+                                            <span>{{input_error_copy}} is required.</span>
+                                        </span>
+                                      </span>
+                                      {{/if}}
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        {{/if}}
+
+        {{#if email}}
+        <div class="ups-form_group{{#if required}} ups-form_required{{/if}}">
+            <label for="email" class="ups-form_label">
+            	{{email_copy}}
+                {{#if required}}<span aria-hidden="true" class="ups-required_indicator"></span>{{/if}}
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="text"
+              	id="email"
+                name="email"
+                class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}"
+                {{#if ../error}}aria-describedby="email_error"{{/if}}
+                {{#if required}} aria-required="true" required{{/if}}>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" id="email_error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>{{input_error_copy.e_mail}} is required.</span>
+                </span>
+              </span>
+              {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if password}}
+        <div class="ups-form_group{{#if required}} ups-form_required{{/if}} ups-form_popover ups-form_user_password">
+            <label for="password" class="ups-form_label">
+            	Password
+                {{#if required}}<span aria-hidden="true" class="ups-required_indicator"></span>{{/if}}
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="password"
+              	id="password"
+                name="password"
+                class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}"
+                {{#if ../error}}aria-describedby="password_error"{{/if}}
+                {{#if required}} aria-required="true" required{{/if}}>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" id="password_error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>{{input_error_copy.password}} is required.</span>
+                </span>
+              </span>
+              {{/if}}
+              <button type="button" id="showHide_btn" class="ups-cta ups-cta_secondary ups-questions_showhide">Show</button>
+    		  <a class="ups-link ups-forgetPass" href="#">I forgot my password</a>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if captcha}}
+        	{{> A08_reCAPTCHA}}
+        {{/if}}
+
+{{#if idk_what_its_for_yet}}
+
+        {{#if email}}
+        <div class="ups-form_group ups-form_required">
+            <label for="email" class="ups-form_label">
+            	{{email_copy}}
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="text" id="email" name="email" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>Required Information error.</span>
+                </span>
+              </span>
+              {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if password}}
+        <div class="ups-form_group ups-form_required ups-form_popover ups-form_user_password">
+            <label for="password" class="ups-form_label">
+            	Password
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="password" id="password" name="password" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>Required Information error.</span>
+                </span>
+              </span>
+              {{/if}}
+              <button type="button" id="showHide_btn" class="ups-cta ups-cta_secondary ups-questions_showhide">Show</button>
+    		  <a class="ups-link ups-forgetPass" href="#">I forgot my password</a>
+            </div>
+        </div>
+        {{/if}}
+
+{{/if}}
+ {{#if reset_pw}}
+ <div class="row">
+	<div class="col-md-5">
+		<div class="ups-group">
+			<p class="ups-group_label">User ID</p>
+			<p class="ups-group_value">jsmith2002</p>
+		</div>
+
+		{{#each reset_option}}
+		<div class="ups-form_group ups-form_required ups-form_popover ups-form_user_password">
+			<label for="{{this.for}}" class="ups-form_label">
+				{{this.copy}}
+				<span aria-hidden="true" class="ups-required_indicator"></span>
+			</label>
+			<div class="ups-text_wrapper ups-input_wrapper">
+			  <input type="password" id="{{this.for}}" name="{{this.for}}" class="ups-form_input{{#if ../error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+			  {{#if ../error}}
+			  <span class="ups-icons-error" role="alert">
+				<span class="ups-invalid_color">
+					<span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+					<span class="ups-readerTxt">Invalid</span>
+					<span>{{this.input_error_copy}} is required.</span>
+				</span>
+			  </span>
+			  {{/if}}
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</div>
+
+ {{/if}}
+    {{#if bs_grid}}
+    		</div>
+        </div>
+    {{/if}}
+
+
+    <!-- END LOGIN CONTENT -->
+
+    <!-- begin button Group -->
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}">
+        {{#each button}}
+        <button type="{{button_type}}" class="ups-cta ups-cta_{{button_class}}">{{button_copy}}</button>
+        {{/each}}
+    </div>
+    <!-- end button Group -->
+</form>

@@ -1,0 +1,107 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+    <ng-form name="ups_referenceValuesform" data-novalidate>
+    <!-- //////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-referenceValues      //// -->
+    <!-- //////////////////////////////////////////// -->
+        <p>If you frequently create similar shipments, save processing
+            time by adding default reference information.</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-ref1" class="ups-form_label">Reference #1</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="ref1" class="ups-form_input" id="ups-ref1"
+						data-ng-model="formObj.ref1" maxlength="35">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <div class="ups-form_group">
+                    <label for="ups-refType1" class="ups-form_label ups-form_label_dpblock">Reference
+                        #1 Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-refType1" id="ups-refType1" class="ups-dropdown"
+						data-ng-model="formObj.refType1">
+                            <option data-ng-repeat="refType1 in formObj.refValues.refType1"
+							value="{{refType1.type}}">{{refType1.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-printRefBarcode1"
+						class="ups-checkbox-custom" name="ups-printRefBarcode1"
+						type="checkbox" data-ng-model="formObj.printRefBarcode1">
+                <label for="ups-printRefBarcode1"
+						class="ups-form_label ups-checkbox-custom-label">Create a
+                    bar code for <strong>Reference #1</strong> on shipping labels. </label>
+            </div>
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-makeRefShip1"
+						class="ups-checkbox-custom" name="ups-makeRefShip1"
+						type="checkbox" data-ng-model="formObj.makeRefShip1">
+                <label
+						for="ups-makeRefShip1"
+						class="ups-form_label ups-checkbox-custom-label">Make
+                    Reference #1 <strong>Required</strong> for all shipments. </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-ref2" class="ups-form_label">Reference #2</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="ref2" class="ups-form_input" id="ups-ref2"
+						maxlength="35" data-ng-model="formObj.ref2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <div class="ups-form_group">
+                    <label for="ups-refType2" class="ups-form_label ups-form_label_dpblock">Reference
+                        #2 Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-refType2" id="ups-refType2" class="ups-dropdown"
+						data-ng-model="formObj.refType2">
+                            <option data-ng-repeat="refType2 in formObj.refValues.refType2"
+							value="{{refType2.type}}">{{refType2.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_group">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-makeRefShip2"
+						class="ups-checkbox-custom" name="ups-makeRefShip2"
+						type="checkbox" data-ng-model="formObj.makeRefShip2">
+                <label
+						for="ups-makeRefShip2"
+						class="ups-form_label ups-checkbox-custom-label">Make
+                    Reference #2 <strong>required</strong> for shipments. </label>
+            </div>
+            <div class="ups-checkbox ups-input_wrapper">
+                <input check-verify id="ups-sameRefAllpack"
+						class="ups-checkbox-custom" name="ups-sameRefAllpack"
+						type="checkbox" data-ng-model="formObj.sameRefAllpack">
+                <label
+						for="ups-sameRefAllpack"
+						class="ups-form_label ups-checkbox-custom-label">Use the
+                    same reference information for all packages in the multi-piece
+                    shipments.</label>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveReferenceValuesform()">Save </button>
+            <!-- data-ng-disabled="!(ups_referenceValuesform.$dirty)" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+    <!-- //////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-referenceValues        //// -->
+    <!-- //////////////////////////////////////////// -->
+    </ng-form>
+</div>

@@ -1,0 +1,121 @@
+<section class="ups-section">
+    <p>The Harmonized Tariff Schedule (HTS) is a standardized list of product codes used worldwide for import and export of goods. Finding the right tariff codes for your products can significantly speed customs clearance.</p>
+    <div class="row ups-group">
+        <div class="col-md-4"><strong>Product #{{'{'}}1{{'}'}} Description:</strong></div>
+        <div class="col-md-4">{{'{'}}Product Description from Step 1{{'}'}}</div>
+    </div>
+
+    <div class="row" *ngIf="default">
+        <div class="col-md-5">
+            <div class="ups-form_group">
+                <label for="ups-hmc_tariff_code" class="ups-form_label">
+                    Harmonized Tariff Code Number
+                </label>
+                <p class="ups-form_subheader" id="hmc_tariff_code_HelpTxt">Optional</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="hmc_tariff_code" class="ups-form_input" id="ups-hmc_tariff_code">
+                </div>
+                <a href="#" class="ups-link ups-new-window">
+                    Harmonized Tariff Code Lookup Tool
+                    <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-view_side_by_side" *ngIf="!default">
+        <div class="ups-view_sbs_section">
+            <div class="ups-form_group">
+                <label for="ups-hmc_tariff_code"
+                    class="ups-form_label"
+                    [ngClass]="{'ups-no_label' : hmc_tariff_code == 'oma'}">
+                    Select a product category
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="hmc_tariff_code"
+                            class="ups-dropdown"
+                            id="ups-hmc_tariff_code"
+                            aria-describedby="hmc_tariff_code_HelpTxt"
+                            (change)="hmc_tariff_code_change()"
+                            [(ngModel)]="hmc_tariff_code"
+                            [ngModelOptions]="{'standalone' : true}">
+                        <option value="0" *ngIf="!tarWiz">Select One</option>
+                        <option value="oma" *ngIf="tarWiz">Other Manufactured Articles</option>
+                        <option value="tAndG" *ngIf="tarWiz">Toys &amp; Games</option>
+                        <option value="aAndA" *ngIf="tarWiz">Apparel &amp; Accessories</option>
+                    </select>
+                </div>
+                <a href="#" class="ups-link ups-new-window" *ngIf="!accordion">Look up Harmonized Tariff Code <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+            </div>
+        </div><div class="ups-view_sbs_or text-center" [ngClass]="{'ups-no_label' : hmc_tariff_code == 'oma'}">
+                <p>--OR--</p>
+        </div><div class="ups-view_sbs_section">
+            <div class="ups-form_group" [ngClass]="{'ups-form_required' : hmc_tariff_code == 'oma'}" *ngIf="!hmc_tariff">
+                <label for="hmc_tarif_code" class="ups-form_label">
+                    Enter Harmonized Tariff Code Number
+                    <span aria-hidden="true" class="ups-required_indicator" *ngIf="miltMatch"></span>
+                </label>
+                <p class="ups-form_subheader" id="hmc_tariff_code_HelpTxt" *ngIf="hmc_tariff_code == 'oma'">{{'{'}}Or Schedule B number{{'}'}}</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        name="hmc_tarif_code"
+                        class="ups-form_input"
+                        id="hmc_tarif_code"
+                        aria-describedby="hmc_tariff_code_HelpTxt"
+                        [attr.value]="hmc_number">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ups-group" *ngIf="tarWiz">
+        <div class="ups-faux-drawer" *ngIf="hmc_tariff_code == 'tAndG'">
+            <div class="ups-drawer-header">95. Toys, games, and sports requisites: parts and accessories thereof</div>
+        </div>
+        <div *ngIf="hmc_tariff_code == 'aAndA'">
+            <div class="ups-faux-drawer">
+                <div class="ups-drawer-header">62. Arilces of apparel and clothing accessories, not knitted or crocheted</div>
+            </div>
+            <div class="ups-faux-drawer">
+                <div class="ups-drawer-header">01. Men's or boy's overcoats, car coals, capes, cloaks, anoraks (including ski jackets), windcheters, wind-jackets and similar articles, other than those of heading 6203:</div>
+            </div>
+            <div class="ups-faux-drawer">
+                <div class="ups-drawer-header">13. Of man-made fibers:</div>
+            </div>
+            <div class="ups-faux-drawer">
+                <div class="ups-drawer-header">10. Of a weight, per garment, not exceeding 1 kg:</div>
+            </div>
+        </div>
+        <div class="ups-faux-drawer">
+            <div class="ups-drawer-header ups-emphasize">
+                <span class="icon ups-drawer_left_icon ups-empty_circle">
+                    <span class="ups-digit-icon">
+                        <span  *ngIf="hmc_tariff_code == 'oma'">1</span>
+                        <span  *ngIf="hmc_tariff_code == 'tAndG'">2</span>
+                        <span  *ngIf="hmc_tariff_code == 'aAndA'">5</span>
+                    </span>
+                </span>
+                <span *ngIf="hmc_tariff_code != 'aAndA'">Refine Product Category</span>
+                <span *ngIf="hmc_tariff_code == 'aAndA'">Select Product Item</span>
+            </div>
+            <div class="ups-drawer-content">
+                <div class="ups-cms-demo">Add api here</div>
+            </div>
+        </div>
+        <div class="ups-faux-drawer" *ngIf="hmc_tariff_code != 'aAndA'">
+            <div class="ups-drawer-header"></div>
+        </div>
+    </section>
+
+</section>
+
+<div class="ups-form_ctaGroup text-center">
+    <button class="ups-cta ups-cta_tertiary" type="button">Back</button>
+    <button class="ups-cta ups-cta_primary" type="button">Next</button>
+</div>
+
+<div class="ups-cms-demo">
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoBtn('default')">Default</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoBtn('hmc_single')">Enter Tariff</button><br>
+    <button type="button" class="ups-cta ups-cta_secondary" (click)="demoBtn('tarWiz')">Show Tariff Wizard</button><br>
+</div>

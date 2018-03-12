@@ -1,0 +1,101 @@
+<div class="ups-plugin_container">
+    <h2>Plug-In: <span class="ups-indent">{{'<'}}Plug-In Name{{'>'}}</span></h2>
+</div>
+
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Set-Up Return Policies</h3>
+    </div>
+    <div class="ups-group">
+        <p *ngIf="!afterIveSetUpAPolicy">
+            Set up your first policy in order to begin customizing your plug-in.
+        </p>
+        <ul class="ups-list_style_none" *ngIf="afterIveSetUpAPolicy">
+            <li class="ups-list_slim">
+                <!-- <hr aria-hidden="true" class="ups-returns_acct_separator"> -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <p>
+                            <strong>{{'<'}}Policy Name{{'>'}}</strong>
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 text-right">
+                        <a class="ups-link ups-btn_has_icon" routerLink="/merchantPlugIn/createPlugInDetail/createPolicy"><span aria-hidden="true" class="icon ups-icon-edit"></span><span class="hidden-xs" [ngClass]="{'ups-readerTxt': viewportSize.isLtSMVP}">Edit</span><span class="ups-readerTxt">Plug-In Name</span></a><button class="ups-link ups-btn_has_icon" (click)="noClickHandlerYet2();" [ngClass]="{'ups-indent': viewportSize.isGtXSVP}"><span aria-hidden="true" class="icon ups-icon-minuscircle"></span><span class="hidden-xs" [ngClass]="{'ups-readerTxt': viewportSize.isLtSMVP}">Delete</span><span class="ups-readerTxt">Plug-In Name</span></button>
+                    </div>
+                </div>
+                <!-- <hr aria-hidden="true" class="ups-returns_acct_separator"> -->
+            </li>
+        </ul>
+    </div>
+    <div class="ups-form_ctaGroup">
+        <a routerLink="/merchantPlugIn/createNamePlugIn/createPolicy" class="ups-cta ups-cta_primary">Create New Policy</a>
+    </div>
+</section>
+
+<section class="ups-section" *ngIf="afterIveSetUpAPolicy">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Customize Your Plug-In</h3>
+    </div>
+    <div class="ups-group">
+        <p>
+            Use the options below to start customizing your plug-in.
+        </p>
+    </div>
+    <p>
+        <strong>{{'<'}}Display of Plug-In Name{{'>'}}</strong>
+    </p>
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+    <div class="ups-cms-demo">
+        <p class="h2 text-center">Plug-in Goes Here</p>
+    </div>
+    <!-- DO NOT INCLUDE IN PRODUCTION -->
+    <div class="ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_primary" [attr.disabled]="afterIveSetUpAPolicy == true ? true : null" [attr.aria-disabled]="afterIveSetUpAPolicy == true ? true : null">Publish</button>
+        <button type="button" class="ups-cta ups-cta_tertiary" [attr.disabled]="afterIveSetUpAPolicy == true ? true : null" [attr.aria-disabled]="afterIveSetUpAPolicy == true ? true : null">Save</button>
+        <button type="button" class="ups-cta ups-cta_secondary">Preview</button>
+        <!-- <a routerLink="/merchantPlugIn/returnsManager/productList" class="ups-cta ups-cta_primary">Manage List</a> -->
+    </div>
+</section>
+
+<section class="ups-section" *ngIf="productList">
+    <div class="ups-section-header">
+        <h3 class="ups-section_heading">Product List</h3>
+    </div>
+    <div class="ups-group">
+        <p>
+            Upload a list of your items to get verified approval
+        </p>
+    </div>
+    <div class="ups-form_ctaGroup">
+        <a routerLink="/merchantPlugIn/createPlugInDetail/productList" class="ups-cta ups-cta_primary">Manage List</a>
+    </div>
+</section>
+
+<!-- DO NOT INCLUDE IN PRODUCTION -->
+<div class="ups-cms-demo">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label class="ups-lever" onclick="" for="afterIveSetUpAPolicy">
+                <input type="checkbox" id="afterIveSetUpAPolicy" name="afterIveSetUpAPolicy" [(ngModel)]="afterIveSetUpAPolicy">
+                <!-- if checked then yes -->
+                <div><strong class="ups-form_label">Have you set up a policy?</strong>
+                </div>
+                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                </label>
+            </div>
+        </div>
+        <div class="col-md-6" *ngIf="afterIveSetUpAPolicy">
+            <div class="ups-form_group">
+                <label class="ups-lever" onclick="" for="productList">
+                <input type="checkbox" id="productList" name="productList" [(ngModel)]="productList">
+                <!-- if checked then yes -->
+                <div><strong class="ups-form_label">Show Product List</strong>
+                </div>
+                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DO NOT INCLUDE IN PRODUCTION -->

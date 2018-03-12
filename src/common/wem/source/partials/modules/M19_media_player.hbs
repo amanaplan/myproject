@@ -1,0 +1,84 @@
+<!-- ************************************************************************************ -->
+<!-- M19 Media Player                                                                     -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M19 MEDIA PLAYER:
+********************************************************************************
+
+This is set up with a free 30-day trial version of Brightcove.
+The "video", "account", and "player" attributes will need to
+be updated in the JSON to maintain.
+
+The trial period began 10/27/15.
+
+Currently using:
+"video": "4581522491001"
+"account": "4580743005001"
+"player": "default"
+
+********************************************************************************
+-LAYOUT-
+
+| 60px
+-video-
+| 30px
+-header & share-
+| 15px
+-desc-
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-mplayer ups-wrap">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-video_frameWrap">
+            <div class="ups-video_frame">
+                <video
+                    data-video-id="{{video}}"
+                    data-account="{{account}}"
+                    data-player="{{player}}"
+                    data-embed="default"
+                    class="video-js" controls>
+                </video>
+            </div>
+        </div>
+        <script src="//players.brightcove.net/{{account}}/{{player}}_default/index.min.js"></script>
+
+        <h2>{{title}}</h2>
+
+        {{#if media-share}}
+
+            <div class="ups-page-share" class="page-title_cell inactive">
+                <div class="share-container">
+                    <div class="share-btn-container clearfix">
+                        <button class="share_open"><span class="icon ups-icon-share" aria-hidden="true"></span>Share</button>
+                        <button class="share_close ups-sm_show">
+                            <span class="icon ups-icon-xcircle ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                    </div>
+                    <div class="share_list clearfix">
+                        <div class="list">
+                            {{#each media-share}}
+                                <a class="{{#compare this '!==' 'email'}}ups-share_social-{{this}}{{/compare}}{{#compare this '===' 'email'}}icon ups-icon-email{{/compare}}" href="#share-{{this}}"></a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <button class="share_close share_close_main ups-sm_hide">
+                        <span class="icon ups-icon-xcircle ups-iconAlone" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Close</span>
+                    </button>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if summary}}
+        <p>{{summary}}</p>
+        {{/if}}
+
+    </div>
+</div>

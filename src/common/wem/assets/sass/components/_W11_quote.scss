@@ -1,0 +1,90 @@
+// ----------------------------------------------------
+// Quote
+// ----------------------------------------------------
+
+@mixin ups_quote_sm {
+    .ups-form_ctaGroup {
+        button {
+            width: 100%;
+        }
+    }
+}
+
+.ups-quote {
+    //@include ups-component_margin;
+    //removed and instead using .ups-form_wrap, as .ups-quote is used in quickstart selector
+
+    form {
+        margin:0;
+        margin-bottom: $margin_3;
+        .ups-form_note {
+            margin-bottom: 30px;
+            p{
+                margin:0;
+                a {
+                    text-decoration: underline;
+                    font-family: $sans-bd;
+                    color: $black_s3;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+
+                    &:hover {
+                        color: $black_s1;
+                    }
+                }
+            }
+        }
+        .ups-input_unit{
+            &.ups-dropdown_wrapper{
+                display:block;
+            }
+            &.ups-inactive{
+                display:none;
+                &.ups-dropdown_wrapper{
+                    display:none;
+                }
+            }
+        }
+        /*.ups-notLoggedIn,.ups-loggedIn{
+            display:none;
+            &.ups-active{
+                display: block;
+            }            
+        }*/
+        .ups-quote_residential.ups-inactive{
+            display:none !important;
+        } 
+    }
+
+    @media #{$media-small} {
+        @include ups_quote_sm;
+    }
+}
+
+.subsection_aside .ups-quote,
+.iw_columns.col-lg-4 .ups-quote {
+    @include aside-pad_sm;
+    @include ups_quote_sm;
+}
+
+
+.ups-headerTools_widgets .ups-quote .ups-toolWrap .ups-tool {
+    .ups-form_note {
+        &.ups-active{
+          display:block;
+        }
+        &.ups-inactive{
+          display:none;
+        }
+    }
+    .ups-form_group.ups-quote_freight {
+        clear: none;
+    }
+    .ups-quote {
+        min-height: 285px;
+        position: relative;
+    }
+}

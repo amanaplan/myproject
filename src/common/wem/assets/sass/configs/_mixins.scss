@@ -1,0 +1,789 @@
+// ----------------------------------
+// MIXINS
+// ----------------------------------
+
+@mixin ups-icons {
+    font-family: $icon-family !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin ups-iconFont($content) {
+    font-family: $icon-family !important;
+    position: relative;
+    display: inline-block;
+    //content: $content;
+    content: unquote("\"")+unquote(str-insert($content,"\\", 1))+unquote("\"");
+    text-decoration: none;
+}
+
+
+// UPS SANS REGULAR
+@mixin ups-sans($important:null){
+    font-family: $sans $important;
+    font-weight: 400 $important;
+}
+// UPS SANS BOLD
+@mixin ups-sansBold($important:null){
+    font-family: $sans $important;
+    font-weight:700 $important;
+}
+// UPS SERIF REGULAR
+@mixin ups-serif($important:null){
+    font-family: $serif $important;
+    font-weight:400 $important;
+}
+// UPS SERIF BOLD
+@mixin ups-serifBold($important:null){
+    font-family: $serif $important;
+    font-weight:700 $important;
+}
+
+
+@mixin unlist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin unbutton {
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+@mixin aside-pad_sm {
+    margin-top: 0;
+    margin-bottom: $margin_1;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin mobile-aside-pad_sm {
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin ups-component_margin {
+    margin-bottom: $margin_1;
+}
+@mixin ups-component_margin_gray {
+    margin-top: $margin_1;
+    margin-bottom: $margin_1;
+	padding-bottom: $margin_1;
+}
+
+// ----------------------------------
+// ALIGNMENT
+
+@mixin absolute-center($abCW, $abCH){
+    width: $abCW;
+    height: $abCH;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -($abCH/2);
+    margin-left: -($abCW/2);
+}
+
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin horizontal-align {
+    position: relative;
+    #{$default-float}: 50%;
+    @if $text-direction == ltr {
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+    } @else {
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }
+}
+
+@mixin center-align {
+    position: relative;
+        top: 50%;
+    #{$default-float}: 50%;
+    @if $text-direction == ltr {
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    } @else {
+        -webkit-transform: translateX(50%) translateY(-50%);
+        -ms-transform: translateX(50%) translateY(-50%);
+        transform: translateX(50%) translateY(-50%);
+    }
+}
+
+@mixin cta-index-list {
+    padding: 0;
+    margin: $margin_4 0 0;
+    list-style: none;
+    font-family: $sans-bd;
+    @include pie-clearfix;
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    // for SVP, layout will default to single column
+    li {
+        width:100%;
+        float:#{$default-float};
+        clear:#{$default-float};
+        padding: 0;
+        margin: 0;
+
+        a {
+            color: $ups_brown;
+            text-decoration: underline;
+            padding: 12px 0;
+            display:inline-block;
+        }
+    }
+
+    // for MPV/LVP, CTA list will form 2 columns
+    @media #{$not-mobile} {
+        li {
+            width:50%;
+            &:nth-child(odd) {
+                padding-#{$opposite-direction}: $margin_4;
+            }
+            &:nth-child(even) {
+                float: #{$opposite-direction};
+                clear: #{$opposite-direction};
+                padding-#{$default-float}: $margin_4;
+            }
+        }
+
+        // overrides 2-column layout when only 8 items or less
+        li:nth-child(1):nth-last-child(1), li:nth-child(1):nth-last-child(1) ~ li,
+        li:nth-child(1):nth-last-child(2), li:nth-child(1):nth-last-child(2) ~ li,
+        li:nth-child(1):nth-last-child(3), li:nth-child(1):nth-last-child(3) ~ li,
+        li:nth-child(1):nth-last-child(4), li:nth-child(1):nth-last-child(4) ~ li,
+        li:nth-child(1):nth-last-child(5), li:nth-child(1):nth-last-child(5) ~ li,
+        li:nth-child(1):nth-last-child(6), li:nth-child(1):nth-last-child(6) ~ li,
+        li:nth-child(1):nth-last-child(7), li:nth-child(1):nth-last-child(7) ~ li,
+        li:nth-child(1):nth-last-child(8), li:nth-child(1):nth-last-child(8) ~ li {
+            width:100%;
+            float:#{$default-float};
+            padding:0;
+        }
+    }
+}
+
+
+
+// ----------------------------------
+// Common New CSS
+
+//CTA with color (either teal or grey for primary and secondary)
+//$important is an optional parameter to passed in ONLY for legacy overrides.
+@mixin ups-cta($bgColor, $important:null) {
+    background-color: $bgColor $important;
+    background-image: none $important;//
+    color: $white $important;
+    @include border_radius(25px);
+    font-size: 15.4px $important;
+    border: none $important;
+    height: 35px;
+    padding: 0 30px $important;
+    text-align: center;
+    font-weight: 400 $important;//
+    font-family: $sans-bd $important;//
+    display: inline-block;
+    text-decoration: none;
+    margin: 0;
+    min-width: 100px;
+    cursor: pointer;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-property: all;
+    -o-transition-duration: 0.2s;
+    -o-transition-property: all;
+    -webkit-appearance: none;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-property: all;
+
+    a {
+        font : {
+            size: 15.4px;
+            family: $sans-bd;
+            weight: normal;
+        }
+        color: #fff;
+        text-decoration: none;
+
+         &:hover, &:focus {
+            background: darken($bgColor, 5%) $important;
+            color: $white;
+        }
+    }
+    input {
+        border: none $important;
+        margin: 0;
+
+        &:hover, &:focus {
+            background: darken($bgColor, 5%) $important;
+            color: $white;
+        }
+    }
+
+    &:hover, &:focus {
+        background: darken($bgColor, 5%) $important;
+        color: $white;
+    }
+
+    &.disabled, &:disabled {
+        background: $stone_60 $important;
+        color: $black_s1 $important;
+        cursor: not-allowed;
+
+        &:hover, &:focus {
+            background: $stone_60 $important;
+            color: $black_s1 $important;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+//checkbox, radio, input reset things
+//around line820 in tracking
+//
+//Radio standard
+@mixin ups-radio {
+        cursor: pointer;
+        -webkit-appearance:none;
+        border: 2px solid $stone_s3;
+        width: 21px;
+        height: 21px;
+        position: relative;
+        bottom: 2px;
+        margin: 5px;
+        border-radius: 50%;
+        outline: none;
+        vertical-align: middle;
+        &:before, &:focus:before {
+            content: '';
+            background: #fff;
+            display: inline-block;
+            // vertical-align: middle;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        &:checked:before {
+            background: $ups_grass;
+            box-shadow: inset 0px 0px 0px 4px $white;
+        }
+
+        &:focus {
+            &:before {
+                background: $ups_grass;
+                box-shadow: inset 0px 0px 0px 4px $ups_gold_light;
+            }
+        }
+}
+
+@mixin ups-checkbox {
+    margin-#{$opposite-direction}: 15px;
+    position: relative;
+    z-index: 0;
+
+
+    &:before {
+        background: $white;
+        border: 2px solid $stone_s3;
+        content: '';
+        display: inline-block;
+        height: 20px;
+        margin-#{$opposite-direction}: 10px;
+        padding: 2px;
+        position: relative;
+        text-align: center;
+        top: -5px;
+        width: 20px;
+    }
+
+    &:focus {
+        &:before {
+            background: $ups_gold_light;
+            box-shadow: inset 0px 0px 0px 4px $ups_gold_light;
+        }
+    }
+
+    &:checked {
+        &:before {
+            // background: $black_s3;
+            box-shadow: inset 0px 0px 0px 4px $white;
+        }
+        &:after {
+            box-shadow: none;
+            content: " ";
+            position: absolute;
+            left: 8px;
+            top: -1px;
+            width: 5px;
+            height: 10px;
+            border-right: 3px solid $ups_grass;
+            border-bottom: 3px solid $ups_grass;
+            -o-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            transform: rotate(45deg);
+            padding: 0;
+        }
+    }
+
+    &:focus:checked {
+        &:before {
+            // background: $black_s3;
+            box-shadow: inset 0px 0px 0px 4px $ups_gold_light;
+        }
+        &:after {
+            box-shadow: none;
+            content: " ";
+            position: absolute;
+            left: 8px;
+            top: -1px;
+            width: 5px;
+            height: 10px;
+            border-right: 3px solid $ups_grass;
+            border-bottom: 3px solid $ups_grass;
+            -o-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            transform: rotate(45deg);
+            padding: 0;
+        }
+    }
+
+}
+
+@mixin ups-textbox {
+    -webkit-appearance: none;
+    border: 1px solid #bebebe;
+    padding: 0 10px;
+    font-size: 14px;
+    font-family: $sans-bd;
+    height: 35px;
+    color: $black_s4;
+
+    &:focus {
+        outline: 5px auto $ups_gold;
+    }
+}
+
+@mixin ups-inputDisabled($important:null) {
+
+	&:before {
+		border-color: $stone_s3;
+		background-color: $stone_40;
+		box-shadow: none $important;
+		cursor: not-allowed;
+	}
+
+	&:after {
+		border-color: $black_s1 $important;
+	}
+}
+
+@mixin ups-selectDD {
+    height: 35px;
+    padding-top: 8px;
+	padding-bottom: 5px;
+	padding-#{$opposite-direction}: 17px;
+	padding-#{$default-float}: 10px;
+    border: 1px solid #bebebe;
+    font-family: $sans;
+    border-radius: 7px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    // width: auto;
+	min-width: 55px;
+    font-size: 13px;
+    -webkit-appearance: none; //menulist
+    -moz-appearance: none; //menulist
+    -ms-appearance: none; //menulist
+    appearance: none; //menulist
+    background-color: white;
+	background-image: url(/assets/resources/images/legacyAppImages/sprites_black.png);
+    background-repeat: no-repeat;
+    background-position: $opposite-direction -2305px;
+    position: relative;
+    cursor: pointer;
+    pointer-events: auto;
+    text-align: center;
+
+    &::-ms-expand {
+        display: inline-block;
+    }
+
+    &:focus {
+        box-shadow: 0px 0px 2px 2px $ups_gold;
+        border-radius: 7px;
+        outline: none;
+    }
+}
+
+@mixin ups-requiredIcon {
+    content: '*';
+    position: relative;
+    font-weight: normal;
+    font-family: $sans-bd;
+}
+
+@mixin ups-reqImg {
+    vertical-align: top;
+    margin-#{$default-float}: 5px;
+}
+
+
+
+//put on dl
+@mixin ups-datepickerIcon {
+
+}
+
+@mixin ups-ctaLink {
+    background: none;
+    color: $black_s4;
+    font-family: $sans-bd;
+    font-weight: normal;
+    text-decoration: underline;
+    border: none;
+
+    &:hover, &:focus {
+        //may want to lighten
+        color: $black_s1;
+    }
+
+    &:focus {
+        outline: 5px auto $ups_gold;
+    }
+}
+
+
+
+
+
+@mixin ups-colorHeader($color, $important:null) {
+    background-color: $stone_40;
+    border: 1px solid $color;
+    border-radius: 0;
+    border-top-width: 8px;
+    box-sizing: border-box;
+    font-family: $sans;
+    margin-bottom: 30px;
+    padding: 0;
+
+    .secHead {
+        background-color: $color;
+        color: $white $important;
+        margin-bottom: 0;
+        margin-top: -8px;
+
+        h3, h4, sup, span {
+            color: $white $important;
+            margin: 0;
+            font-family: $sans;
+            font-weight: normal;
+            font-size: 1em;
+
+        }
+    }
+
+    .secBody, .secbody {
+        padding: 15px;
+        background-color: $stone_40;
+
+         h3 {
+            margin-top: 0;
+        }
+    }
+
+    .secFooter {
+        background-color: $stone_40;
+    }
+}
+
+@mixin ups-dataTable {
+        background: $stone_40;
+        border-color: $ups_brown;
+        border-#{$default-float}: 0;
+        border-#{$opposite-direction}: 0;
+        border-top: 0;
+
+        tr:first-of-type th {
+            padding: 5px 15px 5px 5px;
+        }
+
+        tbody {
+			tr td {
+				border-bottom: 1px solid $ups-brown;
+			}
+			tr:last-child td {
+				border-bottom: none;
+			}
+            tr, tr.even, tr.sec-row-ev {
+                td {
+                    background-color: $stone_40;
+                }
+            }
+            tr.odd, tr.sec-row-od {
+                td {
+                    background-color: $white;
+                }
+            }
+            td:not(:last-child) {
+                border-#{$opposite-direction}: 1px solid $ups-brown;
+            }
+            th:not(:last-child) {
+                border-#{$opposite-direction}: 1px solid $ups-brown;
+            }
+             //headers when there is no thead
+            &:first-child {
+                tr:nth-child(1) {
+                    td.sec-head, th, th label {
+                        background-color: $ups-gold;
+                        font : {
+                            family: $sans-bd;
+                            weight: normal;
+                        }
+                        border: none;
+                        text-transform: uppercase;
+
+                        &:not(:last-child) {
+                            border-#{$opposite-direction}: 1px solid $ups-brown;
+                        }
+                    }
+                }
+
+                //secondary header
+                tr:nth-child(2) {
+                    td.sec-head, th, th label {
+                        background-color: $gold_40;
+                        font : {
+                            family: $sans-bd;
+                            weight: normal;
+                        }
+                        border: none;
+
+                        &:not(:last-child) {
+                            border-#{$opposite-direction}: 1px solid $ups-brown;
+                        }
+                    }
+                }
+
+                //tertiary header
+                tr:nth-child(3) {
+                    th, td.sec-head, th label {
+                        font-family: $sans-bd;
+                        background-color: $stone_40;
+                        text-transform: uppercase;
+                        border-top: 1px solid $ups-brown;
+                        border-bottom: 1px solid $ups-brown;
+                        border-#{$default-float}: none;
+
+                        &:not(:last-child) {
+                            border-#{$opposite-direction}: 1px solid $ups-brown;
+                        }
+                    }
+                }
+            }
+        }
+
+        //headers in thead
+        thead {
+            //primary header
+            tr:nth-child(1) {
+                th, td, th label {
+                    background-color: $ups-gold;
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                    border: none;
+                    text-transform: uppercase;
+
+                    &:not(:last-child) {
+                        border-#{$opposite-direction}: 1px solid $ups-brown;
+                    }
+                }
+            }
+
+            //secondary header
+            tr:nth-child(2) {
+                th, td, th label {
+                    background-color: $gold_40;
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                    border: none;
+
+                    &:not(:last-child) {
+                        border-#{$opposite-direction}: 1px solid $ups-brown;
+                    }
+                }
+            }
+
+            //tertiary header
+            tr:nth-child(3) {
+                th, td, th label {
+                    font-family: $sans-bd;
+                    background-color: $stone_40;
+                    text-transform: uppercase;
+                    border-top: 1px solid $ups-brown;
+                    border-bottom: 1px solid $ups-brown;
+                    border-#{$default-float}: none;
+
+                    &:not(:last-child) {
+                        border-#{$opposite-direction}: 1px solid $ups-brown;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+        //headers when there's some headers in thead and other headers in tbody?
+
+        //tertiary header -- don't know how to find.....
+        // tbody {
+        //     th {
+        //         font-family: $sans-bd;
+        //         background-color: $stone_40;
+        //         border-left: none;
+        //         border-top: none;
+        //         text-transform: uppercase;
+        //         // border-bottom: 1px solid $ups-brown;
+        //         border-color: $ups-brown;
+        //         &:last-child {
+        //             border-right: none;
+        //         }
+        //     }
+        // }
+
+
+
+        &#dp_table_view th {
+            border-top: none;
+        }
+
+        &.tableGroup2 {
+            .odd td, .odd {
+                background-color: $white;
+            }
+        }
+
+        // from Mychoice Delivery Planner
+        &#dp_table_view {
+            // border: none;
+
+            // thead {
+            //     .superHead th {
+            //         background-color: $ups-gold;
+            //         text-transform: uppercase;
+            //         border-top: none;
+            //         border-bottom: none;
+            //     }
+            //     tr:not(.superHead) th {
+            //         border-color: $ups-brown;
+            //         background-color: $gold_40;
+            //     }
+            // }
+        }
+}
+
+
+@mixin ups-serifHeaderSmaller {
+    //put in apphead or sechead
+    background-image: none;
+    background-color: $white;
+    // padding: 10px 15px 0 15px;
+
+    h1, h2, b, span.whiteBoldHead {
+        font-family: $serif;
+        font-weight: normal;
+        font-size: 26.6px;
+        color: $black_s4;
+        position: relative;
+        // padding-bottom: 10px;
+        padding-#{$default-float}: 0;
+        margin-top: 0;
+
+        //  &:after {
+        //     content: '';
+        //     width: 112px;
+        //     height: 1px;
+        //     position: absolute;
+        //     bottom: 0;
+        //     background: $ups_gold;
+        //     text-align: $default-float;
+        //     #{$default-float}: 0;
+        // }
+    }
+}
+
+@mixin ups-serifHeader {
+    font-family: $serif;
+    margin: 0;
+    font-size: 2.5em; //35px
+    font-weight: normal;
+    color: $black_s4;
+    padding: 15px 0 20px 0;
+    position: relative;
+}
+
+@mixin ups-stepModHeadNumber {
+    font-family: $sans;
+    display: inline-block;
+    position: absolute;
+    #{$default-float}: 10px;
+    top: 9px;
+    height: 22px;
+    width: 22px;
+    line-height: 20px;
+    border: 1px solid $black_s4;
+    @include border_radius(50%);
+    color: $black_s4;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+@mixin icon-document-shading {
+    content: "";
+    background: url("../images/icons/document-icon.svg") no-repeat;
+}

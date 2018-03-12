@@ -1,0 +1,192 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewAdminEditDataSubscription">
+    <form error-on-submit name="ups_quantumDataSubscription" novalidate>
+
+        <a point-focus="" href="#/preferencePage/quantumView/userAdministration" class="ups-previous_page">
+        <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+        Back to User Administration
+    </a>
+
+        <!-- Page Level Errors -->
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="ups_quantumDataSubscription.ups_subscription_name.$invalid"><span> <a
+                focus-attr="ups_subscription_name" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Subscription Name is required.</a></span></li>
+                <li data-ng-if="dataSubscription.ups_subscription_type == '0'"><span> <a
+                focus-attr="ups_subscription_type" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Subscription Type is required. </a></span></li>
+            </ul>
+        </div>
+
+        <div class="ups-group">
+            <h2>Data Subscriptions</h2>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_subscription_name" class="ups-form_label">Subscription Name <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumDataSubscription.ups_subscription_name.$invalid && clicked)}" name="ups_subscription_name" id="ups_subscription_name"
+                                aria-required="true" required aria-describedby="ups_subscription_name-error" data-ng-model="dataSubscription.ups_subscription_name_input" />
+                            <div data-ng-if="ups_quantumDataSubscription.ups_subscription_name.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_subscription_name-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumDataSubscription.ups_subscription_name.$pristine && ups_quantumDataSubscription.ups_subscription_name.$invalid) || (ups_quantumDataSubscription.ups_subscription_name.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumDataSubscription.ups_subscription_name.$error.required">Subscription Name is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumDataSubscription.ups_subscription_name.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_subscription_type" class="ups-form_label">Subscription Type
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select error-on-blur focus-on-error id="ups_subscription_type" class="ups-dropdown" name="ups_subscription_type" data-ng-model="dataSubscription.ups_subscription_type" aria-required="true" required data-ng-class="{'ups-bodError' : (dataSubscription.ups_subscription_type == '0' && clicked)}">
+                            <option value="0">Select One</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                            <!-- Start Error Field Level Handling -->
+                            <span id="ups_subscriptionType-error" class="ups-invalid_color" data-ng-show="(!ups_quantumDataSubscription.ups_subscription_type.$pristine && dataSubscription.ups_subscription_type == '0')||(dataSubscription.ups_subscription_type == '0' && clicked) "
+                                role="alert"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-show="dataSubscription.ups_subscription_type == '0'">Subscription Type is required.</span>                            </span>
+                            <!-- End Error Field Level Handing -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ups-group">
+                <h3 class="h5">Notification Options</h3>
+                <p data-ng-if="(!Outbound) && (!Inbound)">Select a notification type to see the available notification options.</p>
+                <fieldset class="ups-form_group" data-ng-if="Outbound">
+                    <legend class="ups-readerTxt">Choose from the following notification options</legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-repeat="option in notificationOptionsOne">
+                        <input id="{{option.typeOfNotification}}" class="ups-checkbox-custom" name=" {{option.typeOfNotification}}" type="checkbox" value="{{option.notifcationValue}}">
+                        <label for="{{option.typeOfNotification}}" class="ups-checkbox-custom-label">{{option.notificationLabel}}</label>
+                    </div>
+                </fieldset>
+                <fieldset class="ups-form_group" data-ng-if="Outbound">
+                    <legend class="ups-readerTxt">Do you want to include complete manifest or origin information?</legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-repeat="option in includeManifestOrigin">
+                        <input id="{{option.name}}" class="ups-checkbox-custom" name=" {{option.name}}" type="checkbox" value="{{option.value}}">
+                        <label for="{{option.name}}" class="ups-checkbox-custom-label">{{option.label}}</label>
+                    </div>
+                </fieldset>
+                <fieldset class="ups-form_group" data-ng-if="Inbound">
+                    <legend class="ups-readerTxt">Choose from the following notification options</legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-repeat="option in notificationOptionsTwo">
+                        <input id="{{option.typeOfNotification}}" class="ups-checkbox-custom" name=" {{option.typeOfNotification}}" type="checkbox" value="{{option.notifcationValue}}">
+                        <label for="{{option.typeOfNotification}}" class="ups-checkbox-custom-label">{{option.notificationLabel}}</label>
+                    </div>
+                </fieldset>
+                <p data-ng-if="Inbound || Outbound">
+                    <strong>Include These <span data-ng-if="Outbound">Accounts:</span> <span data-ng-if="Inbound">Location IDs:</span></strong>
+                </p>
+                <!-- Table -->
+                <div class="row" data-ng-if="Inbound || Outbound">
+                    <div class="col-md-7">
+                        <div class="ups-table table-responsive ups-tableScroll">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="col" class="col-xs-1 text-center"><input check-verify id="ups-selectBox" class="ups-checkbox-custom" name="ups-selectBox" type="checkbox" data-ng-click="toggleSelect()"> <label for="ups-selectBox" class="ups-checkbox-custom-label ups-table-checkbox-first-column "><span
+                                              class="ups-readerTxt">Select All</span></label>
+                                        </th>
+                                        <th scope="col" class="ups-table_header_tertiary">
+                                            <span data-ng-if="Outbound">Account</span><span data-ng-if="Inbound">Location ID</span>
+                                        </th>
+                                        <th scope="col" class="ups-table_header_tertiary">Nickname</th>
+                                    </tr>
+                                    <tr data-ng-repeat="account in includeTable">
+                                        <td class="text-center"><input check-verify id="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom" name="ups-selectBox" type="checkbox" ng-model="account.selected"> <label for="{{'ups-selectBox'+$index}}" class="ups-checkbox-custom-label ups-table-checkbox-first-column"><span
+                                              class="ups-readerTxt" data-ng-if="Outbound">Select {{account.accountLabel}}</span><span
+                                                  class="ups-readerTxt" data-ng-if="Inbound">Select {{account.locationIDLabel}}</span></label></td>
+                                        <th scope="row" data-ng-if="Outbound">{{account.accountLabel}}</th>
+                                        <th scope="row" data-ng-if="Inbound">{{account.locationIDLabel}}</th>
+                                        <td>
+                                            {{account.nicknameLabel}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Table -->
+                <h3 class="h5" data-ng-if="Inbound || Outbound">Data Download Options</h3>
+                <!-- Begin Radio Button Group -->
+                <div class="ups-group" data-ng-if="Inbound || Outbound">
+                    <fieldset class="ups-form_group">
+                        <legend class="ups-form_label">File Format</legend>
+                        <div class="ups-radio ups-input_wrapper" data-ng-repeat="option in fileFormat">
+                            <input type="radio" name="{{option.fileFormatName}}" id="{{option.fileFormatName+$index}}" class="ups-radio-custom" value="{{$index}}"> <label for="{{option.fileFormatName+$index}}" class="ups-radio-custom-label">{{option.fileFormatLabel}}</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- End of Radio Button Group -->
+                <div class="ups-form_group" data-ng-if="Inbound || Outbound">
+                    <div class="ups-checkbox ups-input_wrapper">
+                        <input check-verify id="ups-notify_checkbox" class="ups-checkbox-custom" name="ups-notify_checkbox" value="1" type="checkbox" />
+                        <label for="ups-notify_checkbox" class="ups-checkbox-custom-label">
+                            Notify me when new files are available for download. </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" data-ng-if="Inbound || Outbound">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups_notification_email" class="ups-form_label">Notifcation Email</label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input type="email" class="ups-form_input" name="ups_notification_email" id="ups_notification_email" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" data-ng-if="Inbound || Outbound">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label for="ups_notification_language" class="ups-form_label">Notification Language</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_notification_language" class="ups-dropdown" name="ups_notification_language">
+                                  <option value="0">Select One</option>
+                                  <option value="1">US English</option>
+                                  <option value="2">Language 2</option>
+                                  <option value="3">Language 3</option>
+                                  <option value="4">Language 4</option>
+                              </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="saveSubscriptionButton(dataSubscription.$valid);">Save</button>
+            <a href="#/preferencePage/quantumView/userAdministration" class="ups-cta ups-cta_secondary">Cancel</a>
+        </div>
+        <div class="ups-cms-demo">
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Inbound = false; Outbound = false">Default</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Outbound = true;Inbound = false">Outbound</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Inbound = true;Outbound = false">Inbound Location ID</button>
+        </div>
+    </form>
+</div>

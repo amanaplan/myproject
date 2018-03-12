@@ -1,0 +1,35 @@
+<!-- ************************************************************************************ -->
+<!-- A11 Field Level Error                                                                -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+A11 Field Level Error - Data
+********************************************************************************
+
+Available Variations via class names:
+
+
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE			REQUIRED          	EXAMPLE
+    readerText					= string	/ NO           		/ custom screen reader text
+    errorMessage				= string	/ NO           		/ custom visable text
+    describedbyID				= string	/ YES          		/ this has to be the same as the
+    															  aria-describedby value on the input
+	
+
+********************************************************************************
+--}}
+
+
+<!-- documentation ../source/parital/app_component/module/A11_field_lvl_error.hbs -->
+
+<span class="ups-icons-error" id="{{describedbyID}}" role="alert">
+	<span class="ups-invalid_color"> 
+    	<span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+        <span class="ups-readerTxt">{{#if readerText}}{{readerText}}{{else}} Invalid{{/if}}</span>
+        <span>{{#if errorMessage}}{{errorMessage}}{{else}} Required Information error.{{/if}}</span>
+    </span>
+</span>

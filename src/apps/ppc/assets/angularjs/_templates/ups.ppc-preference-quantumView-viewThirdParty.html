@@ -1,0 +1,46 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewAdminViewThirdPartyCtrl">
+    <!--Previous Link Starts-->
+	<a point-focus="" href="#/preferencePage/quantumView" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Quantum View
+	</a>
+	<!--Previous Link Ends-->
+    <h2>View Third Party Accounts</h2>
+    <p>
+        Displaying 1-nnn of nnn
+    </p>
+    <!-- Table -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-table table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="ups-table_header_tertiary">
+                                <button class="ups-link" data-ng-click="sortBy('billToAccount')"><span
+                                        class="ups-readerTxt">Sort By </span>Bill to Account <span aria-hidden="true" class="icon" ng-class="{'ups-icon-chevrondown': reverse, 'ups-icon-chevronup': !reverse}"></span>
+                                </button>
+
+                            </th>
+                            <th scope="col" class="ups-table_header_tertiary">Country</th>
+                            <th scope="col" class="ups-table_header_tertiary">Status</th>
+                            <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                        </tr>
+                        <tr data-ng-repeat="account in thirdPartyAccts | orderBy:propertyName:!reverse">
+                            <th scope="row"><a href="#/preferencePage/quantumView/updateAcctNickname">{{account.upsAccountLabel}}</a></th>
+                            <td>{{account.countryLabel}}</td>
+                            <td>
+                                Active
+                            </td>
+                            <td><button type="button" class="ups-button_link" data-ng-click="removeAccountModal();">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Table -->
+    <div class="ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_primary" data-ng-click="toggleModal();">Add Account</button>
+    </div>
+</div>

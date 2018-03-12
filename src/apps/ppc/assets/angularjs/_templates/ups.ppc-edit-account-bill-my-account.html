@@ -1,0 +1,118 @@
+<form error-on-submit name="ups_editAccount" novalidate>
+	
+    <div data-ng-if="clicked && !ups_editAccount.$valid">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+        <ul class="ups-icons-error"> 
+            <li data-ng-if="ups_editAccount.email.$error.required"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-payment-user-error" error-on-submit-anchor class="ups-invalid_color"> Email</a> is required.
+                </span>
+            </li>
+            <li data-ng-if="ups_editAccount.email.$error.email"> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-payment-user-error" error-on-submit-anchor class="ups-invalid_color"> Email</a> is not valid.
+                </span>
+            </li>
+        </ul>
+    </div>
+	<p>Bill shipping charges to your payment account at participating UPS Customer Centers and Staples&#174; locations.</p>
+	<p>
+        <em>
+            <span aria-hidden="true">*</span>
+            <span class="ups-readerTxt">Required</span>
+            Indicates required field
+        </em>
+    </p>
+	<div class="ups-form_wrap">
+		<fieldset class="ups-form_group">
+			<div class="ups-buttonList_wrapper ups-input_wrapper">
+				<input check-verify id="ups-bill-my-acc" class="ups-checkbox-custom"
+					name="ups-uid-form_title-unnamed" type="checkbox"
+					data-ng-model="formObj.payment.active"
+					data-ng-checked="formObj.payment.active" aria-required="true" required>
+                <label for="ups-bill-my-acc" class="ups-checkbox-custom-label">Yes
+					I agree to the Bill My Account <a href="#" onclick="return false;"
+					data-ng-click="openBillMyAccTnc()" class="ups-new-window" class="ups-link">terms
+						and conditions<span class="ups-readerTxt">This will open in
+							a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>.
+                    <!--<span aria-hidden="true" class="ups-required_indicator"></span>-->
+				</label>
+			</div>
+
+			<div class="row">
+            	<div class="col-md-5">
+                    <fieldset class="ups-indent-left"
+                        data-ng-show="formObj.payment.active">
+                        <legend class="ups-form_label">My Eligible Transactions </legend>
+        
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="ups-payment-pref-yes" class="ups-radio-custom"
+                                name="ups-payment-pref" type="radio" value="yes" checked="">
+                            <label for="ups-payment-pref-yes" class="ups-radio-custom-label">Shipping
+                                and Non-Shipping Goods and Services</label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="ups-payment-pref-no" class="ups-radio-custom"
+                                name="ups-payment-pref" type="radio" value="no"> <label
+                                for="ups-payment-pref-no" class="ups-radio-custom-label">Shipping
+                                Only</label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="ups-indent-left"
+                        data-ng-show="formObj.payment.active">
+                        <legend class="ups-form_label">My Receipts</legend>
+
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="ups-email-pref-yes" class="ups-radio-custom"
+                                name="ups-email-pref" type="radio" value="yes" checked="">
+                            <label for="ups-email-pref-yes" class="ups-radio-custom-label">Send
+                                email receipts for these charges to</label>
+                                
+							<label for="ups-payment-user-error" class="ups-readerTxt">Email Receipts to</label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input id="ups-payment-user-error" type="email" name="email"
+                                    class="ups-form_input" validate-email data-ng-model-options="{updateOn: 'blur'}" aria-describedby="Email-error" aria-required="true" required
+                                    data-ng-model="formObj.payment.user_email"
+                                    data-ng-class="{'ups-bodError':(ups_editAccount.email.$invalid && clicked)}" />
+                                    <span id="Email-error" role="alert"> <span class="ups-invalid_color"
+                                    data-ng-show="(!ups_editAccount.email.$pristine && ups_editAccount.email.$invalid) || (ups_editAccount.email.$invalid && clicked)">
+                                        <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                        <span
+                                        data-ng-show="ups_editAccount.email.$error.required">Email
+                                            address required.</span> <span
+                                        data-ng-hide="ups_editAccount.email.$error.required">Invalid
+                                            Email.</span>
+                                </span>
+                                <span data-ng-if="ups_editAccount.email.$valid && ups_editAccount.email.$dirty" >
+                                    <span class="ups-readerTxt">Check</span>
+                                    </span>
+                                </span>
+                                <div data-ng-if="(ups_editAccount.email.$valid && formObj.payment.user_email)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+						</div>
+
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="ups-email-pref-no" class="ups-radio-custom"
+                                name="ups-email-pref" type="radio" value="no"> <label
+                                for="ups-email-pref-no" class="ups-radio-custom-label">Skip
+                                the email receipts; I'll get printed receipts in the store.</label>
+                        </div>
+					</fieldset>
+				</div>
+        	</div>
+        </fieldset>
+	</div>
+    <div class="ups-form_ctaGroup">
+        <button type="button" data-ng-click="clicked=true; saveAccount(ups_editAccount)"
+            class="ups-cta ups-cta_primary">Save</button>
+            <!-- data-ng-disabled="!ups_editAccount.$valid" -->
+    </div>
+</form>

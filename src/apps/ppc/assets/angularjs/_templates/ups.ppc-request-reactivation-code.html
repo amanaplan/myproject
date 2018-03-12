@@ -1,0 +1,65 @@
+<!-- Begin Request Reactivation Code Modal -->
+<section>
+   <form class="ups-onboApp-wrap-ppc" error-on-submit name="ups_requestReactivationCodeModalForm" novalidate>
+       <!-- Error Handling -->
+       <div class="ng-scope" data-ng-if="clicked && checkFormErrors()">
+           <h3 class="ups-invalid_color-list ups-error_alert-list ng-scope">
+               <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+               Please correct the following errors
+           </h3>
+           <ul class="ups-icons-error">
+               <li data-ng-if="clicked && ups_requestReactivationCodeModalForm.sendByRadio.$invalid"><span
+                   data-ng-show="ups_requestReactivationCodeModalForm.sendByRadio.$invalid && clicked"> <a
+                   focus-attr="ups-sendBy_1" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color">Send By</a> is required. </span></li>
+           </ul>
+       </div>
+       <p>
+           The selected account has been flagged for inactivity and must be reactivated. To continue with this account, select a method below th have a reactivation code sent to the acoount owner's email or mobile phone. Or, to continue with a different account or payment method, close this window or select a different payment option.
+       </p>
+       <p>
+           <em>
+				<span aria-hidden="true">*</span>
+				<span class="ups-readerTxt">Required</span>
+				Indicates required field
+			</em>
+        </p>
+        <!-- Begin Radio Button Group -->
+        <div class="ups-form_group">
+            <fieldset class="ups-form_required">
+                <legend class="ups-form_label">Send By <span aria-hidden="true" class="ups-required_indicator"></span></legend>
+                <div class="ups-radio ups-input_wrapper" data-ng-repeat="i in sendByRadioButton">
+                    <input type="radio"
+                        name="sendByRadio"
+                        id="ups-sendBy_{{i.id}}"
+                        class="ups-radio-custom" aria-required="true" required aria-describedby="sendByRadio_error"
+                        data-ng-model="requestReactivationCodeModalForm.sendByRadio"
+                        data-ng-class="{'ups-bodError' : (ups_requestReactivationCodeModalForm.sendByRadio.$invalid && clicked)}"
+                        value="{{i.id}}"> <label
+                        for="ups-sendBy_{{i.id}}" class="ups-radio-custom-label">{{i.label}}</label>
+                </div>
+            </fieldset>
+            <!-- Start Field Level Error -->
+            <span class="ups-icons-error" id="sendByRadio_error" role="alert">
+                <span class="ups-invalid_color" data-ng-show="(!ups_requestReactivationCodeModalForm.sendByRadio.$pristine && ups_requestReactivationCodeModalForm.sendByRadio.$invalid) || (ups_requestReactivationCodeModalForm.sendByRadio.$invalid && clicked)">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                    <span class="ups-readerTxt"> Invalid</span>
+                    <span>Send By method must be selected.</span>
+                </span>
+            </span>
+            <!-- End Field Level Error -->
+        </div>
+        <!-- End of Radio Button Group -->
+        <div class="ups-group">
+            <p>
+              As an authorized user, you must contact the account owner for the PIN code or account reactivation status.
+            </p>
+        </div>
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="cancel()">Cancel</button>
+             <button type="submit" class="ups-cta ups-cta_primary"
+                data-ng-click="nextStep(ups_requestReactivationCodeModalForm.sendByRadio.$valid)">Next</button>
+        </div>
+   </form>
+</section>
+<!-- End Request Reactivation Code Modal -->

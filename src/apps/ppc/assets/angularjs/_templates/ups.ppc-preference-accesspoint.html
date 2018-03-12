@@ -1,0 +1,172 @@
+<div class="ups-application_wrapper ups-prefAccessPoint"
+	data-ng-controller="prefrenceAccessCtrl">
+	<ng-form name="ups_shippingAccessPoint" data-novalidate>
+	<div class="ups-introductory">
+		<p>
+			Request email alerts to stay informed about packages delivered to and
+			picked up from UPS Access Point<sup>&reg;</sup> locations.
+		</p>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<h3>Notify Receiver</h3>
+			<div class="ups-form_group">
+				<label for="ups-receiver-sendby" class="ups-form_label">Send
+					by</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-receiver-sendby" id="ups-receiver-sendby"
+						class="ups-dropdown" data-ng-model="formObj.receiver.sendBy">
+						<option data-ng-repeat="type in data.notificationType"
+							value="{{type}}">{{type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-receiver-notification" class="ups-form_label">Notification
+					Language</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-receiver-notification"
+						id="ups-receiver-notification" class="ups-dropdown"
+						data-ng-model="formObj.receiver.lang">
+						<option>Select One</option>
+						<option data-ng-repeat="type in data.notificationLanguage"
+							value="{{type.value}}">{{type.value}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+
+			<h3>Notify Me</h3>
+			<div class="ups-form_group">
+				<label for="ups-shipper-sendby" class="ups-form_label">Send
+					By</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-shipper-sendby" id="ups-shipper-sendby"
+						class="ups-dropdown" data-ng-model="formObj.shipper.sendBy"
+						data-ng-change="shipperType(formObj.shipper.sendBy);">
+						<option data-ng-repeat="type in data.notificationType"
+							value="{{type}}">{{type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-email_input_to" class="ups-form_label"
+					data-ng-hide="!setEmail">Send To</label>
+				<div class="ups-text_wrapper ups-input_wrapper"
+					data-ng-hide="!setEmail">
+					<input validate-email type="email" name="email_input_to"
+						class="ups-form_input" id="ups-email_input_to" value=""
+						maxlength="50" data-ng-model="formObj.emailTo"
+						data-ng-init="formObj.emailTo='jsmith@email.com'"
+						title="address@domail.com" aria-describedby="email-error-to"
+						data-ng-model-options="{updateOn: 'blur'}"> <span
+						id="email-error-to" role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_shippingAccessPoint.email_input_to.$pristine && ups_shippingAccessPoint.email_input_to.$invalid">
+							<span class="icon ups-error_exclamation"><span
+								class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							class="ups-readerTxt">Please enter a valid email address</span> <span
+							data-ng-hide="ups_shippingAccessPoint.email_input_to.$error.required">Please
+								enter a valid email address.</span>
+					</span></span>
+				</div>
+				<div class="row" data-ng-hide="setEmail">
+					<div class="col-md-5">
+						<label for="ups-shipper-country" class="ups-form_label">Send
+							To<span class="ups-readerTxt"> country code</span>
+						</label>
+						<div class="ups-dropdown_wrapper ups-input_wrapper">
+
+							<select name="ups-shipper-country" id="ups-shipper-country"
+								class="ups-dropdown" data-ng-model="formObj.shipper.countryCode">
+								<option data-ng-repeat="type in data.countryCodeList"
+									value="{{type.code}}">{{type.code}}</option>
+							</select>
+						</div>
+					</div>
+					<!-- For defect ID UPSDO-765 for accessibility Phone Number label is added-->
+					<div class="col-md-7">
+						<label for="ups-shipper-phone"
+							class="ups-form_label">Phone Number</label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input error-on-blur number-mask type="text"
+								name="shipper_sendto" class="ups-form_input"
+								id="ups-shipper-phone" value="" maxlength="15"
+								data-ng-model="formObj.shipper.phone"
+								aria-describedby="number-error-sendto"
+								data-ng-model-options="{updateOn: 'blur'}"> <span
+								id="number-error-sendto" role="alert"><span class="ups-invalid_color"
+								data-ng-if="!ups_shippingAccessPoint.shipper_sendto.$pristine && ups_shippingAccessPoint.shipper_sendto.$invalid">
+									<span class="icon ups-error_exclamation"><span
+										class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+									class="ups-readerTxt">Please enter a valid information.</span>
+									<span
+									data-ng-hide="ups_shippingAccessPoint.shipper_sendto.$error.required">Please
+										enter a valid information.</span>
+							</span> <span
+								data-ng-if="formObj.shipper.phone && ups_shippingAccessPoint.shipper_sendto.$valid">
+									<span class="ups-readerTxt">Check</span>
+							</span> </span>
+							<div data-ng-if="(formObj.shipper.phone && ups_shippingAccessPoint.shipper_sendto.$valid)">
+								<!-- @Note: screen reader text needs to be translated as well -->
+								<span class="ups-icon-check" aria-hidden="true"></span> <span
+									class="ups-readerTxt">Check</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<div class="ups-form_group">
+				<label for="ups-receiver-notification-to" class="ups-form_label">Notification
+					Language</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-receiver-notification-to"
+						id="ups-receiver-notification-to" class="ups-dropdown"
+						data-ng-model="formObj.shipper.lang">
+						<option>Select One</option>
+						<option data-ng-repeat="type in data.notificationLanguage"
+							value="{{type.value}}">{{type.value}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+			<h3>Alert me if any of these emails are undeliverable.</h3>
+			<div class="ups-form_group">
+				<label for="ups-email_input" class="ups-form_label">Email</label>
+				<div class="ups-text_wrapper ups-input_wrapper">
+					<input validate-email type="email" name="email_input"
+						class="ups-form_input" id="ups-email_input" value=""
+						maxlength="50" data-ng-model="formObj.email"
+						data-ng-init="email='jsmith@email.com'" title="address@domail.com"
+						aria-describedby="email-error"
+						data-ng-model-options="{updateOn: 'blur'}"> <span
+						id="email-error" role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_shippingAccessPoint.email_input.$pristine && ups_shippingAccessPoint.email_input.$invalid">
+							<span class="icon ups-error_exclamation"> <span
+								class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							class="ups-readerTxt">Please enter a valid email address</span> <span
+							data-ng-show="ups_shippingAccessPoint.email_input.$invalid">Please
+								enter a valid email address.</span>
+					</span></span>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_ctaGroup ">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="save()">Save
+				</button>
+                
+                <!-- data-ng-disabled="!ups_shippingAccessPoint.$dirty || ups_shippingAccessPoint.$invalid" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	</ng-form>
+</div>

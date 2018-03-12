@@ -1,0 +1,557 @@
+---
+title: Create a Freight Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIFS
+appCSS: ups.legacy_overrideUIFS
+dir: ltr
+lang: en
+---
+<div id="main">
+    
+    <form action="repl_faction">
+        <ul id="subTab">
+            <li class="tab-off">
+                <a href="repl_href">
+                    Package
+                </a>
+            </li>
+            <li class="tab-on">Freight</li>
+            <li class="tab-off">
+                <a href="repl_href">
+                    International Forms
+                </a>
+            </li>
+        </ul>
+        <div style="clear: both;"></div>
+        <table width="566" border="0" cellspacing="0" cellpadding="0" class="tab">
+            <tr>
+                <th> <div class="head-col4">
+                        <h2>Shipment Details</h2>
+                        <div style="clear: both;"></div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td><!-- Begin: Intro -->
+                    
+                    <div class="introModFixed">
+                        <p>Below are the details for the shipment you selected in History.</p>
+                    </div>
+                    
+                    <!-- End: Intro -->
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Address Information</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>address information</legend>
+                                <dl role="presentation" class="flexFirst">
+                                    <dt>
+                                        <span class="label">Ship From:</span>
+                                    </dt>
+                                    <dd> John Smith<br>
+                                        UPS Innoplex<br>
+                                        2010 Warsaw Rd<br>
+                                        Roswell, GA 30076<br>
+                                        US<br>
+                                        <br>
+                                        <br>
+                                        Telephone: 800-742-5877 </dd>
+                                </dl>
+                                <dl role="presentation" class="flexAfter">
+                                    <dt>
+                                        <span class="label">Ship To:</span>
+                                    </dt>
+                                    <dd> Pat Jones<br>
+                                        Consolidated Equip.<br>
+                                        6707 North Basin Avenue<br>
+                                        Portland, OR 97217<br>
+                                        US<br>
+                                        <br>
+                                        <br>
+                                        Telephone: 800-742-5877<br>
+                                    </dd>
+                                </dl>
+                                <dl role="presentation" class="flexAfter">
+                                    <dt>
+                                        <span class="label">Third Party:</span>
+                                    </dt>
+                                    <dd> Lynn Smith<br>
+                                        Company Name.<br>
+                                        Street Address 1<br>
+                                        City, State 00000<br>
+                                        US<br>
+                                        <br>
+                                        <br>
+                                        Telephone: 800-123-4567 </dd>
+                                </dl>
+                                <div style="clear:both;"></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div style="padding: 10px">
+                        <hr>
+                    </div>
+                    
+                    <!-- End: Section Module -->
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFlex">
+                        <div class="modHead">
+                            <h3>Freight Detail</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>freight detail</legend>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th nowrap>Description of Goods</th>
+                                            <th>Handling Unit</th>
+                                            <th>Length Each</th>
+                                            <th>Width Each</th>
+                                            <th>Height Each</th>
+                                            <th>Weight Each</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>{description of goods}</td>
+                                            <td nowrap>{customer data}</td>
+                                            <td nowrap>[nnn.0][in.]</td>
+                                            <td nowrap>[nnn.0][in.]</td>
+                                            <td nowrap>[nnn.0][in.]</td>
+                                            <td nowrap>[nnn.0][lb]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div style="clear:both;"></div>
+                                <br>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End: Section Module -->
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Service and Payment Information</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>service and payment information</legend>
+                                <table border="0" cellpadding="2" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td nowrap width="37%"><span class="label">Service:</span></td>
+                                        <td colspan="2" nowrap>[UPS Freight Service Name]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Guaranteed By:</span></td>
+                                        <td nowrap colspan="2">[weekday] [dd/mm/yyyy] [hh:mm] [AM/PM]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">[Pickup B2 / B3 extended area alert - additional transit days warning]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">[Delivery B2 / B3 extended area alert - additional transit days warning]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Freight Tracking Number:</span></td>
+                                        <td colspan="2"><strong>
+                                            <a href="repl_href">
+                                                [1234567890]
+                                            </a>
+                                            </strong></td>
+                                    </tr>
+                                    <!-- begin: for non-guaranteed service selection. -->
+                                    <tr>
+                                        <td nowrap><span class="label">estimated delivery by:</span></td>
+                                        <td colspan="2">weekday, mm/dd/yyyy hh:mm am/pm</td>
+                                    </tr>
+                                    <!-- end: for non-guaranteed service selection. -->
+                                    
+                                    <!-- begin: for HAPU service / accessorial selection. -->
+                                    <tr>
+                                        <td><span class="label">available for pickup at destination airport:</span></td>
+                                        <td colspan="2">weekday, mm/dd/yyyy</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="label">earliest time for pickup:</span></td>
+                                        <td colspan="2">hh:mm am/pm</td>
+                                    </tr>
+                                    <!-- end: for HAPU service / accessorial selection. -->
+                                    
+                                    <tr>
+                                        <td nowrap><span class="label">freight tracking number:</span></td>
+                                        <td colspan="2"><strong>
+                                            <a href="repl_href">
+                                                00000000000
+                                            </a>
+                                            </strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Payment terms:</span></td>
+                                        <td colspan="2">[payment method*]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td colspan="2">[UPS-SCS Account Number 00000000]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td colspan="2"><strong>[Deliver Duty Paid/Deliver Duty Unpaid]</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">* Charges for freight shipments are billed separately by UPS-SCS, and will not appear on your UPS invoice.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>Freight:</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>Fuel Surcharge:</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><strong>Freight Total:</strong></td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>Customs Value:</td>
+                                        <td nowrap>[nnnn.00][USD]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Pickup Date:</span></td>
+                                        <td>[weekday][dd/mm/yyyy]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Pickup Confirmation:</span></td>
+                                        <td><strong>[123456789]</strong></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Earliest Dropoff Time:</span></td>
+                                        <td>[hh:mm][AM/PM]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Latest Dropoff Time:</span></td>
+                                        <td>[hh:mm][AM/PM]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Pickup Site Close Time:</span></td>
+                                        <td>[hh:mm][AM/PM]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Pickup requester:</span></td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Contact: [Contact Name]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Telephone: [nnn-nnn-nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Ext.: [nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Fax: [nnn-nnn-nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">E-mail: [name@company.com]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">Actual Weight:</span></td>
+                                        <td>[nnnn.00]<img alt="" border="0" height="1" src="/img/1.gif" width="3">[lb/kg]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">
+                                            <a href="repl_href">
+                                                Dimensional Weight:<img alt="" border="0" height="8" src="/img/1.gif" width="3"><img alt="Help" border="0" height="9" src="/img/icn_help_blue.gif" width="9">
+                                            </a>
+                                            </span></td>
+                                        <td>[nnnn.00]<img alt="" border="0" height="1" src="/img/1.gif" width="3">[lb/kg]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><span class="label">
+                                            <a href="repl_href">
+                                                Billable Weight:<img alt="" border="0" height="8" src="/img/1.gif" width="3"><img alt="Help" border="0" height="9" src="/img/icn_help_blue.gif" width="9">
+                                            </a>
+                                            </span></td>
+                                        <td>[nnnn.00]<img alt="" border="0" height="1" src="/img/1.gif" width="3">[lb/kg]</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>Miscellaneous Origin Fee:</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>Security Fee:</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>[Accessorial Placeholder:]</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap>[Accessorial Placeholder:]</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                </table>
+                                <div style="clear:both;"></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End: Section Module -->
+                    
+                    <br>
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Shipment Options</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>shipment options</legend>
+                                <table border="0" cellpadding="2" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td width="37%">Declared Value Surcharge:</td>
+                                        <td>[nnnn.00][USD]</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>[Optional Placeholder:]</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dangerous Goods Surcharge:</td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd">[nnnn.00]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Contact: [Contact Name]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Telephone: [nnn-nnn-nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Ext.: [nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Transportation Mode: <span>[Cargo Aircraft Only / Passenger Aircraft]</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap colspan="3"><span class="label">Hold at Destination Airport:</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Contact: [Contact Name]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Telephone: [nnn-nnn-nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="indent" colspan="3">Ext.: [nnnn]</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap><strong>Total:</strong></td>
+                                        <td>&nbsp;</td>
+                                        <td nowrap class="marginEnd"><strong>** [nnnn.00]</strong></td>
+                                    </tr>
+                                </table>
+                                <p class="reqTxtInst">All Shipping Charges in (USD) </p>
+                                <p>We are unable to return negotiated rates for this shipment. If you have a negotiated rate, it will apply at the point of billing. If you do not have a negotiated rate, please call 1-800-443-6379 to discuss your rate options.</p>
+                                <div class="outHozFixed2">
+                                    <dl role="presentation">
+                                        <dt>
+                                            <span class="label">Shipper Reference:</span>
+                                        </dt>
+                                        <dd>[user entered data]</dd>
+                                        <dt>
+                                            <span class="label">Receiver Reference:</span>
+                                        </dt>
+                                        <dd>[user entered data]</dd>
+                                    </dl>
+                                </div>
+                                <div style="clear:both"></div>
+                                <br>
+                                <table border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Country or Territory of Original Manufacture</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>1. [Country or Territory Name]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2. [Country or Territory Name]</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td>3. [Country or Territory Name]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. [Country or Territory Name]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5. [Country or Territory Name]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <div>
+                                    <h4>Special Instructions:</h4>
+                                    <p class="ups-special_instructions_wrap">[Customer entered information. Customer entered information. Customer entered information. Customer entered information. Customer entered information.] 
+                                </div>
+                                <div style="clear:both;"></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End: Section Module -->
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Freight Shipment Documents</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>freight shipment documents</legend>
+                                <h4>Waybill</h4>
+                                <p>
+                                    <a href="">
+                                        View My Waybill<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_popup_blue.gif" alt="" height="9" width="9" border="0">
+                                    </a>
+                                </p>
+                                <h4>Import/Export Forms Documentation</h4>
+                                <p>This shipment was processed with paperless documents.</p>
+                                <p>
+                                    <a href="">
+                                        View Documents<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_popup_blue.gif" alt="" height="9" width="9" border="0">
+                                    </a>
+                                </p>
+                                <div style="clear:both;"></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End: Section Module -->
+                    
+                    <!-- Begin: Section Module -->
+                    
+                    <div class="modFixed4col">
+                        <div class="modHead">
+                            <h3>Notifications</h3>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="modContent">
+                            <fieldset>
+                                <legend>notifications</legend>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th width="10">&nbsp;</th>
+                                            <th>E-mail addresses</th>
+                                            <th>Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>1.</td>
+                                            <td>[name@company.com]</td>
+                                            <td>[Ship; Delivery]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>[name@company.com]</td>
+                                            <td>[Ship; Delivery]</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td>3.</td>
+                                            <td>[name@company.com]</td>
+                                            <td>[Ship; Delivery]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>[name@company.com]</td>
+                                            <td>[Ship; Delivery]</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td>5.</td>
+                                            <td>[name@company.com]</td>
+                                            <td>Failure Address</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div style="clear:both;"></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <!-- End: Section Module --></td>
+            </tr>
+            <tr>
+                <td><p>
+                        <a href="">
+                            Back to My UPS Workspace
+                        </a>
+                    </p></td>
+            </tr>
+            <tr>
+                <td class="btn-bar"><div class="btn-col4">
+                        <input name="repl_fname" type="button" value="Back to History" class="btn_bak_a">
+                    </div></td>
+            </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" width="566" class="note">
+            <tr>
+                <td><p>** Rate may contain a
+                        <a href="repl_href">
+                            fuel surcharge.<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_popup_blue.gif" alt="" height="9" width="9" border="0">
+                        </a>
+                    </p>
+                    <p><strong>Note:</strong> The displayed rate is based on the information you have supplied and is for reference purposes. shipping rates do not include applicable taxes, fuel surcharge, or other shipping charges, surcharges, or fees.</p>
+                    <p>
+                        <a href="repl_href">
+                            Learn more about air freight services<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_popup_blue.gif" alt="" height="9" width="9" border="0">
+                        </a>
+                    </p>
+                    <p>[For additional information about your air freight shipment, call 1-800-443-6379.]</p></td>
+            </tr>
+        </table>
+    </form>
+</div>

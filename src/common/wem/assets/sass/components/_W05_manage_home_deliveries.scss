@@ -1,0 +1,533 @@
+// ----------------------------------------------------
+// W05 Manage Home Deliveries
+// ----------------------------------------------------
+
+@mixin ups-manage-deliveries_sm {
+    padding-top: 0;
+
+    &.manage-deliveries_nli {
+        .ups-widget_panel {
+            padding-left: 85px;
+            padding-right: 85px;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+
+    .manage-deliveries_accounts {
+        height: auto;
+        padding-top: $margin_3;
+
+        label {
+            float: none;
+            margin: 0;
+            padding-top: 2px;
+            padding-bottom: $margin_5;
+            line-height: 14px;
+        }
+
+        .ups-dropdown_wrapper {
+            max-width: none;
+        }
+    }
+
+    .manage-deliveries_packages {
+
+        &[data-active="false"] {
+            display: none;
+        }
+
+        &[data-active="true"] {
+            display: block;
+            padding-bottom: $margin_3;
+        }
+
+        .package-total {
+            height: 28px;
+            margin-bottom: $grid-gutter-width;
+        }
+
+        .total-text {
+            float: $default-float;
+            @include vertical-align();
+        }
+
+        .package-notification {
+            float: $default-float;
+            margin-#{$default-float}: 10px;
+            margin-top: 0;
+
+            div {
+                padding-left: 2px;
+            }
+        }
+
+        .no-packages {
+            text-align: center;
+
+            .title {
+                font-weight: 700;
+                font-family: $sans;
+                margin-bottom: $page-margin;
+            }
+        }
+
+        .all-packages {
+            margin: 0 -$page-margin-sm;
+            line-height: 20px;
+
+            &:last-child{
+                margin-bottom: $grid-gutter-width;
+            }
+            .package-info {
+                padding: ($grid-gutter-width / 2) $page-margin-sm;
+                border-bottom: 1px solid #D8D8D4;
+                display: none;
+
+                &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+                    display: block;
+                }
+
+                &:nth-child(2n-1) {
+                    background: #F4F4F4;
+                }
+
+                &:nth-child(2n) {
+                    background: $white;
+                }
+
+                &:first-child {
+                    border-top: 1px solid #D8D8D4;
+                }
+            }
+        }
+    }
+
+    .manage-deliveries_cta {
+        padding-left: $page-margin-sm;
+        padding-right: $page-margin-sm;
+
+        .ups-cta {
+            max-width: none;
+        }
+    }
+}
+
+@mixin ups-manage-deliveries_quickstart {
+
+    .manage-deliveries_header {
+        h3 {
+            display: none;
+        }
+    }
+
+    .ups-widget_line {
+        background-color: $ups_stone;
+        height: 1px;
+        position: absolute;
+        width: 100%;
+        top: 22px;
+    }
+
+//    .ups-widget_redirect {
+//        margin-top: 15px;
+//    }
+
+    .manage-deliveries_quickstart {
+        margin-bottom: $grid-gutter-width;
+
+        &[data-active="false"] {
+            display: none;
+        }
+
+        &[data-active="true"] {
+            display: block;
+        }
+
+        .no-deliveries-container {
+            border-top: 1px solid #D8D8D4;
+            padding: $grid-gutter-width 0;
+        }
+    }
+
+    /*.package-total {
+        display: none;
+    }*/
+
+    .manage-deliveries_header_qs {
+        display: block;
+
+        .header-qs-container {
+            height: 37px;
+            position: relative;
+        }
+
+        .ups-form_label {
+            font-size: 11pt;
+            margin-bottom: 5px;
+        }
+
+        .ups-dropdown_wrapper {
+            border-right: 1px solid $stone_s3;
+            width: 53%;
+            margin: 3px 0 0;
+            float: $default-float;
+
+            &:before {
+                right: 0px;
+            }
+
+            .ups-rtl & {
+                &:before {
+                    right: auto;
+                    left: 0;
+                }
+            }
+        }
+
+        .package-total {
+            float: $opposite-direction;
+
+            &[data-active="true"] {
+                display: block;
+            }
+        }
+
+        .package-notification {
+            @include vertical-align();
+            float: $default-float;
+            top: 0;
+            margin-top: 18px;
+        }
+
+        &.single_account {
+            .package-total {
+                display: block;
+                left:0;
+            }
+        }
+    }
+
+    .manage-deliveries_accounts {
+        display: none;
+    }
+
+   /* .manage-deliveries_calendar {
+        display: none;
+    }
+
+    .manage-deliveries_packages {
+        display: none;
+    }*/
+
+}
+
+.ups-manage-deliveries {
+    @include ups-component_margin;
+
+    .ups-link {
+        color: $black_s3;
+        cursor: pointer;
+        font-family: $sans;
+        font-weight: normal;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        &:hover {
+            color: $black_s1;
+        }
+
+    }
+
+    .ups-widget_redirect {
+        margin-bottom: 0;
+    }
+
+    // .package-notification {
+    //     border-radius: 50%;
+    //     background: $ups-gold;
+    //     color: $black_s3;
+    //     font-family: $sans;
+    //     font-weight: 700;
+    //     text-align: center;
+    //     width: 25px;
+    //     height: 25px;
+    //     //padding: 12px 8px;
+    //     div {
+    //         font-size: 14px;
+    //         line-height: 0;
+    //         float: left;
+    //         margin-top: 2px;
+    //         @include center-align();
+    //         //position: relative;
+    //         //padding: 14px 8px 10px;
+    //     }
+    // }
+
+    .package-notification {
+        border-radius: 12.5px;
+        background: $ups-gold;
+        color: $black_s3;
+        font-family: $sans;
+        font-weight: 700;
+        text-align: center;
+        line-height: 27px;
+        min-width: 25px;
+        height: 25px;
+        padding: 0 3px;
+        //padding: 12px 8px;
+        font-size :14px;
+        // div {
+        //     font-size: 14px;
+        //     line-height: 0;
+        //     float: left;
+        //     margin-top: 2px;
+        //     @include center-align();
+        //     //position: relative;
+        //     //padding: 14px 8px 10px;
+        // }
+    }
+
+    .manage-deliveries_header {
+        margin-bottom: $margin_2;
+        position: relative;
+
+        h3 {
+            font-size: 2em;
+            margin: 0;
+            position: relative;
+            float: $default-float;
+        }
+
+        sup {
+            font-size: 10px;
+            position: absolute;
+            #{$opposite-direction}: -12px;
+            top: 8px;
+        }
+
+        .package-total {
+            position: absolute;
+            #{$opposite-direction}: 0;
+            height: 100%;
+            font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+
+            .total-text {
+                @include vertical-align();
+                float: $default-float;
+                font-size: 15px;
+            }
+
+            .package-notification {
+                float: $opposite-direction;
+                margin-#{$default-float}: 10px;
+            }
+        }
+    }
+
+    .manage-deliveries_accounts {
+        margin-bottom: $grid-gutter-width;
+
+        label {
+            float: none;
+            margin-#{$opposite-direction}: $grid-gutter-width / 2;
+            margin-bottom: 0;
+            line-height: 50px;
+        }
+
+        .ups-dropdown_wrapper {
+            margin-bottom: 0;
+        }
+    }
+
+    /*.manage-deliveries_quickstart {
+        display: none;
+    }*/
+
+    .manage-deliveries_calendar {
+        /*display: none;
+
+        &[data-active="true"] {
+            display: block;
+        }*/
+
+        .calendar-dates.row {
+            margin-left: -2px;
+            margin-right: -2px;
+        }
+
+        .col-date {
+            padding-left: 2px;
+            padding-right: 2px;
+            width: 14.285%;
+            float: $default-float;
+        }
+
+        .date_toggle {
+            @include unbutton;
+            width: 100%;
+            height: 116px;
+            background: $black_s1;
+            color: $white;
+            font-family: $sans;
+            font-weight: 700;
+            border: 2px solid $black_s1;
+            border-bottom: none;
+            position: relative;
+            text-align: center;
+
+            .date {
+                width: 100%;
+                position: absolute;
+                text-transform: uppercase;
+                top: $grid-gutter-width / 2;
+            }
+
+            .package-notification {
+                @include center-align();
+                position: absolute;
+                margin-top: 10px;
+            }
+
+            &[data-active="true"] {
+                background: $white;
+                color: $black_s1;
+            }
+        }
+
+        .calendar-package-info {
+            margin: $margin_5 0 $margin_3;
+            min-height: 200px;
+            position: relative;
+
+            .package-info {
+                /*position: absolute;*/
+                width: 100%;
+                display: none;
+
+                &[data-active="true"] {
+                    display: block;
+                }
+            }
+
+            .no-deliveries-container {
+                height: 100%;
+                text-align: center;
+                border-bottom: 1px solid #D8D8D4;
+
+                .info-date {
+                    font-family: $sans;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                }
+
+                .no-deliveries {
+                    /*@include vertical-align();
+                    margin-top: -$grid-gutter-width / 2;*/
+                    position: absolute;
+                    top: 50%;
+                    #{$default-float} : 40%;
+                }
+            }
+        }
+    }
+
+    .package-total {
+        top: 2px;
+        /*display: none;
+        &[data-active="true"] {
+            display: block;
+        }*/
+    }
+
+    .ups-table {
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+
+        .col-status {
+            width: 180px;
+        }
+
+        td, th {
+            border: none;
+            font-size: 14px;
+            #ups-headerTools & {
+                padding: 12px 15px 10px;
+            }
+        }
+
+        thead th {
+            background: #D8D8D4;
+            font-size: 14px;
+            text-transform: none;
+        }
+
+        tbody tr {
+            border-color: #D8D8D4;
+            line-height: 20px;
+
+            &:nth-child(2n-1) {
+                background: #F4F4F4;
+            }
+
+            &:nth-child(2n) {
+                background: $white;
+            }
+        }
+    }
+
+    .delivery-date, .delivery-carrier {
+        font-size: 14px;
+        font-family: $sans;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .delivery-status {
+        font-style: italic;
+        font-size: 14px;
+    }
+
+    .delivery-change .ups-link {
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+
+    .manage-deliveries_header_qs {
+        display: none;
+    }
+
+    .manage-deliveries_cta {
+        /*display: none;
+
+        &[data-active="true"] {
+            display: block;
+        }*/
+
+        .ups-cta {
+            float: $default-float;
+            font-size: 0.9em;
+            margin-bottom: $margin_3;
+            padding: 10px 35px 10px;
+
+            .ups-headerTools_list & {
+                float: $default-float;
+            }
+        }
+    }
+
+    @media #{$media-small} {
+        @include ups-manage-deliveries_sm;
+    }
+}
+
+.ups-tool .ups-manage-deliveries {
+    @include ups-manage-deliveries_quickstart;
+}

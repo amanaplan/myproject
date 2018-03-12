@@ -1,0 +1,131 @@
+// ----------------------------------------------------
+// Shipping
+// ----------------------------------------------------
+
+.ups-shipping {
+
+    .ups-shipping_freightNA, .ups-shipping_returnsNA{
+        a{
+            color:$black_s3;
+            text-decoration: underline;
+        }
+        width:100%;
+    }
+
+    .ups-text_wrapper {
+        max-width: 390px;
+        .ups-form_input {
+            width: 50%;
+        }
+        .ups-input_unit {
+            position: absolute;
+            top:0px;
+            #{$default-float}:55%;
+            line-height: 45px;
+            &.ups-dropdown_wrapper {
+                margin: 0;
+                line-height: initial;
+                width: 45%;
+                #{$opposite-direction}:0;
+                /*#{$default-float}:initial;*/
+            }
+        }
+    }
+
+    form {
+        margin-bottom: $margin_3;
+    }
+
+    .ups-form_ctaGroup {
+        margin-bottom: $margin_3;
+        overflow: hidden;
+    }
+
+    &.ups-campusShip .ups-widget_panel {
+        h2{
+            padding: 0;
+            font-size: 2.1em;
+            font-family: $sans;
+            margin-top: 4px;
+        }
+        a {
+            clear: both;
+            display: block;
+            color:$black_s3;
+            text-decoration: underline;
+            padding: 15px 0;
+            font-family: $sans-bd;
+
+            .ups-rtl { font-weight: bold; }
+
+            &:hover {
+                color: $black_s1;
+            }
+
+            &:last-child {
+                padding-bottom: $margin_3;
+            }
+        }
+    }
+    .ups-shipping_message{
+      margin-bottom:20px;
+    }
+    select[disabled] {
+      background: $stone_40;
+      color: $stone_s3;
+      }
+      .ups-servicelabel-cont{
+        .ups-form_label{
+          display: inline-block;
+          width: auto;
+        }
+        .ups-loader{
+          display: inline-block;
+          padding: 0 10px;
+          img{
+            width:18px;
+            }
+        }
+      }
+}
+
+.ups-tool .ups-shipping{
+  .ups-shipping_message{padding-left:20px;}
+}
+
+@mixin ups_shipping_sm {
+    // padding-top: $page-margin-sm;
+    // padding-bottom: $page-margin-sm;
+
+    .ups-form_ctaGroup {
+        margin-bottom: 0;
+        overflow: auto;
+    }
+    form {
+       // margin-bottom: 0;
+    }
+}
+
+
+.ups-shipping {
+    @media #{$media-small} {
+        @include ups_shipping_sm;
+    }
+}
+
+.subsection_aside .ups-shipping,
+.iw_columns.col-lg-4 .ups-shipping {
+    @include ups_shipping_sm;
+}
+.ups-headerTools_widgets{
+  li.ups-active{
+     .ups-tool{
+        .ups-form_wrap.ups-widget{
+           .ups-form_group{
+             &.ups-shipping_returnsNA.ups-form_group,
+             &.ups-shipping_freightNA.ups-form_group{width:100%;}
+           }
+        }
+     }
+  }
+}

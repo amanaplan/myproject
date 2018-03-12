@@ -1,0 +1,284 @@
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_RightRail";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_override_Desktop";
+@import "../../../../../../common/apps/assets/sass/appCSS/partials/legacy_reskin";
+
+#main {
+    .appLvl {
+        background: $white;
+    }
+
+	.secLvl.message .secHead {
+		margin-top: 0px;
+	}
+
+	.appBody input[id^="showHideId"] {
+		@include ups-legacy_cta($water_s3);
+		text-decoration: none !important;
+		font-family: $sans-bd !important;
+		font-weight: 400 !important;
+		&.arrowIconRight {
+			&:after {
+				display: none !important;
+			}
+		}
+	}
+
+    .appBody {
+        //help icons
+        a.anchor {
+            padding: 0;
+            background-image: none;
+             &:after {
+              @include ups-iconFont("\e660");
+              line-height: 1.1;
+              margin-#{$default-float}: 3px;
+              display: inline-block;
+              font-style: normal;
+            }
+        }
+        img[alt="help"] {
+            display: none;
+        }
+
+        #failedemailId {
+            margin-bottom: 5px;
+        }
+
+        p#feId {
+            label {
+                margin-bottom: 0;
+            }
+
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        p#reqMissingId {
+            color: $red;
+        }
+
+        #expSrvButtonId {
+            background-color: $white;
+        }
+
+        #expFreightDangGoods {
+            dd {
+                margin-#{$default-float}: 25px;
+            }
+        }
+
+        .secLvl.message, .secLvl.sell {
+            .secHead h4, .secHead h3 {
+                color: $white !important;
+            }
+        }
+
+        .secLvl.step {
+            .totals {
+                span.label {
+                    font : {
+                        family: $sans-bd;
+                        weight: normal;
+                    }
+                }
+            }
+        }
+
+        // .step {
+        //     .secHead {
+        //         margin-bottom: 0;
+
+        //         .stepNumberDiv + h3 {
+        //             width: 560px;
+        //         }
+        //     }
+        //     .secBody {
+        //         margin-top: 15px;
+        //     }
+        // }
+    }
+
+    .btnBar {
+        input:not(.btnArw) {
+            margin-#{$opposite-direction}: 5px;
+        }
+
+        input[type=button], input[type=submit] {
+            @include ups-legacy_cta($water_s3);
+        }
+    }
+
+   .secLvl:not(.cmsMsg) .secBody dl dt:nth-child(3) + dd + dd {
+    clear: both;
+}
+
+	dt{
+		label{
+			font-weight: bold !important;
+		}
+	}
+	dl{
+		label,span.label{
+			font-weight: bold !important;
+		}
+	}
+	dl{
+		dd#orgFacDistance, #orgFacName{
+			font-weight: bold !important;
+			strong{
+				font-weight: bold !important;
+			}
+
+		}
+	}
+	div.marginBegin{
+		dl{
+			dt{
+				label{
+					div{
+						font-weight: bold !important;
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.ui-dialog.ui-widget .ui-dialog-content {
+	width: 100% !important;
+}
+
+#infoFormId {
+    .secBody {
+        dl.outHozFlex dd.alignEnd {position:static!important}
+
+        #destDetails dl p > span {
+          white-space: normal;
+          text-align: $default-float;
+          padding-#{$default-float}: 0;
+        }
+    }
+}
+
+//payment method view
+#paymentmethod {
+    fieldset .secBody {
+        ul {
+            a {
+                &:after {
+                    @include ups-iconFont("\e656");
+                    top: 2px;
+                    margin-#{$default-float}: 4px;
+                    display: inline-block;
+                }
+                img {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+#main #accessPointMessageDiv.secLvl.message .secHead  {
+background-color:#fff2ca;
+}
+#main #accessPointMessageDiv.secLvl.message .secHead sup {
+color:#000!important;
+}
+
+#main #accessPointMessageDiv.secLvl.message {
+    border:1px solid #ffd124;
+    border-radius:0;
+    border-top-width:1px;
+}
+
+#main form[name='theForm'] .secLvl:not(.cmsMsg) .secBody dl dd{
+  position:static!important
+}
+
+
+
+#main .secLvl:not(.cmsMsg) .secBody .ups-buttonList_wrapper .ups-radio-custom-label + p.error {
+    display: block;
+}
+
+//added .ups-application_wrapper to the selector to prevent issues with non-reskinned pages, TFS# 529898
+#main .ups-application_wrapper input[type="radio"] {
+    // display: none;
+
+    /* the following is included to assure legacy IE browsers render correctly after removing display:none; */
+
+    //commenting out to prevent issues in selenium, TFS# 512188
+    //left: -9999px;
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;*/
+
+    //added to ensure radio button control is hidden visually, but shown to scripts, TFS# 512188
+    opacity: 1;
+    clip: rect(1px, 1px, 1px, 1px);
+
+}
+
+#main .dataTable input[type="radio"],
+#main #CPCWidget input[type="radio"] {
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #bebebe;
+    width: 21px;
+    height: 21px;
+}
+
+#main .dataTable tr td:first-child {
+    width: 32px;
+}
+
+#main label#cpcWidget_ExistingProfileAddressButtonLabel,
+#main label#cpcWidget_ExistingAddressButtonLabel {
+    margin-top: 3px;
+    margin-left: 15px;
+}
+
+
+
+
+/***********************************
+************************************
+Begin Redesign CSS Edits for Jul 17
+************************************
+************************************/
+/* .ups-form_group legend.ups-form_label {
+    font-size: inherit;
+    border-bottom: none;
+}
+
+.ups-application_wrapper .ups-input_has_number .ups-input_wrapper {
+    padding-#{$default-float}: 60px;
+    position: relative;
+}
+
+#main .ups-application_wrapper .secLvl .secBody .ups-input_number {
+    position: absolute;
+    #{$default-float}: 0;
+    line-height: 35px;
+    top: 0;
+    display: block;
+    width: 55px;
+}
+
+#main .appLvl .appFooter {
+	padding:10px;
+}
+
+#main .secFooter {
+	padding: 0 10px;
+
+} */
+/***********************************
+************************************
+End Redesign CSS Edits for Jul 17
+************************************
+************************************/

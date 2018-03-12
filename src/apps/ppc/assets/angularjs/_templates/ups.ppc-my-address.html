@@ -1,0 +1,42 @@
+<div class="ups-my-address" data-ng-controller="profileCtrl">
+	<div class="ups-addressSection" data-ng-show="!editName">
+		<ul class="ups-addressList">
+			<li class="ups-addressDetail"
+				data-ng-repeat="item in parentFormObj | filterBy:tags track by $index">
+				<div data-ng-if="item.isdefaultAddressBtn"
+					class="ups-defaultAdrressLink">
+					<strong>Default Address</strong>
+				</div>
+				<div class="ups-addressContent">
+					<!--<a href="#" onclick="return false;" class="ups-addressContent ups-link">-->
+						<p class="ups-boldText">{{item.first_name}} {{item.last_name}}</p>
+						<p>{{item.address1}}</p>
+						<p>{{item.city | capFirstLetter }}, {{item.state_select}}</p>
+						<p>{{item.zipcode}}</p>
+					<!--</a>-->
+				</div>
+
+				<div class="ups-editDelete">
+					<a href="#" onclick="return false;" data-ng-click="editAddressLink(item._id,$index)"
+						class="ups-link">Edit<span class="ups-readerTxt"> {{item.isdefaultAddressBtn? 'the Default Address':
+							'the Address'}}</span></a> 
+                            <!-- Spec 7601 v1.08, added ng-show conditional -->
+                            <a href="#" onclick="return false;" class="ups-link"
+						data-ng-click="toggleDeleteAddressModal($index)" data-ng-show="checkLength()>1">Delete<span class="ups-readerTxt"> {{item.isdefaultAddressBtn? 'the Default Address':
+							'the Address'}}</span></a>
+				</div> <a href="#" onclick="return false;" data-ng-if="!item.isdefaultAddressBtn"
+				data-ng-click="toggleDeafultAddress($index)"
+				class="ups-makeDefaultLink ups-link"><b>Make Default</b><span
+					class="ups-readerTxt">{{item.first_name}}
+						{{item.last_name}}</span> </a>
+			</li>
+		</ul>
+		<div class="ups-addressDetail ups-addOneBtn"
+			data-ng-click="addAddress()" data-ng-show="checkLength()<=4">
+			<a point-focus data-ng-click="pointClass('ups-addAddrpointCls');"
+				href='' class="ups-editAddressLink ups-addAddrpointCls ups-link"> <em
+				class="icon ups-add-fontIcon"><span class="ups-icon-pluscircle" aria-hidden="true"></span></em> <span
+				class="ups-link ups-addOneText">Add One</span></a>
+		</div>
+	</div>
+</div>

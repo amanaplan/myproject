@@ -1,0 +1,301 @@
+<!-- /////////////////////////////////////////// -->
+<!-- ////          Print CTA               ///// -->
+<!-- /////////////////////////////////////////// -->
+<p *ngIf="guest">{{lookup001}}</p>
+<div class="ups-group" *ngIf="!shippingTicket">
+    <p class="ups-group_label">{{lookup002}}</p>
+    <p class="h3">1Z 620 003 34 2343 345 2</p>
+    <div *ngIf="trkNumwPkup">
+        <p>Pickup Reference Number</p>
+        <p><strong>{{'{'}}nnnnnnnnnnnnnnn{{'}'}}</strong></p>
+    </div>
+    <div *ngIf="otherInfo">
+        <p>Movement Reference Number</p>
+        <p><strong>{{'{'}}nnnnnnnnnnnnnnn{{'}'}}</strong></p>
+    </div>
+</div>
+<div class="ups-group" *ngIf="shippingTicket">
+    <p><strong>Thank you. Your shipping ticket has been processed and must be used by mm/dd/yyyy.</strong></p>
+    <div class="row">
+        <div class="col-md-4">
+            <img alt="Barcode" height="75" width="200" src="/assets/resources/images/placeholder-icon.jpg">
+        </div>
+        <div class="col-md-8">
+            <p>To complete your shipment, show or print the shipping ticket sent to the email address below.</p>
+            <p><strong>An email confirmation has been sent to [shipper@email.com]</strong></p>
+            <p>Alternately, print or show this page together with your package at a UPS Access Point&trade; location. <a href="#" class="ups-link">Print Barcode</a></p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ul class="ups-label_list_options">
+        <li>
+            <div class="col-md-6">
+                <div class="ups-label_option">
+        			<div aria-hidden="true" class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable">
+        				<span class="icon ups-icon-print"></span> </div>
+        			<div class="ups-label_option_description">
+        				<p>Manage label options.</p>
+        			</div>
+        			<div class="ups-label_option_action">
+        				<button aria-controls="printTileView" class="ups-cta ups-cta_primary" id="printLabelBtn" type="button" aria-expanded="false" aria-busy="false"> Get Labels </button>
+        			</div>
+        		</div>
+        	</div>
+        </li>
+        <li>
+            <div class="col-md-6">
+        		<div class="ups-label_option">
+        			<div aria-hidden="true" class="ups-label_option_icon ups-big_icon_circle ups-icon_clickable">
+
+        				<span class="icon ups-icon-email"></span> </div>
+        			<div class="ups-label_option_description">
+        				<p>This shipment is complete.<br>Ready to ship again?</p>
+
+        			</div>
+        			<div class="ups-label_option_action">
+        				<button aria-controls="emailTileView" class="ups-cta ups-cta_primary" id="emailLabelBtn" type="button" aria-expanded="false" aria-busy="false"> Create A New Shipment </button>
+        				<!----> </div>
+        			<!---->
+        		</div>
+        	</div>
+        </li>
+    </ul>
+</div>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <button class="ups-link pull-right" type="button">
+            <span aria-hidden="true" class="icon ups-icon-print"></span>
+            <span aria-hidden="true" class="hidden-xs">Print Receipt</span>
+        </button>
+        <h2 class="ups-section_heading">
+            <span>Shipping Summary</span>
+             <span class="ups-readerTxt">address</span>
+        </h2>
+    </div>
+    <div class="ups-group ups-group_condensed">
+        <div class="row">
+            <div class="col-md-5">
+                <p class="ups-form_label">Ship From{{'{'}}/Return To{{'}'}}</p>
+                <address class="ups-address_condensed">
+                    Frances Smith, State the Label
+                    1375 Peachtree St., Atlanta, GA 30309, United States <br>
+                    Email Address, Phone Number<br>
+                </address>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <p class="ups-form_label">Ship To</p>
+                <address class="ups-address_condensed">
+                    Rachael Williams
+                    5847 San Felpe, Suite 400, Houston, TX 77001, <br>
+                    United Statues<br>
+                    Email address, Phone Number<br>
+                </address>
+            </div>
+        </div>
+    </div>
+    <div class="ups-group ups-group_condensed" *ngIf="wPickupApDelivery">
+        <div class="row">
+            <div class="col-md-5">
+                <p class="ups-form_label">Return To</p>
+                <address class="ups-address_condensed">
+                    Company Warehouse<br>
+                    123 Different St., Atlanta, GA 30309, United States<br>
+                    Email address, Phone Number
+                </address>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">
+            <span>Service Details - {{'{'}}2nd Day Air{{'}'}}</span>
+             <span class="ups-readerTxt">address</span>
+        </h2>
+    </div>
+    <p *ngIf="deliveryDefault"><strong>Estimated Delivery [Saturday],[December 10th], [End of Day]</strong></p>
+
+    <!-- /////////////////////////////////////////// -->
+    <!-- ////     w/Pickup - w/AP Delivery     ///// -->
+    <!-- /////////////////////////////////////////// -->
+    <div *ngIf="wPickupApDelivery">
+        <div class="ups-group ups-group_condensed">
+            <p class="ups-form_label">Scheduled {{'{'}}Smart/Daily/Day-specific{{'}'}} Pickup</p>
+            <strong>{{'{'}}include in pending pickup on{{'}'}} [mm/dd/yyyy], [8 am - 6pm][, at Front Door]</strong>
+            <p>Request Number: <strong>[PRN #]</strong><br>
+            Reference Number: <strong>[Pickup Ref#]</strong></p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p>Hold for customer at</p>
+            <address class="ups-address_condensed"><strong>
+                [UPS Access Point LocationTM]<br>
+                [Store Name],[Location ID]<br>
+                [Street Address],[Address 2],[Address 3],[City],[Other],[Zip], [Country or Territory]<br>
+                [Email Address], [Phone Number]
+            </strong></address>
+        </div>
+        <p>Please note that your shipment may be routed to another UPS access Point location in the same area if your chosen location is past capacity at time of delivery. This may slightly impact service commit time.</p>
+        <p class="ups-form_label"><strong>Estimated Delivery [Saturday], [December 10th], [End of Day]</strong></p>
+    </div>
+</section>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">
+            <span>Payment Details</span>
+             <span class="ups-readerTxt">address</span>
+        </h2>
+    </div>
+    <div class="ups-group ups-group_condensed" *ngIf="confDefault">
+        Charged to <strong>{{'{'}}MasterCard ending in 0268{{'}'}}</strong><br>
+        VAT ID:<strong>[nnnnnnnnnnnn]</strong><br>
+        Promotion Code: <strong>[SHIPTOUS48]</strong>  <a href="#" class="ups-link">Read Promotion Terms and Conditions</a>
+    </div>
+
+    <!-- /////////////////////////////////////////// -->
+    <!-- ////        w/Shipping Ticket         ///// -->
+    <!-- /////////////////////////////////////////// -->
+    <div *ngIf="shippingTicket">
+        <div class="ups-group ups-group_condensed">
+            <p>Shipping Ticket ID: <strong>123ABC</strong></p>
+            <p>Shipping Ticket Expiration Date: <strong>mm/dd/yyy</strong></p>
+        </div>
+        <div class="ups-group ups-group_condensed">
+            <p>VAT ID:<strong>[nnnnnnnnnnnn]</strong></p>
+            <p></p>Promotion Code: <strong>[SHIPTOUS48]</strong>  <a href="#" class="ups-link">Read Promotion Terms and Conditions</a>
+        </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////// -->
+    <!-- There is a backlog task for an Angular version of the balance bar. -->
+    <!-- For now we are placing this placeholder on the page because the    -->
+    <!-- JQuery one does not have the capability to be displayed as needed  -->
+    <!-- in this page.   TFS# 513032                                        -->
+    <!-- ////////////////////////////////////////////////////////////////// -->
+
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// BEGIN Balance Bar Place Holder    //// -->
+    <!-- /////////////////////////////////////////// -->
+    <div class="ups-demo_balBarPlaceholder">
+        <div class="ups-balance_bar clearfix expanded">
+            <h2>
+                <span aria-hidden="true" class="icon ups-icon-box ups-icon_big pull-left"></span>
+                Total (with taxes and discount) $42.86
+            </h2>
+            <p>Published Charges: $90.73</p>
+        </div>
+        <!---->
+    </div>
+    <!-- /////////////////////////////////////////// -->
+    <!-- //// END Balance Bar Place Holder      //// -->
+    <!-- /////////////////////////////////////////// -->
+
+</section>
+<section class="ups-section">
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading ups-has_icon">
+            <span class="icon ups-icon-recurring ups-icon_big" aria-hidden="true"></span>
+            <span *ngIf="guest">Ship faster with saved information.</span>
+            <span *ngIf="!guest">Ship Faster with Preferences.</span>
+        </h2>
+    </div>
+    <div *ngIf="guest">
+        <p>Save your details and use them for future shipments.</p>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary">Create Profile</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="!guest">
+        <div class="col-md-6">
+            <fieldset class="ups-form_group" *ngIf="setPref1">
+                <legend class="ups-form_label">Save details of today's shipment as default selections on future orders.</legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-setPkgType" class="ups-checkbox-custom" name="ups-setPkgType" type="checkbox" checked="true">
+                    <label for="ups-setPkgType" class="ups-checkbox-custom-label">Set Packaging Type to: <strong>{{'{'}}UPS Envelope{{'}'}}</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-setService" class="ups-checkbox-custom" name="ups-setService" type="checkbox" checked="true">
+                    <label for="ups-setService" class="ups-checkbox-custom-label">Set Service to: <strong>{{'{'}}Next Day Air{{'}'}}</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-billShipCharges" class="ups-checkbox-custom" name="ups-billShipCharges" type="checkbox" checked="true">
+                    <label for="ups-billShipCharges" class="ups-checkbox-custom-label">Bill Shipping Charges to: <strong>{{'{'}}Payment Card{{'}'}}, {{'{'}}Visa 7969{{'}'}}</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-billDecCharges" class="ups-checkbox-custom" name="ups-billDecCharges" type="checkbox">
+                    <label for="ups-billDecCharges" class="ups-checkbox-custom-label">Set Declared Value Charges Billed to: <strong>{{'{'}}Account XNXNXN / Reciever{{'}'}}</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-billDutTax" class="ups-checkbox-custom" name="ups-billDutTax" type="checkbox">
+                    <label for="ups-billDutTax" class="ups-checkbox-custom-label">Set {{'{'}}Duties and Taxes / Duties Only{{'}'}} Billed to: <strong>{{'{'}}Shipper{{'}'}}</strong></label>
+                </div>
+            </fieldset>
+            <fieldset class="ups-form_group" *ngIf="setPrefInt">
+                <legend class="ups-form_label">{{'{'}}You currently have shipping features set in your shipping profile. Would you like to update your prefrences using today's shipping details?{{'}'}}</legend>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-updatePkgType" class="ups-checkbox-custom" name="ups-updatePkgType" type="checkbox" checked="true">
+                    <label for="ups-updatePkgType" class="ups-checkbox-custom-label">Update Package Type: <strong>[Customer Packaging]</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-updateService" class="ups-checkbox-custom" name="ups-updateService" type="checkbox" checked="true">
+                    <label for="ups-updateService" class="ups-checkbox-custom-label">Update Service: <strong>[Ground]</strong></label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="ups-billShipCharges" class="ups-checkbox-custom" name="ups-billShipCharges" type="checkbox" checked="true">
+                    <label for="ups-billShipCharges" class="ups-checkbox-custom-label">Bill Shipping Charges to <strong>{{'{'}}Paypal{{'}'}}, {{'{'}}Nickname{{'}'}}</strong></label>
+                </div>
+            </fieldset>
+            <button type="button" class="ups-cta ups-cta_primary">Save</button>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-warning " role="alert">
+                <!-- <div class="alert-icon pull-left">
+                    <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                </div> -->
+
+                <button type="button"
+                        class="ups-alert_collapse"
+                        aria-expanded="false"
+                        (click)="questionShipTip = !questionShipTip">
+                    <span class="ups-readerTxt">Click to expand</span>
+                    <span [ngClass]="{ 'ups-icon-wedgeup' : questionShipTip, 'ups-icon-wedgedown' : !questionShipTip }" class="icon " aria-hidden="true"></span>
+                </button>
+
+                <div class="alert-title"><p><strong>Ship Tip:</strong> Set preferences for commonly used features and information to cut down on repetition and start each shipment closer to the finish line.</p></div>
+                <div class="alert-content" *ngIf="questionShipTip">
+                    <p>You can preselect defaults for nearly every detail of shipping. See all available options in your <a href="#" class="ups-link">profile.</a></p>
+                    <button type="button" class="ups-link">Manage Shipping Preferences</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- /////////////////////////////////////////// -->
+<!-- ////           CMS Demo               ///// -->
+<!-- /////////////////////////////////////////// -->
+<div class="ups-cms-demo">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="ups-form_group">
+                <label for="demoShipSumary" class="ups-form_label">Shipping Summary</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="demoShipSomary"
+                            class="ups-dropdown"
+                            id="demoShipSumary"
+                            [(ngModel)]="demoShipSumary"
+                            [ngModelOptions]="{'standalone': true}"
+                            (change)="shipSumaryChange()">
+                        <option value="guest" selected="selected">Guest</option>
+                        <option value="" disabled>**** Logged In ****</option>
+                        <option value="printCTA">Default</option>
+                        <option value="wPickup">w/Pickup - w/AP delivery</option>
+                        <option value="shipTicket">w/ Shipping Ticket</option>
+                        <option value="setPref1">Set Perfrences - 1st time</option>
+                        <option value="setPrefInt">Set Perfrences + international</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,127 @@
+.ups-tracking_icon_group {
+    //margin-bottom: 15px;
+
+    .ups-tracking_status_icon {
+        vertical-align: middle;
+        line-height: 2.14286em;
+        float: #{$default-float};
+    }
+
+    .ups-tracking_icon_content {
+        margin-#{$default-float}: 2.14286em;
+        margin-#{$default-float}: calc(2.14286em + 10px);
+        //padding-top: .2em;
+    }
+}
+
+.ups-tracking_status_icon {
+    position: relative;
+    display: inline-block;
+    height: 2.14286em;
+    width: 2.14286em;
+    margin-#{$opposite-direction}: 10px;
+
+    &:after {
+        content: "";
+        position: absolute;
+        //top: -0.71429em;
+        //right: -0.28571em;
+        height: 2.14286em;
+        width: 2.14286em;
+        background-color: $white;
+        border-radius: 2.14286em;
+        border: 3px solid $water_s3;
+    }
+
+    &.ups-tracking_status_icon_unavailable {
+        &:after {
+            border: 3px solid $ups_stone;
+        }
+
+        .ups-tracking_icon_square {
+            background-color: $ups_stone;
+        }
+    }
+
+    &.ups-tracking_status_icon_transit {
+        .ups-icon-chevronright {
+            color: #008369;
+            position: absolute;
+            #{$opposite-direction}: 0.81818em;
+            top: 0.90909em;
+            z-index: 2;
+            font-size: 11px;
+            cursor: default;
+
+        }
+    }
+
+    &.ups-tracking_status_icon_delivered {
+        background-color: $water_s3;
+        border-radius: 2.429em;
+
+        &:after {
+            content: normal;
+            border: none;
+            background-color: transparent;
+        }
+
+        .ups-icon-check {
+            color: $white;
+            position: absolute;
+            //#{$opposite-direction}: 0.35714em; //0.35714em {5px}
+            //top: 0;
+            z-index: 2;
+            //font-size: 11px;
+            cursor: default;
+            font-size: 18px;
+            top: 9px;
+            right: auto;
+            left: 7px;
+            //right: -0.12903em;
+            //top: -0.29032em;
+            /*-webkit-animation: tracking_indicator_exclamation 1.7s linear;
+            animation: tracking_indicator_exclamation 1.7s linear;*/
+
+            &:before {
+                color: $white;
+                font-size: 1em;
+            }
+        }
+    }
+
+    &.ups-tracking_status_icon_exception {
+        &:after {
+            content: normal;
+            border: none;
+            background-color: transparent;
+        }
+
+        .ups-icon-alert {
+            color: $ups_gold;
+            position: absolute;
+            //#{$opposite-direction}: 0.35714em; //0.35714em {5px}
+            //top: 0;
+            z-index: 2;
+            //font-size: 11px;
+            cursor: default;
+            font-size: 29px;
+            //right: -0.12903em;
+            //top: -0.29032em;
+            /*-webkit-animation: tracking_indicator_exclamation 1.7s linear;
+            animation: tracking_indicator_exclamation 1.7s linear;*/
+        }
+    }
+
+    .ups-tracking_icon_square {
+        width: 0.786em;
+        height: 0.786em;
+        background-color: $water_s3;
+        position: absolute;
+        #{$opposite-direction}: 0.8em;
+        top: 0.8em;
+        z-index: 2;
+    }
+
+
+}

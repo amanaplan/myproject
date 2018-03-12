@@ -1,0 +1,139 @@
+<!-- Beginning of Remove User Permissions Modal -->
+<ups-modal modal-title="Remove User Permissions" #removeUserPermissionsModal></ups-modal>
+<!-- End of Remove User Permissions Modal -->
+
+<!-- Beginning of Create/Edit User Form -->
+<form [formGroup]="createUserForm" (ngSubmit)="demoCreateUserSection(createUserForm.value)" novalidate>
+        <div *ngIf="(createUserFormSubmitAttempt &amp;&amp; !createUserForm.valid)">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors:
+            </h3>
+
+            <ul class="ups-icons-error">
+                <li *ngIf="(!createUserForm.controls['createName'].valid && createUserForm.controls['createName'].hasError('required'))">
+                    <a href="#createName" class="ups-invalid_color" pointIdClick>Name <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!createUserForm.controls['createUserID'].valid && createUserForm.controls['createUserID'].hasError('required') && !showOnEditForm)">
+                    <a href="#createUserID" class="ups-invalid_color" pointIdClick>User ID <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!createUserForm.controls['createEmail'].valid && createUserForm.controls['createEmail'].hasError('required'))">
+                    <a href="#createEmail" class="ups-invalid_color" pointIdClick>Email <span class="ups-readerTxt">field</span></a> is required.
+                </li>
+                <li *ngIf="(!createUserForm.controls['createEmail'].valid && createUserForm.controls['createEmail'].hasError('pattern'))">
+                    <a href="#createEmail" class="ups-invalid_color"pointIdClick>Email <span class="ups-readerTxt">field</span></a> is invalid.
+                </li>
+            </ul>
+        </div>
+        <div class="ups-section">
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading">{{subheader}}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Beginning of Name Input -->
+                    <div class="ups-form_group ups-form_required">
+                        <label for="createName" class="ups-form_label">Name <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="createName" class="ups-form_input" id="createName" aria-required="true" required aria-describedby="createName_error" [ngClass]="{'ups-bodError': (!createUserForm.controls['createName'].valid &amp;&amp; createUserForm.controls['createName'].touched)}" [formControl]="createUserForm.controls['createName']">
+                            <div *ngIf="createUserForm.controls['createName'].valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="createName_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!createUserForm.controls['createName'].valid &amp;&amp; createUserForm.controls['createName'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="createUserForm.controls['createName'].hasError('required')">
+                                    Name is required
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- End of Name Input -->
+
+                    <!-- Beginning of User ID Input -->
+                    <div class="ups-form_group ups-form_required" *ngIf="!showOnEditForm">
+                        <label for="createUserID" class="ups-form_label">User ID <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="createUserID" class="ups-form_input" id="createUserID" aria-required="true" required aria-describedby="createUserID_error" [ngClass]="{'ups-bodError': (!createUserForm.controls['createUserID'].valid &amp;&amp; createUserForm.controls['createUserID'].touched)}" [formControl]="createUserForm.controls['createUserID']">
+                            <div *ngIf="createUserForm.controls['createUserID'].valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="createUserID_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!createUserForm.controls['createUserID'].valid &amp;&amp; createUserForm.controls['createUserID'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="createUserForm.controls['createUserID'].hasError('required')">
+                                    User ID is required
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- End of User ID Input -->
+
+                    <!-- Beginning of Email Input -->
+                    <div class="ups-form_group ups-form_required">
+                        <label for="createEmail" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="createEmail" class="ups-form_input" id="createEmail" aria-describedby="createEmail_error" [ngClass]="{'ups-bodError': (!createUserForm.controls['createEmail'].valid &amp;&amp; createUserForm.controls['createEmail'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="createUserForm.controls['createEmail']" required aria-required="true">
+                            <div *ngIf="createUserForm.controls['createEmail'].valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span class="ups-icons-error" id="createEmail_error" role="alert">
+                            <span class="ups-invalid_color"
+                                *ngIf="(!createUserForm.controls['createEmail'].valid &amp;&amp; createUserForm.controls['createEmail'].touched)">
+                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                <span class="ups-readerTxt"> Invalid</span>
+                                <span *ngIf="createUserForm.controls['createEmail'].hasError('required')">
+                                    Email is required.
+                                </span>
+                                <span *ngIf="!createUserForm.controls['createEmail'].hasError('required')">
+                                    Email is invalid.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <!-- End of Email Input -->
+                </div>
+            </div>
+        </div>
+
+        <div class="ups-section">
+            <!-- User Permissions Heading -->
+            <div class="ups-section-header">
+                <h2 class="ups-section_heading">User Permissions</h2>
+            </div>
+            <!-- End of User Permissions Heading -->
+            <!-- Checkboxes -->
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">Select the level of access you would like to provide the user.</legend>
+                <p>Check all that apply</p>
+                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngFor="let checkbox of UserPermissions; let j = index">
+                    <input type="checkbox" name="{{checkbox.userPermissionName}}" id="{{checkbox.userPermissionName}}" class="ups-checkbox-custom">
+                    <label for="{{checkbox.userPermissionName}}" class="ups-checkbox-custom-label">{{checkbox.userPermissionLabel}}</label>
+                </div>
+            </fieldset>
+            <!-- End of Checkboxes -->
+        </div>
+
+        <!-- Button Group -->
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" (click)="demoCreateUserSection();">{{buttonText}}</button>
+            <!-- <button type="submit" class="ups-cta ups-cta_primary" (click)="demoUpdateUserSection();" *ngIf="showOnEditForm">Update User</button> -->
+            <button type="button" class="ups-cta ups-cta_tertiary" (click)="demoRemoveUserPermissionsModal();" *ngIf="showOnEditForm">Remove User</button>
+            <a class="ups-cta ups-cta_secondary" routerLink="/administration/users">Cancel</a>
+        </div>
+        <!-- End of Button Group -->
+    </form>
+<!-- End of Create/Edit User Form -->

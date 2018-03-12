@@ -1,0 +1,138 @@
+---
+title: ct1_shi_pic(3pic)
+layout: legacy.hbs
+version: v4
+appID: com.ups.IntPickup
+appCSS: ups.legacy_overrideIP
+dynpnls: yes
+dir: rtl
+lang: ar
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+        
+        
+			{{>"ct1_shi_pic(3pic)_partial" ct1_shi_pic3pic.toaccount_loggedin_view }}
+		
+		<!-- /applicationArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+		<!-- /contentArea --> 
+
+<!------------- -- --------------> 
+
+<!--   IC DEV Display Module   --> 
+
+<!------------- -- --------------> 
+
+<script type="text/javascript">
+
+var htmlcobrand;
+
+$(document).ready(function(){
+
+	/* Prepend Control Box */
+
+	//$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Pickup" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Internet Pickup" class="btn"></div></div>');
+
+	/* Set default container and stylesheet to Internet Pickup */
+
+	$('.switchContainer').removeClass('ccacmpad1');
+
+	$('.switchContainer').attr('id', 'ccCntMod');
+
+	//chooseStyle('Internet Pickup', 60);	
+
+	htmlcobrand = $('.cobrand').html();
+
+	$('.cobrand').remove();
+
+	
+
+});
+
+/* function to switch views */
+
+function switchContainer(container) {
+
+	if(container == 'ccCntMod') {
+
+		$('.switchContainer').removeClass('ccacmpad1');
+
+		$('.switchContainer').attr('id', container);
+
+		chooseStyle('Internet Pickup', 60);
+
+		$('.cobrand').remove();
+
+	} 
+
+	if(container == 'ccacmpad1') {
+
+		$('.switchContainer').attr('id', '');
+
+		$('.switchContainer').addClass(container);
+
+		chooseStyle('Campus Pickup', 60);
+
+		$('.cobrand').remove();
+
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+
+	}
+
+}
+
+
+
+</script> 
+
+<!------------- -- --------------> 
+
+<!-- END IC DEV Display Module --> 
+
+<!------------- -- --------------> 
+
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- //// Do not use Dyn_Pnls in production code        //// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- //// Begin IC DEV Dynamic Panel Module             //// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+
+
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- //// End IC DEV Dynamic Panel Module               //// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- //// Do not use Dyn_Pnls in production code        //// --> 
+<!-- /////////////////////////////////////////////////////// --> 
+<!-- /////////////////////////////////////////////////////// -->
+
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////                                                                          ////// -->
+<!-- //////   *****      DO NOT USE THE FOLLOWING IDs IN PRODUCTION CODE      *****    ///// -->
+<!-- /////                                                                              //// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- //////                                                                            ///// -->
+<!-- ///////         ****   all id="dyn_pnl_1" through id="dyn_pnl_nn"   ****         ////// -->
+<!-- ////////        ****   all id="pnl_1_1" through id="pnl_nn_nn"      ****        /////// -->
+<!-- /////////                                                                      //////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->

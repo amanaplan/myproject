@@ -1,0 +1,67 @@
+<div class="ups-application_wrapper ups-app_onboarding ups-pref-packaging_types"
+	data-ng-controller="prefcustomPackagingTypesCtrl">
+	<ng-form name="ups_customPackTypesform" data-novalidate>
+	
+	<h3>Custom Packaging Library</h3>
+	
+	<p>Manage your custom packaging library. You can create up to 20
+					custom packaging types.</p>
+					
+	<div data-ng-if="!noRecords">
+		<div data-ng-init="length=payementData.paymentMethods.length"
+			class="ups-table table-responsive">
+			<table class="table table-striped">
+				<caption class="ups-readerTxt">Custom packaging library
+					table</caption>
+				<tbody>
+					<tr>
+						<th scope="col"><input id="ups-con"
+							check-verify class="ups-checkbox-custom" name="ups-uid"
+							type="checkbox" data-ng-model="formObj.selectedAll"
+							data-ng-click="checkAll(formObj.selectedAll, customPackageData.packageInfo)"
+							data-ng-checked="formObj.selectedAll"> <label
+							for="ups-con" class="ups-checkbox-custom"><span class="ups-readerTxt">Select All</span></label></th>
+						<th scope="col" data-ng-init="sortNickName=true">Name</th>
+						<th scope="col" data-ng-init="sortNumber=true">Dimensions
+							L <span class="icon "><span class="ups-icon-x"
+								aria-hidden="true"></span></span> W <span class="icon"><span
+								class="ups-icon-x" aria-hidden="true"></span></span> H
+						</th>
+						<th scope="col">Actions</th>
+					</tr>
+					<tr data-ng-repeat="(key, data) in customPackageData.packageInfo track by $index">
+
+						<td><input id="{{'ups-con'+$index}}"
+							check-verify class="ups-checkbox-custom" name="ups-uid"
+							type="checkbox" data-ng-model="data.Selected"
+							data-ng-checked="data.Selected"> <label
+							for="{{'ups-con'+$index}}" class="ups-checkbox-custom-label"><span
+								class="ups-readerTxt">Select {{data.name}}</span></label></td>
+
+						<td>{{data.name}}</td>
+						<td>{{data.length}} <span
+							class="icon"><span class="ups-icon-x" aria-hidden="true"></span></span>
+							{{data.width}} <span class="icon"><span
+								class="ups-icon-x" aria-hidden="true"></span></span>
+							{{data.height}} {{data.unit}}
+						</td>
+						<td><a data-ng-click="addCustomPackage('Edit',data.name,data.length,data.width,data.height,data.unit,$index)"
+							href="#" onclick="return false;">Edit<span class="ups-readerTxt"> Statement
+									{{data.name}}</span></a> | <a data-ng-click="rowDeleted = undefined;remove(key);" href="#" onclick="return false;">Delete <span class="ups-readerTxt">Statement {{data.name}}</span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="ups-form_ctaGroup">
+        <button data-ng-if="!noRecords" type="button"
+            class="ups-cta ups-cta_tertiary" data-dismiss="modal"
+            data-ng-click="rowDeleted = undefined;remove();"
+            data-ng-disabled="getSelected(customPackageData.packageInfo)">
+            Delete Selected Packaging</button>
+        <button type="submit" class="ups-cta ups-cta_primary "
+            data-dismiss="modal" data-ng-click="addCustomPackage('Add')"
+            data-ng-disabled="isAddDisabled">Create Custom Packaging</button>
+	</div>
+	</ng-form>
+</div>

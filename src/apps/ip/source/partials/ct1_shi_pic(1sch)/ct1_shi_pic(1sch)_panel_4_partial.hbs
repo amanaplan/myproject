@@ -1,0 +1,225 @@
+<div class="secLvl step"> 
+  
+  <!-- Begin Header Bar -->
+  <div class="secHead clearfix">
+    <div class="stepNumberDiv"><span class="stepNumber">4</span></div>
+    <h3>pickup date and time</h3>
+  </div>
+  <!-- End Header Bar --> 
+  <!-- Begin Section Body -->
+  <div class="secBody clearfix">
+  {{#if ww_freight_pickup}}
+   <div class="row">
+      <div class="col-xs-6">
+        <div class="ups-form_group ups-form_required">
+          <label for="pickupPref" class="ups-form_label"> <a href="repl_href" class="btnlnkR helpIconR">Pickup Preference</a> <span class="ups-required_indicator" aria-hidden="true"></span><span class="ups-ReaderTxt"></span></label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="pickupPref" class="ups-dropdown" id="pickupPref">
+              <option value="1"> UPS will Pick up </option>
+              <option value="2"> Option 2 </option>
+              <option value="3"> Option 3 </option>
+              <option value="4"> Option 4 </option>
+            </select>
+          </div>
+        </div>
+        <div class="ups-form_group ups-indent">
+            <div class="ups-checkbox ups-input_wrapper">
+                <input id="liftgateOnPickup" class="ups-checkbox-custom" name="liftgateOnPickup" type="checkbox">
+                <label for="liftgateOnPickup" value="1" class="ups-checkbox-custom-label">Liftgate On Pickup</label>
+            </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="ups-form_group">
+          <label for="pickupDate" class="ups-form_label"> Pickup Date </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="pickupDate" class="ups-dropdown" id="pickupDate">
+              <option value="1"> Monday, February 20, 2017 </option>
+              <option value="2"> Monday, February 20, 2017 </option>
+              <option value="3"> Monday, February 20, 2017 </option>
+              <option value="4"> Monday, February 20, 2017 </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{#if date_not_available}}
+    <p>[<strong>Note:</strong> the current date is not available for selection because the Schedule Pickup By time for selected service [UPS Service name] was at [hh:mm].] </p>
+    {{/if}}
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="ups-time_selection ups-form_group">
+          <div class="ups-time_selection_label">
+            <label for="pickupEarliestTimeHour" class="ups-form_label"> <a href="repl_href" class="btnlnkR helpIconR">Earliest Pickup Time</a> <span class="ups-required_indicator" aria-hidden="true"></span> </label>
+          </div>
+          <div class="ups-time_selection_hour">
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupEarliestTimeHour" class="ups-dropdown" id="pickupEarliestTimeHour">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <div class="ups-time_selection_colon"> : </div>
+          <div class="ups-time_selection_min">
+            <label for="pickupEarliestTimeMin" class="ups-readerTxt"> Earliest Pickup Time Minute </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupEarliestTimeMin" class="ups-dropdown" id="pickupEarliestTimeMin">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="ups-time_selection_ampm">
+            <legend> AM/PM selection </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupEarliestTimeAm" class="ups-radio-custom" name="pickupEarliestTimeAmPm" value="1" type="radio">
+              <label for="pickupEarliestTimeAm" class="ups-radio-custom-label"> AM </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupEarliestTimePm" class="ups-radio-custom" name="pickupEarliestTimeAmPm" value="1" type="radio">
+              <label for="pickupEarliestTimePm" class="ups-radio-custom-label"> PM </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      {{#if ww_freight_pickup}}
+      <div class="col-xs-6">
+        <div class="ups-time_selection ups-form_group">
+          <div class="ups-time_selection_label">
+            <label for="pickupStartLunchTimeHour" class="ups-form_label"> Start of Lunch Period </label>
+          </div>
+          <div class="ups-time_selection_hour">
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupStartLunchTimeHour" class="ups-dropdown" id="pickupStartLunchTimeHour" disabled="disabled">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <div class="ups-time_selection_colon"> : </div>
+          <div class="ups-time_selection_min">
+            <label for="pickupStartLunchTimeMin" class="ups-readerTxt"> Start of Lunch Period Minute </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupStartLunchTimeMin" class="ups-dropdown" id="pickupStartLunchTimeMin" disabled="disabled">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="ups-time_selection_ampm">
+            <legend> AM/PM selection </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupStartLunchTimeAm" class="ups-radio-custom" name="pickupStartLunchTimeAmPm" value="1" type="radio"  disabled="disabled">
+              <label for="pickupStartLunchTimeAm" class="ups-radio-custom-label"> AM </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupStartLunchTimePm" class="ups-radio-custom" name="pickupStartLunchTimeAmPm" value="1" type="radio"  disabled="disabled">
+              <label for="pickupStartLunchTimePm" class="ups-radio-custom-label"> PM </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="ups-time_selection ups-form_group">
+          <div class="ups-time_selection_label">
+            <label for="pickupLatestTimeHour" class="ups-form_label"> <a href="repl_href" class="btnlnkR helpIconR">Latest Pickup Time</a> <span class="ups-required_indicator" aria-hidden="true"></span> </label>
+          </div>
+          <div class="ups-time_selection_hour">
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupLatestTimeHour" class="ups-dropdown" id="pickupLatestTimeHour">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <div class="ups-time_selection_colon"> : </div>
+          <div class="ups-time_selection_min">
+            <label for="pickupLatestTimeMin" class="ups-readerTxt"> Latest Pickup Time Minute </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupLatestTimeMin" class="ups-dropdown" id="pickupLatestTimeMin">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="ups-time_selection_ampm">
+            <legend> AM/PM selection </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupLatestTimeAm" class="ups-radio-custom" name="pickupLatestTimeAmPm" value="1" type="radio">
+              <label for="pickupLatestTimeAm" class="ups-radio-custom-label"> AM </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupLatestTimePm" class="ups-radio-custom" name="pickupLatestTimeAmPm" value="1" type="radio">
+              <label for="pickupLatestTimePm" class="ups-radio-custom-label"> PM </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      {{#if ww_freight_pickup}}
+      <div class="col-xs-6">
+        <div class="ups-time_selection ups-form_group">
+          <div class="ups-time_selection_label">
+            <label for="pickupEndLunchTimeHour" class="ups-form_label"> End of Lunch Period </label>
+          </div>
+          <div class="ups-time_selection_hour">
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupEndLunchTimeHour" class="ups-dropdown" id="pickupEndLunchTimeHour" disabled="disabled">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <div class="ups-time_selection_colon"> : </div>
+          <div class="ups-time_selection_min">
+            <label for="pickupEndLunchTimeMin" class="ups-readerTxt"> End of Lunch Period Minute </label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+              <select name="pickupEndLunchTimeMin" class="ups-dropdown" id="pickupEndLunchTimeMin" disabled="disabled">
+                <option value="1"> nn </option>
+              </select>
+            </div>
+          </div>
+          <fieldset class="ups-time_selection_ampm">
+            <legend> AM/PM selection </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupEndLunchTimeAm" class="ups-radio-custom" name="pickupEndLunchTimeAmPm" value="1" type="radio"  disabled="disabled">
+              <label for="pickupEndLunchTimeAm" class="ups-radio-custom-label"> AM </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+              <input id="pickupEndLunchTimePm" class="ups-radio-custom" name="pickupEndLunchTimeAmPm" value="1" type="radio" disabled="disabled">
+              <label for="pickupEndLunchTimePm" class="ups-radio-custom-label"> PM </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      {{/if}}
+    </div>
+    <p><strong>Additional Pickup Information</strong></p>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="ups-form_group">
+          <label for="pickupPreferredLocation" class="ups-form_label"> Preferred Pickup Location </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="pickupPreferredLocation" class="ups-dropdown" id="pickupPreferredLocation">
+              <option value="1"> Choose One </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="ups-form_group">
+          <label for="pickupReference" class="ups-form_label"> <a href="repl_href" class="btnlnkR helpIconR">Pickup Reference</a> </label>
+          <div class="ups-text_wrapper ups-input_wrapper">
+            <input name="pickupReference" class="ups-form_input" id="pickupReference" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ups-form_group">
+      <label for="pickupSpecialInstructions" class="ups-form_label"> Enter any special instructions to the UPS Driver </label>
+      <div class="ups-textArea_wrapper ups-input_wrapper">
+        <textarea class="ups-textArea" id="pickupSpecialInstructions" rows="4" maxlength="500" name="pickupSpecialInstructions"></textarea>
+      </div>
+    </div>
+    <!-- End Section Body --> 
+  </div>
+</div>

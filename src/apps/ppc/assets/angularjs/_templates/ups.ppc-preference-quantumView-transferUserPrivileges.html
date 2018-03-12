@@ -1,0 +1,95 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewTransferUserPrivileges">
+    <form error-on-submit name="ups_quantumTransferUserPrivileges" novalidate>
+        <a point-focus="" href="#/preferencePage/quantumView/" class="ups-previous_page">
+		<span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+		Back to Quantum View
+	    </a>
+
+        <!-- Page Level Errors -->
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id1.$invalid"><span> <a
+                focus-attr="ups_user_id1" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> User ID 1 is required.</a></span></li>
+                <li data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id2.$invalid"><span> <a
+                focus-attr="ups_user_id2" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> User ID 2 is required. </a></span></li>
+            </ul>
+        </div>
+        <div class="ups-form_wrap">
+            <h2>Transfer User Privileges</h2>
+            <p>User ID privileges will be transferred to USER ID 2 privileges. The user must use User ID 2 to access all privileges once the request is complete.</p>
+            <p>Please provide the User ID that has only privileges for Quantum View and/or Claims.</p>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_id1" class="ups-form_label">User ID 1 <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumTransferUserPrivileges.ups_user_id1.$invalid && clicked)}" name="ups_user_id1" id="ups_user_id1"
+                                aria-required="true" required aria-describedby="ups_user_id1-error" data-ng-model="transferUserPrivileges.ups_user_id1" />
+                            <div data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id1.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_id1-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumTransferUserPrivileges.ups_user_id1.$pristine && ups_quantumTransferUserPrivileges.ups_user_id1.$invalid) || (ups_quantumTransferUserPrivileges.ups_user_id1.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id1.$error.required">User ID 1 is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id1.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p>Please provide the User ID that has only privileges for CampusShip.</p>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_id2" class="ups-form_label">User ID 2 <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumTransferUserPrivileges.ups_user_id2.$invalid && clicked)}" name="ups_user_id2" id="ups_user_id2"
+                                aria-required="true" required aria-describedby="ups_user_id2-error" data-ng-model="transferUserPrivileges.ups_user_id2" />
+                            <div data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id2.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_id2-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumTransferUserPrivileges.ups_user_id2.$pristine && ups_quantumTransferUserPrivileges.ups_user_id2.$invalid) || (ups_quantumTransferUserPrivileges.ups_user_id2.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id2.$error.required">User ID 2 is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumTransferUserPrivileges.ups_user_id2.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="col-md-5" resize data-ng-class="{'ups-no_label': windowWidth > 992,'pull-right': windowWidth > 768 && windowWidth < 992}"> -->
+                <div class="col-md-5" resize data-ng-class="{'ups-no_label': windowWidth > 992}">
+                    <button type="button" class="ups-cta ups-cta_secondary" data-ng-class="{'ups-input_btn_action': windowWidth > 767}" ng-click="searchUsersDialog();">Search Users</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="transferUserPrivilegesButton(transferUserPrivileges.$valid);">Transfer Privileges</button>
+            <a href="#/preferencePage/quantumView/" class="ups-cta ups-cta_secondary">Cancel</a>
+        </div>
+    </form>
+</div>

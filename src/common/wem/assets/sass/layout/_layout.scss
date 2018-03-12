@@ -1,0 +1,800 @@
+// ----------------------------------------------------
+// LAYOUT
+// ----------------------------------------------------
+
+body {
+    font: 14px/1.25 $sans;
+    background: $black_s3;
+    //background: $white; //changed by Doug on 10/19 to fix SPA issue
+    color: $black_s4;
+    min-width: 320px;
+}
+
+h1 {
+    font-family: $serif;
+    font-weight: normal;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: $sans-bd;
+    font-weight: normal;
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.12em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.75em; }
+
+#ups-pageWrap {
+    background: $white;
+
+    .touch & {
+        // padding-top: $head_hgt + $head_line;
+
+        @media #{$media-small} {
+            padding-top: 0;
+        }
+    }
+
+    .touch .ups-headFixed & {
+        padding-top: 0;
+    }
+
+   /* @media #{$media-medium} {
+        &, .ups-headFixed & { padding-top: $head_hgt_md; }
+    }
+    @media #{$media-small} {
+        &, .ups-headFixed & { padding-top: 0; }
+    }*/
+}
+
+//#ups-main, .container-fluid.iw_section:nth-child(2) { // removed #ups-main to fix TFS-284693
+.container-fluid.iw_section:nth-child(2) {
+    overflow: hidden;
+    border: 0 solid $black_s3;
+
+    &:focus {
+        outline: none;
+    }
+
+    /*.touch &,
+    .ups-headFixed & {
+        border-top-width: $head_hgt - $head_line; //KN: will be deleted i don't think this is required
+    }*/
+
+
+
+    @media #{$media-medium} {
+        &, .touch &,
+        .ups-headFixed & {
+            border-top-width: $head_hgt_md - $head_line_md;
+        }
+        .touch .ups-native &,
+        .ups-native &{
+          border-top-width: 0;
+        }
+    }
+    @media #{$media-small} {
+        &, .touch &,
+        .ups-headFixed & { border-top-width: 0; }
+    }
+}
+
+
+.ups-wrap {
+    clear: both;
+    padding: 0 $page-margin 0;
+    @include pie-clearfix;
+
+    .ups-homePg & {
+        padding: 0 $page-margin;
+    }
+
+    @media #{$media-small} {
+        padding: 0 $page-margin-sm;
+        @include pie-clearfix;
+
+        .ups-homePg & {
+            padding: 0 $page-margin-sm;
+        }
+    }
+
+    &.ups-collapse_top {
+        margin-top: -$margin_1 !important;
+    }
+
+    &.ups-collapse_bottom {
+        margin-bottom: -$margin_1 !important;
+    }
+}
+
+.ups-wrap_inner {
+    padding: 0;
+    margin: 0 auto;
+    max-width: $screen-lg;
+    position: relative;
+}
+
+.ups-container {
+    clear: both;
+    padding: 0;
+    margin: 0;
+    margin-left: -($grid-gutter-width/2);
+    margin-right: -($grid-gutter-width/2);
+}
+
+
+// Grid Direction Overides
+// ----------------------------------------
+.ups-right-md {
+    float: if($text-direction == ltr, right, left);
+    @media #{$media-medium} { float: none; }
+}
+
+.ups-left-md {
+    float: if($text-direction == ltr, left, right);
+    @media #{$media-medium} { float: none; }
+}
+
+
+// Responsive Helpers
+// ----------------------------------------
+.ups-med_show { // Visible on Medium and Below
+    display: none;
+    @media #{$media-medium} { display: block; }
+}
+
+.ups-med_hide { // Hidden on Medium and Below
+    display: block;
+    @media #{$media-medium} { display: none !important; }
+}
+
+.ups-sm_show { // Visible on Small
+    display: none;
+    @media #{$media-small} { display: block; }
+}
+
+.ups-sm_hide { // Hidden on Small
+    display: block;
+    @media #{$media-small} { display: none !important; }
+}
+
+// Templates Styling
+// ----------------------------------------
+.ups-cms-demo {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px dashed $ups_brown;
+    padding: 30px;
+
+    h2 {
+        font-family: $sans-bd;
+        font-size: 2em;
+    }
+}
+
+.ups-subsection,
+.iw_columns.col-lg-12 {
+
+    &.ups-subsection-alt {
+        background: $stone_60;
+        position: relative;
+
+//        &:before {
+//            content: '';
+//            background: inherit;
+//            position: absolute;
+//            width: 100%;
+//            height: 100%;
+//            top: -$page-margin;
+//            left: 0;
+//            margin-bottom: -$page-margin;
+//        }
+    }
+
+    .ups-subsection_inner {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+    }
+
+    .subsection_main, .iw_columns.col-lg-8 {
+        display: table-cell;
+        vertical-align: top;
+
+        .ups-wrap {
+            padding-#{$default-float}: 0;
+            position: relative;
+            @media #{$media-medium} {
+                padding-left:20px;
+                padding-right:20px
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                width: 6000px;
+                height: 100%;
+                top: 0;
+                #{$default-float}: -3000px;
+                background: inherit;
+            }
+
+            /*.ups-wrap {
+                padding-#{$default-float}: $page-margin;
+
+                &.ups-contentBlock {
+                    padding: 0;
+                    width:100%;
+                }
+            }
+            &.ups-content_with_anchor{
+                margin-top: 0;
+            }*/
+        }
+    }
+    .iw_columns.col-lg-8 {
+        .iw_component {
+            & > .ups-wrap {
+                padding-#{$default-float}: 0;
+                position: relative;
+                @media #{$media-medium} {
+                    padding-left:20px;
+                    padding-right:20px
+                }
+                @media #{$media-mediumMid} {
+                    padding-left:60px;
+                    padding-right:60px
+                }
+
+                @media #{$media-small} {
+                    padding-left:20px;
+                    padding-right:20px
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 6000px;
+                    height: 100%;
+                    top: 0;
+                    #{$default-float}: -3000px;
+                    background: inherit;
+                }
+            }
+        }
+    }
+
+    .subsection_aside,
+    .iw_columns.col-lg-4 {
+        display: table-cell;
+        vertical-align: top;
+        width: 320px;
+        padding: 0 0 $margin_1;
+        position: relative;
+        z-index: 10;
+        .ups-widget{
+        	.ups-widget_panel{
+        		.ups-form{
+        			.ups-form_ctaGroup{
+        				width : 100%;
+        			}
+        		}
+        	}
+        }
+
+        .ups-secondaryNav {
+            display: block;
+        }
+
+        .ups-wrap {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &.ups-subsection-alt {
+        section:first-child {
+            margin-top: 0;
+        }
+    }
+
+    @media #{$media-mediumMid} {
+
+        &.ups-wrap {
+            padding: 0;
+        }
+
+        .ups-wrap {
+            padding-left: $page-margin;
+            padding-right: $page-margin;
+        }
+
+        .subsection_main {
+            .ups-wrap {
+                padding-left: $page-margin;
+                padding-right: $page-margin;
+            }
+        }
+
+        .ups-subsection_inner {
+            display: block;
+        }
+
+        .subsection_main {
+            display: block;
+        }
+
+        .subsection_aside,
+        .iw_columns.col-lg-4 {
+            display: block;
+            width: 100%;
+            padding: $page-margin;
+        }
+    }
+
+    @media #{$media-small} {
+
+        .ups-wrap {
+            padding-left: $page-margin-sm;
+            padding-right: $page-margin-sm;
+        }
+
+        .subsection_main {
+            .ups-wrap {
+                padding-left: $page-margin-sm;
+                padding-right: $page-margin-sm;
+            }
+        }
+
+        .subsection_aside,
+        .iw_columns.col-lg-4 {
+            padding: $page-margin $page-margin-sm;
+        }
+
+    }
+}
+
+// Widget Styling
+// ----------------------------------------
+
+.ups-subsection .ups-widget,
+.iw_columns.col-lg-12 .ups-widget {
+    width:100%;
+}
+
+.ups-headerTools_widgets .ups-widget {
+    padding: 0;
+}
+
+.ups-widget {
+
+    aside & {
+        padding-top: 0;
+    }
+
+    .ups-widget_header {
+        background: $ups_gold;
+        padding: 12px 30px;
+        text-transform: uppercase;
+        position: relative;
+
+        h2 {
+            margin: 0;
+            margin-#{$opposite-direction}: 100px;
+            font-family: $serif;
+        }
+
+        .ups-help_button {
+            text-transform: none;
+            color:$black;
+            text-decoration: none;
+            line-height: 20px;
+            position: absolute;
+            display: block;
+            top: 0%;
+            height: 100%;
+            line-height: 46px;
+            padding: 0 30px;
+            background: none;
+            border:0;
+            #{$opposite-direction}: 0;
+            @include transition-property(all);
+            @include transition-duration($main-transition-speed);
+
+            &:before,
+            .icon:before {
+                font-size: 18px;
+                float: $opposite-direction;
+                position: relative;
+                top: 10px;
+                @if $text-direction == ltr {
+                    margin:2px 0 0 5px;
+                } @else {
+                    margin:2px 5px 0 0;
+                }
+            }
+
+            &:hover {
+                color: $black_s3;
+                //text-decoration: underline;
+            }
+        }
+    }
+
+    .ups-widget_panel {
+        background: $white;
+        text-align: $default-float;
+        padding: $margin_3 $grid-gutter-width;
+        @include pie-clearfix;
+
+        .ups-help_panel {
+            display: none;
+            margin: 0;
+            padding: $margin_3 20px;
+            p {
+                padding: $margin_4 0;
+                margin: 0;
+                border:1px solid $ups_stone;
+                border-right: 0;
+                border-left: 0;
+                text-align: $default-float;
+            }
+            &.ups-active {
+                display: block;
+            }
+        }
+
+        .ups-form_group {
+            position: relative;
+            width: 100%;
+            //max-width: 450px;
+            margin-bottom: 15px;
+        }
+
+        .ups-form_link {
+            position: absolute;
+            top:0;
+            color:$black_s3;
+            text-decoration: underline;
+            @if $text-direction == ltr {
+                right:0;
+            } @else {
+                left:0;
+            }
+            @include transition-property(all);
+            @include transition-duration($main-transition-speed);
+
+            &:hover {
+                color: $black_s1;
+            }
+        }
+    }
+
+    @mixin widget_md {
+        width: auto;
+        //margin: 0 -60px $page-margin;
+
+        .ups-widget_header {
+            padding: 12px 60px;
+
+            a { #{$opposite-direction}: 60px; }
+        }
+
+        .ups-widget_panel {
+            padding: 50px 60px;
+            //border: none;
+            //border-bottom: 1px solid $ups_stone;
+        }
+    }
+
+    @mixin widget_sm {
+        width: auto;
+
+        .ups-widget_header {
+            padding: 14px 20px;
+            .ups-help_button{
+                padding: 0 15px;
+                // top: 10%;
+                // height: 90%;
+                // line-height: 20px;
+                // padding: 0 10px;
+                // #{$opposite-direction}: 10px;
+                // &:before {
+                //     top:-3px;
+                // }
+
+            }
+        }
+
+        .ups-widget_panel {
+            padding: $margin_3 20px 0;
+            border: 1px solid $black_s1;
+            border-top: 0;
+            .ups-help_panel {
+                margin: 0;
+                margin-bottom: $margin_3;
+                padding: 0 20px;
+            }
+            .ups-form_doubleButton {
+                width: 100%;
+                max-width: 100%;
+                padding: 12px 0 10px;
+
+                &:last-child {
+                    margin-bottom: $margin_3;
+                }
+            }
+
+            .ups-subsection-alt & {
+                border: none;
+            }
+        }
+
+    }
+
+    aside & {
+        @include widget_sm;
+    }
+
+    .iw_columns.col-lg-4 & {
+        @include widget_sm;
+    }
+
+    @media #{$media-mediumMid} {
+        &, aside &, .iw_columns.col-lg-4 & {
+            @include widget_md;
+        }
+
+    }
+
+    @media #{$media-small} {
+        &, aside &, .iw-column.col-lg-4 & {
+            @include widget_sm;
+
+            .ups-widget_header {
+                margin: 0 -20px;
+            }
+
+            .ups-widget_panel {
+                border: none;
+                margin: 0 -20px;
+                padding: $margin_3 20px 0;
+            }
+        }
+    }
+
+    &.ups-help_show{
+        .ups-help_button {
+            background: $white;
+        }
+
+        .ups-help_panel {
+            display: block;
+            padding-bottom: 0;
+            padding-top: 0;
+            margin-bottom: $margin_3;
+        }
+    }
+
+}
+
+// Figure
+// ----------------------------------------
+
+figure {
+    position: relative;
+    float: $default-float;
+
+    //.ups-vidThumb:before {
+      //  @include ups-icons;
+        //content: '\e65a';
+        //display: block;
+        //color: $white;
+        //font-size: 3em;
+        //z-index: 1;
+        //position: absolute;
+        //top: 15px;
+        //#{$opposite-direction}: 15px;
+        //background: rgba(0,0,0,0.25);
+        //border-radius: 50%;
+    //}
+
+    a & {
+        color: $black_s3;
+    }
+
+    a:hover & {
+        text-decoration: underline;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    h4 {
+        font-family: $sans-bd;
+
+
+        .ups-rtl { font-weight: bold; }
+    }
+
+    p {
+        font-style: italic;
+    }
+
+    @media #{$media-small} {
+        float: none;
+        margin: 20px 0;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+.MicrosoftMap {
+    * { box-sizing: content-box; }
+    .LogoSearchContainer {
+        #LogoSearchInput { margin: 3px 3px 0 0; }
+        #LogoSearchGo { padding: 0; }
+    }
+}
+
+// Popup Detail
+// ----------------------------------------
+
+.ups-popup_detail {
+    margin-top: 0; // $margin_1;
+    margin-bottom: $margin_1;
+
+    p {
+        margin-bottom: $margin_3;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+/***********************************************************
+  STYLES MERGED FROM ICDEV REPO. NEEDED FOR ANGULAR APPS
+***********************************************************/
+// Styles for responsive text alignment
+// ----------------------------------------
+.ups-text-lg-right, .ups-text-lg-center, .ups-text-md-right, .ups-text-md-center, .ups-text-sm-right, .ups-text-sm-center {
+	text-align: inherit;
+}
+@media screen and (min-width: $screen-sm) {
+	.ups-text-sm-right {
+		text-align: $opposite-direction;
+	}
+	.ups-text-sm-center {
+		text-align: center;
+	}
+	.ups-text-sm-left {
+		text-align: $default-float;
+	}
+}
+@media screen and (min-width: $screen-md) {
+	.ups-text-md-right {
+		text-align: $opposite-direction;
+	}
+	.ups-text-md-center {
+		text-align: center;
+	}
+	.ups-text-md-left {
+		text-align: $default-float;
+	}
+}
+@media screen and (min-width: $screen-lg) {
+	.ups-text-lg-right {
+		text-align: $opposite-direction;
+	}
+	.ups-text-lg-center {
+		text-align: center;
+	}
+	.ups-text-lg-left {
+		text-align: $default-float;
+	}
+}
+/***********************************************
+**                                            **
+**	Responsive Floats                         **
+**                                            **
+***********************************************/
+@media screen and (min-width: $screen-sm) {
+	.ups-pull-right-sm {
+        float: $opposite-direction;
+    }
+	.ups-pull-left-sm {
+        float: $default-float;
+    }
+}
+@media screen and (min-width: $screen-md) {
+	.ups-pull-right-md {
+        float: $opposite-direction;
+    }
+	.ups-pull-left-md {
+        float: $default-float;
+    }
+}
+@media screen and (min-width: $screen-lg) {
+	.ups-pull-right-lg {
+        float: $opposite-direction;
+    }
+	.ups-pull-left-lg {
+        float: $default-float;
+    }
+}
+/***********************************************
+**	End Responsive Floats                     **
+***********************************************/
+/***********************************************
+**                                            **
+**	UPS Fieldset Modifiers                    **
+**                                            **
+***********************************************/
+fieldset legend.ups-no_fieldset_separator {
+	border-bottom: none;
+}
+/***********************************************
+**	End Fieldset Modifiers                    **
+***********************************************/
+/***********************************************
+**                                            **
+**	UPS Indent Classing                       **
+**                                            **
+***********************************************/
+.ups-indent_with_input {
+	margin-#{$default-float}: 32px;
+}
+//prevents nested indents
+.ups-indent_with_input .ups-indent_with_input {
+	margin-#{$default-float}: 0;
+}
+/***********************************************
+**	End UPS Indent Classing                   **
+***********************************************/
+/***********************************************
+**                                            **
+**	Icon Modifiers                            **
+**                                            **
+***********************************************/
+.ups-icon_big {
+	font-size: 36px;
+}
+// 5 Column Grid Tile Layout
+// -----------------------------------------------------
+	.ups-col5 {
+			width: 20%;
+			display: inline-block;
+			float: left;
+			position: relative;
+			min-height: 1px;
+			//padding-right: 15px;
+			//padding-left: 15px;
+			padding: 0 10px;
+		}
+	@media #{$media-medLarge} {
+		.ups-col5 {
+			display: inline-block;
+			width: 30%;
+		}
+	}
+	@media #{$media-small} {
+		.ups-col5 {
+			width: 100%;
+			float: none;
+		}
+	}

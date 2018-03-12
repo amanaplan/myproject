@@ -1,0 +1,262 @@
+.ups-official_datepicker_container {
+    position: relative;
+    z-index: 9999;
+
+    .ups-official_datepicker {
+        position: absolute;
+        #{$default-float}: 0;
+        top: 0;
+        border: 1px solid $stone_s3;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        background-color: white;
+        padding: 10px;
+
+        .ups-official_datepicker_top_right & {
+            #{$default-float}: auto;
+            #{$opposite-direction}: 0;
+
+            @media #{$media-small} {
+                #{$default-float}: 0;
+            }
+        }
+
+        .ups-official_datepicker_month_controls {
+            position: relative;
+        }
+
+        .ups-official_datepicker_month_controls_prev_container {
+            #{$default-float}: 0;
+        }
+
+        .ups-official_datepicker_month_controls_next_container {
+            #{$opposite-direction}: 0;
+        }
+
+        .ups-official_datepicker_month_controls_prev_container, .ups-official_datepicker_month_controls_next_container {
+            position: absolute;
+            top: 0;
+
+            @media #{$media-small} {
+                top: 20px;
+            }
+        }
+
+        .ups-official_datepicker_prev, .ups-official_datepicker_next {
+            border-radius: 1px;
+            border: none;
+            background: none;
+            padding: 10px 5px;
+            height: 35px;
+
+            @media #{$media-small} {
+                top: 20px;
+
+                .icon {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .ups-official_datepicker_month_sel {
+            width: 50%;
+            float: #{$default-float};
+            padding-#{$default-float}: 60px;
+            padding-#{$opposite-direction}: 5px;
+
+            @media #{$media-small} {
+                width: 100%;
+                padding-#{$opposite-direction}: 60px;
+                float: none;
+            }
+        }
+
+        .ups-official_datepicker_year_sel {
+            width: 50%;
+            float: #{$default-float};
+            padding-#{$opposite-direction}: 60px;
+            padding-#{$default-float}: 5px;
+
+            @media #{$media-small} {
+                float: none;
+                width: 100%;
+                padding-#{$default-float}: 60px;
+            }
+        }
+
+        .ups-official_datepicker_table_container {
+            width: 100%;
+            width: calc(100% + 10px);
+            overflow: auto;
+            padding: 0 5px 10px;
+            margin: 0 -5px 10px;
+        }
+
+        .ups-official_datepicker_table {
+            border-collapse: separate;
+
+            th, td {
+                border: 1px solid white;
+            }
+
+            thead tr th {
+                text-align: center;
+                padding: 5px 0 3px;
+                background-color: $ups_stone;
+            }
+
+            .ups-official_datepicker_date_chooser_btn {
+                border: none;
+                background: none;
+                border-radius: 1px;
+                padding: 14px 30px;
+                font-family: $sans-bd;
+                font-size: 16px;
+                text-decoration: underline;
+                width: 100%;
+
+                &:disabled {
+                    cursor: not-allowed;
+                    color: $stone_s3;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: white;
+                    }
+                }
+
+                &:hover {
+                    background-color: $gold_40;
+                }
+
+                &:focus {
+                    position: relative;
+                }
+
+                &.ups-official_datepicker_not_cur_month {
+                    background-color: $stone_40;
+
+                    &:hover {
+                        background-color: $gold_40;
+                    }
+
+                    &:disabled:hover {
+                        background-color: $stone_40;
+                    }
+                }
+
+                &.ups-official_datepicker_currentDay {
+                    background-color: $ups_gold;
+
+                    &:disabled {
+                        color: $black_s4
+                    }
+                }
+
+                &.ups-official_datepicker_today {
+                    border: 1px solid $black_s1;
+                }
+
+                @media #{$media-small} {
+                    padding: 12px;
+                }
+            }
+
+            @media #{$media-small} {
+                width: 100%;
+            }
+        }
+
+        .ups-official_datepicker_modifier_btns {
+            float: left;
+
+            @media #{$media-small} {
+                float: none;
+            }
+        }
+
+        .ups-official_datepicker_today_btn {
+            border-radius: 1px;
+            border: none;
+            background-color: $ups-gold;
+            padding: 10px 30px 10px;
+            font-family: $sans-bd;
+
+            @media #{$media-small} {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        .ups-official_datepicker_clear_btn, .ups-official_datepicker_close_btn {
+            border-radius: 1px;
+            border: none;
+            background-color: $water_s3;
+            padding: 10px 30px 10px;
+            color: white;
+            font-family: $sans-bd;
+
+            @media #{$media-small} {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        .ups-official_datepicker_close_btn {
+            float: right;
+
+            @media #{$media-small} {
+                float: none;
+            }
+        }
+
+        @media #{$media-small} {
+            #{$opposite-direction}: 0;
+        }
+    }
+}
+
+.ups-datepicker_top_right {
+    .ups-official_datepicker_container {
+        .ups-official_datepicker {
+            left: auto;
+            right: 0;
+        }
+    }
+}
+
+.ups-datepicker_inline {
+    &.ups-datepicker_inline_fixed {
+        width: 591px;
+
+        @media #{$media-small} {
+            width: auto;
+        }
+    }
+
+    .ups-official_datepicker_container {
+        z-index: 1;
+        margin-bottom: 15px;
+
+        .ups-official_datepicker {
+            position: static;
+            border: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            padding: 0;
+
+            &:before, &:after {
+                content: " ";
+                display: table;
+            }
+
+            &:after {
+                clear: both;
+            }
+
+            .ups-official_datepicker_table {
+                width: 100%;
+            }
+        }
+    }
+}

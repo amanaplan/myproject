@@ -1,0 +1,194 @@
+---
+title: Create a Shipment
+layout: legacy.hbs
+version: v4
+appID: com.ups.UIS
+appCSS: ups.legacy_overrideUIS
+rightRail: true
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+<script language="JavaScript">
+//here you place the ids of every element you want.
+var ids = new Array('shipper_account','use_another_acct_num');
+
+
+function switchid(id){	
+	hideallids();
+	showdiv(id);
+}
+
+function hideallids(){
+	//loop through the array and hide each element by id
+	for (var i=0;i<ids.length;i++){
+		hidediv(ids[i]);
+	}		  
+}
+
+function hidediv(id) {
+	//safe function to hide an element with a specified id
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById(id).style.display = 'none';
+	}
+	else {
+		if (document.layers) { // Netscape 4
+			document.id.display = 'none';
+		}
+		else { // IE 4
+			document.all.id.style.display = 'none';
+		}
+	}
+}
+
+function showdiv(id) {
+	//safe function to show an element with a specified id
+		  
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById(id).style.display = 'block';
+	}
+	else {
+		if (document.layers) { // Netscape 4
+			document.id.display = 'block';
+		}
+		else { // IE 4
+			document.all.id.style.display = 'block';
+		}
+	}
+}
+</script>
+
+<form action="repl_action">
+  <div id="ccCntMod">
+    <div id="main">
+        
+      <ul id="subTab">
+        <li class="tab-on">Package</li>
+        <li class="tab-off"><a href="repl_href">Freight</a></li>
+      </ul>
+      <div style="clear:both;"></div>
+      <table width="566" border="0" cellspacing="0" cellpadding="0" class="tab">
+        <tr>
+          <th><div class="head-col4">
+              <h2>Edit Payment Information</h2>
+            </div></th>
+        </tr>
+        <tr>
+          <td valign="top"><div class="introModFixed">
+              <p>Please enter your payment information below. The information you enter will be transmitted using a secure connection. Required fields are indicated with<img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0">.</p>
+            </div>
+            <div class="modFixed4col">
+              <div class="modContent">
+                <fieldset>
+                  <legend>Payment Method</legend>
+                  <!-- Select Payment Method (US)-->
+                  <dl>
+                    <dt>
+                      <label for="payment_method"><a href="javascript:repl_function('repl_href')">Payment Method:<img alt="" border="0" height="1" src="/img/1.gif" width="3"><img src="/img/icn_help_blue.gif" alt="" height="9" width="9" border="0"></a></label>
+                    </dt>
+                    <dd>
+                      <select name="repl_name" id="payment_method" onChange="switchid(this.options[this.selectedIndex].value);">
+                        <option value="" selected>Select One</option>
+                        <option value="shipper_account">Shipper Account 123456</option>
+                        <option value="shipper_account">Shipper Account 234567</option>
+                        <option value="">Third Party Account 345678</option>
+                        <option value="">VISA xxxxxxxxxxxx1234</option>
+                        <option value="">AMEX xxxxxxxxxxxx6789</option>
+                        <option value="use_another_acct_num">Use Another UPS Shipper Account Number</option>
+                        <option value="">Use Another Credit Card </option>
+                        <option value="">Bill the Receiver</option>
+                        <option value="">Bill Another Third Party</option>
+                      </select>
+                      <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                  </dl>
+                  
+                  <!-- Shipper Account -->
+                  <fieldset id="shipper_account" style="display: none;">
+                    <dl>
+                      <dt>
+                        <label for="acct_num">UPS Account Number:</label>
+                      </dt>
+                      <dd>123456</dd>
+                      <dt>
+                        <label for="acct_name">Account Name:</label>
+                      </dt>
+                      <dd>
+                        <input name="acct_name" type="text" id="acct_name" value="{Pre-populated user-created account name}" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"><br>
+                        <div class="reqTxtInst">Your descriptive name for this account</div>
+                      </dd>
+                      <dt>
+                        <label for="country">Country or Territory:</label>
+                      </dt>
+                      <dd>United States</dd>
+                      <dt>
+                        <label for="zip_code">Zip Code:</label>
+                      </dt>
+                      <dd>30076</dd>
+                    </dl>
+                  </fieldset>
+                  
+                  <!-- If Use Another Account Number is selected -->
+                  <fieldset id="use_another_acct_num" style="display: none;">
+                    <dl>
+                      <dt>
+                        <label for="acct_num">UPS Account Number:</label>
+                      </dt>
+                      <dd>
+                        <input name="acct_num" type="text" id="acct_num" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                      <dt>
+                        <label for="acct_name">Account Name:</label>
+                      </dt>
+                      <dd>
+                        <input name="acct_name" type="text" id="acct_name" size="32">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"><br>
+                        <div class="reqTxtInst">Your descriptive name for this account</div>
+                      </dd>
+                      <dt>
+                        <label for="country">Country or Territory:</label>
+                      </dt>
+                      <dd>United States or Puerto Rico</dd>
+                      <dt>
+                        <label for="zip_code">Zip Code:</label>
+                      </dt>
+                      <dd>
+                        <input name="zip_code" type="text" id="zip_code" size="15">
+                        <img src="/img/icn_dia.gif" alt="" width="11" height="9" border="0"></dd>
+                    </dl>
+                    <div class="hr"><img src="/img/1.gif" alt="" width="1" height="1"></div>
+                    <fieldset>
+                      <legend>Save Account Number</legend>
+                      <dl>
+                        <dt>
+                          <label for="save_acct">Save Options for Account Number:</label>
+                        </dt>
+                        <dd>
+                          <select name="repl_name" id="save_acct">
+                            <option value="" selected>Save As New Entry</option>
+                            <option value="">Save As New Entry and Set As Default</option>
+                          </select>
+                        </dd>
+                      </dl>
+                    </fieldset>
+                  </fieldset>
+                </fieldset>
+              </div>
+            </div></td>
+        </tr>
+        <tr>
+          <td class="btn-bar"><div class="btn-col4">
+              <input name="start_over" type="submit" value="Cancel" class="btn">
+              <input name="next" type="submit" value="Update" class="btn">
+            </div></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</form>
+</div>

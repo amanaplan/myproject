@@ -1,0 +1,52 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M02 FOOTER (LIGHT)
+================================================================================
+-------------------------------------------------------------------------------}}
+<!-- M02 Footer (Light) -->
+<!-- For full documentation app/source/partials/modules/M02_footer_light.hbs -->
+<footer id="ups-footerWrap" class="ups-wrap" role="contentinfo">
+    <div id="ups-footer" class=" ups-footer_light ups-wrap_inner">
+
+        <div class="ups-footer_legal">
+            <!-- LEGAL -->
+            <div class="ups-footer_links">
+                {{#compare layout "!=" "ls_down.hbs"}}
+                <h2 class="ups-med_show ups-footer_toggle" id="ups-footer_legal" aria-controls="ups-footer_legalLinks">
+                    {{#if accordion_label}}{{{accordion_label}}}{{else}}{{{this.legal.label}}}{{/if}}
+                    <button>
+                        <span class="ups-icon-plus ups-iconAlone" aria-hidden="true"></span>
+                        <span class="ups-readerTxt" data-lang-show="{{#if sr_expand_btn}}{{{sr_expand_btn}}}{{else}}Expand {{{this.custServ.label}}}{{/if}}" data-lang-hide="{{#if sr_collapse_btn}}{{{sr_collapse_btn}}}{{else}}Collapse {{{this.custServ.label}}}{{/if}}">{{#if sr_expand_btn}}{{{sr_expand_btn}}}{{else}}Expand {{{this.custServ.label}}}{{/if}}</span>
+                    </button>
+                </h2>
+                <ul class="ups-footer_expand" aria-labelledby="ups-footer_legal" id="ups-footer_legalLinks">
+                    {{#if this.legal_light.links}}
+                        {{#each this.legal_light.links}}
+                        <li>
+                            <a href="{{this.link}}"{{#if this.icon}} class="{{this.icon}}"{{/if}}>
+                                {{{this.label}}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    {{else}}
+                        <li>
+                            <a href="{{privacy_url}}">
+                                {{privacy_label}}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{terms_url}}">
+                                {{terms_label}}
+                            </a>
+                        </li>
+                    {{/if}}
+                </ul>
+                {{/compare}}
+                <p class="ups-footer_disclaimer">{{#if copyright}}{{{copyright}}}{{else}}{{{this.legal.disclaimer}}}{{/if}}</p>
+            </div>
+        </div> <!-- @end .ups-footer_legal -->
+
+    </div> <!-- @end #ups-footer -->
+</footer> <!-- @end #ups-footerWrap -->
+
+

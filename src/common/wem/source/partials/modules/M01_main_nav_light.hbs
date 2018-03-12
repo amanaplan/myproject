@@ -1,0 +1,51 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M01 MAIN NAV (LIGHT)
+================================================================================
+-------------------------------------------------------------------------------}}
+<!-- M01 Main Nav (Light)-->
+<!-- For full documentation app/source/partials/modules/M01_main_nav_light.hbs -->
+
+<header id="ups-headerWrap" class="ups-header_light ups-wrap{{#compare layout "==" "ls_down.hbs"}} ups-header_ls_down{{/compare}}">
+    <div id="ups-header" class="ups-wrap_inner">
+        <a id="ups-skipNav" href="#ups-page_title" tabindex="0">{{#if skip_link}}{{skip_link}}{{else}}Skip to Content{{/if}}</a>
+        <a id="ups-header_logo" href="/">UPS</a>
+
+        {{#compare layout "==" "ls_down.hbs"}}
+            <div id="ups-touchNav" class=" ups-med_show">
+                <button class="ups-menuToggle">
+                    <span class="ups-iconAlone ups-icon-menu" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">{{menu}}</span>
+                </button>
+            </div>
+
+            <nav id="ups-navItems" class="ups-container">
+
+                <button class="ups-menuClose ups-med_show">
+                    <span class="ups-iconAlone ups-icon-x" aria-hidden="true"></span>
+                    <span class="ups-readerTxt">{{close}}</span>
+                </button>
+                <button class="ups-menuBack ups-med_show">
+                    <span class="ups-icon-chevronleft" aria-hidden="true"></span>{{back}}</button>
+
+                <div class="ups-navItems_primary">
+                    <div class="ups-navMenu ups-menu">
+                        <a href="{{track_url}}" class="ups-menu_toggle">{{{track_label}}}</a>
+                    </div> <!-- @end .ups-navMenu -->
+                    <div class="ups-navMenu ups-menu">
+                        <a href="{{ship_url}}" class="ups-menu_toggle">{{{ship_label}}}</a>
+                    </div> <!-- @end .ups-navMenu -->
+                </div> <!-- @end .ups-navItems_primary -->
+
+            </nav> <!-- @end #ups-navItems -->
+        {{/compare}}
+    </div><!-- @end #ups-header -->
+    <script type="text/javascript">
+        var expand ='expand';
+        var collapse = 'Collapse';
+        var wems_country='US';
+        var wems_locale='en_US';
+        var wems_ext_locale='en_US';
+        var wems_ts = '';
+    </script>
+</header><!-- @end #ups-headerWrap -->

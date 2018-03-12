@@ -1,0 +1,140 @@
+<!-- ************************************************************************************ -->
+<!-- M15 List Detail                                                                      -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: -LAYOUT-
+********************************************************************************
+
+| 45px
+-detail header-
+| 5px
+-detail text-
+| 15px
+-detail cta-
+| 45px
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: IMAGE
+********************************************************************************
+
+M15 List can have an image, and it can be aligned left, center, or right
+
+********************************************************************************
+--}}
+
+{{#if image}}
+<div class="ups-list-image_container{{#if image.align}} {{image.align}}{{else}} left{{/if}} ">
+
+    {{#if detail.title.link}}
+    <a href="{{detail.title.link}}">
+    {{/if}}
+        {{#compare detail.symbol '===' "video"}}<span class="icon ups-icon-play" aria-hidden="true"></span>{{/compare}}
+        {{#compare detail.symbol '===' "document"}}<span class="icon ups-icon-document" aria-hidden="true"></span>{{/compare}}
+        <img src="{{image.src}}" class="ups-list_image" alt="{{#if image.alt}}{{image.alt}}{{else}}{{/if}}" title="{{#if image.title}}{{image.title}}{{else}}{{/if}}" />
+    {{#if detail.title.link}}
+    </a>
+    {{/if}}
+
+</div>
+{{/if}}
+
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: DETAIL HEADER
+********************************************************************************
+
+M15 List detail text can be left, centered, or right aligned
+
+********************************************************************************
+--}}
+
+{{#if detail}}
+<div class="ups-list-text_container{{#if detail.align}} {{detail.align}}{{/if}}">
+
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: DETAIL HEADER
+********************************************************************************
+
+M15 List detail header can have an unordered list inside the header
+
+********************************************************************************
+--}}
+
+    <h2>
+        {{#if detail.title.link}}
+            <a class="ups-header-link" href="{{detail.title.link}}">
+        {{/if}}
+
+        {{#if detail.title.text}}
+            {{{detail.title.text}}}
+        {{/if}}
+
+        {{#if detail.title.link}}
+            </a>
+        {{/if}}
+    </h2>
+
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: DETAIL TEXT
+********************************************************************************
+
+M15 List detail text can have an unordered list and text
+
+********************************************************************************
+--}}
+
+    <div class="ups-list-desc_container">
+        {{#if detail.desc}}
+        <p>{{detail.desc}}</p>
+        {{/if}}
+
+        {{#if detail.bullets}}
+        <ul class="list_{{detail.bullets.type}}">
+            {{#each detail.bullets.list}}
+                {{#if link}}
+                    <a href="{{link}}"><li>{{text}}</li></a>
+                {{else}}
+                    <li>{{text}}</li>
+                {{/if}}
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
+
+
+{{!--
+********************************************************************************
+M15 LIST DETAIL: DETAIL CTA
+********************************************************************************
+
+M15 List detail link is treated as an internal link, so no _blank target
+CTA List is styled following same rules as M10 links
+
+********************************************************************************
+--}}
+
+    {{#if detail.cta}}
+    <div class="ups-link-list">
+        <ul>
+            {{#each detail.cta}}
+                <li><a class="ups-link" href="{{this.link}}">{{this.label}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+
+
+</div>
+{{/if}}

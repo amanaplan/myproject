@@ -1,0 +1,227 @@
+{{!--------------------------------------------
+===============================================
+Legacy HTML HEADER
+===============================================
+---------------------------------------------}}
+<!doctype html>
+<!--[if IE 9]>         <html class="{{#is dir "rtl"}}ups-rtl {{/is}}no-js ie9" dir="{{dir}}" lang="{{lang}}"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="{{#is dir "rtl"}}ups-rtl {{/is}}no-js" dir="{{dir}}" lang="{{lang}}"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}} | {{site.title}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico?v=2" />
+    {{!-- Use for testing only must switch to version before review --}}
+    {{#is version "web-call"}}<!-- use this bolck for testing only -->
+        <link rel="stylesheet" type="text/css" href="https://www.ups.com/styles/v4/master.css?V=1016">
+        <link rel="stylesheet" type="text/css" media="print" href="https://www.ups.com/styles/v4/print.css">
+        {{#is dir "rtl"}}
+            <link rel="stylesheet" type="text/css" href="https://www.ups.com/styles/v4/rtl.css">
+        {{/is}}
+        <!--<link rel="stylesheet" href="assets/resources/styles/v4/master.css">-->
+    {{/is}}
+
+
+    {{!-- mDot sites --}}
+    {{#is version "mDot"}}
+	    <!-- build:css(.tmp) assets/resources/styles/mDot/production{{#is dir "rtl"}}-rtl{{/is}}.min.css -->
+    	<link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/mDot/production{{#is dir "rtl"}}-rtl{{/is}}.min.css">
+        <!-- endbuild -->
+    {{/is}}
+
+    {{!-- Campus Ship --}}
+    {{#is version "CampusShipAdmin"}}
+	    <!-- build:css(.tmp) assets/resources/styles/legacy/print.css -->
+        <link media="print"  rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/print.css">
+	    <!-- endbuild -->
+	    <!-- build:css(.tmp) assets/resources/styles/legacy/cs_master.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/cs_master.css">
+	    <!-- endbuild -->
+        {{#is dir "rtl"}}
+		    <!-- build:css(.tmp) assets/resources/styles/legacy/rtl.css -->
+        	<link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/rtl.css">
+	    	<!-- endbuild -->
+        {{/is}}
+    {{/is}}
+
+    {{!-- Shipping and Rating Preference --}}
+    {{#is version "shaRP"}}
+	    <!-- build:css(.tmp) assets/resources/styles/v4/master.css -->
+        <link rel="stylesheet" href="assets/resources/styles/v4/master.css">
+	    <!-- endbuild -->
+	    <!-- build:css(.tmp) assets/resources/styles/v4/master_update.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/master_update.css">
+	    <!-- endbuild -->
+	    <!-- build:css(.tmp) assets/resources/styles/v4/print.css -->
+        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/print.css">
+	    <!-- endbuild -->
+        {{#is dir "rtl"}}
+	    	<!-- build:css(.tmp) assets/resources/styles/v4/rtl.css -->
+	        <link rel="stylesheet" href="assets/resources/styles/v4/rtl.css">
+	    	<!-- endbuild -->
+        {{/is}}
+    {{/is}}
+
+    {{#is version "legacy"}}
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/master.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/master.css">
+	    	<!-- endbuild -->
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/master_update.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/master_update.css">
+	    	<!-- endbuild -->
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/print.css -->
+        <link media="print"  rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/print.css">
+	    	<!-- endbuild -->
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/blue.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/blue.css">
+	    	<!-- endbuild -->
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/brownapp.css -->
+        <link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/brownapp.css">
+	    	<!-- endbuild -->
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{#is dir "rtl"}}
+	    	<!-- build:css(.tmp) assets/resources/styles/legacy/rtl.css -->
+        	<link media="screen" rel="stylesheet" type="text/css" href="/assets/resources/styles/legacy/rtl.css">
+	    	<!-- endbuild -->
+        {{/is}}
+    {{/is}}
+
+    {{#is version "v4"}}
+        <!-- Legacy Styles -->
+	    <!-- build:css(.tmp) assets/resources/styles/v4/master.css -->
+        <link rel="stylesheet" href="assets/resources/styles/v4/master.css">
+	    <!-- endbuild -->
+	    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}.css -->
+        <link rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}.css">
+	    <!-- endbuild -->
+	    <!-- build:css(.tmp) assets/resources/styles/v4/print.css -->
+        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/print.css">
+	    <!-- endbuild -->
+        {{#if print}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{/if}}
+        {{#is appID "com.ups.ECS"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{/is}}
+        {{#is appID "com.ups.DOL"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{/is}}
+        {{#is appID "com.ups.FRB"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{/is}}
+        {{#is appID "com.ups.UIS"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/app/{{appID}}_print.css -->
+	        <link media="print" rel="stylesheet" href="assets/resources/styles/v4/app/{{appID}}_print.css">
+		    <!-- endbuild -->
+        {{/is}}
+        {{#is dir "rtl"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/rtl.css -->
+	        <link rel="stylesheet" href="assets/resources/styles/v4/rtl.css">
+		    <!-- endbuild -->
+        {{/is}}
+        {{#is appID "com.ups.IntPickup"}}
+		    <!-- build:css(.tmp) assets/resources/styles/v4/hoverhelp.css -->
+	        <link rel="stylesheet" href="assets/resources/styles/v4/hoverhelp.css">
+		    <!-- endbuild -->
+        {{/is}}
+    {{/is}}
+
+
+
+    {{!-- WEM css --}}
+    <!-- build:css(.tmp) assets/resources/styles/ups.vendor{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="assets/resources/styles/ups.vendor{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) assets/resources/styles/ups.styles{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="assets/resources/styles/ups.styles{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) assets/resources/styles/ups.modules{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="assets/resources/styles/ups.modules{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) assets/resources/styles/ups.widgets{{#is dir "rtl"}}-rtl{{/is}}.css -->
+    <link rel="stylesheet" href="assets/resources/styles/ups.widgets{{#is dir "rtl"}}-rtl{{/is}}.css">
+    <!-- endbuild -->
+
+
+
+	{{!-- global legacy overrides --}}
+    <link rel="stylesheet" href="assets/resources/styles/appCSS/ups.legacy_override_global{{#is dir "rtl"}}-rtl{{/is}}.css">
+
+	{{#is legacyangularID "qvmc"}}
+		{{!--legacy ui css (for QVMC) --}}
+		<link rel="stylesheet" href="assets/resources/styles/legacy/ui-grid.css">
+		{{!--legacy ngDialog (for QVMC) --}}
+		<link rel="stylesheet" href="assets/resources/styles/legacy/ngDialog.min.css">
+		<link rel="stylesheet" href="assets/resources/styles/legacy/ngDialog-custom-width.css">
+		<link rel="stylesheet" href="assets/resources/styles/legacy/ngDialog-theme-default.css">
+		<link rel="stylesheet" href="assets/resources/styles/legacy/ngDialog-theme-plain.min.css">
+	{{/is}}
+
+    {{#if appCSS }}
+	    <!-- build:css(.tmp) assets/resources/styles/appCSS/{{appCSS}}{{#is dir "rtl"}}-rtl{{/is}}.css -->
+        <link rel="stylesheet" href="assets/resources/styles/appCSS/{{appCSS}}{{#is dir "rtl"}}-rtl{{/is}}.css">
+	    <!-- endbuild -->
+    {{/if}}
+
+	{{!--  script --}}
+    <!-- build:js assets/resources/scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js assets/resources/scripts/vendor/ups.vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/jquery-cookie/jquery.cookie.js"></script>
+    <script src="bower_components/h5f/h5f.min.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/parsleyjs/dist/parsley.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/ng-idle/angular-idle.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <!-- endbuild -->
+
+    <script src="/assets/resources/scripts/legacy_app_ent/global.js"></script>
+    {{#if appJS}}<script src="/assets/resources/scripts/legacy_app_ent/{{appJS}}/master.js"></script>{{/if}}
+	{{#if legacyangularID}}
+	<script src="/assets/resources/scripts/legacy_spa_ent/qvmc/lib/angular-touch.js"></script>
+	<script src="/assets/resources/scripts/legacy_spa_ent/qvmc/lib/angular-ui-router.js"></script>
+	<script src="/assets/resources/scripts/legacy_spa_ent/qvmc/lib/ui-grid.js"></script>
+	<script src="/assets/resources/scripts/legacy_spa_ent/qvmc/lib/ngDialog.min.js"></script>
+	<script src="/assets/resources/scripts/legacy_spa_ent/{{legacyangularID}}/_controllers/main.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/dropdownctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/datepickerctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/inboundctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/outboundctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/importctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/thirdpartyctrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/packinshipcntrl.js"></script>
+    <script src="/assets/resources/scripts/legacy_spa_ent/qvmc/_controllers/popups.js"></script>
+	{{/if}}
+
+</head>
+
+<body class="ups-appPage">

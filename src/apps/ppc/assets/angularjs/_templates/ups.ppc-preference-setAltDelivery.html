@@ -1,0 +1,127 @@
+<div  class="  ups-application_wrapper"  data-ng-controller="myChoiceSetAltDelievryCtrl">
+	<ng-form data-ng-if="isEditAdl!=true" data-ng-show="isMyChoice" name="setAltDelievry" novalidate>
+		<div class="row">
+			<div class="col-md-8">
+                <p>Send your home deliveries to a UPS Access Point&reg; location for pickup at a later time</p>
+			</div>
+		</div>
+			<div class="row">
+			<div class="col-md-8">
+				<p>We'll apply this preference to all eligible shipment unless it's superseded by a shipper restiction, legal or regulatory constraints, or an existing hold request.</p>
+			</div>
+		</div>
+			<div data-ng-if="isvacation!=true" class="row">
+			<div class="col-md-8">
+				<p>If you choose not to set a preference and we're unable to get a required signature on our first delivery attempt, we'll deliver your package to a nearby UPS Access Point location and let you know when it's ready for pickup.</p>
+			</div>
+		</div>
+		<div class=" row">
+			<div class="col-md-8">
+			<div class="  ups-form_ctaGroup">
+				<button type="button" data-ng-click="setLocation()"
+					class="ups-cta ups-cta_primary">Select a Location</button>
+					</div>
+			</div>
+		</div>
+	</ng-form>
+	<ng-form data-ng-if="isEditAdl===true"  data-ng-show="isMyChoice" name="setAltDelievry" novalidate>
+
+		<div class="row">
+			<div class="col-md-8">
+				<p>You've opted to send incoming deliveries to a nearby UPS Access Point location.</p>
+                <p>We'll apply this preference to all eligible shipments unless it's superseded by a shipper restriction, legal, or regulatory constraints, or an existing hold request.</p>
+			</div>
+		</div>
+			<div class="row">
+			<div class="col-md-4">
+			<div class="ups-form_group">
+						<p><strong>Preferred Location</strong></p>
+						<address>
+						<p>{{formObj.location.address1}}</p>
+						<p>{{formObj.location.address2}}</p>
+						<p>{{formObj.location.address3}}</p>
+						<p>{{formObj.location.state}}, {{formObj.location.county}} {{formObj.location.pincode}} </p>
+						<p>{{formObj.location.tel}}</p>
+						<p>{{formObj.location.email}}</p>
+						</address>
+					</div>
+			</div>
+			<div class="col-md-4">
+			<div class="ups-form_group">
+						<p><strong>Alternate Location</strong></p>
+						<p data-ng-if="!altformObj.location">An alternate UPS Access Point has not been selected.</p>
+						<address data-ng-if="altformObj.location">
+						<p>{{altformObj.location.address1}}</p>
+						<p>{{altformObj.location.address2}}</p>
+						<p>{{altformObj.location.address3}}</p>
+						<p>{{altformObj.location.state}}, {{altformObj.location.county}} {{altformObj.location.pincode}} </p>
+						<p>{{altformObj.location.tel}}</p>
+						<p>{{altformObj.location.email}}</p>
+						</address>
+
+					</div>
+			</div>
+
+		</div>
+		<div class="row ups-offset-20">
+			<div class="col-md-4">
+			<p>{Additional information about the locker bay size, the parcel locker, and package restrictions is displayed here...final content TBD.}</p>
+			</div>
+		</div>
+		<div class="row ups-offset-20">
+			<div class="col-md-4">
+                <p data-ng-if="!isshowMap">[+]<a href="#" onclick="return false;" class="ups-link" data-ng-click="showMap()">Show Map and Driving Directions</a></p>
+                <p data-ng-if="isshowMap">[-]<a href="#" onclick="return false;" class="ups-link" data-ng-click="showMap()">Hide Map and Driving Directions</a></p>
+			</div>
+		</div>
+		<div data-ng-if="isshowMap" class="row ups-offset-20">
+			<div class="col-md-4">
+				<h2>Map will come here!</h2>
+			</div>
+		</div>
+		<div class="ups-form_ctaGroup">
+            <button type="button" data-ng-click="setLocation()"
+                class="ups-cta ups-cta_primary">Edit</button>
+            <button type="button" data-ng-click="clearLocation()"
+                class="ups-cta ups-cta_secondary">Clear Location</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Print My UPS Access Point Information</button>
+		</div>
+	</ng-form>
+	<ng-form  data-ng-show="!isMyChoice">
+		<div class="row">
+		<div class="col-md-8">
+                <p>Send your home deliveries to a UPS Access Point&reg; location for pickup at a later time</p>
+			</div>
+		</div>
+			<div class="row">
+			<div class="col-md-8">
+				<p>We'll apply this preference to all eligible shipment unless it's superseded by a shipper restiction, legal or regulatory constraints, or an existing hold request.</p>
+			</div>
+		</div>
+			<div data-ng-if="isvacation!=true" class="row">
+			<div class="col-md-8">
+				<p>In order to gain full access to this feature, please complete your enrollment.</p>
+                <a href="#/preferencePage/mychoice/authenticate" data-ng-if="us" class="ups-link">Verify Now</a>
+                <a href="#/preferencePage/mychoice/authenticate_mailverify" data-ng-if="!us" class="ups-link">Verify Now/Activate My Membership</a>
+			</div>
+		</div>
+
+	</ng-form>
+    
+    <!------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    --	Remove these buttons in production. 									  --
+    --																			  --
+    --------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+    <div class="ups-cms-demo">
+    	<div class="ups-test_links">
+    		<button class="ups-cta ups-cta_secondary" ng-click="isMyChoice = false">Not Enrolled My Choice</button>
+			<button class="ups-cta ups-cta_secondary" ng-click="isMyChoice = true">Enrolled in My Choice</button>
+     	</div>
+    </div>
+    <!------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------->
+</div>

@@ -1,0 +1,1726 @@
+{{> A04_page_level_required_message}}
+
+<h2>Enter Address Information ipsum.</h2>
+<span>Helper text placeholder</span>
+<div class="row">
+	<div class="col-md-11"> {{!-- needed to allow To column to move over to the right on big viewports --}}
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <div class="ups-section ups-noTxt">
+                    <div class="ups-section-header no-border">
+                        <button id="editFromAddressBtn" class="ups-cta ups-cta_secondary no-padding pull-right">Edit</button>
+                        <h2>
+                            <span class="ups-icon-locationdot" aria-hidden="true"></span>
+                            From<span class="visible-xs-inline">: {Name} {Contact Name}</span>
+                        </h2>
+                    </div>
+                    <div class="hidden-xs" id="editFromText">
+                        <p>[Country or Territory]</p>
+                        <p>[Name], [Contact Name]</p>
+                        <p>[Residential Add ipsum],[Add 2 ipsum],[Add 3 ipsum]</p>
+                        <p>[City placeholder]</p>
+                        <p>[State], [00000]</p>
+                        <p>[555-555-5555]</p>
+                        <p>[email@email.com]</p>
+                        <p>[Address Classification placeholder]</p>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="fromEmailNotify" class="ups-checkbox-custom" name="fromEmailNotify" type="checkbox" value="1">
+                            <label for="fromEmailNotify" class="ups-checkbox-custom-label">Include email notifications for this shipment</label>
+                        </div>
+                    </div>
+                    <div id="editFromFields">
+                    	<div class="ups-form_group ups-form_required">
+                            <label for="editFromCountryDropdown" class="ups-form_label">	
+                            	Country or Territory
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select id="editFromCountryDropdown" name="editFromCountryDropdown" class="ups-dropdown" aria-required="true" required>
+                                    <option>United States</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="editFromName" class="ups-form_label">
+                            	Name
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromName" class="ups-form_input" id="editFromName" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="editFromContactName" class="ups-form_label">Contact Name</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromContactName" class="ups-form_input" id="editFromContactName">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="editFromStreet" class="ups-form_label">
+                            	Street Address
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromStreet" class="ups-form_input" id="editFromStreet" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="editFromStreet2" class="ups-form_label">placeholder helper text</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromStreet2" class="ups-form_input" id="editFromStreet2">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="editFromStreet3" class="ups-form_label">placeholder helper text</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromStreet3" class="ups-form_input" id="editFromStreet3">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="editFromCity" class="ups-form_label">
+                            	City
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromCity" class="ups-form_input" id="editFromCity" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="editFromState" class="ups-form_label">
+                                    	State
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="editFromState" class="ups-form_input" id="editFromState" aria-required="true" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="editFromZip" class="ups-form_label">
+                                    	ZIP Code
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="editFromZip" class="ups-form_input" id="editFromZip" aria-required="true" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            {{> A05_switch_toggle editFrom_address_classification }}
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="editFromPhone" class="ups-form_label">Phone</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromPhone" class="ups-form_input" id="editFromPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="editFromEmail" class="ups-form_label">Email</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="editFromEmail" class="ups-form_input" id="editFromEmail">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="editFromEmailNotify" class="ups-checkbox-custom" name="editFromEmailNotify" type="checkbox" value="1">
+                            <label for="editFromEmailNotify" class="ups-checkbox-custom-label">Include email notifications for this shipment</label>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            {{> A05_switch_lever editFrom_save_contact }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-5 col-xs-12 pull-right">
+                
+                    <div class="ups-section ups-noTxt">
+                        <div class="ups-section-header no-border">
+                            <a href="repl_href" class="ups-link pull-right">Cancel</a>
+                            <h2>
+                                <span class="ups-icon-locationfull" aria-hidden="true"></span>
+                                To<span class="visible-xs-inline">: {Name} {Contact Name}</span>
+                            </h2>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="toCountryDropdown" class="ups-form_label">
+                            	Country or Territory
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select id="toCountryDropdown" name="toCountryDropdown" class="ups-dropdown" aria-required="true" required>
+                                    <option>United States</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="toName" class="ups-form_label">
+                            	Name
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toName" class="ups-form_input" id="toName" aria-required="true" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="toContactName" class="ups-form_label">Contact Name</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toContactName" class="ups-form_input" id="toContactName">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="toStreet" class="ups-form_label">
+                            	Street Address
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toStreet" class="ups-form_input" id="toStreet" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="toStreet2" class="ups-form_label">placeholder helper text</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toStreet2" class="ups-form_input" id="toStreet2">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="toStreet3" class="ups-form_label">placeholder helper text</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toStreet3" class="ups-form_input" id="toStreet3">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group ups-form_required">
+                            <label for="toCity" class="ups-form_label">
+                            	City
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toCity" class="ups-form_input" id="toCity" aria-required="true" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="toState" class="ups-form_label">
+                                    	State
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="toState" class="ups-form_input" id="toState" aria-required="true" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="ups-form_group ups-form_required">
+                                    <label for="toZip" class="ups-form_label">
+                                    	ZIP Code
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="toZip" class="ups-form_input" id="toZip" aria-required="true" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            {{> A05_switch_toggle to_address_classification }}
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="toPhone" class="ups-form_label">Phone</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toPhone" class="ups-form_input" id="toPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            <label for="toEmail" class="ups-form_label">Email</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="toEmail" class="ups-form_input" id="toEmail">
+                            </div>
+                        </div>
+                        
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="toEmailNotify" class="ups-checkbox-custom" name="toEmailNotify" type="checkbox" value="1">
+                            <label for="toEmailNotify" class="ups-checkbox-custom-label">Include email notifications for this shipment</label>
+                        </div>
+                        
+                        <div class="ups-form_group">
+                            {{> A05_switch_lever to_save_contact }}
+                        </div>
+                          
+                    </div>
+            </div>
+               
+            <div class="col-md-5 col-xs-12">
+                    <div class="ups-section ups-noTxt">
+                        <div class="ups-section-header no-border">
+                            <button id="editReturnAddressBtn" class="ups-cta ups-cta_secondary no-padding pull-right">Edit</button>
+                            <h2>
+                                Return<span class="visible-xs-inline">: {Name} {Contact Name}</span>
+                            </h2>
+                        </div>
+                        <div class="hidden-xs" id="editReturnText">
+                            <p>[Country or Territory]</p>
+                            <p>[Name], [Contact Name]</p>
+                            <p>[Residential Add ipsum],[Add 2 ipsum],[Add 3 ipsum]</p>
+                            <p>[City placeholder]</p>
+                            <p>[State], [00000]</p>
+                            <p>[555-555-5555]</p>
+                            <p>[email@email.com]</p>
+                            <p>[Address Classification placeholder]</p>
+                        </div>
+                        <div id="editReturnFields">
+                        	<div class="ups-form_group ups-form_required">
+                                <label for="editReturnCountryDropdown" class="ups-form_label">
+                                	Country or Territory
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="editReturnCountryDropdown" name="editReturnCountryDropdown" class="ups-dropdown" aria-required="true" required>
+                                        <option>United States</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group ups-form_required">
+                                <label for="editReturnName" class="ups-form_label">
+                                	Name
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnName" class="ups-form_input" id="editReturnName" aria-required="true" required>
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                <label for="editReturnContactName" class="ups-form_label">Contact Name</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnContactName" class="ups-form_input" id="editReturnContactName">
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group ups-form_required">
+                                <label for="editReturnStreet" class="ups-form_label">
+                                	Street Address
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnStreet" class="ups-form_input" id="editReturnStreet" aria-required="true" required>
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                <label for="editReturnStreet2" class="ups-form_label">placeholder helper text</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnStreet2" class="ups-form_input" id="editReturnStreet2">
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                <label for="editReturnStreet3" class="ups-form_label">placeholder helper text</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnStreet3" class="ups-form_input" id="editReturnStreet3">
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group ups-form_required">
+                                <label for="editReturnCity" class="ups-form_label">
+                                	City
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnCity" class="ups-form_input" id="editReturnCity" aria-required="true" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="editReturnState" class="ups-form_label">
+                                        	State
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="editReturnState" class="ups-form_input" id="editReturnState" aria-required="true" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="editReturnZip" class="ups-form_label">
+                                        	ZIP Code
+                                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="editReturnZip" class="ups-form_input" id="editReturnZip" aria-required="true" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                {{> A05_switch_toggle editReturn_address_classification }}
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                <label for="editReturnPhone" class="ups-form_label">Phone</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnPhone" class="ups-form_input" id="editReturnPhone">
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                <label for="editReturnEmail" class="ups-form_label">Email</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="editReturnEmail" class="ups-form_input" id="editReturnEmail">
+                                </div>
+                            </div>
+                            
+                            <div class="ups-form_group">
+                                {{> A05_switch_lever editReturn_save_contact }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<h2>Packaging Placeholder ipsum.</h2>
+<span>Helper text placeholder.</span>
+
+<div class="row">
+	<div class="col-sm-3">
+        <div class="ups-form_group ups-noTxt">
+            <label for="numPackages" class="ups-form_label">Number of Packages</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="numPackages" name="numPackages" class="ups-dropdown">
+                    <option selected value="1">1</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+    	<div class="ups-form_group hidden">
+            {{> A05_switch_lever packages_same}}
+        </div>
+    </div>
+</div>
+
+<div id="packagesNotSame1" class="hidden">
+	<div class="ups-section-bar">
+    	<b>Package 1<span class="hidden-xs"> - My Packaging 5 lbs.</span></b>
+        <span class="pull-right">
+        	<button class="ups-cta ups-cta_secondary">Edit</button>
+        </span>
+    </div>
+</div>
+
+<div id="packagesAllSame">
+	<div class="ups-section ups-noTxt">
+    	<div class="ups-section-header hidden" id="packagesAllSameHeader">
+        	<h3>Package 2</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="packageType" class="ups-form_label">Package Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select id="packageType" name="packageType" class="ups-dropdown">
+                            <option>My Packaging</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="packageWeight" class="ups-form_label">
+                            	Weight
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <p id="lbsHelperTxt" class="ups-form_subheader">lbs.</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="packageWeight" class="ups-form_input" id="packageWeight" aria-required="true" required aria-describedby="lbsHelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="ups-form_group">
+                            <label for="packageLength" class="ups-form_label">Length</label>
+                            <p id="lengthHelperTxt" class="ups-form_subheader">in</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="packageLength" class="ups-form_input" id="packageLength" aria-describedby="lengthHelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="ups-form_group">
+                            <label for="packageWidth" class="ups-form_label">Width</label>
+                            <p id="widthHelperTxt" class="ups-form_subheader">in</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="packageWidth" class="ups-form_input" id="packageWidth" aria-describedby="widthHelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="ups-form_group">
+                            <label for="packageHeight" class="ups-form_label">Height</label>
+                            <p id="heightHelperTxt" class="ups-form_subheader">in</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="packageHeight" class="ups-form_input" id="packageHeight" aria-describedby="heightHelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="ups-form_group">
+                            <label for="packageDeclaredValue" class="ups-form_label">Declared Value</label>
+                            <p id="usdHelperTxt" class="ups-form_subheader">USD</p>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="packageDeclaredValue" class="ups-form_input" id="packageDeclaredValue" required aria-describedby="usdHelperTxt">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    	<h3>Additional Package Information</h3>
+        <div class="row ups-noTxt">
+            <div class="col-md-3">
+                <div class="ups-form_group">
+                    {{> A05_switch_lever packages_add_reference }}
+                </div>
+                
+                <div id="referenceNumbers" class="hidden">
+                    <div class="ups-form_group" >
+                        <label for="reference1" class="ups-form_label">Reference #1</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="reference1" class="ups-form_input" id="reference1">
+                        </div>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input id="reference1Same" class="ups-checkbox-custom" name="reference1Same" type="checkbox" value="1">
+                        <label for="reference1Same" class="ups-checkbox-custom-label">Use the same Reference #1 for all packages</label>
+                    </div>
+                    <div class="ups-form_group">
+                        <label for="reference2" class="ups-form_label">Reference #2</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="reference1" class="ups-form_input" id="reference1">
+                        </div>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input id="reference2Same" class="ups-checkbox-custom" name="reference2Same" type="checkbox" value="1">
+                        <label for="reference2Same" class="ups-checkbox-custom-label">Use the same Reference #2 for all packages</label>
+                    </div>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input id="referenceAddBarcode" class="ups-checkbox-custom" name="referenceAddBarcode" type="checkbox" value="1">
+                        <label for="referenceAddBarcode" class="ups-checkbox-custom-label">Add a bar code for [reference #1] to my [package 1/shipment] Label</label>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-3">
+                <div class="ups-form_group">
+                    {{> A05_switch_lever packages_add_cod }}
+                </div>
+                
+                <div id="cod" class="hidden">
+                    <div class="ups-form_group">
+                        <label for="codAmount" class="ups-form_label">C.O.D. Amount* [CAD]</label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="codAmount" class="ups-form_input" id="codAmount">
+                        </div>
+                    </div>
+                    
+                    <div class="ups-form_group ups-form_required">
+                        <label for="codAmountType" class="ups-form_label">
+                        	C.O.D. Payment Method
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="codAmountType" name="codAmountType" class="ups-dropdown" aria-required="true" required>
+                                <option>Cashier's Check or Money Order Only</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ups-form_group">
+                    <label for="signatureOptions" class="ups-form_label">Signature Options</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper ups-noTxt">
+                        <select id="signatureOptions" name="signatureOptions" class="ups-dropdown">
+                            <option>Adult Signature Required</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                
+                <div class="ups-drawer">
+                    <button type="button" class="ups-drawer-btn" aria-expanded="false">
+                        Handling Options
+                        <span class="pull-right">
+                            <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div class="ups-drawer-content">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="handlingLargePackage" class="ups-checkbox-custom" name="handlingLargePackage" type="checkbox" value="1">
+                            <label for="handlingLargePackage" class="ups-checkbox-custom-label">Large Package<br>[nn.nn USD]</label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="handlingAdditionalHandling" class="ups-checkbox-custom" name="handlingAdditionalHandling" type="checkbox" value="1">
+                            <label for="handlingAdditionalHandling" class="ups-checkbox-custom-label">Additional Handling<br>[nn.nn USD]</label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="handlingReceiveConfirmation" class="ups-checkbox-custom" name="handlingReceiveConfirmation" type="checkbox" value="1">
+                            <label for="handlingReceiveConfirmation" class="ups-checkbox-custom-label">Receive Confirmation of Delivery [nn.nn USD]</label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="handlingDirectDelivery" class="ups-checkbox-custom" name="handlingDirectDelivery" type="checkbox" value="1">
+                            <label for="handlingDirectDelivery" class="ups-checkbox-custom-label">Direct Delivery Only [nn.nn USD]</label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="handlingOffsetClimate" class="ups-checkbox-custom" name="handlingOffsetClimate" type="checkbox" value="1">
+                            <label for="handlingOffsetClimate" class="ups-checkbox-custom-label">Offset the climate impact of this shipment<br>[nn.nn USD]</label>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="addPackageBtn" class="ups-cta ups-cta_secondary hidden">Add Package {3}</button>
+
+<h2 class="ups-noTxt">When lorem ipsum</h2>
+<span>Helper text placeholder.</span>
+<div class="row ups-noTxt">
+	<div class="col-sm-4">
+    	<div class="ups-form_group">
+            <label for="whenDropOff" class="ups-form_label">Select Drop Off Date</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="whenDropOff" class="ups-form_input" id="whenDropOff" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7 col-sm-offset-1">
+    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="whenSchedulePickup" class="ups-checkbox-custom" name="whenSchedulePickup" type="checkbox" value="1" {{#if schedule_pickup}}checked{{/if}}>
+            <label for="whenSchedulePickup" class="ups-checkbox-custom-label">Schedule a Pickup ($10.00+)</label>
+        </div>
+    </div>
+</div>
+
+<div id="schedulePickup" class="hidden">
+<div class="row">
+	<div class="col-md-3">
+    	<div class="ups-form_group">
+            <label for="pickupDate" class="ups-form_label">Select a Date</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupDate" class="ups-form_input" id="pickupDate">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+    	<div class="ups-form_group">
+            <label for="pickupArrivalTime" class="ups-form_label">Earliest Arrival Time</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="pickupArrivalTime" name="pickupArrivalTime" class="ups-dropdown">
+                    <option>8:00AM</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+    	<div class="ups-form_group">
+            <label for="pickupArrivalTime" class="ups-form_label">Latest Arrival Time</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="pickupArrivalTime" name="pickupArrivalTime" class="ups-dropdown">
+                    <option>6:00PM</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+    	<div class="ups-form_group">
+            <label for="pickupLocation" class="ups-form_label">Preferred Pickup Location</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="pickupLocation" name="pickupLocation" class="ups-dropdown">
+                    <option>Front Door</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<p><b>Pick Up Address:</b> 1333 Piedmont Ave, Atlanta, GA 30309</p>
+<div class="ups-buttonList_wrapper ups-input_wrapper">
+    <input id="useDifferentPickupAddress" class="ups-checkbox-custom" name="useDifferentPickupAddress" type="checkbox" value="1">
+    <label for="useDifferentPickupAddress" class="ups-checkbox-custom-label">Use a Different Pickup Address</label>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+    	<div class="ups-form_group ups-form_required">
+            <label for="pickupName" class="ups-form_label">
+            	Name
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupName" class="ups-form_input" id="pickupName" aria-required="true" required>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+        <div class="ups-form_group ups-form_required">
+            <label for="pickupEmail" class="ups-form_label">
+            	Email
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupEmail" class="ups-form_input" id="pickupEmail" aria-required="true" required>
+            </div>
+        </div>
+        
+        <div class="ups-form_group">
+            <label for="pickupPhone" class="ups-form_label">Phone</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupPhone" class="ups-form_input" id="pickupPhone">
+            </div>
+        </div>
+        
+        <div class="ups-form_group">
+            <label for="pickupReference" class="ups-form_label">Pickup Reference</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupReference" class="ups-form_input" id="pickupReference">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-md-offset-1 hidden" id="differentPickupAddress">
+    	<div class="row">
+        	<div class="col-md-7">
+            	<div class="ups-form_group ups-form_required">
+                    <label for="pickupDifferentState" class="ups-form_label">
+                    	State
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="pickupDifferentState" class="ups-form_input" id="pickupDifferentState" aria-required="true" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+            	<div class="ups-form_group ups-form_required">
+                    <label for="pickupDifferentZip" class="ups-form_label">
+                    	ZIP Code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="pickupDifferentZip" class="ups-form_input" id="pickupDifferentZip" aria-required="true" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    	<div class="ups-form_group ups-form_required">
+            <label for="pickupDifferentCity" class="ups-form_label">
+            	City
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupDifferentCity" class="ups-form_input" id="pickupDifferentCity" aria-required="true" required>
+            </div>
+        </div>
+        
+        <div class="ups-form_group ups-form_required">
+            <label for="pickupDifferentAddress" class="ups-form_label">
+            	Street Address
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupDifferentAddress" class="ups-form_input" id="pickupDifferentAddress" aria-required="true" required>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<div class="row">
+	<div class="col-md-5">
+        <div class="ups-form_group ups-form_required">
+            <label for="pickupName" class="ups-form_label">Name</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupName" class="ups-form_input" id="pickupName" required>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <div class="ups-form_group ups-form_required">
+            <label for="pickupEmail" class="ups-form_label">Email</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupEmail" class="ups-form_input" id="pickupEmail" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+    	<div class="row">
+        	<div class="col-md-7">
+            	<div class="ups-form_group ups-form_required">
+                    <label for="pickupDifferentState" class="ups-form_label">State</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="pickupDifferentState" class="ups-form_input" id="pickupDifferentState" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+            	<div class="ups-form_group ups-form_required">
+                    <label for="pickupDifferentZip" class="ups-form_label">ZIP Code</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="pickupDifferentZip" class="ups-form_input" id="pickupDifferentZip" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+    	<div class="ups-form_group">
+            <label for="pickupPhone" class="ups-form_label">Phone</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupPhone" class="ups-form_input" id="pickupPhone">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+    	<div class="ups-form_group ups-form_required">
+            <label for="pickupDifferentCity" class="ups-form_label">City</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupDifferentCity" class="ups-form_input" id="pickupDifferentCity">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+        <div class="ups-form_group">
+            <label for="pickupReference" class="ups-form_label">Pickup Reference</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupReference" class="ups-form_input" id="pickupReference">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+    	<div class="ups-form_group ups-form_required">
+            <label for="pickupDifferentAddress" class="ups-form_label">Street Address</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="pickupDifferentAddress" class="ups-form_input" id="pickupDifferentAddress">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<hr>
+</div>
+
+<fieldset>
+	<legend class="no-separator ups-readerTxt">Delivery Options</legend>
+    <div class="row ups-shipping_schedule">
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Friday</span>	
+                <span class="ups-shipping_schedule_date">
+                    November 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_fri_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="" checked>
+                <label for="ups-radio_fri_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver Friday</span>
+                    by 8:30am<br>
+                    UPS Next Day Air Early<br>
+                    $126.92
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_fri_2" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_fri_2" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver Friday</span>
+                    by 10:30am<br>
+                    UPS Next Day Air<br>
+                    $95.57
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_fri_3" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_fri_3" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver Friday</span>
+                    by 10:30am<br>
+                    UPS Next Day Air Saver<br>
+                    $75.19
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Saturday</span>	
+                <span class="ups-shipping_schedule_date">
+                    December 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_sat_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_sat_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Saturday</span>
+                    by End of Day<br>
+                    UPS 2nd Day Air<br>
+                    <span aria-hidden="true">(Saturday)<br></span>
+                    $89.71
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Monday</span>	
+                <span class="ups-shipping_schedule_date">
+                    December 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Monday</span>
+                    by 10:30am<br>
+                    UPS 2nd Day Air<br>
+                    $62.20
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_2" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_2" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Monday</span>
+                    by End of Day<br>
+                    UPS 2nd Day Air<br>
+                    $54.71
+                </label>
+            </div>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Tuesday</span>	
+                <span class="ups-shipping_schedule_date">
+                    December 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_tues_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_tues_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Tuesday</span>
+                    by End of Day<br>
+                    UPS 3day Select<br>
+                    $22.15
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Wednesday</span>	
+                <span class="ups-shipping_schedule_date">
+                    December 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_wed_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_wed_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Wednesday</span>
+                    by End of Day<br>
+                    UPS Ground<br>
+                    $11.35
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                <span class="ups-shipping_schedule_day">Thursday</span>	
+                <span class="ups-shipping_schedule_date">
+                    December 00<sup aria-hidden="true">th</sup>
+                </span>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message here">
+                <input id="ups-radio_thu_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_thu_1" class="ups-radio-custom-label">
+                    <span class="ups-readerTxt">Deliver on Thursday</span>
+                    by End of Day<br>
+                    UPS Ground<br>
+                    $11.35
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<h3>Additional Shipping Options</h3>
+{{!-- {{> A09_drawer email_drawer }} --}}
+
+<div class="ups-drawer">
+	<button type="button" class="ups-drawer-btn" aria-expanded="false">
+    	Add Email Notifications
+        <span class="pull-right">
+        	<!--<span class="ups-readerTxt">expand</span>--><span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+        </span>
+    </button>
+    <div class="ups-drawer-content">
+    	<div class="row" aria-hidden="true">
+        	<div class="col-md-5">
+            	Email address
+            </div>
+            <div class="col-md-5 col-md-offset-1 hidden-xs hidden-sm">
+            	<div class="row">
+                	<div class="col-xs-3 text-center">
+                    	Ship
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	Exception
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	Delivery
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="emailNotifyAddress1" class="ups-form_label ups-readerTxt">Email Address #1</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="emailNotifyAddress1" class="ups-form_input" id="emailNotifyAddress1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<div class="row">
+                	<div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyShip1" class="ups-checkbox-custom" name="emailNotifyShip1" type="checkbox" value="1">
+                            <label for="emailNotifyShip1" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Ship</span></label>
+                            <span class="ups-readerTxt">Ship Email Notification #1</span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyException1" class="ups-checkbox-custom" name="emailNotifyException1" type="checkbox" value="1">
+                            <label for="emailNotifyException1" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Exception</span></label>
+                            <span class="ups-readerTxt">Exception Email Notification #1</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyDelivery1" class="ups-checkbox-custom" name="emailNotifyDelivery1" type="checkbox" value="1">
+                            <label for="emailNotifyDelivery1" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Delivery</span></label>
+                            <span class="ups-readerTxt">Delivery Email Notification #1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="emailNotifyAddress2" class="ups-form_label ups-readerTxt">Email Address #2</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="emailNotifyAddress2" class="ups-form_input" id="emailNotifyAddress2" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">    
+                <div class="row">
+                	<div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyShip2" class="ups-checkbox-custom" name="emailNotifyShip2" type="checkbox" value="1">
+                            <label for="emailNotifyShip2" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Ship</span></label>
+                            <span class="ups-readerTxt">Ship Email Notification #2</span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyException2" class="ups-checkbox-custom" name="emailNotifyException2" type="checkbox" value="1">
+                            <label for="emailNotifyException2" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Exception</span></label>
+                            <span class="ups-readerTxt">Exception Email Notification #2</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyDelivery2" class="ups-checkbox-custom" name="emailNotifyDelivery2" type="checkbox" value="1">
+                            <label for="emailNotifyDelivery2" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Delivery</span></label>
+                            <span class="ups-readerTxt">Delivery Email Notification #2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="emailNotifyAddress3" class="ups-form_label ups-readerTxt">Email Address #3</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="emailNotifyAddress3" class="ups-form_input" id="emailNotifyAddress3" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                
+                <div class="row">
+                	<div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyShip3" class="ups-checkbox-custom" name="emailNotifyShip3" type="checkbox" value="1">
+                            <label for="emailNotifyShip3" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Ship</span></label>
+                            <span class="ups-readerTxt">Ship Email Notification #3</span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyException3" class="ups-checkbox-custom" name="emailNotifyException3" type="checkbox" value="1">
+                            <label for="emailNotifyException3" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Exception</span></label>
+                            <span class="ups-readerTxt">Exception Email Notification #3</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyDelivery3" class="ups-checkbox-custom" name="emailNotifyDelivery3" type="checkbox" value="1">
+                            <label for="emailNotifyDelivery3" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Delivery</span></label>
+                            <span class="ups-readerTxt">Delivery Email Notification #3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="emailNotifyAddress4" class="ups-form_label ups-readerTxt">Email Address #4</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="emailNotifyAddress4" class="ups-form_input" id="emailNotifyAddress4" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                
+                <div class="row">
+                	<div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyShip4" class="ups-checkbox-custom" name="emailNotifyShip4" type="checkbox" value="1">
+                            <label for="emailNotifyShip4" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Ship</span></label>
+                            <span class="ups-readerTxt">Ship Email Notification #4</span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyException4" class="ups-checkbox-custom" name="emailNotifyException4" type="checkbox" value="1">
+                            <label for="emailNotifyException4" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Exception</span></label>
+                            <span class="ups-readerTxt">Exception Email Notification #4</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyDelivery4" class="ups-checkbox-custom" name="emailNotifyDelivery4" type="checkbox" value="1">
+                            <label for="emailNotifyDelivery4" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Delivery</span></label>
+                            <span class="ups-readerTxt">Delivery Email Notification #4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group">
+                    <label for="emailNotifyAddress5" class="ups-form_label ups-readerTxt">Email Address #5</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="emailNotifyAddress5" class="ups-form_input" id="emailNotifyAddress5" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                
+                <div class="row">
+                	<div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyShip5" class="ups-checkbox-custom" name="emailNotifyShip5" type="checkbox" value="1">
+                            <label for="emailNotifyShip5" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Ship</span></label>
+                            <span class="ups-readerTxt">Ship Email Notification #5</span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyException5" class="ups-checkbox-custom" name="emailNotifyException5" type="checkbox" value="1">
+                            <label for="emailNotifyException5" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Exception</span></label>
+                            <span class="ups-readerTxt">Exception Email Notification #5</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-center">
+                    	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                            <input id="emailNotifyDelivery5" class="ups-checkbox-custom" name="emailNotifyDelivery5" type="checkbox" value="1">
+                            <label for="emailNotifyDelivery5" class="ups-checkbox-custom-label"><span class="visible-xs-inline visible-sm-inline" aria-hidden="true">Delivery</span></label>
+                            <span class="ups-readerTxt">Delivery Email Notification #5</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
+    </div>
+</div>
+
+<h2 class="ups-noTxt">International Forms ipsum</h2>
+<span>Helper text placeholder.</span>
+<div class="row ups-noTxt">
+	<div class="col-md-4">
+    	<div class="ups-form_group">
+    		{{> A05_switch_lever complete_paperless }}
+        </div>
+    </div>
+    <div class="col-md-4">
+    	<div class="ups-form_group">
+    		{{> A05_switch_lever designate_filing }}
+        </div>
+    </div>
+    <div class="col-md-4">
+    	<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+    </div>
+</div>
+
+<h3>Select Forms</h3>
+
+<div class="row ups-noTxt">
+	<div class="col-md-4">
+    	<div class="ups-form_box">
+        	<h3><span class="ups-icon-document ups-icon_big" aria-hidden="true"></span><span> Commercial Invoice*</span></h3>
+            Detail out the contents of your package
+            <div class="ups-form_status">
+            	<span class="ups-form_number">1</span> Lets Get Started
+            </div>
+            
+            <div class="ups-form_group">
+                <label for="fromCountryDropdown" class="ups-form_label ups-readerTxt">Form Action</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="fromCountryDropdown" name="fromCountryDropdown" class="ups-dropdown">
+                        <option>Complete Online (print and attach)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ups-form_box_footer">
+            	<button class="ups-cta ups-cta_primary">Help Me Complete</button><br>
+            	<button class="ups-cta ups-cta_secondary">View / Edit</button>
+                <button class="ups-cta ups-cta_secondary">Sample</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+    	<div class="ups-form_box">
+        	<h3><span class="ups-icon-document ups-icon_big" aria-hidden="true"></span><span> Packing List</span></h3>
+            Placeholder Text
+            <div class="ups-form_status ups-form_status_blank">
+            	<!--<span class="ups-form_number">1</span> Lets Get Started <span class="ups-icon-check" aria-hidden="true"></span>-->
+            </div>
+            
+            <div class="ups-form_group">
+                <label for="fromCountryDropdown" class="ups-form_label ups-readerTxt">Form Action</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="fromCountryDropdown" name="fromCountryDropdown" class="ups-dropdown">
+                        <option>Complete Online (print and attach)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ups-form_box_footer">
+            	<button class="ups-cta ups-cta_primary">Help Me Complete</button><br>
+            	<button class="ups-cta ups-cta_secondary">View / Edit</button>
+                <button class="ups-cta ups-cta_secondary">Sample</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+    	<div class="ups-form_box">
+        	<h3><span class="ups-icon-document ups-icon_big" aria-hidden="true"></span><span> U.S. Certificate of Origin</span></h3>
+            Placeholder Text
+            <div class="ups-form_status ups-form_status_blank">
+            	<!--<span class="ups-form_number">1</span> Lets Get Started <span class="ups-icon-check" aria-hidden="true"></span>-->
+            </div>
+            
+            <div class="ups-form_group">
+                <label for="fromCountryDropdown" class="ups-form_label ups-readerTxt">Form Action</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="fromCountryDropdown" name="fromCountryDropdown" class="ups-dropdown">
+                        <option>Complete Online (print and attach)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ups-form_box_footer">
+            	<button class="ups-cta ups-cta_primary">Help Me Complete</button><br>
+            	<button class="ups-cta ups-cta_secondary">View / Edit</button>
+                <button class="ups-cta ups-cta_secondary">Sample</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+    	<div class="ups-form_box">
+        	<h3><span class="ups-icon-document ups-icon_big" aria-hidden="true"></span><span> NAFTA Certificate of Origin</span></h3>
+            Placeholder Text
+            <div class="ups-form_status ups-form_status_blank">
+            	<!--<span class="ups-form_number">1</span> Lets Get Started-->
+            </div>
+            
+            <div class="ups-form_group">
+                <label for="fromCountryDropdown" class="ups-form_label ups-readerTxt">Form Action</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="fromCountryDropdown" name="fromCountryDropdown" class="ups-dropdown">
+                        <option>Complete Online (print and attach)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ups-form_box_footer">
+            	<button class="ups-cta ups-cta_primary">Help Me Complete</button><br>
+            	<button class="ups-cta ups-cta_secondary">View / Edit</button>
+                <button class="ups-cta ups-cta_secondary">Sample</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+    	<div class="ups-form_box">
+        	<h3><span class="ups-icon-document ups-icon_big" aria-hidden="true"></span><span> Electronic Export Information</span></h3>
+            Placeholder Text
+            <div class="ups-form_status ups-form_status_blank">
+            	<!--<span class="ups-form_number">1</span> Lets Get Started-->
+            </div>
+            
+            <div class="ups-form_group">
+                <label for="fromCountryDropdown" class="ups-form_label ups-readerTxt">Form Action</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="fromCountryDropdown" name="fromCountryDropdown" class="ups-dropdown">
+                        <option>Complete Online (print and attach)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ups-form_box_footer">
+            	<button class="ups-cta ups-cta_primary">Help Me Complete</button><br>
+            	<button class="ups-cta ups-cta_secondary">View / Edit</button>
+                <button class="ups-cta ups-cta_secondary">Sample</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>Payment ipsum</h2>
+<span>Helper text placeholder.</span>
+<div class="row ups-boxed_radioGroup ups-noTxt" id="paymentMethods">
+	<div class="col-sm-4">
+        <div class="ups-input_wrapper ups-boxed_radio ups-gold">
+            <input id="upsPaymentMethodTile0" class="ups-radio-custom" name="ups-cpm-tile" type="radio" checked>
+            <label class="ups-radio-custom-label text-center" for="ups-cpm-tile-0">
+                <span class="ups-icon ups-icon-user ups-icon_big" aria-hidden="true"></span>
+                <span>
+                    Payment Card
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ups-input_wrapper ups-boxed_radio">
+            <input id="upsPaymentMethodTile1" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+            <label class="ups-radio-custom-label text-center" for="ups-cpm-tile-1">
+                <span class="ups-icon ups-icon-user ups-icon_big" aria-hidden="true"></span>
+                <span>
+                    Bill the Receiver,<br class="hidden-xs">
+                    {John Doe}
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ups-input_wrapper ups-boxed_radio">
+            <input id="upsPaymentMethodTile2" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+            <label class="ups-radio-custom-label text-center" for="ups-cpm-tile-2">
+                <span class="ups-icon ups-icon-user ups-icon_big" aria-hidden="true"></span>
+                <span>
+                    Bill Account
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ups-input_wrapper ups-boxed_radio">
+            <input id="upsPaymentMethodTile3" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+            <label class="ups-radio-custom-label text-center" for="ups-cpm-tile-3">
+                <span class="ups-icon ups-icon-user ups-icon_big" aria-hidden="true"></span>
+                <span>
+                    Bill Third Party
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ups-input_wrapper ups-boxed_radio">
+            <input id="upsPaymentMethodTile4" class="ups-radio-custom" name="ups-cpm-tile" type="radio">
+            <label class="ups-radio-custom-label text-center" for="ups-cpm-tile-4">
+                <span class="ups-icon ups-icon-user ups-icon_big" aria-hidden="true"></span>
+                <span>
+                    Alternate Payment <br class="hidden-xs">Methods
+                </span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<h3>Enter {Payment Card} Info for $99.71 in shipping charges.</h3>
+
+<div id="paymentCardSection" class="ups-payment_method_section">
+	{{> cpc payment_method_payment_card }}
+</div>
+
+<div id="paymentBillReceiverSection" class="ups-payment_method_section">
+	{{> cpc payment_method_bill_receiver }}
+</div>
+
+<div id="paymentBillAccountSection" class="ups-payment_method_section">
+	{{> cpc payment_method_bill_account }}
+</div>
+
+<div id="paymentBillThirdPartySection" class="ups-payment_method_section">
+	{{> cpc payment_method_bill_third_party }}
+</div>
+
+<div id="paymentBillAlternateSection" class="ups-payment_method_section">
+	{{> cpc payment_method_alt_payment }}
+</div>
+
+<!--<div class="row">
+	<div class="col-md-5">
+    	<div class="ups-form_group ups-form_required">
+            <label for="paymentCard" class="ups-form_label">Select Payment Card</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="paymentCard" name="paymentCard" class="ups-dropdown" required>
+                    <option>Visa xxxxxxxxxxxx0000</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+    	<div class="ups-form_group ups-form_required">
+            <label for="paymentCardType" class="ups-form_label">Card Type</label>
+            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                <select id="paymentCardType" name="paymentCardType" class="ups-dropdown" required>
+                    <option>Select One</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5">
+        <div class="ups-form_group ups-form_required ups-padTop">
+            <label for="paymentCardNumber" class="ups-form_label">Card Number</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="paymentCardNumber" class="ups-form_input" id="paymentCardNumber" required>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-offset-1">
+    	<div class="row">
+                <div class="col-sm-4">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="paymentCardExpMonth" class="ups-form_label">Expiration</label>
+                        <p class="ups-form_subheader">Month</p>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="paymentCardExpMonth" name="paymentCardExpMonth" class="ups-dropdown" required>
+                                <option>MM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="ups-form_group ups-form_required ups-labelHidden">
+                        <label for="paymentCardExpYear" class="ups-form_label ups-readerTxt">Expiration</label>
+                        <p class="ups-form_subheader">Year</p>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="paymentCardExpYear" name="paymentCardExpYear" class="ups-dropdown" required>
+                                <option>YYYY</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-md-4">
+            	<div class="ups-form_group ups-form_required ups-padTop">
+                    <label for="paymentCardCvv" class="ups-form_label">CVV</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="paymentCardCvv" class="ups-form_input" id="paymentCardCvv" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+        <div class="ups-form_group">
+            <label for="paymentNickname" class="ups-form_label">Nickname</label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+                <input type="text" name="paymentNickname" class="ups-form_input" id="paymentNickname">
+            </div>
+        </div>
+        
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="billingAddressDifferent" class="ups-checkbox-custom" name="billingAddressDifferent" type="checkbox" value="1">
+            <label for="billingAddressDifferent" class="ups-checkbox-custom-label">Billing address is different from the ship from address.<br>1375 Peachtree St.<br>Atlanta, GA 30309</label>
+        </div>-->
+        
+       
+    <!--</div>
+</div>-->
+
+<div class="row">
+	<div class="col-md-5">
+    	 <div class="row">
+        	<div class="col-sm-6">
+                <div class="ups-form_group">
+                    <label for="paymentPromo" class="ups-form_label">Have a Promo Code?</label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="paymentPromo" class="ups-form_input" id="paymentPromo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+            	<div class="ups-noTxt hidden-xs"></div>
+            	<button class="ups-cta ups-cta_secondary">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ups-form_ctaGroup ups-noTxt">
+	<button type="submit" class="ups-cta ups-cta_tertiary">Review ipsum</button>
+    <div class="visible-xs-block ups-noTxt"></div>
+    <button type="submit" class="ups-cta ups-cta_primary">Pay and Get Label</button>  
+    <button type="submit" class="ups-cta ups-cta_secondary">Cancel</button>   
+</div>
+
+
+<!-- Balance Bar Widget -->
+<div id="balance_bar_placeholder">&nbsp;</div>
+<div class="ups-balance_bar_container">
+<div class="ups-balance_bar_expanded" id="ups-balance_bar_expanded" aria-expanded="true">
+	<div class="ups-balance_title">
+    	<h2 class="ups-form_label">Balance <span class="pull-right"><span class="icon ups-icon-wedgedown" aria-hidden="true"></span></span></h2>
+    </div>
+    <div class="ups-balance_bar_inner">
+    <div class="row">
+    <div class="col-md-3">
+        <h3 class="ups-form_label">Shipping Fees</h3>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Transportation
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Delivery Area Surcharge
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	EEI Filing Surcharge
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Extended Area Surcharge<br>
+                (Ship From) - [geotype]
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Fuel Surcharge
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Residential Surcharge
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Security Surcharge
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	<span class="ups-form_label">Shipping Fees Total</span>
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h3 class="ups-form_label">Additional Options Fees</h3>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Deliver to Address Only
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Direct Deliver Only
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Package Release Code<br>
+                Package n
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	Saturday Delivery
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-7">
+            	UPS Carbon Neutral
+            </div>
+            <div class="col-xs-5">
+            	nnn.nn
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h3 class="ups-form_label">Pickup Charges</h3>
+    </div>
+    <div class="col-md-3">
+        <h3 class="ups-form_label">Options</h3>
+        <div>
+        	<button id="print_button" class="ups-cta ups-cta_secondary">Print</button>
+        </div>
+        <div>
+        	<button id="save_button" class="ups-cta ups-cta_secondary">Save</button>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+<div class="ups-balance_bar" id="ups-balance_bar">
+	<div class="row">
+    	<div class="col-md-3 hidden-sm hidden-xs text-center">
+        	<h3><span class="icon ups-icon-box pull-left" aria-hidden="true"></span>Your Balance</h3>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs text-center">
+        	<h3>Additional Options Fees: nn.nn.USD</h3>
+        </div>
+        <div class="col-md-3 hidden-sm hidden-xs text-center">
+        	<h3>Pickup Charges: nn.nn USD</h3>
+        </div>
+        <div class="col-md-3 text-center">
+        	<h3>Shipping Total: $142.42<span class="icon ups-icon-plus pull-right" aria-hidden="true"></span></h3>
+        </div>
+    </div>
+</div>
+</div> <!-- End Balance Bar Container -->

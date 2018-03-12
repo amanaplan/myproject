@@ -1,0 +1,1159 @@
+<!-- Beginning of Delete Policy New Angular 2/4 Modal -->
+<ups-modal modal-title="Delete Policy" #deletePolicyModal2></ups-modal>
+<!-- Beginning of Delete Policy New Angular 2/4 Modal -->
+
+<!-- Heading and Intro Message -->
+<h2 class="ups-slim_header">{{policyHeading}}</h2>
+<p>{{policyMessaging}}</p>
+<p>
+    <em>
+        <span aria-hidden="true">*</span>
+        <span class="ups-readerTxt">Required</span>
+        Indicates required field
+    </em>
+</p>
+<!-- End of Heading and Intro Message -->
+
+<!-- Beginning of Form-->
+<form [formGroup]="returnPolicyCreateForm" novalidate>
+
+    <!-- Drawer Error Handling -->
+    <div *ngIf="(returnPolicyCreateSubmitAttempt && (!sect1Complete || !sect2Complete || !sect3Complete))">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+
+        <ul class="ups-icons-error">
+
+            <li *ngIf="!sect1Complete">
+                <a href="#upsDrawerBtn01" class="ups-invalid_color" pointIdClick>Policy Settings Section</a> is required
+            </li>
+
+            <li *ngIf="!sect2Complete">
+                <a href="#upsDrawerBtn02" class="ups-invalid_color" pointIdClick>Eligible Return Period Section</a> is required
+            </li>
+
+            <li *ngIf="!sect3Complete">
+                <a href="#upsDrawerBtn03" class="ups-invalid_color" pointIdClick>Shipping &amp; Billing</a> is required
+            </li>
+
+        </ul>
+    </div>
+    <!-- End of Drawer Error Handling -->
+
+    <!-- Beginning of Drawer -->
+    <ul class="ups-drawer" upsDrawerList>
+        <!-- Policy Settings -->
+        <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect1Complete">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer01" aria-expanded="false" id="upsDrawerBtn01" [ngClass]="{'ups-drawer_btn_error' : (returnPolicyCreateSubmitAttempt && !sect1Complete)}">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect1Complete, 'ups-icon-alert' : (returnPolicyCreateSubmitAttempt && !sect1Complete), 'icon': (returnPolicyCreateSubmitAttempt || sect1Complete), 'ups-empty_circle' : (!returnPolicyCreateSubmitAttempt && !sect1Complete) }" class="ups-drawer_left_icon"></span>
+                Policy Settings
+                <span class="ups-required_indicator" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Required Section</span>
+                <span class="ups-readerTxt" *ngIf="sect1Complete">Complete</span>
+                <span class="ups-readerTxt" *ngIf="(returnPolicyCreateSubmitAttempt && !sect1Complete)">Needs to be completed</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer01">
+                <div *ngIf="(returnPolicyCreateSubmitAttempt && !sect1Complete)">
+                    <h3 class="ups-invalid_color-list ups-error_alert-list">
+                        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                        Please correct the following errors
+                    </h3>
+
+                    <ul class="ups-icons-error">
+
+                        <li *ngIf="!checkAcctChosen()">
+                            <a href="#returnPolicyAcct1" class="ups-invalid_color" pointIdClick>An account</a> must be chosen.
+                        </li>
+                        <li *ngIf="returnPolicyCreateForm.controls['returnPolicyName'].hasError('required')">
+                            <a href="#returnPolicyName" class="ups-invalid_color" pointIdClick>Name Your Policy</a> is required.
+                        </li>
+                    </ul>
+                </div>
+
+
+                <fieldset class="ups-form_group ups-form_required">
+                    <legend class="ups-form_label">Select Account <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></legend>
+                    <p>
+                        Choose all accounts that will apply to this return policy (click twice to unselect).
+                    </p>
+                    <!-- TFS 410171 New Button Group -->
+                    <div class="ups-checkbox_button_wrap">
+                        <!-- New *ngFor version of this button-->
+                        <div class="ups-checkbox_button" *ngFor="let checkbox of returnPolicyAccount; let j = index">
+                            <input type="checkbox" name="returnPolicyAcct" id="returnPolicyAcct{{checkbox.id}}" class="ups-checkbox-custom" [(ngModel)]="returnAcct[j]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                            <label for="returnPolicyAcct{{checkbox.id}}" class="ups-checkbox-custom-label">{{checkbox.returnPolicyAccountLabel}}</label>
+                        </div>
+
+                        <!-- <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct1" id="returnPolicyAcct1" class="ups-checkbox-custom" [(ngModel)]="returnAcct[0]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct1" class="ups-checkbox-custom-label">Jewelry, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct2" id="returnPolicyAcct2" class="ups-checkbox-custom" [(ngModel)]="returnAcct[1]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct2" class="ups-checkbox-custom-label">Knits and Robes, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct3" id="returnPolicyAcct3" class="ups-checkbox-custom" [(ngModel)]="returnAcct[2]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct3" class="ups-checkbox-custom-label">Joggers, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct4" id="returnPolicyAcct4" class="ups-checkbox-custom" [(ngModel)]="returnAcct[3]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct4" class="ups-checkbox-custom-label">Joggers, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct5" id="returnPolicyAcct5" class="ups-checkbox-custom" [(ngModel)]="returnAcct[4]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct5" class="ups-checkbox-custom-label">Joggers, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct6" id="returnPolicyAcct6" class="ups-checkbox-custom" [(ngModel)]="returnAcct[5]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct6" class="ups-checkbox-custom-label">Menswear, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct7" id="returnPolicyAcct7" class="ups-checkbox-custom" [(ngModel)]="returnAcct[6]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct7" class="ups-checkbox-custom-label">Swimwear, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct8" id="returnPolicyAcct8" class="ups-checkbox-custom" [(ngModel)]="returnAcct[7]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct8" class="ups-checkbox-custom-label">Swimwear, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct9" id="returnPolicyAcct9" class="ups-checkbox-custom" [(ngModel)]="returnAcct[8]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct9" class="ups-checkbox-custom-label">Sunglasses, 1A2345</label>
+                        </div>
+                        <div class="ups-checkbox_button">
+                            <input type="checkbox" name="returnPolicyAcct10" id="returnPolicyAcct10" class="ups-checkbox-custom" [(ngModel)]="returnAcct[9]" (ngModelChange)="onReturnAcctChange($event)"
+                            [ngModelOptions]="{standalone:true}" aria-describedby="returnsAcct_error">
+                            <label for="returnPolicyAcct10" class="ups-checkbox-custom-label">Sunglasses, 1A2345</label>
+                        </div> -->
+                    </div>
+                    <!-- End New Button Group -->
+                </fieldset>
+
+                <div class="ups-icons-error" id="returnsAcct_error" role="alert">
+                    <div class="ups-invalid_color ups-group"
+                        *ngIf="(!checkAcctChosen() && returnPolicyCreateSubmitAttempt)">
+                        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        An account must be chosen.
+                    </div>
+                </div>
+
+                <!-- Pagination Begins -->
+                <section class="ups-search_support ups-group">
+                    <div class="ups-search_results ups-active">
+                        <div class="ups-wrap_inner">
+                            <div class="results-footer clearfix">
+                                <div class="footer-container">
+                                    <button class="first hidden-xs hidden-sm">First</button>
+                                    <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                                    <div class="pagination-container">
+                                        <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                                        <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                                        <button class="pag hidden-xs hidden-sm">3</button>
+                                        <button class="pag hidden-xs hidden-sm">4</button>
+                                        <button class="pag hidden-xs hidden-sm">5</button>
+                                    </div>
+                                    <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                                    <button class="last hidden-xs hidden-sm">Last</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Pagination Ends -->
+
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="returnPolicyName" class="ups-form_label">
+                                What would you like to name your policy?
+                                <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+                            </label>
+                            <!-- <p class="ups-form_subheader">
+                                How would you like this policy to be displayed in your returns panel?
+                            </p> -->
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                name="returnPolicyName"
+                                class="ups-form_input"
+                                id="returnPolicyName"
+                                aria-required="true"
+                                required
+                                aria-describedby="returnPolicyName_error"
+                                [(ngModel)]="returnPolicyName"
+                                (ngModelChange)="onReturnAcctChange($event)"
+                                [formControl]="returnPolicyCreateForm.controls['returnPolicyName']"
+                                [ngClass]="{'ups-bodError':  (!returnPolicyCreateForm.controls['returnPolicyName'].valid && returnPolicyCreateForm.controls['returnPolicyName'].touched)}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                            </div>
+                            <span class="ups-icons-error" id="returnPolicyName_error" role="alert">
+                                <span class="ups-invalid_color"
+                                    *ngIf="(!returnPolicyCreateForm.controls['returnPolicyName'].valid &amp;&amp; returnPolicyCreateForm.controls['returnPolicyName'].touched)">
+                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    <span *ngIf="returnPolicyCreateForm.controls['returnPolicyName'].hasError('required')">
+                                        Name Your Policy is required.
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+        <!-- End of Policy Settings -->
+
+        <!-- Eligible Return Period -->
+        <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect2Complete">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer02" aria-expanded="false" id="upsDrawerBtn02" [ngClass]="{'ups-drawer_btn_error' : (returnPolicyCreateSubmitAttempt && !sect2Complete)}">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect2Complete, 'ups-icon-alert' : (returnPolicyCreateSubmitAttempt && !sect2Complete), 'icon': (returnPolicyCreateSubmitAttempt || sect2Complete), 'ups-empty_circle' : (!returnPolicyCreateSubmitAttempt && !sect2Complete) }" class="ups-drawer_left_icon"></span>
+                Eligible Return Period
+                <span class="ups-required_indicator" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Required Section</span>
+                <span class="ups-readerTxt" *ngIf="sect2Complete">Complete</span>
+                <span class="ups-readerTxt" *ngIf="(returnPolicyCreateSubmitAttempt && !sect2Complete)">Needs to be completed</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer02">
+                <div *ngIf="(returnPolicyCreateSubmitAttempt && !sect2Complete)">
+                    <h3 class="ups-invalid_color-list ups-error_alert-list">
+                        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                        Please correct the following errors
+                    </h3>
+
+                    <ul class="ups-icons-error">
+                        <li *ngIf="returnPolicyCreateForm.controls['returnPeriodNumber'].hasError('required')">
+                            <a href="#returnPeriodNumber" class="ups-invalid_color" pointIdClick>What is the period that customers are allowed to return their shipment</a> is required.
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="ups-form_group ups-form_required">
+                    <label for="returnPeriodNumber" class="ups-form_label">How long would you like to allow a customer to return their shipment? <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></label>
+                    <p class="ups-form_subheader">
+                        Enter a time period between 1 day - 18 months.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                    class="ups-form_input"
+                                    id="returnPeriodNumber"
+                                    name="returnPeriodNumber"
+                                    required
+                                    aria-required="true"
+                                    aria-describedby="returnPeriodNumber_error"
+                                    [(ngModel)]="returnPolicyFreqNum"
+                                    (ngModelChange)="onPeriodChange($event)"
+                                    [formControl]="returnPolicyCreateForm.controls['returnPeriodNumber']"
+                                    [ngClass]="{'ups-bodError':  (!returnPolicyCreateForm.controls['returnPeriodNumber'].valid && returnPolicyCreateForm.controls['returnPeriodNumber'].touched)}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <span class="ups-icons-error" id="returnPeriodNumber_error" role="alert">
+                                    <span class="ups-invalid_color"
+                                        *ngIf="(!returnPolicyCreateForm.controls['returnPeriodNumber'].valid &amp;&amp; returnPolicyCreateForm.controls['returnPeriodNumber'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span *ngIf="returnPolicyCreateForm.controls['returnPeriodNumber'].hasError('required')">
+                                            What is the period that customers are allowed to return their shipment is required.
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <fieldset class="ups-toggle_fieldset">
+                                <legend class="ups-readerTxt">
+                                    Day/Week/Month Selection
+                                </legend>
+                                <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                        <input id="returnFrequencyDays" name="returnFrequency" type="radio" value="0" [(ngModel)]="returnFreqType" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnFrequencyDays" onclick="">Days</label>
+
+                                        <input id="returnFrequencyWeeks" name="returnFrequency" type="radio" value="1" [(ngModel)]="returnFreqType" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnFrequencyWeeks" onclick="">Weeks</label>
+
+                                        <input id="returnFrequencyMonths" name="returnFrequency" type="radio" value="2" [(ngModel)]="returnFreqType" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnFrequencyMonths" onclick="">Months</label>
+                                    <div class="switch-bg"></div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+        <!-- End of Eligible Return Period -->
+
+        <!-- Shipping and Billing Drawer -->
+        <li class="ups-drawer_list_item" [attr.data-keep-open]="!sect3Complete">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer03" aria-expanded="false" id="upsDrawerBtn03" [ngClass]="{'ups-drawer_btn_error' : (returnPolicyCreateSubmitAttempt && !sect3Complete)}">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect3Complete, 'ups-icon-alert' : (returnPolicyCreateSubmitAttempt && !sect3Complete), 'icon': (returnPolicyCreateSubmitAttempt || sect3Complete), 'ups-empty_circle' : (!returnPolicyCreateSubmitAttempt && !sect3Complete) }" class="ups-drawer_left_icon"></span>
+                Shipping &amp; Billing
+                <span class="ups-required_indicator" aria-hidden="true"></span>
+                <span class="ups-readerTxt">Required Section</span>
+                <span class="ups-readerTxt" *ngIf="sect3Complete">Complete</span>
+                <span class="ups-readerTxt" *ngIf="(returnPolicyCreateSubmitAttempt && !sect3Complete)">Needs to be completed</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+
+            <!-- Beginning of Drawer Content -->
+            <div class="ups-drawer-content" id="upsDrawer03">
+                <!-- Page Level Error Handling -->
+                <div *ngIf="(returnPolicyCreateSubmitAttempt && !sect3Complete)">
+                    <h3 class="ups-invalid_color-list ups-error_alert-list">
+                        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                        Please correct the following errors
+                    </h3>
+
+                    <ul class="ups-icons-error">
+                        <li *ngIf="!returnPolicyCreateForm.controls['returnAddressSel'].valid">
+                            <a href="#returnAddressSel" class="ups-invalid_color" pointIdClick>Contact List</a> is required.
+                        </li>
+
+                        <li *ngIf="!checkShippingService()">
+                            <a href="#returnPreferredServiceNextDayAirEarly" class="ups-invalid_color" pointIdClick>A Shipping Service</a> must be chosen
+                        </li>
+                        <li *ngIf="!returnPolicyCreateForm.controls['returnAccountsListSel'].valid && billingDropdown">
+                            <a href="#returnAccountsListSel" class="ups-invalid_color" pointIdClick>A Billing Account</a> must be selected.
+                        </li>
+                        <li *ngIf="!checkBillAcctChosen() && billingScrollableList">
+                            <a href="#returnPreferredBillAddress0" class="ups-invalid_color" pointIdClick>A Billing Account</a> must be chosen.
+                        </li>
+                    </ul>
+                </div>
+                <!-- End of Page Level Error Handling -->
+
+                <!-- Shipping Address Section -->
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Shipping Address</h3>
+                    </div>
+                    <p>
+                        Where would you like return shipments for this policy to go?
+                    </p>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="returnAddressSel" class="ups-form_label">Contact List <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></label>
+                                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                    <select id="returnAddressSel" class="ups-dropdown" [(ngModel)]="returnAddrSel"
+                                    (ngModelChange)="onShippingChange($event)"
+                                    required
+                                    aria-required="true"
+                                    aria-describedby="returnAddressSel_error"
+                                    pattern="^([1-9])([0-9])*$"
+                                    [formControl]="returnPolicyCreateForm.controls['returnAddressSel']"
+                                    [ngClass]="{'ups-bodError':  (!returnPolicyCreateForm.controls['returnAddressSel'].valid && returnPolicyCreateForm.controls['returnAddressSel'].touched)}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <option value="0">
+                                            Select Address
+                                        </option>
+                                        <option value="1">
+                                            Darkshore
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="ups-icons-error" id="returnAddressSel_error" role="alert">
+                                    <span class="ups-invalid_color"
+                                        *ngIf="(!returnPolicyCreateForm.controls['returnAddressSel'].valid &amp;&amp; returnPolicyCreateForm.controls['returnAddressSel'].touched)">
+                                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt"> Invalid</span>
+                                        <span>
+                                            Contact List is required.
+                                        </span>
+                                    </span>
+                                </div>
+                                <button class="ups-cta ups-cta_secondary ups-btn_has_icon ups-input_btn_action">
+                                    Use a different address
+                                    <span class="icon ups-icon-chevronright" aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End of Shipping Address Section -->
+
+                <!-- Shipping Service Section -->
+                <div class="ups-section" *ngIf="returnAddrSel == 1">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Domestic Shipping Service</h3>
+                    </div>
+                    <fieldset class="ups-form_group ups-form_required">
+                        <legend class="ups-form_label">
+                            What is your preferred method of shipping? <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+                        </legend>
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-1">
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredServiceNextDayAirEarly" class="ups-radio-custom" value="0" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredServiceNextDayAirEarly" class="ups-radio-custom-label">UPS Next Day Air<sup>&reg;</sup> Early</label>
+                                </div>
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredServiceNextDayAir" class="ups-radio-custom" value="1" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredServiceNextDayAir" class="ups-radio-custom-label">UPS Next Day Air<sup>&reg;</sup></label>
+                                </div>
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredServiceNextDaySaver" class="ups-radio-custom" value="2" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredServiceNextDaySaver" class="ups-radio-custom-label">UPS Next Day Air Saver<sup>&reg;</sup></label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-offset-1">
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredService2ndDayAir" class="ups-radio-custom" value="3" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredService2ndDayAir" class="ups-radio-custom-label">UPS 2nd Day Air A.M.<sup>&reg;</sup></label>
+                                </div>
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredService3DaySelect" class="ups-radio-custom" value="4" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredService3DaySelect" class="ups-radio-custom-label">UPS 3 Day Select<sup>&reg;</sup></label>
+                                </div>
+                                <div class="ups-checkbox_button">
+                                    <input type="radio" name="returnPreferredService" id="returnPreferredServiceGroundService" class="ups-radio-custom" value="5" [(ngModel)]="returnServiceOption"
+                                    (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}"
+                                    aria-describedby="returnPreferredService_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <label for="returnPreferredServiceGroundService" class="ups-radio-custom-label">UPS Ground Service</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="ups-icons-error" id="returnPreferredService_error" role="alert">
+                        <div class="ups-invalid_color ups-group"
+                            *ngIf="(!checkShippingService() && returnPolicyCreateSubmitAttempt)">
+                            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            A Shipping Service must be chosen.
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End of Shipping Service Section -->
+
+                <!-- Transborder Section -->
+                <div class="ups-section" *ngIf="returnAddrSel == 1">
+                    <fieldset>
+                        <legend class="ups-section-header"><div class="ups-section_heading">Transborder Shipping</div></legend>
+                        <div class="ups-form_group">
+                            <label class="ups-lever" onclick="" for="transborderToggle">
+                            <input type="checkbox" id="transborderToggle" name="transborderToggle" [(ngModel)]="transborderYes" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                            <!-- if checked then yes -->
+                            <div class="ups-lever_label_container"><strong class="ups-form_label ups-lever_label">Would you like to specify a different method for transborder shipping?</strong>
+                            </div>
+                            <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="ups-form_group" *ngIf="transborderYes">
+                        <legend class="ups-readerTxt">Select a method of transborder shipping</legend>
+                        <div class="ups-checkbox_button_wrap">
+                            <div class="ups-checkbox_button" *ngFor="let transborderShippingToggle of [0,1,2,3,4,5]">
+                                <input type="radio" name="transborderShipping" id="transborderShipping{{transborderShippingToggle}}" class="ups-radio-custom"
+                                [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <label for="transborderShipping{{transborderShippingToggle}}" class="ups-radio-custom-label">Lorem Ipsum Dolor</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- End of Transborder Section -->
+
+                <!-- Billing Section -->
+                <div class="ups-section" *ngIf="returnAddrSel == 1">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Billing</h3>
+                    </div>
+                    <div class="ups-form_group ups-form_required">
+                        <p><strong>Which account would you like to bill your return shipments to? <span *ngIf="billingScrollableList"><span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></span></strong></p>
+                        <!-- Accounts List Dropdown -->
+                        <div *ngIf="billingDropdown">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="ups-form_group ups-form_required">
+                                        <label for="returnAccountsListSel" class="ups-form_label">Accounts List <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="returnAccountsListSel" class="ups-dropdown" id="returnAccountsListSel" [(ngModel)]="returnAcctsListSel" (ngModelChange)="onShippingChange($event)" required aria-required="true" aria-describedby="returnPreferredBillAddressSel_error" pattern="^([1-9])([0-9])*$" [formControl]="returnPolicyCreateForm.controls['returnAccountsListSel']" [ngClass]="{'ups-bodError':  (!returnPolicyCreateForm.controls['returnAccountsListSel'].valid && returnPolicyCreateForm.controls['returnAccountsListSel'].touched)}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                                <option value="0">Select an account</option>
+                                                <option value="1">A</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ups-icons-error" id="returnPreferredBillAddressSel_error" role="alert">
+                                <div class="ups-invalid_color ups-group"
+                                    *ngIf="(!returnPolicyCreateForm.controls['returnAccountsListSel'].valid &amp;&amp; returnPolicyCreateForm.controls['returnAccountsListSel'].touched)">
+                                    <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    A Billing Account must be selected.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Accounts List Dropdown -->
+
+                        <!-- Search Bar -->
+                        <div class="row" *ngIf="billingSearchInput">
+                            <div class="col-md-6">
+                                <div class="ups-form_group">
+                                    <label for="accountSearch">Search for an account</label>
+                                    <div class="ups-text_wrapper ups-input_wrapper ups-input_has_action">
+                                        <input class="ups-form_input" id="accountSearch" name="accountSearch" type="search" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <button class="ups-input_action ups-input_action_invert"> <span aria-hidden="true" class="icon ups-icon-search"></span> <span class="ups-readerTxt">Click to search for an account in the list below</span> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Search Bar -->
+
+                        <!-- list of radio buttons-->
+                        <div *ngIf="billingScrollableList">
+                            <fieldset class="ups-form_group">
+                                <legend class="ups-form_label ups-readerTxt">
+                                    Select an account
+                                </legend>
+                                <div class="ups-form_group ups-text_scroll">
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper" *ngFor="let option of returnPreferredBillAddress; let j = index">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress{{j}}" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="{{j}}" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress{{j}}" class="ups-radio-custom-label">{{option.returnPreferredLabel}}</label>
+                                    </div>
+                                    <!-- <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress1" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="1" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress1" class="ups-radio-custom-label">Accessories | 123456</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress2" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="2" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress2" class="ups-radio-custom-label">Beauty/Bath Products | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress3" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="3" (ngModelChange)="onShippingChange($event)"
+                                        [ngModelOptions]="{standalone:true}"
+                                        aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress3" class="ups-radio-custom-label">Children/Toys | 123353</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress4" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="4" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress4" class="ups-radio-custom-label">Ritem rat providel | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress5" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="5" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress5" class="ups-radio-custom-label">Otat. Bea voloreh endistia | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress6" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="6" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress6" class="ups-radio-custom-label">Utasitae occum nis est | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress7" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="7" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress7" class="ups-radio-custom-label">Ritem rat providel exprellas quis | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress8" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="8" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress8" class="ups-radio-custom-label">Otat. Bea voloreh | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress9" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="9" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress9" class="ups-radio-custom-label">Utasitae occum | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress10" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="10" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress10" class="ups-radio-custom-label">Accessories | 123456</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress11" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="11" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress11" class="ups-radio-custom-label">Beauty/Bath Products | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress12" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="12" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress12" class="ups-radio-custom-label">Children/Toys | 123353</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress13" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="13" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress13" class="ups-radio-custom-label">Ritem rat providel | 1234345</label>
+                                    </div>
+                                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="radio" name="returnPreferredBillAddress" id="returnPreferredBillAddress14" class="ups-radio-custom" [(ngModel)]="returnBillingAcct" value="14" (ngModelChange)="onShippingChange($event)" [ngModelOptions]="{standalone:true}" aria-describedby="returnPreferredBillAddress_error" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnPreferredBillAddress14" class="ups-radio-custom-label">Otat. Bea voloreh endistia | 1234345</label>
+                                    </div> -->
+                                </div>
+
+                            </fieldset>
+                            <div class="ups-icons-error" id="returnPreferredBillAddress_error" role="alert">
+                                <div class="ups-invalid_color ups-group"
+                                    *ngIf="(!checkBillAcctChosen() && returnPolicyCreateSubmitAttempt)">
+                                    <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> Invalid</span>
+                                    A Billing Account must be chosen.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of list of radio buttons -->
+                    </div>
+
+                    <!-- DO NOT INCLUDE THIS IN PRODUCTION-->
+                    <div class="ups-cms-demo">
+                        <p>
+                            <strong>Do not include this in production</strong>
+                        </p>
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="lessThanTen();">Less than 10</button>
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="tenThroughThirty();">10 through 30</button>
+                        <button type="button" class="ups-cta ups-cta_secondary" (click)="moreThanThirty();">More than 30</button>
+                    </div>
+                    <!-- DO NOT INCLUDE THIS IN PRODUCTION -->
+                </div>
+                <!-- End of Billing Section -->
+
+            </div>
+            <!-- End of Drawer Content -->
+        </li>
+        <!-- End Shipping and Billing Drawer -->
+
+        <!-- Return Details Drawer -->
+        <li class="ups-drawer_list_item">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer04" aria-expanded="false" id="upsDrawerBtn04">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect4Complete, 'ups-icon-alert' : sect4Error, 'icon': (sect4Error || sect4Complete), 'ups-empty_circle' : (!sect4Complete && !sect4Error) }" class="ups-drawer_left_icon"></span>
+                Return Details
+                <span class="ups-readerTxt" *ngIf="sect4Complete">Complete</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer04">
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Reasons</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="ups-form_group ups-help_wrapper">
+                                <fieldset class="ups-toggle_fieldset">
+                                    <legend class="ups-form_label ups-help_wrapper">
+                                        Would you like customers to include reasons for a return shipment?
+
+                                    </legend>
+                                    <div class="ups-help" upsHelpBtn>
+                                        <button type="button" id="{{ this.id }}-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                            <div class="ups-help_scroll">
+                                                <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                                    <span class="ups-readerTxt">Close</span>
+                                                </button>
+                                                <div class="ups-group">
+                                                    <p class="ups-group_label">Yes, required.</p>
+                                                    <p>This step will be mandatory for your customers when returning a shipment.</p>
+                                                </div>
+                                                <div class="ups-group">
+                                                    <p class="ups-group_label">Make this optional</p>
+                                                    <p>This step will be available for your customers but not required for return.</p>
+                                                </div>
+                                                <div class="ups-group">
+                                                    <p class="ups-group_label">Not Required</p>
+                                                    <p>This step will not be included during your customer's return process.</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                        <input id="returnReasonRequire" name="returnReason" value="2" type="radio" [(ngModel)]="returnReason" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnReasonRequire" onclick="">Yes, Required.</label>
+
+                                        <input id="returnReasonEnable" name="returnReason" value="1" type="radio" [(ngModel)]="returnReason" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnReasonEnable" onclick="">Make this optional</label>
+
+                                        <input id="returnReasonDisable" name="returnReason" value="0" type="radio" [(ngModel)]="returnReason" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                        <label for="returnReasonDisable" onclick="">Not required</label>
+                                        <div class="switch-bg"></div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ups-form_group" *ngIf="returnReason !='0'">
+                        <label class="ups-lever" onclick="" for="toPopulateReference2">
+                            <input type="checkbox" id="toPopulateReference2" name="toPopulateReference2" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                            <!-- if checked then yes -->
+                            <div><strong class="ups-form_label">Would you like to populate reference #2 with Reason for Return?</strong>
+                            <p class="ups-form_subheader">This will allow you to view the Reason for Return on the shipping label.</p></div>
+                            <span aria-hidden="true">
+                                <span>Yes</span>
+                                <span class="switch-bg"></span>
+                                <span>No</span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="row" *ngIf="returnReason !='0'">
+                        <div class="col-md-6">
+                            <fieldset class="ups-form_group">
+                                <legend class="ups-form_label">
+                                    Select all possible reasons for a return your customer can choose from.
+                                </legend>
+                                <div class="ups-text_scroll">
+                                    <div *ngFor="let checky of checkies; let j = index" class="ups-buttonList_wrapper ups-input_wrapper">
+                                        <input type="checkbox" name="returnReasonCheckboxColumn" class="ups-checkbox-custom" [(ngModel)]="checky.selected" [ngModelOptions]="{standalone:true}" value="checky{{j}}" (change)="selChanged();" id="checky{{j}}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null"><label for="checky{{j}}" class="ups-checkbox-custom-label" >{{checky.name}}</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="ups-form_group">
+                                <div class="ups-checkbox ups-input_wrapper">
+                                    <input class="ups-checkbox-custom" type="checkbox" value="1" name="ups-select_all" id="ups-select_all" [(ngModel)]="selectedAll" [ngModelOptions]="{standalone:true}" (change)="selectAll();" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null"/>
+                                    <label for="ups-select_all" class="ups-form_label ups-checkbox-custom-label">Select All</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ups-group">
+                                <h4 class="ups-group_label">Selected Options</h4>
+                                <div class="ups-text_scroll">
+                                    <ul>
+                                        <ng-container *ngFor="let daCheck of checkies">
+                                            <li class="ups-selected_option" *ngIf="daCheck.selected">
+                                                <button class="icon ups-icon-x ups-iconAlone" type="button" (click)="uncheckCheck(checkies.indexOf(daCheck))"> <span class="ups-readerTxt">Remove {{daCheck.name}}</span></button>
+                                                <!-- Keep this span with an attribute of aria-hidden="true" for accessibility purposes -->
+                                                <span aria-hidden="true">{{daCheck.name}}</span>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <!-- <section class="ups-search_support ups-group" *ngIf="returnReason !='0'">
+                        <div class="ups-search_results ups-active">
+                            <div class="ups-wrap_inner">
+                                <div class="results-footer clearfix">
+                                    <div class="footer-container">
+                                        <button class="first hidden-xs hidden-sm">First</button>
+                                        <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                                        <div class="pagination-container">
+                                            <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                                            <button class="pag hidden-xs hidden-sm"  data-prev-selected="true">2</button>
+                                            <button class="pag hidden-xs hidden-sm">3</button>
+                                            <button class="pag hidden-xs hidden-sm">4</button>
+                                            <button class="pag hidden-xs hidden-sm">5</button>
+                                        </div>
+                                        <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                                        <button class="last hidden-xs hidden-sm">Last</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>-->
+                </div>
+                <div class="ups-section" *ngIf="returnReason !='0'">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Company Link (optional)</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group">
+                                <label for="addCompanyLink" class="ups-form_label">Add a link to merchant return/exchange policies.</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="addCompanyLink" class="ups-form_input" id="fromLength" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- End of Returns Details Drawer -->
+
+        <!-- Customer Feedback Drawer -->
+        <li class="ups-drawer_list_item">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer05" aria-expanded="false" id="upsDrawerBtn05">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect5Complete, 'ups-icon-alert' : sect5Error, 'icon': (sect5Error || sect5Complete), 'ups-empty_circle' : (!sect5Complete && !sect5Error) }" class="ups-drawer_left_icon"></span>
+                Customer Feedback
+                <span class="ups-readerTxt" *ngIf="sect5Complete">Complete</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+
+            <!-- Drawer Content -->
+            <div class="ups-drawer-content" id="upsDrawer05">
+                    <!-- <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Billing</h3>
+                    </div> -->
+
+                    <!-- Email Collections -->
+                    <div class="ups-section ups-form_group">
+                        <fieldset class="ups-toggle_fieldset">
+                            <legend class="ups-section-header">
+                                <div class="ups-section_heading">Email Collection</div>
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Would you like to allow your customer to receieve email notifications?</p>
+                                    <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                            <input id="returnEmailCollectionRequire" name="returnEmailCollection" value="0" type="radio" [(ngModel)]="returnEmailCollection" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnEmailCollectionRequire" onclick="">Required</label>
+
+                                            <input id="returnEmailCollectionEnable" name="returnEmailCollection" value="1" type="radio" [(ngModel)]="returnEmailCollection" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnEmailCollectionEnable" onclick="">Optional</label>
+
+                                            <input id="returnEmailCollectionDisable" name="returnEmailCollection" value="2" type="radio" [(ngModel)]="returnEmailCollection" [ngModelOptions]="{standalone:true}" checked="" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnEmailCollectionDisable" onclick="">Don't Display</label>
+                                        <div class="switch-bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- End of Email Collections -->
+
+                    <!-- Email Notifications -->
+                    <div class="ups-section" *ngIf="returnEmailCollection !=='2'" >
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">Email Notifications</h3>
+                        </div>
+                        <p>Which type of notifications would you like your customers to receive about their return?</p>
+                        <legend class="ups-form_label">Check all that apply</legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="emailDelivered" class="ups-checkbox-custom" name="emailNotifications" type="checkbox" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <label for="emailDelivered" value="1" class="ups-checkbox-custom-label">Email customer when return is delivered.</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="emailReturn" class="ups-checkbox-custom" name="emailNotifications" type="checkbox" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <label for="emailReturn" value="2" class="ups-checkbox-custom-label">Email customer when return is on its way.</label>
+                            </div>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="emailCreated" class="ups-checkbox-custom" name="emailNotifications" type="checkbox" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <label for="emailCreated" value="3" class="ups-checkbox-custom-label">Email customer when label is created.</label>
+                            </div>
+                    </div>
+                    <!-- End of Email Notifications -->
+
+                    <!-- Comment Collections -->
+                    <div class="ups-section ups-form_group">
+                        <fieldset class="ups-toggle_fieldset">
+                            <legend class="ups-section-header">
+                                <div class="ups-section_heading">Comment Collection</div>
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Would you like to collect comments?</p>
+                                    <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                            <input id="returnCommentCollectionRequire" name="returnCommentCollection" type="radio" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnCommentCollectionRequire" onclick="">Required</label>
+
+                                            <input id="returnCommentCollectionEnable" name="returnCommentCollection" type="radio" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnCommentCollectionEnable" onclick="">Optional</label>
+
+                                            <input id="returnCommentCollectionDisable" name="returnCommentCollection" type="radio" checked="" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="returnCommentCollectionDisable" onclick="">Don't Display</label>
+                                        <div class="switch-bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- End of Comment Collections -->
+
+                    <!-- Define Weight -->
+                    <div class="ups-section ups-form_group">
+                        <fieldset class="ups-toggle_fieldset">
+                            <legend class="ups-section-header ups-form_label"><div class="ups-section_heading">
+                                Define Weight
+                            </div>
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Would you like customers to input a new weight if differing from forward shipment?</p>
+                                    <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                            <input id="defineWeightRequire" name="defineWeightCollection" type="radio" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="defineWeightRequire" onclick="">Required</label>
+
+                                            <input id="defineWeightEnable" name="defineWeightCollection" type="radio" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="defineWeightEnable" onclick="">Optional</label>
+
+                                            <input id="defineWeightDisable" name="defineWeightCollection" type="radio" checked="" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="defineWeightDisable" onclick="" >Not required</label>
+                                        <div class="switch-bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- End of Define Weight -->
+
+                    <!-- Define Dimensions -->
+                    <div class="ups-section ups-form_group">
+                        <fieldset class="ups-toggle_fieldset">
+                            <legend class="ups-section-header ups-form_label"><div class="ups-section_heading">
+                                Define Dimensions
+                            </div></legend>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Would you like to require customers to input dimensions if differing from forward shipment?</p>
+                                    <div class="ups-toggle well" [ngClass]="{'ups-toggle_disabled': makeFieldsDisabled}">
+                                            <input id="defineDimensionsEnable" name="defineDimensionsCollection" type="radio" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="defineDimensionsEnable" onclick="">Optional</label>
+
+                                            <input id="defineDimensionsDisable" name="defineDimensionsCollection" type="radio" checked="" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                            <label for="defineDimensionsDisable" onclick="">Not Required</label>
+
+                                        <div class="switch-bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!-- End of Define Dimensions -->
+
+                    <!-- Size -->
+                    <div class="ups-section">
+                        <div class="ups-section-header">
+                            <h3 class="ups-section_heading">Size</h3>
+                        </div>
+                        <div class="ups-form_group">
+                            <label class="ups-lever" onclick="" for="applySameDimensions">
+                            <input type="checkbox" id="applySameDimensions" name="applySameDimensions" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                            <!-- if checked then yes -->
+                            <div><strong class="ups-form_label">Would you like to apply the same dimensions for your return shipment?</strong>
+                            </div>
+                            <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- End of Size -->
+
+            </div>
+            <!-- End of Drawer Content -->
+        </li>
+        <!-- End of Customer Feedback Drawer -->
+
+        <!-- Returns Slip Drawer -->
+        <li class="ups-drawer_list_item">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer06" aria-expanded="false" id="upsDrawerBtn06">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect6Complete, 'ups-icon-alert' : sect6Error, 'icon': (sect6Error || sect6Complete), 'ups-empty_circle' : (!sect6Complete && !sect6Error) }" class="ups-drawer_left_icon"></span>
+                Return Slip
+                <span class="ups-readerTxt" *ngIf="sect6Complete">Complete</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer06">
+                <fieldset class="ups-section">
+                    <legend class="ups-readerTxt">Select "Yes" or "No" for a return slip with your return</legend>
+                    <div class="ups-form_group">
+                        <label class="ups-lever" onclick="" for="returnSlipToggleOne">
+                        <input type="checkbox" id="returnSlipToggleOne" name="returnSlipToggleOne" [(ngModel)]="returnSlipYes" [ngModelOptions]="{standalone:true}" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                        <!-- if checked then yes -->
+                        <div class="ups-lever_label_container"><strong class="ups-form_label ups-lever_label">Would you like to include a return slip with your return?</strong>
+                        <p class="ups-form_subheader ups-lever_subheader">This will be printed out by your customer during their online return transaction to be included with the original shipment.</p>
+                        </div>
+                        <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                        </label>
+                    </div>
+                </fieldset>
+                <div class="ups-section" *ngIf="returnSlipYes">
+                    <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Instructions</h3>
+                    </div>
+                    <div class="ups-form_group">
+                        <label class="ups-lever" onclick="" for="returnSlipToggleTwo">
+                        <input type="checkbox" id="returnSlipToggleTwo" name="returnSlipToggleTwo" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null" [(ngModel)]="returnSlipInstructions" [ngModelOptions]="{standalone:true}">
+                        <!-- if checked then yes -->
+                        <div class="ups-lever_label_container"><strong class="ups-form_label ups-lever_label">Would you like to customize instructions on the return slip?</strong></div>
+                        <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                        </label>
+                    </div>
+                    <div class="row" *ngIf="returnSlipInstructions"> <!-- Beginning of Textarea Row -->
+                        <div class="col-md-8">
+                            <div class="ups-form_group">
+                                <label for="additionalTasks" class="ups-readerTxt">Add additional tasks for your customers</label>
+                                <div class="ups-textArea_wrapper ups-input_wrapper">
+                                    <textarea class="ups-textArea" id="additionalTasks" rows="8" maxlength="500" name="additionalTasks" placeholder="Begin typing any additional tasks your customer needs to complete in order to return shipment."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End of Textarea Row -->
+                </div>
+            </div>
+        </li>
+        <!-- End of Return Slip Drawer -->
+
+        <!-- Refund Calculation Drawer -->
+        <li class="ups-drawer_list_item" *ngIf="refundCalculationDrawer">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer07" aria-expanded="false" id="upsDrawerBtn07">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect7Complete, 'ups-icon-alert' : sect7Error, 'icon': (sect7Error || sect7Complete), 'ups-empty_circle' : (!sect7Complete && !sect7Error) }" class="ups-drawer_left_icon"></span>
+                Refund Calculation
+                <span class="ups-readerTxt" *ngIf="sect7Complete">Complete</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer07">
+                <div class="ups-section">
+                    <p>Would you like to change the cost of return shipping to your customer? By selecting 'No fee', the plug-in will not display any refund amount.</p>
+                    <div class="ups-form_group">
+                        <div class="ups-toggle well">
+                                <input id="ups_deduct_total" name="changeCostReturnShipping" value="0" type="radio" [(ngModel)]="changeCostReturnShipping" [ngModelOptions]="{standalone:true}">
+                                <label for="ups_deduct_total" onclick="">Yes, deduct from total refund amount</label>
+
+                                <input id="ups_charge_flat_fee" name="changeCostReturnShipping" value="1" type="radio" [(ngModel)]="changeCostReturnShipping" [ngModelOptions]="{standalone:true}">
+                                <label for="ups_charge_flat_fee" onclick="">Yes, charge a flat fee</label>
+
+                                <input id="ups_no_fee_option" name="changeCostReturnShipping" value="2" type="radio" [(ngModel)]="changeCostReturnShipping" [ngModelOptions]="{standalone:true}">
+                                <label for="ups_no_fee_option" onclick="">No fee</label>
+                            <div class="switch-bg"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-group" *ngIf="changeCostReturnShipping == '1'">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="ups-form_group ups-form_required">
+                                <label class="ups-form_label" for="returnSetFlatFee">
+                                    How much would you like to set as your flat fee?
+                                </label>
+                                <p class="ups-form_subheader" id="returnSetFlatFeeCurrencyTxt">
+                                    (Enter dollar amount.)
+                                </p>
+                                <div class="ups-input_has_unit_left ups-text_wrapper ups-input_wrapper">
+                                   <span aria-hidden="true" class="ups-input_group_addon">$</span>
+                                   <input type="text" name="returnSetFlatFee" class="ups-form_input_unit ups-form_input" id="returnSetFlatFee" aria-describedby="returnSetFlatFeeCurrencyTxt">
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- End of Refund Calculation Drawer -->
+
+        <!-- Additional Shipping Info Drawer -->
+        <li class="ups-drawer_list_item" *ngIf="additionalShippingInfoDrawer">
+            <button type="button" class="ups-drawer-btn" aria-controls="upsDrawer08" aria-expanded="false" id="upsDrawerBtn08">
+                <span [ngClass]="{'ups-icon-checkcircle' : sect8Complete, 'ups-icon-alert' : sect8Error, 'icon': (sect8Error || sect8Complete), 'ups-empty_circle' : (!sect8Complete && !sect8Error) }" class="ups-drawer_left_icon"></span>
+                Additional Shipment Info
+                <span class="ups-readerTxt" *ngIf="sect7Complete">Complete</span>
+                <span class="pull-right">
+                    <span class="icon ups-icon-wedgedown" aria-hidden="true"></span>
+                </span>
+            </button>
+            <div class="ups-drawer-content" id="upsDrawer08">
+                    <p>The following details from the forward shipment can be added to the return shipment. Applying a rule will only be completed if they exist on the original forward shipment.</p>
+                    <!-- <div class="ups-section-header">
+                        <h3 class="ups-section_heading">Reference & Barcode</h3>
+                    </div> -->
+                    <fieldset class="ups-section">
+                        <legend class="ups-section-header"><div class="ups-section_heading">Reference & Barcode</div></legend>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="includeReferenceOne">
+                                <input type="checkbox" id="includeReferenceOne" name="includeReferenceOne" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <!-- if checked then yes -->
+                                <div><strong class="ups-form_label">Would you like to include reference #1 with your return shipment?</strong>
+                                </div>
+                                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                </label>
+                            </div>
+                            <!-- <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="includeReferenceTwo">
+                                <input type="checkbox" id="includeReferenceTwo" name="includeReferenceTwo">
+
+                                <div>
+                                    <strong class="ups-form_label">Would you like to include reference #2 with your return shipment?</strong>
+                                </div>
+                                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                </label>
+                            </div> -->
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="includeBarcode">
+                                <input type="checkbox" id="includeBarcode" name="includeBarcode" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <!-- if checked then yes -->
+                                <div><strong class="ups-form_label">Would you like to include the barcode with your return shipment?</strong>
+                                </div>
+                                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                </label>
+                            </div>
+                    </fieldset>
+                    <fieldset class="ups-section">
+                        <legend class="ups-section-header"><div class="ups-section_heading">Declared Value</div></legend>
+                            <div class="ups-form_group">
+                                    <label class="ups-lever" onclick="" for="applyDeclaredValue">
+                                    <input type="checkbox" id="applyDeclaredValue" name="applyDeclaredValue" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                    <!-- if checked then yes -->
+                                    <div><strong class="ups-form_label">Would you like to apply the same declared value for the return shipment?</strong>
+                                    </div>
+                                    <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                    </label>
+                                </div>
+                    </fieldset>
+                    <fieldset class="ups-section">
+                        <legend class="ups-section-header"><div class="ups-section_heading">Labeling & Handling</div></legend>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="additionalHandlingIndication">
+                                <input type="checkbox" id="additionalHandlingIndication" name="additionalHandlingIndication" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <!-- if checked then yes -->
+                                <div><strong class="ups-form_label">Would you like to include any additional handling indication with your return shipment?</strong>
+                                </div>
+                                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                </label>
+                            </div>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="includeLargePackageIndication">
+                                <input type="checkbox" id="includeLargePackageIndication" name="includeLargePackageIndication" [attr.disabled]="makeFieldsDisabled == true ? true : null" [attr.aria-disabled]="makeFieldsDisabled == true ? true : null">
+                                <!-- if checked then yes -->
+                                <div><strong class="ups-form_label">Would you like to include any large package indication with your return shipment?</strong>
+                                </div>
+                                <span aria-hidden="true"><span>Yes</span><span class="switch-bg"></span><span>No</span></span>
+                                </label>
+                            </div>
+                    </fieldset>
+
+
+            </div>
+        </li>
+        <!-- End of Additional Shipping Info Drawer -->
+
+    </ul>
+    <!-- End of Drawer -->
+    <!-- Button Group -->
+    <div class="ups-form_ctaGroup">
+        <button *ngIf="!viewPolicyAddition && !merchantPlugInCreatePolicy" type="submit" class="ups-cta ups-cta_primary" (click)="savePolicy();">Save &amp; Finish</button>
+        <button *ngIf="merchantPlugInCreatePolicy" type="submit" class="ups-cta ups-cta_primary" (click)="savePolicy2();">Save &amp; Finish</button>
+        <a *ngIf="viewPolicyAddition" class="ups-cta ups-cta_primary" routerLink="/returnsPolicies/returnsManager">Back to My Returns Panel</a>
+        <button *ngIf="editPolicyAddition" type="button" class="ups-cta ups-cta_tertiary" (click)="demoReturnsPolicyDeleteModal2()">Delete Policy</button>
+        <a class="ups-cta ups-cta_secondary" routerLink="/returnsPolicies" *ngIf="!viewPolicyAddition">Cancel</a>
+    </div>
+    <!-- End of Button Group -->
+
+</form>
+<!-- End of Form -->

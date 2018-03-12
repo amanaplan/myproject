@@ -1,0 +1,69 @@
+<!-- ************************************************************************************ -->
+<!-- M15 List Bullets                                                                     -->
+<!-- ************************************************************************************ -->
+
+
+{{!--
+********************************************************************************
+M15 LIST BULLETS: -LAYOUT-
+********************************************************************************
+
+| 30px
+-detail header-
+| 5px
+| 15px of bullet
+-bullet desc-
+| 15px of bullet
+| 15px of bullet
+-bullet desc-
+| 15px of bullet
+| 30px
+
+********************************************************************************
+--}}
+
+
+{{!--
+********************************************************************************
+M15 LIST BULLETS: ROWS
+********************************************************************************
+
+M15 List Bullets only uses 1 detail per row, and spacing on left-right
+page-margin-sm
+
+********************************************************************************
+--}}
+
+<div class="ups-list-col_bullets">
+    <h2>{{this.header}}</h2>
+    <div class="ups-list_row clearfix">
+        {{#each this.entries}}
+            {{#if detail.title.link}}
+                <a class="ups-list_link" href="{{detail.title.link}}">
+            {{/if}}
+                <div class="ups-list_detail"{{#if tab}} data-tab="{{tab}}"{{/if}}>
+                    <h3>
+                        {{#if detail.title.text}}
+                            {{{detail.title.text}}}
+                        {{/if}}
+
+                        {{#if detail.title.bullets}}
+                            <ul class="list_{{detail.title.bullets.type}}">
+                            {{#each detail.title.bullets.list}}
+                                {{#if link}}
+                                    <a href="{{link}}"><li>{{text}}</li></a>
+                                {{else}}
+                                    <li>{{text}}</li>
+                                {{/if}}
+                            {{/each}}
+                            </ul>
+                        {{/if}}
+                    </h3>
+                    <span class="icon ups-listbullet-arrow" aria-hidden="true"></span>
+                </div>
+            {{#if detail.title.link}}
+                </a>
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

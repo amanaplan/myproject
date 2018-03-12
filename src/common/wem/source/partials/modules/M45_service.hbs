@@ -1,0 +1,61 @@
+<!-- ************************************************************************************ -->
+<!-- M45 Service                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M45 Service - Notes
+********************************************************************************
+
+ - Defined or Dynamic
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M45 Service - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    title                      = object     / YES           / {header,body}
+    title.header               = string     / YES           / title
+    title.body                 = string     / NO            / <h3>Pellentesque luctus ipsum felis, in bibendum tortor commodo.</h3>
+    items                      = array      / YES           / [{header, content{}},{header, content{},{header, content{},...]
+    this.header                = string     / YES           / Value-Added Services
+    this.content               = object     / YES           / {body}
+    
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M45 Service - Layout
+********************************************************************************
+
+-service-
+| 60px
+
+********************************************************************************
+--}}
+
+
+<div class="ups-service ups-wrap">
+    <div class="ups-wrap_inner">
+       {{#if title}}
+           <div class="ups-service_title">
+                {{#if title.header}}<h2 class="ups-article-header">{{title.header}}</h2>{{/if}}
+                {{#if title.body}}<div class='ups-service_content'>{{{title.body}}}</div>{{/if}}
+           </div>
+        {{/if}}
+        {{#each items}}
+            <div class="ups-service_item">
+                <div class="ups-service_header">{{this.header}}</div>
+                <div class='ups-service_content'>{{>M44_content_block this.content}}</div>
+            </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<!-- ************************************************************************************ -->
+<!-- M27 Search Support                                                                   -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M27 SEARCH SUPPORT: -AJAX-
+********************************************************************************
+
+-------------------------------------------------------------------------------
+
+AJAX:
+
+Currently configured in scripts/plugins/ups.search.js
+to pull data via AJAX from ajax/shipping.json (for thats the only search support created)
+
+See ajax/shipping.json for example for expected data format.
+
+-------------------------------------------------------------------------------
+
+********************************************************************************
+--}}
+
+<div class="ups-search_bar ups-wrap ups-search_wrap">
+    <div class="ups-wrap_inner">
+        <div class="ups-search_inputs">
+            <form>
+                <div role="presentation" class="ups-search_formWrap">
+                    <div>
+                        <label for="ups-search-input" class="ups-form_label">Enter a keyword, phrase, or question:</label>
+                        <div class="ups-text_wrapper">
+                            <input type="text" name="keyword_type" class="ups-form_input" id="ups-search-input" placeholder="{{search-placeholder}}" disabled>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="ups-search-within_select" class="ups-form_label">Search within:</label>
+                        <div class="ups-dropdown_wrapper">
+                            <select name="category_type" class="ups-dropdown" id="ups-search-within_select" disabled>
+                                {{#each options}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="ups-cta search_btn" disabled> 
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="ups-search_inputsMobile" style="display:none;">
+            <div class="banner-content col-xs-12 ups-sm_show_input">
+                <label for="ups-keyword_type" class="ups-form_label">Enter a keyword, phrase, or question:</label>
+                <div class="ups-text_wrapper">
+                    <input type="text" name="ups-keyword_type" id="ups-keyword_type" class="ups-form_input" placeholder="{{search-placeholder}}" disabled>
+                </div>
+            </div>
+            <div class="banner-content col-xs-12 ups-sm_show_selection">
+                <label for="ups-search_category-type" class="ups-form_label">Search within:</label>
+                <div class="ups-dropdown_wrapper">
+                    <select name="ups-search_category-type" class="ups-dropdown" id="ups-search_category-type" disabled>
+                        {{#each options}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="banner-content col-xs-12 ups-sm_show_submit">
+                <button class="ups-cta search_btn" disabled>
+                    Search
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var jsonRequest={
+            IndexType:  '1',          
+            StrOffSet: '0',              
+            MaxResult: '10',           
+            Keywords: '',
+            Locale: 'en_US',                   
+            Role: "all",                      
+            CharSet: "utf-8",
+            WorldShipVersion:'WS19',
+            Request: {
+              RequestOption: "",
+              TransactionReference: {
+                CustomerContext: "",
+                TransactionIdentifier: ""
+              }
+            }
+        };
+
+        var loginVar='false';
+        if(jsonRequest.IndexType=='1'){
+            jsonRequest.Matches= "all";
+            if(loginVar==="true"){
+                jsonRequest.IsLoggedInIndicator= 'false';
+                jsonRequest.UserID= '';
+            }
+        }else if(jsonRequest.IndexType=='2'){
+            jsonRequest.Category="All";
+            if(loginVar==="true"){
+                jsonRequest.IsLoggedInIndicator= 'false';
+                jsonRequest.UserID= '';
+            }
+        }else{
+            jsonRequest.CallToAction="all";
+            jsonRequest.Industry="all";
+            jsonRequest.SearchWithIn="all";
+        }
+
+        var localize={
+            of: 'of',
+            results: 'results',
+            resultsFor:'Search results for',
+            noResults:'No results found forUnavailable&#039;s',
+            didYouMean:'Did you mean'
+        };
+
+        var reqURL='';
+    </script>
+</div>

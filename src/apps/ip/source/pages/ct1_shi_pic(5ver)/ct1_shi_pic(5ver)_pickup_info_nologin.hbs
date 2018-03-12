@@ -1,0 +1,199 @@
+---
+title: ct1_shi_pic(5ver)
+layout: legacy.hbs
+version: v4
+appID: com.ups.IntPickup
+appCSS: ups.legacy_overrideIP
+dynpnls: yes
+dir: ltr
+lang: en
+---
+
+<!-- **************************** -->
+<!-- Begin Application Owned HTML -->
+<!-- **************************** -->
+<div id="main">
+       
+        
+        {{>"ct1_shi_pic(5ver)_partial" ct1_shi_pic5ver.pickup_info_nologin }}
+            
+
+<!------------- -- --------------> 
+
+<!--   IC DEV Display Module   --> 
+
+<!------------- -- --------------> 
+
+<script type="text/javascript">
+
+var htmlcobrand;
+
+$(document).ready(function(){
+
+	/* Prepend Control Box */
+
+	//$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><span class="error" id="">Switch View:</span></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Pickup" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Internet Pickup" class="btn"></div></div>');
+
+	/* Set default container and stylesheet to Internet Pickup */
+
+	$('.switchContainer').removeClass('ccacmpad1');
+
+	$('.switchContainer').attr('id', 'ccCntMod');
+
+	//chooseStyle('Internet Pickup', 60);	
+
+	htmlcobrand = $('.cobrand').html();
+
+	$('.cobrand').remove();
+
+	
+
+});
+
+/* function to switch views */
+
+function switchContainer(container) {
+
+	if(container == 'ccCntMod') {
+
+		$('.switchContainer').removeClass('ccacmpad1');
+
+		$('.switchContainer').attr('id', container);
+
+		chooseStyle('Internet Pickup', 60);
+
+		$('.cobrand').remove();
+
+	} 
+
+	if(container == 'ccacmpad1') {
+
+		$('.switchContainer').attr('id', '');
+
+		$('.switchContainer').addClass(container);
+
+		chooseStyle('Campus Pickup', 60);
+
+		$('.cobrand').remove();
+
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+
+	}
+
+}
+
+
+
+</script> 
+
+<!------------- -- --------------> 
+
+<!-- END IC DEV Display Module --> 
+
+<!------------- -- -------------->
+{{!--<div id="select_pnl_1">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_1">Pickup Date & Time:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_1" class="formcol5">
+                <option value="1">Default</option>
+                <option value="2">Drop-off Date & Time</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_2">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_2">Title:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_2" class="formcol5">
+                <option value="1">Default</option>
+                <option value="2">"Pickup Request Information"</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_3" style="margin-top:2em">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_3">Pickup Information:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_3" class="formcol5">
+                <option value="1">Default</option>
+                <option value="2">Not Logged In - Enter Account #</option>
+                <option value="3">Drop-off/Hold</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_4">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_4">Delivery Information:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_4" class="formcol5">
+                <option value="1">Default</option>
+                <option value="2">Drop-off/Hold</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_5">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_5">Shipment Information:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_5" class="formcol5">
+                <option value="1">Default</option>
+                <option value="2">Logged In Shipping History</option>
+                <option value="3">WW Freight</option>
+                <option value="4">Not Logged In - Enter Account #</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_6">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_6">Payment Information<br>
+                for All Fees:</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_6" class="formcol5">
+                <option value="1">UPS Account</option>
+                <option value="2">Credit Card</option>
+                <option value="3">Receiver or Third Party</option>
+                <option value="4">Cash/Check/Money Order</option>
+                <option value="5">WW Express Freight</option>
+            </select>
+        </dd>
+    </dl>
+</div>
+<div id="select_pnl_7">
+    <dl role="presentation">
+        <dt>
+            <span for="dyn_pnl_select_7">Total Fees</span>
+        </dt>
+        <dd>
+            <select id="dyn_pnl_select_7" class="formcol5">
+                <option value="1">Detail Hidden</option>
+                <option value="2">Detail Displayed</option>
+                <option value="3">Details Hidden - 1507 (Europe, Canada, and Mexico)</option>
+                <option value="4">Details Displayed - 1507 (Europe, Canada, and Mexico)</option>
+            </select>
+        </dd>
+    </dl>
+</div>--}}
+
+
+</div>
+<!-- **************************** -->
+<!-- End Application Owned HTML -->
+<!-- **************************** -->

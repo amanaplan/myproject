@@ -1,0 +1,92 @@
+<!-- Beginning of Returns Admin Accounts Component -->
+<div class="ups-section">
+    <!-- Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Accounts Attached to Policies</h2>
+    </div>
+    <!-- End of Heading -->
+    <div class="ups-group">
+        <p>
+            In order to disable the accounts below, you must first remove the account from their associated policy. Placeholder copy here.
+        </p>
+    </div>
+    <ul class="ups-list_style_none">
+        <li *ngFor="let accountNamePolicies of [1,2,3,4]">
+            <div class="row">
+                <div class="ups-group">
+                    <div class="col-xs-8">
+                        <p><strong>{{'<'}}Account Name{{accountNamePolicies}}{{'>'}}</strong></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p class="pull-right">
+                            <a class="ups-link" routerLink="/returnsPolicies/editPolicy">Edit Policy <span class="ups-readerTxt">Account Name {{accountNamePolicies}}</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="ups-section">
+    <!-- Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Other Accounts (FPO Copy)</h2>
+    </div>
+    <!-- End of Heading -->
+    <div class="ups-group">
+        <p>
+            In order to disable the accounts below, you must switch the toggle from active to inactive placeholder copy. By enabling an account you are granting returns privilege.
+        </p>
+    </div>
+    <!-- Beginning of Account Levers -->
+    <ul class="ups-list_style_none">
+        <li *ngFor="let accountNameDisabled of [5,6]">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="ups-text_information_wrapper">
+                        <div class="ups-text_information_container">
+                            <p><strong>{{'<'}}Account Name{{accountNameDisabled}}{{'>'}}</strong></p>
+                            <div class="ups-text_information" upsInfoBtn>
+                                <button type="button" class="ups-text_information_button icon ups-icon-informationcircle" id="ups-infoBtn{{accountNameDisabled}}"><span class="ups-readerTxt">Placeholder Text</span></button>
+                                <div class="ups-text_information_tooltip ups-text_information_tooltip_topright">
+                                    <button type="button" class="ups-text_information_close icon ups-icon-x ups-iconAlone">
+                                        <span class="ups-readerTxt">Close</span>
+                                    </button>
+                                    <div class="ups-text_information_scroll">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li  *ngFor="let accountNameToggle of [7,8,9,10]">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="ups-form_group">
+                        <label class="ups-lever" onclick="" for="otherAccountsLever{{accountNameToggle}}">
+                            <input id="otherAccountsLever{{accountNameToggle}}"
+                            value="{{accountNameToggle-7}}"
+                            class="ups-lever_checkbox" name="otherAccountsLever" type="checkbox"/>
+                            <!--if checked then yes-->
+                            <span aria-hidden="true" class="ups-lever_switch">
+                                <span class="ups-lever_switch_yes">Yes</span>
+                                <span class="ups-lever_switch_bg"></span>
+                                <span class="ups-lever_switch_no">No</span>
+                            </span>
+                            <div class="ups-lever_rlabel">
+                                <strong class="ups-form_label ups-lever_label ups-lever_label_only"> {{'<'}}Account Name{{accountNameToggle}}{{'>'}}</strong>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <!-- End of List of Account Levers -->
+</div>
+<!-- End of Returns Admin Accounts Component -->

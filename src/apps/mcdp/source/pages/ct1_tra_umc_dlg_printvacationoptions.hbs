@@ -1,0 +1,130 @@
+---
+title: print vacation options
+layout: legacy.hbs
+version: v4
+appID: com.ups.mcdp
+appCSS: ups.legacy_overrideMCDP
+dir: ltr
+lang: en
+---
+
+
+<div id="main">
+	{{> background_modal_content }}
+    
+<!-- Begin Application Module -->
+<div class="appLvl mod modal dialog">
+  <fieldset>
+    <legend></legend>
+    <!-- Begin Application Header -->
+    <div class="appHead ctrlPanel clearfix noPrint">
+      <h2>{{title}}</h2>
+      <ul class="clearfix">
+        <li>
+          <input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+        </li>
+      </ul>
+    </div>
+    <!-- End Application Header --> 
+    <!-- Begin Application Body -->
+    <div class="appBody clearfix"> 
+      
+      <!-- Begin Section Module -->
+      <div class="onlyPrint"><img height="55" width="42" border="0" src="/img/glo_ups_brandmark_pfv.gif" alt="repl_alt_text"></div>
+      <!-- End Section Module -->
+      
+      <table border="0" cellspacing="0" cellpadding="0" class="dataTable tablePlain full">
+        <tr>
+          <th scope="col">upcoming vacation</th>
+          <th scope="col">vacation settings</th>
+        </tr>
+        <tr class="odd">
+          <td></td>
+          <td colspan="3"><!-- Map Place Holder --></td>
+        </tr>
+        <tr>
+          <td scope="row">mm/dd/yyyy - mm/dd/yyyy</td>
+          <td scope="row">deliver to a ups UPS Access Point:<br>
+            <br>
+            the ups store<br>
+            1234 hill street<br>
+            suite a<br>
+            roswell, ga, us 30076<br>
+            telephone: nnn-nnn-nnnn<br>
+            emailaddress@theupsstore.com<br>
+            <p> {Additional information about the locker bay size <br>
+              the parcel locker, and package restrictions is <br>
+              displayed here...final content TBD.} </p></td>
+        </tr>
+        <tr>
+          <td colspan="2"><!-- Begin Sub Module -->
+            
+            <div class="secLvl secLvlPlain clearfix" style="display:block">
+              <fieldset>
+                <legend></legend>
+                <!-- Begin Sub Header -->
+                <div class="secHead clearfix">
+                  <h4>map and driving directions</h4>
+                </div>
+                <!-- End Sub Header --> 
+                <!-- Begin Sub Body -->
+                <div class="secBody">
+                  <p><img alt="" src="/img_fpo/other/fpo-400x200.gif" width="400" height="200"></p>
+                  <table border="0" cellpadding="0" cellspacing="0" class="dataTable full">
+                    <tr>
+                      <th colspan="2" scope="col">directions</th>
+                      <th class="alignEnd" scope="col">distance</th>
+                    </tr>
+                    <tr class="odd">
+                      <td colspan="2" scope="row">1. {text}</td>
+                      <td class="alignEnd" scope="row">{n.nn}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" scope="row">2. {text}</td>
+                      <td class="alignEnd" scope="row">{n.nn}</td>
+                    </tr>
+                    <tr class="odd">
+                      <td colspan="2" scope="row">3. {text}</td>
+                      <td class="alignEnd" scope="row">{n.nn}</td>
+                    </tr>
+                    <tr class="totals">
+                      <td colspan="3" scope="row"><dl class="outHozFixed outHozFixedCol5">
+                          <dt>estimated distance:</dt>
+                          <dd>{n.nn miles}</dd>
+                        </dl></td>
+                    </tr>
+                  </table>
+                </div>
+                <!-- End Sub Body -->
+              </fieldset>
+            </div>
+            
+            <!-- End Sub Module --></td>
+        </tr>
+      </table>
+    </div>
+    <!-- End Application Body --> 
+    <!-- Begin Application Footer -->
+    <div class="appFooter"> 
+      <!-- Begin Button Bar Row -->
+      <div class="btnBar alignCenter">
+        <input name="" type="button" value="close" class="btn">
+      </div>
+      <!-- End Button Bar Row --> 
+    </div>
+    <!-- End Application Footer -->
+  </fieldset>
+</div>
+<!-- End Application Module --> 
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:670});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+
+</script>
+</div>

@@ -1,0 +1,130 @@
+// ----------------------------------------------------
+// glossary
+// ----------------------------------------------------
+
+.ups-glossary_carousel {
+    background: $white;
+    border:1px solid $black_s1;
+    text-align: center;
+    overflow: hidden;
+	&:not(.slick-slider){
+		.ups-skipNav_carousel{
+			display: none;	
+		}
+	}
+	.ups-skipNav_carousel{ 
+		position: absolute;
+	    width: 140px;
+	    background: $ups_gold;
+	    padding: 5px;
+	    text-align: center;
+	    color: $ups_brown;
+	    top: -100px;
+	    left: 50%;
+	    margin-left: -70px;
+	    font-family: $sans;
+	    font-weight: 700;
+	    text-transform: uppercase;
+	    font-size: 0.8em;
+	    max-height: 40px;
+	    z-index: 1;
+	    @include transition-property(top);
+	    @include transition-duration(0.3s);
+	    
+	    &.ups-autoplay_show{
+	    	top: 0;
+	    }
+	}
+    .ups-glossary_slide {
+        position: relative;
+        padding: 45px 30px 100px;
+
+        h2 {
+            margin: 0 0 24px;
+            font: 1.3em/1 $sans;
+        }
+
+        p {
+            margin: 10px 0 0;
+            font-size: 1em;
+        }
+        a {
+            display: block;
+            margin-top: 24px;
+            color: $ups_brown;
+            font-family: $sans-bd;
+            text-decoration: underline;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.ups-glossary {
+
+    h3 {
+        margin-top: 0;
+        font-family: $sans-bd;
+        margin-bottom: $margin_4;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    .ups-glossary_carousel {
+        background: $white;
+        border: 1px solid $black_s1;
+        text-align: center;
+
+        .ups-glossary_slide {
+            padding: $margin_3 $grid-gutter-width;
+
+            h2 {
+                margin: 0 0 $margin_5;
+                font: 1.3em/1 $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+            p {
+                margin: $margin_5 0 0;
+                font-size: 1em;
+            }
+            a {
+                display: block;
+                margin-top: $margin_4;
+                color: $black_s3;
+                text-decoration: underline;
+
+                &:hover {
+                    color: $black_s1;
+                }
+
+            }
+        }
+    }
+}
+
+.subsection_aside .ups-glossary,
+.iw_columns.col-lg-4 .ups-glossary {
+    @include aside-pad_sm;
+}
+
+
+.ups-glossary {
+    @media #{$media-small} {
+        .ups-glossary_carousel {
+            border-bottom: 10px solid $black_s4;
+        }
+    }
+}
+// aside .ups-glossary {
+//     @include aside-pad_sm;
+// }

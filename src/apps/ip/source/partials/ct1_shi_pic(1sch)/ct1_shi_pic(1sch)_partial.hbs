@@ -1,0 +1,124 @@
+
+<form action="repl_fname">
+  
+  <!-- Begin Application Module --> 
+  
+  <!-- Begin SubTabs -->
+  <ul class="subTab clearfix">
+    <li class="tab-on">Package</li>
+    <li class="tab-off"><a href="repl_href">Freight</a></li>
+  </ul>
+  <!-- End SubTabs -->
+  
+  <div class="appLvl ups-application_wrapper ups-form_wrap ups-legacy_tab_view tab"> 
+    
+    <!-- Begin Application Header -->
+    <div class="appHead clearfix">
+      <h2>Enter Pickup Information</h2>
+      <div class="clear"></div>
+      {{>A04_page_level_required_message}} </div>
+    <!-- End Application Header --> 
+    
+    <!-- Begin Application Body -->
+    <div class="appBody"> {{#if pickup_account_details}}
+      {{>"ct1_shi_pic(1sch)_panel_1a_partial"}}
+      {{/if}}
+      
+      {{#if shipping_label}}
+      {{>"ct1_shi_pic(1sch)_panel_1b_partial"}}
+      {{/if}}
+      {{#if pic_info_addy}}
+      {{>"ct1_shi_pic(1sch)_panel_2a_partial"}}
+      {{/if}}
+      {{#if pic_info_show }}
+      {{>"ct1_shi_pic(1sch)_panel_2b_partial"}}
+      {{/if}}
+      
+      {{#if pic_info_addy2}}
+      {{>"ct1_shi_pic(1sch)_panel_2c_partial"}}
+      {{/if}}
+      
+      {{#if pic_info_addy3}}
+      {{>"ct1_shi_pic(1sch)_panel_3a_partial"}}
+      {{/if}}
+      
+      {{#if service_package_pallet}}
+      {{>"ct1_shi_pic(1sch)_panel_3b_partial"}}
+      {{/if}}
+      
+      {{#if pickup_date}}
+      {{>"ct1_shi_pic(1sch)_panel_3c_partial"}}
+      {{/if}}
+      
+      
+      {{>"ct1_shi_pic(1sch)_panel_4_partial"}}
+      
+      {{#if pickup_notifications}}
+      {{>"ct1_shi_pic(1sch)_panel_5_partial"}}
+      {{/if}}
+      
+      {{#if dest_options}}
+      {{>"ct1_shi_pic(1sch)_panel_5b_partial"}}
+      {{/if}} </div>
+    <!-- End Application Body --> 
+    
+    <!-- Start Application Footer --> 
+    <!-- Old Legacy Button Implementation --> 
+    <!--<div class="btnBar">
+		  <input name="Input" type="submit" value="Next" class="btnArw">
+		</div>--> 
+    <!-- New WEM Button Implementation -->
+    <div class="clear"></div>
+    <div class="appFooter">
+      <div class="ups-group">
+        <button type="button" class="ups-cta ups-cta_primary">Next</button>
+      </div>
+      <p><span aria-hidden="true">*</span> This application provides you with the ability to send a message via 
+        electronic mail to a contact person at the requested pickup location. You agree to use this message service solely to communicate 
+        information related to the shipment and to transmit only lawful message that do not include lewd, offensive or illegal content, in no event shall UPS
+        be liable for the content of the message or any failure or delay in the transmission or receipt of the message.</p>
+    </div>
+    <!-- End Application Footer --> 
+  </div>
+  <!-- End Application Module -->
+  
+</form>
+
+<!------------- -- --------------> 
+<!--   IC DEV Display Module   --> 
+<!------------- -- --------------
+<script type="text/javascript">
+var htmlcobrand;
+$(document).ready(function(){
+	/* Prepend Control Box */
+	$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Pickup" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Internet Pickup" class="btn"></div></div>');
+	/* Set default container and stylesheet to Internet Pickup */
+	$('.switchContainer').removeClass('ccacmpad1');
+	$('.switchContainer').attr('id', 'ccCntMod');
+	//chooseStyle('Internet Pickup', 60);	
+	htmlcobrand = $('.cobrand').html();
+	$('.cobrand').remove();
+	
+});
+/* function to switch views */
+function switchContainer(container) {
+	if(container == 'ccCntMod') {
+		$('.switchContainer').removeClass('ccacmpad1');
+		$('.switchContainer').attr('id', container);
+		//chooseStyle('Internet Pickup', 60);
+		$('.cobrand').remove();
+	} 
+	if(container == 'ccacmpad1') {
+		$('.switchContainer').attr('id', '');
+		$('.switchContainer').addClass(container);
+		//chooseStyle('Campus Pickup', 60);
+		$('.cobrand').remove();
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+	}
+}
+
+</script> 
+
+<!------------- -- --------------> 
+<!-- END IC DEV Display Module --> 
+<!------------- -- -------------->

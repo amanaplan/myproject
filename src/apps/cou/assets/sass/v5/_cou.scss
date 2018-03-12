@@ -1,0 +1,294 @@
+@import '../../../../common/apps/assets/sass/components/A27_official_datepicker';
+@import '../../../../common/apps/assets/sass/components/side_menu';
+@import '../../../../common/apps/assets/sass/components/multi_select_view';
+
+
+@-webkit-keyframes tile-reveal {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes tile-reveal {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tile-reveal {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+body > .iw_viewport-wrapper > .container-fluid.iw_section:nth-child(3) {
+    overflow: visible;
+}
+
+.ups-large_btn_group_holder {
+    position: relative;
+
+    &:after {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);
+        margin-bottom: -100px;
+    }
+}
+
+
+.ups-large_btn_group {
+    margin: 0 -3px 20px;
+    animation: tile-reveal .5s linear forwards;
+
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    .ups-large_btn_group_fieldset {
+        float: left;
+        width: 57.14%;
+
+        .ups-large_btn_group_item {
+            width: 25%;
+        }
+    }
+
+
+    .ups-large_btn_group_item {
+        float: #{$default-float};
+        width: 14.285%;
+        padding: 0 3px;
+
+        .ups-large_btn_group_btn {
+            width: 100%;
+            min-height: 100px;
+            color: $white;
+            background-color: $black_s1;
+            border: 1px solid $black_s4;
+            border-radius: 5px;
+            padding: 4px 7px;
+            word-wrap: break-word;
+            display: inline-block;
+            position: relative;
+            text-align: center;
+
+            .ups-large_btn_group_btn_inner {
+                display: block;
+                position: absolute;
+                top: 50%;
+                #{$default-float}: 7px;
+                #{$opposite-direction}: 7px;
+                transform: translateY(-50%);
+            }
+        }
+
+        .ups-large_btn_group_btn_total {
+            display: block;
+            font-size: 28px;
+            font-weight: bold;
+
+            .icon {
+                font-size: 23px;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+
+        .ups-tile_button_content {
+            padding: 4px 7px;
+            position: relative;
+
+            .ups-tile_button_inner {
+                position: absolute;
+                top: 50%;
+                #{$default-float}: 7px;
+                #{$opposite-direction}: 7px;
+                transform: translateY(-50%);
+            }
+        }
+    }
+}
+
+.ups-tbl_ctrls {
+    z-index: 5;
+}
+
+
+
+
+
+
+
+
+.ups-date_range_group {
+    .ups-date_range_input {
+        width: 42%;
+        float: #{$default-float};
+
+        .ups-input_wrapper {
+            .ups-form_input {
+                padding-#{$opposite-direction}: 42px;
+            }
+        }
+    }
+
+    .ups-date_range_txt {
+        width: 16%;
+        float: #{$default-float};
+        text-align: center;
+        padding: 0 8px;
+    }
+}
+
+.ups-claims_tbl_container {
+    overflow-x: auto;
+
+    .ups-claims_tbl_container {
+        min-width: 768px;
+    }
+}
+
+.ups-claims_tbl {
+    width: 100%;
+
+    thead th {
+        //width: 100%;
+        border: 1px solid white;
+        background-color: $ups_stone;
+
+        &.ups-claims_tbl_acctnum_claim {
+            width: 125px;
+        }
+
+        &.ups-claims_tbl_actions_claim {
+            width: 150px;
+        }
+    }
+
+    tbody td, tbody th {
+        border: none;
+        border-bottom: 1px solid $ups_stone;
+    }
+
+    tbody th {
+        font: $sans;
+        font-weight: normal;
+    }
+}
+
+.ups-claims_header {
+    font-size: 18px;
+
+    &:focus {
+        outline: 5px auto $ups-gold;
+
+        .ie9, .ie10, .ie11 & {
+            outline: 1px solid $ups-gold;
+        }
+
+        @at-root {
+            @-moz-document url-prefix() {
+                & {
+                    outline: 1px auto $ups-gold;
+                }
+            }
+        }
+    }
+}
+
+.ups-claims_list {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+        margin-bottom: 20px;
+    }
+}
+
+.ups-form_group .ups-input_has_action .ups-input_action .icon.ups-claims_search_icon {
+    font-size: 1.2em;
+}
+
+.ups-menu_btn_container {
+    .ups-menu_btn {
+        @media #{$media-small} {
+            text-align: left;
+        }
+    }
+}
+
+.ups-toggle_view_left.ups-toggle_view_btn_dropdown:before {
+    left: 20px;
+}
+
+.ups-help_wrapper.ups-fieldset_has_helpbtn {
+    legend, legend.ups-form_label {
+        width: auto;
+        float: left;
+    }
+
+    .ups-help {
+        float: left;
+        position: relative;
+        margin-bottom: 5px;
+
+        .ups-help_link {
+            position: static;
+
+            @media #{$media-small} {
+                position: absolute;
+            }
+        }
+
+        .ups-help_tooltip {
+            width: 350px;
+
+            @media #{$media-small} {
+                width: 100%;
+            }
+        }
+
+        @media #{$media-small} {
+            position: static;
+            float: right;
+        }
+    }
+}
+
+.ups-form_ctaGroup {
+    margin-top: 20px;
+}
+
+input.ups-file_input_hidden {
+    display: none;
+}

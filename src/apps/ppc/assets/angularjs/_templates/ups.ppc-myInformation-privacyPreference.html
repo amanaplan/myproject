@@ -1,0 +1,218 @@
+<div class="ups-communicationPref ups-form_wrap" data-ng-controller="privacyPrefController">
+	<form error-on-submit name="ups_privacyPrefForm" novalidate>
+        <div class="ng-scope" data-ng-if="clicked && checkFormErrors()">
+        <!-- <div class="ng-scope" data-ng-if="clicked || errorList.length>0"> -->
+        	<h3 class="ups-invalid_color-list ups-error_alert-list ng-scope">
+        		<span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+        		Please correct the following errors
+        	</h3>
+        	<ul class="ups-icons-error">
+                <li data-ng-if="clicked && ups_privacyPrefForm.address0.$invalid"><span
+                    data-ng-show="ups_privacyPrefForm.address0.$invalid && clicked"> <a
+                        focus-attr="ups-address" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address </a> is
+					required. </span></li>
+
+				<li data-ng-if="clicked && ups_privacyPrefForm.city.$invalid"><span
+                    data-ng-show="ups_privacyPrefForm.city.$invalid && clicked"> <a
+                        focus-attr="ups-city" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> City </a> is required. </span></li>
+
+				<li data-ng-if="clicked && ups_privacyPrefForm.state.$invalid"><span
+                    data-ng-show="ups_privacyPrefForm.state.$invalid && clicked && setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> State </a> is
+					required. </span> <span
+                    data-ng-show="ups_privacyPrefForm.state.$invalid && clicked && !setUS"> <a focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address
+					Information </a> is required. </span></li>
+
+				<li data-ng-if="clicked && ups_privacyPrefForm.zipCode.$invalid"><span
+                    data-ng-show="ups_privacyPrefForm.zipCode.$invalid && clicked"> <a
+                    focus-attr="ups-zipcode" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Zip Code </a> is
+					required. </span></li>
+
+                <li data-ng-if="clicked && ups_privacyPrefForm.privacyPrefphone_number.$invalid"><span> <a
+                        focus-attr="privacyPrefphone_number" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Phone </a> is <span ng-if="ups_privacyPrefForm.privacyPrefphone_number.$error.required">required.</span><span ng-if="ups_privacyPrefForm.privacyPrefphone_number.$error.pattern">invalid.</span> </span></li>
+
+                <li data-ng-if="clicked && ups_privacyPrefForm.privacyPrefRadio.$invalid"><span
+                    data-ng-show="ups_privacyPrefForm.privacyPrefRadio.$invalid && clicked"> <a
+                    focus-attr="ups-privacy_1" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> My Privacy Preferences </a> is required. </span></li>
+        	</ul>
+        </div>
+        <div data-ng-if="confirmation">
+            <p class="h4">Thank you for updating your privacy preference. It may take up to 24 hours for this change to take effect.</p>
+            <div class="ups-group" data-ng-if="withAddressAndPhone">
+                <p><strong>Updated:</strong> 01/19/2016</p>
+            </div>
+            <div class="row" data-ng-if="noAddressAndPhone">
+                <div class="col-md-5">
+                    <p class="h5">Contact Information</p>
+                    <div class="ups-group ups-group_condensed">
+            			<p>John Smith</p>
+            				<address class="ups-address_condensed">
+            				1234 Main Street<br>
+            				Roswell, GA 30076 US <br>
+            				</address>
+            			<p>Phone: 555-123-4567 Ext.: 101</p>
+            			<p>Email: jsmith@email.com</p>
+            		</div>
+                </div>
+            </div>
+            <div class="ups-group ups-group_condensed">
+                <p class="ups-group_label">Privacy Preference:</p>
+                <p>UPS <strong>[may/may not]</strong> share your personal information with third parties for those third parties' own purposes, except as described in the Privacy Notice.
+                </p>
+            </div>
+            <div class="ups-group">
+                <p><a href="#" class="ups-link">Read Our Privacy Notice</a></p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <section name="printNotice" class="panel panel-primary">
+            			<div class="panel-body">
+                            <p><strong>We recommend printing a copy of this update for your records</strong></p>
+                            <button type="button" class="ups-cta ups-cta_primary">Print</button>
+            			</div>
+            		</section>
+                </div>
+            </div>
+            <!--DO NOT INCLUDE THIS IN PRODUCTION -->
+            <div class="ups-cms-demo">
+                <p><strong>Do Not Include This In Production</strong></p>
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="loggedIn = false; confirmation = true; withAddressAndPhone = true; noAddressAndPhone = false;">Logged In with Address and Phone</button>
+                <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="loggedIn = true; confirmation = true; noAddressAndPhone = true; withAddressAndPhone = false;">Logged In with No Address and Phone</button>
+            </div>
+            <!--DO NOT INCLUDE THIS IN PRODUCTION -->
+        </div>
+        <div data-ng-if="loggedIn">
+            <p>As described in the "Information We Share" section of the <a href="#" class="ups-link">UPS Privacy Notice</a>, you may opt out of certain sharing of personal information with third parties. To do so, please indicate your preference. <span data-ng-if="withAddressAndPhone">Your preference will apply to all Mailing Addresses, Email Addresses and Phone Numbers that you have provided to UPS.</span><span data-ng-if="noAddressAndPhone">Your preference will apply to the information you supply here, and we will update your UPS Profile to include this information.</span></p>
+            <p>
+                <em>
+                    <span aria-hidden="true">*</span>
+                    <span class="ups-readerTxt">Required</span>
+                    Indicates required field
+                </em>
+            </p>
+            <div class="row" data-ng-if="noAddressAndPhone">
+                <div class="col-md-5">
+                    <div class="ups-group ups-group_condensed">
+                        <p class="ups-group_label">
+                            Email
+                        </p>
+                        <p class="ups-group_value">
+                            jsmith@gmail.com
+                        </p>
+                    </div>
+            		<!-- Begin Common Address Component -->
+                    <ups-cac></ups-cac>
+            		<!-- End Common Address Component -->
+
+                    <!-- Begin of Phone Number Row -->
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ups-form_group ups-form_required" data-errormsg="This field is required">
+                                <label for="privacyPrefphone_number" class="ups-form_label">Phone <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input id="privacyPrefphone_number" type="text" name="privacyPrefphone_number" class="ups-form_input" aria-required="true" required maxlength="15" data-ng-pattern="/^[0-9|\s|\-|(|)]+$/" data-ng-model="privacyPrefForm.privacyPrefphone_number"
+                                    data-ng-class="{'ups-bodError' : (ups_privacyPrefForm.privacyPrefphone_number.$invalid && clicked)}"
+                                    aria-describedby="privacyPrefphone_number-error">
+                                    <div data-ng-if="ups_privacyPrefForm.privacyPrefphone_number.$valid">
+                						<!-- @Note: screen reader text needs to be translated as well -->
+                						<span class="ups-icon-check" aria-hidden="true"></span>
+                						<span class="ups-readerTxt">Check</span>
+                					</div>
+                					<span id="privacyPrefphone_number-error" role="alert">
+                						<span class="ups-invalid_color"
+                							data-ng-show="(!ups_privacyPrefForm.privacyPrefphone_number.$pristine && ups_privacyPrefForm.privacyPrefphone_number.$invalid) || (ups_privacyPrefForm.privacyPrefphone_number.$invalid && clicked)">
+                							<span class="icon ups-error_exclamation">
+                								<span class="ups-icon-exclamation" aria-hidden="true"></span>
+                							</span>
+                                            <span class="ups-readerTxt">Invalid</span> <span
+            								data-ng-if="ups_privacyPrefForm.privacyPrefphone_number.$error.required">Phone is required.</span>
+                                            <span
+            								data-ng-if="ups_privacyPrefForm.privacyPrefphone_number.$error.pattern">Phone is invalid.</span>
+                						</span>
+                						<span data-ng-if="ups_privacyPrefForm.privacyPrefphone_number.$valid">
+                							<span class="ups-readerTxt">Check</span>
+                						</span>
+                					</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="ups-form_group">
+                                <label for="ups-phone-ext" class="ups-form_label">Extension</label>
+                                <div class="ups-text_wrapper ups-input_wrapper">
+                                    <input type="text" name="ups-phone-ext"
+                                    class="ups-form_input" id="ups-phone-ext"
+                                    maxlength="5" data-ng-pattern="/[0-9]*/">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Phone Number Row -->
+
+                    <!-- Begin Existing UPS Account Number Input -->
+                    <div class="ups-form_group ">
+                        <label for="existingUPSAcctNum" class="ups-form_label">
+                            Existing UPS Account Number
+                        </label>
+                        <div class="ups-text_wrapper ups-input_wrapper">
+                            <input type="text" name="existingUPSAcctNum" class="ups-form_input" id="existingUPSAcctNum">
+                        </div>
+                    </div>
+                    <!-- End of Existing UPS Account Number Input -->
+
+                </div>
+            </div>
+            <!-- Begin Radio Button Group -->
+            <div class="ups-group">
+                <fieldset class="ups-form_group ups-form_required">
+                    <legend class="ups-form_label">My Privacy Preference <span aria-hidden="true" class="ups-required_indicator"></span></legend>
+                    <div class="ups-radio ups-input_wrapper">
+                        <input type="radio"
+                            name="privacyPrefRadio"
+                            id="ups-privacy_1"
+                            class="ups-radio-custom" aria-required="true" required aria-describedby="privacyPrefRadio_error"
+                            data-ng-model="privacyPrefForm.privacyPrefRadio"
+                            data-ng-class="{'ups-bodError' : (ups_privacyPrefForm.privacyPrefRadio.$invalid && clicked)}"
+                            value="0"> <label
+                            for="ups-privacy_1" class="ups-radio-custom-label">{{privacyLabel.yesPleaseShare.text}}</label>
+                    </div>
+                    <div class="ups-radio ups-input_wrapper">
+                        <input type="radio"
+                            name="privacyPrefRadio"
+                            id="ups-privacy_2"
+                            class="ups-radio-custom" aria-required="true" required aria-describedby="privacyPrefRadio_error"
+                            data-ng-model="privacyPrefForm.privacyPrefRadio"
+                            data-ng-class="{'ups-bodError' : (ups_privacyPrefForm.privacyPrefRadio.$invalid && clicked)}"
+                            value="1"> <label
+                            for="ups-privacy_2" class="ups-radio-custom-label">{{privacyLabel.doNotShare.text}}
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- Start Field Level Error -->
+                <span class="ups-icons-error" id="privacyPrefRadio_error" role="alert">
+                	<span class="ups-invalid_color" data-ng-show="(!ups_privacyPrefForm.privacyPrefRadio.$pristine && ups_privacyPrefForm.privacyPrefRadio.$invalid) || (ups_privacyPrefForm.privacyPrefRadio.$invalid && clicked)">
+                    	<span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span>A Privacy Preference must be selected.</span>
+                    </span>
+                </span>
+                <!-- End Field Level Error -->
+            </div>
+            <!-- End of Radio Button Group -->
+        </div>
+
+        <!-- CTA Button Group -->
+        <div class="ups-form_ctaGroup" data-ng-show="loggedIn">
+            <button type="button" class="ups-cta ups-cta_primary" data-ng-click="clicked=true;proceedToConfirmation(ups_privacyPrefForm.$valid);">Save</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+        </div>
+        <!-- End of CTA Button Group -->
+    </form>
+
+    <!--DO NOT INCLUDE THIS IN PRODUCTION -->
+    <div class="ups-cms-demo" data-ng-hide="confirmation">
+        <p><strong>Do Not Include This In Production</strong></p>
+        <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="loggedIn = true; withAddressAndPhone = true; noAddressAndPhone = false;">Logged In with Address and Phone</button>
+        <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="loggedIn = true; noAddressAndPhone = true; withAddressAndPhone = false;">Logged In with No Address and Phone</button>
+    </div>
+    <!--DO NOT INCLUDE THIS IN PRODUCTION -->
+</div>

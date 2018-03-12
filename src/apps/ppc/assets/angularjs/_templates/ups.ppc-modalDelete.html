@@ -1,0 +1,21 @@
+<p>{{youSure}}</p>
+<div class="row" data-ng-show="shiping">
+    <div class="col-md-3"> <strong>Payment Method</strong> </div>
+    <div class="col-md-8">
+        <div class="ups-form_group"> 
+            <!-- 7601 v1.08 -->
+            <p ng-if="(accountType == 'Account')">UPS Shipping Account {{shippingAccount}}</p>
+            <p ng-if="(accountType == 'Payment Card')">{{paymentMethod}} ending in {{cardLastFour}}</p>
+            <p ng-if="(accountType != 'Account' && accountType != 'Payment Card')">{{accountType}}</p>
+            <!-- end edit --> 
+        </div>
+        <!-- ups-form_group --> 
+    </div>
+</div>
+<div class="ups-form_ctaGroup text-center">
+    <button type="submit" class="ups-cta ups-cta_primary"
+        data-ng-click="ok()" data-dismiss="modal">Yes</button>
+    <button type="submit" class="ups-cta ups-cta_secondary"
+        data-ng-click="cancel()">No</button>
+    
+</div>

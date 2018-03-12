@@ -1,0 +1,93 @@
+<div class="ups-confirmation" data-ng-controller="OpenAccountCtrl">
+	<!-- //// begin ups.doa-inline-confirm-openAccount //// -->
+    <!-- CONFIRMATION CONTENT -->
+
+    <p data-ng-hide="isEU || isPromo">Use your new ID to order supplies, pay your bill online, set shipping preferences, and more.</p>
+	<p>Charge your next shipment to your account and then manage your weekly bills in our online billing center.</p>
+
+    <div class="ups-group" data-ng-hide="isEU || isPromo">
+        <p class="ups-group_label">Name</p>
+        <p>{{name}}</p>
+    </div>
+
+    <div class="ups-group" data-ng-hide="isEU || isPromo">
+        <p class="ups-group_label">Email</p>
+        <p>{{email}}</p>
+    </div>
+
+    <div class="ups-group" data-ng-hide="isEU || isPromo">
+        <p class="ups-group_label">User ID</p>
+        <p>{{userID}}</p>
+    </div>
+
+    <div class="ups-group">
+        <p class="ups-group_label">Account Number</p>
+        <p>{{account}}</p>
+    </div>
+
+    <div class="ups-group">
+        <p class="ups-group_label">Pickup Options</p>
+        <p>{{inlineConfirm}}</p>
+        <p>{{daysSelected}}</p>
+        <p>{{inlineConfirmDetails}}</p>
+    </div>
+
+	<div class="ups-group" data-ng-if="isEU">
+        <p class="ups-group_label">Required Documents</p>
+        <p data-ng-if="hasUploadedDocs">Your required documents uploaded successfully.</p>
+        <p data-ng-if="!hasUploadedDocs">Your required documents did not upload successfully. A UPS Representative will contact you to help.</p>
+    </div>
+
+    <div class="ups-group" data-ng-if="Discount || isPromo">
+        <p class="ups-group_label">Discount Details</p>
+        <div class="ups-group">
+            <p class="ups-group_label">{Discount Name}</p>
+        </div>
+            <p>{This is a discount description. This is a discount
+                description. This is a discount description. This is a discount
+                description.}</p>
+            <p><a href="#" onclick="return false;" class="ups-link ups-new-window">Terms and Conditions <span class="ups-readerTxt">Open a new window</span><span aria-hidden="true" class="icon ups-icon-newwindow"></span></a></p>
+            <p><strong>Expiration Date:</strong> MM/DD/YYYY</p>
+    </div>
+
+    <div class="ups-group" data-ng-if="SpecialHazardous || SpecialLithium">
+        <p class="ups-group_label">Regulated Shipping Needs</p>
+        <p data-ng-if="SpecialHazardous">Dangerous Goods</p>
+        <p data-ng-if="SpecialLithium">Lithium Batteries</p>
+    </div>
+
+	<div class="ups-form_group" data-ng-if="!NotEligible" data-ng-hide="isEU || isPromo">
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input check-verify
+            	id="ups-notificationCheck"
+                class="ups-checkbox-custom"
+                name="ups-notificationCheck"
+                type="checkbox"
+                value="1"
+                data-ng-model="upsnotificationCheck"
+                data-ng-checked="upsnotificationCheck">
+            <label for="ups-notificationCheck"
+            	class="ups-checkbox-custom-label">I want to receive package notifications.
+            </label>
+        </div>
+	</div>
+
+	 <div class="ups-group" data-ng-hide="isEU || isPromo">
+		<p><a href="#" onclick="return false;" class="ups-link ups-new-window">
+				Learn about UPS My Choice&reg; <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span>
+		</a></p>
+	</div>
+	<div class="ups-cms-demo" data-ng-if="isEU">
+	<button type="button" data-ng-click="hasUploadedDocs=true" class="ups-cta ups-cta_secondary">Uploaded Documents Success</button>
+	<button type="button" data-ng-click="hasUploadedDocs=false" class="ups-cta ups-cta_secondary">Uploaded Documents Fail</button>
+	</div>
+    <div class="ups-form_ctaGroup text-center">
+        <button data-ng-if="!choosePayment" type="submit"
+            class="ups-cta ups-cta_primary" data-ng-click="ok()">Close</button>
+        <button data-ng-if="choosePayment" type="submit"
+            class="ups-cta ups-cta_primary" data-ng-click="backtoPayment()">Close</button>
+        <button type="submit" class="ups-cta ups-cta_secondary"
+            data-ng-click="redirectToMyProfile('openAcount'); ok()">Manage My Profile</button>
+    </div>
+	<!-- //// end ups.doa-inline-confirm-openAccount //// -->
+</div>

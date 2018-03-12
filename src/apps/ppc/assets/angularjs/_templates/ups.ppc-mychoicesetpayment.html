@@ -1,0 +1,30 @@
+<div data-ng-controller="preferenceMyChoiceSetPayment"  class="  ups-application_wrapper">
+		<ng-form name="formObj.ups_mychoiceSetPayment" novalidate>
+    <p>Some UPS My Choice features have additional charges. Choose how you'd like to pay for any optional services.</p>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="ups-form_group ">
+					<label for="ups-payment-opt" class="ups-form_label">Default Payment Method</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select error-on-blur id="ups-payment-opt"  class="ups-dropdown"
+							name="shippingCharges" data-ng-model="formObj.delivery"
+							data-ng-change="" required
+							data-ng-options="item.displayAccount
+ 							for item in accountMethod">
+ 							<option value="" selected>Select One</option>
+						</select>
+					</div>				
+			</div>
+		</div>
+	</div>
+		<div class=" row  ups-form_ctaGroup">
+			<div class="col-md-6">
+				<button type="button" data-ng-click=""					
+					class="ups-cta ups-cta_primary">Save Changes</button>
+                    <!-- data-ng-disabled="!formObj.ups_mychoiceSetPayment.$dirty" -->
+			
+			</div>
+		</div>
+		
+	</ng-form>	
+</div>

@@ -1,0 +1,129 @@
+<div class="main" id="thirdparty">
+	<h1>Quantum View Manage</h1>
+	<form action="../../../legacy_spa/qvmc/_templates/repl_fname" method="repl_method" name="repl_fname">
+		<div class="floatBegin">
+			<ul class="subTab clearfix">
+				<li class="tab-off"><a ui-sref="combined">Combined</a>
+				</li>
+				<li class="tab-off"><a ui-sref="outbound">Outbound</a>
+				</li>
+				<li class="tab-off"><a ui-sref="inbound">Inbound</a>
+				</li>
+				<li class="tab-on">Third Party</li>
+				<li class="tab-off"><a ui-sref="import">Imports</a></li>
+			</ul>
+		</div>
+		<div class="floatEnd">
+			<p>Last Updated: 02/15/2016 01:10PM <span><a href="" class="btnlnkR printIconR">Print</a>
+					</span> <span><a href="" class="btnlnkR helpIconR">Help</a> </span> </p>
+		</div>
+		<div class="clear"></div>
+		<div class="appLvl tab col24 clearfix">
+			<div class="appHead"></div>
+			<div class="appBody clearfix">
+				<div class="floatBegin">
+					<div class="flexFirst clearfix" ng-controller="DropdownCtrl">
+						<dl role="presentation" class="outHozFlex"> <dt><label for="selectbox_01"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+							<dd>
+								<select name="singleSelect" id="selectbox_01" ng-model="data.singleSelect" class="formcol4">
+									<option value="option-1" selected="selected">Default Third Party View</option>
+									<option value="option-2">Saved Custom Views</option>
+									<option value="option-3"> &nbsp; TP CV w Report</option>
+									<option value="option-4"> &nbsp; TradeDirect</option>
+									<option value="option-5"> &nbsp; Working w E2k - Biddle</option>
+									<option value="option-6">Option 3</option>
+									<option value="option-7">Option 4</option>
+								</select>
+							</dd>
+						</dl>
+					</div>
+					<div class="flexAfter clearfix"> <span><img alt="Save" class="img-save" src="/img/btn_save_mini.gif"></span></div>
+					<div ng-controller="DatepickerCtrl" class="flexAfter clearfix">
+						<div class="flexFirst clearfix">
+							<dl role="presentation" class="outHozFlex flexFirstPadQvm clearfix"> <dt><label for="datepicker_01">Date Range: <span class="visually-hidden"> from</span> </label></dt>
+								<dd>
+									<input name="text" type="text" id="datepicker_01" size="15" value="01/01/2014" />
+									<dd>
+							</dl>
+						</div>
+						<div class="flexAfter clearfix">
+							<dl role="presentation" class="outHozFlex flexAfterPadQvm clearfix"> <dt><label for="datepicker_02"> <span class="visually-hidden">date range</span> to</label></dt>
+								<dd>
+									<input name="text" type="text" id="datepicker_02" size="15" value="01/01/2014" /> </dd>
+							</dl>
+						</div>
+						<div class="flexAfter clearfix"> <span class=""><img ng-click="()" alt="calender" src="/img/icn_calendar.gif" /></span> </div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="floatEnd">
+					<div class="flexFirstPad clearfix"> <span class="visually-hidden">Click to view preferences</span>
+						<input type="button" class="btn" value="Preferences" /> </div>
+					<div class="flexAfterPad clearfix"> <span class="visually-hidden">Click to view alerts</span>
+						<input type="button" class="btn" value="Alerts" /> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="flexFirst clearfix">
+					<dl role="presentation" class="outHozFlex"> <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+						<dd>
+							<input type="text" name="txtbox" class="formcol4" /> </dd>
+					</dl>
+				</div>
+				<div class="flexAfter clearfix" ng-controller="DropdownCtrl">
+					<dl role="presentation" class="outHozFlex"> <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+						<dd>
+							<select name="singleSelect" id="selectbox_02" ng-model="data.singleSelect" class="formcol4">
+								<option value="option-1">Select One</option>
+								<option value="option-1">Select One</option>
+								<option value="option-2">Reference Number(s)</option>
+								<option value="option-3">Ship To Name</option>
+								<option value="option-4">Ship To Postal Code</option>
+								<option value="option-5">Ship to State/Provience</option>
+								<option value="option-6">Shipper Name</option>
+								<option value="option-7">Tracking Number</option>
+							</select>
+						</dd>
+					</dl>
+				</div>
+                <div class="flexAfter clearfix"> <input type="button" class="btn" value="Search"></div>
+				<div class="flexAfter clearfix">
+					<div class="flexFirstPad clearfix">
+						<input type="button" class="btn" value="Apply Filters" /><span class="visually-hidden">to results table</span> </div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="secLvl step">
+					<div class="secHead">
+						<h2>Summary of Third Party Shipments</h2> </div>
+					<div class="secBody">
+						<div ng-controller="ThirdPartyCtrl" class="gridcontent">
+							<div ui-grid="gridOptions" class="grid" ui-grid-pinning ui-grid-selection ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+				<div class="secLvl step">
+					<div class="secHead">
+						<h2> Shipment Details</h2> </div>
+					<div class="secBody">
+						<div class="floatBegin">
+							<p>Displayin 78</p>
+							<p><a href="#" class="btnlnkR newWindowIconR">Add/Remove Fields</a> </p>
+						</div>
+						<div class="floatEnd">
+							<div class="flexFirstPad clearfix"> <span class="visually-hidden">Send to </span>
+								<input type="button" class="btn" value="Email" /> </div>
+							<div class="flexAfterPad clearfix">
+								<input type="button" class="btn" value="Download as CSV" /> </div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+						<div ng-controller="thirdpshipDetCtrl" class="gridcontent">
+							<div ui-grid="gridOptions" class="grid" ui-grid-auto-resize></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

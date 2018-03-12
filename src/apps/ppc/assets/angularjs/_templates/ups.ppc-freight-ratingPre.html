@@ -1,0 +1,126 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+    <ng-form name="ups_freightRatingform" data-novalidate> 
+        <!-- //// begin ups.ppc-freight-ratingPre //// -->
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Quote Type</legend>
+            <div data-ng-repeat="i in formObj.freightRatingPref.defaultRateQuoteType"
+				class="ups-checkbox ups-input_wrapper  ups-display-inline">
+            	<input id="{{i.text}}" class="ups-radio-custom" type="radio"
+					name="deafultRateQuote" value="{{$index}}"
+					data-ng-model="formObj.deafultRateQuote"
+					data-ng-checked="formObj.deafultRateQuote" />
+            <label for="{{i.text}}" class="ups-form_label ups-radio-custom-label">{{i.text}} </label>
+            </div>
+        </fieldset>
+        <hr>
+        <div class="row">
+            <h3>Air Freight</h3>
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-defaultAccntNumAfr" class="ups-form_label">Account
+                        Number</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <select name="ups-defaultAccntNumAfr" id="ups-defaultAccntNumAfr"
+							class="ups-dropdown" data-ng-model="formObj.defaultAccntNumAfr">
+                            <option value="" selected>No default selection</option>
+                            <option data-ng-repeat="defaultAccNumAfr in freightAccnt"
+							value="{{defaultAccNumAfr}}">{{defaultAccNumAfr}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1"> <a href="#" onclick="return false;" data-ng-click="addAirFrieghtAccount()" class="ups-link"> Add an Existing Air Freight Account </a> </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <fieldset class="ups-form_group">
+                    <legend class="ups-form_label">Unit of Measurement</legend>
+                    <div data-ng-repeat="j in formObj.freightRatingPref.prefUnitMeasure"
+							class="ups-checkbox ups-input_wrapper  ups-display-inline">
+                        <input id="{{j.text}}" class="ups-radio-custom" type="radio"
+							name="prefUnitMeasure" value="{{$index}}"
+							data-ng-model="formObj.prefUnitMeasure"
+							data-ng-checked="formObj.prefUnitMeasure" />
+                        <label for="{{j.text}}" class="ups-form_label ups-radio-custom-label">{{j.text}} </label>
+                    </div>
+                </fieldset>
+                <div class="ups-form_group">
+                    <label for="ups-freightType" class="ups-form_label">Freight Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <select name="ups-freightType" id="ups-freightType"
+							class="ups-dropdown" data-ng-model="formObj.freightType">
+                            <option data-ng-repeat="freightTypeVal in formObj.freightRatingPref.freightType"
+							value="{{freightTypeVal.type}}">{{freightTypeVal.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <h3>Dimensions</h3>
+                    <div class="col-md-4">
+                        <div class="ups-form_group">
+                            <label for="ups-afrLength" class="ups-form_label">Length</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input number-mask type="text" name="afrLength"
+                                    class="ups-form_input" id="ups-afrLength" maxlength="10" data-ng-model="formObj.afrLength" data-ng-pattern="/^[1-9][0-9]*$/">
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-form_group">
+                            <label for="ups-afrWidth" class="ups-form_label">Width</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input number-mask type="text" name="afrWidth"
+                                    class="ups-form_input" id="ups-afrWidth" maxlength="10"
+                                    data-ng-model="formObj.afrWidth"
+                                    data-ng-pattern="/^[1-9][0-9]*$/">
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-form_group">
+                            <label for="ups-afrHeight" class="ups-form_label">Height</label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input number-mask type="text" name="afrHeight"
+                                    class="ups-form_input" id="ups-afrHeight" maxlength="10"
+                                    data-ng-model="formObj.afrHeight"
+                                    data-ng-pattern="/^[1-9][0-9]*$/">
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                </div>
+        	</div>
+        </div>
+        <hr>
+        <h3>Less-Than-Truckload</h3>
+        <p> <strong>Note:</strong> Less-than-truckload rating preferences can
+            only be edited from your Freight Shipping preferences. </p>
+        
+<!-- 
+        <p>
+            To edit your Freight Rating Preferences for UPS Less-Than-Truckload
+            Freight (such as Default Destination Country, Default Payment Term,
+            Default Class Entries or Less-than-Truckload Freight Rating
+            accessorials), go to the <strong>Freight Preferences</strong>
+            section of Prefrerences.
+		</p> 
+-->
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveFreightRating()">Save</button>
+            <!-- data-ng-disabled="!(ups_freightRatingform.$dirty)" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+        <!-- //// end ups.ppc-freight-ratingPre //// --> 
+    </ng-form>
+</div>

@@ -1,0 +1,1085 @@
+// ----------------------------------------------------
+// MAIN NAV - QUICK START
+// ----------------------------------------------------
+
+#ups-headerTools {
+    position: absolute;
+    bottom: 0;
+    #{$default-float}: 0;
+    padding: 0;
+    height: 47px;
+    z-index: 1;
+    width: 25%;
+
+    .ups-toolCont {
+        .ups-quickstart-iconLink {
+            padding-#{$opposite-direction}: 38px;
+        }
+
+        &.ups-deliveries {
+            .ups-quickstart-iconLink {
+                padding-#{$opposite-direction}: 60px;
+            }
+        }
+    }
+
+    .ups-toolsToggle {
+        @include unbutton;
+        position:relative;
+        margin: 0;
+        color: $ups_gold;
+        font: 1.1em/1 $sans-bd;
+        letter-spacing: 0.07em;
+        padding: 12px 10px 5px 10px;
+        text-transform: uppercase;
+        padding-#{$default-float}: 88px;
+        text-align: $default-float;
+        min-width: 250px;
+        display:inline-block;
+        &:hover{
+            text-decoration:none;
+        }
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .icon:after {
+            @include ups-icons;
+            content: "\e677";
+            font-size: 0.8em;
+
+            position: static;
+            margin-#{$default-float}: 10px;
+        }
+
+        .no-touch &:hover {
+            outline: none;
+            color: $white;
+            text-decoration:none;
+        }
+
+        .no-touch &:focus {
+            text-decoration: none;
+            color: $ups_gold;
+            outline: none;
+
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                height: 8px;
+                bottom: -14px;
+                width: 120px;
+                background: $ups_gold;
+            }
+
+            @media #{$media-medium} {
+                color: $white;
+                &:before { display: none; }
+            }
+
+        }
+    }
+
+    &.ups-active {
+        .ups-toolsToggle .icon:after { content: "\e67a"; }
+    }
+
+    .ups-package-notification {
+        font-family: helvetica, arial, sans-serif;
+        font-weight: 700;
+        position: absolute;
+        #{$opposite-direction}: 15px;
+        background: $ups_gold;
+        color: $ups_brown;
+        border-radius: 10px;
+        height: 20px;
+        width: 20px;
+        text-align: center;
+        line-height: 21px;
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+        top: 50%;
+        margin-top: -10px;
+
+
+
+    }
+}
+
+.ups-headerTools_list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    color: $white;
+    border-bottom: 1px solid $ups_stone;
+    .ups-headerTools_widgets > li > a,
+    .ups-headerTools_links > li > a{
+      outline-offset: -2px;
+    }
+    
+}
+
+.ups-headerTools_msg {
+    background: $ups_brown;
+    background: rgba($ups_brown, 0.95);
+    padding: 15px 20px;
+
+    h3 {
+        margin: 0;
+        font: 1.1em/1.5 $sans;
+    }
+
+    a {
+        color: $ups_gold;
+        text-decoration: underline;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        .no-touch &:hover,
+        .no-touch &:focus {
+            color: $white;
+        }
+    }
+}
+
+.ups-headerTools_widgets {
+    @include unlist;
+    font: 1.1em/1.5 $sans;
+
+    li {
+        background-color: $ups-brown;
+        background: rgba($ups_brown, 0.9);
+        border-top: 1px solid $ups_stone;
+        &:not(.ups-toolCont){
+
+        }
+        .ups-toolWrap {
+            overflow: hidden;
+            height: 0;
+        }
+
+        .ups-tool {
+            visibility: hidden;
+            position: relative;
+            #{$opposite-direction}: 100%;
+            @include transition-property(#{$opposite-direction});
+            @include transition-duration(0.3s);
+        }
+
+        .ups-reqMsg {
+            margin: 0 20px 10px;
+        }
+
+        &.ups-active {
+            background: $white;
+
+            .ups-headerTools_widgetToggle {
+                color: $ups_brown;
+                background: $white;
+                position: relative;
+                z-index: 1;
+                border-#{$default-float}: 1px solid $ups_stone;
+                // &:after {
+                //     color: $white;
+                //     content: "\e62b";
+                // }
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    background: $white;
+
+                    @media #{$media-small} {
+                        background: rgba($ups-brown, 0.9);
+                    }
+                }
+            }
+
+            .ups-toolWrap {
+                height: auto;
+                position: absolute;
+                top: 0;
+                #{$default-float}: 100%;
+                width: 300%;
+                max-width: 640px;
+                &:focus{
+                  outline: 5px auto $ups-gold;
+                }
+                .ie9 &,.ie10 &,.ie11 &{
+                  &:focus{
+                    outline: 1px solid $ups-gold;
+                  }
+                }
+            }
+
+            .ups-tool {
+                visibility: visible;
+                #{$opposite-direction}: 0;
+                border: 1px solid $ups_stone;
+                border-top: none;
+                border-bottom: 5px solid $ups_gold;
+                margin-#{$default-float}: -1px;
+                color: $ups_brown;
+                padding: 10px 32px 25px;
+                background: $white;
+                &:focus{
+                  outline: 1px solid #ffb500;
+                  outline-offset: -4px;
+                }
+              
+
+                .ups-widget_panel {
+                    border: none;
+                    padding: 0;
+                    background: none;
+                    .ups-widgetStructure{
+                        margin-bottom : 5px;
+                        /* karthik changes undo
+                            display:block;
+                            width:100%;
+                            float:left;
+                        	.ups-form_requiredNoAlert.ups-active {
+			    		width : 49%;
+			    	}
+                        */
+                        display:inline;
+                        .ups-form_requiredNoAlert.ups-active {
+                            display : inline-block;
+                            vertical-align : bottom;
+                            float : none;
+                            width : 49%;
+                        }
+                        .ups-form_requiredNoAlert.ups-inactive{
+                            display:none;
+                        }
+                        .ups-quote_residential.ups-inactive{
+                            margin-top:5px;
+                        }
+                        .ups-form_input{
+                            margin-bottom : 0px;
+                        }
+                    }
+                }
+
+                .ups-form_note {
+                    margin: 0 24px 15px;
+
+                    a {
+                        text-decoration: underline;
+                        font-family: $sans-bd;
+                        color: $ups_brown;
+
+                        .ups-rtl {
+                            font-family: $sans;
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                .ups-form_group {
+                    margin: 5px 0px;
+                    /*float: $default-float;*/
+                    width: 49%;
+                    display:inline-block;
+                    max-width: none;
+                    border-left: 20px solid transparent;
+                    border-right: 20px solid transparent;
+                    vertical-align:bottom;
+                    &.ups-locFinder_input{
+                        width:65%;
+                    }
+
+
+                    /*Karthik changes Undo*/
+                    &:nth-of-type(odd) {
+                        clear: both;
+                    }
+
+                    label {
+                        margin-bottom: 3px;
+                        float: $default-float;
+                        font-weight: 400;
+                        font-family: $sans-bd;
+
+                        .ups-rtl {
+                            font-family: $sans;
+                            font-weight: 700;
+                        }
+
+                        &.ups-hasLink {
+                            max-width: 39%;
+                        }
+                    }
+
+                    .ups-form_link {
+                        margin-bottom: 4px;
+                        float: $opposite-direction;
+                        max-width: 60%;
+                        text-align: $opposite-direction;
+                        position: static;
+                    }
+
+                    .ups-dropdown_wrapper,
+                    .ups-text_wrapper {
+                        margin: 0;
+                        clear: both;
+                    }
+
+                    .ups-checkbox-custom + .ups-checkbox-custom-label,
+                    .ups-radio-custom + .ups-radio-custom-label {
+                        line-height: 24px;
+                        height: auto;
+                        padding-#{$default-float}: 32px;
+
+                        &:before {
+                            width: 20px;
+                            height: 20px;
+                            border-width: 1px;
+                        }
+                    }
+                }
+
+                .ups-form_note {
+                    margin: 0 20px 15px;
+                    width: 90%;
+                    border: none;
+                    /* kathik changes undo
+                    float:left;*/
+
+                    a {
+                        text-decoration: underline;
+                        font-family: $sans-bd;
+                        color: $ups_brown;
+
+                        .ups-rtl { font-weight: bold; }
+                    }
+                }
+
+                .ups-form_ctaGroup {
+                    clear: both;
+                    padding: 5px 20px 0;
+                    text-align: #{$opposite-direction};
+
+                    .ups-form_button {
+                        width: auto;
+                        max-width: 40%;
+                        margin-#{$default-float}: 30px;
+                        margin-#{$opposite-direction}: 0;
+                        float: $opposite-direction;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+
+        .ups-headerTools_widgetClose {
+            @include unbutton;
+            padding: 15px 0;
+            padding-#{$opposite-direction}: 28px;
+            margin-#{$opposite-direction}: 15px;
+            float: $opposite-direction;
+            position: relative;
+            font: 1.1em/1 $sans-bd;
+            #{$opposite-direction}: -28px;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            .icon:before {
+                @include ups-icons;
+                content: "\e67c";
+                position: absolute;
+                #{$opposite-direction}: 0;
+                top: 10px;
+                font-size: 20px;
+            }
+        }
+
+        .ups-headerTools_widgetToggle {
+            @include unbutton;
+            display: block;
+            position: relative;
+            padding: 15px 20px;
+            padding-#{$default-float}: 50px;
+            color: $white;
+            font: 1.1em/1 $sans;
+            width: 100%;
+            text-align: $default-float;
+            background: $ups_brown;
+            background: rgba($ups_brown, 0.95);
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+
+            .no-touch &:hover,
+            .no-touch &:focus {
+                // &:after { color: $white; }
+                text-decoration: none;
+                background: darken($ups_brown, 5%);
+                background: rgba(darken($ups_brown, 5%), 0.9);
+            }
+
+            .icon:before {
+                @include ups-icons;
+                display: block;
+                position: absolute;
+                top: 10px;
+                #{$default-float}: 17px;
+                width: 20px;
+                margin-#{$opposite-direction}: 10px;
+                font-size: 1.3em;
+            }
+
+            // &:after {
+            //     @include ups-icons;
+            //     content: "\e202";
+            //     position: absolute;
+            //     top: 17px;
+            //     #{$opposite-direction}: 20px;
+            // }
+        }
+
+        &.ups-track .ups-headerTools_widgetToggle .icon:before { content: "\e070"; }
+        &.ups-ship .ups-headerTools_widgetToggle .icon:before {
+            content: "\e66c";
+            font-size: 1.5em;
+            top: 9px;
+            #{$default-float}: 15px;
+        }
+
+        &.ups-ship{
+            .ups-tool{
+                .ups-form_ctaGroup {
+                    float: right;
+                    clear: none;
+                    .ups-form_button {
+                        max-width: none;
+                        min-width: 0;
+                    }
+                }
+                .ups-text_wrapper .ups-input_unit.ups-dropdown_wrapper{
+                    #{$opposite-direction}:34px;
+                }
+            }
+        }
+
+        &.ups-quote .ups-headerTools_widgetToggle .icon:before { content: "\e61d"; }
+        &.ups-locations .ups-headerTools_widgetToggle .icon:before { content: "\e649"; }
+        &.ups-deliveries .ups-headerTools_widgetToggle .icon:before { content: "\e644 "; }
+        &.ups-homedel .ups-headerTools_widgetToggle .icon:before { content: "\e0001"; }
+        &.ups-billing .ups-headerTools_widgetToggle .icon:before { content: "\e631"; }
+        &.ups-resources .ups-headerTools_widgetToggle .icon:before { content: "\e631"; }
+        &.ups-ecsadmin .ups-headerTools_widgetToggle .icon:before { content: "\e62e"; }
+
+        .ups-campusShip {
+            padding: 0 15px;
+
+            .ups-widget_panel {
+                h2 { display: none; }
+                a {
+                    padding: 0;
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        &.ups-hasAlerts .ups-headerTools_widgetToggle {
+            padding-#{$opposite-direction}: 40px;
+
+            .ups-headerTool_widgetAlert {
+                font-family: helvetica, arial, sans-serif;
+                content: '!';
+                font-weight: 700;
+                position: absolute;
+                #{$opposite-direction}: 15px;
+                background: $ups_gold;
+                color: $ups_brown;
+                border-radius: 50%;
+                height: 20px;
+                width: 20px;
+                text-align: center;
+                font-size: 14px;
+                padding: 0;
+                margin: 0;
+                top: 50%;
+                margin-top: -10px;
+
+                &:before {
+                    line-height: 21px;
+                }
+            }
+        }
+
+        .ups-count {
+            background: $ups_gold;
+            position: absolute;
+            height: 18px;
+            min-width: 18px;
+            text-align: center;
+            border-radius: 18px;
+            color: $ups_brown;
+            font-size: 12px;
+            line-height: 20px;
+            margin-#{$opposite-direction}: 8px;
+            font-family: $sans;
+            font-weight: 700;
+            top: 18px;
+            #{$default-float}: 18px;
+        }
+
+        .ups-wrap {
+            padding: 0;
+            margin: 0;
+        }
+        .ups-loaderImg{
+            background: url(/assets/resources/images/ajax-loader.gif) no-repeat 50%;
+            width: 100%;
+            height: 100px;
+        }
+
+        .ups-widget {
+            margin: 0;
+            .ups-widget_header {
+                display: none;
+                padding: 0;
+                background: none;
+
+                .ups-help_button {
+                    display: none;
+                }
+            }
+
+            p {
+                a {
+                    font-family: $sans-bd;
+                    font-weight: 400;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .ups-dropdown_wrapper {
+                &:before {
+                    height: 35px;
+                    font-size: 0.8em;
+                    width: 30px;
+                    line-height: 35px;
+                }
+
+                .ups-dropdown {
+                    // border-#{$opposite-direction}: 0px;
+                    height: 35px;
+                    padding: 5px 10px;
+                    padding-#{$opposite-direction}: 40px;
+                    margin-bottom: 0;
+                }
+            }
+
+            .ups-input_wrapper {
+                height: auto;
+            }
+
+            .ups-form_input {
+                height: 35px;
+            }
+
+            /*.ups-input_unit {
+                line-height: 30px;
+            }*/
+
+            .ups-form_group {
+                margin-bottom: 15px;
+            }
+
+        }
+
+        .weight_input {
+            padding: 0;
+
+            input[type="text"],
+            input[type="number"] {
+                width: 80px;
+            }
+
+            .ups-input_unit {
+                #{$opposite-direction}: auto;
+                #{$default-float}: 90px;
+            }
+        }
+
+        .ups-form_shortInput .ups-form_input {
+            width: 80px;
+        }
+
+        &.ups-headerTools_track {
+            padding: 20px;
+            background: $brown_s4;
+            background: rgba($brown_s4, 0.95);
+
+            form {
+                margin: 0;
+            }
+
+            h2 {
+                color: $ups_gold;
+                font: 1.1em/1 $sans-bd;
+                text-transform: none;
+                margin-bottom: 15px;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+
+                .icon {
+                    display:inline;
+                    &:before {
+                        @include ups-icons;
+                        content: "\e673";
+                        position: relative;
+                        // display: inline-block;
+                        width: 20px;
+                        line-height: 0;
+                        margin-#{$opposite-direction}: 12px;
+                        top: 6px;
+                        font-size: 1.5em;
+                    }
+                }
+            }
+
+            .ups-widget {
+                .ups-widget_header {
+                    padding: 0;
+                    background: none;
+                    display: block;
+
+                    a.ups-help_link { display: none; }
+                }
+            }
+
+            .ups-widget_panel {
+                background: none;
+                padding: 0;
+                border: none;
+                border: 1px solid $ups_stone;
+                position: relative;
+            }
+
+            .ups-simpleTrack_input_wrap {
+                width: 100%;
+                padding-#{$opposite-direction}: 28px;
+            }
+
+            .ups-simpleTrack_input {
+                display: block;
+                height: 28px;
+                min-height: 28px;
+                width: 100%;
+                padding: 0 10px;
+                // padding-#{$opposite-direction}: 38px;
+                border: none;
+                line-height: 28px;
+                font-size: 1em;
+                font-weight: 400;
+                float: none;
+                max-width: none;
+                margin: 0;
+                border-radius: 0;
+                color: $ups_brown;
+
+                @media #{$media-small} {
+                    height: 36px;
+                    line-height: 36px;
+
+                    .touch & {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .ups-simpleTrack_btn {
+                display: block;
+                position: absolute;
+                overflow: hidden;
+                height: 100%;
+                top: 0;
+                #{$opposite-direction}: 0;
+                width: 28px;
+                padding: 0 2px;
+                border: none;
+                @include border-radius(0);
+
+                /* .ups-rtl &:before {
+                     content: "\e627";
+                 }*/ //RTL icon no longer required
+
+                @media #{$media-small} {
+                    width: 36px;
+
+                    &:before {
+                        line-height: 36px;
+                    }
+                }
+            }
+        }
+
+        &.ups-quote {
+            .ups-tool {
+                .ups-checkbox-custom-label {
+                    margin: 0;
+                }
+
+                .ups-quote_residential {
+                    float: $default-float;
+                }
+
+                .ups-form_ctaGroup {
+                    float: $opposite-direction;
+                    clear: none;
+
+                    .ups-form_button {
+                        max-width: none;
+                        min-width: 0;
+                    }
+                }
+            }
+        }
+
+        &.ups-deliveries {
+            .ups-widget {
+                padding: 0 15px;
+            }
+        }
+
+        &.ups-billing {
+            .ups-widget_panel {
+
+                .ups-form_ctaGroup {
+
+                    .ups-cta_payAccount {
+                        float: #{$opposite-direction};
+                    }
+
+                    .ups-cta_changeAccount {
+                        margin-#{$default-float}: 0;
+                    }
+                }
+
+            }
+        }
+
+        &.ups-locations-quickstart {
+            .ups-tool {
+                .ups-widget_header {
+                    display: block;
+                }
+                .ups-locFinder_wrap{
+                    &.ups-wrap{
+                        @media #{$media-mediumMid}{
+                            padding:0;
+                        }
+                        @media (min-width:768px){
+                            .ups-widget_header{
+                                max-width:60%;
+                            }
+                            .ups-locFinder_current{
+                                max-width:40%;
+                            }
+                        }
+                    }
+                }
+
+                h2 {
+                    background: $ups_stone;
+                    margin: 45px 15px 20px;
+                    padding: 12px 15px 10px;
+                    font: 1em $sans-bd;
+                    text-transform: none;
+
+                    .ups-rtl {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+
+                }
+
+                .ups-locFinder .ups-locFinder_heading {
+
+                }
+
+                .ups-locFinder_alert {
+                    /*
+                        //padding: 0 15px;
+                        //text-indent: 0;
+                        //background: none;
+                        //margin-bottom: 15px;
+                    */
+
+                    h3 {
+                        margin: 0;
+                    }
+                }
+
+                .ups-locFinder_mapWrap,
+                .ups-locFinder_info {
+                    float: $default-float;
+                    width: 50%;
+                    padding: 0 15px;
+                }
+
+                .ups-locFinder_map {
+                    margin: 0;
+                    padding: 0;
+                    //height: 160px;
+                }
+
+                .ups-form_ctaGroup {
+                    .ups-locFinder_link {
+                        padding: 12px 15px 10px;
+                        margin: 15px;
+                        float: $opposite-direction;
+                    }
+                }
+
+                .ups-locFinder_cta {
+                    float: $opposite-direction;
+                    padding: 10px 15px;
+                    max-width: 50%;
+                    margin-top: 15px;
+                }
+
+                .ups-locFinder_link {
+                    clear: none;
+                    float: $default-float;
+                    // max-width: 40%;
+                    margin-top: 10px;
+                }
+
+                .ups-locFinder_link,
+                .ups-locFinder_dirLink {
+                    padding: 0;
+                    &:after { display: none; }
+                }
+
+                .ups-locFinder_dirLink {
+                    margin-top: 0;
+                }
+
+                address {
+                    margin: 0;
+                }
+
+                .ups-locFinder_hoursTog span:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.ups-headerTools_links {
+    @include unlist;
+
+    li {
+        background-color: $ups-brown;
+        background: rgba($ups_brown, 0.9);
+    }
+
+    a {
+        display: block;
+        color: $white;
+        padding: 15px 20px;
+        background: $black_s3;
+        // background: rgba($black_s3, 0.9);
+        border-top: 1px solid $ups_stone;
+        background: $ups_brown;
+        background: rgba($ups_brown, 0.95);
+        text-decoration: none;
+        font-size: 1.1em;
+
+        .no-touch &:hover,
+        .no-touch &:focus {
+            background: darken($ups_brown, 5%);
+            background: rgba(darken($ups_brown, 5%), 0.9);
+            // background: darken($black_s3, 5%);
+            // background: rgba(darken($black_s3, 5%), 0.9);
+            text-decoration: underline;
+        }
+    }
+}
+
+#ups-tools_track {
+    position: relative;
+    border: 1px solid $ups_stone ;
+    height: 28px;
+
+    input {
+        display: block;
+        height: 26px;
+        width: 100%;
+        padding: 0 10px;
+        padding-#{$opposite-direction}: 38px;
+        border: none;
+        line-height: 28px;
+        font-size: 0.9em;
+        font-style: italic;
+        background: $white;
+    }
+
+    button {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        height: 0;
+        top: 0;
+        #{$opposite-direction}: 0;
+        width: 28px;
+        padding: 26px 0 0;
+        border: none;
+        background: $water_s3;
+        color: $white;
+
+        &:before {
+            @include ups-icons;
+            content: "\e629";
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            line-height: 26px;
+
+            .ups-rtl & {
+                content: "\e627";
+            }
+        }
+    }
+}
+
+// MEDIUM VIEWPORT
+@media #{$media-medium} {
+    #ups-headerTools {
+        // width: 220px;
+        height: 54px;
+        width: 33.3333%;
+
+        .ups-toolsToggle {
+            padding: 18px 10px 8px;
+            padding-#{$default-float}: 0;
+        }
+
+        .ups-headerTools_widgets,
+        .ups-headerTools_badges {
+            li {
+
+                &.ups-active {
+                    .ups-toolWrap { width: 200%; }
+                }
+            }
+        }
+
+        .ups-headerTools_track {
+            .ups-widget {
+                margin: 0;
+
+                .ups-widget_header,
+                .ups-widget_panel {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:$screen-sm) and (max-width:993px){
+    #ups-headerTools {
+        .ups-toolsToggle {
+            padding-#{$default-float}: 0;
+            #{$default-float}: 80px;
+            min-width: 145px;
+            position: absolute;
+        }
+    }
+}
+
+// SMALL VIEWPORT
+@media #{$media-small} {
+    #ups-headerTools {
+        position: relative;
+        height: auto;
+        width: auto;
+        margin: 0 (-$page-margin-sm);
+        top: 0;
+        z-Index: 0;
+
+        .ups-toolsToggle {
+            position: absolute;
+            top: -48px;
+            #{$default-float}: 80px;
+            font-size: 14px;
+            min-width: 0;
+        }
+    }
+
+
+    .ups-headerTools_list {
+        position: static;
+        width: auto;
+        padding: 0;
+        border-bottom: 1px solid $white;
+    }
+
+    .ups-headerTools_msg {
+        border-top: 1px solid $white;
+    }
+
+    .ups-headerTools_widgets,
+    .ups-headerTools_badges {
+        li {
+            border-top: 1px solid $white;
+            margin: 0;
+            padding: 0;
+
+            &.ups-active {
+                background: $ups_brown;
+                background: rgba($ups_brown, 0.9);
+
+                .ups-headerTools_widgetToggle {
+                    color: $white;
+                    background: none;
+                    border: none;
+                }
+
+                .ups-tool {
+                    display: none;
+                }
+
+            }
+        }
+    }
+}
+
+.iw_columns.col-lg-12{
+    .ups-headerTools_widgets{
+        @media #{$media-mediumMid}{
+            .ups-widget,
+            .ups-simpleTrack_wrap{
+                &.ups-wrap{
+                    padding:0;
+                }
+            }
+        }
+    }
+}

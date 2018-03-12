@@ -1,0 +1,70 @@
+<div>
+	<p>Share shipping privileges with up to five people per payment
+		account.</p>
+	<h3>Authorized Users of Account [{{accountInfo.Number ||
+		'XXXXX'}}]</h3>
+
+	<div class="ups-table ups-table-responsive ups-tableScroll">
+		<table class="table table-striped">
+			<caption class="ups-readerTxt" authorized users table></caption>
+			<tbody>
+				<tr>
+					<th scope="col"><a href="#" onclick="return false;"
+						data-ng-click="changeSorting('user_name')"><span
+							class="ups-readerTxt">Sort By </span> User Name <span class=""
+							data-ng-class="{'ups-icon-chevrondown': users.sortType== 'user_name' && !users.sortReverse, 'ups-icon-chevronup':users.sortType=='user_name' && users.sortReverse}"
+							aria-hidden="true"></span> </a></th>
+					<th scope="col">Email</th>
+					<th data-ng-if="!readOnly" scope="col">Manage</th>
+				</tr>
+				<tr
+					data-ng-repeat="item in users.list | orderBy:users.sortType:users.sortReverse">
+					<td>{{ item.user_name | capFirstLetter}}</td>
+					<td>{{ item.email }}</td>
+					<td data-ng-if="!readOnly"><a href="#" onclick="return false;" data-ng-click="users.remove(item)">Remove</a> |
+						<a href="#" onclick="return false;" data-ng-click="users.transfer(item)">Transfer
+							Privileges</a></td>
+				</tr>
+				<tr data-ng-if="users.list.length === 0">
+					<td colspan="{{(readOnly) ? '2' : '3'}}">You have not authorized any others to use this
+						account.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="ups-form_ctaGroup"
+		data-ng-hide="users.list.length>=5 || readOnly">
+        <button type="submit" class="ups-cta ups-cta_primary"
+            data-dismiss="modal" data-ng-click="users.add()">Add Users
+            to My Account</button>
+	</div>
+
+	<h3 data-ng-hide="additionalUsers.list.length === 0">Additional Users of Account [{{accountInfo.Number}}]</h3>
+    <p data-ng-hide="additionalUsers.list.length === 0">Please review the list of users who have accessed your account and let us know if you supect fraudulent activity.
+    	Typically, unauthorized users who self-validate use invoice details to gain account access.</p>
+
+	<div class="ups-table ups-table-responsive ups-tableScroll"
+		data-ng-hide="additionalUsers.list.length === 0">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th scope="col">User Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Validation</th>
+					<th data-ng-if="!readOnly" scope="col">Actions</th>
+				</tr>
+				<tr data-ng-repeat="item in additionalUsers.list">
+					<td>{{ item.user_name | capFirstLetter}}</td>
+					<td>{{ item.email }}</td>
+					<td>{{ item.validated }}</td>
+					<td data-ng-if="!readOnly">
+                    	<a href="#" onclick="return false;" data-ng-click="additionalUsers.remove($index)">Remove</a>
+                    	<a href="#" onclick="return false;">Remove and Review for Fraud</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+</div>

@@ -1,0 +1,58 @@
+<!-- ************************************************************************************ -->
+<!-- M11 Feed-based Blog                                                                  -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+M11 Feed-based Blog - Notes
+********************************************************************************
+
+ - Pagination will be determined by the CMS.
+ - The optional items allow this component to provide a list of the blogs.
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M11 Feed-based Blog - Data
+********************************************************************************
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    articles                  = array      / YES            / [{"heading","url","source","body"},{"heading","url","source","body"}, ...]
+    url                       = string     / YES            / #article_link
+
+********************************************************************************
+--}}
+
+{{!--
+********************************************************************************
+M11 Feed-based Blog - Layout
+********************************************************************************
+
+-feedBased-blog-
+| 60px
+-article-
+| 60px
+-article-
+| 60px
+-article-
+| 60px
+
+********************************************************************************
+--}}
+
+<div class="ups-feedBased_blog ups-wrap">
+    <div class="ups-wrap_inner">
+        <div class="ups-feedBased_blog-wrapper">
+            {{#each  articles}}
+                <div class='ups-content_wrap'>
+                    {{>M10_article this}}
+                    <a class="ups-feedBased_blog-link" href="#{{this.url}}">Read More</a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

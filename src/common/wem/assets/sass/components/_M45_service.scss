@@ -1,0 +1,149 @@
+// ----------------------------------------------------
+// Service
+// ----------------------------------------------------
+
+
+@mixin ups_service_sm {
+
+    .ups-service_title .ups-service_content {
+        figure {
+            margin-bottom: $margin_3;
+        }
+    }
+    .ups-service_item {
+        .ups-service-header {
+            padding: 12px 10px;
+        }
+        .ups-service_content{
+            padding: 10px;
+            ul {
+                li {
+                    padding: 10px 0;
+                    &:first-child {
+                        padding-top: 0;
+                    }
+                    &:last-child {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ups-service {
+    margin-bottom: $margin_1;
+    .ups-service-header {
+        padding:0;
+        font-size: 2.6em;
+        &:after{
+            content:none;
+        }
+    }
+
+    @media #{$media-small} {
+        @include ups_service_sm;
+    }
+}
+
+.subsection_aside .ups-service,
+.iw_columns.col-lg-4 .ups-service {
+    @include ups_service_sm;
+}
+
+.ups-service_title {
+    width: 100%;
+    padding-bottom: 45px;
+    @if $text-direction == ltr {
+        float: left;
+    } @else {
+        float: right;
+    }
+}
+
+.ups-service_item {
+    clear:both;
+    width: 100%;
+    .ups-service_header {
+        background: $stone_60;
+        font-family: $sans-bd;
+        width: 100%;
+        padding: 12px 20px;
+        line-height: 1.5;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+    .ups-service_content{
+        width: 100%;
+        float:left;
+        padding: $margin_3;
+    }
+}
+
+.ups-service_content{
+    .ups-contentBlock {
+        margin: 0;
+        padding: 0;
+        
+        &.ups-wrap {
+            margin-top: 0;
+        }
+        .ups-cta{
+          display:inline-block;
+          margin-left:30px;
+        }
+    }
+    h3 {
+        line-height: 20px;
+    }
+    figure {
+        width: 100%;
+        max-width: 300px;
+        margin-#{$opposite-direction}: $margin_3;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+        figcaption {
+            width: 100%;
+            padding:  $margin_4 0;
+            border-bottom: 1px solid $black_s3;
+            p {
+                margin: 0;
+            }
+        }
+    }
+    ul {
+        padding-#{$default-float}:  $margin_3;
+    }
+    a {
+        clear: both;
+        display: block;
+        color:$black;
+        text-decoration: underline;
+        padding: $margin_4 0;
+        padding-#{$default-float}:$margin_3;
+    }
+}
+
+@media #{$media-small-sm} {
+    .ups-service_title {
+        .ups-service_content {
+            figure {
+                width: 100%;
+                max-width: 500px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+
+        .ups-article-header {
+            margin-bottom: $margin_3;
+        }
+    }
+}

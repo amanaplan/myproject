@@ -1,0 +1,199 @@
+<form data-ng-controller="IdVerification" 
+	error-on-submit 
+    name="idVerification"
+	novalidate>
+	<!-- //// begin ups.doa-id-verification //// -->
+    <!-- ID VERIFICATION CONTENT -->
+	<div class="ups-form-wrap">
+		<div data-ng-show="step===1">
+			<div class="ups-contentBlock_wrap clearfix">
+				<fieldset class="ups-form_group">
+					<legend class="ups-form_label">To help us keep your information secure, please choose one of the options below.</legend>
+					<div data-ng-repeat="item in secureOptions"
+						data-ng-init="formObj.stepOne='Shipping Address';optionChanged(secureOptions[0])" 
+                        class="ups-buttonList_wrapper ups-input_wrapper">
+						<input id="{{item.value}}" type="radio" name="security"
+							value="{{item.name}}" data-ng-model="formObj.stepOne"
+							data-ng-change="optionChanged(item)"
+							data-ng-checked="formObj.stepOne" class="ups-radio-custom">
+						<label for="{{item.value}}" class="ups-radio-custom-label">{{item.name}}</label>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<div data-ng-show="step===2">
+			<p class="ups-introductory">{{selectedItem.desc}}</p>
+			<div data-ng-if="formObj.stepOne==='Security Questions'" class="ups-reqMsg">
+				<p>
+                    <em>
+                        <span aria-hidden="true">*</span>
+                        <span class="ups-readerTxt">Required</span>
+                        Indicates required field
+                    </em>
+                </p>
+			</div>
+			<div class="ups-contentBlock_wrap clearfix">
+				<fieldset class="ups-form_group">
+					<legend class="ups-form_label">{{selectedItem.question}}</legend>
+					<div class="row">
+                        <div class="col-md-5">
+                            <div data-ng-repeat="item in selectedItem.content"
+                                data-ng-class="{'ups-form_group': formObj.stepOne==='Security Questions'}">
+                                <label for="{{'stepOne'+$index}}" 
+                                    data-ng-if="selectedItem.value===2" 
+                                    data-ng-class="{'ups-form_label': formObj.stepOne==='Security Questions'}">{{item.name}}</label> 
+                                <div class="ups-element_relative">
+                                    <input type="{{item.type}}" 
+                                        name="{{formObj.stepOne==='Security Questions'?'securityInner'+$index :'securityInner'}}" 
+                                        error-on-blur value="{{item.name}}" 
+                                        class="{{formObj.stepOne==='Shipping Address'?'ups-shippingAddressInput ups-checkbox-custom':''}} {{formObj.stepOne==='PIN'?'ups-radio-custom':''}} {{formObj.stepOne==='Security Questions'?'ups-securityQues':''}}" 
+                                        id="{{'stepOne'+$index}}" 
+                                        maxlength="35" 
+                                        required data-ng-model="formObj.stepTwo[$index]" 
+                                        data-ng-class="{'ups-form_input': item.type === 'text'}" 
+                                        data-ng-checked="item.checked" 
+                                        data-ng-click="clickFunc(item,$index)" 
+                                        data-ng-keyup="formObj.key[$index] = true">
+                                    <label for="{{'stepOne'+$index}}" data-ng-if="selectedItem.value===1"
+                                        class="{{formObj.stepOne==='Shipping Address'?'ups-checkbox-custom-label':''}}">{{item.name}}</label>
+                                    <span data-ng-if="formObj.stepOne==='Security Questions'" id="secQues-error" role="alert"><span class="ups-invalid_color"
+                                        data-ng-if="formObj.key[$index] && !formObj.stepTwo[$index]">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span>This field is required.</span>
+                                    </span></span>
+                                    <label for="{{'stepOne'+$index}}" 
+                                        data-ng-if="selectedItem.value===3"
+                                        class="{{formObj.stepOne==='PIN'?'ups-radio-custom-label ups-labelDisplay':''}}">{{item.name}}</label>
+                                    <div data-ng-if="(formObj.stepOne==='Security Questions' && idVerification['securityInner'+$index].$valid &&  idVerification['securityInner'+$index].$dirty)">
+                                        <span class="ups-icon-check" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Check</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+		<div data-ng-show="step===3">
+			<div class="ups-contentBlock_wrap clearfix">
+				<h3 class="ups-regular_case">We've sent your PIN by 
+					{{selectedItem.content[selectedIndexValue].name|
+					firstWord|lowercase}}. Enter it below to continue.</h3>
+                <p class="ups-reqMsg">
+                     <em>
+                        <span aria-hidden="true">*</span>
+                        <span class="ups-readerTxt">Required</span>
+                        Indicates required field
+                    </em>
+                </p>
+				<div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required"
+                            data-ng-class="{ 'has-error' : idVerification.pin.$invalid && !idVerification.pin.$pristine }">
+                            <label for="{{selectedItem.name}}">
+                                {{selectedItem.name}}
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class=" ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                <input error-on-blur 
+                                	class="ups-form_input" 
+                                    type="text" 
+                                    name="pin"id="{{selectedItem.name}}" 
+                                    maxlength="6"
+                                    data-ng-model="formObj.stepThree" 
+                                    data-ng-model-options="{updateOn: 'blur'}"
+                                    data-ng-focus="submitclicked=false;" data-ng-class="{'ups-bodError': submitclicked}" 
+                                    aria-required="true" 
+                                    required>
+                                <span class="ups-invalid_color ups-securityError"
+                                    data-ng-show="!idVerification.pin.$pristine" role="alert">
+                                    <span data-ng-show="idVerification.pin.$invalid">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span>PIN is required.</span>
+                                    </span> 
+                                    <span data-ng-show="submitclicked && formObj.stepThree!=''">
+                                        <span class="icon ups-error_exclamation">
+                                            <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-readerTxt">Invalid</span>
+                                        <span data-ng-show="count>=1 && count<3">This is not a valid PIN. Please try again.</span>
+                                        <span data-ng-show="count===3">You've exceeded the maximum number of attempts. Please try again in 24 hours.</span>
+                                    </span>
+                                </span>
+                                <div data-ng-if="(!submitclicked && idVerification.pin.$valid&& idVerification.pin.$dirty)">
+                                    <span class="ups-icon-check" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt">Check</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		
+        <div data-ng-show="step===4" class="ups-contentBlock_wrap clearfix">
+			<p>We've sent your PIN by mail. You should receive it in five to
+				seven business days.</p>
+		</div>
+		
+        <div data-ng-show="step===5" class="ups-contentBlock_wrap clearfix">
+			<p>To skip this step in the future, make this an approved device.
+				We don't recommend doing this if you're using a shared computer.</p>
+			<div class="ups-form_group ups-form_required ">
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify 
+                    	id="ups-remember" 
+                        class="ups-checkbox-custom"
+                        name="ups-uid" 
+                        type="checkbox" 
+                        data-ng-model="formObj.rememberMe"
+                        data-ng-checked="formObj.rememberMe"> 
+                    <label for="ups-remember" class="ups-checkbox-custom-label">Remember this device</label>
+                </div>
+            </div>
+		</div>
+        
+		<div data-ng-show="step===6" class="ups-contentBlock_wrap clearfix">
+			<p>To make sure an unauthorized user isn't
+				trying to log into your profile, we've locked your information.
+				Please call Customer Service to continue.</p>
+			<p><strong>UPS Customer Service:</strong> 1-800-PICK-UPS</p>
+		</div>
+	</div>
+    
+	<div class="ups-form_ctaGroup text-center"
+		data-ng-hide="step===5">
+        <button class="ups-cta ups-cta_primary"
+            data-ng-click="nextStep()"
+            data-ng-hide="step===6 || step===4 || (step===2 && formObj.stepOne==='PIN')">{{step
+            === 3? 'Submit': 'Next'}}</button>
+
+        <button class="ups-cta ups-cta_primary" data-ng-click="nextStep()"
+            data-ng-show="step===2 && formObj.stepOne==='PIN'">{{step===2
+            ?'Send PIN' :'Next'}}</button>
+            
+        <button data-ng-if="step!==6 && step!==4"
+            class="ups-cta ups-cta_secondary"
+            data-ng-click="ModalService.dismiss()">Cancel</button>
+            
+        <button data-ng-if="step===6 || step===4"
+            class="ups-cta ups-cta_primary "
+            data-ng-click="ModalService.dismiss()">Done</button>
+	</div>
+
+	<div class="ups-form_ctaGroup" data-ng-show="step===5">
+        <button class="ups-cta ups-cta_primary"
+            data-ng-click="accountOptionStep()">Next</button>
+	</div>
+	<!-- //// end ups.doa-id-verification //// -->
+</form>

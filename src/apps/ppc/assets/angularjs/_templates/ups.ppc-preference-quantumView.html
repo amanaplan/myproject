@@ -1,0 +1,201 @@
+<div data-ng-controller="QuantumViewPreferenceCtrl">
+    <ng-form error-on-submit name="formObj" novalidate>
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                Please correct the following errors
+            </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="clicked && formObj.ups_email_address0.$invalid"><span> <a
+                        focus-attr="ups_email_address0" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Email </a> is required. </span></li>
+                <li data-ng-if="clicked && formObj.ups_name_input0.$invalid"><span> <a
+                    focus-attr="ups_name_input0" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Name </a> is required. </span></li>
+
+                <li data-ng-if="clicked && formObj.ups_phone_number.$invalid"><span> <a
+                    focus-attr="ups_phone_number" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Phone Number </a> is <span ng-if="formObj.ups_phone_number.$error.required">required.</span></span></li>
+            </ul>
+        </div>
+        <div class="ups-group">
+            <p>Choose when and how you'd like us to contact you with updates on your scheduled deliveries.</p>
+            <h3>Notification Options</h3>
+            <!-- Table -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr class="ups-setAlerts_tableHeader">
+                                    <th scope="col" class="ups-table_header_tertiary">Alert
+                                        Type</th>
+                                    <th scope="col" class="ups-table_header_tertiary">Alert Method</th>
+                                    <th scope="col" class="uos-table_header_tertiary" data-ng-if="emailConsolidationTable">
+                                                Email Consolidation
+                                            </th>
+                                </tr>
+                                <tr data-ng-repeat="alrt in alerts">
+                                    <td data-open="false" scope="row">{{alrt.key}}</td>
+                            <td ><div class="ups_setAlerts_service ups-input_wrapper">
+                                    <input check-verify type="checkbox"
+    								data-ng-init="checkEmail(true);formObj.email[alrt.value]=alrt.checkbox.email"
+    								class="ups-checkbox-custom" name="{{'check_for_email_'+$index+inputID}}"
+    								id="{{'check_for_email_'+$index+inputID}}"
+    								data-ng-model="formObj.email[alrt.value]"
+    								data-ng-click="checkEmail()"
+    								data-ng-checked="alrt.checkbox.email" />
+                                    <label
+    								class="ups-checkbox-custom-label"
+    								for="{{'check_for_email_'+$index+inputID}}"><span
+    								class="ups-readerTxt">{{alrt.key}}</span>Email</label>
+                                </div>
+                                <div class="ups_setAlerts_service">
+                                    <input check-verify type="checkbox" class="ups-checkbox-custom"
+    								name="{{'check_for_sms_'+$index+inputID}}" data-ng-click="smsCheck()"
+    								id="{{'check_for_sms_'+$index+inputID}}"
+    								data-ng-model="formObj.sms[alrt.value]"
+    								data-ng-checked="alert.checkbox.sms" />
+                                    <label
+    								class="ups-checkbox-custom-label"
+    								for="{{'check_for_sms_'+$index+inputID}}"><span
+    								class="ups-readerTxt">{{alrt.key}}</span>Text&nbsp;</label>
+                                </div>
+                            </td>
+                            <td data-ng-if="emailConsolidationTable">
+                                <div class="ups-buttonList_wrapper ups-input_wrapper"  data-ng-if="$index !== 3">
+                                <input check-verify type="checkbox"
+                                class="ups-checkbox-custom"
+                                name="{{'ups-alert_yes_'+$index+inputID}}"
+                                id="{{'ups-alert_yes_'+$index+inputID}}"/>
+                                <label class="ups-checkbox-custom-label"
+        						for="{{'ups-alert_yes_'+$index+inputID}}"><span
+        						class="ups-readerTxt">{{alrt.key}}</span>Yes</label>
+                                </div>
+                                <p data-ng-if="$index === 3">
+                                    N/A
+                                </p>
+                            </td>
+                        </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Table -->
+            <p data-ng-if="consolidateEmail">
+                <strong>When possible, we can conslidate multiple emails of the same type into a single email for your convenience.</strong>
+            </p>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-if="consolidateEmail">
+                <input type="checkbox"
+                class="ups-checkbox-custom" name="ups_consolidate_email"
+                id="ups_consolidate_email"/>
+                <label
+                class="ups-checkbox-custom-label"
+                for="ups_consolidate_email">Consolidate Emails</label>
+            </div>
+            <h3>Email Recipient(s)</h3>
+            <div class="row ups-alerts_emailCounter {{$last?'ups-group':''}}" data-ng-repeat="mail in mailReceiver">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="ups-form_group {{emailRequired && $first ?'ups-form_required':''}}">
+                                <label for="{{'ups_email_address'+$index}}" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(emailRequired && $first)"></span> </label>
+                                <div class=" ups-text_wrapper ups-input_wrapper">
+                                    <input type="email" id="{{'ups_email_address'+$index}}"
+            							validate-email class="ups-form_input"
+            							name="{{'ups_email_address'+$index}}"
+            							data-form-obj="formObj[mail.valueTo][$index]"
+            							aria-describedby="email_address{{$index}}"
+            							data-ng-model="email[$index]" maxLength="50"
+                                        data-ng-pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            							data-ng-required='(emailRequired && $first)'
+                                        aria-required="{{ (emailRequired && $first) ? 'true' : 'false' }}"
+            							data-ng-model-options="{updateOn:'blur'}"
+                                        data-ng-class="{'ups-bodError':(formObj['ups_email_address'+$index].$invalid && clicked)}"/>
+                                    <span id="email_address{{$index}}" role="alert">
+                                        <span class="ups-invalid_color" data-ng-if="(formObj['ups_email_address'+$index].$invalid && clicked) || (!formObj['ups_email_address'+$index].$pristine) && formObj['ups_email_address'+$index].$invalid">
+                                            <span class="icon ups-error_exclamation">
+                                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                            </span>
+                                            <span data-ng-show="formObj['ups_email_address'+$index].$error.required && $first">Email is required.</span>
+                                            <span data-ng-hide="formObj['ups_email_address'+$index].$error.required"> Please enter a valid email address.</span>
+                                        </span>
+                                        <span data-ng-if="formObj['ups_email_address'+$index].$valid && email[$index]" > <span class="ups-readerTxt">Check</span> </span>
+                                    </span>
+                                    <span data-ng-if="(emailRequired && $first && formObj['ups_email_address'+$index].$valid && email[$index])"> <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-form_group {{emailRequired && $first ?'ups-form_required':''}}">
+                                <label for="{{'ups_name_input'+$index}}" class="ups-form_label">Name <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(emailRequired && $first)"></span> </label>
+                                <div class=" ups-text_wrapper ups-input_wrapper "><input type="text" id="{{'ups_name_input'+$index}}"
+    							class="ups-form_input"
+    							data-ng-model="name[$index]"
+    							data-form-obj="formObj[mail.valueFrom][$index]"
+    							name="{{'ups_name_input'+$index}}"
+    							data-ng-required='(emailRequired && $first)'
+                                aria-required="{{ (emailRequird && $first) ? 'true' : 'false'}}"
+                                data-ng-class="{'ups-bodError':(formObj['ups_name_input'+$index].$invalid && clicked)}"
+    							data-ng-model-options="{updateOn:'blur'}"
+    							aria-describedby="emailUser{{$index}}" />
+                                    <span id="emailUser{{$index}}" role="alert">
+                                        <span class="ups-invalid_color"
+    							data-ng-if="(formObj['ups_name_input'+$index].$invalid && clicked) || (!formObj['ups_name_input'+$index].$pristine) && formObj['ups_name_input'+$index].$invalid ">
+                                            <span class="icon ups-error_exclamation">
+                                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                            </span>
+                                            <span data-ng-show="formObj['ups_name_input'+$index].$error.required && $first">Name is required.</span>
+                                        </span>
+                                        <span data-ng-if="(formObj['ups_name_input'+$index].$valid && name[$index])" > <span class="ups-readerTxt">Check</span>
+                                        </span>
+                                    </span> <span data-ng-if="(emailRequired && $first && formObj['ups_name_input'+$index].$valid && name[$index])"> <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </span> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ups-form_ctaGroup ups-no_label">
+                                <button class="ups-cta ups-cta_tertiary ups-addpointCls ups-no-position" data-ng-click="deleteRow($index)" data-ng-if="!$first">Delete</button>
+                                <button class="ups-cta ups-cta-primary" data-ng-click="addMoreMailers();" data-ng-if="$last && mailReceiver.length<5">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-9">
+                    <div class="ups-form_group {{ smsRequired ? 'ups-form_required' : '' }}">
+                        <label for="ups_phone_number" class="ups-form_label">Phone Number <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(smsRequired)"></span> </label>
+                        <div class=" ups-text_wrapper ups-input_wrapper">
+                            <input id="ups_phone_number" name="ups_phone_number"
+    						type="text" maxLength="15"
+    						data-ng-model="phoneNumber[$index]"
+                            data-ng-class="{'ups-bodError':(formObj.ups_phone_number.$invalid && clicked)}"
+                            class="ups-form_input"
+    						data-ng-required='smsRequired'
+                            aria-required="{{ (smsRequired) ? 'true' : 'false' }}" aria-describedby="send_sms">
+                            <span id="send_sms" role="alert"> <span class="ups-invalid_color"
+    						data-ng-if="(formObj.ups_phone_number.$invalid && clicked) || (!formObj.ups_phone_number.$pristine) && formObj.ups_phone_number.$invalid "> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span>Phone Number is required.</span> </span> <span data-ng-if="(formObj.ups_phone_number.$valid && phoneNumber[$index])" > <span class="ups-readerTxt">Check</span> </span> </span> <span data-ng-if="(formObj.ups_phone_number.$valid && phoneNumber[$index])"> <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-9">
+                    <div class="ups-form_group">
+                        <label for="ups_preferred_language" class="ups-form_label">Preferred Language</label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select id="ups_preferred_language" name="ups_preferred_language" class="ups-dropdown">
+                                <option	value="0">United States - English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary"
+			data-ng-click="saveAlertOption(formObj.$valid);">Save Changes
+            </button>
+            <!-- data-ng-disabled="!formObj.$dirty && addClicked" -->
+        </div>
+    </ng-form>
+</div>

@@ -1,0 +1,55 @@
+{{!--------------------------------------------
+===============================================
+W20 Track with History
+===============================================
+---------------------------------------------}}
+<div class="ups-wrap ups-trackHistory_wrap {{bg}}">
+    <div class="ups-wrap_inner">
+
+        <div class="ups-trackHistory ups-widget ">
+            <div class="ups-widget_header">
+                <h2>{{title}}</h2>
+                {{#if this.help}}
+                    <button class="ups-help_button">
+                        <i class="icon ups-icon-questioncircle" aria-hidden="true"></i>
+                        <span class="ups-helpicon-text">Help</span>
+                    </button>
+                {{/if}}
+            </div>
+            <div class="ups-widget_panel">
+                {{#if this.help}}
+                    <div class="ups-help_panel"><p>{{this.help}}</p></div>
+                {{/if}}
+                <form id="ups-trackingSearch" method="post" action="#TBD">
+                    <label for="ups-track_history-trackingNumber" class="ups-readerTxt">Tracking Numbers</label>
+                    <textarea rows="1" name="ups-track_history-trackingNumber" class="ups-trackHistory_input ups-form_input" placeholder="Tracking Numbers" id="ups-track_history-trackingNumber"></textarea>
+                    <button class="ups-trackHistory_btn ups-cta" type="submit"><i aria-hidden="true"><span class="ups-readerTxt">Track Selected</span></i></button>
+                </form>
+                <div class="ups-trackHistory_list ups-form_wrap">
+                    <div class="ups-trackHistory_listHeader">Recently Tracked</div>
+                    {{#is type "authenticated"}}
+                    <form id="ups-trackingList" class="ups-trackHistory_listRows ups-form" method="post" action="#TBD">
+                        {{#each history}}
+                        <div class = "ups-checkbox ups-input_wrapper">
+                            <span class="ups-icon-chevronright" aria-hidden="true"></span>
+                            <input id="ups-tracking_check_{{@index}}" class="ups-checkbox-custom" name="ups-tracking_check_{{@index}}" type="checkbox">
+                            <label for="ups-tracking_check_{{@index}}" class="ups-checkbox-custom-label">{{this.trackingNumber}}</label>
+                            <a href="#ups-tracking_check_{{@index}}">{{this.trackingNumber}}</a>
+                            <p>{{#is status "In Transit"}}<i>{{/is}}{{status}}{{#is status "In Transit"}}</i>{{/is}}</p>
+                        </div>
+                        {{/each}}
+                        <div class="ups-form_ctaGroup">
+                            <button class="ups-cta ups-form_button" type="submit">Track Selected</button>
+                        </div>
+                    </form>
+                    {{/is}}
+                    {{#isnt type "authenticated"}}
+                    <p><a href="#login">Log in</a> or <a href="#register">Sign up</a> to view Tracking History.</p>
+                    {{/isnt}}
+                </div>
+                <a href="#more">More Options</a>
+            </div>
+        </div>
+
+    </div> <!-- @end .ups-wrap_inner -->
+</div> <!-- @end .ups-wrap.ups-trackHistory_wrap -->

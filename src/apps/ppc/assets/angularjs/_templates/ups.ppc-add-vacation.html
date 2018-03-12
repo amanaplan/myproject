@@ -1,0 +1,899 @@
+<ng-form class="ups-modal-container" name="form.formsetVacation"
+	novalidate>
+    <!-- partial found at ups.ppc-add-vacation -->
+<!--
+    <div class="row">
+        <div class="col-md-5">
+            <p>For trips lasting up to seven days, you can choose to have
+                packages delivered to a UPS location. And for trips lasting up to 14
+                days you can have packages delivered to your home up to three business
+                days after your return.</p>
+
+            <p>The selected delivery option will be applied to all shipments
+                scheduled for delivery during your travel unless restricted by the
+                shipper, legal, or regulatory reasons.</p>
+        </div>
+    </div>
+-->
+    <p data-ng-if="validDates =='both'">If your package is not eligible for delivery to a UPS location, whether due to a shipper restriction or regulatory constraints, we'll deliver to your registered address.</p>
+
+    <p> <em>
+        <span aria-hidden="true">*</span>
+        <span class="ups-readerTxt">Required</span>
+        Indicates required field
+    </em></p>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Hold Dates</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="ups-form_required">
+                        <label for="ups-dateFrom"> Start Date <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <!-- <p id="startDateHelperTxt" class="ups-form_subheader">mm/dd/yyyy</p> -->
+                        <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon"
+                        data-errormsg="This field is required">
+                            <input error-on-blur type="text" name="accName"
+                            class="ups-form_input" id="ups-dateFrom" value="" required
+                            data-ng-model="formObj.dateFrom" aria-required="true"
+                            uib-datepicker-popup="{{format}}" datepicker-options="dateOptions"
+                            maxlength="10" aria-describedby="ups-dateFrom-help ups-dateFrom-error startDateHelperTxt"
+                            aria-label="Please enter date in mm/dd/yyyy format">
+                            <div data-ng-if="(ups_authAccform.accName.$valid)">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span> </div>
+                            <button type="button" class="ups-date_picker_button" ng-click="openFromCalender()"> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+                            <span uib-datepicker-popup="{{format}}"
+                        ng-model="formObj.dateFrom" is-open="popup1.opened" datepicker-options="dateOptions"
+                        data-ng-required="true" close-text="Close"
+                        ></span> </div>
+                        <!-- datepicker-template-url="/app_assets/templates/ups.datepickerpopup.html" -->
+                        <!-- ups-text_wrapper ups-input_wrapper -->
+                        <span class="ups-icons-error" id="ups-dateFrom-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!ups_authAccform.accName.$pristine && ups_authAccform.accName.$invalid"> <span class="icon ups-error_exclamation"> <span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                class="ups-readerTxt">Invalid</span> <span
+                                data-ng-show="ups_authAccform.accName.$error.required">Invoice
+                            date is required.</span> </span></span>
+                    </div>
+                </div>
+                <div class="col-md-1 ups-vacation ups-no_label text-center">
+                    <p>to</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="ups-form_required">
+                        <label for="ups-dateTo"> End Date <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <!-- <p id="endDateHelperTxt" class="ups-form_subheader">mm/dd/yyyy</p> -->
+                        <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon"
+                        data-errormsg="This field is required">
+                            <input error-on-blur type="text" name="accName"
+                            class="ups-form_input" id="ups-dateTo" value="" required
+                            data-ng-model="formObj.dateTo" aria-required="true"
+                            uib-datepicker-popup="{{format}}"
+                            data-ng-model-options="{ updateOn: 'blur' }"
+                            datepicker-options="dateOptions" maxlength="10"
+                            aria-describedby="ups-dateTo-help ups-dateTo-error endDateHelperTxt">
+                            <!--span class="ups-icon-calendar"></span-->
+                            <div data-ng-if="(ups_authAccform.accName.$valid)">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span> </div>
+                            <button type="button" class="ups-date_picker_button" ng-click="openToCalender()"> <span class="icon ups-icon-calendar" aria-hidden="true"></span> <span class="ups-readerTxt">Select date from a calendar</span> </button>
+                            <span uib-datepicker-popup="{{format}}" ng-model="formObj.dateTo"
+                            is-open="popup2.opened" datepicker-options="dateOptions"
+                            data-ng-required="true" close-text="Close"
+                                datepicker-template-url="/app_assets/templates/ups.datepickerpopup.html"></span> </div>
+                        <!-- ups-text_wrapper ups-input_wrapper -->
+                        <span class="ups-icons-error" id="ups-dateTo-error" role="alert"><span class="ups-invalid_color"
+                            data-ng-if="!ups_authAccform.accName.$pristine && ups_authAccform.accName.$invalid"> <span class="icon ups-error_exclamation"> <span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                class="ups-readerTxt">Invalid</span> <span
+                                data-ng-show="ups_authAccform.accName.$error.required">Invoice
+                            date is required.</span> </span> <span data-ng-if="ups_authAccform.accName.$valid"> <span
+                                class="ups-readerTxt">Check</span> </span> </span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="ups-form_ctaGroup text-center ups-no_label">
+                        <button type="button"
+                        data-ng-click="showDelivery();datesDefined();"
+                        class="ups-cta ups-cta_primary">Update My Delivery Options</button>
+
+                        <!-- data-ng-disabled="(shDelivery) || (!formObj.dateTo || !formObj.dateFrom || !(formObj.dateFrom<formObj.dateTo) || (formObj.dateFrom===formObj.dateTo))" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Delivery Options</div>
+        <div class="panel-body">
+            <p data-ng-if="!shDelivery && showvalidDates"> Enter your hold dates above, then choose <strong>Update My Delivery Options </strong>to continue. </p>
+
+            <div data-ng-if="shDelivery && showvalidDates">
+                <p data-ng-if="validDates =='single'">Choose which day you'd like us to deliver your packages.</p>
+                <p data-ng-if="validDates =='both'">Choose which day you'd like us to deliver your packages, or select a nearby UPS location where you can pick them up when it's convenient.</p>
+            </div>
+
+            <div data-ng-if="shDelivery && showvalidDates">
+                <p data-ng-if="validDates =='both'"> <strong>Note: </strong>Additional transportation charges may apply. </p>
+                <p data-ng-if="validDates =='both'"> <strong class="ups-form_label">How would you like to get your deliveries?</strong> </p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required" data-ng-show="(shDelivery && validDates =='single') && showvalidDates" >
+                        <label for="ups-deliverPackage" class="ups-form_label ups-readerTxt">Preferred Delivery Date <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select error-on-blur id="ups-deliverPackage" select-on-click
+                                data-ng-class="{'ups-bodError':(ups_preference.defaultAccount.$invalid && clicked)}"
+                            class="ups-dropdown" name="defaultAccount"
+                            data-ng-model="formObj.datesDecide"
+                            data-ng-change="changedelDates(formObj.datesDecide)" required
+                            aria-required="true"
+                            data-ng-options="item.date for item in datesDecided">
+                                <option value="" selected>Select One</option>
+                            </select>
+                            <span role="alert">
+                            <span class="ups-invalid_color"
+                                       data-ng-if="!ups_preference.defaultAccount.$pristine && ups_preference.defaultAccount.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-if="ups_preference.defaultAccount.$error.required">This
+                            field is required.</span> </span></span> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="(shDelivery && validDates =='both') && showvalidDates" class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <input id="ups-Del-anotherDay" class="ups-radio-custom" type="radio"
+                        name="rad" value="package" data-ng-click="buttonDisabled(false);"
+                        data-ng-model="form.radVal" data-ng-disabled="(!allowDelivery)">
+                        <label for="ups-Del-anotherDay"
+                        class="ups-radio-custom-label"> Deliver my packages after I return. </label>
+                        <!--</div>
+                <div class="ups-form_group ups-indent">-->
+                        <div class="ups-offset-30" data-ng-if="(allowDelivery)">
+                            <label for="defaultAccount" class="ups-form_label ups-readerTxt"> Preferred Delivery Date </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select error-on-blur select-on-click
+                                class="ups-dropdown" name="defaultAccount"
+                                id="defaultAccount"
+                                data-ng-class="{'ups-bodError':(ups_preference.defaultAccount.$invalid && clicked)}"
+                                data-ng-model="formObj.datesDecide"
+                                data-ng-change="changedelDates(formObj.datesDecide)" required aria-required="true"
+                                data-ng-options="item.date for item in datesDecided">
+                                    <option value="" selected>Select One</option>
+                                </select>
+                                <span role="alert">
+                                <span class="ups-invalid_color"
+                                  data-ng-if="!ups_preference.defaultAccount.$pristine && ups_preference.defaultAccount.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-if="ups_preference.defaultAccount.$error.required">This
+                                field is required.</span> </span></span> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1" data-ng-if="(!allowDelivery)"> <a href="repl_href" class="ups-link">Verify Now</a> to access this UPS My Choice feature. </div>
+            </div>
+
+            <div data-ng-show="(shDelivery && validDates =='both') && showvalidDates" class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <input id="ups-Location" class="ups-radio-custom" type="radio"
+                        name="rad" value="location" data-ng-click="buttonDisabled(true);"
+                        data-ng-model="form.radVal" ng-disabled="(!allowPickup)">
+                        <label for="ups-Location"
+                        class="ups-radio-custom-label">I'll pick up my packages from a UPS
+                            location. </label>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1"> <span data-ng-if="(!allowPickup)"><a href="repl_href" class="ups-link">Verify Now</a> to access this UPS My Choice feature.</span> </div>
+            </div>
+
+            <div data-ng-show="(shDelivery && validDates =='both') && showvalidDates">
+                <button data-ng-show="!disableNearMe"
+                class="ups-cta ups-cta_primary"
+                data-ng-click="showLocationNearBy();">Find Locations Near Me</button>
+                <!-- data-ng-disabled="!isButtonEnable" -->
+
+                <button data-ng-if="!nonUsMember" data-ng-show="!disableNearMe"
+                data-ng-click="showLocationNearAnother();"
+                class="ups-cta ups-cta_primary">Find
+                Locations Near Another Address</button>
+                <!-- data-ng-disabled="!isButtonEnable" -->
+            </div>
+
+            <div data-ng-if="showPanel && showvalidDates">
+                <div data-ng-show="!isEdit" class="row">
+                    <div class="col-md-4">
+                        <div class="ups-group">
+                    		<span class="pull-right">
+                            	<a data-ng-click="isEdit=true; setAddress();" href="#" onclick="return false;" class="ups-link">Edit</a>
+                            </span>
+                            <span class="ups-group_label"><strong>Find locations near this address.</strong></span>
+                            <address>
+                                {{locAddress.street}}<br />
+                                {{locAddress.city}},
+                                {{locAddress.zip}}
+                            </address>
+                        </div>
+                        </div>
+                </div>
+                <div data-ng-show="!isEdit" class="row">
+                	<div class="col-md-8">
+                		<p><strong>Note:</strong> Include a complete address for the best search results.</p>
+                    </div>
+                </div>
+                <div class="ups-group">
+                <div class="row">
+                    	<div class="col-md-5">
+                <div data-ng-show="isEdit" data-ng-if="userAdress.length!==0">
+                        <div class="ups-group">
+                            <p class="ups-group_label">Find locations near this address.</p>
+                        </div>
+                        <div>
+                            <h3 class="ups-invalid_color-list ups-error_alert-list">
+                                <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+                                Please correct the following errors:
+                            </h3>
+                        </div>
+                        <p><strong>Note:</strong> Include a complete address for the best results.</p>
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-AddressBook" class="ups-form_label">
+                            	Contacts
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                <select error-on-blur id="ups-AddressBook" select-on-click
+                                class="ups-dropdown" name="defaultAccount"
+                                data-ng-model="form.setaddressBook"
+                                data-ng-options="item.street for item in userAdress" required aria-required="true">
+                                    <option value="" selected>Select One</option>
+                                </select>
+                                <span role="alert">
+                                <span class="ups-invalid_color"
+                                  data-ng-if="!ups_preference.defaultAccount.$pristine && ups_preference.defaultAccount.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-if="ups_preference.defaultAccount.$error.required">This
+                                field is required.</span> </span></span> </div>
+                        </div>
+                </div>
+                <div data-ng-if="isEdit && isError" class="ups-invalid_color">
+                	<p>The user must enter city/state and or ZIP, at a minimum, to find locations.</p>
+                </div>
+
+                <div data-ng-class="{'ups-offset-1':isError}" data-ng-if="isEdit">
+                        <div class="ups-form_group">
+                            <div class="ups-form_label">Country </div>
+                            <p> <strong id="ups-gCountry">United States</strong></p>
+                        </div>
+
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-city" class="ups-form_label">
+                                City
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            	data-errormsg="This field is required">
+                                <input id="ups-city" type="text" name="city"
+                                	data-ng-pattern="/^[a-zA-Z- ]+$/" class="ups-form_input"
+                                	maxlength="35" data-ng-model="form.city"
+                                	data-ng-model-options="{updateOn: 'blur'}" required aria-required="true">
+                                <div data-ng-if="(ups_Cardform.city.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                    class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <span role="alert">
+                            <span class="ups-invalid_color"
+                            	data-ng-if="(!ups_Cardform.city.$pristine && ups_Cardform.city.$invalid)||(ups_Cardform.city.$invalid && clicked)"> <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                            data-ng-if="ups_Cardform.city.$error.required">City is
+                            required.</span> <span data-ng-hide="ups_Cardform.city.$error.required">Invalid
+                            City.</span> </span> </span>
+                        </div>
+                </div>
+
+                <div data-ng-if="isEdit">
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-address" class="ups-form_label">
+                                    Address line 1
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <p id="addressHelperTxt" class="ups-form_subheader">Street</p>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                	data-errormsg="This field is required">
+                                    <input id="ups-address" type="text" name="address0"
+                                    	data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                    	data-ng-model="form.address0"
+                                    	data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required aria-describedby="addressHelperTxt">
+                                    <div data-ng-if="(ups_Cardform.address0.$valid)">
+                                        <!-- @Note: screen reader text needs to be translated as well -->
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                        class="ups-readerTxt">Check</span> </div>
+                                </div>
+                                <span role="alert">
+                                <span class="ups-invalid_color"
+                                data-ng-if="(!form.formsetVacation.address0.$pristine && form.formsetVacation.address0.$invalid)"> <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-if="form.formsetVacation.address0.$error.required">Address
+                                is required.</span> </span> </span>
+                            </div>
+
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-state" class="ups-form_label">
+                                    State
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-drop_exclamation ups-dropdown_wrapper ups-input_wrapper"
+                                	data-errormsg="This field is required">
+                                    <select error-on-blur id="ups-state" class=" ups-dropdown"
+                                    	name="state" data-ng-model="form.address.state" required aria-required="true">
+                                        <option value="" selected>Select One</option>
+                                        <option data-ng-repeat="states in statesList track by $index"
+                                        	value="{{states.code}}">{{states.state}}</option>
+                                    </select>
+                                    <span role="alert">
+                                    <span class="ups-invalid_color"
+                                    	data-ng-if="(!ups_Cardform.state.$pristine && ups_Cardform.state.$invalid)||(ups_Cardform.state.$invalid && clicked)"> <span class="icon ups-error_exclamation"> <span
+                                        class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                    data-ng-if="ups_Cardform.state.$error.required">State is
+                                    required.</span> </span> </span>
+                                </div>
+                            </div>
+
+                            <div class="ups-form_group">
+                                <label for="ups-address1" class="ups-form_label">Address line 2 </label>
+                                <p id="address2HelperTxt" class="ups-form_subheader">Apt., Suite, Unit</p>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                	data-errormsg="This field is required">
+                                    <input id="ups-address1" type="text" name="address1"
+                                    	data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                    	data-ng-model="form.address.address1" aria-describedby="address2HelperTxt">
+                                </div>
+                            </div>
+
+                            <div class="ups-form_group ups-form_required">
+                                <label for="ups-zipcode" class="ups-form_label">
+                                    ZIP Code
+                                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                                </label>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                	data-errormsg="This field is required">
+                                    <input id="ups-zipcode" type="text" name="zipCode"
+                                    	data-ng-pattern="/^[a-zA-Z0-9-]*$/" class="ups-form_input"
+                                    	maxlength="15" data-ng-model="form.zipCode"
+                                    	data-ng-model-options="{updateOn: 'blur'}" required aria-required="true">
+                                    <!-- <div class="ups-icon-check  ups-check"
+                                            data-ng-class="{'ups-active' : form.formsetVacation.zipCode.$valid}">
+                                            <span class="ups-readerTxt">Check</span>
+                                        </div> -->
+                                </div>
+                                <span role="alert">
+                                <span class="ups-invalid_color"
+                                data-ng-if="(!form.formsetVacation.zipCode.$pristine && form.formsetVacation.zipCode.$invalid)"> <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-hide="form.formsetVacation.zipCode.$error.required">Invalid
+                                Zip Code.</span> </span></span>
+                            </div>
+
+                            <div class="ups-form_group">
+                                <label for="ups-address2" class="ups-form_label">Address line 3 </label>
+                                <p id="address3HelperTxt" class="ups-form_subheader">Dept.,c/o,etc.</p>
+                                <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+                                	data-errormsg="This field is required">
+                                    <input id="ups-address2" type="text" name="address2"
+                                    	data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                    	data-ng-model="form.address.address2" aria-describedby="address3HelperTxt">
+                                </div>
+                            </div>
+                </div>
+
+                <div data-ng-show="isEdit">
+                    <button class="ups-cta ups-cta_primary"
+                    data-ng-click="findLocation()">Find</button>
+                    <button data-ng-click="isEdit=false;"
+                    class="ups-cta ups-cta_secondary">Cancel</button>
+                </div>
+             </div>
+             </div>
+             </div>
+             <div class="row">
+             <div class="col-md-5">
+                	<div class="panel panel-default">
+                    <p class="ups-form_label panel-heading">Select a Location</p>
+                    	<div class="panel-body">
+                        <div class="ups-locator_container">
+                        	<fieldset class="ups-form_group">
+                            	<legend class="ups-readerTxt">Choose location below</legend>
+                            	<div class="ups-buttonList_wrapper ups-input_wrapper">
+                                	<input id="upsAPLocation1" class="ups-radio-custom" name="upsAPLocation" value="1" type="radio">
+
+                                	<label for="upsAPLocation1" class="ups-radio-custom-label">
+                                    	<span class="ups-locator_miles pull-right">
+                                        	1.1 mi
+                                        </span>
+                                    	<span class="ups-locator_icon pull-left">
+                                    		<span class="icon ups-icon-locationups" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-locator_address">
+                                        	<span class="ups-form_label">The UPS Store</span>
+                                            <address class="ups-address_condensed">
+                                            	3000 Old Alabama Rd. 119<br>
+                                                Alpharetta, GA 30022<br>
+                                                US
+                                            </address>
+                                            <p>770-740-0169</p>
+                                            <a href="#" class="ups-link">View Details</a>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                	<input id="upsAPLocation2" class="ups-radio-custom" name="upsAPLocation" value="2" type="radio">
+
+                                	<label for="upsAPLocation2" class="ups-radio-custom-label">
+                                    	<span class="ups-locator_miles pull-right">
+                                        	1.5 mi
+                                        </span>
+                                    	<span class="ups-locator_icon pull-left">
+                                    		<span class="icon ups-icon-locationups" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-locator_address">
+                                        	<span class="ups-form_label">The UPS Store</span>
+                                            <address class="ups-address_condensed">
+                                            	2300 Holcomb Bridge Rd<br>
+                                                Ste 103<br>
+                                                Roswell, GA 30076<br>
+                                                US
+                                            </address>
+                                            <p>678-352-7934</p>
+                                            <a href="#" class="ups-link">View Details</a>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                	<input id="upsAPLocation3" class="ups-radio-custom" name="upsAPLocation" value="3" type="radio">
+
+                                	<label for="upsAPLocation3" class="ups-radio-custom-label">
+                                    	<span class="ups-locator_miles pull-right">
+                                        	1.9 mi
+                                        </span>
+                                    	<span class="ups-locator_icon pull-left">
+                                    		<span class="icon ups-icon-locationups" aria-hidden="true"></span>
+                                        </span>
+                                        <span class="ups-locator_address">
+                                        	<span class="ups-form_label">The UPS Store</span>
+                                            <address class="ups-address_condensed">
+                                            	1425 Market Blvd 330<br>
+                                                Roswell, GA 30076<br>
+                                                US
+                                            </address>
+                                            <p>770-518-8900</p>
+                                            <a href="#" class="ups-link">View Details</a>
+                                        </span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                       </div>
+                       <div class="panel-footer">
+                        <div class="ups-locator_pager">
+                            <div class="ups-locator_previous_page ups-btn_has_icon">
+                            	<button type="button" class="ups-link">
+                                	<span class="icon ups-icon-chevronleft-thin" aria-hidden="true"></span>
+                                	Previous
+                                </button>
+                            </div>
+                            <div class="ups-locator_next_page ups-btn_has_icon">
+                            	<button type="button" class="ups-link">
+                                    Next
+                                    <span class="icon ups-icon-chevronright-thin" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="ups-locator_current_page">
+                            	1-10 of 100
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        <p class="ups-form_label">Location Filter Options</p>
+                        <div class="ups-form_group">
+                            <div class="ups-checkbox ups-input_wrapper">
+                                <input id="locationFilterLockers" class="ups-checkbox-custom" name="locationFilterLockers" value="1" type="checkbox">
+                                 <label for="locationFilterLockers"
+                                class="ups-checkbox-custom-label">UPS Access PointTM
+                                    Locker</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="ups-group">
+                                <div class="ups-cms-demo text-center">
+                                    Map
+                                </div>
+                            </div>
+
+                        <div class="ups-group">
+                        	<div class="ups-group_label">UPS Service Locations</div>
+                     	<div class="row">
+                     		<div class="col-md-4">
+                            	<a href="#" class="ups-link" onclick="return false;">The UPS Store&reg;</a>
+                            </div>
+                            <div class="col-md-4">
+                            	<a href="#" class="ups-link" onclick="return false;">UPS Access Point Location</a>
+                            </div>
+                            <div class="col-md-4">
+                            	<a href="#" class="ups-link" onclick="return false;">UPS Customer Center</a>
+                            </div>
+                      	</div>
+                        </div>
+                        <div class="ups-group">
+                        	<p><strong>Note:</strong> A government-issued photo ID is required when picking up a package.  Locations, hours of operation, and pickup times change periodically.  It's a good idea to check location details before you leave.</p>
+                        </div>
+                   </div>
+                </div>
+
+
+<!--
+                <p><strong>Note: </strong>Include a complete address for the list below</p>
+-->
+                <!--<p>Select a new delivery location from the list below.</p>
+
+                <p> <a href="#" onclick="return false;" class="ups-link">Once map work done list will display here.</a> </p>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <label class="ups-form_label">Location filter Options </label>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input check-verify="" id="ups-Authorize"
+                                class="ups-checkbox-custom" name="ups-upsAuthorize"
+                                type="checkbox" value="1" data-ng-click=""
+                                data-ng-model="upsAuthorize">
+                                <label for="ups-Authorize"
+                                class="ups-checkbox-custom-label">Ups Access PointTM
+                                    Locker</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            <div data-ng-if="(!showPanel && getanotherPanel) && showvalidDates">
+                <p><strong>Ups Location Near</strong> </p>
+                <div class="ups-form_group ups-form_required" data-ng-if="userAdress.length!==0">
+                    <label for="ups-AddressBook1" class="ups-form_label">Address
+                        Book <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur id="ups-AddressBook1" select-on-click
+                        class="ups-dropdown" name="defaultAccount"
+                        data-ng-model="formOb.addressBook"
+                        data-ng-options="item.street for item in userAdress" required aria-required="true">
+                            <option value="" selected>Select One</option>
+                        </select>
+                        <span role="alert">
+                        <span class="ups-invalid_color"
+                          data-ng-if="!ups_preference.defaultAccount.$pristine && ups_preference.defaultAccount.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span data-ng-if="ups_preference.defaultAccount.$error.required">This
+                        field is required.</span> </span></span> </div>
+                </div>
+
+                <div class="ups-invalid_color" data-ng-if="!isEdit && isError">
+                    <p>The user must enter city/state and or ZIP, at a minimum, to
+                        find locations.</p>
+                </div>
+
+
+                        <div class="ups-group">
+                            <div class="ups-group_label">Country</div>
+                            <p class="ups-group_value" id="ups-Country"></p>
+                        </div>
+
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-gcity" class="ups-form_label"> City <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input id="ups-gcity" type="text" name="city"
+                                data-ng-pattern="/^[a-zA-Z- ]+$/" class="ups-form_input"
+                                maxlength="35" data-ng-model="formOb.city"
+                                data-ng-model-options="{updateOn: 'blur'}" required aria-required="true">
+                                <div data-ng-if="(ups_Cardform.city.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                    class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <span role="alert">
+                            <span class="ups-invalid_color"
+                            data-ng-if="(!ups_Cardform.city.$pristine && ups_Cardform.city.$invalid)||(ups_Cardform.city.$invalid && clicked)"> <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                            data-ng-if="ups_Cardform.city.$error.required">City is
+                            required.</span> <span data-ng-hide="ups_Cardform.city.$error.required">Invalid
+                            City.</span> </span></span> </div>
+
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-gaddress" class="ups-form_label">Address
+                                line 1 <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <p id="streetHelperTxt" class="ups-form_subheader">Street</p>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input id="ups-gaddress" type="text" name="address0"
+                                data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                data-ng-model="formOb.address0"
+                                data-ng-model-options="{updateOn: 'blur'}" aria-required="true" required aria-describedby="streetHelperTxt">
+                                <div data-ng-if="(ups_Cardform.address0.$valid)">
+                                    <!-- @Note: screen reader text needs to be translated as well -->
+                                    <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                    class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <span class="ups-invalid_color"
+                            data-ng-if="(!form.formsetVacation.address0.$pristine && form.formsetVacation.address0.$invalid)"> <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                            data-ng-if="form.formsetVacation.address0.$error.required">Address
+                            is required.</span> </span> </div>
+
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-gstate" class="ups-form_label"> State <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <div
+                            class="ups-drop_exclamation ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <select error-on-blur id="ups-gstate" class=" ups-dropdown"
+                                name="state" data-ng-model="formOb.state" required aria-required="true">
+                                    <option value="" selected>Select One</option>
+                                    <option data-ng-repeat="states in statesList track by $index"
+                                    value="{{states.code}}">{{states.state}}</option>
+                                </select>
+                                <span role="alert">
+                                <span class="ups-invalid_color"
+                                  data-ng-if="(!ups_Cardform.state.$pristine && ups_Cardform.state.$invalid)||(ups_Cardform.state.$invalid && clicked)"> <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-if="ups_Cardform.state.$error.required">State is
+                                required.</span> </span> </span></div>
+                        </div>
+
+                        <div class="ups-form_group">
+                            <label for="ups-gaddress1" class="ups-form_label">Address
+                                line 2 </label>
+                            <p id="address2HelperTxt" class="ups-form_subheader">Apt., Suite, Unit</p>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+                            data-errormsg="This field is required">
+                                <input id="ups-gaddress1" type="text" name="address1"
+                                data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                data-ng-model="formOb.address1" aria-describedby="address2HelperTxt">
+                            </div>
+                        </div>
+
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-gzipcode" class="ups-form_label"> ZIP Code <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input
+                                id="ups-gzipcode" type="text" name="zipCode"
+                                data-ng-pattern="/^[a-zA-Z0-9-]*$/" class="ups-form_input"
+                                maxlength="15" data-ng-model="formOb.zipCode"
+                                data-ng-model-options="{updateOn: 'blur'}" required aria-required="true">
+                                <!-- <div class="ups-icon-check  ups-check"
+                                        data-ng-class="{'ups-active' : form.formsetVacation.zipCode.$valid}">
+                                        <span class="ups-readerTxt">Check</span>
+                                    </div> -->
+                            </div>
+                            <span role="alert">
+                            <span class="ups-invalid_color"
+                            data-ng-if="(!form.formsetVacation.zipCode.$pristine && form.formsetVacation.zipCode.$invalid)"> <span class="icon ups-error_exclamation"><span
+                                class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                            data-ng-hide="form.formsetVacation.zipCode.$error.required">Invalid
+                            Zip Code.</span> </span></span> </div>
+
+                        <div class="ups-form_group">
+                            <label for="ups-gaddress2" class="ups-form_label">Address
+                                line 3 </label>
+                            <p id="addressDeptHelperTxt" class="ups-form_subheader">Dept.,c/o,etc.</p>
+                            <div class="ups-text_wrapper ups-input_wrapper ups-form_group"
+                            data-errormsg="This field is required">
+                                <input id="ups-gaddress2" type="text" name="address2"
+                                data-ng-pattern="" class="ups-form_input" maxlength="35"
+                                data-ng-model="formOb.address2" aria-describedby="addressDeptHelperTxt">
+                            </div>
+                        </div>
+                <div class="ups-cta_group">
+                    <button class="ups-cta ups-cta_primary"
+                    data-ng-click="findanotherLocation()">Find</button>
+                    <button data-ng-click="discardChanges()"
+                    class="ups-cta ups-cta_secondary">Cancel</button>
+                </div>
+
+                <p>Select a new delivery location from list below.</p>
+
+                <p>Once map implement then list will show here.</p>
+
+                <div class="ups-form_group">
+                    <label class="ups-form_label">Location filter Options </label>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input check-verify="" id="ups-gAuthorize"
+                        class="ups-checkbox-custom" name="ups-upsAuthorize"
+                        type="checkbox" value="1" data-ng-click=""
+                        data-ng-model="upsAuthorize">
+                        <label for="ups-gAuthorize"
+                        class="ups-checkbox-custom-label">Ups Access Point&trade;
+                            Locker</label>
+                    </div>
+                </div>
+
+            </div>
+    	</div>
+
+        <div data-ng-if="!showvalidDates">
+    	<p>Based on your travel dates, there are no automatic delivery options available. You'll see additional options if you select <strong>Change Delivery</strong> when tracking your shipments.</p>
+
+<!--
+        <p>
+            You may want to consider the following delivery change options,
+            which are accesible if you select <strong> Change Delivery</strong>
+            when you track a shipment.
+        </p>
+ -->
+        <p class="ups-form_label">Additional Delivery Options:</p>
+        <ul>
+            <li>
+                <p> <strong>Leave package with a neighbor </strong> (available only for UPS My Choice Premium members) </p>
+                <p>Arrange to have us deliver packages to a neighbor's house.</p>
+            </li>
+            <li>
+                <p> <strong>Deliver my package to another address</strong> </p>
+                <p>Consider having shipments delivered to a different address.</p>
+            </li>
+        </ul>
+    </div>
+
+    </div>
+    </div>
+
+    <div class="panel panel-default" data-ng-if="showvalidDates">
+        <div class="panel-heading">Contact Info</div>
+        <div class="panel-body">
+            <p>Tell us your name and phone number so we know who's requesting this delivery hold.</p>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group  ups-form_required">
+                        <label for="ups-Contact" class="ups-form_label"> Contact Name <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                        <div class="ups-text_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                            <input error-on-blur id="ups-Contact" type="text" name="Contact"
+                            class="ups-form_input" aria-required="true" required data-ng-pattern="" maxlength="71"
+                            data-ng-model="formObj.contactName"
+                            aria-describedby="ups-set-vacation-contact-error">
+                            <div data-ng-if="(formObj.contactName.length)">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                class="ups-readerTxt">Check</span> </div>
+                            <span id="ups-set-vacation-contact-error" role="alert"><span
+                            class="ups-invalid_color"
+                            data-ng-if="!form.formsetVacation.Contact.$pristine && form.formsetVacation.Contact.$invalid"> <span class="icon ups-error_exclamation"><span
+                                    class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                data-ng-if="form.formsetVacation.Contact.$error.required">This
+                            field is required.</span> </span></span> </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ups-form_group  ups-form_required">
+                                <label for="ups-ContactNumber"
+                                class="ups-form_label"> Contact Phone Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                    <input error-on-blur number-mask id="ups-ContactNumber" type="text"
+                                    name="ContactNumber" class="ups-form_input" aria-required="true" required
+                                    data-ng-pattern="" maxlength="35"
+                                    data-ng-model="formObj.ContactNumber"
+                                    aria-describedby="ups-vacation-contact-number-error">
+                                    <div data-ng-if="(formObj.ContactNumber.length)">
+                                        <!-- @Note: screen reader text needs to be translated as well -->
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                        class="ups-readerTxt">Check</span> </div>
+                                    <span id="ups-vacation-contact-number-error" role="alert"><span
+                                    class="ups-invalid_color"
+                                    data-ng-if="!form.formsetVacation.ContactNumber.$pristine && form.formsetVacation.ContactNumber.$invalid"> <span class="icon ups-error_exclamation"><span
+                                            class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                        data-ng-if="form.formsetVacation.ContactNumber.$error.required">This
+                                    field is required.</span> </span></span> </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="ups-form_group">
+                                <label for="ups-Ext" class="ups-form_label">Extension </label>
+                                <div class="ups-text_wrapper ups-input_wrapper"
+                                data-errormsg="This field is required">
+                                    <input number-mask id="ups-Ext" type="text" name="Ext"
+                                    class="ups-form_input" data-ng-pattern="" maxlength="4"
+                                    data-ng-model="formObj.Ext">
+                                    <div data-ng-if="(Ext.length)">
+                                        <!-- @Note: screen reader text needs to be translated as well -->
+                                        <span class="ups-icon-check" aria-hidden="true"></span> <span
+                                        class="ups-readerTxt">Check</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--data-ng-show="!isPremium" -->
+
+    <div class="panel panel-default" data-ng-if="showvalidDates">
+        <div class="panel-heading">Payment Method</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups-shipping-charges" class="ups-form_label"> Payment Method <span aria-hidden="true"></span> </label>
+                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                            <select error-on-blur id="ups-shipping-charges" select-on-click
+                            class="ups-dropdown" name="shippingCharges"
+                            data-ng-model="formObj.methods" data-ng-change="" required aria-required="true"
+                            data-ng-options="item.displayAccount
+                                for item in accountMethods">
+                                <option value="" selected>Select One</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ups-form_ctaGroup text-center" data-ng-if="validDates =='both' && showvalidDates">
+        <button data-ng-if="!isButtonEnable" class="ups-cta ups-cta_primary"
+        data-dismiss="modal"
+        data-ng-click="Save()">Save</button>
+        <!-- data-ng-disabled="!form.formsetVacation.$valid ||notvalidDate" -->
+        <button data-ng-if="isButtonEnable" class="ups-cta ups-cta_primary"
+        data-dismiss="modal"
+        data-ng-click="SavePickup()">Save</button>
+        <!-- data-ng-disabled="!form.formsetVacation.$valid ||notvalidDate || !disableNearMe" -->
+        <button class="ups-cta ups-cta_secondary" data-ng-click="cancel()"
+        data-dismiss="modal">Cancel</button>
+    </div>
+
+    <div data-ng-if="validDates =='single' && showvalidDates">
+        <div class="ups-form_ctaGroup text-center">
+            <button class="ups-cta ups-cta_primary" data-dismiss="modal"
+            data-ng-click="Save()">Save</button>
+            <!-- data-ng-disabled="!form.formsetVacation.$valid ||notvalidDate" -->
+            <button class="ups-cta ups-cta_secondary" data-ng-click="cancel()"
+            data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+
+    <div data-ng-if="validDates =='none' || !showvalidDates">
+        <div class="ups-form_ctaGroup text-center">
+            <button class="ups-cta ups-cta_secondary" data-ng-click="cancel()"
+            data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
+</ng-form>
+
+    <!------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--	Remove these buttons in production. 									  --
+--																			  --
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+------------------------------------------------------------------------------->
+<div class="ups-cms-demo ng-scope">
+    <div class="row">
+        <div class="col-md-4">
+            <button class="ups-cta ups-cta_secondary" ng-click="showvalidDates = false;">No Dates Available</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="validDates = 'single';">Only Delivery Available</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="allowDelivery = false; allowPickup = true;">Verification on Delivery</button>
+        </div>
+        <div class="col-md-5">
+            <button class="ups-cta ups-cta_secondary" ng-click="showvalidDates = true;">Dates Available</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="validDates = 'both';">Delivery and Pickup Available</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="allowDelivery = true; allowPickup = false; showPanel = false;">Verification on Pickup</button>
+        </div>
+        <div class="col-md-3">
+            <button class="ups-cta ups-cta_secondary" ng-click="allowDelivery = true; allowPickup = true;">No Verification</button>
+            <button class="ups-cta ups-cta_secondary" ng-click="validDates = 'single';">Reschedule Available</button>
+
+        </div>
+    </div>
+</div>
+    <!------------------------------------------------------------------------------
+------------------------------------------------------------------------------->

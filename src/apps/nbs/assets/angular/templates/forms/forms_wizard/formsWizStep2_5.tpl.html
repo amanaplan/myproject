@@ -1,0 +1,620 @@
+<div [formGroup]="formsWizStep2_5">
+   <!-- Beginning of Page Level Errors -->
+   <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+      <h3 class="ups-invalid_color-list ups-error_alert-list">
+         <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+         Please correct the following errors:
+      </h3>
+      <!-- Page Level Error Handling #1 -->
+      <ul class="ups-icons-error" *ngIf="!intermediateAddress">
+         <!-- How would you like to file your EEI for this item? Select Box -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmcFileEEI'].valid && formsWizStep2_5.controls['hmcFileEEI'].hasError('required'))">
+            <a href="#ups-hmcFileEEI" class="ups-invalid_color" pointIdClick>Method of filing your EEI <span class="ups-readerTxt">field</span></a> is required.
+         </li>
+         <!-- Shipment Reference Number -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].valid && formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].hasError('required'))">
+            <a href="#hmc_eei_shipment_ref_number" class="ups-invalid_color" pointIdClick>Shipment Reference Number<span class="ups-readerTxt">field</span></a> is required.
+         </li>
+         <!-- Email -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_eei_email'].valid && formsWizStep2_5.controls['hmc_eei_email'].hasError('required'))">
+            <a href="#hmc_eei_email" class="ups-invalid_color" pointIdClick>Email <span class="ups-readerTxt">field</span></a> is required.
+         </li>
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_eei_email'].valid && formsWizStep2_5.controls['hmc_eei_email'].hasError('pattern'))">
+            <a href="#hmc_eei_email" class="ups-invalid_color"pointIdClick>Email <span class="ups-readerTxt">field</span></a> is invalid.
+         </li>
+         <!-- What is your ITN -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_int_num'].valid && formsWizStep2_5.controls['hmc_int_num'].hasError('required'))">
+            <a href="#hmc_int_num" class="ups-invalid_color" pointIdClick>International Transaction Number (ITN)<span class="ups-readerTxt">field</span></a> is required.
+         </li>
+         <!-- License Exemption Code Select Box -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_file_eei_exemption_code'].valid && formsWizStep2_5.controls['hmc_file_eei_exemption_code'].hasError('required'))">
+            <a href="#hmc_file_eei_exemption_code" class="ups-invalid_color" pointIdClick>License Exemption Code <span class="ups-readerTxt">field</span></a> is required.
+         </li>
+         <!-- Ultimate Recipient Type Select Box -->
+         <li *ngIf="(!formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].valid && formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].hasError('required'))">
+            <a href="#hmc_file_eei_ultimate_recipient" class="ups-invalid_color" pointIdClick>Ultimate Recipient Type<span class="ups-readerTxt">field</span></a> is required.
+         </li>
+      </ul>
+
+      <!-- Page Level Error Handling #2 -->
+      <ul class="ups-icons-error" *ngIf="intermediateAddress">
+          <!-- Ultimate Receiver Country or Territory Select Box -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_country'].valid && formsWizStep2_5.controls['hmc_ultimate_country'].hasError('required'))">
+             <a href="#hmc_ultimate_country" class="ups-invalid_color" pointIdClick>Country or Territory<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+          <!-- Ultimate Receiver Name -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_name'].valid && formsWizStep2_5.controls['hmc_ultimate_name'].hasError('required'))">
+             <a href="#hmc_ultimate_name" class="ups-invalid_color" pointIdClick>Name or Company<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+
+          <!-- Ultimate Receiver Address -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_address1'].valid && formsWizStep2_5.controls['hmc_ultimate_address1'].hasError('required'))">
+             <a href="#hmc_ultimate_address1" class="ups-invalid_color" pointIdClick>Address<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+
+          <!-- Ultimate Receiver City -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_city'].valid && formsWizStep2_5.controls['hmc_ultimate_city'].hasError('required'))">
+             <a href="#hmc_ultimate_city" class="ups-invalid_color" pointIdClick>City<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+
+          <!-- Ultimate Receiver State -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_state'].valid && formsWizStep2_5.controls['hmc_ultimate_state'].hasError('required'))">
+             <a href="#hmc_ultimate_state" class="ups-invalid_color" pointIdClick>State<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+
+          <!-- Ultimate Receiver ZIP Code -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_zip'].valid && formsWizStep2_5.controls['hmc_ultimate_zip'].hasError('required'))">
+             <a href="#hmc_ultimate_zip" class="ups-invalid_color" pointIdClick>ZIP Code<span class="ups-readerTxt">field</span></a> is required.
+          </li>
+
+          <!-- Ultimate Receiver Email -->
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_email'].valid && formsWizStep2_5.controls['hmc_ultimate_email'].hasError('required'))">
+             <a href="#hmc_ultimate_email" class="ups-invalid_color" pointIdClick>Email <span class="ups-readerTxt">field</span></a> is required.
+          </li>
+          <li *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_email'].valid && formsWizStep2_5.controls['hmc_ultimate_email'].hasError('pattern'))">
+             <a href="#hmc_ultimate_email" class="ups-invalid_color"pointIdClick>Email <span class="ups-readerTxt">field</span></a> is invalid.
+          </li>
+      </ul>
+   </div>
+   <!-- End of Page Level Error Handling -->
+  <!-- <p>
+      According to your information, your item   -  {{'{'}}Item Description{{'}'}} - Value: {{'{'}}$n,nnn.nn{{'}'}} - Going to: {{'{'}}ShipTo Country{{'}'}}  has a total customs value above 2500 USD and requires an EEI.
+  </p> -->
+   <div *ngIf="!intermediateAddress">
+      <!-- Beginning of Ship Tip -->
+      <div class="alert alert-warning " role="alert">
+         <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+         </div>
+         <button type="button" class="ups-alert_collapse" aria-expanded="false"
+            (click)="showShipTip = !showShipTip"><span class="ups-readerTxt">Click to expand</span><span [ngClass]="{ 'ups-icon-wedgeup' : showShipTip, 'ups-icon-wedgedown' : !showShipTip }" class="icon " aria-hidden="true"></span></button>
+         <div class="alert-title ups-alert_has_icon">
+            <p><strong>Ship Tip:</strong> When am I required to file an EEI?</p>
+         </div>
+         <div class="alert-content ups-alert_has_icon" *ngIf="showShipTip">
+            <p>
+               U.S. Customs requires an electronic Export Information (EEI) filing when the value of an item (or quantity of that item) in a shipment exceeds US $2,500.00. Certain items require an export license for shipping in any quantity or value.
+            </p>
+            <p>
+               You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.
+            </p>
+         </div>
+      </div>
+      <!-- End of Ship Tip -->
+      <div class="ups-form_group">
+         <label class="ups-lever" onclick="" for="hmc_itn_lever">
+            <input type="checkbox" id="hmc_itn_lever" name="hmc_itn_lever" class="ups-lever_checkbox" [(ngModel)]="hmc_itn_lever_yes" [ngModelOptions]="{'standalone': true}">
+            <!-- if checked then yes -->
+            <div class="ups-lever_label_container">
+               <strong class="ups-form_label ups-lever_label">
+               Do you have an International Transaction Number (ITN)?
+               </strong>
+               <p class="ups-form_subheader">
+                  This number confirms your EEI when you self-file with U.S. Customs.
+               </p>
+            </div>
+            <span aria-hidden="true" class="ups-lever_switch">
+            <span class="ups-lever_switch_yes">Yes</span>
+            <span class="ups-lever_switch_bg"></span>
+            <span class="ups-lever_switch_no">No</span>
+            </span>
+         </label>
+      </div>
+      <div class="row" *ngIf="!hmc_itn_lever_yes">
+         <div class="col-md-9">
+            <div class="ups-form_group ups-form_required">
+               <label for="ups-hmcFileEEI" class="ups-form_label">
+               How would you like to file your EEI for this item?
+               <span aria-hidden="true" class="ups-required_indicator"></span>
+               </label>
+               <p class="ups-form_subheader">
+                  You may file your EEI directly with U.S. Customs, or we can file on your behalf for a fee.
+               </p>
+               <div class="ups-dropdown_wrapper ups-input_wrapper">
+                  <select id="ups-hmcFileEEI"
+                  class="ups-dropdown"
+                  name="ups-hmcFileEEI"
+                  required
+                  aria-required="true"
+                  aria-describedby="ups-hmcFileEEI_error"
+                  formControlName="hmcFileEEI"
+                  [(ngModel)]="hmcFileEEI"
+                  [ngClass]="{'ups-bodError':  (!formsWizStep2_5.controls['hmcFileEEI'].valid && formsWizStep2_5.controls['hmcFileEEI'].touched)}">
+                  <option value="0" selected>Select One</option>
+                  <option value="1">UPS file it for me (10.00)</option>
+                  <option value="2">Self file with U.S. Customs through ACE</option>
+                  <option value="3">File post departure as approved USPPI</option>
+                  <option value="4">I don't need to file an EEI.</option>
+                  </select>
+                  <div *ngIf="formsWizStep2_5.controls['hmcFileEEI'].valid">
+                     <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="ups-hmcFileEEI_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmcFileEEI'].valid &amp;&amp; formsWizStep2_5.controls['hmcFileEEI'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmcFileEEI'].hasError('required')">
+               Method of filing your EEI is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Lever Error -->
+            </div>
+         </div>
+      </div>
+      <p *ngIf="hmcFileEEI == '1' && !hmc_itn_lever_yes" class="ups-form_label"> Please review the authorization below and choose an option to file your EEI through UPS.</p>
+      <div class="ups-text_scroll" *ngIf="hmcFileEEI == '1' && !hmc_itn_lever_yes">
+         <p>I hereby authorize UPS Worldwide Forwarding, Inc. and its affiliates (Forwarding Agent), its successors or assigns, to act for and on its behalf as a true and lawful agent and attorney for me/the organization associated with this account as the U.S. Principal Party of Interest (USPPI), from this date, in the United States either in writing, electronically, or by other authorized means to:</p>
+         <p>Act as Forwarding Agent for export control, Bureau of the Census reporting, and customs purposes, and to make, endorse, sign or file Electronic Export Information (EEI) through the Automated Export System (AES) or to perform any act which may be required by law in connection with the exportation or transportation of any merchandise shipped or consigned by or to the USPPI and to receive or ship any merchandise on behalf of the USPPL.</p>
+         <p>The USPPI hereby certifies that all statements and information contained in the documentation provided to the...</p>
+      </div>
+      <div class="ups-form_group ups-form_required" *ngIf="hmcFileEEI == '1' && !hmc_itn_lever_yes">
+         <div class="ups-checkbox ups-input_wrapper">
+            <input id="hmc_eei_authorize_poa" class="ups-checkbox-custom" name="hmc_eei_authorize_poa" value="1" type="checkbox" aria-required="true" required>
+            <label for="hmc_eei_authorize_poa" class="ups-form_label ups-checkbox-custom-label"> I authorize UPS one time power of attorney for this shipment. <span aria-hidden="true" class="ups-required_indicator"></span></label>
+         </div>
+      </div>
+      <div class="ups-group" *ngIf="hmcFileEEI == '3' && !hmc_itn_lever_yes">
+         <p><span class="ups-icon-alert" aria-hidden="true"></span> NOTE: You may <em>only</em> file your EEI post-departure if you are pre-approved as a qualifying USPPI (U.S. Principal Party of Interest) by U.S. Customs. </p>
+      </div>
+      <div class="ups-group ups-group_condensed" *ngIf="hmcFileEEI == '3' && !hmc_itn_lever_yes">
+         <p class="ups-group_label">
+            Reference Number Type <span aria-hidden="true">*</span><span class="ups-readerTxt">required</span>
+         </p>
+         <p class="ups-group_value">
+            Shipment reference number
+         </p>
+      </div>
+      <div class="row" *ngIf="hmcFileEEI == '3' && !hmc_itn_lever_yes">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+               <label for="hmc_eei_shipment_ref_number" class="ups-form_label">Shipment Reference Number <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_eei_shipment_ref_number" class="ups-form_input" id="hmc_eei_shipment_ref_number" aria-required="true" required value="{CZ01QNWDMRBFFD5TG}" aria-describedby="hmc_int_num_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].valid &amp;&amp; formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_eei_shipment_ref_number']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_int_num_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].valid &amp;&amp; formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_eei_shipment_ref_number'].hasError('required')">
+               Shipment Reference Number is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+      <div class="row" *ngIf="(hmcFileEEI == '1' && !hmc_itn_lever_yes) || (hmcFileEEI == '3' && !hmc_itn_lever_yes)">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+               <label for="hmc_eei_email" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="email" name="hmc_eei_email" class="ups-form_input" id="hmc_eei_email" aria-required="true" required aria-describedby="hmc_eei_email_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_eei_email'].valid &amp;&amp; formsWizStep2_5.controls['hmc_eei_email'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="formsWizStep2_5.controls['hmc_eei_email']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_eei_email'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_eei_email_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_eei_email'].valid &amp;&amp; formsWizStep2_5.controls['hmc_eei_email'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_eei_email'].hasError('required')">
+               Email is required.
+               </span>
+               <span *ngIf="!formsWizStep2_5.controls['hmc_eei_email'].hasError('required')">
+               Email is invalid.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+      <div class="ups-form_group" *ngIf="(hmcFileEEI == '1' && !hmc_itn_lever_yes) || (hmcFileEEI == '3' && !hmc_itn_lever_yes)">
+         <div class="ups-checkbox ups-input_wrapper">
+            <input id="hmc_eei_notify_filing" class="ups-checkbox-custom" name="hmc_eei_notify_filing" value="1" type="checkbox" checked>
+            <label for="hmc_eei_notify_filing" class="ups-form_label ups-checkbox-custom-label"> Notify me when updates occur to transportation information on my EEI filing. </label>
+         </div>
+      </div>
+      <p *ngIf="hmcFileEEI == '2' && !hmc_itn_lever_yes"><span class="ups-icon-alert" aria-hidden="true"></span> File your EEI with U.S. Customs through the Automated Commercial Environment (ACE) at <a href="#" class="ups-link">www.cpb.gov/ace</a>. Then enter the Internal Transaction Number (ITN) for your EEI below to continue with this shipment.</p>
+      <div class="row" *ngIf="hmcFileEEI == '2' || hmc_itn_lever_yes">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+               <label for="hmc_int_num" class="ups-form_label">What is your ITN? <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_int_num" class="ups-form_input" id="hmc_int_num" aria-required="true" required aria-describedby="hmc_int_num_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_int_num'].valid &amp;&amp; formsWizStep2_5.controls['hmc_int_num'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_int_num']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_int_num'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_int_num_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_int_num'].valid &amp;&amp; formsWizStep2_5.controls['hmc_int_num'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_int_num'].hasError('required')">
+               ITN is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+      <div class="row"*ngIf="hmcFileEEI == '4' && !hmc_itn_lever_yes">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required ups-help_wrapper">
+               <label for="hmc_file_eei_exemption_code" class="ups-form_label">
+               License Exemption Code
+               <span aria-hidden="true" class="ups-required_indicator"></span>
+               </label>
+               <div class="ups-dropdown_wrapper ups-input_wrapper">
+                  <select name="hmc_file_eei_exemption_code" class="ups-dropdown" id="hmc_file_eei_exemption_code" aria-describedby="ups-hmc_file_eei_exemption_code_error" aria-required="true" required [ngClass]="{'ups-bodError':  (!formsWizStep2_5.controls['hmc_file_eei_exemption_code'].valid && formsWizStep2_5.controls['hmc_file_eei_exemption_code'].touched)}">
+                     <option value="most_recent">Select One</option>
+                  </select>
+               </div>
+               <div class="ups-help" upsHelpBtn="">
+                  <button type="button" id="hmc_file_eei_exemption_code_helpbtn" class="ups-help_link ups-active icon ups-icon-questioncircle" (click)="co_exemption_help = !co_exemption_help">Help</button>
+                  <div class="ups-help_tooltip ups-help_tooltip_topleft" *ngIf="co_exemption_help">
+                     <button type="button" class="ups-help_close" (click)="co_exemption_help = false">
+                     <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Close</span>
+                     </button>
+                     <p>Placeholder.</p>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="ups-hmc_file_eei_exemption_code_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_file_eei_exemption_code'].valid &amp;&amp; formsWizStep2_5.controls['hmc_file_eei_exemption_code'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_file_eei_exemption_code'].hasError('required')">
+               License Exemption Code is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+      <div class="ups-form_group" *ngIf="(hmcFileEEI == '1' && !hmc_itn_lever_yes) || (hmcFileEEI == '2' && !hmc_itn_lever_yes) || (hmcFileEEI == '3' && !hmc_itn_lever_yes) || (hmcFileEEI == '4' && !hmc_itn_lever_yes)">
+         <label class="ups-lever" onclick="" for="hmc_direct_ship_lever">
+            <input type="checkbox" id="hmc_direct_ship_lever" name="hmc_direct_ship_lever" checked>
+            <!-- if checked then yes -->
+            <div>
+               <strong class="ups-form_label">
+               Are you shipping this item directly to the receiver?
+               </strong>
+               <p class="ups-form_subheader">Select NO if you are shipping to an intermediate party or forwarder.</p>
+            </div>
+            <span aria-hidden="true">
+            <span>Yes</span>
+            <span class="switch-bg"></span>
+            <span>No</span>
+            </span>
+         </label>
+      </div>
+      <div class="row" *ngIf="(hmcFileEEI == '1' && !hmc_itn_lever_yes) || (hmcFileEEI == '2' && !hmc_itn_lever_yes) || (hmcFileEEI == '3' && !hmc_itn_lever_yes) || (hmcFileEEI == '4' && !hmc_itn_lever_yes)">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+               <label for="hmc_file_eei_ultimate_recipient" class="ups-form_label">
+               Ultimate Recipient Type
+               <span aria-hidden="true" class="ups-required_indicator"></span>
+               </label>
+               <div class="ups-dropdown_wrapper ups-input_wrapper">
+                  <select name="hmc_file_eei_ultimate_recipient" class="ups-dropdown" id="hmc_file_eei_ultimate_recipient" aria-required="true" required
+                  aria-describedby="hmc_file_eei_ultimate_recipient_error" [ngClass]="{'ups-bodError':  (!formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].valid && formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].touched)}">
+                     <option value="0">Select One</option>
+                     <option value="1">Option Two</option>
+                  </select>
+                  <div *ngIf="formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].valid">
+                     <span class="icon ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_file_eei_ultimate_recipient_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].valid &amp;&amp; formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_file_eei_ultimate_recipient'].hasError('required')">
+               Ultimate Recipient Type is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+   </div>
+   <div *ngIf="intermediateAddress">
+      <h3>Add Ultimate Receiver</h3>
+      <p>
+         If you are shipping to a forwarder or intermediate party to take over final shipment of this item, enter the final destination of this item.
+      </p>
+      <div class="ups-form_group ups-form_required">
+         <label for="hmc_ultimate_country" class="ups-form_label">Country or Territory <span aria-hidden="true" class="ups-required_indicator"></span></label>
+         <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select name="hmc_ultimate_country" class="ups-dropdown" id="hmc_ultimate_country" aria-required="true" required aria-describedby="hmc_ultimate_country_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_country'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_country'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_country']">
+            <option value="0" selected>
+               Select One
+            </option>
+            <option value="1">
+               United States
+            </option>
+            <option value="2">
+               Country or Territory 2
+            </option>
+            </select>
+            <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_country'].valid">
+               <!-- @Note: screen reader text needs to be translated as well -->
+               <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+               <span class="ups-readerTxt">Check</span>
+            </div>
+         </div>
+         <!-- Beginning Field Level Error -->
+         <span class="ups-icons-error" id="hmc_ultimate_country_error" role="alert">
+         <span class="ups-invalid_color"
+            *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_country'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_country'].touched)">
+         <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+         <span class="ups-readerTxt"> Invalid</span>
+         <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_country'].hasError('required')">
+         Country or Territory is required.
+         </span>
+         </span>
+         </span>
+         <!-- End Field Level Error -->
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+               <label for="hmc_ultimate_name" class="ups-form_label"> Name or Company <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_name" class="ups-form_input" id="hmc_ultimate_name" aria-required="true" required aria-describedby="hmc_ultimate_name_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_name'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_name'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_name']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_name'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_ultimate_name_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_name'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_name'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_name'].hasError('required')">
+               Name or Company is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="ups-form_group">
+               <label for="hmc_ultimate_contact_name" class="ups-form_label"> Contact Name </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_contact_name" class="ups-form_input" id="hmc_ultimate_contact_name">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="ups-form_group ups-form_required">
+         <label for="hmc_ultimate_address1" class="ups-form_label"> Address <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+         <div class="ups-text_wrapper ups-input_wrapper">
+            <input type="text" name="hmc_ultimate_address1" class="ups-form_input" id="hmc_ultimate_address1" aria-required="true" required placeholder="Street Address" aria-describedby="hmc_ultimate_address1_error hmc_ultimate_address1_error_helperTxt" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_address1'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_address1'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_address1']">
+            <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_address1'].valid">
+               <!-- @Note: screen reader text needs to be translated as well -->
+               <span class="ups-icon-check" aria-hidden="true"></span>
+               <span class="ups-readerTxt">Check</span>
+            </div>
+         </div>
+         <!-- Beginning Field Level Error -->
+         <span class="ups-icons-error" id="hmc_ultimate_address1_error" role="alert">
+         <span class="ups-invalid_color"
+            *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_address1'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_address1'].touched)">
+         <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+         <span class="ups-readerTxt"> Invalid</span>
+         </span>
+         </span>
+         <!-- End Field Level Error -->
+      </div>
+      <div class="ups-form_group">
+         <label for="hmc_ultimate_address2" class="ups-form_label ups-readerTxt"> Apartment, Suite, or Unit </label>
+         <div class="ups-text_wrapper ups-input_wrapper">
+            <input type="text" name="hmc_ultimate_address2" class="ups-form_input" id="hmc_ultimate_address2" placeholder="Apt., Suite, Unit">
+         </div>
+      </div>
+      <div class="ups-form_group">
+         <label for="hmc_ultimate_address3" class="ups-form_label ups-readerTxt"> Department, c/o, etcetera</label>
+         <div class="ups-text_wrapper ups-input_wrapper">
+            <input type="text" name="hmc_ultimate_address3" class="ups-form_input" id="hmc_ultimate_address3" placeholder="Dept, c/o, etc.">
+         </div>
+      </div>
+      <!-- Beginning Field Level Error -->
+      <span class="ups-invalid_color" id="hmc_ultimate_address1_error_helperTxt" role="alert"
+         *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_address1'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_address1'].touched)"><span *ngIf="formsWizStep2_5.controls['hmc_ultimate_address1'].hasError('required')">Address is required.
+      </span>
+      </span>
+      <!-- End Field Level Error -->
+      <div class="row">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-group_required">
+               <label for="hmc_ultimate_city" class="ups-form_label"> City <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_city" class="ups-form_input" id="hmc_ultimate_city" aria-required="true" required aria-describedby="hmc_ultimate_city_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_city'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_city'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_city']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_city'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_ultimate_city_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_city'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_city'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_city'].hasError('required')">
+               City is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="ups-form_group ups-group_required">
+               <label for="hmc_ultimate_state" class="ups-form_label"> State <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_state" class="ups-form_input" id="hmc_ultimate_state" aria-required="true" required aria-describedby="hmc_ultimate_state_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_state'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_state'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_state']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_state'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_ultimate_state_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_state'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_state'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_state'].hasError('required')">
+               State is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+         <div class="col-md-2">
+            <div class="ups-form_group ups-group_required">
+               <label for="hmc_ultimate_zip" class="ups-form_label"> ZIP Code <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_zip" class="ups-form_input" id="hmc_ultimate_zip" aria-required="true" required aria-describedby="hmc_ultimate_zip_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_zip'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_zip'].touched)}" [formControl]="formsWizStep2_5.controls['hmc_ultimate_zip']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_zip'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_ultimate_zip_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_zip'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_zip'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_zip'].hasError('required')">
+               ZIP Code is required.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="ups-form_group ups-group_required">
+               <label for="hmc_ultimate_email" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="email" name="hmc_ultimate_email" class="ups-form_input" id="hmc_ultimate_email" aria-required="true" required aria-describedby="hmc_ultimate_email_error" [ngClass]="{'ups-bodError': (!formsWizStep2_5.controls['hmc_ultimate_email'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_email'].touched)}" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [formControl]="formsWizStep2_5.controls['hmc_ultimate_email']">
+                  <div *ngIf="formsWizStep2_5.controls['hmc_ultimate_email'].valid">
+                     <!-- @Note: screen reader text needs to be translated as well -->
+                     <span class="ups-icon-check" aria-hidden="true"></span>
+                     <span class="ups-readerTxt">Check</span>
+                  </div>
+               </div>
+               <!-- Beginning Field Level Error -->
+               <span class="ups-icons-error" id="hmc_ultimate_email_error" role="alert">
+               <span class="ups-invalid_color"
+                  *ngIf="(!formsWizStep2_5.controls['hmc_ultimate_email'].valid &amp;&amp; formsWizStep2_5.controls['hmc_ultimate_email'].touched)">
+               <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+               <span class="ups-readerTxt"> Invalid</span>
+               <span *ngIf="formsWizStep2_5.controls['hmc_ultimate_email'].hasError('required')">
+               Email is required.
+               </span>
+               <span *ngIf="!formsWizStep2_5.controls['hmc_ultimate_email'].hasError('required')">
+               Email is invalid.
+               </span>
+               </span>
+               </span>
+               <!-- End Field Level Error -->
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="ups-form_group">
+               <label for="hmc_ultimate_phone" class="ups-form_label"> Phone</label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_phone" class="ups-form_input" id="hmc_ultimate_phone">
+               </div>
+            </div>
+         </div>
+         <div class="col-md-2">
+            <div class="ups-form_group">
+               <label for="hmc_ultimate_ext" class="ups-form_label"> Extension</label>
+               <div class="ups-text_wrapper ups-input_wrapper">
+                  <input type="text" name="hmc_ultimate_ext" class="ups-form_input" id="hmc_ultimate_ext">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- CTA Button -->
+   <div class="ups-form_ctaGroup text-center ups-group">
+      <button type="button" class="ups-cta ups-cta_tertiary">Previous</button>
+      <button type="submit" class="ups-cta ups-cta_primary" (click)="formSubmit();">Next</button>
+   </div>
+
+
+   <!-- DO NOT ADD IN PRODUCTION -->
+   <div class="ups-cms-demo">
+      <button type="button" class="ups-cta ups-cta_secondary" (click)="intermediateAddress = false">I need EEI</button><br />
+      <button type="button" class="ups-cta ups-cta_secondary" (click)="intermediateAddress = true">Intermediate Address</button>
+   </div>
+   <!-- DO NOT ADD IN PRODUCTION -->
+</div>

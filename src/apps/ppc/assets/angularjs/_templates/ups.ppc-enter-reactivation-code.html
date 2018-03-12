@@ -1,0 +1,68 @@
+<!-- Begin Request Reactivation Code Modal -->
+<section>
+   <form class="ups-onboApp-wrap-ppc" error-on-submit name="ups_enterReactivationCodeModalForm" novalidate>
+       <!-- Page Level Error Handling -->
+       <div class="ng-scope" data-ng-if="clicked && checkFormErrorsTwo()">
+           <h3 class="ups-invalid_color-list ups-error_alert-list ng-scope">
+               <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+               Please correct the following errors
+           </h3>
+           <ul class="ups-icons-error">
+                <li data-ng-if="clicked && ups_enterReactivationCodeModalForm.enterReactivation.$invalid"><span             data-ng-show="(ups_enterReactivationCodeModalForm.enterReactivation.$invalid && clicked)"> <a
+                   focus-attr="enterReactivation" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color">Enter Reactivation Code/PIN</a> is required. </span></li>
+           </ul>
+       </div>
+       <!-- Page Level Error Handling -->
+       <p>
+           Thank you, the activation code you requested has been sent by the selected method. Please activate the code within 24 hours.
+       </p>
+       <p>
+           <em>
+				<span aria-hidden="true">*</span>
+				<span class="ups-readerTxt">Required</span>
+				Indicates required field
+			</em>
+        </p>
+        <div class="ups-group">
+            <p>
+                As an authorized user, you must contact the account owner for the PIN code.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ups-form_group ups-form_required">
+                       <label for="enterReactivation" class="ups-form_label">Enter Reactivation Code/PIN <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                       </label>
+                       <div class="ups-text_wrapper ups-input_wrapper">
+                          <input type="text" name="enterReactivation" class="ups-form_input" id="enterReactivation" aria-required="true" required aria-describedby="enterReactivationInput_error" data-ng-model="ups_enterCode.upsEnterReactivation_Input" data-ng-class="{'ups-bodError' : (ups_enterReactivationCodeModalForm.enterReactivation.$invalid && clicked)}">
+                          <div data-ng-if="ups_enterReactivationCodeModalForm.enterReactivation.$valid">
+                              <!-- @Note: screen reader text needs to be translated as well -->
+                              <span class="ups-icon-check" aria-hidden="true"></span>
+                              <span class="ups-readerTxt">Check</span>
+                          </div>
+                          <span id="enterReactivation-error" role="alert">
+                              <span class="ups-invalid_color"
+                                  data-ng-show="(!ups_enterReactivationCodeModalForm.enterReactivation.$pristine && ups_enterReactivationCodeModalForm.enterReactivation.$invalid) || (ups_enterReactivationCodeModalForm.enterReactivation.$invalid && clicked)">
+                                  <span class="icon ups-error_exclamation">
+                                      <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                  </span>
+                                  <span class="ups-readerTxt">Invalid</span> <span
+                                  data-ng-if="ups_enterReactivationCodeModalForm.enterReactivation.$error.required">Enter Reactivation Code/PIN is required.</span>
+                              </span>
+                              <span data-ng-if="ups_enterReactivationCodeModalForm.enterReactivation.$valid">
+                                  <span class="ups-readerTxt">Check</span>
+                              </span>
+                          </span>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup text-center">
+        <button type="submit" class="ups-cta ups-cta_tertiary"
+             data-ng-click="backBtn()">Back</button>
+         <button type="submit" class="ups-cta ups-cta_primary"
+            data-ng-click="submitBtn(ups_enterReactivationCodeModalForm.enterReactivation.$valid)">Submit</button>
+        </div>
+    </form>
+</section>
+<!-- End Enter Request Reactivation Code Modal -->

@@ -1,0 +1,434 @@
+---
+title: Setup new Angular 2/4 App
+dir: ltr
+lang: en
+---
+
+<main id="ups-main">
+	<div class="ups-form_wrap ups-wrap ups-application_wrapper">  
+		<div class="ups-wrap_inner">
+
+            <style>
+                .ups-code_editor {
+                    padding: 5px;
+                    background-color: #242424;
+                    color: white;
+                    font-family: monospace;
+                    counter-reset: editor;
+                    position: relative;
+                    margin-bottom: 25px;
+                }
+
+                .ups-code_editor:before {
+                    content: " ";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    width: 40px;
+                    background-color: #404040;
+                    z-index: 1;
+                }
+
+                .ups-code_editor .ups-code_editor_line:before {
+                    content: counter(editor);
+                    counter-increment: editor;
+                    display: inline-block;
+                    width: 40px;
+                    position: relative;
+                    z-index: 2;
+                    margin-left: -45px;
+                }
+
+                .ups-code_editor .ups-code_editor_line {
+                    margin-left: 45px;
+                    word-wrap: break-word;
+                }
+
+                .ups-code_editor .ups-code_editor_line .ups-code_editor_tab {
+                    margin-left: 2em;
+                }
+            </style>
+
+            <div class="ups-section">
+                <div class="ups-section-header">
+                    <h2 class="ups-article-header">Inital Setup</h2>
+                </div>
+                <p>To setup a new Angular 2/4 app, first you will create a folder in the src/apps folder and it should be named what your app is. Inside this folder, 2 folders should be created, one of them called "assets" and the other called "source". There are additional folders needed in these as well which are listed below:</p>
+                <ul>
+                    <li>
+                        assets
+                        <ul>
+                            <li>
+                                angular
+                                <ul>
+                                    <li>
+                                        components
+                                    </li>
+                                    <li>
+                                        templates
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                sass
+                                <ul>
+                                    <li>
+                                        v5
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        source
+                        <ul>
+                            <li>
+                                pages
+                                <ul>
+                                    <li>
+                                        appname
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="ups-section">
+                <div class="ups-section-header">
+                    <h2 class="ups-article-header">Files for WEM app</h2>
+                </div>
+                <p>
+                    The next step would be to add the handlebars files and sass files requied for all WEM applications. Inside the source/pages folder, an index_<em>appname</em>.hbs should be created which will serve as the index page for the different views of your application. Next in the appname folder, both the LTR and RTL pages of the app should be created.
+                </p>
+                <p>
+                    So far, our directory structure should look like this:
+                    <ul>
+                        <li>
+                            assets
+                            <ul>
+                                <li>
+                                    angular
+                                    <ul>
+                                        <li>
+                                            components
+                                        </li>
+                                        <li>
+                                            templates
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    sass
+                                    <ul>
+                                        <li>
+                                            v5
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            source
+                            <ul>
+                                <li>
+                                    pages
+                                    <ul>
+                                        <li>
+                                            appname
+                                            <ul>
+                                                <li>
+                                                    <strong>appname.hbs</strong>
+                                                </li>
+                                                <li>
+                                                    <strong>appname-rtl.hbs</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>index_appname.hbs</strong>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    For appname.hbs, the page should have the following code added onto it:
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="ups-code_editor">
+                                <div class="ups-code_editor_line">---</div>
+                                <div class="ups-code_editor_line">title: MY App</div>
+                                <div class="ups-code_editor_line">appId: myapp</div>
+                                <div class="ups-code_editor_line">dir: ltr</div>
+                                <div class="ups-code_editor_line">lang: en</div>
+                                <div class="ups-code_editor_line">ang2: true</div>
+                                <div class="ups-code_editor_line">ang2ID: myapp</div>
+                                <div class="ups-code_editor_line">---</div>
+                                <div class="ups-code_editor_line"></div>
+                                <div class="ups-code_editor_line">&lt;!-- **************************** --&gt;</div>
+                                <div class="ups-code_editor_line">&lt;!-- Begin Application Owned HTML --&gt;</div>
+                                <div class="ups-code_editor_line">&lt;!-- **************************** --&gt;</div>
+                                <div class="ups-code_editor_line">&lt;main id="ups-main"&gt;</div>
+                                <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>&lt;div class="ups-form_wrap ups-application_wrapper"&gt;</div>
+                                <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>&lt;div&gt;</div>
+                                <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>&lt;ups-myapp>Loading...&lt;/ups-myapp&gt;</div>
+                                <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>&lt;/div&gt;</div>
+                                <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>&lt;/div&gt;</div>
+                                <div class="ups-code_editor_line">&lt;/main&gt;</div>
+                                <div class="ups-code_editor_line">&lt;!-- **************************** --&gt;</div>
+                                <div class="ups-code_editor_line">&lt;!-- End Application Owned HTML --&gt;</div>
+                                <div class="ups-code_editor_line">&lt;!-- **************************** --&gt;</div>
+                                <div class="ups-code_editor_line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    <strong>Note:</strong> The RTL handlebar version should have the dir variable set to rtl and the lang variable set to ar. The ang2ID will need to be the folder that is in the app/ directory.
+                </p>
+                <p>
+                    For index_appname.hbs, similar code for that page can be found in one of the other apps. The only change is with the change log and for the view listing, there is a JSON file that determines what shows in the accordion.
+                </p>
+                <p>
+                    The SASS files for the app will need to be added to be able to define styles for the application. The files in bold are the SASS files that are needed.
+                    <ul>
+                        <li>
+                            assets
+                            <ul>
+                                <li>
+                                    angular
+                                    <ul>
+                                        <li>
+                                            components
+                                        </li>
+                                        <li>
+                                            templates
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    sass
+                                    <ul>
+                                        <li>
+                                            v5
+                                            <ul>
+                                                <li>
+                                                    <strong>_appname.scss</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>ups.apps-appname.scss</strong>
+                                        </li>
+                                        <li>
+                                            <strong>ups-apps-appname-rtl.scss</strong>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            source
+                            <ul>
+                                <li>
+                                    pages
+                                    <ul>
+                                        <li>
+                                            appname
+                                            <ul>
+                                                <li>
+                                                    <strong>appname.hbs</strong>
+                                                </li>
+                                                <li>
+                                                    <strong>appname-rtl.hbs</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>index_appname.hbs</strong>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="ups-section">
+                <div class="ups-section-header">
+                    <h2 class="ups-article-header">Files for Angular 2 App</h2>
+                </div>
+                <p>
+                    The remaining files for angular 2/4 apps would be the app.ts, main.ts, the component and template. The directory structure should look like this:
+                    <ul>
+                        <li>
+                            assets
+                            <ul>
+                                <li>
+                                    angular
+                                    <ul>
+                                        <li>
+                                            components
+                                            <ul>
+                                                <li>
+                                                    <strong>appcomponent.ts</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            templates
+                                            <ul>
+                                                <li>
+                                                    <strong>appcomponent.tpl.html</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>app.ts</strong>
+                                        </li>
+                                        <li>
+                                            <strong>main.ts</strong>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    sass
+                                    <ul>
+                                        <li>
+                                            v5
+                                            <ul>
+                                                <li>
+                                                    _appname.scss
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            ups.apps-appname.scss
+                                        </li>
+                                        <li>
+                                            ups-apps-appname-rtl.scss
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            source
+                            <ul>
+                                <li>
+                                    pages
+                                    <ul>
+                                        <li>
+                                            appname
+                                            <ul>
+                                                <li>
+                                                    appname.hbs
+                                                </li>
+                                                <li>
+                                                    appname-rtl.hbs
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            index_appname.hbs
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+
+            <p>
+                The code for each of these files can be used as a starting place to get the app running with a blank page.
+            </p>
+
+            <p>
+                main.ts
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-code_editor">
+                            <div class="ups-code_editor_line">import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';</div>
+                            <div class="ups-code_editor_line">import { enableProdMode } from '@angular/core';</div>
+                            <div class="ups-code_editor_line">import { AppModule } from './app';</div>
+                            <div class="ups-code_editor_line"></div>
+                            <div class="ups-code_editor_line">enableProdMode();</div>
+                            <div class="ups-code_editor_line"></div>
+                            <div class="ups-code_editor_line">platformBrowserDynamic().bootstrapModule(AppModule);</div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+
+            <p>
+                app.ts
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-code_editor">
+                            <div class="ups-code_editor_line">import { NgModule } from '@angular/core';
+                            </div>
+                            <div class="ups-code_editor_line">import { BrowserModule } from '@angular/platform-browser';</div>
+                            <div class="ups-code_editor_line"></div>
+                            <div class="ups-code_editor_line">import { AppComponent }  from './components/appcomponent';</div>
+                            <div class="ups-code_editor_line"></div>
+                            <div class="ups-code_editor_line">@NgModule({</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>imports : [</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>BrowserModule</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>],</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>declarations : [</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>AppComponent</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>],</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>bootstrap : [</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span><span class="ups-code_editor_tab"></span>AppComponent</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>],</div>
+                            <div class="ups-code_editor_line">})</div>
+                            <div class="ups-code_editor_line">export class AppModule {}</div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+
+            <p>
+                appcomponent.ts
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-code_editor">
+                            <div class="ups-code_editor_line">import { Component } from '@angular/core';</div>
+                            <div class="ups-code_editor_line">@Component({</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>selector: 'ups-myapp',</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>templateUrl: 'assets/resources/angular/myapp/assets/angular/templates/appcomponent.tpl.html'</div>
+                            <div class="ups-code_editor_line">})</div>
+                            <div class="ups-code_editor_line">export class AppComponent {</div>
+                            <div class="ups-code_editor_line"><span class="ups-code_editor_tab"></span>constructor() {}</div>
+                            <div class="ups-code_editor_line">}</div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+
+            <!--<div class="row">
+                <div class="col-md-6">
+                    <div class="ups-code_editor">
+                        <div class="ups-code_editor_line">---</div>
+                        <div class="ups-code_editor_line">title: Tracking Details</div>
+                        <div class="ups-code_editor_line">appId: visibility</div>
+                        <div class="ups-code_editor_line">dir: ltr</div>
+                        <div class="ups-code_editor_line">lang: en</div>
+                        <div class="ups-code_editor_line">ang2: true</div>
+                        <div class="ups-code_editor_line">ang2ID: visibility</div>
+                        <div class="ups-code_editor_line">---</div>
+                    </div>
+                </div>
+            </div>-->
+
+
+        </div>
+    </div>
+</main>

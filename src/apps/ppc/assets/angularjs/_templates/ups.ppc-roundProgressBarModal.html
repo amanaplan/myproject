@@ -1,0 +1,22 @@
+<div aria-describedby="progressText" data-ng-class="{'ups-progress-error_msg' :errorState}" tabindex="0">
+	<p data-ng-if="percent!==100 && overError===false">{{message}}</p>
+	<h3 data-ng-if="percent!==100 && overError===true">
+		<span
+			class="ups-error_alert ups-invalid_color ups-icon-exclamation" aria-hidden="true"
+			>{{message}} </span>
+	</h3>
+	<p data-ng-if="percent===100">Your contacts are ready.</p>
+</div>
+<div class="ups-circle_progress">
+		<div>
+			<progress-circle data-ng-model="percent" size="200" min="0" max="100"
+				offset="270"></progress-circle>
+		</div>
+		<div class="ups-progress-bar-label">{{percent}}%</div>
+</div>
+	<div class="ups-form_ctaGroup text-center">
+		<button
+			type="submit" class="ups-cta ups-cta_primary"
+			data-ng-click="openExportContacts(btnText);ModalService.cancel();closeModal();">{{btnText}}</button>
+            <!-- data-ng-disabled="(percent!==100 && btnText === 'Next') ||(percent!==100 && btnText === 'Done')" -->
+	</div>

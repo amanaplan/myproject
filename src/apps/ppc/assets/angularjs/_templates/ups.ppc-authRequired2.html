@@ -1,0 +1,31 @@
+<div data-page-title="Authenticate this device">
+    <p>The PIN has been sent by [{{ method }}]. Enter it below to continue.</p>
+    <form name="pinForm" novalidate>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="authPin" class="ups-form_label">
+                        PIN
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="authPin" class="ups-form_input" id="authPin" aria-required="true" required ng-model="pinNum">
+                        <span role="alert">
+                            <span class="ups-invalid_color" data-ng-if="(invalidPin || tooManyFailed || (pinForm.authPin.$dirty && pinForm.authPin.$invalid))">
+                                <span class="icon ups-error_exclamation">
+                                    <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                </span>
+                                <span data-ng-show="(invalidPin || (pinForm.authPin.$dirty && pinForm.authPin.$invalid))">Invalid PIN. Try again</span>
+                                <span data-ng-show="tooManyFailed">Too many failed attempts.</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="ups-form_ctaGroup">
+        <button type="submit" class="ups-cta ups-cta_primary" ng-click="submitPin()">Submit</button>
+        <button type="submit" class="ups-cta ups-cta_secondary" ng-click="goBack()">Back</button>
+    </div>
+</div>

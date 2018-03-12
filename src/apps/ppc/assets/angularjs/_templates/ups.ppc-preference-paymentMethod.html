@@ -1,0 +1,256 @@
+<div data-ng-controller="preferencePaymentMethod"
+	class="  ups-application_wrapper">
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-preference-paymentMethod //// -->
+    <!-- //////////////////////////////////////////////// -->
+	<ng-form name="ups_preference" novalidate>
+        <p>Set your default payment method for shipping charges, international duties and taxes.</p>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-shipping-charges" class="ups-form_label">
+                        Bill Shipping Charges to
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur id="ups-shipping-charges" class="ups-dropdown"
+                            name="shippingCharges" data-ng-model="form.shippingCharges"
+                            data-ng-change="" required aria-required="true"
+                            data-ng-options="item for item in shippingCharges">
+                        </select>
+                        <span class="ups-invalid_color"
+                              data-ng-show="!ups_preference.shippingCharges.$pristine && ups_preference.cardType.$invalid" role="alert">
+                            <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                            <span data-ng-show="ups_preference.shippingCharges.$error.required">This
+                            field is required.</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-defaultAccount" class="ups-form_label">Account
+                        Number
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur id="ups-defaultAccount" class="ups-dropdown"
+                            name="defaultAccount" data-ng-model="form.defaultAccount"
+                            data-ng-change=""
+                            data-ng-options="item.payementNickName for item in account" aria-required="true" required>
+                            <option value="" selected>Select One</option>
+                        </select>
+                        <span class="ups-invalid_color"
+                              data-ng-show="!ups_preference.defaultAccount.$pristine && ups_preference.defaultAccount.$invalid" role="alert">
+                        <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                        <span data-ng-show="ups_preference.defaultAccount.$error.required">This
+                            field is required.</span>
+                    </span>
+                    </div>
+    
+                </div>
+            </div>
+        
+            <div class="col-md-5">
+                <div class="ups-form_group ups-no_label ups-no_label_plus">
+                    <a class="ups-link"
+                        data-ng-click="pointClass('ups-modifyAnotherAcc')"
+                        href="#/paymentPage" id="ups-addAnotherAccount"> Add Another
+                        Account</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-ExistingPayment" class="ups-form_label">Payment
+                        Cards
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur id="ups-ExistingPayment" class="ups-dropdown"
+                            name="ExistingPayment" data-ng-model="form.ExistingPayment"
+                            data-ng-change="changeCard(form.ExistingPayment)" aria-required="true" required
+                            data-ng-options="item.payementNickName for item in paymentCard">
+                            <option value="" selected>Select One</option>
+                        </select>
+                        <span class="ups-invalid_color"
+                              data-ng-show="!ups_preference.ExistingPayment.$pristine && ups_preference.ExistingPayment.$invalid" role="alert">
+                            <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                        <span data-ng-show="ups_preference.ExistingPayment.$error.required">This
+                            field is required.</span>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="ups-form_group ups-no_label ups-no_label_plus">
+                    <a point-focus class="ups-link"
+                        data-ng-click="modifyPaymentCard(form.ExistingPayment);pointClass('ups-modifyPayCard');"
+                        href="#" onclick="return false;" id="ups-modifyExistingAccount">Edit Payment Card</a>
+    
+                </div>
+            </div>
+        </div>
+        
+        <div class="row ups-prefPayment">
+            <div class="col-md-5">
+                <div class="ups-form_group ">
+                    <ul class="ups-cardOrder_list">
+                        <li class="ups-{{item | join}}" data-ng-repeat="item in cardType"
+                            data-ng-class="{'active':item===selectedCard}"><span
+                            class="ups-readerTxt">{{item}}</span>
+                        </li>
+                    </ul>
+    
+                </div>
+            </div>
+        
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <a point-focus class="ups-link"
+                        data-ng-click="newPaymentCard();pointClass('ups-newPayCard');"
+                        href="#" onclick="return false;" id="ups-enterNewPayment">Add a Payment Card</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ">
+                    <h3>PayPal Account:</h3>
+                    <span data-ng-if="PayPal.length==1">{{PayPal[0].payementNickName}}</span>
+                    <span data-ng-if="PayPal.length==0">[None Added/PayPal Nickname]</span> <img
+                        class="ups-paypal" src="/assets/resources/images/paypal.jpg"
+                        alt="Image Not Available" />
+                </div>
+            </div>
+        
+            <div class="col-md-5">
+                <div class="ups-form_group ups-no_label">
+                    <a point-focus data-ng-if="PayPal.length==1"
+                        data-ng-click="modifyPaypal();pointClass('ups-addPaypal');"
+                        class="ups-link ups-payment-offset ups-addPaypal" href="#" onclick="return false;"
+                        id="ups-modifyPayPalAccount">Edit This PayPal Account</a> 
+                    <a
+                        point-focus data-ng-if="PayPal.length==0"
+                        data-ng-click="addPaypal();pointClass('ups-addPaypal');"
+                        class="ups-link" href="#" onclick="return false;"
+                        id="ups-addPayPalAccount">Add a PayPal Account</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-bill-duties" class="ups-form_label">
+                        Bill Duties and Taxes to:
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur id="ups-bill-duties" class="ups-dropdown"
+                            name="ExistingPayment" data-ng-model="form.billDuties"
+                            data-ng-change="" required aria-required="true"
+                            data-ng-options="item for item in billShipping">
+                            <option value="" selected>Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ups-checkbox ups-input_wrapper">
+            <input check-verify id="ups-billDec"
+                class="ups-checkbox-custom ups-ng-pristine data-ng-untouched data-ng-valid"
+                name="ups-terms_checkbox" type="checkbox"
+                data-ng-model="formObj.billDeclared"> <label
+                for="ups-billDec"
+                class="ups-form_label ups-checkbox-custom-label data-ng-binding">Bill
+                all declared value charges to my payment account, including those
+                shipments paid for by a third party.</label>
+        </div>
+        
+        <p><strong>Split Duties and Taxes</strong></p>
+        <p>If your shipment is eligible for Value-Added Tax (VAT), we
+            automatically bill the tax to the same parties paying import
+            duties. You can split payment of duties and VAT, but you should
+            know we charge a small fee for this option.</p>
+        
+        <div class="ups-checkbox ups-input_wrapper">
+            <input check-verify id="ups-billsplit"
+                class="ups-checkbox-custom ups-ng-pristine data-ng-untouched data-ng-valid"
+                name="ups-terms_checkbox" type="checkbox"
+                data-ng-model="formObj.splitDuty"> <label
+                for="ups-billsplit"
+                class="ups-form_label ups-checkbox-custom-label ">Separate
+                VAT and duty charges; the party paying shipping charges will
+                also pay for duties.</label>
+        </div>
+    
+        <p><strong>Third Party Account Information</strong></p>
+        <p>Enter your default third-party payment information below,
+            and we'll prepopulate that info whenever you want to bill shipping
+            charges or duties and taxes to someone other than the shipper or
+            receiver.</p>
+                        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-Account" class="ups-form_label"> UPS Account Number </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input id="ups-Account" type="text" name="Account"
+                            class="ups-form_input" data-ng-pattern="" maxlength="6"
+                            data-ng-model="Account">
+                    </div>
+                </div>
+                
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-country" class="ups-form_label">
+                        Country
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+    
+                    <div data-ng-init="form.country = countryList[0].code;"
+                        class="ups-dropdown_wrapper ups-input_wrapper"
+                        data-errormsg="This field is required">
+                        <select id="ups-country" ng-change="selectCountry(form.country)"
+                            class="ups-dropdown " name="country" data-ng-model="form.country" aria-required="true" required>
+                            <option value="" selected>Select One</option>
+                            <option data-ng-repeat="countries in countryList track by $index"
+                                value="{{countries.code}}">{{countries.country}}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="ups-form_group">
+                    <label for="ups-PostalCode" class="ups-form_label">
+                        Invoice Postal Code
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input id="ups-PostalCode" type="text" name="PostalCode"
+                            class="ups-form_input" maxlength="9" data-ng-model="PostalCode">
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        <div class=" row  ups-form_ctaGroup">
+            <div class="col-md-5">
+                <button type="button"
+                    data-ng-click="saveMethods()" class="ups-cta ups-cta_primary">Save
+                </button>
+                <!-- data-ng-disabled="!ups_preference.$dirty" -->
+            </div>
+        </div>
+
+	</ng-form>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-preference-paymentMethod   //// -->
+    <!-- //////////////////////////////////////////////// -->
+</div>

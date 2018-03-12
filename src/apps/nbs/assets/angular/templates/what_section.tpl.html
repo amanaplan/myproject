@@ -1,0 +1,1507 @@
+<!--
+    getNbsInSinglePg() = true
+        adds classes specific to SPA version
+    getNbsInSinglePg() = false
+        adds classes specific to Guided Flow version
+-->
+<div [formGroup]="nbsSpaSectionWhat">
+    <!-- //// Begin Section lvl error handling //// -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsSpaSectionWhat.valid)">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+
+        <ul class="ups-icons-error">
+
+            <li *ngIf="nbsSpaSectionWhat.controls['whatWeight'].hasError('required')">
+                <a href="#whatWeight" class="ups-invalid_color" pointIdClick>Weight is [ required | invalid ]</a>
+            </li>
+            <li *ngIf="returnConcept && nbsSpaSectionWhat.controls['whatMerchDisc'].hasError('required')">
+                <a href="#whatMerchDisc" class="ups-invalid_color" pointIdClick>Merchandise Description is [ required | invalid ]</a>
+            </li>
+        </ul>
+    </div>
+    <!-- //// End Section lvl error handling //// -->
+    <!-- //// Begin Package Review //// -->
+    <section *ngIf="reviewWhere">
+        <div class="row">
+            <div class="col-xs-10">
+                <p>1. [UPS Express Box - Small], [nn lbs.], [nnn x nnn x nnn in], [$][nn.nn][UDS]</p>
+            </div>
+            <div class="col-xs-2">
+                <button type="button" class="ups-link pull-right" (click)="completedPkg = !completedPkg && reviewWhere = !reviewWhere">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Edit</span>
+                    <span class="ups-readerTxt">Edit Package 1</span>
+                </button>
+            </div>
+        </div>
+        <div class="row" *ngIf="reqSig2">
+            <div [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg(), 'col-md-7' : !nbsBase.getNbsInSinglePg()}">
+                <div class="row">
+                    <!-- <div class="col-xs-3 col-sm-2">
+                        <p class="confirmYes">YES</p>
+                    </div> -->
+                    <div class="col-xs-9 col-sm-10">
+                        <p>&#8226; Signature Required</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm" [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg(), 'col-md-5' : !nbsBase.getNbsInSinglePg()}">
+                <button type="button" class="ups-link" (click)="reqSig2 = !reqSig2"><span aria-hidden="true" class="icon ups-icon-xcircle"></span> Remove</button>
+            </div>
+        </div>
+        <div class="row" *ngIf="cod2">
+            <div [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg(), 'col-md-7' : !nbsBase.getNbsInSinglePg()}">
+                <div class="row">
+                    <!-- <div class="col-xs-3 col-sm-2">
+                        <p class="confirmYes">YES</p>
+                    </div> -->
+                    <div class="col-xs-9 col-sm-10">
+                        <p>&#8226; C.O.D. [$][nn.nn][USD] [Cashier's Check or Money Order]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs hidden-sm" [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg(), 'col-md-5' : !nbsBase.getNbsInSinglePg()}">
+                <button type="button" class="ups-link" (click)="cod2 = !cod2"><span aria-hidden="true" class="icon ups-icon-xcircle"></span> Remove</button>
+            </div>
+        </div>
+    </section>
+    <!-- //// End Package Review //// -->
+    <!-- //// Begin Package 1 Info //// -->
+    <p *ngIf="pkgDeletedMsg" id="pkgDeletedMsgTxt" tabindex="-1">
+        Package {{ '{' }}1{{ '}' }} was deleted.
+    </p>
+    <p *ngIf="pkgDupMsg" id="pkgDupMsgTxt" tabindex="-1">
+        Package {{ '{' }}1{{ '}' }} was copied as Package {{ '{' }}2{{ '}' }}.
+    </p>
+    <ng-container *ngFor="let package of packagesInShipment; let j = index">
+        <section class="panel panel-default" *ngIf="!reviewWhere">
+            <!-- *ngIf="some_options_selected  || completedPkg" -->
+            <div class="panel-heading" *ngIf="packagesInShipment.length > 1">
+                <h3 id="curPackageHeader" class="panel-title">
+                    <span class="icon ups-icon-box" aria-hidden="true"></span>
+                    Package {{ (j+1) }}
+                </h3>
+                <div class="ups-package_actions">
+                    <button type="button" class="ups-link pull-right" (click)="dupPackage()">
+                        <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                        <span class="ups-readerTxt">Duplicate Package {{ (j+1) }}</span>
+                    </button>
+                    <!-- *ngIf="completedPkg" -->
+                    <button type="button" class="ups-link pull-right" (click)="delPackage(j)">
+                        <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Delete</span>
+                        <span class="ups-readerTxt">Delete Current Package {{ (j+1) }}</span>
+                    </button>
+                    <!-- (click)="completedPkg = !completedPkg" *ngIf="completedPkg" -->
+                    <button type="button" class="ups-link pull-right" *ngIf="!package.inEdit" (click)="setPackageEdit(j)">
+                        <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                        <span class="hidden-xs" aria-hidden="true">Edit</span>
+                        <span class="ups-readerTxt">Edit Package {{ (j+1) }}</span>
+                    </button>
+
+                </div>
+            </div>
+            <!-- ////////////////////////////////////// -->
+            <!-- //// Begin non-Editable package 1 //// -->
+            <!-- ////////////////////////////////////// -->
+            <!-- *ngIf="completedPkg" -->
+            <div class="panel-body" *ngIf="!package.inEdit">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p><strong>Packaging Type:</strong> My Packaging</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>Dimensions:</strong> 999 x 999 x 999 in</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>Weight:</strong> 999 lbs.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ///////////////////////////////////// -->
+            <!-- //// End non-Editable package 1  //// -->
+            <!-- //// Begin Editable package 1    //// -->
+            <!-- ///////////////////////////////////// -->
+            <!-- *ngIf="!completedPkg" -->
+            <div class="panel-body" *ngIf="package.inEdit">
+                <!-- //// Begin Type / Weight //// -->
+                <!-- <div [ngClass]="{'row': nbsBase.getNbsInSinglePg()}" -->
+                    <!-- <div [ngClass]="{'col-md-7': nbsBase.getNbsInSinglePg()}" -->
+                        <div class="row">
+                            <!-- NOTE: col-sm-12 is needed for alignment -->
+                            <div [ngClass]="{'col-md-4' : nbsBase.getNbsInSinglePg(), 'col-md-6 col-sm-12' : !nbsBase.getNbsInSinglePg()}">
+                                <div class="ups-form_group">
+                                    <label for="whatPackagingType" class="ups-form_label">Packaging Type</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="whatPackagingType"
+                                                class="ups-dropdown"
+                                                id="whatPackagingType"
+                                                [(ngModel)]="whatPackagingType"
+                                                [ngModelOptions]="{'standalone': true}"
+                                                (change)="whatPackagingTypeChange()">
+                                            <option value="myPack" selected="selected">My Packaging</option>
+                                            <option value="letter">UPS Envelope</option>
+                                            <option value="pallet">Pallet</option>
+                                            <option value="exBox">UPS Express Box</option>
+                                            <option value="exBoxSmall">UPS Express Box - Small</option>
+                                            <option value="exBoxMedium">UPS Express Box - Medium</option>
+                                            <option value="exBoxLarge">UPS Express Box - Large</option>
+                                            <option value="exPak">UPS Express Pak</option>
+                                            <option value="tube">UPS Tube</option>
+                                            <option value="unpacked">Unpackaged</option>
+                                            <option value="freight">Freight</option>
+                                            <option value="AHCConceptOpt" *ngIf="AHCConcept">My Packaging</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- NOTE: col-sm-12 is needed for alignment -->
+                            <div [ngClass]="{'col-md-4' : nbsBase.getNbsInSinglePg(), 'col-md-6 col-sm-12' : !nbsBase.getNbsInSinglePg()}" *ngIf="!canada">
+                                <div class="ups-form_group ups-form_required ups-input_has_unit">
+                                    <label for="whatWeight" class="ups-form_label">
+                                        Package Weight
+                                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text"
+                                                name="whatWeight"
+                                                class="ups-form_input"
+                                                id="whatWeight"
+                                                aria-required="true"
+                                                required
+                                                aria-describedby="whatWeightUnit whatWeight_error"
+                                                formControlName="whatWeight"
+                                                [ngClass]="{'ups-bodError':  (!nbsSpaSectionWhat.controls['whatWeight'].valid && nbsSpaSectionWhat.controls['whatWeight'].touched)}">
+                                        <span class="ups-input_unit_measure" id="whatWeightUnit">
+                                            <span *ngIf="!nonUS">lbs.</span>
+                                            <span *ngIf="nonUS">kg</span>
+                                        </span>
+                                    </div>
+                                    <span class="ups-icons-error" id="whatWeight_error" role="alert">
+                                        <span class="ups-invalid_color"
+                                            *ngIf="(!nbsSpaSectionWhat.controls['whatWeight'].valid && nbsSpaSectionWhat.controls['whatWeight'].touched)">
+                                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt"> invalid</span>
+                                            <span *ngIf="nbsSpaSectionWhat.controls['whatWeight'].hasError('required')">
+                                                Weight is [ required | invalid ].
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- NOTE: col-sm-12 is needed for alignment -->
+                            <div [ngClass]="{'col-md-4' : nbsBase.getNbsInSinglePg(), 'col-md-6 col-sm-12' : !nbsBase.getNbsInSinglePg()}" *ngIf="canada">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <div class="ups-form_group ups-form_required">
+                                            <label for="whatWeight" class="ups-form_label">
+                                                Package Weight
+                                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        name="whatWeight"
+                                                        class="ups-form_input"
+                                                        id="whatWeight"
+                                                        aria-required="true"
+                                                        required
+                                                        aria-describedby="whatWeight_error"
+                                                        formControlName="whatWeight"
+                                                        [ngClass]="{'ups-bodError':  (!nbsSpaSectionWhat.controls['whatWeight'].valid && nbsSpaSectionWhat.controls['whatWeight'].touched)}">
+                                            </div>
+                                            <span class="ups-icons-error" id="whatWeight_error" role="alert">
+                                                <span class="ups-invalid_color"
+                                                    *ngIf="(!nbsSpaSectionWhat.controls['whatWeight'].valid && nbsSpaSectionWhat.controls['whatWeight'].touched)">
+                                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                    <span class="ups-readerTxt"> invalid</span>
+                                                    <span *ngIf="nbsSpaSectionWhat.controls['whatWeight'].hasError('required')">
+                                                        Weight is [ required | invalid ].
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="ups-form_group"
+                                            [ngClass]="{'ups-no_label' : vpSize.isLtMDVP}">
+                                            <label for="currency_type" class="ups-readerTxt">Unit of Weight</label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper ups-no_label">
+                                                <select name="currency_type"
+                                                        class="ups-dropdown ups-no_validation"
+                                                        id="currency_type"
+                                                        [(ngModel)]="currency_type"
+                                                        [ngModelOptions]="{'standalone' : true}">
+                                                    <option value="lbs" selected="selected">lbs.</option>
+                                                    <option value="kg">kg</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- *ngIf="whatMultiplePkgsSwitch" -->
+                            <!-- NOTE: col-sm-12 is needed for alignment -->
+                            <div [ngClass]="{'col-md-4' : nbsBase.getNbsInSinglePg(), 'col-md-6 col-sm-12' : !nbsBase.getNbsInSinglePg()}" *ngIf="j == 0">
+                                <div class="ups-form_group">
+                                    <label for="whatMultipleHowMany" class="ups-form_label">Total Identical Packages</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                        <select name="whatMultipleHowMany"
+                                                class="ups-dropdown"
+                                                id="whatMultipleHowMany"
+                                                [(ngModel)]="whatMultipleHowMany"
+                                                [ngModelOptions]="{'standalone': true}">
+                                            <option [value]="1" selected="selected">1</option>
+                                            <option [value]="i + 2" *ngFor="let option of whatMultipleHowManyOption; let i = index">{{i + 2}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="row" *ngIf="loggedIn">
+                            <div class="col-sm-6">
+                                <div class="ups-form_group">
+                                    <label class="ups-lever" onclick="" for="whatMultiplePkgsSwitch">
+                                        <input type="checkbox"
+                                                class="ups-lever_checkbox"
+                                                id="whatMultiplePkgsSwitch"
+                                                name="whatMultiplePkgsSwitch"
+                                                checked=""
+                                                [(ngModel)]="whatMultiplePkgsSwitch"
+                                                [ngModelOptions]="{'standalone': true}">
+                                        <strong class="ups-form_label ups-lever_label">Multiple identical packages?</strong>
+
+                                        <span aria-hidden="true" class="ups-lever_switch">
+                                            <span class="ups-lever_switch_yes">Yes</span>
+                                            <span class="ups-lever_switch_bg"></span>
+                                            <span class="ups-lever_switch_no">No</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div *ngIf="whatPackagingType == 'myPack'">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="ups-unpackCB" class="ups-checkbox-custom" name="ups-unpackCB" type="checkbox">
+                                <label for="ups-unpackCB" class="ups-checkbox-custom-label">
+                                    Unpackaged or created (not fully boxed in cardboard)
+                                </label>
+                            </div>
+
+                            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                <input id="ups-bulkyPackCB" class="ups-checkbox-custom" name="ups-bulkyPackCB" type="checkbox">
+                                <label for="ups-bulkyPackCB" class="ups-checkbox-custom-label">
+                                    Long, Large, or Bulky package
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="bulky-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod nunc a diam pretium, eget vehicula mauris hendrerit. Fusce sed pretium mi. Curabitur pretium dictum velit, nec tincidunt sapien.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- </div>
+                </div> -->
+                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="AHCConcept && !cananda">
+                    <input id="AHCConceptCB"
+                            class="ups-checkbox-custom"
+                            name="AHCConceptCB"
+                            type="checkbox"
+                            checked="">
+                    <label for="whatDimWeightSwitch" class="ups-checkbox-custom-label">
+                        Calculate price by dimensional weight
+                    </label>
+                </div>
+                <!-- //// End Type / Weight / Quantity //// -->
+                <!-- //// Begin Package Demensions //// -->
+                <div class="ups-even">
+                    <div class="alert alert-warning " role="alert" *ngIf="(loggedIn && whatPackagingType == 'myPack')">
+                        <div class="alert-icon pull-left">
+                            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                        </div>
+
+                        <button type="button"
+                                class="ups-alert_collapse"
+                                aria-expanded="false"
+                                (click)="packDimInfoShipTip = !packDimInfoShipTip">
+                            <span class="ups-readerTxt">Click to expand</span>
+                            <span [ngClass]="{ 'ups-icon-wedgeup' : packDimInfoShipTip, 'ups-icon-wedgedown' : !packDimInfoShipTip }" class="icon " aria-hidden="true"></span>
+                        </button>
+
+                        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> Package weight and dimensions directly impact your cost.</p></div>
+                        <div class="alert-content ups-alert_has_icon" *ngIf="packDimInfoShipTip">
+                            <p>Shipments are priced either by weight or dimensional weight &mdash; a calculation based on package size.</p>
+                            <p>To find dimensional weight, multiply the length, width, and height of your package in inches OR centimeters, rounded up to the nearest whole number. This is your cubic size.</p>
+                            <ul>
+                                <li>For measurements in INCHES, divid cubic size by 139 to find dimensional weight in POUNDS.* </li>
+                                <li>For cubic size made in CENTIMETERS, divide by 5,000 for dimensional weight in KILOGRAMS.</li>
+                                <li>&nbsp;</li>
+                            </ul>
+                            <p>Compare dimensional weight to the actual weight of your package. The larger number determines your shipping charges, so if you have a lightweight item packed in an oversize container, consider using a smaller box if possible.</p>
+                            <p>*NOTE: For shipments within the U.S. and imports to the U.S. from Canada, divide cubic size in inches by 166.</p>
+                        </div>
+                    </div>
+                    <p *ngIf="whatPackagingType == 'pallet' || whatPackagingType == 'freight'">
+                        For pallets, length must be greater than or equal to width.
+                        <span *ngIf="whatPackagingType == 'freight'">Review the <a href="#" class="ups-link">Wood Packaging Guidelines</a> to avoid any holds or delays.</span>
+                    </p>
+                    <p *ngIf="whatPackagingType == 'exBox' || whatPackagingType == 'exBoxSmall' || whatPackagingType == 'exBoxMedium' || whatPackagingType == 'exBoxLarge'">
+                        Versatile packaging suited for books, documents, and a wide range of other items.
+                        <span *ngIf="whatPackagingType == 'exBoxLarge'"> Weight limit 30 lbs.</span>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="errorMsg" role="alert" aria-atomic="true"></div>
+                            <p *ngIf="whatPackagingType == 'letter'">Strong envelope for documents up to legal size.</p>
+                            <!-- <p *ngIf="whatPackagingType == 'exBoxSmall'">The UPS Express Box is suited for a wide range of items, including computer printouts and electronic parts. </p> -->
+                            <p *ngIf="whatPackagingType == 'exPak'">Rigid, padded, or watertight containers for specialized shipping purposes.</p>
+                            <p *ngIf="whatPackagingType == 'tube'">Ideal for shipping rolled papers such as blueprints, charts, and posters.</p>
+                            <p *ngIf="designNotFinal">The UI/UX design and content are not final for this dropdown.</p>
+                            <span class="ups-readerTxt" *ngIf="!whatLWHPrepop">Package Dimensions</span>
+                            <div *ngIf="(whatPackagingType == 'myPack')">
+                                <div class="ups-form_group" *ngIf="!nbsBase.getNbsInSinglePg()">
+                                    <label class="ups-lever" onclick="" for="whatDimWeightSwitch">
+                                        <input type="checkbox"
+                                                class="ups-lever_checkbox"
+                                                id="whatDimWeightSwitch"
+                                                name="whatDimWeightSwitch"
+                                                checked=""
+                                                [(ngModel)]="whatDimWeightSwitch"
+                                                [ngModelOptions]="{'standalone': true}">
+                                        <strong class="ups-form_label ups-lever_label">Calculate price by dimensional weight?</strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Select NO to rate by L x W x H</p>
+
+                                        <span aria-hidden="true" class="ups-lever_switch">
+                                            <span class="ups-lever_switch_yes">Yes</span>
+                                            <span class="ups-lever_switch_bg"></span>
+                                            <span class="ups-lever_switch_no">No</span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="ups-buttonList_wrapper ups-input_wrapper" *ngIf="nbsBase.getNbsInSinglePg()">
+                                    <input id="whatDimWeightSwitch"
+                                            class="ups-checkbox-custom"
+                                            name="whatDimWeightSwitch"
+                                            type="checkbox"
+                                            checked=""
+                                            [(ngModel)]="whatDimWeightSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+                                    <label for="whatDimWeightSwitch" class="ups-checkbox-custom-label">
+                                        Calculate price by dimensional weight?
+                                    </label>
+                                </div>
+                                <!-- //// Begin Dim Weight //// -->
+                                <div class="ups-form_group ups-input_has_unit" *ngIf="whatDimWeightSwitch">
+                                    <label for="ups-dimWeight" class="ups-form_label">
+                                        <span *ngIf="whatMultipleHowMany != 1">Total </span>Dimensional Weight
+                                    </label>
+                                    <div class="ups-text_wrapper ups-input_wrapper">
+                                        <input type="text" name="ups-dimWeight" class="ups-form_input" id="ups-dimWeight">
+                                        <span class="ups-input_unit_measure">
+                                            <span *ngIf="!nonUS">lbs.</span>
+                                            <span *ngIf="nonUS">kg</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- //// End Dim Weight //// -->
+                                <!-- ////BEGIN LWH //// -->
+                                <div [ngClass]="{'row': nbsBase.getNbsInSinglePg()}" *ngIf="!whatDimWeightSwitch">
+                                    <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                        <div class="ups-form_group ups-input_has_unit">
+                                            <label for="whatLength0" class="ups-form_label">Length</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        id="whatLength0"
+                                                        name="whatLength"
+                                                        class="ups-form_input"
+                                                        (blur)="changeLength(whatLength.value)"
+                                                        [(ngModel)]="whatLength"
+                                                        [disabled]="whatDimDisabled"
+                                                        [ngModelOptions]="{'standalone': true}">
+                                                <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'lbs'">in</span>
+                                                <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'kg'">cm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                        <div class="ups-form_group ups-input_has_unit">
+                                            <label for="whatWidth" class="ups-form_label">Width</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        name="whatWidth"
+                                                        id="whatWidth"
+                                                        class="ups-form_input"
+                                                        (blur)="changeWidth(whatWidth.value)"
+                                                        [(ngModel)]="whatWidth"
+                                                        [disabled]="whatDimDisabled"
+                                                        [ngModelOptions]="{'standalone': true}">
+                                                <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'lbs'">in</span>
+                                                <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'kg'">cm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                        <div class="ups-form_group ups-input_has_unit">
+                                            <label for="whatHeight" class="ups-form_label">Height</label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text"
+                                                        name="whatHeight"
+                                                        id="whatHeight"
+                                                        class="ups-form_input"
+                                                        (blur)="changeHeight(whatHeight.value)"
+                                                        [(ngModel)]="whatHeight"
+                                                        [disabled]="whatDimDisabled"
+                                                        [ngModelOptions]="{'standalone': true}">
+                                                <span class="ups-input_unit_measure">
+                                                    <span *ngIf="currency_type == 'lbs'">in</span>
+                                                    <span *ngIf="currency_type == 'kg'">cm</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //// End LWH //// -->
+                            </div>
+                            <div *ngIf="whatLWHPrepop">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="ups-group">
+                                            <p class="ups-group_label">Length</p>
+                                            <p>
+                                                13
+                                                <span *ngIf="currency_type == 'lbs'">in</span>
+                                                <span *ngIf="currency_type == 'kg'">cm</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="ups-group">
+                                            <p class="ups-group_label">Width</p>
+                                            <p>
+                                                2
+                                                <span *ngIf="currency_type == 'lbs'">in</span>
+                                                <span *ngIf="currency_type == 'kg'">cm</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="ups-group">
+                                            <p class="ups-group_label">Height</p>
+                                            <p>
+                                                11
+                                                <span *ngIf="currency_type == 'lbs'">in</span>
+                                                <span *ngIf="currency_type == 'kg'">cm</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ////BEGIN LWH Fields //// -->
+                            <div [ngClass]="{'row': nbsBase.getNbsInSinglePg()}" *ngIf="whatLWHFields && whatPackagingType != 'myPack'">
+                                <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                    <div class="ups-form_group ups-input_has_unit">
+                                        <label for="whatLength1" class="ups-form_label">Length</label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text"
+                                                    id="whatLength1"
+                                                    name="whatLength"
+                                                    class="ups-form_input"
+                                                    (blur)="changeLength(whatLength.value)"
+                                                    [(ngModel)]="whatLength"
+                                                    [disabled]="whatDimDisabled"
+                                                    [ngModelOptions]="{'standalone': true}">
+                                            <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'lbs'">in</span>
+                                            <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'kg'">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                    <div class="ups-form_group ups-input_has_unit">
+                                        <label for="whatWidth" class="ups-form_label">Width</label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text"
+                                                    name="whatWidth"
+                                                    id="whatWidth"
+                                                    class="ups-form_input"
+                                                    (blur)="changeWidth(whatWidth.value)"
+                                                    [(ngModel)]="whatWidth"
+                                                    [disabled]="whatDimDisabled"
+                                                    [ngModelOptions]="{'standalone': true}">
+                                            <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'lbs'">in</span>
+                                            <span class="ups-input_unit_measure" [ngClass]="{'visible-sm visible-xs': nbsBase.getNbsInSinglePg()}" *ngIf="currency_type == 'kg'">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div [ngClass]="{'col-md-4': nbsBase.getNbsInSinglePg()}">
+                                    <div class="ups-form_group ups-input_has_unit">
+                                        <label for="whatHeight" class="ups-form_label">Height</label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text"
+                                                    name="whatHeight"
+                                                    id="whatHeight"
+                                                    class="ups-form_input"
+                                                    (blur)="changeHeight(whatHeight.value)"
+                                                    [(ngModel)]="whatHeight"
+                                                    [disabled]="whatDimDisabled"
+                                                    [ngModelOptions]="{'standalone': true}">
+                                            <span class="ups-input_unit_measure">
+                                                <span *ngIf="currency_type == 'lbs'">in</span>
+                                                <span *ngIf="currency_type == 'kg'">cm</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //// End LWH Fields //// -->
+                            <!-- ////////////////////////////////////// -->
+                            <!-- //// BEGIN AHC Packaging CONCEPT  //// -->
+                            <!-- ////////////////////////////////////// -->
+                            <div *ngIf="AHCConcept">
+                                <fieldset class="ups-buttonList_wrapper ups-form_group">
+                                    <legend class="ups-readerTxt">What type of packaging do you have?</legend>
+                                    <div class="ups-input_wrapper">
+                                        <input id="myOwnUnpack" class="ups-radio-custom" name="myOwnType" type="radio" value="0">
+                                        <label for="myOwnUnpack" class="ups-radio-custom-label"><strong>Unpackaged</strong> Any item not completely contained in a corrugated cardboard container, such as a barrel, drum, pail, or tire. (NOTE: Cover all sharp or protruding edges with corrugated cardboard for protection.)</label>
+                                    </div>
+                                    <div class="ups-input_wrapper">
+                                        <input id="myOwnMWcont" class="ups-radio-custom" name="myOwnType" type="radio" value="1">
+                                        <label for="myOwnMWcont" class="ups-radio-custom-label"><strong>Metal or Wood Container</strong> Shipping crates or containers made of wood, metal, or any material other than corrugated cardboard.</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- ////////////////////////////////////// -->
+                            <!-- //// END AHC Packaging CONCEPT    //// -->
+                            <!-- ////////////////////////////////////// -->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ups-package_image_container hidden-sm hidden-xs" *ngIf="(!whatDimWeightSwitch && whatPackagingType == 'myPack') || canada">
+                                <!-- BEGIN DEMO img as a placeholder for package animation -->
+                                <div class="ups-pkgicon_custom_box" *ngIf="!upsAnimate">
+                                    <img src="assets/resources/images/shipping_packages/custom-box-shipping-icons.svg" alt="Custom Packaging" class="ups-package_image" width="170" height="171" data-pin-nopin="true">
+                                    <span class="ups-package_length">
+                                        <span class="ups-readerTxt">Length is:</span>
+                                        L
+                                    </span>
+                                    <span class="ups-package_width">
+                                        <span class="ups-readerTxt">Width is:</span>
+                                        W
+                                    </span>
+                                    <span class="ups-package_height">
+                                        <span class="ups-readerTxt">Height is:</span>
+                                        H
+                                    </span>
+                                </div>
+                                <!-- END DEMO img as a placeholder for package animation -->
+                                <app-animate #animate *ngIf="upsAnimate"></app-animate>
+                            </div>
+                            <img src="assets/resources/images/shipping_packages/letter-shipping-icon.svg" alt="UPS Letter" class="pkTypeImg" *ngIf="whatPackagingType == 'letter'">
+                            <img src="assets/resources/images/shipping_packages/express-box-shipping-icon.svg" alt="UPS Express Box - Small" class="ups-package_image" class="pkTypeImg"  *ngIf="whatPackagingType == 'exBoxSmall'">
+                            <img src="assets/resources/images/shipping_packages/pak-shipping-icon.svg" alt="UPS Express Pack" class="pkTypeImg" *ngIf="whatPackagingType == 'exPak'">
+                            <img src="assets/resources/images/shipping_packages/tube-box-shipping-icon.svg" alt="UPS Tube" class="pkTypeImg" *ngIf="whatPackagingType == 'tube'">
+                            <img src="assets/resources/images/shipping_packages/unpackaged-shipping-icon.svg" alt="UPS Unpackaged" class="pkTypeImg" *ngIf="whatPackagingType == 'unpacked'">
+                            <img src="assets/resources/images/shipping_packages/pallet-shipping-icon.svg" alt="UPS Pallet" class="pkTypeImg" *ngIf="(whatPackagingType == 'frieght' || whatPackagingType == 'pallet')">
+                            <div *ngIf="AHCConcept">
+                                <img src="assets/resources/images/shipping_packages/letter-shipping-icon.svg" alt="5 gallon paint drum" class="pkTypeImg" *ngIf="myOwnType == '0'">
+                                <img src="assets/resources/images/shipping_packages/letter-shipping-icon.svg" alt="Metal storage tote" class="pkTypeImg" *ngIf="myOwnType == '1'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg(), 'col-md-9' : !nbsBase.getNbsInSinglePg()}">
+                            <div class="ups-buttonList_wrapper ups-input_wrapper ups-help_wrapper" *ngIf="concept7803">
+                                <input id="conceptCB7803"
+                                        class="ups-checkbox-custom"
+                                        name="conceptCB7803"
+                                        type="checkbox"
+                                        checked="">
+                                <label for="whatDimWeightSwitch" class="ups-checkbox-custom-label">
+                                    Large or Bulky package
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="largePack-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod nunc a diam pretium, eget vehicula mauris hendrerit. Fusce sed pretium mi. Curabitur pretium dictum velit, nec tincidunt sapien.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// End Package Demensions //// -->
+                <!-- //// Begin Declared Value //// -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="ups-form_group ups-input_has_unit ups-help_wrapper">
+                            <label for="ups-declaredValue" class="ups-form_label">
+                                <span *ngIf="whatMultipleHowMany != 1">Shipment </span>Declared Value
+                            </label>
+                            <div class="ups-help" upsHelpBtn>
+                                <button type="button" id="ups-formHelp2" class="ups-help_link">
+                                    <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                    Help
+                                </button>
+                                <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                    <button type="button" class="ups-help_close">
+                                        <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Close</span>
+                                    </button>
+                                    <p>UPS's liability for loss or damage is limited to US$100 without a declaration of value (limit may vary for non-U.S. origin shipments). To increase UPS’s liability, you must declare a higher value and pay an additional charge. Refer to the UPS Terms and Conditions of the origin country or territory for complete details.</p>
+                                </div>
+                            </div>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="ups-declaredValue" class="ups-form_input" id="ups-declaredValue">
+                                <span class="ups-input_unit_measure">
+                                    <span *ngIf="currency_type == 'lbs'">USD</span>
+                                    <span *ngIf="currency_type == 'kg'">[CCC]</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ups-form_group ups-input_has_unit ups-form_required" *ngIf="returnConcept">
+                            <label for="whatMerchDisc" class="ups-form_label">
+                                Merchandise Description
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text"
+                                        name="whatMerchDisc"
+                                        class="ups-form_input"
+                                        id="whatMerchDisc"
+                                        aria-required="true"
+                                        required
+                                        aria-describedby="whatMerchDisc_error"
+                                        formControlName="whatMerchDisc"
+                                        [ngClass]="{'ups-bodError':  (!nbsSpaSectionWhat.controls['whatMerchDisc'].valid && nbsSpaSectionWhat.controls['whatMerchDisc'].touched)}">
+                            </div>
+                            <span class="ups-icons-error" id="whatMerchDisc_error" role="alert">
+                                <span class="ups-invalid_color"
+                                    *ngIf="(!nbsSpaSectionWhat.controls['whatMerchDisc'].valid && nbsSpaSectionWhat.controls['whatMerchDisc'].touched)">
+                                    <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                    <span class="ups-readerTxt"> invalid</span>
+                                    <span *ngIf="nbsSpaSectionWhat.controls['whatMerchDisc'].hasError('required')">
+                                        Merchandise Description is [ required | invalid ].
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- possible FUTURE design update for specific package types
+                        <div class="col-md-6">
+                        <div class="alert alert-warning " role="alert">
+                            <div class="alert-icon pull-left">
+                                <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                            </div>
+
+                            <button type="button"
+                                    class="ups-alert_collapse"
+                                    aria-expanded="false"
+                                    (click)="whatShipTipDecVal = !whatShipTipDecVal">
+                                <span class="ups-readerTxt">Click to expand</span>
+                                <span [ngClass]="{ 'ups-icon-wedgeup' : whatShipTipDecVal, 'ups-icon-wedgedown' : !whatShipTipDecVal }" class="icon " aria-hidden="true"></span>
+                            </button>
+
+                            <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> Lorem ipsum?</p></div>
+                            <div class="alert-content ups-alert_has_icon" *ngIf="whatShipTipDecVal">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- //// End Declared Value //// -->
+
+                <!-- //// Begin Preset AddOn Options //// -->
+                <ul class="ups-indent ups-list_style_none" *ngIf="presetAddOpt && !showOptions">
+                    <li class="row" *ngIf="reqSig1">
+                        <div [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg(), 'col-md-7' : !nbsBase.getNbsInSinglePg()}">
+                            <div class="row">
+                                <!-- <div class="col-xs-3 col-sm-2">
+                                    <p class="confirmYes">YES</p>
+                                </div> -->
+                                <div class="col-xs-9 col-sm-10">
+                                    <p>&#8226; Signature Required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm" [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg(), 'col-md-5' : !nbsBase.getNbsInSinglePg()}">
+                            <button type="button" class="ups-link" (click)="reqSig1 = !reqSig1"><span aria-hidden="true" class="icon ups-icon-xcircle"></span> Remove</button>
+                        </div>
+                    </li>
+                    <li class="row" *ngIf="cod1">
+                        <div [ngClass]="{'col-md-5' : nbsBase.getNbsInSinglePg(), 'col-md-7' : !nbsBase.getNbsInSinglePg()}">
+                            <div class="row">
+                                <!-- <div class="col-xs-3 col-sm-2">
+                                    <p class="confirmYes">YES</p>
+                                </div> -->
+                                <div class="col-xs-9 col-sm-10">
+                                    <p>&#8226; C.O.D. [$][nn.nn][USD] [Cashier's Check or Money Order]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs hidden-sm" [ngClass]="{'col-md-6' : nbsBase.getNbsInSinglePg(), 'col-md-5' : !nbsBase.getNbsInSinglePg()}">
+                            <button type="button" class="ups-link" (click)="cod1 = !cod1"><span aria-hidden="true" class="icon ups-icon-xcircle"></span> Remove</button>
+                        </div>
+                    </li>
+                </ul>
+                <!-- //// End Preset AddOn Options //// -->
+
+                <!-- Moved from the list of options per TFS#587383 -->
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <button type="button"
+                            class="ups-link"
+                            id="ups-refNumBtn"
+                            [attr.aria-expanded]="showRefNum"
+                            aria-controls="ups-showRefNum"
+                            (click)="showRefNum = !showRefNum ">
+                            Add Reference Numbers
+                        </button>
+                        <span [ngClass]="{ 'ups-icon-wedgeup' : showRefNum, 'ups-icon-wedgedown' : !showRefNum }" class="icon" aria-hidden="true"></span>
+                    </div>
+                    <ul class="ups-list_style_none" *ngIf="reviewOption">
+                        <li>
+                            <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                                <div [ngClass]="{'col-md-7' : nbsBase.getNbsInSinglePg()}">
+                                    <div class="ups-group">
+                                        <div class="row">
+                                            <div class="col-xs-9 col-md-7">
+                                                &#8226; Reference Number
+                                            </div>
+                                            <div class="col-xs-3 col-md-5">
+                                                <button class="ups-link ups-btn_has_icon" type="button">
+                                                    <span aria-hidden="true" class="icon ups-icon-xcircle"></span>
+                                                        <span class="hidden-xs hidden-sm">Remove</span>
+                                                    <span class="ups-readerTxt">Reference Number</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="ups-showRefNum">
+                        <div *ngIf="!reviewOption && showRefNum">
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatAddRefSwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatAddRefSwitch"
+                                            name="whatAddRefSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatAddRefSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">Reference numbers (Free)</strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Track by purchase order, RMA number, or memorable phrase.</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="row" *ngIf="whatAddRefSwitch">
+                                <div class="col-md-5">
+                                    <div class="ups-form_group">
+                                        <label for="referenceNum1" class="ups-form_label">
+                                            Reference #1
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="referenceNum1" class="ups-form_input" id="referenceNum1">
+                                        </div>
+                                    </div>
+                                    <fieldset class="ups-form_group">
+                                        <legend class="ups-readerTxt">
+                                            Reference #1 Options
+                                        </legend>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="reference1UseNumberAllPackages" class="ups-checkbox-custom" name="reference1UseNumberAllPackages" type="checkbox" value="1" checked="">
+                                            <label for="reference1UseNumberAllPackages" class="ups-checkbox-custom-label">
+                                                Use this reference for all packages
+                                            </label>
+                                        </div>
+
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="reference1AddBarcode" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="2">
+                                            <label for="reference1AddBarcode" class="ups-checkbox-custom-label">
+                                                Add a scannable barcode for reference #1 on my shipping label
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <div class="ups-form_group">
+                                        <label for="referenceNum2" class="ups-form_label">
+                                            Reference #2
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="referenceNum2" class="ups-form_input" id="referenceNum2">
+                                        </div>
+                                    </div>
+                                    <div class="ups-form_group">
+                                        <div class="ups-checkbox ups-input_wrapper">
+                                            <input id="reference2UseNumberAllPackages" class="ups-checkbox-custom" name="reference2UseNumberAllPackages" type="checkbox" value="1" checked="">
+                                            <label for="reference2UseNumberAllPackages" class="ups-checkbox-custom-label">
+                                                Use this reference for all packages
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="alert alert-warning " role="alert">
+                                        <div class="alert-icon pull-left">
+                                            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                                        </div>
+
+                                        <button type="button" class="ups-alert_collapse" [attr.aria-expanded]="(addRefTip) ? 'true' : 'false'" (click)="addRefTip = !addRefTip">
+                                            <span class="ups-readerTxt">Click to expand</span><span class="icon" aria-hidden="true" [ngClass]="{'ups-icon-wedgedown' : !addRefTip, 'ups-icon-wedgeup' : addRefTip}"></span>
+                                        </button>
+
+                                        <div class="alert-title  ups-alert_has_icon"><p><strong>Ship Tip:</strong> A "reference number" is any combination of numbers and letters you can use to track and identify your shipment.</p></div>
+                                        <div class="alert-content" *ngIf="addRefTip">
+                                            <p>You can use a purchase order number, customer name, or phrase like "10 crates" or "gift for Mom."</p>
+                                            <p>
+                                                NOTE: To use a reference number as a barcode, use either "14" alphanumeric characters (combination of letters and numbers) or "24" numeric digits (numbers only). Don't use spaces or special characters.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- //// Begin Package Lvl options //// -->
+                <div class="ups-section">
+                    <div class="ups-section-header">
+                        <button type="button"
+                            class="ups-link"
+                            id="upsPkgOptionsBtn"
+                            [attr.aria-expanded]="showOptions"
+                            aria-controls="ups-showOptions"
+                            (click)="showOptions =!showOptions">
+                            <!-- <span  *ngIf="!showOptions && !presetAddOpt">View</span> -->
+                            <!-- <span  *ngIf="!showOptions && presetAddOpt">[Edit]</span> -->
+                            <!--<span  *ngIf="showOptions">Hide</span> -->
+                            Edit Additional Options
+                            <span class="ups-readerTxt">expand</span>
+                        </button>
+                        <span [ngClass]="{ 'ups-icon-wedgeup' : showOptions, 'ups-icon-wedgedown' : !showOptions }" class="icon" aria-hidden="true"></span>
+                    </div>
+                    <!--//// Begin Review Option Listing ////-->
+                    <ul class="ups-list_style_none" *ngIf="reviewOption">
+                        <li *ngFor="let option of addedOptions;">
+                            <div [ngClass]="{'row' : nbsBase.getNbsInSinglePg()}">
+                                <div [ngClass]="{'col-md-7' : nbsBase.getNbsInSinglePg()}">
+                                    <div class="ups-group">
+                                        <div class="row">
+                                            <div class="col-xs-9 col-md-7">
+                                                &#8226; {{option.copy}}
+                                            </div>
+                                            <div class="col-xs-3 col-md-5">
+                                                <button class="ups-link ups-btn_has_icon" type="button">
+                                                    <span aria-hidden="true" class="icon ups-icon-xcircle"></span>
+                                                        <span class="hidden-xs hidden-sm">Remove</span>
+                                                    <span class="ups-readerTxt">{{option.copy}}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--/// End Review Option Listing ////-->
+                    <!-- Begin AddOn Options -->
+                    <div id="ups-showOptions">
+                        <div *ngIf="!reviewOption && showOptions">
+                            <hr>
+                            <div class="ups-form_group ups-help_wrapper">
+                                <label class="ups-lever" onclick="" for="includeLithium">
+                                    <input type="checkbox"
+                                            id="includeLithium"
+                                            name="includeLithium"
+                                            checked=""
+                                            [(ngModel)]="includeLithium"
+                                            [ngModelOptions]="{'standalone': true}">
+                                    <span aria-hidden="true">
+                                        <span>Yes</span>
+                                        <span class="switch-bg"></span>
+                                        <span>No</span>
+                                    </span>
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label">Include Lithium Batteries</strong>
+                                        <p class="ups-form_subheader">All lithium ion or lithium metal cells and batteries</p>
+                                    </div>
+                                </label>
+                                <div class="ups-help" upsHelpBtn>
+                                    <button type="button" id="includeLithium-help" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+                                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                                            <span class="ups-readerTxt">Close</span>
+                                        </button>
+                                        <p>Lithium batteries are high capacity power cells used in electronic devices, tools, and some games and toys. Generally, lithium ion batteries are rechargeable and lithium metal batteries are not.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="lithiumBatteryOptionsSection" *ngIf="includeLithium">
+                                <div id="lithiumBattShipTip1View1">
+                                    <div class="alert alert-warning " role="alert">
+                                        <!--<div class="alert-icon pull-left">
+                                            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                                        </div>-->
+
+
+                                        <button type="button"
+                                            class="ups-alert_collapse"
+                                            [attr.aria-expanded]="(lithiumBatteryShipTipMore) ? 'true' : 'false'"
+                                            (click)="lithiumBatteryShipTipMore = !lithiumBatteryShipTipMore">
+                                            <span class="ups-readerTxt">Click to expand</span>
+                                            <span class="icon "
+                                                aria-hidden="true"
+                                                [ngClass]="{'ups-icon-wedgedown' : !lithiumBatteryShipTipMore, 'ups-icon-wedgeup' : lithiumBatteryShipTipMore}"></span>
+                                        </button>
+
+                                        <div class="alert-title"><p><strong>Ship Tip:</strong> Some options for shipping lithium batteries are limited by your shipping route.</p></div>
+                                        <div class="alert-content" *ngIf="lithiumBatteryShipTipMore">
+                                            <p></p><p>Transport to your destination requires some air flight. In certain circumstances, if lithium batteries are not properly packed there is a risk of electrical discharge or overheating due to air pressure changes in flight. Your options for shipping lithium batteries are limited as a result.</p><p>More options for shipping regulated items like batteries are available with a UPS dangerous goods contract. You will also need a lithium metal battery shipper pre-approval agreement.</p><p><a href="https://www.ups.com/es/en/help-center/packaging-and-supplies/special-care-shipments/batteries.page" class="ups-link ups-new-window">Shipping Batteries or Devices with Batteries <span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p><p></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ng-container *ngFor="let litBatt of lithiumBatteries; let f = index;">
+                                    <div class="ups-tile">
+                                        <div class="ups-tile_content">
+                                            <div class="row">
+                                                <div class="col-md-5">
+
+                                                    <div class="ups-form_group ups-form_required">
+                                                        <label [attr.for]="'lithiumBatteryType' + f"
+                                                            class="ups-form_label">
+                                                            Type of Battery
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+                                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                            <select [attr.name]="'lithiumBatteryType' + f"
+                                                                class="ups-dropdown"
+                                                                [attr.id]="'lithiumBatteryType' + f"
+                                                                required
+                                                                aria-required="true"
+                                                                pattern="^[^0]$"
+                                                                [attr.aria-describedby]="'lithiumBatteryType' + f + '_error'"
+                                                                formControlName="lithiumBatteryType{{ f }}"
+                                                                [ngClass]="{'ups-bodError':  (!nbsSpaSectionWhat.controls['lithiumBatteryType' + f].valid && nbsSpaSectionWhat.controls['lithiumBatteryType' + f].touched)}">
+                                                                <option value="0">Select One</option>
+                                                                <option value="1">Lithium Ion</option>
+                                                                <option value="2">Lithium Metal</option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="ups-icons-error" [attr.id]="'lithiumBatteryType' + f + '_error'" role="alert">
+                                                            <span class="ups-invalid_color"
+                                                                *ngIf="(!nbsSpaSectionWhat.controls['lithiumBatteryType' + f].valid && nbsSpaSectionWhat.controls['lithiumBatteryType' + f].touched)">
+                                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                                <span class="ups-readerTxt"> invalid</span>
+                                                                <span *ngIf="nbsSpaSectionWhat.controls['lithiumBatteryType' + f].hasError('pattern')">
+                                                                    Type of Battery is required.
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-7">
+
+                                                    <div class="ups-form_group ups-form_required">
+                                                        <label [attr.for]="'lithiumBatteryHowIncluded' + f"
+                                                            class="ups-form_label">
+                                                            How is it packaged?
+                                                            <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                        </label>
+                                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                            <select [attr.name]="'lithiumBatteryHowIncluded' + f"
+                                                                class="ups-dropdown"
+                                                                [attr.id]="'lithiumBatteryHowIncluded' + f"
+                                                                required
+                                                                aria-required="true"
+                                                                pattern="^[^0]$"
+                                                                [attr.aria-describedby]="'lithiumBatteryHowIncluded' + f + '_error'"
+                                                                formControlName="lithiumBatteryHowIncluded{{ f }}"
+                                                                [ngClass]="{'ups-bodError':  (!nbsSpaSectionWhat.controls['lithiumBatteryHowIncluded' + f].valid && nbsSpaSectionWhat.controls['lithiumBatteryHowIncluded' + f].touched)}">
+                                                                <option value="0">Select One</option>
+                                                                <option value="1">Contained or installed in equipment</option>
+                                                                <option value="2">Packaged separately with other equipment </option>
+                                                                <option value="3">Alone in box </option>
+                                                            </select>
+                                                        </div>
+                                                        <span class="ups-icons-error" [attr.id]="'lithiumBatteryHowIncluded' + f + '_error'" role="alert">
+                                                            <span class="ups-invalid_color"
+                                                                *ngIf="(!nbsSpaSectionWhat.controls['lithiumBatteryHowIncluded' + f].valid && nbsSpaSectionWhat.controls['lithiumBatteryHowIncluded' + f].touched)">
+                                                                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                                                                <span class="ups-readerTxt"> invalid</span>
+                                                                <span *ngIf="nbsSpaSectionWhat.controls['lithiumBatteryHowIncluded' + f].hasError('pattern')">
+                                                                    Packaging Method is required.
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <p id="lithiumBatterPackagingInfo11" style="display: none;">
+                                                The battery is connected to an electronic device or can't be removed from a device.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo12" style="display: none;">
+                                                The battery is shipping together with an electronic device but isn't connected to it.
+                                            </p>
+                                            <p id="lithiumBatterPackagingInfo13" style="display: none;">
+                                                The battery is packaged separately and not with other equipment.
+                                            </p>
+                                        </div>
+                                        <button type="button"
+                                            class="ups-tile_icon ups-link"
+                                            *ngIf="lithiumBatteries.length > 1"
+                                            (click)="removeLitBatt(f)">
+                                            <span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                                            <span class="ups-readerTxt">Remove battery</span>
+                                        </button>
+                                    </div>
+                                </ng-container>
+
+                                <!--<div class="ups-tile" id="lithiumBatteriesTile2" style="display: none;">
+                                    <div class="ups-tile_content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+
+                                                <div class="ups-form_group ups-form_required">
+                                                    <label for="lithiumBatteryType2" class="ups-form_label">
+                                                        Type of Battery
+                                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                    </label>
+                                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                        <select name="lithiumBatteryType2" class="ups-dropdown" id="lithiumBatteryType2" required="" aria-required="true">
+                                                            <option value="0">Select One</option>
+                                                            <option value="1">Lithium Ion</option>
+                                                            <option value="2">Lithium Metal</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-7">
+
+                                                <div class="ups-form_group ups-form_required">
+                                                    <label for="lithiumBatteryHowIncluded2" class="ups-form_label">
+                                                        How is it packaged?
+                                                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                                                    </label>
+                                                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                        <select name="lithiumBatteryHowIncluded2" class="ups-dropdown" id="lithiumBatteryHowIncluded2" required="" aria-required="true">
+                                                            <option value="0">Select One</option>
+                                                            <option value="1">Contained or installed in equipment</option>
+                                                            <option value="2">Packaged separately with other equipment  </option>
+                                                            <option value="3">Alone in box </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <p id="lithiumBatterPackagingInfo21" style="display: none;">
+                                            The battery is connected to an electronic device or can't be removed from a device.
+                                        </p>
+                                        <p id="lithiumBatterPackagingInfo22" style="display: none;">
+                                            The battery is shipping together with an electronic device but isn't connected to it.
+                                        </p>
+                                        <p id="lithiumBatterPackagingInfo23" style="display: none;">
+                                            The battery is packaged separately and not with other equipment.
+                                        </p>
+                                    </div>
+                                    <button type="button" class="ups-tile_icon ups-link" id="lithiumBatteriesDel2" data-email-id="0">
+                                        <span class="icon ups-icon-xcircle" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Remove email</span>
+                                    </button>
+                                </div>-->
+
+
+                                <button class="ups-cta ups-cta_secondary ups-btn_has_icon"
+                                    type="button"
+                                    *ngIf="lithiumBatteries.length < 3"
+                                    (click)="addLitBatt()">
+                                    <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                                    Add Another Battery
+                                </button>
+                            </div>
+                            <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatSigOptSwitch">
+                                    <input type="checkbox"
+                                            id="whatSigOptSwitch"
+                                            name="whatSigOptSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatSigOptSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+                                    <span aria-hidden="true">
+                                        <span>Yes</span>
+                                        <span class="switch-bg"></span>
+                                        <span>No</span>
+                                    </span>
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label">Signature Options (+$)</strong>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="row" *ngIf="whatSigOptSwitch">
+                                <div class="col-md-5">
+                                    <div class="ups-form_group">
+                                        <label for="deliverNoSignature" class="ups-form_label">Select Signature Option</label>
+                                        <!--<p class="ups-form_subheader" id="deliverNoSignatureHelpTxt">{{'{'}}option description placeholder{{'}'}}</p>-->
+                                        <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                            <select name="deliverNoSignature" class="ups-dropdown" id="deliverNoSignature" aria-describedby="deliverNoSignatureHelpTxt">
+                                                <option value="most_recent">Select One</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <p class="ups-no_label">
+                                        [The receiver must confirm delivery.] [The receiver must be 21 or older.] [Allow delivery without a signature.]
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Moved above the list of options per TFS#587383 <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatAddRefSwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatAddRefSwitch"
+                                            name="whatAddRefSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatAddRefSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">Reference numbers (Free)</strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Track by purchase order, RMA number, or memorable phrase.</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="row" *ngIf="whatAddRefSwitch">
+                                <div class="col-md-5">
+                                    <div class="ups-form_group">
+                                        <label for="referenceNum1" class="ups-form_label">
+                                            Reference #1
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="referenceNum1" class="ups-form_input" id="referenceNum1">
+                                        </div>
+                                    </div>
+                                    <fieldset class="ups-form_group">
+                                        <legend class="ups-readerTxt">
+                                            Reference #1 Options
+                                        </legend>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="reference1UseNumberAllPackages" class="ups-checkbox-custom" name="reference1UseNumberAllPackages" type="checkbox" value="1" checked="">
+                                            <label for="reference1UseNumberAllPackages" class="ups-checkbox-custom-label">
+                                                Use this reference for all packages
+                                            </label>
+                                        </div>
+
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="reference1AddBarcode" class="ups-checkbox-custom" name="ups-uid-form_title-unnamed" type="checkbox" value="2">
+                                            <label for="reference1AddBarcode" class="ups-checkbox-custom-label">
+                                                Add a scannable barcode for reference #1 on my shipping label
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <div class="ups-form_group">
+                                        <label for="referenceNum2" class="ups-form_label">
+                                            Reference #2
+                                        </label>
+                                        <div class="ups-text_wrapper ups-input_wrapper">
+                                            <input type="text" name="referenceNum2" class="ups-form_input" id="referenceNum2">
+                                        </div>
+                                    </div>
+                                    <div class="ups-form_group">
+                                        <div class="ups-checkbox ups-input_wrapper">
+                                            <input id="reference2UseNumberAllPackages" class="ups-checkbox-custom" name="reference2UseNumberAllPackages" type="checkbox" value="1" checked="">
+                                            <label for="reference2UseNumberAllPackages" class="ups-checkbox-custom-label">
+                                                Use this reference for all packages
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="alert alert-warning " role="alert">
+                                        <div class="alert-icon pull-left">
+                                            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+                                        </div>
+
+                                        <button type="button" class="ups-alert_collapse" [attr.aria-expanded]="(addRefTip) ? 'true' : 'false'" (click)="addRefTip = !addRefTip">
+                                            <span class="ups-readerTxt">Click to expand</span><span class="icon" aria-hidden="true" [ngClass]="{'ups-icon-wedgedown' : !addRefTip, 'ups-icon-wedgeup' : addRefTip}"></span>
+                                        </button>
+
+                                        <div class="alert-title  ups-alert_has_icon"><p><strong>Ship Tip:</strong> A "reference number" is any combination of numbers and letters you can use to track and identify your shipment.</p></div>
+                                        <div class="alert-content" *ngIf="addRefTip">
+                                            <p>You can use a purchase order number, customer name, or phrase like "10 crates" or "gift for Mom."</p>
+                                            <p>
+                                                NOTE: To use a reference number as a barcode, use either "14" alphanumeric characters (combination of letters and numbers) or "24" numeric digits (numbers only). Don't use spaces or special characters.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatDirectDeliverSwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatDirectDeliverSwitch"
+                                            name="whatDirectDeliverSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatDirectDeliverSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">Deliver Only to Receiver's Address (+$)</strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Do not allow package to be rerouted to another location for pickup</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatAddCODSwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatAddCODSwitch"
+                                            name="whatAddCODSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatAddCODSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">C.O.D. (+$)</strong>
+                                        <!-- <p class="ups-form_subheader ups-lever_subheader">UPS will collect payment at the time of delivery.</p> -->
+                                    </div>
+                                </label>
+                            </div>
+                            <div *ngIf="whatAddCODSwitch">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="ups-form_group ups-input_has_unit">
+                                            <label for="CODCurrency" class="ups-form_label">C.O.D. Currency</label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select name="CODCurrency" class="ups-dropdown" id="CODCurrency">
+                                                    <option value="most_recent">CCC</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="ups-form_group ups-form_required ups-input_has_unit">
+                                            <label for="CODAmtCollect" class="ups-form_label">
+                                                Amount to Collect on Delivery
+                                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                                            </label>
+                                            <div class="ups-text_wrapper ups-input_wrapper">
+                                                <input type="text" name="CODAmtCollect" class="ups-form_input" id="CODAmtCollect" aria-required="true" required>
+                                                <span class="ups-input_unit_measure">[CAD]</span>
+                                            </div>
+                                        </div>
+                                        <div class="ups-form_group ups-input_has_unit">
+                                            <label for="CODMethod" class="ups-form_label">C.O.D. Payment Method</label>
+                                            <div class="ups-dropdown_wrapper ups-input_wrapper">
+                                                <select name="CODMethod" class="ups-dropdown" id="CODMethod">
+                                                    <option value="most_recent">Cashier's check or money order</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatAddHandSwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatAddHandSwitch"
+                                            name="whatAddHandSwitch"
+                                            checked=""
+                                            [(ngModel)]="whatAddHandSwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">Large Package or Additional Handling (+$nn.nn USD)</strong>
+                                        <p class="ups-form_subheader ups-lever_subheader">Bulky or unpackaged items.</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div *ngIf="whatAddHandSwitch">
+                                <!--<div class="col-md-6">-->
+                                    <p>
+                                        [Enter dimensions above and we will calculate for you]
+                                    </p>
+                                    <fieldset class="ups-form_group ups-help_wrapper">
+                                        <legend class="ups-readerTxt">
+                                            Additional Handling Options
+                                        </legend>
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="largePackage" class="ups-checkbox-custom" name="largePackage" type="checkbox" value="1" checked="">
+                                            <label for="largePackage" class="ups-checkbox-custom-label">
+                                                Large Package
+                                            </label>
+                                        </div>
+
+                                        <div class="ups-buttonList_wrapper ups-input_wrapper">
+                                            <input id="additionalPackageHandling" class="ups-checkbox-custom" name="ups-uid-additionalPackageHandling-unnamed" type="checkbox" value="2">
+                                            <label for="additionalPackageHandling" class="ups-checkbox-custom-label">
+                                                Additional Handling
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                <!--</div>-->
+                            </div>
+                            <hr>
+                            <div class="ups-form_group">
+                                <label class="ups-lever" onclick="" for="whatChainCustodySwitch">
+                                    <input type="checkbox"
+                                            class="ups-lever_checkbox"
+                                            id="whatChainCustodySwitch"
+                                            name="whatChainCustodySwitch"
+                                            checked=""
+                                            [(ngModel)]="whatChainCustodySwitch"
+                                            [ngModelOptions]="{'standalone': true}">
+
+                                    <span aria-hidden="true" class="ups-lever_switch">
+                                        <span class="ups-lever_switch_yes">Yes</span>
+                                        <span class="ups-lever_switch_bg"></span>
+                                        <span class="ups-lever_switch_no">No</span>
+                                    </span>
+
+                                    <div class="ups-lever_rlabel">
+                                        <strong class="ups-form_label ups-lever_label">Chain of Custody (+$nn.nn USD)</strong>
+                                        <!-- <p class="ups-form_subheader ups-lever_subheader">placeholder</p> -->
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //// End AddOn Options //// -->
+                <!-- //// End Package Lvl options //// -->
+            </div>
+            <!-- ///////////////////////////////////// -->
+            <!-- //// End Editable package 1      //// -->
+            <!-- ///////////////////////////////////// -->
+        </section>
+    </ng-container>
+    <!-- //// End Package 1 Info //// -->
+    <!-- //// Begin Package 2 Info //// -->
+    <section class="panel panel-default" *ngIf="package2">
+        <div class="panel-heading">
+            <h3 id="curPackageHeader" class="panel-title">
+                <span class="icon ups-icon-box" aria-hidden="true"></span>
+                Package 2
+            </h3>
+            <div class="ups-package_actions">
+                <button type="button" class="ups-link pull-right" (click)="package2 = !package2">
+                    <span class="icon ups-icon-minuscircle" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Delete</span>
+                    <span class="ups-readerTxt">Delete Current Package 2</span>
+                </button>
+                <button type="button" class="ups-link pull-right">
+                    <span class="icon ups-icon-duplicate" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Duplicate</span>
+                    <span class="ups-readerTxt">Duplicate Package 2</span>
+                </button>
+                <button type="button" class="ups-link pull-right">
+                    <span class="icon ups-icon-edit" aria-hidden="true"></span>
+                    <span class="hidden-xs" aria-hidden="true">Edit</span>
+                    <span class="ups-readerTxt">Edit Package 2</span>
+                </button>
+            </div>
+        </div>
+        <!-- ////////////////////////////////////// -->
+        <!-- //// Begin non-Editable package 1 //// -->
+        <!-- ////////////////////////////////////// -->
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>Package Type:</strong> My Package</p>
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Dimensions:</strong> 999x999x999 in</p>
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Weight:</strong> 999 lbs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //// End Package 2 Info //// -->
+    <!-- //// Begin Add another Package //// -->
+    <div class="ups-group">
+        <!-- (click)="package2 = true" -->
+        <button class="ups-cta ups-cta_secondary ups-btn_has_icon"
+                id="addAdditionalPkgBtn"
+                type="button"
+                (click)="addPackage()">
+            <span class="icon ups-icon-addpackage" aria-hidden="true"></span>
+            Add Another Package
+        </button>
+    </div>
+    <!-- //// End Add another Package //// -->
+    <!-- //// Begin Where Demo button //// -->
+    <div class="ups-cms-demo">
+        <!--<button type="button" class="ups-cta ups-cta_secondary" (click)="completedPkg = !completedPkg">Completed Package</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="some_options_selected = !some_options_selected">Some Options Selected</button>-->
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="loggedIn = !loggedIn">Logged In/Guest</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="nonUS = !nonUS && canada =(canada ? !canada : canada)">Dim Weight Countries</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="canada = (canada ? canada : !canada)">Non-Dim Weight Countries</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="presetAddOpt = !presetAddOpt && reqSig1 = !reqSig1 && cod1 = !cod1">Preset Additional Options</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="reviewWhere = !reviewWhere && reqSig2 = !reqSig2 && cod2 = !cod2">Review</button>
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="reviewOption = !reviewOption">Review Options</button>
+        <!--<button type="button" class="ups-cta ups-cta_secondary" (click)="concept7803 = !concept7803 && whatPackagingType == 'myPack'">7803 Concept</button> -->
+        <button type="button" class="ups-cta ups-cta_secondary" (click)="returnConcept = !returnConcept">Return Concept</button>
+        <!-- <button type="button" class="ups-cta ups-cta_secondary" (click)="AHCConceptBtn()">AHC Packaging Concept</button> -->
+    </div>
+    <!-- //// End Where Demo button //// -->
+</div>

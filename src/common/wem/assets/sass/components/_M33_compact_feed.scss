@@ -1,0 +1,117 @@
+// ----------------------------------------------------
+// M33 Compact Feed
+// ----------------------------------------------------
+
+@mixin ups_tabs_sm {
+    .ups-tab-headers {
+        display: block;
+    }
+}
+.ups-compact_feed {
+    h3 {
+        margin-top: 0;
+        font-family: $sans-bd;
+        margin-bottom: $margin_4;
+    }
+    .ups-tabs {
+        background: white;
+        border: 1px solid $stone_60;
+        p {
+            padding: 20px;
+            margin: 0;
+        }
+        .ups-tab-headers {
+            background: $stone_40;
+            border-bottom: 5px solid $black_s1;
+            padding: 0;
+
+            span {
+                display: block;
+            }
+
+            .tab-header {
+                @include unbutton;
+                width: 22.5%;
+                height: 61px;
+                text-align: center;
+                float: $default-float;
+                position: relative;
+                cursor: pointer;
+                &.ups-inactive{
+                    display:inline-block;
+                }
+                &[data-open="true"] {
+                    .tab-iconWrap {
+                        .tab-icon {
+                            bottom: 0;
+                            top: auto;
+                        }
+                    }
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top:100%;
+                        left: 50%;
+                        margin-left: -15px;
+                        width: 0;
+                        height: 0;
+                        border-left: 15px solid transparent;
+                        border-right: 15px solid transparent;
+                        border-top: 15px solid $black_s1;
+                    }
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+                &:first-child {
+                    margin-#{$default-float}: 5%;
+                }
+                &:hover {
+                    opacity: .8;
+                }
+            }
+
+            .tab-iconWrap {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                margin: auto;
+                overflow: hidden;
+                .tab-icon {
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    img{
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        .ups-tab-content {
+            background: $white;
+            display: none;
+
+            .sub-detail-container {
+                position: relative;
+                padding: 60px 30px 0;
+                min-height: 400px;
+                max-height: 600px;
+                text-align: center;
+            }
+
+            &[data-content-selected="true"] {
+                display: block;
+            }
+        }
+
+        @media #{$media-small} {
+            @include ups_tabs_sm;
+        }
+    }
+}
+
+.subsection_aside .ups-compact_feed,
+.iw_columns.col-lg-4 .ups-compact_feed {
+    @include aside-pad_sm;
+}

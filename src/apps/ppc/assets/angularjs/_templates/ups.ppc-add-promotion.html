@@ -1,0 +1,80 @@
+
+    
+    <div data-ng-if="error">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors.
+        </h3>
+        <ul class="ups-icons-error">
+            <li> 
+                <span>
+                    <a href="#" onclick="return false;" focus-attr="ups-first_name_input" error-on-submit-anchor="" class="ups-invalid_color">
+                    	Promotion Code
+                    </a> is invalid.
+                </span>
+            </li>
+        </ul>
+    </div>
+    <p>Enter your promo code and select <strong>View Discount</strong> to see the details and add the promotion to your profile.</p>
+    <div class="ups-introductory-text">
+        <p> <em> <span aria-hidden="true">*</span> <span class="ups-readerTxt">Required</span> Indicates required field </em> </p>
+    </div>
+    <form name="ups_signupform" novalidate error-on-submit >
+        <!-- ADD PROMOTION DIAOGUE -->
+        <div class="ups-introductory-text">
+            <p> Enter your promo code and select <strong>View Discount</strong> to
+                see the details and add the promotion to your profile. </p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required"
+					data-ng-class="{ 'has-error' : (ups_signupform.firstName.$invalid && !ups_signupform.firstName.$pristine) || error }">
+                    <label for="ups-first_name_input" class="ups-form_label">Promotion
+                        Code <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper"
+						data-errormsg="This field is required">
+                        <input error-on-blur type="text" name="firstName" class="ups-form_input"
+						id="ups-first_name_input" data-ng-model="formObj.first_name"
+					    aria-required="true" required maxlength="10" aria-describedby="ups-promotion-error">
+                        <span id="ups-promotion-error" role="alert">
+                        	<span class="ups-invalid_color"
+								data-ng-if="(!ups_signupform.firstName.$pristine && ups_signupform.firstName.$invalid) || error">
+                                <span class="icon ups-error_exclamation">
+                                	<span class="ups-icon-exclamation" aria-hidden="true"></span>
+                                </span>
+                                <span data-ng-show="ups_signupform.firstName.$error.required && !error">
+                                	Promotion Code is required.
+                                </span>
+                                <span data-ng-show="error">
+                                	The promo code you entered is either invalid or expired. Please enter a different promo code to continue.
+                                </span>
+                                <span data-ng-if="ups_signupform.firstName.$valid && ups_signupform.firstName.$dirty && !error" >
+                                	<span class="ups-readerTxt">Check</span>
+                                </span>
+                            </span>
+                        </span>
+                        <div data-ng-if="(ups_signupform.firstName.$valid && ups_signupform.firstName.$dirty)"> 
+                            <!-- @Note: screen reader text needs to be translated as well --> 
+                            <span class="ups-icon-check" aria-hidden="true"></span> <span class="ups-readerTxt">Check</span> </div>
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+                <!-- ups-form_group ups-form_required -->
+                
+                
+                <!-- ups-form_ctaGroup --> 
+                
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="viewDiscount()" data-dismiss="modal">View Discount</button>
+            
+            <!-- data-ng-disabled="!ups_signupform.$valid" -->
+            <button type="submit" data-ng-click="cancel()" class="ups-cta ups-cta_secondary " data-dismiss="modal">Cancel</button>
+        </div>
+        <div class="ups-cms-demo">
+            <button class="ups-cta ups-cta_secondary" data-ng-click="error = true">Error: Invalid Promo Code</button>
+            <button class="ups-cta ups-cta_secondary" data-ng-click="error = false">No Error</button>
+        </div>
+    </form>

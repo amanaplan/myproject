@@ -1,0 +1,148 @@
+
+
+{{#if signup}} <span class="{{#if modal}}ups-modal_subtitle{{/if}}">New to UPS? <a href="#" class="ups-link ups-indent">Sign up</a></span> {{/if}}
+
+{{#if socials}}
+{{> A07_social_icon_list}}
+{{/if}}
+
+{{{pg_lvl_copy}}}
+
+{{#if form}}<form name="">{{/if}}
+    {{#if form_content}}
+    <!-- BEGIN LOGIN CONTENT -->
+    {{#if non_social}}<h2>Or enter your own information.</h2>{{/if}}
+
+    {{#if req_fields}}
+    	{{>A04_page_level_required_message}}
+    {{/if}}
+
+    {{#if error}}
+        {{>A03_page_level_error}}
+    {{/if}}
+
+
+
+    {{#if fieldset}}
+    <div class="row">
+      	<div class="col-md-5">
+            <fieldset class="ups-form_group">
+                <legend class="ups-form_label">Do you have a ups.com ID and password?</legend>
+                <div class="ups-input_wrapper">
+                    <input id="no_uspw" class="ups-radio-custom" name="uspw_radio" type="radio" value="0">
+                    <label for="no_uspw" class="ups-radio-custom-label">No, I need to sign up for an ID.</label>
+                </div>
+                <div class="ups-input_wrapper">
+                    <input id="yes_uspw" class="ups-radio-custom" name="uspw_radio" type="radio" value="1" checked="">
+                    <label for="yes_uspw" class="ups-radio-custom-label">Yes, I have an ID and password.</label>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if logged_lable_field}}
+    <div class="row">
+      	<div class="col-md-5">
+            <div class="ups-group">
+                <p class="ups-group_label">User ID</p>
+                <p class="ups-group_value">{smithy_mcJsmith}</p>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="row">
+      	<div class="col-md-4">
+
+        {{#if email}}
+        <div class="ups-form_group ups-form_required">
+            <label for="email" class="ups-form_label">
+            	{{email_copy}}
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="text" id="email" name="email" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>{{input_error_copy.e_mail}} is required.</span>
+                </span>
+              </span>
+              {{/if}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if password}}
+        <div class="ups-form_group ups-form_required ups-form_popover ups-form_user_password">
+            <label for="password" class="ups-form_label">
+            	Password
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+            </label>
+            <div class="ups-text_wrapper ups-input_wrapper">
+              <input type="password" id="password" name="password" class="ups-has_showhide_icon ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" aria-required="true" required>
+              {{#if ../non_error}}
+              <div class="ups-check ups-active">
+                  <span class="ups-icon-check" aria-hidden="true"></span>
+                  <span class="ups-readerTxt">Complete</span>
+              </div>
+              {{/if}}
+              {{#if ../error}}
+              <span class="ups-icons-error" role="alert">
+                <span class="ups-invalid_color">
+                    <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                    <span class="ups-readerTxt">Invalid</span>
+                    <span>{{input_error_copy.password}} is required.</span>
+                </span>
+              </span>
+              {{/if}}
+              <button type="button" id="showHide_btn" class="ups-cta ups-cta_secondary ups-questions_showhide">Show</button>
+    		  <a class="ups-link ups-forgetPass" href="#">I forgot my ID or password</a>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if captcha}}
+        {{> A08_reCAPTCHA}}
+        {{/if}}
+
+    	</div>
+    </div>
+    <!-- END LOGIN CONTENT -->
+    {{/if}}
+
+    {{#if agreement_checkbox}}
+    <div class="ups-form_group">
+        <div class="ups-checkbox ups-input_wrapper">
+            <input check-verify="" id="ups-offers_checkbox_non-US" class="ups-checkbox-custom" name="ups-offers_checkbox" value="1" type="checkbox">
+            <label for="ups-offers_checkbox_non-US" class="ups-form_label ups-checkbox-custom-label">
+                {{#if email_checkbox}}Remember my user ID.{{/if}}
+                {{#if tech_service_agreement}}
+                I agree to the <a href="#" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span> <span class=" icon ups-icon-newwindow" target="_blank" aria-hidden="true"></span></a> and the <a href="#" class="ups-link ups-new-window">UPS My Choice Service Terms. <span class="ups-readerTxt">will open in a new window</span><span class=" icon ups-icon-newwindow" aria-hidden="true" target="_blank" ></span></a>
+                {{/if}}
+            </label>
+        </div>
+    </div>
+    <!-- end checkbox -->
+    {{/if}}
+
+    {{#if tech_agreement}}
+    <p>By logging in, I agree to the <a href="#" class="ups-link ups-new-window">UPS Technology Agreement <span class="ups-readerTxt">will open in a new window</span>.<span class=" icon ups-icon-newwindow" target=“_blank” aria-hidden="true"></span></a> </p>
+   	{{/if}}
+
+    <div class="ups-form_ctaGroup{{#if modal}} text-center{{/if}}"> 
+        {{#each button}}
+        <button type="{{button_type}}" class="ups-cta ups-cta_{{button_class}}">{{button_copy}}</button>
+        {{/each}}
+    </div>
+    <!-- end button -->
+{{#if form}}</form>{{/if}}

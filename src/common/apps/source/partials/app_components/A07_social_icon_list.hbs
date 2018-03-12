@@ -1,0 +1,41 @@
+<!-- ************************************************************************************ -->
+<!-- A07 Social Icon List                                                                 -->
+<!-- ************************************************************************************ -->
+
+{{!--
+********************************************************************************
+A07 Social Icon List - Data
+********************************************************************************
+
+Available Variations via class names:
+
+    Secondary Skin
+        Applied to when using a number and no block header
+
+    Tertiary Skin
+        Applied to when using a icon and no block header
+
+
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    class                     = string      / YES           / ups-icon_[facebook | google | ect.]
+    name                      = string      / YES           / Facebook, Google+, ect.
+
+********************************************************************************
+--}}
+
+<!-- documentation ../source/module/A07_social_icon_list.hbs -->
+<h2 class="">Use one of these trusted sites.</h2>
+<div class="ups-group">
+    <!-- SOCAIL BASE CONTENT -->
+    <ul class="ups-icon_list row">
+        {{#each social_option}}
+        <li class="col-xs-6 col-md-3">
+            <button type="button"><span class="ups-icon-{{class}}"></span> <span class="ups-readerTxt">Sign up with {{this.readerTxtName}}</span>{{name}}</button>
+        </li>
+        {{/each}}
+    </ul>
+    <!-- ups-icon_list ups-list_horizontal -->
+</div>

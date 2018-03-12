@@ -1,0 +1,124 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+	<ng-form name="ups_packgLetterPrefform" data-novalidate>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<fieldset>
+					<legend class="ups-form_label">Destination Type</legend>
+					<span
+						data-ng-repeat="i in formObj.packageLetterRatingPref.deafultDestination"
+						class="ups-checkbox ups-input_wrapper  ups-display-inline">
+						<input id="{{i.text}}" class="ups-radio-custom" type="radio"
+						name="deafultDestination" value="{{$index}}"
+						data-ng-model="formObj.deafultDestination"
+						data-ng-checked="formObj.deafultDestination" /> <label
+						for="{{i.text}}" class="ups-form_label ups-radio-custom-label">{{i.text}}
+					</label>
+					</span>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<label for="ups-default_packagingType" class="ups-form_label">
+					Packaging
+				</label>
+				<p>Your Selection here will be reflected in your Shipping Preferences as well.</p>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-state_select" id="ups-default_packagingType"
+						class="ups-dropdown" data-ng-model="formObj.packType">
+						<option
+							data-ng-repeat="packType in formObj.packageLetterRatingPref.defaultShipAddress"
+							value="{{packType.packagingType}}">{{packType.packagingType}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+	</div>
+	<!--<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<strong class="ups-form_label">Packaging</strong>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-12">
+			<p>
+				Your Selection here will be reflected in your
+				Shipping Preferences as well.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<div class="ups-form_group">
+				<label for="ups-default_packagingType" class="ups-readerTxt">Default
+					Packaging Type</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-state_select" id="ups-default_packagingType"
+						class="ups-dropdown" data-ng-model="formObj.packType">
+						<option
+							data-ng-repeat="packType in formObj.packageLetterRatingPref.defaultShipAddress"
+							value="{{packType.packagingType}}">{{packType.packagingType}}</option>
+					</select>
+				</div>
+			</div>
+		</div>-->
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_group">
+				<fieldset>
+					<legend class="ups-form_label">Do you plan to prepay for
+						your label or pay in-store?</legend>
+					<span class="ups-checkbox ups-input_wrapper  ups-display-inline">
+						<input id="noDefSel" class="ups-radio-custom" type="radio"
+						name="noDefSel" value="0" data-ng-model="formObj.shippingCharges" />
+						<label for="noDefSel"
+						class="ups-form_label ups-radio-custom-label">I do not
+							want to set a default.</label>
+					</span> <span class="ups-checkbox ups-input_wrapper  ups-display-inline">
+						<input id="payCharge" class="ups-radio-custom" type="radio"
+						name="payCharge" value="1" data-ng-model="formObj.shippingCharges" />
+						<label for="payCharge"
+						class="ups-form_label ups-radio-custom-label">I will pay
+							and ship at a retail location.</label>
+					</span> <span class="ups-checkbox ups-input_wrapper  ups-display-inline">
+						<input id="prepay" class="ups-radio-custom" type="radio"
+						name="prepay" value="2" data-ng-model="formObj.shippingCharges" />
+						<label for="prepay" class="ups-form_label ups-radio-custom-label">I
+							will use a prepaid label.
+					</label>
+					</span>
+				</fieldset>
+			</div>
+			<div class="ups-form_group">
+				<div data-ng-show="formObj.shippingCharges === '2'">
+					<label for="ups-prepayvia-select" class="ups-form_label">Do you need to schedule a pickup?</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select name="ups-prepayvia-select" class="ups-dropdown"
+							data-ng-model="formObj.prepayvia" id="ups-prepayvia-select">
+							<option
+								data-ng-repeat="prepay in formObj.packageLetterRatingPref.prepay"
+								value="{{prepay.type}}">{{prepay.type}}</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="ups-form_ctaGroup">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="savePackageLetter()">Save
+				</button>
+                <!-- data-ng-disabled="!(ups_packgLetterPrefform.$dirty)" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+		</div>
+	</div>
+	</ng-form>
+</div>

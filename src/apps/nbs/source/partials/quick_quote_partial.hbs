@@ -1,0 +1,344 @@
+<!-- Where -->
+<div class="ups-app_inner">
+<div class="ups-group">
+	<h2 class="text-center ups-section_heading ups-centered_header">Shipping Details</h2>
+	<div class="text-center">
+		{{> A04_page_level_required_message }}
+    
+	</div>
+    {{#if error}}
+        {{>A03_page_level_error}}
+    {{/if}}
+</div>
+<!-- //// Begin From/To Section //// -->
+<div class="row">
+    <div class="col-md-5">
+        <!-- <h2><span class="{{this.icon-type}}" aria-hidden="true"></span>{{this.direction}} <span class="pull-right {{this.map-type}}" aria-hidden="true"></span></h2> -->
+        <h3><span class="ups-icon-location ups-icon_quote" aria-hidden="true"></span>From</h3>
+        <div class="ups-form_group  ups-form_required">
+          <label for="from_country_selectbox" class="ups-form_label" >
+            <span class="ups-readerTxt">From what </span>Country or Territory
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+          </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select select-on-click="" name="select" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="from_country_selectbox" {{#if error}}aria-describedby="from_country_selectbox_error"{{/if}} aria-required="true" required>
+              {{#each country}}
+              <option value="{{this.value}}">{{this.one}}</option>
+              {{/each}} {{!-- end list of countries loop --}}
+            </select>
+          </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="push icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+          {{#if error}}
+            {{>A11_field_lvl_error error_from_country_selectbox }}
+          {{/if}}
+        </div>
+        
+        <div class="ups-form_group ups-form_required">
+          <label for="from_zip_input" class="ups-form_label">
+            <span class="ups-readerTxt">From what </span>Postal / ZIP Code
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+          </label>
+          <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+            <input name="from_zip" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="from_zip_input" value="" maxlength="6" {{#if error}}aria-describedby="from_zip_input_error"{{/if}} aria-required="true" required>
+          </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+          {{#if error}}
+            {{>A11_field_lvl_error error_from_zip_input }}
+          {{/if}}
+        </div>
+    </div>
+    
+    <div class="col-md-5 col-md-offset-1">
+        <!-- <h2><span class="{{this.icon-type}}" aria-hidden="true"></span>{{this.direction}} <span class="pull-right {{this.map-type}}" aria-hidden="true"></span></h2> -->
+         <h3><span class="ups-icon-arrowright ups-icon_quote_right_arrow" aria-hidden="true"></span><span class="ups-icon-locationhollow ups-icon_quote" aria-hidden="true"></span>To</h3>
+        <div class="ups-form_group  ups-form_required">
+          <label for="to_country_selectbox" class="ups-form_label" >
+            <span class="ups-readerTxt">To what </span>Country or Territory
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+          </label>
+          <div class="ups-dropdown_wrapper ups-input_wrapper">
+            <select select-on-click="" name="select" class="ups-dropdown{{#if error}} ng-invalid ng-dirty{{/if}}" id="to_country_selectbox" {{#if error}}aria-describedby="to_country_selectbox_error"{{/if}} aria-required="true" required>
+                {{#each country}}
+                    <option value="{{this.value}}">{{this.one}}</option>
+                {{/each}} {{!-- end list of countries loop --}}
+            </select>
+          </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="push icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+          {{#if error}}
+            {{>A11_field_lvl_error error_to_country_selectbox }}
+          {{/if}}
+        </div>
+        
+        <div class="ups-form_group ups-form_required">
+          <label for="to_zip_input" class="ups-form_label">
+            <span class="ups-readerTxt">To what </span>Postal / ZIP Code
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+          </label>
+          <div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+            <input name="to_zip" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="to_zip_input" value="" maxlength="6" {{#if error}}aria-describedby="to_zip_input"{{/if}} aria-required="true" required>
+          </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+          {{#if error}}
+            {{>A11_field_lvl_error error_to_zip_input }}
+          {{/if}}
+        </div>
+    </div>
+</div>
+<!-- //// End From/To Section //// -->
+
+<!-- //// Begin Package Detail Section //// -->
+<div class="ups-section ups-noTxt">
+	<div class="ups-section-header">
+		<h3 class="ups-section_heading">Package Details</h3>
+    </div>
+<!--<p class="text-center">Enter the weight and dimension of your package.</p>-->
+
+	<div class="row ups-package_row ups-group">
+        <div class="col-md-6 ups-package_separator">	
+			 <div class="ups-form_group ups-input_has_unit">
+					<label for="packaging_type" class="ups-form_label">Packaging Type</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select name="packaging_type" class="ups-dropdown">
+							<option value="0">I have my own</option>
+						</select>
+					</div>
+				</div>
+            <div class="ups-form_group ups-form_required ups-input_has_unit">
+                <label for="fromWeight" class="ups-form_label">
+                    Weight
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="fromWeight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="fromWeight" {{#if error}}aria-describedby="fromWeight_error"{{/if}} aria-required="true" required>
+                    <span class="ups-input_unit_measure">lbs</span>
+                </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+              {{#if error}}
+                {{>A11_field_lvl_error error_fromWeight }}
+              {{/if}}
+            </div>
+            
+            <div class="ups-form_group ups-form_required ups-input_has_unit" id="lengthGroup">
+                <label for="fromLength" class="ups-form_label">
+                    Length
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="fromLength" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="fromLength" {{#if error}}aria-describedby="fromLength_error"{{/if}} aria-required="true" required>
+                    <span class="ups-input_unit_measure">in</span>
+                </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+              {{#if error}}
+                {{>A11_field_lvl_error error_fromLength }}
+              {{/if}}
+            </div>
+            
+            <div class="ups-form_group ups-form_required ups-input_has_unit" id="widthGroup">
+                <label for="fromWidth" class="ups-form_label">
+                    Width
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="fromWidth" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="fromWidth" {{#if error}}aria-describedby="fromWidth_error"{{/if}} aria-required="true" required>
+                    <span class="ups-input_unit_measure">in</span>
+                </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+              {{#if error}}
+                {{>A11_field_lvl_error error_fromWidth }}
+              {{/if}}
+            </div>
+            
+            <div class="ups-form_group ups-form_required ups-input_has_unit" id="heightGroup">
+                <label for="fromHeight" class="ups-form_label">
+                    Height
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="fromHeight" class="ups-form_input{{#if error}} ng-invalid ng-dirty{{/if}}" id="fromHeight" {{#if error}}aria-describedby="fromHeight_error"{{/if}} aria-required="true" required>
+                    <span class="ups-input_unit_measure">in</span>
+                </div>
+          {{#if non_error}}
+          <div class="ups-check ups-active">
+              <span class="icon ups-icon-check" aria-hidden="true"></span>
+              <span class="ups-readerTxt">Check</span>
+          </div>
+          {{/if}}
+              {{#if error}}
+                {{>A11_field_lvl_error error_fromHeight }}
+              {{/if}}
+            </div>
+            
+            <div class="ups-form_group ups-input_has_unit">
+                <label for="fromDeclaredValue" class="ups-form_label">
+                    Declared Value
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" name="fromDeclaredValue" class="ups-form_input" id="fromDeclaredValue" aria-required="true" required>
+                    <span class="ups-input_unit_measure">USD</span>                             
+                </div>
+            </div>
+        </div> <!--end second column -->
+        <div class="col-md-6 text-center">
+            <span class="icon ups-icon-box ups-package_figure"></span>
+        </div>
+    </div>
+    <button type="button" class="ups-cta ups-cta_primary text-center" id="upsGetQuoteBtn">Get Quote</button>
+</div>
+<!-- //// End Package Detail Section //// -->
+
+<!-- //// Begin Shipping Schedule Section //// -->
+<div id="upsQuoteSection">
+    <h2 class="text-center ups-section_heading">Choose Your Service</h2>
+    
+    <p class="text-center">Give us your shipment by {time/day} for the delivery options below.</p>
+    
+    <div class="ups-shipping_schedule_when">
+      <div class="ups-shipping_schedule_grid">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Sat,</span> <span class="ups-shipping_schedule_date">Dec 12<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_sat_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="" checked="">
+                <label for="ups-radio_sat_1"><span class="ups-readerTxt">Delivery </span>End of Day <br>
+                  Saturday <span aria-hidden="true">Delivery</span><br>
+                  $156.92</label>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Mon,</span> <span class="ups-shipping_schedule_date">Dec 14<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_1"><span class="ups-readerTxt">Delivery Monday </span>8:30am<br>
+                  UPS Next Day Air Early<br>
+                  $126.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_2" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_2"><span class="ups-readerTxt">Delivery Monday </span>10:30am<br>
+                  UPS Next Day Air Early<br>
+                  $95.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_3" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_3"><span class="ups-readerTxt">Delivery Monday </span>3<span aria-hidden="true">:00</span>pm<br>
+                  UPS Next Day Air Early<br>
+                  $75.92</label>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Tues,</span> <span class="ups-shipping_schedule_date">Dec 15<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_tue_1" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_tue_1"><span class="ups-readerTxt">Delivery Tuesday </span>8:30am<br>
+                  UPS 2nd Day Air Early<br>
+                  $62.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_tue_2" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_tue_2"><span class="ups-readerTxt">Delivery Tuesday </span>End of Day<span class="ups-readerTxt"> Tuesday</span><br>
+                  UPS 2nd Day Air Early<br>
+                  $54.92</label>
+              </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="row">
+            <div class="col-sm-4">
+            <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Sat,</span> <span class="ups-shipping_schedule_date">Dec 12<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_sat_2" class="ups-radio-custom" name="shipping_schedule" type="radio" value="" checked="">
+                <label for="ups-radio_sat_2"><span class="ups-readerTxt">Delivery </span>End of Day <br>
+                  Saturday <span aria-hidden="true">Delivery</span><br>
+                  $156.92</label>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Mon,</span> <span class="ups-shipping_schedule_date">Dec 14<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_4" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_4"><span class="ups-readerTxt">Delivery Monday </span>8:30am<br>
+                  UPS Next Day Air Early<br>
+                  $126.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_5" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_5"><span class="ups-readerTxt">Delivery Monday </span>10:30am<br>
+                  UPS Next Day Air Early<br>
+                  $95.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_mon_6" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_mon_6"><span class="ups-readerTxt">Delivery Monday </span>3<span aria-hidden="true">:00</span>pm<br>
+                  UPS Next Day Air Early<br>
+                  $75.92</label>
+              </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="ups-shipping_schedule_tile">
+              <div class="ups-shipping_schedule_header_wrap" aria-hidden="true"> <span class="ups-shipping_schedule_day">Tues,</span> <span class="ups-shipping_schedule_date">Dec 15<sup aria-hidden="true">th</sup></span> </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_tue_3" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_tue_3"><span class="ups-readerTxt">Delivery Tuesday </span>8:30am<br>
+                  UPS 2nd Day Air Early<br>
+                  $62.92</label>
+              </div>
+              <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate" data-errormsg="Custom error message here">
+                <input id="ups-radio_tue_4" class="ups-radio-custom" name="shipping_schedule" type="radio" value="">
+                <label for="ups-radio_tue_4"><span class="ups-readerTxt">Delivery Tuesday </span>End of Day<span class="ups-readerTxt"> Tuesday</span><br>
+                  UPS 2nd Day Air Early<br>
+                  $54.92</label>
+              </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+            
+    <div class="ups-form_ctaGroup"><button type="submit" class="ups-cta ups-cta_primary">Ship Now</button></div>
+</div>
+<!-- //// End Shipping Schedule Section //// -->

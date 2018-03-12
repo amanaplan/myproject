@@ -1,0 +1,335 @@
+<!-- //////////////////////////////////////////////// -->
+<!-- //// BEGIN Core Form Component              //// -->
+<!-- //////////////////////////////////////////////// -->
+<div [formGroup]="coreFormFormGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// BEGIN Choose Saved Product             //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-form_group">
+                <label for="ups-prodSaved" class="ups-form_label">Choose Saved Product</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="ups-prodSaved" 
+                            id="ups-prodSaved" 
+                            class="ups-dropdown"
+                            [(ngModel)]="coreForm.prodSaved"
+                            [ngModelOptions]="{standalone: true}">
+                        <option value="0" selected>Select One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// END Choose Saved Product               //// -->
+            <!-- //////////////////////////////////////////////// -->
+        </div>
+        <!-- end col-md-6 -->
+    </div>
+    <!-- end row -->
+    <p>--OR--</p>
+    <h3 class="h2">{{ '{' }}Add Product {{ '{' }}1{{ '}' }} Details{{ '}' }}</h3>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// BEGIN Description of Goods/Part Number //// -->
+    <!-- //////////////////////////////////////////////// -->
+    <div class="ups-form_group ups-form_required">
+        <label for="ups-poNum" class="ups-form_label">
+            Description of Goods/Part Number
+            <span aria-hidden="true" class="ups-required_indicator"></span>
+        </label>
+        <p class="ups-form_subheader" id="ups-poNumHelperTxt">For customs declaration be as specific as possible.</p>
+        <div class=" ups-text_wrapper ups-input_wrapper ">
+            <input type="text" 
+                    name="ups-poNum" 
+                    class="ups-form_input ups-error" 
+                    id="ups-poNum"
+                    required
+                    aria-required="true"
+                    aria-describedby="ups-poNumHelperTxt ups-poNum_error"
+                    formControlName="poNum"
+                    [ngClass]="{'ups-bodError':  (!coreFormFormGroup.controls['poNum'].valid && coreFormFormGroup.controls['poNum'].touched)}">
+        </div>
+        <span class="ups-icons-error" id="ups-poNum_error" role="alert">
+            <span class="ups-invalid_color"
+                *ngIf="(!coreFormFormGroup.controls['poNum'].valid && coreFormFormGroup.controls['poNum'].touched)">
+                <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                <span class="ups-readerTxt"> Invalid</span>
+                <span *ngIf="coreFormFormGroup.controls['poNum'].hasError('required')">
+                    Description is [ required | Invalid ].
+                </span>
+            </span>
+        </span>
+    </div>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// END Description of Goods/Part Number   //// -->
+    <!-- //////////////////////////////////////////////// -->
+    <div class="row">
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// BEGIN Unit of Measure                  //// -->
+        <!-- //////////////////////////////////////////////// -->
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-uOfM" class="ups-form_label">
+                    Unit of Measure
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p class="ups-form_subheader" id="ups-uOfMHelperTxt">How is this product packaged or sold?</p>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="ups-uOfM" 
+                            id="ups-uOfM" 
+                            class="ups-dropdown"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-uOfMHelperTxt ups-uOfM_error"
+                            formControlName="uOfM"
+                            [(ngModel)]="coreForm.uOfM"
+                            [ngClass]="{'ups-bodError':  (coreForm.uOfM == '0' && coreFormFormGroup.controls['uOfM'].touched)}">
+                        <option value="0">Select One</option>
+                        <option value="1">Two</option>
+                    </select>
+                </div>
+                <span class="ups-icons-error" id="ups-uOfM_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(coreForm.uOfM == '0' && coreFormFormGroup.controls['uOfM'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        This field is required.
+                    </span>
+                </span>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// END Unit of Measure                    //// -->
+        <!-- //// BEGIN Unit                             //// -->
+        <!-- //////////////////////////////////////////////// -->
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-prodUnit" class="ups-form_label">
+                    Units
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p class="ups-form_subheader" id="ups-prodUnitHelpTxt">How many of this are you shipping?</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" 
+                            name="ups-prodUnit" 
+                            class="ups-form_input ups-error" 
+                            id="ups-prodUnit"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-prodUnitHelpTxt ups-prodUnit_error"
+                            formControlName="prodUnit"
+                            [ngClass]="{'ups-bodError':  (!coreFormFormGroup.controls['prodUnit'].valid && coreFormFormGroup.controls['prodUnit'].touched)}">
+                </div>
+                <span class="ups-icons-error" id="ups-prodUnit_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!coreFormFormGroup.controls['prodUnit'].valid && coreFormFormGroup.controls['prodUnit'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="coreFormFormGroup.controls['prodUnit'].hasError('required')">
+                            Units are required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// END Unit                               //// -->
+        <!-- //////////////////////////////////////////////// -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// BEGIN Unit Value                       //// -->
+        <!-- //////////////////////////////////////////////// -->
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-prodVal" class="ups-form_label ups-form_required">
+                    Unit Value
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p class="ups-form_subheader" id="ups-prodUnitHelpTxt">What is the value of a single unit, as packaged?</p>
+                <div class="ups-help" upsHelpBtn>
+                    <button type="button" id="ups-coreFormHelp" class="ups-help_link">
+                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                        Help
+                    </button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                        <button type="button" class="ups-help_close icon ups-icon-x ups-iconAlone">
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut justo et dui ornare lacinia quis vitae elit. Fusce nisi erat, iaculis ac nisi non, elementum venenatis turpis.</p>
+                    </div>
+                </div>
+                <div class=" ups-text_wrapper ups-input_wrapper ">
+                    <input type="text" 
+                            name="ups-prodVal" 
+                            class="ups-form_input ups-error" 
+                            id="ups-prodVal"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-prodUnitHelpTxt ups-prodUnit_error"
+                            formControlName="prodVal"
+                            [ngClass]="{'ups-bodError':  (!coreFormFormGroup.controls['prodVal'].valid && coreFormFormGroup.controls['prodVal'].touched)}">
+                </div>
+                <span class="ups-icons-error" id="ups-prodVal_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!coreFormFormGroup.controls['prodVal'].valid && coreFormFormGroup.controls['prodVal'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="coreFormFormGroup.controls['prodVal'].hasError('required')">
+                            Unit value is [ required | Invalid ].
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// END Unit Value                         //// -->
+        <!-- //// BEGIN Currency                         //// -->
+        <!-- //////////////////////////////////////////////// -->
+        <div class="col-md-2">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-currency" class="ups-form_label">
+                    Currency
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper ups-no_label">
+                    <select name="ups-currency" 
+                            id="ups-currency" 
+                            class="ups-dropdown"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-currency_error"
+                            formControlName="currency"
+                            [(ngModel)]="coreForm.currency"
+                            [ngClass]="{'ups-bodError':  (coreForm.currency == '0' && coreFormFormGroup.controls['currency'].touched)}">
+                        <option value="1" selected>USD</option>
+                        <option value="2">EUR</option>
+                    </select>
+                </div>
+                <span class="ups-icons-error" id="ups-currency_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(coreForm.currency == '0' && coreFormFormGroup.controls['currency'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        Currency is required.
+                    </span>
+                </span>
+            </div>
+        </div>
+        <!-- //////////////////////////////////////////////// -->
+        <!-- //// END Currency                           //// -->
+        <!-- //////////////////////////////////////////////// -->
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// BEGIN Country or Territory of Origin   //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-origin" class="ups-form_label">
+                    Country or Territory of Origin
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p class="ups-form_subheader" id="ups-originHelperTxt">Where was this product made or assembled?</p>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="ups-origin" 
+                            id="ups-origin" 
+                            class="ups-dropdown"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-originHelperTxt ups-origin_error"
+                            formControlName="origin"
+                            [(ngModel)]="coreForm.origin"
+                            [ngClass]="{'ups-bodError':  (coreForm.origin == '0' && coreFormFormGroup.controls['origin'].touched)}">
+                        <option value="0" selected>Select One</option>
+                        <option value="1">USA</option>
+                    </select>
+                </div>
+                <span class="ups-icons-error" id="ups-origin_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(coreForm.origin == '0' && coreFormFormGroup.controls['origin'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        Country or Territory of Origin is required.
+                    </span>
+                </span>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// END Country or Territory of Origin     //// -->
+            <!-- //// BEGIN Harmonized Tariff Code Number    //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="ups-form_group">
+                <label for="ups-tariffNum" class="ups-form_label">Harmonized Tariff Code Number</label>
+                <p class="ups-form_subheader" id="ups-tariffNumHelperTxt">Optional</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text" 
+                            name="ups-tariffNum" 
+                            class="ups-form_input" 
+                            id="ups-tariffNum"
+                            aria-describedby="ups-tariffNumHelperTxt">
+                    <a href="#" class="ups-link ups-new-window">
+                        Harmonized Tariff Code Lookup Tool
+                        <span class="ups-readerTxt">This will open in a new window</span>
+                        <span class="icon ups-icon-newwindow"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- //////////////////////////////////////////////// -->
+            <!-- //// END Harmonized Tariff Code Number      //// -->
+            <!-- //////////////////////////////////////////////// -->
+            <div class="row">
+                <!-- //////////////////////////////////////////////// -->
+                <!-- //// BEGIN Save to Product List             //// -->
+                <!-- //////////////////////////////////////////////// -->
+                <div class="col-md-5">
+                    <div class="ups-form_group">
+                        <label class="ups-lever" onclick="" for="ups-saveProdList">
+                            <input type="checkbox" 
+                                id="ups-saveProdList" 
+                                name="ups-saveProdList" 
+                                class="ups-lever_checkbox"
+                                [(ngModel)]="saveProdList"
+                                [ngModelOptions]="{'standalone': true}">
+                            <!-- if checked then yes -->
+                            <div class="ups-lever_label_container">
+                                <strong class="ups-form_label ups-lever_label">
+                                    Save to Product List
+                                </strong>
+                            </div>
+                            <span aria-hidden="true" class="ups-lever_switch">
+                                <span class="ups-lever_switch_yes">Yes</span>
+                                <span class="ups-lever_switch_bg"></span>
+                                <span class="ups-lever_switch_no">No</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <!-- //////////////////////////////////////////////// -->
+                <!-- //// END Save to Product List               //// -->
+                <!-- //// BEGIN Save to Product List As          //// -->
+                <!-- //////////////////////////////////////////////// -->
+                <div class="col-md-7" *ngIf="saveProdList">
+                    <div class="ups-form_group">
+                        <label for="ups-prodList" class="ups-form_label">
+                            Save to Product List As
+                        </label>
+                        <div class=" ups-text_wrapper ups-input_wrapper ">
+                            <input type="text" name="ups-prodList" class="ups-form_input ups-error" id="ups-prodList">
+                        </div>
+                    </div>
+                </div>
+                <!-- //////////////////////////////////////////////// -->
+                <!-- //// END Save to Product List As            //// -->
+                <!-- //////////////////////////////////////////////// -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end col-md-6 -->
+    </div>
+    <!-- end row -->
+</div>
+<!-- //////////////////////////////////////////////// -->
+<!-- //// END Core Form Component                //// -->
+<!-- //////////////////////////////////////////////// -->

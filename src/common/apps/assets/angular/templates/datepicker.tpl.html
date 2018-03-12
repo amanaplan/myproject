@@ -1,0 +1,16 @@
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// Begin Date Picker Component                   //// -->
+<!-- /////////////////////////////////////////////////////// -->
+<ul *ngIf="returnsDatePicker" class="uib-datepicker-popup dropdown-menu">
+    <li class="uib-datepicker"><datepicker [ngModel]="dt" (ngModelChange)="updateModel($event)" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled" [startingDay]="1" class="uib-daypicker uib-datepicker"></datepicker></li>
+    <li class="uib-button-bar">
+      <span class="btn-group pull-left">
+          <button type="button" class="btn btn-sm btn-info uib-datepicker-current" (click)="today()">Today</button>
+          <button type="button" class="btn btn-sm btn-danger uib-clear" (click)="clear()">Clear</button>
+      </span>
+      <button type="button" class="btn btn-sm btn-success uib-close pull-right" (click)="closeDatePicker();">Close</button>
+  </li>
+</ul>
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// End Date Picker Component                     //// -->
+<!-- /////////////////////////////////////////////////////// -->

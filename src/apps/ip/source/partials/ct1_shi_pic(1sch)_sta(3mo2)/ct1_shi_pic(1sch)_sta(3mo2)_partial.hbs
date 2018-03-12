@@ -1,0 +1,775 @@
+<form action="repl_fname">
+    <!-- Begin Application Module -->
+    <div class="appLvl mod">
+    <!-- Begin Application Header -->
+    <div class="appHead clearfix">
+        <h2>Pickup Request Updated</h2>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!--
+        <ul>
+            <li><a href="" class="btnlnkR printIconR">Print</a></li>
+        </ul>
+        -->
+
+        <span class="pull-right">
+          <span class="icon ups-icon-print" aria-hidden="true"></span> <a href="#">Print</a>
+        </span>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design   -->
+        <!-- ************************************** -->
+    </div>
+    <!-- End Application Header -->
+    <!-- Begin Application Body -->
+    <div class="appBody clearfix">
+        <p>{[Thank you for choosing UPS. Your Pickup Request has been successfully updated. Please print this page for future reference.</p>
+        <p>Your {pickup, collection} request has been modified. Your new [Pickup, Collection] Request Number is below ]}.</p>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!--
+
+        <dl role="presentation" class="outHozFlex clearfix group">
+            <dt>
+                <span class="label" >Pickup Request Number:</span>
+            </dt>
+            <dd><a href="">{Pickup Request Number}</a></dd>
+        </dl>
+        <dl role="presentation" class="outHozLedger">
+            <dt>
+                <span class="label" >{Total Amount Due}:</span>
+            </dt>
+            <dd>NN.NN USD</dd>
+        </dl>
+
+        -->
+
+        <div class="row ups-group">
+          <div class="col-xs-4">
+            <p><strong>Pickup Request Number</strong></p>
+          </div>
+          <div class="col-xs-8">
+            <p><a href="">{Pickup Request Number}</a></p>
+          </div>
+        </div>
+
+        <div class="row ups-group">
+          <div class="col-xs-12">
+            <p>{Total Amount Due} <span class="pull-right">NN.NN USD</span></p>
+          </div>
+        </div>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design   -->
+        <!-- ************************************** -->
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!-- remove div#dyn_pnl_1 for reskin
+
+        <div id="dyn_pnl_1">
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design   -->
+        <!-- ************************************** -->
+
+            <!-- Pickup - Drop-off Time - Default-->
+            {{!-- <div id="pnl_1_1">
+                <!-- Set Section Lvl -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Pickup Date and Time</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" >
+                                <dt>
+                                    <span class="label">Pickup Date:</span>
+                                </dt>
+                                <dd>{pickup date}</dd>
+                            </dl>
+
+                                <!-- Begin Interior Column 1 -->
+                                <div class="subcol9 marginBegin">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <span class="label" >Earliest Pickup:</span>
+                                        </dt>
+                                        <dd>{pickup time}</dd>
+                                        <dt>
+                                            <span class="label" >Latest Pickup:</span>
+                                        </dt>
+                                        <dd>{latest pickup time}</dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 1 -->
+                                <!-- Begin Interior Column 2 -->
+                                <div class="subcol9">
+                                    <dl role="presentation" >
+                                        <dt>
+                                            <span class="label" >Start of Lunch Period:</span>
+                                        </dt>
+                                        <dd>{start of lunch period}</dd>
+                                        <dt>
+                                            <span class="label" >End of Lunch Period:</span>
+                                        </dt>
+                                        <dd>{end of lunch period}</dd>
+                                    </dl>
+                                </div>
+                                <!-- End Interior Column 2 -->
+
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Pickup Address</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" class="outHozFlex clearfix">
+                                <dt>
+                                    <span class="label">Company or Name:</span>
+                                </dt>
+                                <dd>{Company or Name}</dd>
+                                <dt>
+                                    <span class="label">Contact Name:</span>
+                                </dt>
+                                <dd>{Contact Name}</dd>
+                                <dd>{Address}</dd>
+                                <dd>{City}, {State} {ZIP Code}</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Pickup Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" class="outHozFixed clearfix">
+                                <dt>
+                                    <span class="label">Telephone:</span>
+                                </dt>
+                                <dd>{Telephone}</dd>
+                                <dt>
+                                    <span class="label">Pick Up From:</span>
+                                </dt>
+                                <dd>{Pickup From}</dd>
+                                <dt>
+                                    <span class="label">Special Instructions:</span>
+                                </dt>
+                                <dd>{Special Instructions}</dd>
+                                <dt>
+                                    <span class="label">Send Pickup Notifications To:</span>
+                                </dt>
+                                <dd>{Mobile Number}<br/>
+                                    {E-mail Address}<br/>
+                                    {E-mail Address}<br/>
+                                    {E-mail Address}</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Delivery Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <p>You requested UPS deliver your UPS Worldwide Express Freight Shipment.</p>
+                            <dl role="presentation" >
+                                <dt>
+                                    <span class="label">Ship To:</span>
+                                </dt>
+                                <dd>[Country or Territory]</dd>
+                            </dl>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Shipment Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" class="outHozFixed clearfix">
+                                <dt>
+                                    <span class="label">Total Number of Packages:</span>
+                                </dt>
+                                <dd>{n}</dd>
+                                <dt>
+                                    <span class="label">Services Selected:</span>
+                                </dt>
+                                <dd>{service}, {service}, {service}...</dd>
+                                <dt>
+                                    <span class="label">Total Shipment Weight:</span>
+                                </dt>
+                                <dd>{n} {lbs/kg}</dd>
+                                <!-- ///////////////////////////////////////////// -->
+                                <dt>
+                                    <span class="label">Dimensions of Largest Pallet:</span>
+                                </dt>
+                                <dd>[00] x [00] x [00] [in/cm]</dd>
+                                <dt>
+                                    <span class="label">Shipment Contains Danergous Goods:</span>
+                                </dt>
+                                <dd>[Yes/No]</dd>
+                                <!-- /////////////////////////////////////////// -->
+                                <dt>
+                                    <span class="label">Pickup Reference:</span>
+                                </dt>
+                                <dd>{ABCD1234}, ...</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-------------------------------------------------->
+                <!-- End Section Lvl -->
+            </div> --}}
+            <!-- Pickup - Drop-off Time - Drop-off Hold-->
+            {{!-- <div id="pnl_1_2">
+                <!-- Set Section Lvl -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Drop-off Date and Time header</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <p>Customer elected to drop off this shipment.</p>
+                            <dl role="presentation" class="outHozFixed clearfix">
+                                <dt>
+                                    <span class="label">Drop-off Date:</span>
+                                </dt>
+                                <dd>[drop-off date]</dd>
+                                <dt>
+                                    <span class="label">Shipment drop off-time:</span>
+                                </dt>
+                                <dd>[hh:mm] [AM/PM]</dd>
+                            </dl>
+                            <div class="clear"></div>
+                            <dl role="presentation">
+                                <dt>
+                                    <span class="label">[Location/Facility Name]</span>
+                                </dt>
+                                <dd>[Address 1]</dd>
+                                <dd>[City], [Other], [State] [ZIP/Postal Code]</dd>
+                                <dd>[Country or Territory]</dd>
+                                <dd>telephone: [Number]</dd>
+                                <dd>Fax: [Number]</dd>
+                                <dt>
+                                    <span class="label">Hours of Operation:</span>
+                                </dt>
+                                <dd>[Weekday] hh:mm AM to hh:mm PM</dd>
+                                <dt>
+                                    <span class="label">UPS Location Latest Drop-off Time:</span>
+                                </dt>
+                                <dd>hh:mm PM</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Pickup Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" class="outHozFlex clearfix">
+                                <dt>
+                                    <span class="label"  >Company or Name:</span>
+                                </dt>
+                                <dd>{Company or Name}</dd>
+                                <dt>
+                                    <span class="label"  >Contact Name:</span>
+                                </dt>
+                                <dd>{Contact Name}</dd>
+                                <dd>{Address}</dd>
+                                <dd>{City}, {State} {ZIP Code}</dd>
+                            </dl>
+                            <dl role="presentation" class="outHozFixed clearfix">
+                                <dt>
+                                    <span class="label"  >Telephone:</span>
+                                </dt>
+                                <dd>{Telephone}</dd>
+                                <dt>
+                                    <span class="label"  >Special Instructions:</span>
+                                </dt>
+                                <dd>{Special Instructions}</dd>
+                                <dt>
+                                    <span class="label"  >Send Pickup Notifications To:</span>
+                                </dt>
+                                <dd>{Mobile Number}<br/>
+                                    {E-mail Address}<br/>
+                                    {E-mail Address}<br/>
+                                    {E-mail Address}</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Delivery Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <p>You requested UPS deliver your UPS Worldwide Express Freight Shipment.</p>
+                            <p><strong>Shipment will be held for pick up at this UPS Location:</strong></p>
+                            <div class="marginBegin subcol7 clearfix">
+                                <p><strong>[Location/Facility Name]</strong><br>
+                                    [Address 1]<br>
+                                    [City], [Other], [State] [ZIP/Postcal Code]<br>
+                                    [Country or Territory]<br>
+                                    Telephone: [Number]<br>
+                                    Fax: [Number]</p>
+                            </div>
+                            <div class="marginEnd subcol7 clearfix">
+                                <p><strong>Hours of Operation:</strong><br>
+                                    [Weekday] hh:mm AM to hh:mm PM<br>
+                                    [Weekday] hh:mm AM to hh:mm PM<br>
+                                    [Weekday] hh:mm AM to hh:mm PM<br>
+                                    ...<br>
+                                    [Sunday][Closed]</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-- Begin Section Module -->
+
+                    <div class="secLvl step">
+                        <!-- Begin Header Bar -->
+                        <div class="secHead clearfix">
+                            <h3>Shipment Information</h3>
+                        </div>
+                        <!-- End Header Bar -->
+                        <!-- Begin Section Body -->
+                        <div class="secBody clearfix">
+                            <dl role="presentation" class="outHozFixed clearfix">
+                                <dt>
+                                    <span class="label"  >Total Number of Packages:</span>
+                                </dt>
+                                <dd>{00}</dd>
+                                <dt>
+                                    <span class="label"  >Services Selected:</span>
+                                </dt>
+                                <dd>[WW Express Freight]</dd>
+                                <dt>
+                                    <span class="label"  >Total Shipment Weight:</span>
+                                </dt>
+                                <dd>{0000} {lbs/kg}</dd>
+                                <!-- ///////////////////////////////////////////// -->
+                                <dt>
+                                    <span class="label">Dimensions of Largest Pallet:</span>
+                                </dt>
+                                <dd>[00] x [00] x [00] [in/cm]</dd>
+                                <dt>
+                                    <span class="label">Shipment Contains Danergous Goods:</span>
+                                </dt>
+                                <dd>[Yes/No]</dd>
+                                <!-- /////////////////////////////////////////// -->
+                                <dt>
+                                    <span class="label"  >Pickup Reference:</span>
+                                </dt>
+                                <dd>{ABCD1234}, ...</dd>
+                            </dl>
+                        </div>
+                        <!-- End Section Body -->
+                        <!-- Begin Section Footer -->
+                        <!-- End Section Footer -->
+                    </div>
+
+                <!-- End Section Module -->
+                <!-------------------------------------------------->
+                <!-- End Section Lvl -->
+            </div> --}}
+
+            {{>"ct1_shi_pic(1sch)_sta(3mo2)_dropoff_time_partial" pickup_dropoff }}
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: Start part of re-design -->
+        <!-- ************************************** -->
+        <!-- remove div#dyn_pnl_1 for reskin
+
+        </div>
+
+        <!-- ************************************** -->
+        <!-- REDESIGN EDIT: End part of re-design   -->
+        <!-- ************************************** -->
+
+        <!--Payment Information for All Fees-->
+        <div class="secLvl step">
+            <!-- Begin Header Bar -->
+            <div class="secHead clearfix">
+                <h3>Payment Information for All Fees</h3>
+            </div>
+            <!-- End Header Bar -->
+            <div id="dyn_pnl_2">
+                <!-- UPS Account -->
+                {{!-- <div id="pnl_2_1" class="secBody clearfix">
+                    <h4>Bill to:</h4>
+                    <dl role="presentation" class="outHozFixed clearfix">
+                        <dt>
+                            <span class="label"  >{UPS Account Number Label}:</span>
+                        </dt>
+                        <dd>{UPS Account Number}</dd>
+                        <dt>
+                            <span class="label"  >{ZIP Code Label}:</span>
+                        </dt>
+                        <dd>{ZIP Code}</dd>
+                        <dt>
+                            <span class="label"  >{Country or Territory Label}:</span>
+                        </dt>
+                        <dd>{Country or Territory Code}</dd>
+                    </dl>
+                </div> --}}
+                <!-- Credit Card -->
+                {{!-- <div id="pnl_2_2" class="secBody clearfix">
+                    <h4>Bill to:</h4>
+                    <dl role="presentation" class="outHozFixed clearfix">
+                        <dt>
+                            <span class="label"  >Payment Card Type:</span>
+                        </dt>
+                        <dd>{Payment Card Type}</dd>
+                        <dt>
+                            <span class="label"  >Payment Card Number:</span>
+                        </dt>
+                        <dd>{XXXX-XXXX-XXXX-NNNN}</dd>
+                        <dt>
+                            <span class="label"  >Expiration</span>
+                        </dt>
+                        <dd>{MM/YYYY}</dd>
+                        <dt>
+                            <span class="label"  >Cardholder Name:</span>
+                        </dt>
+                        <dd>{Cardholder Name}</dd>
+                    </dl>
+                </div> --}}
+                <!-- Receiver or Third Party -->
+                {{!-- <div id="pnl_2_3" class="secBody clearfix">
+                    <h4>Bill to:</h4>
+                    <dl role="presentation" class="outHozFixed clearfix">
+                        <dt>
+                            <span class="label"  >UPS Account Number:</span>
+                        </dt>
+                        <dd>{UPS Account Number}</dd>
+                        <dt>
+                            <span class="label"  >ZIP Code:</span>
+                        </dt>
+                        <dd>{ZIP Code}</dd>
+                        <dt>
+                            <span class="label"  >Country or Territory:</span>
+                        </dt>
+                        <dd>{Country or Territory Code}</dd>
+                        <dt>
+                            <span class="label"  >{Receiver} UPS Account Number:</span>
+                        </dt>
+                        <dd>{Receiver or Third Party} UPS Account Number}</dd>
+                        <dt>
+                            <span class="label"  >{Receiver} ZIP Code:</span>
+                        </dt>
+                        <dd>{Receiver or Third Party} ZIP Code}</dd>
+                    </dl>
+                </div> --}}
+                <!-- WW Express Freight Notice -->
+                {{!-- <div id="pnl_2_4" class="secBody clearfix">
+                    <h4>Bill to:</h4>
+                    <p><strong>Note:</strong> Pickup charges are included in the UPS Worldwide Express Freight&#8480; service fees. If you do not already have shipping labels then transportation charges will still apply when shipping labels are generated.</p>
+                </div> --}}
+                <!-- Cash / Check / Money Order -->
+                {{!-- <div id="pnl_2_5" class="secBody clearfix">
+                    <p>Customer selected {Cash}. The UPS driver will collect your funds at time of pickup.</p>
+                </div> --}}
+
+                {{>"ct1_shi_pic(1sch)_sta(3mo2)_payment_partial" payment_info}}
+            </div>
+        </div>
+        <!-- Total Fees -->
+        <div class="secLvl step">
+            <!-- Begin Header Bar -->
+            <div class="secHead clearfix">
+                <h3>Total Fees</h3>
+            </div>
+            <!-- End Header Bar -->
+            <!-- Begin Section Body -->
+            <div id="dyn_pnl_3">
+                <!-- Detail Displayed -->
+                {{!-- <div id="pnl_3_1">
+                    <div class="secBody clearfix">
+                        <dl role="presentation" class="outHozLedger group">
+                            <dt>
+                                <span class="label">Total Charge for Pickup:</span>
+                                <a href="repl_href" class="noprint">Hide Pickup Fee Details</a></dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl class="outHozLedger" role="presentation">
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (PlaceHolder)</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charge for Shipment:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charge for Taxes:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">{Total Amount Due}:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                    </div>
+                </div> --}}
+                <!-- Detail Hidden -->
+                {{!-- <div id="pnl_3_2">
+                    <div class="secBody clearfix">
+                        <dl role="presentation" class="outHozLedger group">
+                            <dt>
+                                <span class="label">Total Charge for Pickup:</span>
+                                <a href="repl_href" class="noprint">Show Pickup Fee Details</a></dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charge for Shipment:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charge for Taxes:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">{Total Amount Due}:</span>
+                            </dt>
+                            <dd>NN.NN USD</dd>
+                        </dl>
+                    </div>
+                </div> --}}
+                <!-- Detail Hidden - 1507 (Europe, Canada and Mexico) -->
+                {{!-- <div id="pnl_3_3">
+                    <div class="secBody clearfix">
+                        <dl role="presentation" class="outHozLedger group">
+                            <dt>
+                                <span class="label"  >Total Charge for Pickup:</span>
+                                <a href="repl_href" class="noprint">Show Pickup Fee Details</a></dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label"  >Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total UPS Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 1}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 2}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 3}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                    </div>
+                </div> --}}
+                <!-- Detail Displayed - 1507 (Europe, Canada and Mexico) -->
+                {{!-- <div id="pnl_3_4">
+                    <div class="secBody clearfix">
+                        <dl role="presentation" class="outHozLedger group">
+                            <dt>
+                                <span class="label"  >Total Charge for Pickup:</span>
+                                <a href="repl_href" class="noprint">Hide Pickup Fee Details</a></dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl class="outHozLedger" role="presentation">
+                            <dt class="indent">
+                                <span class="sel ">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (Placeholder)</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt class="indent">
+                                <span class="sel">Pickup Fee Detail (PlaceHolder)</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total UPS Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 1}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 2}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                            <dt>
+                                <span class="sel">{Tax 3}:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                        <dl role="presentation" class="outHozLedger">
+                            <dt>
+                                <span class="label">Total Charges:</span>
+                            </dt>
+                            <dd>nnn,nn XXX</dd>
+                        </dl>
+                    </div>
+                </div> --}}
+
+                {{>"ct1_shi_pic(1sch)_sta(3mo2)_total_fees_partial" total_fees }}
+            </div>
+        </div>
+        <!-- End Application Body -->
+        <!-- Begin Application Footer -->
+        <div class="appFooter">
+
+          <!-- ************************************** -->
+          <!-- REDESIGN EDIT: Start part of re-design -->
+          <!-- ************************************** -->
+          <!--
+
+          <!-- Begin Button Bar Row ->
+          <div class="btnBar">
+              <input name="repl_name" type="button" value="Cancel Pickup" class="btn">
+              <input name="Input" type="submit" value="Modify Pickup" class="btn">
+          </div>
+          <!-- End Button Bar Row -->
+
+          <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary">Modify Pickup</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel Pickup</button>
+          </div>
+
+          <!-- ************************************** -->
+          <!-- REDESIGN EDIT: End part of re-design   -->
+          <!-- ************************************** -->
+        </div>
+        <!-- End Application Footer -->
+    </div>
+    <!-- End Application Module -->
+</form>

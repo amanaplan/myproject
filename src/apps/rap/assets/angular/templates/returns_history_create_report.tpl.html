@@ -1,0 +1,219 @@
+<!-- Beginning of Create Report Component -->
+
+<!-- Beginning of Modal -->
+    <!-- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="showReportPreviewHeading" id="showReportPreviewModal">
+    	<div class="modal-dialog modal-lg" role="document">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<button type="button" class="close ups-icon-x" data-dismiss="modal" aria-label="Close" id="closeShowReportPreviewModal"> <span class="ups-readerTxt">Close</span> </button>
+    				<h2 id="showReportPreviewHeading" class="modal-title">Report Preview</h2>
+    			</div>
+    			<div class="modal-body">
+                    <div class="ups-modal_subtitle ups-form_ctaGroup">
+                        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-download"></span>Download</button>
+                        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-print"></span>Print</button>
+                        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-email"></span>Email</button>
+                    </div>
+    				<div class="ups-group">
+    					<div class="ups-cms-demo">
+                            Report Preview Demo
+                        </div>
+    				</div>
+                    <section class="ups-search_support ups-group">
+                        <div class="ups-search_results ups-active">
+                            <div class="ups-wrap_inner">
+                                <div class="results-footer clearfix">
+                                    <div class="footer-container">
+                                        <button class="first hidden-xs hidden-sm">First</button>
+                                        <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                                        <div class="pagination-container">
+                                            <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                                            <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                                            <button class="pag hidden-xs hidden-sm">3</button>
+                                            <button class="pag hidden-xs hidden-sm">4</button>
+                                            <button class="pag hidden-xs hidden-sm">5</button>
+                                        </div>
+                                        <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                                        <button class="last hidden-xs hidden-sm">Last</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    			</div>
+    		</div>
+    	</div>
+    </div> -->
+<!-- End of Modal -->
+
+<!-- Beginning of New Angular 2/4 Modal -->
+<!-- <ups-modal modal-title="Report Preview" #reportPreview2>
+    <div class="ups-modal_subtitle ups-form_ctaGroup">
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-download"></span>Download</button>
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-print"></span>Print</button>
+        <button type="button" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon"><span aria-hidden="true" class="icon ups-icon-email"></span>Email</button>
+    </div>
+    <div class="ups-group">
+        <div class="ups-cms-demo">
+            Report Preview Demo
+        </div>
+    </div>
+    <section class="ups-search_support ups-group">
+        <div class="ups-search_results ups-active">
+            <div class="ups-wrap_inner">
+                <div class="results-footer clearfix">
+                    <div class="footer-container">
+                        <button class="first hidden-xs hidden-sm">First</button>
+                        <button class="prev"><span aria-hidden="true">&lt;</span> Previous</button>
+                        <div class="pagination-container">
+                            <button class="pag ups-active hidden-xs hidden-sm">1</button>
+                            <button class="pag hidden-xs hidden-sm" data-prev-selected="true">2</button>
+                            <button class="pag hidden-xs hidden-sm">3</button>
+                            <button class="pag hidden-xs hidden-sm">4</button>
+                            <button class="pag hidden-xs hidden-sm">5</button>
+                        </div>
+                        <button class="next">Next <span aria-hidden="true">&gt;</span></button>
+                        <button class="last hidden-xs hidden-sm">Last</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</ups-modal> -->
+<!-- End of New Angular 2/4 Modal -->
+
+<div class="ups-section"> <!-- .ups-section -->
+    <!-- Heading -->
+    <div class="ups-section-header">
+        <h2 class="ups-section_heading">Create Report</h2>
+    </div>
+    <!-- End of Heading -->
+
+    <div class="row"> <!--start/end date row -->
+        <!-- Beginning of Enter Start Date input box -->
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="enter_start_date" class="ups-form_label">
+                    Enter Start Date
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                    <input type="text" name="enter_start_date" class="ups-form_input" id="enter_start_date" placeholder="mm/dd/yyyy" aria-label="Please enter date in mm/dd/yyyy format" [ngModel]="dt | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(dt, 'MM/dd/yyyy', true)) ? dt = $event : false">
+                    <button type="button" class="ups-date_picker_button" (click)="toggleStartDatePicker();">
+                        <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Select date from a calendar</span>
+                    </button>
+                    <ups-datepicker #RAPstartDatePicker class="ups-datepicker-wrap"></ups-datepicker>
+                </div>
+            </div>
+        </div>
+        <!-- End of Enter Start Date Input Box -->
+
+        <!-- Beginning of Enter End Date Input Box -->
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="enter_start_date" class="ups-form_label">
+                    Enter End Date
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                    <input type="text" name="enter_end_date" class="ups-form_input" id="enter_end_date" aria-required="true" placeholder="mm/dd/yyyy" value="" aria-label="Please enter date in mm/dd/yyyy format" [ngModel]="dt2 | date:'MM/dd/yyyy'" (ngModelChange)="(dMoment(dt2, 'MM/dd/yyyy', true)) ? dt2 = $event : false">
+                    <button type="button" class="ups-date_picker_button" (click)="toggleEndDatePicker();">
+                        <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Select date from a calendar</span>
+                    </button>
+                    <ups-datepicker #RAPendDatePicker class="ups-datepicker-wrap"></ups-datepicker>
+                </div>
+            </div>
+        </div>
+        <!-- End of Enter End Date Input Box -->
+
+    </div> <!-- End of start/end date row -->
+
+
+    <div class="row"> <!-- Sort results by primary dropdown box row -->
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="sort_results_primary" class="ups-form_label">Sort Results by (primary) </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="sort_results_primary" class="ups-dropdown" id="sort_results_primary">
+                        <option value="0">Select from list</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                        <option value="5">E</option>
+                        <option value="6">F</option>
+                        <option value="7">G</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End of sort results by primary dropdown box row -->
+
+    <div class="row"> <!-- Sort results by secondary dropdown box row -->
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="sort_results_secondary" class="ups-form_label">Sort Results by (secondary) </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="sort_results_secondary" class="ups-dropdown" id="sort_results_secondary">
+                        <option value="0">Select from list</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                        <option value="5">E</option>
+                        <option value="6">F</option>
+                        <option value="7">G</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End of sort results by secondary dropdown box row -->
+
+    <div class="row"> <!-- Beginning of select file type toggle row -->
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <fieldset class="ups-toggle_fieldset">
+                    <legend class="ups-form_label">
+                        Select file type
+                    </legend>
+                    <div class="ups-toggle well">
+                            <input id="pdf" name="selectFileType" type="radio" value="0" [(ngModel)]="selectFileType">
+                            <label for="pdf" onclick="">PDF</label>
+
+                            <input id="csv" name="selectFileType" type="radio" value="1" [(ngModel)]="selectFileType">
+                            <label for="csv" onclick="">CSV</label>
+                        <div class="switch-bg"></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div> <!-- End of select file type toggle row -->
+
+    <fieldset class="ups-form_group" *ngIf="selectFileType == 0">
+        <legend class="ups-form_label">
+            Analytics
+        </legend>
+        <div class="row">
+            <ng-container *ngFor="let checkbox of analyticsChoices; let i = index">
+                <div class="col-md-4">
+                    <div class="ups-checkbox_button">
+                        <input class="ups-checkbox-custom" id="analyticsSelection{{i}}" name="analyticsSelection" type="checkbox" value="{{i}}">
+                        <label class="ups-checkbox-custom-label" for="analyticsSelection{{i}}">{{checkbox.analyticsChoicesLabel}}</label>
+                    </div>
+                </div>
+                <div class="clearfix visible-md-block visible-lg-block" *ngIf="(i % 2) == 1"></div>
+            </ng-container>
+        </div>
+    </fieldset>
+</div><!-- End of .ups-section -->
+
+<!-- CTA Button Group -->
+<div class="ups-form_ctaGroup">
+    <a class="ups-cta ups-cta_primary" routerLink="/returnsHistory/createReport/reportPreview">Report Preview</a>
+    <a class="ups-cta ups-cta_secondary" routerLink="/returnsHistory">Cancel</a>
+</div>
+<!-- End of CTA Button Group -->
+
+<!-- End of Create Report Component -->

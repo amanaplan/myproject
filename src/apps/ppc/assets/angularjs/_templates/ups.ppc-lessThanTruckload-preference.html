@@ -1,0 +1,563 @@
+
+<div class="ups-application_wrapper ups-app_onboarding ups-truckload-pref">
+    <ng-form name="ups_lessThanTruckloadform" data-novalidate>
+        <p>When choosing your LTL preferences, know that not all services
+            are available in all shipping lanes.</p>
+        <div class="row ">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-default-AirFreightAcc" class="ups-form_label">Service</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper ups-form_group"
+                    data-errormsg="This field is required">
+                        <select data-ng-model="defaultFreightType"
+                        data-ng-init="defaultFreightType = formObj.defaultType[0]"
+                        class="ups-dropdown" name="ups-default_FreightType"
+                        data-ng-options="defaultFreightType for defaultFreightType in formObj.defaultType"
+                        id="ups-default-AirFreightAcc">
+                        </select>
+                    </div>
+                </div>
+                <div class="ups-form_group">
+                    <label for="ups-country_select" class="ups-form_label">Destination
+                        Country</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper ups-form_group"
+				data-errormsg="This field is required">
+                        <select name="ups-country_select" id="ups-country_select"
+					class="ups-dropdown" data-ng-model="formObj.country"
+					data-ng-change="changeVal()">
+                            <option data-ng-repeat="countries in countryList"
+						value="{{countries.code}}">{{countries.country}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Select a default freight class for up to 10 items in a commodity list.</h3>
+        <div class="row ">
+            <div class="col-md-5">
+                <div class="row ">
+                    <div class="col-md-6">
+                        <h4 class="ups-checkbox_group">Class:</h4>
+                        <div class="row" data-ng-repeat="x in Classes">
+                            <div class="col-xs-1 col-md-2 ups-numbering">
+                                <p> <strong>{{x}}.</strong> </p>
+                            </div>
+                            <div class="col-xs-11 col-md-10">
+                                <div class="ups-form_group">
+                                    <label for="{{'ups-classOptions'+$index}}" class="ups-readerTxt">Default
+                                        Freight Class</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            			data-errormsg="This field is required">
+                                        <select data-ng-model="formObj.classOptionsOne[$index]"
+                                			class="ups-dropdown" name="ups-classOptions"
+                                			data-ng-options="classOptions for classOptions in formObj.class"
+                                			id="{{'ups-classOptions'+$index}}">
+                                            <option value="" selected>--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="ups-checkbox_group">Class:</h4>
+                        <div class="row" data-ng-repeat="x in Classes">
+                            <div class="col-xs-1 col-md-2 ups-numbering">
+                                <p> <strong>{{x+5}}.</strong> </p>
+                            </div>
+                            <div class="col-xs-11 col-md-10">
+                                <div class="ups-form_group">
+                                    <label for="{{'ups-classOptions1'+$index}}" class="ups-readerTxt">Default
+                                        Freight Class</label>
+                                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            			data-errormsg="This field is required">
+                                        <select data-ng-model="formObj.classOptionsTwo[$index]"
+                                			class="ups-dropdown" name="ups-classOptions1"
+                                			data-ng-options="classOptions for classOptions in formObj.class"
+                                			id="{{'ups-classOptions1'+$index}}">
+                                            <option value="" selected>--</option>
+                                        </select>
+                                    </div>
+                                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Default Density-based Rating Entries for LTL Freight</h3>
+        <p>You can set preferences for any Density-based Rated eligible LTL shipments.</p>
+        <div class="row ">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required" data-ng-class="{ 'ups-form_required' : (requireValue) }">
+                            <label for="ups-handling_Unit" class="ups-form_label">Number
+                                of Handling Units <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(requireValue)"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input type="text" name="unitNumber" class="ups-form_input"
+                                data-ng-pattern="/^(\d)+$/" maxlength="2"
+                                data-ng-model="form.numberOfUnit" id="ups-handling_Unit"
+                                data-ng-required="requireValue" data-ng-change="require()" aria-required="{{ (requireValue) ? 'true' : 'false' }}">
+                                <span role="alert"><span class="ups-invalid_color"
+                                data-ng-if="!ups_lessThanTruckloadform.unitNumber.$pristine && ups_lessThanTruckloadform.unitNumber.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+                                    data-ng-show="ups_lessThanTruckloadform.unitNumber.$error.required">This
+                                field is required.</span> <span
+                                    data-ng-show="ups_lessThanTruckloadform.unitNumber.$error.pattern">Number
+                                only!</span> </span></span>
+                                <div class="ups-icon-check" data-ng-if="(ups_lessThanTruckloadform.unitNumber.$valid && requireValue)"> 
+                                    <!-- @Note: screen reader text needs to be translated as well --> 
+                                    <span class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="ups-form_group" data-ng-class="{ 'ups-form_required' : (requireValue) }">
+                            <label for="ups-handling_UnitType" class="ups-form_label"> Handling Unit Type <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(requireValue)"></span> </label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <select data-ng-model="form.unitType" class="ups-dropdown"
+                                data-ng-init="form.unitType = formObj.HandlingUnitType[0]"
+                                data-ng-options="unitType for unitType in formObj.HandlingUnitType"
+                                id="ups-handling_UnitType" data-ng-required="requireValue"
+                                aria-required="{{ (requireValue) ? 'true' : 'false' }}"
+                                data-ng-change="require()">
+                                </select>
+                            </div>
+                            <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ups-form_group" data-ng-class="{ 'ups-form_required' : (requireValue) }">
+                            <label for="ups-length" class="ups-form_label"> Length <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(requireValue)"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+                                <input type="text" name="length" class="ups-form_input"
+						data-ng-pattern="/^(\d)+$/" maxlength="3"
+						data-ng-model="form.length" id="ups-length"
+						data-ng-required="requireValue"
+                        aria-required="{{ (requireValue) ? 'true' : 'false' }}"
+						data-ng-change="require();calculateVolume()">
+                                <span role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_lessThanTruckloadform.length.$pristine && ups_lessThanTruckloadform.length.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_lessThanTruckloadform.length.$error.required">This
+                                field is required.</span> <span
+							data-ng-show="ups_lessThanTruckloadform.length.$error.pattern">Number
+                                only!</span> </span></span>
+                                <div class="ups-icon-check" data-ng-if="(ups_lessThanTruckloadform.length.$valid && requireValue)"> 
+                                    <!-- @Note: screen reader text needs to be translated as well --> 
+                                    <span class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-form_group" data-ng-class="{ 'ups-form_required' : (requireValue) }">
+                            <label for="ups-width" class="ups-form_label"> Width <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(requireValue)"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+                                <input type="text" name="width" class="ups-form_input"
+						data-ng-pattern="/^(\d)+$/" maxlength="3"
+						data-ng-model="form.width" id="ups-width"
+						data-ng-required="requireValue"
+                        aria-required="{{ (requireValue) ? 'true' : 'false' }}"
+						data-ng-change="require();calculateVolume()">
+                                <span role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_lessThanTruckloadform.width.$pristine && ups_lessThanTruckloadform.width.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_lessThanTruckloadform.width.$error.required">This
+                                field is required.</span> <span
+							data-ng-show="ups_lessThanTruckloadform.width.$error.pattern">Number
+                                only!</span> </span></span>
+                                <div class="ups-icon-check" data-ng-if="(ups_lessThanTruckloadform.width.$valid && requireValue)"> 
+                                    <!-- @Note: screen reader text needs to be translated as well --> 
+                                    <span class="ups-readerTxt">Check</span> </div>
+                            </div>
+                        </div>
+                        <!-- ups-text_wrapper ups-input_wrapper --> 
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-form_group " data-ng-class="{ 'ups-form_required' : (requireValue) }">
+                            <label for="ups-height" class="ups-form_label"> Height <span aria-hidden="true" class="ups-required_indicator" data-ng-if="(requireValue)"></span> </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="height" class="ups-form_input"
+						data-ng-pattern="/^(\d)+$/" maxlength="3"
+						data-ng-model="form.height" id="ups-height"
+						data-ng-required="requireValue"
+                        aria-required="{{ (requireValue) ? 'true' : 'false' }}"
+						data-ng-change="require();calculateVolume()">
+                                <span role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_lessThanTruckloadform.height.$pristine && ups_lessThanTruckloadform.height.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_lessThanTruckloadform.height.$error.required">This
+                                field is required.</span> <span
+							data-ng-show="ups_lessThanTruckloadform.height.$error.pattern">Number
+                                only!</span> </span></span>
+                                <div class="ups-icon-check" data-ng-if="(ups_lessThanTruckloadform.height.$valid  && requireValue)"> 
+                                    <!-- @Note: screen reader text needs to be translated as well --> 
+                                    <span class="ups-readerTxt">Check</span> </div>
+                            </div>
+                        </div>
+                        <!-- ups-text_wrapper ups-input_wrapper --> 
+                    </div>
+                </div>
+                <p>[{{volume}} in.]</p>
+            </div>
+        </div>
+        <p> Enter a pallet or skid height for UPS Ground<sup>&#8482;</sup> with Freight Pricing. </p>
+        <div class="row ">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="ups-form_group ">
+                            <label for="ups-palletHeight" class="ups-form_label">Pallet/Skid Height </label>
+                            <div class="ups-help"> <a
+				href="http://www.ups.com/content/us/en/shipping/create/ltl_handling_unit_height.html"
+				target="_blank"
+				class="ups-help_link ups-new-window">Help<span
+					class="ups-readerTxt">about pallet/skid height</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a> </div>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+                                <input type="text" name="pallet" class="ups-form_input"
+						data-ng-pattern="/^(\d)+$/" maxlength="3"
+						data-ng-model="form.pallet" id="ups-palletHeight">
+                                <span role="alert"><span class="ups-invalid_color"
+						data-ng-if="!ups_lessThanTruckloadform.pallet.$pristine && ups_lessThanTruckloadform.pallet.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_lessThanTruckloadform.pallet.$error.pattern">Invalid
+                                entry!</span> </span></span>
+                                <div class="ups-icon-check" data-ng-if="(!ups_lessThanTruckloadform.pallet.$error && ups_lessThanTruckloadform.pallet.$pristine)"> 
+                                    <!-- @Note: screen reader text needs to be translated as well --> 
+                                    <span class="ups-readerTxt">Check</span> </div>
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <p>[{{form.pallet}} in.]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3> Value Added Services <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/air_freight/index.html"
+				target="_blank"
+				class="ups-help_link ups-new-window">Help <span class="ups-readerTxt">about pickup options</span> <span class="ups-icon-newwindow" aria-hidden="true"></span> </a> </h3>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label"> Pickup Options </legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper"
+					data-ng-repeat="pickupOptions in formObj.pickupOpt">
+                                <input check-verify id="pickupOption{{$index}}"
+						class="ups-checkbox-custom" name="ups-pickUp_options"
+						type="checkbox" data-ng-model="pickupOptions.isSelected"
+						data-ng-checked="pickupOptions.isSelected">
+                                <label
+						for="pickupOption{{$index}}" class="ups-checkbox-custom-label">{{pickupOptions.name}}</label>
+                            </div>
+                            <!-- ups-buttonList_wrapper ups-input_wrapper -->
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset class="ups-form_group">
+                            <legend class="ups-form_label">Delivery Options</legend>
+                            <div class="ups-buttonList_wrapper ups-input_wrapper"
+					data-ng-repeat="deliveryOptions in formObj.deliveryOpt">
+                                <input check-verify id="deliveryOption{{$index}}"
+						class="ups-checkbox-custom" name="ups-delivery_Options"
+						type="checkbox" data-ng-model="deliveryOptions.isSelected"
+						data-ng-checked="deliveryOptions.isSelected">
+                                <label
+						for="deliveryOption{{$index}}" class="ups-checkbox-custom-label">{{deliveryOptions.name}}</label>
+                            </div>
+                            <!-- ups-buttonList_wrapper ups-input_wrapper -->
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="ups-form_group " data-ng-if="formObj.deliveryOpt[8].isSelected">
+                    <label for="ups-sort_Items" class="ups-form_label">Number of
+                        Items to Sort </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text" name="sortItems" class="ups-form_input"
+						maxlength="5" data-ng-model="form.sortItems" id="ups-sort_Items">
+                    </div>
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row" data-ng-if="formObj.deliveryOpt[9].isSelected">
+                    <div class="col-xs-11 col-md-10">
+                        <div class="ups-form_group ">
+                            <label for="ups-cod_Amount" class="ups-form_label">C.O.D
+                                Amount </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input type="text" name="codAmount" class="ups-form_input"
+                                maxlength="5" data-ng-model="form.codAmount" id="ups-cod_Amount">
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-md-2 ups-no_label">
+                        <p>USD</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <hr class="ups-horizontal_break"> -->
+        <hr>
+        <h3>Bills of Lading (BOLs)</h3>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-Preffered_Bill" class="ups-form_label">Preferred Format</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+                        <select data-ng-model="prefferedBill"
+						data-ng-init="prefferedBill = formObj.prefferedBill[0]"
+						class="ups-dropdown" name="ups-classOptions"
+						data-ng-options="PrefferedBill for PrefferedBill in formObj.prefferedBill"
+						id="ups-Preffered_Bill">
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+                <strong class="ups-form_label">Use an existing BOL template to new shipments.</strong>
+                <div id="ups-bol_flow">{{selectedTemplate}}</div>
+                <div class="" data-ng-if="!selectedTemplate">None Selected</div>
+                <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary "
+			data-ng-click="search()">Search</button>
+            <button type="submit" class="ups-cta ups-cta_tertiary "
+			data-ng-click="reset()">Clear</button>
+        </div>
+        <p class="ups-offset-20"> <strong>Set a default amount and type for handling charges.</strong> </p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="ups-form_group ">
+                            <label for="ups-handling_ChargeVal" class="ups-form_label">Amount </label>
+                            <div class="ups-text_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <input type="text" name="codAmount" class="ups-form_input"
+                                maxlength="10" data-ng-model="form.codAmount"
+                                id="ups-handling_ChargeVal">
+                            </div>
+                            <!-- ups-text_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="ups-form_group">
+                            <label for="ups-handling_ChargeType" class="ups-form_label">Type</label>
+                            <div class="ups-dropdown_wrapper ups-input_wrapper"
+                            data-errormsg="This field is required">
+                                <select data-ng-model="handlingCharge" class="ups-dropdown"
+                                data-ng-options="handlingCharge for handlingCharge in formObj.handlingChargeType"
+                                id="ups-handling_ChargeType">
+                                    <option value="" selected>Select Type</option>
+                                </select>
+                            </div>
+                            <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label ups-readerTxt">Alert</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input id="ups-alert_weight" class="ups-checkbox-custom"
+						name="ups-uid-form_title-unnamed" type="checkbox" value="1"
+						data-ng-model="formObj.alertWeight"
+						data-ng-checked="formObj.alertWeight" checked>
+                <label
+						for="ups-alert_weight" class="ups-checkbox-custom-label">Alert
+                    me when my freight shipments weigh under 150 lbs / 70kg.</label>
+            </div>
+            <!-- ups-buttonList_wrapper ups-input_wrapper -->
+        </fieldset>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-reference1" class="ups-form_label">Reference
+                        #1 Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-ref1" id="ups-reference1" class="ups-dropdown"
+						data-ng-init="formObj.reference1=formObj.referenceOpt[0].name"
+						data-ng-model="formObj.reference1">
+                            <option data-ng-repeat="reference in formObj.referenceOpt"
+							value="{{reference.name}}">{{reference.name}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+                <div class="ups-form_group">
+                    <label for="ups-reference2" class="ups-form_label">Reference
+                        #2 Type</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="ups-ref2" id="ups-reference2" class="ups-dropdown"
+						data-ng-init="formObj.reference2=formObj.referenceOpt[1].name"
+						data-ng-model="formObj.reference2">
+                            <option data-ng-repeat="reference in formObj.referenceOpt"
+							value="{{reference.name}}">{{reference.name}}</option>
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <!-- <hr class="ups-horizontal_break"> -->
+        <hr>
+        <h4>Notifications</h4>
+        <p>You can request notifications for as many as five email
+            addresses. Choose which notifications you'd like to receive for each
+            address.</p>
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <caption class="ups-readerTxt">
+                Notifications
+                </caption>
+                <tbody>
+                    <tr>
+                        <th class="ups-table_header_tertiary" scope="col">Send To</th>
+                        <th class="ups-table_header_tertiary" scope="col">Email</th>
+                        <th class="ups-table_header_tertiary" scope="col">Alert Type</th>
+                        <th class="ups-table_header_tertiary" scope="col">Actions</th>
+                    </tr>
+                    <tr data-ng-repeat="notificationValues in form.notification">
+                        <td scope="row">{{notificationValues.send_To}}</td>
+                        <td class="ups-no_transform">{{notificationValues.email}}</td>
+                        <td >{{notificationValues.type_string}}</td>
+                        <td ><button class="ups-cta ups-cta_secondary"
+							data-ng-click="editNotification($index)">Edit </button>
+                            |
+                            <button class="ups-cta ups-cta_secondary"
+							data-ng-click="deleteNotification($index)" href="#" onclick="return false;">Delete</button></td>
+                    </tr>
+                    <tr data-ng-if="novalue">
+                        <td colspan="4" scope="row">You haven't added any notification yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="button" class="ups-cta ups-cta_primary"
+                data-ng-click="addNotification()">Add</button>
+        </div>
+        <p class="ups-offset-35"> <strong>Alert me if any of these emails are undeliverable.</strong> </p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-email" class="ups-form_label"> Email <span aria-hidden="true" class="ups-required_indicator"></span> </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="email" name="email" class="ups-form_input"
+						id="ups-email" maxlength="50" validate-email
+						data-ng-model="form.email"
+						data-ng-model-options="{updateOn: 'blur'}"
+						aria-describedby="email-error-other" aria-required="true" required>
+                        <span
+						id="email-error-other" role="alert"><span class="ups-invalid_color"
+						data-ng-if="ups_lessThanTruckloadform.email.$invalid"> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span> <span
+							data-ng-show="ups_lessThanTruckloadform.email.$invalid">Please
+                        enter a valid email address.</span> </span> </span> </div>
+                    
+                    <!-- ups-text_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+        </div>
+        <!-- <hr class="ups-horizontal_break"> -->
+        <hr>
+        <h4>Labels</h4>
+        <fieldset class="ups-form_group">
+            <legend class="ups-readerTxt">Labels</legend>
+            <strong class="ups-form_label ups-offset-20">How
+            would you like to print your labels?</strong>
+            <div class="ups-checkbox ups-input_wrapper  ups-display-inline">
+                <input id="laserPrinter" class="ups-radio-custom" type="radio"
+                name="printType" value="LaserPrinter" data-ng-model="printType"
+                data-ng-checked="printType">
+                <label for="laserPrinter"
+                class="ups-radio-custom-label ups-width_auto">Laser Printer </label>
+            </div>
+            <div class="ups-checkbox ups-input_wrapper  ups-display-inline">
+                <input id="thermalPower" class="ups-radio-custom" type="radio"
+                name="printType" value="ThermalPrinter" data-ng-model="printType"
+                data-ng-click="">
+                <label for="thermalPower"
+                class="ups-radio-custom-label ups-width_auto">UPS Thermal  Printer </label>
+            </div>
+        </fieldset>
+        <div class="row">
+        	<div class="col-md-5">
+            	<div class="ups-form_group" data-ng-if="printType == 'LaserPrinter'">
+                    <label for="ups-Label-PerPage" class="ups-form_label">Labels  Printed per Page</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+                    data-errormsg="This field is required">
+                        <select data-ng-model="labelPerPage"
+                        data-ng-init="labelPerPage = formObj.labelPerPage[0]"
+                        class="ups-dropdown" name="ups-Label-PerPage"
+                        data-ng-options="LabelPerPage for LabelPerPage in formObj.labelPerPage"
+                        id="ups-Label-PerPage">
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+        	</div>
+        </div>
+        <div class="row" data-ng-if="printType == 'ThermalPrinter'">
+            <div class="col-xs-10 col-md-2">
+                <div class="ups-form_group">
+                    <label for="ups-Thermal_Label" class="ups-form_label">Thermal Label Format</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper"
+					data-errormsg="This field is required">
+                        <select data-ng-model="thermalLabelType"
+						data-ng-init="thermalLabelType = formObj.thermalLabelType[0]"
+						class="ups-dropdown" name="ups-Thermal_Label"
+						data-ng-options="thermalLabel for thermalLabel in formObj.thermalLabelType"
+						id="ups-Thermal_Label">
+                        </select>
+                    </div>
+                    <!-- ups-dropdown_wrapper ups-input_wrapper --> 
+                </div>
+            </div>
+            <div class="col-xs-2 col-md-4 ups-no_label">
+                <p>in.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <fieldset class="ups-form_group">
+                    <legend class="ups-form_label ups-readerTxt"></legend>
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input check-verify id="ups-printLabel" class="ups-checkbox-custom"
+						name="printLabel" type="checkbox" value="1"
+						data-ng-change="choosePrivelege()" data-ng-model=" printLabel"
+						data-ng-checked=" printLabel">
+                        <label for="ups-printLabel" class="ups-checkbox-custom-label"> Always print labels with a bill of lading. </label>
+                    </div>
+                    <!-- ups-buttonList_wrapper ups-input_wrapper -->
+                </fieldset>
+            </div>
+        </div>
+        <a href="#" onclick="return false;" class="ups-link">Install a UPS Thermal Printer</a> <a href="#" onclick="return false;" class="ups-link">Print a Sample label</a>
+        <div class="ups-form_ctaGroup ">
+            <button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="saveFreight()">Save </button>
+            <!-- data-ng-disabled="!(ups_lessThanTruckloadform.$dirty)|| requireValue" --> 
+        </div>
+        <!-- ups-form_ctaGroup --> 
+    </ng-form>
+    <modal
+		class="ups-wrap ups-application_wrapper ups-app_onboarding ups-form_wrap"
+		value="modalValues"> </modal>
+</div>

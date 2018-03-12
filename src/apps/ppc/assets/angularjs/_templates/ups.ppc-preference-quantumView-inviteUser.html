@@ -1,0 +1,107 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewInviteUser">
+    <form error-on-submit name="ups_quantumInviteUser" novalidate>
+        <a point-focus="" href="#/preferencePage/quantumView/" class="ups-previous_page">
+        <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+        Back to Quantum View
+        </a>
+
+        <!-- Page Level Errors -->
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="ups_quantumInviteUser.ups_user_id.$invalid"><span> <a
+                focus-attr="ups_user_id" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> User ID is required. </a></span></li>
+                <li data-ng-if="ups_quantumInviteUser.ups_user_email.$invalid"><span> <a
+                focus-attr="ups_user_email" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Email is required.</a></span></li>
+            </ul>
+        </div>
+
+        <div class="ups-group">
+            <h2>Invite User to Join Company</h2>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3">
+                    <p><strong>Company Name:</strong></p>
+                </div>
+                <div class="col-xs-5 col-sm-3 col-md-4">
+                    <p>
+                        ABC Company, Inc.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3">
+                    <p><strong>Company Nickname:</strong></p>
+                </div>
+                <div class="col-xs-5 col-sm-3 col-md-4">
+                    <p>
+                        abcco
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_id" class="ups-form_label">User ID <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumInviteUser.ups_user_id.$invalid && clicked)}" name="ups_user_id" id="ups_user_id"
+                                aria-required="true" required aria-describedby="ups_user_id-error" data-ng-model="inviteUser.ups_user_id_input" />
+                            <div data-ng-if="ups_quantumInviteUser.ups_user_id.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_id-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumInviteUser.ups_user_id.$pristine && ups_quantumInviteUser.ups_user_id.$invalid) || (ups_quantumInviteUser.ups_user_id.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumInviteUser.ups_user_id.$error.required">User ID is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumInviteUser.ups_user_id.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_email" class="ups-form_label">Email <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumInviteUser.ups_user_email.$invalid && clicked)}" name="ups_user_email" id="ups_user_email"
+                                aria-required="true" required aria-describedby="ups_user_email-error" data-ng-model="inviteUser.ups_user_email_input" />
+                            <div data-ng-if="ups_quantumInviteUser.ups_user_email.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_email-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumInviteUser.ups_user_email.$pristine && ups_quantumInviteUser.ups_user_email.$invalid) || (ups_quantumInviteUser.ups_user_email.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumInviteUser.ups_user_email.$error.required">Email is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumInviteUser.ups_user_email.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="sendInvitationButton(inviteUser.$valid);">Send Invitation</button>
+        </div>
+    </form>
+</div>

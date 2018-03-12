@@ -1,0 +1,138 @@
+<div data-page-title="Quantum View" data-ng-controller="quantumViewCreateUser">
+    <form error-on-submit name="ups_quantumCreateUser" novalidate>
+        <a point-focus="" href="#/preferencePage/quantumView/" class="ups-previous_page">
+        <span class="icon ups-icon-chevronleft" aria-hidden="true"></span>
+        Back to Quantum View
+    </a>
+
+        <!-- Page Level Errors -->
+        <div data-ng-if="clicked && checkFormErrors()">
+            <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors
+        </h3>
+            <ul class="ups-icons-error">
+                <li data-ng-if="ups_quantumCreateUser.ups_user_name.$invalid"><span> <a
+                focus-attr="ups_user_name" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Name is required.</a></span></li>
+                <li data-ng-if="ups_quantumCreateUser.ups_user_id.$invalid"><span> <a
+                focus-attr="ups_user_id" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> User ID is required. </a></span></li>
+                <li data-ng-if="clicked && upsCACForm.address0.$invalid"><span> <a
+                    focus-attr="ups-address" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Address is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.city.$invalid"><span> <a
+                    focus-attr="ups-city" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> City is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.state.$invalid"><span> <a
+                    focus-attr="ups-state" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> <span data-ng-if="(upsCACForm.country.$viewValue != 'us')">Address Information</span><span data-ng-if="(upsCACForm.country.$viewValue == 'us')">State</span> is required.</a></span></li>
+                <li data-ng-if="clicked && upsCACForm.zipCode.$invalid"><span> <a
+                    focus-attr="ups-zipcode" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"><span data-ng-if="(upsCACForm.country.$viewValue != 'us')">Postal Code</span><span data-ng-if="(upsCACForm.country.$viewValue == 'us')">Zip Code</span> is required.</a></span></li>
+                <li data-ng-if="clicked && ups_quantumCreateUser.ups_telephone.$invalid"><span> <a
+                    focus-attr="ups_telephone" error-on-submit-anchor href="#" onclick="return false;" class="ups-invalid_color"> Telephone is <span ng-if="ups_quantumCreateUser.ups_telephone.$error.required">required. </a></span>
+                </span></li>
+            </ul>
+        </div>
+
+        <div class="ups-group">
+            <h2>Create User</h2>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3">
+                    <p><strong>Company Name:</strong></p>
+                </div>
+                <div class="col-xs-5 col-sm-3 col-md-4">
+                    <p>
+                        ABC Company, Inc.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-3">
+                    <p><strong>Company Nickname:</strong></p>
+                </div>
+                <div class="col-xs-5 col-sm-3 col-md-4">
+                    <p>
+                        abcco
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_name" class="ups-form_label">Name <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumCreateUser.ups_user_name.$invalid && clicked)}" name="ups_user_name" id="ups_user_name"
+                                aria-required="true" required aria-describedby="ups_user_name-error" data-ng-model="createUser.ups_user_name_input" />
+                            <div data-ng-if="ups_quantumCreateUser.ups_user_name.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_name-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumCreateUser.ups_user_name.$pristine && ups_quantumCreateUser.ups_user_name.$invalid) || (ups_quantumCreateUser.ups_user_name.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumCreateUser.ups_user_name.$error.required">Name is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumCreateUser.ups_user_name.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="ups-form_group ups-form_required">
+                        <label for="ups_user_id" class="ups-form_label">User ID <span aria-hidden="true" class="ups-required_indicator"></span></label>
+                        <div class="ups-input_wrapper ups-text-wrapper">
+                            <input error-on-blur focus-on-error type="text" class="ups-form_input" data-ng-model-options="{updateOn: 'blur'}" data-ng-class="{'ups-bodError':(ups_quantumCreateUser.ups_user_id.$invalid && clicked)}" name="ups_user_id" id="ups_user_id"
+                                aria-required="true" required aria-describedby="ups_user_name-error" data-ng-model="createUser.ups_user_id_input" />
+                            <div data-ng-if="ups_quantumCreateUser.ups_user_id.$valid">
+                                <!-- @Note: screen reader text needs to be translated as well -->
+                                <span class="ups-icon-check" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Check</span>
+                            </div>
+                        </div>
+                        <span id="ups_user_id-error" role="alert">
+                        <span class="ups-invalid_color"
+                            data-ng-show="(!ups_quantumCreateUser.ups_user_id.$pristine && ups_quantumCreateUser.ups_user_id.$invalid) || (ups_quantumCreateUser.ups_user_id.$invalid && clicked)">
+                            <span class="icon ups-error_exclamation">
+                                <span class="ups-icon-exclamation" aria-hidden="true"></span>
+                        </span>
+                        <span class="ups-readerTxt">Invalid</span>
+                        <span data-ng-if="ups_quantumCreateUser.ups_user_id.$error.required">User ID is required.</span>
+                        </span>
+                        <span data-ng-if="ups_quantumCreateUser.ups_user_id.$valid">
+                            <span class="ups-readerTxt">Check</span>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Global Common Address Component -->
+        <div class="row">
+            <div class="col-md-5">
+                <ups-cac></ups-cac>
+            </div>
+        </div>
+        <!-- Global Common Address Component -->
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">User Access</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper" data-ng-repeat="option in userAccessOptions">
+                 <input id="{{option.userAccessName}}" class="ups-checkbox-custom" name=" {{option.userAccessName}}" type="checkbox" value="{{option.userAccessValue}}">
+                 <label for="{{option.userAccessName}}" class="ups-checkbox-custom-label">{{option.userAccessLabel}}</label>
+             </div>
+         </fieldset>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_primary" data-ng-click="saveUserButton(createUser.$valid);">Save</button>
+            <!-- <a href="#/preferencePage/quantumView/userAdministration" class="ups-cta ups-cta_secondary">Cancel</a> -->
+        </div>
+        <!-- <div class="ups-cms-demo">
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Inbound = false; Outbound = false">Default</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Outbound = true;Inbound = false">Outbound</button>
+            <button type="button" class="ups-cta ups-cta_secondary" data-ng-click="Inbound = true;Outbound = false">Inbound Location ID</button>
+        </div> -->
+    </form>
+</div>

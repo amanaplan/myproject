@@ -1,0 +1,349 @@
+<p>
+    <em>
+        <span aria-hidden="true">*</span>
+        <span class="ups-readerTxt">Required</span>
+        Indicates required field
+    </em>
+</p>
+
+<div *ngIf="attemptSubmit && !trkReferenceForm.valid">
+	<h3 class="ups-invalid_color-list ups-error_alert-list">
+        <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+		Please correct the following errors
+    </h3>
+
+    <ul class="ups-icons-error">
+        <li *ngIf="!trkReferenceForm.controls['trkShipmentReference'].valid">
+            <a href="#trkShipmentReference" class="ups-invalid_color" pointIdClick>Shipment Reference is required.</a>
+        </li>
+        <li *ngIf="!trkReferenceForm.controls['trkRangeDateFrom'].valid">
+            <a href="#trkRangeDateFrom" class="ups-invalid_color" pointIdClick>Date Range / From is required.</a>
+        </li>
+        <li *ngIf="!trkReferenceForm.controls['trkRangeDateTo'].valid">
+            <a href="#trkRangeDateTo" class="ups-invalid_color" pointIdClick>Date Range / To is required.</a>
+        </li>
+    </ul>
+</div>
+
+<div [formGroup]="trkReferenceForm">
+    <div class="ups-group">
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">
+                Shipment Type
+            </legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio"
+                    class="ups-radio-custom"
+                    id="trkShipmentTypePackage"
+                    name="trkShipmentType"
+                    value="1"
+                    [(ngModel)]="trkShipmentType"
+                    [ngModelOptions]="{'standalone' : true}">
+
+                <label class="ups-radio-custom-label" for="trkShipmentTypePackage">
+                    Package
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio"
+                    class="ups-radio-custom"
+                    id="trkShipmentTypeFreight"
+                    name="trkShipmentType"
+                    value="2"
+                    [(ngModel)]="trkShipmentType"
+                    [ngModelOptions]="{'standalone' : true}">
+
+                <label class="ups-radio-custom-label" for="trkShipmentTypeFreight">
+                    Freight
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio"
+                    class="ups-radio-custom"
+                    id="trkShipmentTypeMailInnovations"
+                    name="trkShipmentType"
+                    value="3"
+                    [(ngModel)]="trkShipmentType"
+                    [ngModelOptions]="{'standalone' : true}">
+
+                <label class="ups-radio-custom-label" for="trkShipmentTypeMailInnovations">
+                    Mail Innovations
+                </label>
+            </div>
+        </fieldset>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required ups-help_wrapper">
+                    <label for="trkShipmentReference" class="ups-form_label">
+                        Shipment Reference
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </label>
+                    <div class="ups-help">
+                        <button class="ups-help_link" id="ups-formHelpTrkReference" type="button">
+                            <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                            Help
+                        </button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button class="ups-help_close" type="button">
+                                <span aria-hidden="true" class="icon ups-icon-x ups-iconAlone"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Lorem ipsum.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="trkShipmentReference"
+                            class="ups-form_input"
+                            id="trkShipmentReference"
+                            required
+                            aria-required="true"
+                            aria-describedby="trkShipmentReference_error"
+                            formControlName="trkShipmentReference"
+                            [ngClass]="{'ups-bodError': (!trkReferenceForm.controls['trkShipmentReference'].valid && trkReferenceForm.controls['trkShipmentReference'].touched)}">
+                    </div>
+                    <span class="ups-icons-error" id="trkShipmentReference_error" role="alert">
+                        <span class="ups-invalid_color" *ngIf="(!trkReferenceForm.controls['trkShipmentReference'].valid && trkReferenceForm.controls['trkShipmentReference'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span>Shipment Reference is required.</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="loggedin">
+                <div class="ups-form_group">
+                    <label for="trkShipperAcctSel" class="ups-form_label">
+                        Shipper Account
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="trkShipperAcctSel"
+                            class="ups-dropdown"
+                            id="trkShipperAcctSel"
+                            [(ngModel)]="trkShipperAcctSel"
+                            [ngModelOptions]="{'standalone' : true}">
+                            <option value="0">Select One</option>
+                            <option value="1">nnnnnnnnnnnnn</option>
+                            <option value="add">Add a UPS Account</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="!loggedin">
+                <div class="ups-form_group">
+                    <label for="trkShipperAcct" class="ups-form_label">
+                        Shipper Account
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="trkShipperAcct"
+                            class="ups-form_input"
+                            id="trkShipperAcct">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="trkShipperAcctSel == 'add'">
+            <div class="col-md-6 col-md-offset-6">
+                <div class="ups-form_group">
+                    <label for="trkOtherAcct" class="ups-form_label">
+                        Other UPS Account
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="trkOtherAcct"
+                            class="ups-form_input"
+                            id="trkOtherAcct">
+                    </div>
+                </div>
+                <div class="ups-form_group ups-help_wrapper">
+                    <div class="ups-buttonList_wrapper ups-input_wrapper">
+                        <input type="checkbox"
+                            id="trkSaveOtherAcct"
+                            class="ups-checkbox-custom"
+                            name="trkSaveOtherAcct"
+                            value="1">
+                        <label for="trkSaveOtherAcct" class="ups-checkbox-custom-label">Save this account</label>
+                    </div>
+                    <div class="ups-help">
+                        <button class="ups-help_link" id="ups-formHelpTrkReference" type="button">
+                            <span aria-hidden="true" class="icon ups-icon-questioncircle"></span>
+                            Help
+                        </button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button class="ups-help_close" type="button">
+                                <span aria-hidden="true" class="icon ups-icon-x ups-iconAlone"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Lorem ipsum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="trkRangeDateFrom" class="ups-form_label">
+                        Date Range / From
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </label>
+                    <!-- [value]="filterStartDatepicker.getDateStr()" -->
+                    <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                        <input type="text"
+                            name="trkRangeDateFrom"
+                            class="ups-form_input"
+                            id="trkRangeDateFrom"
+                            required
+                            aria-required="true"
+                            aria-describedby="trkRangeDateFrom_error"
+                            formControlName="trkRangeDateFrom"
+                            [(ngModel)]="filterStartDate"
+                            [ngClass]="{'ups-bodError': (!trkReferenceForm.controls['trkRangeDateFrom'].valid && trkReferenceForm.controls['trkRangeDateFrom'].touched)}">
+                        <button type="button"
+                            class="ups-date_picker_button"
+                            id="trkRangeDateFromDpToggleBtn"
+                            (click)="filterStartDatepicker.toggle('#trkRangeDateFromDpToggleBtn');">
+                            <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                            <span class="ups-readerTxt">Select date from a calendar</span>
+                        </button>
+                    </div>
+                    <ups-offical-datepicker [(ngModel)]="filterStartDate" [ngModelOptions]="{'standalone' : true}" #filterStartDatepicker></ups-offical-datepicker>
+                    <span class="ups-icons-error" id="trkRangeDateFrom_error" role="alert">
+                        <span class="ups-invalid_color" *ngIf="(!trkReferenceForm.controls['trkRangeDateFrom'].valid && trkReferenceForm.controls['trkRangeDateFrom'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span>Date Range / From is required.</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="trkRangeDateTo" class="ups-form_label">
+                        <span class="ups-readerTxt">Date Range / </span>To
+                        <span class="ups-required_indicator" aria-hidden="true"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon">
+                        <input type="text"
+                            name="trkRangeDateTo"
+                            class="ups-form_input"
+                            id="trkRangeDateTo"
+                            required
+                            aria-required="true"
+                            aria-describedby="trkRangeDateTo_error"
+                            formControlName="trkRangeDateTo"
+                            [(ngModel)]="filterEndDate"
+                            [ngClass]="{'ups-bodError': (!trkReferenceForm.controls['trkRangeDateTo'].valid && trkReferenceForm.controls['trkRangeDateTo'].touched)}">
+                        <button type="button"
+                            class="ups-date_picker_button"
+                            id="trkRangeDateToDpToggleBtn"
+                            (click)="filterEndDatepicker.toggle('#trkRangeDateToDpToggleBtn');">
+                            <span aria-hidden="true" class="icon ups-icon-calendar"></span>
+                            <span class="ups-readerTxt">Select date from a calendar</span>
+                        </button>
+                    </div>
+                    <ups-offical-datepicker class="ups-datepicker-wrap ups-official_datepicker_top_right"
+                        [(ngModel)]="filterEndDate"
+                        [ngModelOptions]="{'standalone' : true}"
+                        #filterEndDatepicker></ups-offical-datepicker>
+                    <span class="ups-icons-error" id="trkRangeDateTo_error" role="alert">
+                        <span class="ups-invalid_color" *ngIf="(!trkReferenceForm.controls['trkRangeDateTo'].valid && trkReferenceForm.controls['trkRangeDateTo'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation"></span>
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span>Date Range / To is required.</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="trkShipmentType == '2'">
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="trkOriginCountry" class="ups-form_label">
+                        Origin Country
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="trkOriginCountry"
+                            class="ups-dropdown"
+                            id="trkOriginCountry">
+                            <option value="0">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="trkOriginZip" class="ups-form_label">
+                        Origin ZIP Code
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="trkOriginZip"
+                            class="ups-form_input"
+                            id="trkOriginZip">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" *ngIf="trkShipmentType != '3'">
+                <div class="ups-form_group">
+                    <label for="trkDestCountry" class="ups-form_label">
+                        Destination Country
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select name="trkDestCountry"
+                            class="ups-dropdown"
+                            id="trkDestCountry">
+                            <option value="0">Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="trkShipmentType == '3'">
+                <div class="ups-group">
+                    <div class="ups-group_label">
+                        Destination Country
+                    </div>
+                    <div class="ups-group_value">
+                        United States
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ups-form_group">
+                    <label for="trkDestinationZip" class="ups-form_label">
+                        Destination ZIP/Postal Code
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="trkDestinationZip"
+                            class="ups-form_input"
+                            id="trkDestinationZip">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="!loggedin">
+            By selecting the Track button, I agree to the
+            <a href="#" class="ups-link ups-new-window">Terms and Conditions.
+                <span aria-hidden="true" class="icon ups-icon-newwindow"></span>
+                <span class="ups-readerTxt">Open the link in a new window</span>
+            </a>
+        </p>
+        <p *ngIf="loggedin">
+            <a href="#" class="ups-link ups-new-window">Set Preferences
+                <span aria-hidden="true" class="icon ups-icon-newwindow"></span>
+                <span class="ups-readerTxt">Open the link in a new window</span>
+            </a>
+        </p>
+    </div>
+</div>
+<div class="text-center">
+    <button class="ups-cta ups-cta_primary" (click)="trackBtn()">Track</button>
+    <button class="ups-cta ups-cta_secondary" (click)="closeBtn()">Cancel</button>
+</div>

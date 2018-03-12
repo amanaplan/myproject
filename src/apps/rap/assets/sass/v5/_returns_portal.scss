@@ -1,0 +1,499 @@
+
+@import "../../../../common/apps/assets/sass/components/informationcircle";
+@import "../../../../common/apps/assets/sass/components/side_menu";
+
+
+.ups-application_wrapper .ups-side_menu .ups-drawer.ups-drawer_slim {
+    //styles the button that opens the menu
+    .ups-drawer-btn {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        background-color: $black_s1;
+        color: $white;
+    }
+    //Styles the entire submenu
+    .ups-side_sub_menu {
+        border-top: 1px solid $black_s1;
+        padding: 0;
+        .ups-side_sub_menu_list {
+            border: none;
+            list-style: none;
+            a {
+                padding: 8px 20px;
+            }
+            //active state for the sub menu
+            &.ups-side_sub_menu_active {
+                background-color: $ups_gold;
+                a {
+                    font-family: $sans-bd;
+                }
+            }
+        }
+    }
+}
+
+.ups-slim_header {
+    margin-top: 0;
+}
+
+// .ups-application_wrapper ul.ups-drawer {
+//     margin: 0;
+//     padding: 0;
+
+//     li.ups-drawer_list_item {
+//         list-style: none;
+
+//         &:first-child button {
+//             border-top: 1px solid $stone_s3;
+//         }
+
+//         .ups-drawer-btn {
+//             border-top: none;
+
+//             &:focus {
+//                 position: relative;
+//                 z-index: 2;
+//             }
+
+//             &.ups-drawer_btn_error {
+//                 color: $red;
+
+//                 &:focus {
+//                     outline-color: $red;
+//                 }
+
+//                 .ups-drawer_left_icon {
+//                     color: $red;
+//                 }
+//             }
+
+//             .icon {
+//                 margin-#{$opposite-direction}: 5px;
+//                 font-size: 16px;
+//                 position: relative;
+//                 top: 2px;
+//                 line-height: 16px;
+//                 color: $black;
+//             }
+//         }
+
+//         .ups-drawer_left_icon {
+//             vertical-align: -4px;
+//         }
+
+//         .icon.ups-drawer_left_icon {
+//             width: 16px;
+//             height: 16px;
+//             display: inline-block;
+
+//             &:before {
+//                 position: absolute;
+//                 top: -3px;
+//             }
+//         }
+
+//         .ups-empty_circle {
+//             height: 12px;
+//             width: 12px;
+//             border: 1px solid #000;
+//             border-radius: 16px;
+//             display: inline-block;
+//             margin-#{$opposite-direction}: 9px;
+//             position: relative;
+//             top: -3px;
+//             #{$default-float}: 2px;
+//             transform: scale(1.3);
+//             -ms-transform: scale(1.3);
+//         }
+
+//         .ups-required_indicator:after {
+//             content: "*";
+//         }
+
+//         .ups-drawer-content {
+//             padding: 15px 15px 0;
+//         }
+//     }
+// }
+
+.ups-form_ctaGroup {
+    margin-top: 20px;
+}
+
+.ups-input_btn_action {
+    padding-#{$default-float}: 0;
+}
+
+.ups-form_wrap .ups-checkbox_button {
+    .ups-checkbox-custom-label, .ups-radio-custom-label {
+        padding-#{$default-float}: 0;
+        border: 1px solid $stone_60;
+        text-align: center;
+        display: block;
+        padding: 5px 8px;
+        border-radius: 7px;
+
+        &:before, &:after {
+            content: none;
+        }
+    }
+
+    .ups-checkbox-custom:checked, .ups-radio-custom:checked {
+        &+.ups-checkbox-custom-label, &+.ups-radio-custom-label {
+            background-color: $water_s3;
+            color: $white;
+
+            &:after {
+                content: none;
+            }
+        }
+    }
+
+    .ups-checkbox-custom:focus, .ups-checkbox-custom:active, .ups-radio-custom:focus, .ups-radio-custom:active {
+        &+.ups-radio-custom-label, &+.ups-checkbox-custom-label {
+            outline: 5px auto $ups_gold;
+        }
+    }
+}
+
+.ups-help_tooltip {
+    z-index: 400;
+}
+
+.ups-cta_link_primary {
+    -webkit-appearance: none;
+    border-radius: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    color: $black_s3;
+    font-family: $sans-bd;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+
+    @media #{$media-medium} {
+        padding: 10px 30px 10px;
+        background: $water_s3;
+        border-radius: 25px;
+        font-size: 1.1em;
+        line-height: 1.1em;
+        text-align: center;
+        color: $white;
+        margin-#{$opposite-direction}: 10px;
+
+        &:hover {
+            background: #006a55;
+        }
+    }
+
+    @media #{$media-small} {
+        width: 100%;
+        margin-#{$opposite-direction}: 0;
+        margin-bottom: 15px;
+    }
+}
+
+.ups-cta_link_tertiary {
+    @extend .ups-cta_link_primary;
+    @media #{$media-medium} {
+        background: $black_s1;
+
+        &:hover {
+            background: #333333;
+        }
+    }
+}
+
+.ups-help_scroll {
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.ups-returns_acct_separator {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table.table-striped.ups-returns_hist_table {
+    table-layout: fixed;
+    thead tr th {
+        width: 100%;
+        &:last-child {
+            width: 1em;
+        }
+    }
+    tbody tr {
+        background-color: $white;
+        td {
+            border: none;
+            border-top: 1px solid $black_s1;
+        }
+    }
+}
+
+.table.table-striped.ups-returns_ineligible_table {
+    tbody tr {
+        background-color: $white;
+        td {
+            border: none;
+            border-top: 1px solid $black_s1;
+        }
+    }
+}
+
+.ups-drawer tbody.ups-drawer_list_item.ups-drawer_list_item_opened tr{
+    background-color: $stone_60;
+    &.ups-drawer-content {
+        background-color: $white;
+    }
+}
+
+table {
+    .ups-cta.ups-cta_secondary.ups-link.ups-btn_has_icon {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+        @media #{$media-small} {
+            width:auto;
+        }
+
+    }
+}
+
+.ups-application_wrapper .ups-tile {
+    margin-bottom: 20px;
+}
+.ups-ul_slim {
+    padding-#{$default-float}: 16px;
+}
+
+.ups-tile_btn_group .ups-link {
+    margin-#{$default-float}: 15px;
+    @media #{$media-small} {
+        display: block;
+        margin-bottom: 15px;
+    }
+}
+
+.ups-application_wrapper .ups-text_scroll {
+    //margin-top: 20px;
+    margin-bottom: 0px;
+    border: 1px solid $stone_s3;
+    max-height: 365px;
+    min-height: 365px;
+    ul {
+        padding-#{$default-float}: 0px;
+        list-style: none;
+        .ups-selected_option {
+            background-color: $ups_stone;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            button{
+                background-color: transparent;
+                border: none;
+            }
+        }
+    }
+}
+
+.ups-application_wrapper .ups-form_group .ups-input_has_action .ups-input_action .icon {
+    font-size: 1.2em;
+}
+
+.ups-list .ups-imageblock_image.ups-imageblock_single_image{
+    cursor: auto;
+    // text-decoration: none;
+    // color: $black_s3;
+    &:hover, &:focus {
+        .ups-imageblock_text {
+            text-decoration: none;
+            color: $black_s3;
+        }
+    }
+}
+.ups-list .ups-imageblock_text {
+        background: $stone_60;
+
+        //The below targets the three imageblock links on the home page
+        &.ups-imageblock_text_list {
+        position: relative;
+        #{$default-float}: auto;
+        bottom: auto;
+        min-height:117px;
+        @media (min-width: 992px) and (max-width: 1280px){ //this is only labeled this way to override the stylings in _M15_list.scss
+            max-height:none !important;
+            min-height:170px;
+            h3 + div {
+            max-height:none !important;
+            -webkit-line-clamp: initial !important;
+            }
+        }
+        @media (min-width: 768px) and #{$media-medium} /*between 768px and 992px*/ {
+            min-height:112px;
+        }
+        @media #{$media-small} /*less than 768px*/ {
+            min-height: 0px;
+        }
+    }
+}
+
+//The below targets the hero image on the home page
+.ups-list .ups-detail_imageblock_single .ups-imageblock_text.ups-imageblock_onlytext {
+    padding-#{$opposite-direction}: 20px;
+    min-height: none !important;
+    position: static;
+    @media #{$media-small} {
+        padding: 15px;
+    }
+    @media (min-width: 992px) and (max-width: 1280px){
+        min-height: none !important;
+    }
+}
+
+.iw_columns.col-lg-12 > .iw_component .ups-list .ups-list_multi .ups-list_row .ups-list_detail.ups-detail_imageblock.ups-detail_imageblock_single {
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+// .ups-application_wrapper .modal-body .ups-modal_subtitle.ups-form_ctaGroup {
+// 	position: relative;
+//     top: -70px;
+// 	@media #{$media-small} {
+// 		//text-align: $default-float;
+// 		margin-top: 0px;
+// 		width: 100%;
+// 		float: none;
+//         top:auto;
+//         button {
+//             text-align: $default-float; //sets buttons in SVP to the left
+//             padding-#{$default-float}: 0px; //gets rid of padding-left so it matches comp
+//             .ups-icon-print {
+//                 margin-#{$default-float}: 0px; //gets rid of margin-left on print icon so it visually matches the other icons
+//             }
+//         }
+// 	}
+// }
+
+body > .iw_viewport-wrapper > .container-fluid.iw_section:nth-child(3) {
+    overflow: visible;
+}
+
+.ups-checkbox_button_wrap {
+    //padding: 0 20px;
+    padding: 0 7px;
+    .ups-checkbox_button {
+        width:33.33333%;
+        display: inline-block;
+        margin-#{$default-float}: 8.33333%;
+        @media #{$media-medium} {
+            width: auto;
+            display: block;
+            margin-#{$default-float}: auto;
+            padding: inherit;
+        }
+        .ups-checkbox-custom-label {
+            margin: 2px 0;
+        }
+
+    }
+
+}
+.ups-datepicker-wrap {
+    display: block;
+    .uib-datepicker-popup.dropdown-menu {
+        top: 40px;
+        //left: 0px;
+        #{$default-float}: auto;
+        #{$opposite-direction}: 0px;
+    }
+}
+
+//Temporary fix for pagination! This CSS will disappear once the updated Global M27 Support CSS is updated in PT and Staging
+// .ups-search_support .ups-search_results {
+//     // Taking this out since it in global m27 support CSS
+//     // max-height: none;
+//     // visibility: visible;
+//     .results-footer .pagination-container button {
+//         &.ups-active {
+//             background: $white;
+//             color: $black;
+//             text-decoration: none;
+//         }
+//     }
+// }
+
+.ups-search_support .ups-search_results .results-footer .pagination-container button.ups-active {
+    background: $white;
+    color: $black;
+    text-decoration: none;
+}
+
+//TFS #526534 Gives better middle alignment for toggle button label that does not have a <p> subheader.
+.ups-lever .ups-lever_rlabel .ups-lever_label.ups-lever_label_only {
+    position: relative;
+    top: 8px;
+}
+
+//TFS #538027 Helps to modify the three buttons on the Report Preview page
+.ups-app_preview_actions {
+    button {
+        &.ups-cta:first-child {
+            margin-top: 0px;
+        }
+        @media #{$media-small} {
+            padding-#{$default-float}: 0px !important;
+        }
+        .ups-icon-print {
+            top: 3px;
+            @media #{$media-small} {
+                &:before {
+                    margin-#{$default-float}: 0px;
+                }
+            }
+        }
+        .ups-icon-email {
+            top: 1px;
+        }
+    }
+}
+
+.ups-text_information_scroll {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.ups-plugin_container {
+    background-color: $black_s1;
+    color: $white;
+    margin-bottom: 35px;
+    p, h2 {
+        padding: 10px 15px;
+        margin: 0 0;
+        font: 14px/1.25 $sans-bd;
+    }
+}
+
+//JIRA UPSO-2944 Attempt to Create A More Uniform List Style since this particular set up is used in multiple places within RAP (e.g. Plugin Detail Page, Returns Manager, etc.)
+.ups-list_style_none {
+    .ups-list_slim {
+        line-height: 25px;
+        border-top: 1px solid $ups_stone;
+        padding-top: 10px;
+        &:first-child {
+            margin-top: 30px;
+        }
+        &:last-child {
+            border-bottom: 1px solid $ups_stone;
+        }
+    }
+}

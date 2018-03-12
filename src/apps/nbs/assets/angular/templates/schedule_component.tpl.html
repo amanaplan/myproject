@@ -1,0 +1,977 @@
+<!--
+    - getNbsInSinglePg() = true
+        adds classes specific to SPA version
+    - getNbsInSinglePg() = false
+        adds classes specific to Guided Flow version
+    - ids ups-describedby_time and ups-describedby_rush are needed for accessability. They are tied to aria-describedbys in the schedule list.
+-->
+<fieldset class="ups-shipping_schedule_when">
+    <legend class="ups-readerTxt">Delivery Date and Time Selection</legend>
+    <div class="ups-shipping_schedule_list" *ngIf="schedView && nbsBase.getNbsInSinglePg()">
+        <!-- Removed for TFS#488389
+            <div class="ups-shipping_schedule_header_wrap row hidden-sm">
+                <div class="col-md-4 "><strong id="ups-describedby_time">Time</strong></div>
+                <div class="col-md-4 "><strong id="ups-describedby_service">Service</strong></div>
+                <div class="col-md-4 "><strong id="ups-describedby_cost">Cost</strong></div>
+            </div>
+        -->
+        <div *ngIf="!overWeekend">
+            <p id="ups-describedby_rush">
+                <!-- <span class="icon ups-icon-planeleft" aria-hidden="true"></span> -->
+                <strong>Rush Shipment!</strong>
+                Need it there tomorrow?
+            </p>
+            <div class="ups-indent">
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup0" class="ups-radio-custom" name="whenSheduleGroup" value="0" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup0" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_rush">
+                            <span class="col-md-4">Mon, Oct 17 by 8:00 AM</span>
+                            <span class="col-md-4">UPS Next Day Air Early</span>
+                            <span class="col-md-4">$109.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup1" class="ups-radio-custom" name="whenSheduleGroup" value="1" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup1" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_rush">
+                            <span class="col-md-4">Mon, Oct 17 by 10:30 AM</span>
+                            <span class="col-md-4">UPS Next Day Air</span>
+                            <span class="col-md-4">$79.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup2" class="ups-radio-custom" name="whenSheduleGroup" value="2" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_rush">
+                            <span class="col-md-4">Mon, Oct 17 by 3:00 PM</span>
+                            <span class="col-md-4">UPS Next Day Air Saver</span>
+                            <span class="col-md-4">$74.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <p id="ups-describedby_time">
+                <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                <strong>Don't waste a day.</strong>
+                Get it there one day sooner.
+            </p>
+            <div class="ups-indent">
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup3" class="ups-radio-custom" name="whenSheduleGroup" value="3" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup3" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Tue, Oct 18 by 8:00 AM</span>
+                            <span class="col-md-4">UPS 2nd Day Air A.M.</span>
+                            <span class="col-md-4">$35.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup4" class="ups-radio-custom" name="whenSheduleGroup" value="4" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup4" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Tue, Oct 18 by end of day</span>
+                            <span class="col-md-4">UPS 2nd Day Air</span>
+                            <span class="col-md-4">$30.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ups-indent">
+                <input id="shipmentPickupIncludeNextPickup5" class="ups-radio-custom" name="whenSheduleGroup" value="5" type="radio">
+                <label for="shipmentPickupIncludeNextPickup5" class="ups-radio-custom-label">
+                    <span class="row" aria-describedby="ups-describedby_time">
+                        <span class="col-md-4">Wed, Oct 19 by end of day</span>
+                        <span class="col-md-4">UPS 3 Day Select</span>
+                        <span class="col-md-4">$22.67 USD</span>
+                    </span>
+                </label>
+            </div>
+            <hr>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ups-indent">
+                <input id="shipmentPickupIncludeNextPickup6" class="ups-radio-custom" name="whenSheduleGroup" value="6" type="radio">
+                <label for="shipmentPickupIncludeNextPickup6" class="ups-radio-custom-label">
+                    <span class="row">
+                        <span class="col-md-4">Thur, Oct 17 by 8:00 AM</span>
+                        <span class="col-md-4">UPS Next Day Air Early</span>
+                        <span class="col-md-4">$17.67 USD</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div *ngIf="overWeekend">
+            <p id="ups-describedby_time">
+                <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                <strong>Beat the Weekend.</strong>
+                Get a head start on the week with delivery before Monday.
+            </p>
+            <div class="ups-indent">
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup0" class="ups-radio-custom" name="whenSheduleGroup" value="0" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup0" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Thur, Oct 17 by 8:00 AM</span>
+                            <span class="col-md-4">UPS Next Day Air Early</span>
+                            <span class="col-md-4">$109.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup1" class="ups-radio-custom" name="whenSheduleGroup" value="1" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup1" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Thur, Oct 17 by 10:30 AM</span>
+                            <span class="col-md-4">UPS Next Day Air</span>
+                            <span class="col-md-4">$79.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup2" class="ups-radio-custom" name="whenSheduleGroup" value="2" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup2" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Thur, Oct 17 by 3:00 PM</span>
+                            <span class="col-md-4">UPS Next Day Air Saver</span>
+                            <span class="col-md-4">$74.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="ups-indent">
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup3" class="ups-radio-custom" name="whenSheduleGroup" value="3" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup3" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Fri, Oct 18 by 8:00 AM</span>
+                            <span class="col-md-4">UPS 2nd Day Air A.M.</span>
+                            <span class="col-md-4">$35.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper">
+                    <input id="shipmentPickupIncludeNextPickup4" class="ups-radio-custom" name="whenSheduleGroup" value="4" type="radio">
+                    <label for="shipmentPickupIncludeNextPickup4" class="ups-radio-custom-label">
+                        <span class="row" aria-describedby="ups-describedby_time">
+                            <span class="col-md-4">Fri, Oct 18 by end of day</span>
+                            <span class="col-md-4">UPS 2nd Day Air</span>
+                            <span class="col-md-4">$30.67 USD</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <p class="ups-indent">Sat, Oct 19</p>
+            <p class="ups-indent">Sun, Oct 20</p>
+            <hr>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ups-indent">
+                <input id="shipmentPickupIncludeNextPickup6" class="ups-radio-custom" name="whenSheduleGroup" value="6" type="radio">
+                <label for="shipmentPickupIncludeNextPickup6" class="ups-radio-custom-label">
+                    <span class="row">
+                        <span class="col-md-4">Mon, Oct 21 by end of day</span>
+                        <span class="col-md-4">UPS 3 Day Select</span>
+                        <span class="col-md-4">$22.67 USD</span>
+                    </span>
+                </label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper ups-indent">
+                <input id="shipmentPickupIncludeNextPickup6" class="ups-radio-custom" name="whenSheduleGroup" value="6" type="radio">
+                <label for="shipmentPickupIncludeNextPickup6" class="ups-radio-custom-label">
+                    <span class="row">
+                        <span class="col-md-4">Mon, Oct 21 by end of day</span>
+                        <span class="col-md-4">UPS Ground</span>
+                        <span class="col-md-4">$17.67 USD</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <p>Above delivery dates/times are estimated, but not necessarily guaranteed. Refer to the <a href="relp_href" class="ups-link">Service Guide</a> <span class="icon ups-icon-newwindow" aria-hidden="true"></span> for guaranteed dates and times, and refer to <a href="relp_href" class="ups-link">Guarantees and Notices</a> <span class="icon ups-icon-newwindow" aria-hidden="true"></span> for additional information.</p>
+        <p>{{'{'}}<strong>Note:</strong> Time-in-transit guarantees do not apply to dangrous goods packages.{{'}'}}</p>
+        <!-- BEGIN CMS Demo btn -->
+        <div class="ups-cms-demo">
+            <p><strong>Toggle grid view states:</strong></p>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="overWeekend = !overWeekend">3 day Weekend</button>
+        </div>
+        <!-- END CMS Demo btn -->
+    </div>
+    <div class="ups-shipping_schedule_grid" *ngIf="!schedView || !nbsBase.getNbsInSinglePg()">
+        <!-- BEGIN WWEF Rates Tbl -->
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTblWWEF">
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule40" class="ups-radio-custom" name="deliverSchedule" type="radio" value="0">
+                    <label for="deliverSchedule40">
+                        <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by [12:00/2:00] Midday</strong></p>
+                        <!-- ////////////////////////////////////////////// -->
+                        <!-- UPS Worldwide Express Freight has a register   -->
+                        <!-- or trademark symbol depending on the country  -->
+                        <!-- or territory the content is being viewed in    -->
+                        <!-- ////////////////////////////////////////////// -->
+                        <p>UPS Worldwide Express Freight {{'{'}}<sup>&reg;</sup> | &trade;{{'}'}} Midday</p>
+                        <p><strong>$3,555.13 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule41" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                    <label for="deliverSchedule41">
+                        <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <!-- ////////////////////////////////////////////// -->
+                        <!-- UPS Worldwide Express Freight has a register   -->
+                        <!-- or trademark symbol depending on the country  -->
+                        <!-- or territory the content is being viewed in    -->
+                        <!-- ////////////////////////////////////////////// -->
+                        <p>UPS Worldwide Express Freight {{'{'}}<sup>&reg;</sup> | &trade;{{'}'}}</p>
+                        <p><strong>$2247.22 USD</strong></p>
+                    </label>
+                </div>
+                 <!-- end .row -->
+            </div> <!-- end .col-sm-9 -->
+        </div>
+        <!-- END WWEF Rates Tbl -->
+        <!-- BEGIN Rates Tbl 5 col -->
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl5">
+            <div class="ups-shipping_schedule_col5">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Fri, Oct 14
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Fri,</span>
+                    <span class="ups-shipping_schedule_date">Oct 14</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule1" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                    <label for="deliverSchedule1">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 8:00 AM</strong></p>
+                        <p>UPS Next Day Air Early</p>
+                        <p><strong>$109.67 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule2" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                    <label for="deliverSchedule2">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS Next Day Air</p>
+                        <p><strong>$78.47 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule3" class="ups-radio-custom" name="deliverSchedule" type="radio" value="3">
+                    <label for="deliverSchedule3">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 3:30 AM</strong></p>
+                        <p>UPS Next Day Air Saver</p>
+                        <p><strong>$74.83 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="ups-shipping_schedule_col5">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Sat, Oct 15
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Sat,</span>
+                    <span class="ups-shipping_schedule_date">Oct 15</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule4" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                    <label for="deliverSchedule4">
+                        <span class="ups-readerTxt">Delivery Saturday, Oct 15</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$47.22 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="ups-shipping_schedule_col5">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule5" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                    <label for="deliverSchedule5">
+                        <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS 2nd Day Air A.M</p>
+                        <p><strong>$35.13 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule6" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                    <label for="deliverSchedule6">
+                        <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$30.58 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="ups-shipping_schedule_col5">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Tue, Oct 18
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Tue,</span>
+                    <span class="ups-shipping_schedule_date">Oct 18</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule7" class="ups-radio-custom" name="deliverSchedule" type="radio" value="7">
+                    <label for="deliverSchedule7">
+                        <span class="ups-readerTxt">Delivery Tuesday, Oct 18</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS Ground</p>
+                        <p><strong>$22.61 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="ups-shipping_schedule_col5">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Wed, Oct 19
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Wed,</span>
+                    <span class="ups-shipping_schedule_date">Oct 19</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule8" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                    <label for="deliverSchedule8">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 19</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS Ground</p>
+                        <p><strong>$17.61 USD</strong></p>
+                    </label>
+                </div>
+
+                <div class="ups-shipping_schedule_header_wrap ups-shipping_schedule_surepost6" aria-hidden="true">
+                    7+ Days
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">7+ Days</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate ups-shipping_schedule_surepost">
+                    <input id="deliverSchedule9" class="ups-radio-custom" name="deliverSchedule" type="radio" value="9">
+                    <label for="deliverSchedule9">
+                        <span class="ups-readerTxt">Delivery at or over 7 Days</span>
+                        <p>Sure Post</p>
+                        <p><strong>$11.61 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- END Rates Tbl 5 col -->
+        <!-- BEGIN Rates Tbl 4 col -->
+        <p *ngIf="rateTbl4">
+            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+            <strong>Beat the Weekend.</strong>
+            <em>Get a head start on the week with dilivery before Monday.</em>
+        </p>
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl4">
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                    Wed, Oct 14
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Fri,</span>
+                    <span class="ups-shipping_schedule_date">Oct 14</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule10" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                    <label for="deliverSchedule10">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 8:00 AM</strong></p>
+                        <p>UPS Next Day Air Early</p>
+                        <p><strong>$109.67 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule11" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                    <label for="deliverSchedule11">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS Next Day Air</p>
+                        <p><strong>$78.47 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule12" class="ups-radio-custom" name="deliverSchedule" type="radio" value="3">
+                    <label for="deliverSchedule12">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 3:30 AM</strong></p>
+                        <p>UPS Next Day Air Saver</p>
+                        <p><strong>$74.83 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                    Thur, Oct 15
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Sat,</span>
+                    <span class="ups-shipping_schedule_date">Oct 15</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule13" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                    <label for="deliverSchedule13">
+                        <span class="ups-readerTxt">Delivery Thursday, Oct 15</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$47.22 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                    Fri, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule14" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                    <label for="deliverSchedule14">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS 2nd Day Air A.M</p>
+                        <p><strong>$35.13 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule15" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                    <label for="deliverSchedule15">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 17</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$30.58 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 18
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Tue,</span>
+                    <span class="ups-shipping_schedule_date">Oct 18</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule16" class="ups-radio-custom" name="deliverSchedule" type="radio" value="7">
+                    <label for="deliverSchedule16">
+                        <span class="ups-readerTxt">Delivery Monday, Oct 18</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS Ground</p>
+                        <p><strong>$22.61 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- END Rates Tbl 4 col -->
+        <!-- BEGIN Rates Tbl 4 col (3day) -->
+        <p *ngIf="rateTbl3day">
+            <!-- <span class="icon ups-icon-planeleft" aria-hidden="true"></span> -->
+            <strong>Rush Shipment!</strong>
+            <em>Need it there tomorrow?</em>
+        </p>
+        <p *ngIf="rateTbl3day">
+            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+            <strong>Don't waste a day.</strong>
+            <em>Get it there one day sooner.</em>
+        </p>
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl3day">
+            <div class="col-sm-4">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Wed, Oct 14
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Fri,</span>
+                    <span class="ups-shipping_schedule_date">Oct 14</span> -->
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule17" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                    <label for="deliverSchedule17">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 8:00 AM
+                        </strong></p>
+                        <p>UPS Next Day Air Early</p>
+                        <p><strong>$109.67 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule41" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                    <label for="deliverSchedule41">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 10:30 AM
+                        </strong></p>
+                        <p>UPS Next Day Air</p>
+                        <p><strong>$78.47 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule19" class="ups-radio-custom" name="deliverSchedule" type="radio" value="3">
+                    <label for="deliverSchedule19">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 3:30 AM
+                        </strong></p>
+                        <p>UPS Next Day Air Saver</p>
+                        <p><strong>$74.83 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Thur, Oct 15
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Sat,</span>
+                    <span class="ups-shipping_schedule_date">Oct 15</span> -->
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule42" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                    <label for="deliverSchedule42">
+                        <span class="ups-readerTxt">Delivery Thursday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$78.47 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule20" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                    <label for="deliverSchedule20">
+                        <span class="ups-readerTxt">Delivery Thursday, Oct 15</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-time" aria-hidden="true"></span> -->
+                            by End of Day
+                        </strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$47.22 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule22" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                    <label for="deliverSchedule22">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 19</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS 3 Day Select</p>
+                        <p><strong>$30.58 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule23" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                    <label for="deliverSchedule23">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 19</span>
+                        <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                        <p>UPS Ground</p>
+                        <p><strong>$17.61 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- END Rates Tbl 4 col (3day) -->
+        <!-- BEGIN Rates Tbl 4 col (2day weekend) -->
+        <p *ngIf="rateTbl2dayWeekend">
+            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+            <strong>Beat the Weekend.</strong>
+            <em>Get a head start on the week with dilivery before Monday.</em>
+        </p>
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl2dayWeekend">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                            Fri, Oct 14
+                            <!-- Removed for TFS#488389
+                            <span class="ups-shipping_schedule_day">Fri,</span>
+                            <span class="ups-shipping_schedule_date">Oct 14</span> -->
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule17" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                            <label for="deliverSchedule17">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>by 8:00 AM</strong></p>
+                                <p>UPS Next Day Air Early</p>
+                                <p><strong>$109.67 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule40" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                            <label for="deliverSchedule40">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                                <p>UPS Next Day Air</p>
+                                <p><strong>$78.47 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule19" class="ups-radio-custom" name="deliverSchedule" type="radio" value="3">
+                            <label for="deliverSchedule19">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>by 3:30 AM</strong></p>
+                                <p>UPS Next Day Air Saver</p>
+                                <p><strong>$74.83 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+                            Sat, Oct 15
+                            <!-- Removed for TFS#488389
+                            <span class="ups-shipping_schedule_day">Sat,</span>
+                            <span class="ups-shipping_schedule_date">Oct 15</span> -->
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule20" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                            <label for="deliverSchedule20">
+                                <span class="ups-readerTxt">Delivery Saturday, Oct 15</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS 2nd Day Air</p>
+                                <p><strong>$47.22 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                </div> <!-- end .row -->
+            </div> <!-- end .col-sm-6 -->
+            <div class="col-sm-6">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule21" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                            <label for="deliverSchedule21">
+                                <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                                <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                                <p>UPS 2nd Day Air A.M</p>
+                                <p><strong>$35.13 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule22" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                            <label for="deliverSchedule22">
+                                <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS 2nd Day Air</p>
+                                <p><strong>$30.58 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule23" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                            <label for="deliverSchedule23">
+                                <span class="ups-readerTxt">Delivery Wednesday, Oct 19</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS Ground</p>
+                                <p><strong>$17.61 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end .col-sm-6 -->
+        </div>
+        <!-- END Rates Tbl 4 col (2day weekend) -->
+        <!-- BEGIN Rates Tbl 4 col (2day) -->
+        <p *ngIf="rateTbl2day">
+            <!-- <span class="icon ups-icon-planeleft" aria-hidden="true"></span> -->
+            <strong>Save a day.</strong>
+            <em>Get it tomorrow guaranteed.</em>
+        </p>
+        <p *ngIf="rateTbl2day">
+            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+            <strong>Get the day started early.</strong>
+            <em>Guaranteed delivery {{'{'}}Friday{{'}'}} {{'{'}}by 10:30 A.M.{{'}'}}.</em>
+        </p>
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl2day">
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Sat, Oct 15
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Sat,</span>
+                    <span class="ups-shipping_schedule_date">Oct 15</span> -->
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule24" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                    <label for="deliverSchedule24">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 8:00 AM
+                        </strong></p>
+                        <p>UPS Next Day Air Early</p>
+                        <p><strong>$109.67 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule25" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                    <label for="deliverSchedule25">
+                        <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 10:30 AM
+                        </strong></p>
+                        <p>UPS Next Day Air</p>
+                        <p><strong>$78.47 USD</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule26" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                    <label for="deliverSchedule26">
+                        <span class="ups-readerTxt">Delivery Saturday, Oct 15</span>
+                        <p class="ups-text_undeline"><strong>
+                            <!-- <span class="icon ups-icon-plane" aria-hidden="true"></span> -->
+                            by 3:30 P.M.
+                        </strong></p>
+                        <p>UPS 2nd Day Air</p>
+                        <p><strong>$47.22 USD</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule27" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                            <label for="deliverSchedule27">
+                                <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                                <p class="ups-text_undeline"><strong>
+                                    <!-- <span class="icon ups-icon-time" aria-hidden="true"></span> -->
+                                    by 10:30 AM
+                                </strong></p>
+                                <p>UPS 2nd Day Air A.M</p>
+                                <p><strong>$35.13 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule28" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                            <label for="deliverSchedule28">
+                                <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS 2nd Day Air</p>
+                                <p><strong>$30.58 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule29" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                            <label for="deliverSchedule29">
+                                <span class="ups-readerTxt">Delivery Wednesday, Oct 19</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS Ground</p>
+                                <p><strong>$17.61 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Rates Tbl 4 col (2day) -->
+        <!-- BEGIN Rates Tbl 4 col (2day alt currency) -->
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl2dayAlt">
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Tue, Oct 18
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Tues,</span>
+                    <span class="ups-shipping_schedule_date">Oct 18</span> -->
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule30" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                    <label for="deliverSchedule30">
+                        <span class="ups-readerTxt">Delivery Tuesday, Oct 18</span>
+                        <p class="ups-text_undeline"><strong>by 8:00 AM</strong></p>
+                        <p>UPS Express Plus &reg;</p>
+                        <p><strong>&euro;217.22 EUR</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule31" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                    <label for="deliverSchedule31">
+                        <span class="ups-readerTxt">Delivery Tuesday, Oct 18</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS Express &reg;</p>
+                        <p><strong>&euro;158.06 EUR</strong></p>
+                    </label>
+                </div>
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule32" class="ups-radio-custom" name="deliverSchedule" type="radio" value="6">
+                    <label for="deliverSchedule32">
+                        <span class="ups-readerTxt">Delivery Tuesday, Oct 18</span>
+                        <p class="ups-text_undeline"><strong>by 3:30 AM</strong></p>
+                        <p>UPS Express Saver &reg;</p>
+                        <p><strong>&euro;148.54 EUR</strong></p>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Wed, Oct 19
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Wed,</span>
+                    <span class="ups-shipping_schedule_date">Oct 19</span> -->
+                </div>
+
+                <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                    <input id="deliverSchedule33" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                    <label for="deliverSchedule33">
+                        <span class="ups-readerTxt">Delivery Wednesday, Oct 19</span>
+                        <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                        <p>UPS Standard &reg;</p>
+                        <p><strong>&euro;58.78 EUR</strong></p>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- END Rates Tbl 4 col (2day alt currency) -->
+        <!-- END Rates Tbl 4 col (1day) -->
+        <p *ngIf="rateTbl1day">
+            <!-- <span class="icon ups-icon-timeleft" aria-hidden="true"></span> -->
+            <strong>Time is precious.</strong>
+            <em>Ensure delivery during regular business hours.</em>
+        </p>
+        <div class="row ups-shipping_schedule_row" *ngIf="rateTbl1day">
+            <div class="col-sm-9">
+                <div class="ups-shipping_schedule_header_wrap" aria-hidden="true">
+                    Mon, Oct 17
+                    <!-- Removed for TFS#488389
+                    <span class="ups-shipping_schedule_day">Mon,</span>
+                    <span class="ups-shipping_schedule_date">Oct 17</span> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule34" class="ups-radio-custom" name="deliverSchedule" type="radio" value="1">
+                            <label for="deliverSchedule34">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>
+                                    <!-- <span class="icon ups-icon-time" aria-hidden="true"></span> -->
+                                    by 8:00 AM
+                                </strong></p>
+                                <p>UPS Next Day Air Early</p>
+                                <p><strong>$109.67 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule35" class="ups-radio-custom" name="deliverSchedule" type="radio" value="2">
+                            <label for="deliverSchedule35">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>
+                                    <!-- <span class="icon ups-icon-time" aria-hidden="true"></span> -->
+                                    by 10:30 AM
+                                </strong></p>
+                                <p>UPS Next Day Air</p>
+                                <p><strong>$78.47 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule36" class="ups-radio-custom" name="deliverSchedule" type="radio" value="3">
+                            <label for="deliverSchedule36">
+                                <span class="ups-readerTxt">Delivery Friday, Oct 14</span>
+                                <p class="ups-text_undeline"><strong>
+                                    <!-- <span class="icon ups-icon-time" aria-hidden="true"></span> -->
+                                    by 3:30 AM
+                                </strong></p>
+                                <p>UPS Next Day Air Saver</p>
+                                <p><strong>$74.83 USD</strong></p>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule37" class="ups-radio-custom" name="deliverSchedule" type="radio" value="5">
+                            <label for="deliverSchedule37">
+                                <span class="ups-readerTxt">Delivery Monday, Oct 17</span>
+                                <p class="ups-text_undeline"><strong>by 10:30 AM</strong></p>
+                                <p>UPS 2nd Day Air A.M</p>
+                                <p><strong>$35.13 USD</strong></p>
+                            </label>
+                        </div>
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule38" class="ups-radio-custom" name="deliverSchedule" type="radio" value="4">
+                            <label for="deliverSchedule38">
+                                <span class="ups-readerTxt">Delivery Saturday, Oct 15</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS 2nd Day Air</p>
+                                <p><strong>$47.22 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ups-buttonList_wrapper ups-input_wrapper ups-day_rate">
+                            <input id="deliverSchedule39" class="ups-radio-custom" name="deliverSchedule" type="radio" value="8">
+                            <label for="deliverSchedule39">
+                                <span class="ups-readerTxt">Delivery Wednesday, Oct 19</span>
+                                <p class="ups-text_undeline"><strong>by End of Day</strong></p>
+                                <p>UPS Ground</p>
+                                <p><strong>$17.61 USD</strong></p>
+                            </label>
+                        </div>
+                    </div>
+                </div> <!-- end .row -->
+            </div> <!-- end .col-sm-9 -->
+        </div>
+        <!-- END Rates Tbl 4 col (1day) -->
+        <p>Above delivery dates/times are estimated, but not necessarily guaranteed. Refer to the <a href="relp_href" class="ups-link">Service Guide</a> <span class="icon ups-icon-newwindow" aria-hidden="true"></span> for guaranteed dates and times, and refer to <a href="relp_href" class="ups-link">Guarantees and Notices</a> <span class="icon ups-icon-newwindow" aria-hidden="true"></span> for additional information.</p>
+        <p>{{'{'}}<strong>Note:</strong> Time-in-transit guarantees do not apply to dangrous goods packages.{{'}'}}</p>
+        <!-- BEGIN CMS Demo btn -->
+        <div class="ups-cms-demo">
+            <p><strong>Toggle grid view states:</strong></p>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl4Btn()">Rate Table - 4 column (4 day)</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl5Btn()">Rate Table - 5 column (max days)</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl3dayBtn()">Rate Table - 3 column (3 day)</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl2dayWeekendBtn()">Rate Table - 4 column (2 day w/ weekend)</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl2dayBtn()">Rate Table - 3 column (2 day)</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl2dayAltBtn()">Rate Table - 3 column (2 day) Alt Currency</button><br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTbl1dayBtn()">Rate Table - 3 column (1 day)</button> <br>
+            <button type="button" class="ups-cta ups-cta_secondary" (click)="rateTblWWEFBtn()">Rate Table - WWEF</button>
+        </div>
+        <!-- END CMS Demo btn -->
+    </div>
+</fieldset>

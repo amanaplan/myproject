@@ -1,0 +1,201 @@
+// MODALS
+// ----------------------------------
+.modal {
+    margin: 0;
+    padding: 60px 0;
+}
+
+.modal-dialog {
+	margin: auto auto 30px;
+    z-index: 1050;
+	@media #{$media-small} {
+		margin: auto 10px;
+	}
+}
+@media screen and (min-width: #{$screen-sm - 1}){
+*.modal-dialog
+{
+}
+}
+.modal-content {
+	border-radius: 0;
+	border: none;
+
+	.modal-header {
+		padding: $margin_3 - $head_line $margin_3 0;
+		//background-color: $sand_s2;
+		//color: $white;
+		border-bottom: none;
+		border-top: $head_line solid $ups_gold;
+
+		//display problem in IE
+		//&:before {
+        //	content: '';
+		//	position: fixed;
+		//	top: 0;
+		//	left: 0;
+		//	width: 100%;
+		//	height: $head_line;
+		//	background: $ups_gold;
+		//}
+
+		.modal-title {
+			line-height: inherit;
+			font-size: 2.5em;
+			font-family: $serif;
+			display: block;
+			float:left;
+			@media screen and (min-width: #{$screen-md}) {
+			width: 80%;
+		}
+		}
+
+		.ups-modal_subtitle {
+			//color: $black_s4;
+			margin-#{$default-float}: $margin_3;
+			//font-size: 50%;
+			font-family: $sans;
+
+
+			@media #{$media-small} {
+				margin-#{$default-float}: 0;
+				display: block;
+				margin-top: $margin_4;
+			}
+		}
+
+		.ups-icon-xcircle {
+			opacity: 1;
+			//color: $white;
+			margin-top: 2px;
+			//width:30px;
+		}
+
+		@media #{$media-small} {
+			padding: $margin_4;
+		}
+	}
+    .close {
+        opacity:1;
+        color:$black_s3;
+        &:hover, &:focus {
+            opacity:1;
+            color:$black_s1;
+		}
+	}
+
+	.modal-body {
+		padding: $margin_3;
+
+		@media #{$media-small} {
+			padding: $margin_4;
+		}
+		/* removed by Doug
+		.ups-text_wrapper {
+			max-width: 405px;
+
+			@media #{$media-small} {
+				max-width: 100%;
+			}
+		}
+		*/
+	}
+
+	.modal-footer {
+		padding: 0 $margin_3 $margin_3;
+		text-align: #{$default-float};
+		border-top: none;
+
+		@media #{$media-small} {
+			padding: $margin_4;
+		}
+	}
+
+
+	/*
+		Sapient updates below
+	*/
+	float: left;
+    width: 100%;
+    margin-bottom:10px;
+    .modal-body {
+        float: left;
+        width: 100%;
+        @media screen and (min-width: #{$screen-md}) {
+            padding: 20px 60px 40px;
+        }
+        @media screen and (max-width: #{$screen-sm - 1}) {
+            padding: 0 15px 30px;
+        }
+		/* removed by Doug
+        .ups-text_wrapper  {
+            @media screen and (max-width: #{$screen-md}) {
+                max-width: 100%;
+            }
+        }
+		*/
+    }
+    .modal-header{
+        @media screen and (min-width: #{$screen-md}) {
+            //   padding: 20px 20px 0 60px;
+        }
+        .modal-title{
+            margin-top: 30px;
+            &:focus{
+                outline: 5px auto #ffb500;
+                outline-offset: 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: #{$screen-md})
+{
+    .modal-content .modal-header {
+        padding-top:20px;
+        padding-bottom:0px;
+        padding-#{$opposite-direction}:20px;
+        padding-#{$default-float}:60px;
+    }
+}
+
+
+
+@media screen and (min-width: #{$screen-sm}){
+    .modal-dialog {
+        margin: auto auto 30px;
+    }
+}
+
+.modal-content .modal-header .ups-icon-xcircle.close
+{
+    line-height: 24px;
+    text-decoration:none;
+}
+.ups-application_wrapper a.close:hover
+{
+    text-decoration:none;
+}
+
+.modal-content .ups-form_wrap{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.modal-backdrop {
+    background-color: #FFF;
+}
+
+button{
+	&.close{
+		color: $black_s1;
+		opacity: 1;
+		&:hover, &:focus {
+			color: $black_s5;
+			opacity: 1;
+		}
+	}
+}
+
+.ups-rtl .modal-content .modal-header .modal-title {
+    float: $default-float;
+}

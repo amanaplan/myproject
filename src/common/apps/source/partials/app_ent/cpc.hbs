@@ -1,0 +1,182 @@
+{{#if payment_card}}
+	<form name="ups_Cardform" class="ups-cardPayment ups-offset-0 ups-form_wrap" novalidate>
+
+		<div class="row">
+			<div class="col-xs-12  col-md-4">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-cardType" class="ups-form_label">
+                    	Card Type
+                    	<span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper">
+						<select id="ups-cardType" class="ups-dropdown" name="cardType" aria-required="true" required>
+						    <option value="" selected="selected" class="">--Select One--</option>
+						    <option label="Visa" value="string:Visa">Visa</option>
+						    <option label="MasterCard" value="string:MasterCard">MasterCard</option>
+						    <option label="American Express" value="string:American Express">American Express</option>
+						    <option label="Discover" value="string:Discover">Discover</option>
+						</select>
+                        <span class="ups-invalid_color hidden">
+                            <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                            <span>This field is required.</span>
+                        </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-4 col-sm-4">
+				<div class="ups-form_group">
+					<ul class="ups-cardOrder_list">
+						<li class="ups-visa"><span class="ups-readerTxt">Visa</span></li>
+						<li class="ups-mastercard"><span class="ups-readerTxt">MasterCard</span></li>
+						<li class="ups-americanexpress"><span class="ups-readerTxt">American Express</span></li>
+						<li class="ups-discover"><span class="ups-readerTxt">Discover</span></li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12  col-md-4">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-card_cardNumber" class="ups-form_label">Card
+						Number
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input id="ups-card_cardNumber" number-mask="" type="text" name="cardNumber" class="ups-form_input" maxlength="16" aria-describedby="ups-cardnumber-error" aria-required="true" required> <span id="ups-cardnumber-error"><span class="ups-invalid_color hidden">
+								<span class="icon ups-error_exclamation "><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span>This
+									field is required.</span>
+						</span> <span class="ups-invalid_color hidden">
+								<span data-ng-show="invalidCard">Invalid Card Number.</span> <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+						</span>
+						</span>
+						<div class="ups-check">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-2">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-month" class="ups-form_label">
+                    	Expiration
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper" data-errormsg="This field is required">
+						<select id="ups-month" class="ups-dropdown" name="month" aria-required="true" required>
+							<option value="" selected="">--Month--</option>
+						</select>
+                        <span class="ups-invalid_color hidden">
+                            <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                            <span class="ups-readerTxt">Invalid</span> <span>This
+                                field is required.</span>
+                        </span>
+					</div>
+				</div>
+				<!-- ups-form_group ups-form_required -->
+			</div>
+			<div class="col-xs-12 col-md-2">
+				<div class="ups-form_group ups-form_required">
+					<label for="ups-year" class="ups-no_label ups-readerTxt">Expiration
+						Year
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+					</label>
+					<div class="ups-dropdown_wrapper ups-input_wrapper ups-offset-22">
+						<select id="ups-year" class="ups-dropdown" name="Year" aria-required="true" required><option value="" selected="selected" class="">--Year--</option><option label="2016" value="string:2016">2016</option><option label="2017" value="string:2017">2017</option><option label="2018" value="string:2018">2018</option><option label="2019" value="string:2019">2019</option><option label="2020" value="string:2020">2020</option><option label="2021" value="string:2021">2021</option><option label="2022" value="string:2022">2022</option><option label="2023" value="string:2023">2023</option><option label="2024" value="string:2024">2024</option><option label="2025" value="string:2025">2025</option></select>
+                        <span class="ups-invalid_color hidden">
+                            <span class="ups-readerTxt">Invalid</span>
+                            <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span><span data-ng-show="ups_Cardform.Year.$error.required">This field
+                                is required.</span>
+                        </span>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-3">
+				<div class="ups-form_group ups-form_required ups-help_wrapper">
+					<label for="ups-code" class="ups-form_label">
+                    	CVV
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+					<div class="ups-help">
+						<a href="" class="ups-help_link icon ups-active ups-form_link-noDecoration">Help <span class="ups-icon-questioncircle" aria-hidden="true"></span><span class="ups-readerTxt">about CVV</span></a>
+						<div class="ups-help_tooltip ups-help_tooltip_bottomleft" style="display: none;">
+							<button type="button" class="ups-help_close icon ">
+								<span class="ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+								<span class="ups-readerTxt">Close</span>
+							</button>
+							<p>Explanatory text lorem ipsum dolor sit amet.</p>
+						</div>
+					</div>
+					<div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+						<input id="ups-code" number-mask="" type="text" name="verify" class="ups-form_input" maxlength="4" aria-describedby="ups-payment-cvv-error" aria-required="true" required> <span id="ups-payment-cvv-error"><span class="ups-invalid_color hidden">
+								<span class="icon ups-error_exclamation"><span class=" ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span>This
+									field is required.</span>
+						</span> <span class="ups-invalid_color hidden" data-ng-show="invalidCode">
+								<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+								<span>Invalid Code.</span>
+						</span>
+						
+						</span>
+						<div class="ups-check">
+							<span class="ups-icon-check" aria-hidden="true"></span>
+							<!-- @Note: screen reader text needs to be translated as well -->
+							<span class="ups-readerTxt">Check</span>
+						</div>
+					</div>
+					
+				</div>
+				<!-- ups-form_group ups-form_required -->
+			</div>
+		</div>
+
+		<!-- ups-form_group ups-form_required -->
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<div class="ups-form_group">
+					<label class="ups-form_label" for="ups-cardNickName">Nickname</label>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input id="ups-cardNickName" type="text" name="Nickname" class="ups-form_input" maxlength="35">
+					</div>
+					<!-- ups-text_wrapper ups-input_wrapper -->
+				</div>
+			</div>
+		</div>
+
+		<div class="ups-form_group ups-checkbox ups-input_wrapper" >
+			<input check-verify="" id="ups-offers_checkbox_non-US" class="ups-checkbox-custom" type="checkbox" name="makeDefault"> <label for="ups-offers_checkbox_non-US" class="ups-checkbox-custom-label">
+				Make this my default payment method.</label>
+		</div>
+		<fieldset class="ups-form_required">
+			<legend class="ups-form_label ups-no-border ups-asterisk-no-label">
+				Billing Address
+                <span aria-hidden="true" class="ups-required_indicator"></span>
+                <span class="ups-readerTxt">Required</span>
+			</legend>
+			<div data-errormsg="This field is required">
+				<div class="ups-input_wrapper" data-errormsg="Remember Me">
+					<input id="ups-sameBillingAddress" class="ups-radio-custom" type="radio" name="ups-sameBillingAddress" value="SameAdd" checked="checked"> <label for="ups-sameBillingAddress" class="ups-radio-custom-label">
+						Same as my profile address.</label>
+					<address>
+						1234 main street<br> Rosewall, GA 30076<br>
+						US
+					</address>
+				</div>
+			</div>
+			<div data-errormsg="This field is required">
+				<div class="ups-form_group ups-input_wrapper">
+					<input id="ups-diffBillingAddress" class="ups-radio-custom" type="radio" name="ups-sameBillingAddress" value="diffAdd"> <label for="ups-diffBillingAddress" class="ups-radio-custom-label">
+						Enter a different billing address.</label>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+{{/if}}

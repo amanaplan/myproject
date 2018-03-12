@@ -1,0 +1,93 @@
+<div class="ups-verifyAuthentication">
+	<h2>Verify Your Identity</h2>
+	<div class="ups-verifyAuth_body ups-application_wrapper">
+		<form name="verifyActivation">
+			<h3 id="check-code">
+				<span
+					class="ups-invalid_color-list ups-error_alert-list" data-ng-if="errorText"><span class="icon ups-icon-exclamation" aria-hidden="true"></span>{{errorText}} </span>
+			</h3>
+			<!--<p tabindex='0'>You've requested access to a UPS My Choice
+				feature which requires identify verification.</p>-->
+			<p>We've sent you an activation code in the mail. You'll need that info to continue. Expect a letter with your new code in the next [two to five/two to 10] business days.</p>
+			
+            <div class="ups-group">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                            <label for="ups-form_input" class="ups-form_label">
+                                Activation Code
+                                <span aria-hidden="true" class="ups-required_indicator"></span>
+                            </label>
+                            <div class="ups-text_wrapper ups-input_wrapper">
+                                <input error-on-blur type="text" name="code"
+                                    class="ups-form_input" aria-describedby="email-error"
+                                    data-ng-model="code" maxLength="8"
+                                    data-ng-model-options="{updateOn: 'blur'}" id="ups-form_input" aria-required="true" required>
+                                <span id="email-error" role="alert"> <span class="ups-invalid_color"
+                                    data-ng-if="!(verifyActivation.code.$pristine) && verifyActivation.code.$invalid ">
+                                        <span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+                                        <span>The PIN you entered is incorrect</span>
+                                </span> <span data-ng-if="(verifyActivation.code.$valid)">
+                                        <span class="ups-icon-check" aria-hidden="true"></span>
+                                        <span class="ups-readerTxt">Check</span>
+                                </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ups-form_ctaGroup">
+                    <button type="button" tabindex="0" class="ups-cta ups-cta-primary"
+                        data-ng-click="verifyNow()" aria-describedby="check-code"
+                        data-ng-model-options="{updateOn: 'click'}">Submit</button>
+                        <!-- data-ng-disabled="verifyActivation.$invalid" -->
+                </div>
+            </div>
+			<!--<div class="row ups-otp_input ups-form_wrap">
+				<div class="col-xs-12 col-sm-12 col-md-4">
+					<div class="ups-form_group ups-form_required">
+						<label for="ups-form_input" class="ups-form_label">Enter
+							Your Activation Code
+                            <span aria-hidden="true" class="ups-required_indicator"></span>
+                        </label>
+						<div class="ups-text_wrapper ups-input_wrapper">
+							<input error-on-blur type="text" name="code"
+								class="ups-form_input" aria-describedby="email-error"
+								data-ng-model="code" maxLength="8"
+								data-ng-model-options="{updateOn: 'blur'}" id="ups-form_input" aria-required="true" required>
+							<span id="email-error"> <span class="ups-invalid_color"
+								data-ng-if="!(verifyActivation.code.$pristine) && verifyActivation.code.$invalid ">
+									<span class="icon ups-error_exclamation"><span class="ups-icon-exclamation" aria-hidden="true"></span></span>
+									<span>The PIN you entered is incorrect</span>
+							</span> <span data-ng-if="(verifyActivation.code.$valid)">
+									<span class="ups-icon-check" aria-hidden="true"></span>
+									<span class="ups-readerTxt">Check</span>
+							</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md- ups-auth_bottom">
+					<button type="button" tabindex="0" class="ups-cta ups-cta-primary"
+						data-ng-click="verifyNow()" aria-describedby="check-code"
+						data-ng-model-options="{updateOn: 'click'}">Verify Now</button>
+                        <!-- data-ng-disabled="verifyActivation.$invalid" 
+				</div>
+			</div>-->
+			<p class="ups-auth_activationMsg">
+				If your code has expired or you never received our letter, request a new one now. 
+			</p>
+            <a href="#" onclick="return false;" data-ng-click="requestOTP()" class="ups-link">
+                Send Me a New Code
+            </a>
+			<!--<p>Allow [2-5] business days to receive your code by mail.</p>-->
+
+		</form>
+	</div>
+	<div class="col-md-5 pull-right">
+		<div class="ups-form_ctaGroup text-right">
+			<button type="button" class="ups-cta ups-cta_secondary"
+				data-ng-click="openCancelPopUp()">Cancel</button>
+		</div>
+	</div>
+</div>

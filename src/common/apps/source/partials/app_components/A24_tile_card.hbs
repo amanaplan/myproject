@@ -1,0 +1,51 @@
+{{!--
+********************************************************************************
+A24 Tile Card
+********************************************************************************
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE            TYPE          REQUIRED          EXAMPLE
+    header_icon               = string      / NO            / if header should have an icon, will append to .ups-icon-{header_icon}
+    right_icon                = boolean     / NO            / if the right arrow should appear
+    header_text               = string      / YES           / The text for the header on the tile card
+    header_link               = string      / YES           / Link for the header
+    header_top_color          = string      / NO            / Options: blue, green, yellow, orange
+    content                   = array       / YES           / HTML allowed. Ex: [{content : "content 1"},{content : "content 2"}]
+--}}
+
+
+{{!--<div class="ups-tile_card">
+    <div class="ups-tile_card_title{{#if header_top_color }} ups-tile_card_{{ header_top_color }}{{/if}}{{#unless header_top_color}} ups-tile_card_default{{/unless}}">
+        <a href="{{ header_link }}" class="ups-link">
+        	{{#if right_icon }}
+            	<span class="icon ups-icon-chevronright ups-tile_icon_right" aria-hidden="true"></span>
+            {{/if}}
+            {{#if header_icon }}
+            	<span class="icon ups-icon-{{header_icon}}" aria-hidden="true"></span>
+            {{/if}}
+            {{ header_txt }}
+        </a>
+    </div>
+    {{#each content }}
+    	<div class="ups-tile_card_content">
+            {{{ this.content }}}
+        </div>
+    {{/each}}
+</div>--}}
+
+<div class="ups-spot_boxMod">
+    {{#if header_link }}<a href="{{ header_link }}" class="ups-link">{{/if}}
+        <div class="{{#if right_icon }}icon{{/if}}{{#unless right_icon}}ups-NoIcon{{/unless}} ups-spot_titleWrap{{#if header_top_color }} ups-{{ header_top_color }}_border{{/if}}">
+        	{{#if header_icon }}
+            	<span class="ups-icon-{{header_icon}}" aria-hidden="true"></span>
+            {{/if}}
+            <h3 class="ups-spot_title">{{ header_txt }}</h3>
+        </div>
+    {{#if header_link }}</a>{{/if}}
+    {{#each content }}
+    <div class="ups-spot_content {{#if this.show_border }}ups-gray-border{{/if}}">
+        {{{ this.content }}}
+    </div>
+    {{/each}}
+    
+</div>

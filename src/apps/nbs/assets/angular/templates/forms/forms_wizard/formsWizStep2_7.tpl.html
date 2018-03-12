@@ -1,0 +1,403 @@
+<div [formGroup]="formsWizStep2_7" class="ups-section">
+    <div class="ups-group">
+        <!-- <p>According to your information, your item has a total customs value of {{'{'}}nnnn.n{{'}'}}{{'{'}}USD{{'}'}} and requires an EEI.</p> -->
+    </div>
+    <div class="ups-group ups-bottomBorder">
+        <h3>U.S. Principal Party of Interest (USPPI)</h3>
+        <p>The person or company exporting this item is the U.S. Principal Party of Interest. If you are sending this shipment as an individual, you are the USPPI. If this is a business or commercial shipment, that business is the USPPI.</p>
+    </div>
+    <!-- //// Begin Section lvl error handling //// -->
+    <div *ngIf="(nbsBase.nbsGlobalFormSubmit && !nbsFormValid())">
+        <h3 class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please correct the following errors:
+        </h3>
+        <ul class="ups-icons-error">
+            <li *ngIf="formsWizStep2_7.controls['schedB'].hasError('required')">
+                <a href="#ups-schedB" class="ups-invalid_color" pointIdClick>Schedule B or Harmonized Tariff Number is required</a>
+            </li>
+            <li *ngIf="formsWizStep2_7.controls['grossWeight'].hasError('required')">
+                <a href="#ups-grossWeight" class="ups-invalid_color" pointIdClick>Gross weight in shipment is required</a>
+            </li>
+            <li *ngIf="formsWizStep2_7.controls['licType'].hasError('required')">
+                <a href="#ups-licType" class="ups-invalid_color" pointIdClick>License Type Code is required</a>
+            </li>
+            <li *ngIf="formsWizStep2_7.controls['exportInfo'].hasError('required')">
+                <a href="#ups-exportInfo" class="ups-invalid_color" pointIdClick>Export Information is required</a>
+            </li>
+            <li *ngIf="formsWizStep2_7.controls['eccn'].hasError('required')">
+                <a href="#ups-eccn" class="ups-invalid_color" pointIdClick>ECCN is required</a>
+            </li>
+            <li *ngIf="formsWizStep2_7.controls['expLicNum'].hasError('required')">
+                <a href="#ups-expLicNum" class="ups-invalid_color" pointIdClick>Export License Number is required</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-schedB" class="ups-form_label">
+                    Schedule B or Harmonized Tariff Number
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <p id="ups-schedBHelperTxt" class="ups-form_subheader">6 or 10 digits</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        name="ups-schedB"
+                        id="ups-schedB"
+                        class="ups-form_input"
+                        placeholder="{Pre Pop / Tariff Code}"
+                        aria-required="true"
+                        required=""
+                        aria-describedby="ups-schedB_error ups-schedBHelpherTxt"
+                        formControlName="schedB"
+                        [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['schedB'].valid && formsWizStep2_7.controls['schedB'].touched)}">
+                    <div *ngIf="formsWizStep2_7.controls['schedB'].valid">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-schedB_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!formsWizStep2_7.controls['schedB'].valid &amp;&amp; formsWizStep2_7.controls['schedB'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="formsWizStep2_7.controls['schedB'].hasError('required')">
+                            Schedule B or Harmonized Tariff Number is required.
+                        </span>
+                    </span>
+                </span>
+                <p>
+                    <a href="#" class="ups-link ups-new-window">
+                        Find your tariff code number
+                        <span class="ups-readerTxt">This will open in a new window</span>
+                        <span class="ups-icon-newwindow" aria-hidden="true"></span>
+                    </a>
+                </p>
+            </div>
+            <div class="ups-form_group ups-form_required ups-input_has_unit ups-help_wrapper">
+                <label for="ups-grossWeight" class="ups-form_label">
+                    Gross weight in shipment
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-help" upsHelpBtn>
+                    <button type="button" id="ups-formHelp2" class="ups-help_link">
+                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                        Help
+                    </button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                        <button type="button" class="ups-help_close">
+                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>Add up what this item weights, in its retail packaging, in the quantity you are shipping it. Then include the weight of the shipping containers they are in. If a package contains only that commodity, gross weight is the same as package weight.</p>
+                    </div>
+                </div>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                            name="ups-grossWeight"
+                            class="ups-form_input"
+                            id="ups-grossWeight"
+                            placeholder="{Pre Pop / NAFTA or U.S. C.O.}"
+                            aria-required="true"
+                            required=""
+                            aria-describedby="ups-grossWeight_error"
+                            formControlName="grossWeight"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['grossWeight'].valid && formsWizStep2_7.controls['grossWeight'].touched)}">
+                    <span class="ups-input_unit_measure">[lbs/kg]</span>
+                    <div *ngIf="formsWizStep2_7.controls['grossWeight'].valid">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-grossWeight_error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!formsWizStep2_7.controls['grossWeight'].valid &amp;&amp; formsWizStep2_7.controls['grossWeight'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="formsWizStep2_7.controls['grossWeight'].hasError('required')">
+                            Gross Weight in Shipment is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN Exemption Lever -->
+    <div class="ups-form_group">
+        <label class="ups-lever" onclick="" for="ups-exemption">
+            <input type="checkbox"
+                    class="ups-lever_checkbox"
+                    id="ups-exemption"
+                    name="ups-exemption"
+                    checked=""
+                    [(ngModel)]="exemption"
+                    [ngModelOptions]="{'standalone': true}">
+            <strong class="ups-form_label ups-lever_label">Does this product require an export license or exemption?</strong>
+            <span aria-hidden="true" class="ups-lever_switch">
+                <span class="ups-lever_switch_yes">Yes</span>
+                <span class="ups-lever_switch_bg"></span>
+                <span class="ups-lever_switch_no">No</span>
+            </span>
+        </label>
+    </div>
+    <!-- End Exemption Lever -->
+
+    <!-- BEGIN Ship Tip -->
+    <div class="alert alert-warning " role="alert">
+        <div class="alert-icon pull-left">
+            <span class="icon ups-icon-informationcircle" aria-hidden="true"></span>
+        </div>
+
+        <button type="button"
+                class="ups-alert_collapse"
+                aria-expanded="false"
+                (click)="shipTipDisplay = !shipTipDisplay">
+            <span class="ups-readerTxt">Click to expand</span>
+            <span [ngClass]="{ 'ups-icon-wedgeup' : shipTipDisplay, 'ups-icon-wedgedown' : !shipTipDisplay }" class="icon " aria-hidden="true"></span>
+        </button>
+
+        <div class="alert-title ups-alert_has_icon"><p><strong>Ship Tip:</strong> How do I know if I need an export license?</p></div>
+        <div class="alert-content ups-alert_has_icon" *ngIf="shipTipDisplay">
+            <p>
+                Only about 5% of exports require an export license. If your shipment involves government or military agencies, certain countries or territories or end user, or if a product has a "dual-use" military or weapons-engineering function, you may need a license or an exception code to export your product. 
+                <button type="button" [attr.aria-expanded]="moreInfo" aria-controls="moreShiptip1" class="ups-link" (click)="moreInfo = !moreInfo">
+                    <span *ngIf="!moreInfo">More...</span>
+                    <span *ngIf="moreInfo">Less</span>
+                </button>
+            </p>
+            <div id="moreShiptip1">
+                <div *ngIf="moreInfo">
+                    <p>The Bureau of Industry and Security (BIS) divides licensed products into 10 categories:</p>
+                    <ul class="ups-list_style_none">
+                        <li *ngFor="let item of shipTipItems; let i = index">{{i}} - {{item.copy}}</li>
+                    </ul>
+                    <!-- <div class="ups-group ups-group_condensed">
+                        <p>0 - Nuclear materials equipment and miscellanious components</p>
+                        <p>1 - Materials related to chemicals, microorganisms, and toxins</p>
+                        <p>2 - Materials processing</p>
+                        <p>3 - Electronics</p>
+                        <p>4 - Computers</p>
+                        <p>5 - Telecommunications and information security</p>
+                        <p>6 - Sensors and lasers</p>
+                        <p>7 - Navigation and avionics</p>
+                        <p>8 - Marine equipment and accessories</p>
+                        <p>9 - Propulsion systems, space vehicles and related equipment</p>
+                    </div> -->
+                    <p>Each regulated product has a 5-digit export control classification number (ECCN). If you're exporting a retail item manufactured by another company, chances are they've already classified the item. Look for the ECCNs on the company's website, or find your product on the Commerce Control List: <a href="http://www.bis.doc.gov" class="ups-link">www.bis.doc.gov</a></p>
+                    <p>Even if your product is listed, it doesn't always mean you need an export license. Every ECCN has one or more "reasons for control," which do not apply equally to all countries or territories. Find your country or territory of export in the Commerce County Chart to see if any "reasons for control" apply: <a href="https://www.bis.doc.gov/index.php/forms-documents/doc_view/14-commerce-country-chart" class="ups-link">Commerce Country Chart</a></p>
+                    <p><strong>If you need an export license</strong>:</p>
+                    <p>Apply online with BIS through the SNAP-R portal. There's no fee for filing. Be aware, though, that it can take up to six weeks to get a license processed and approved, depending on volume.</p>
+                    <p>You can search for denied parties, detect export licenses, and search import and export regulations by country or territory with our TradeAbility international tools: <a href="#" class="ups-link">TradeAbility</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Ship Tip -->
+    <div *ngIf="exemption">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- BEGIN License Type Select -->
+                <div class="ups-form_group ups-form_required ups-help_wrapper">
+                    <label for="ups-licType" class="ups-form_label">
+                        License Type Code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-help" upsHelpBtn>
+                        <button type="button" id="ups-formHelp3" class="ups-help_link">
+                            <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                            Help
+                        </button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close">
+                                <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>This is the classification under which your export license number has been issued by the Bureau of Industry and Security (BIS) or other military or governmental agency, or the exemption from export license requirements that your product might otherwise require. </p>
+                        </div>
+                    </div>
+                    <div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper">
+                        <select id="ups-licType"
+                            class="ups-dropdown"
+                            name="ups-licType"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-licType_error"
+                            formControlName="licType"
+                            [(ngModel)]="licType"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['licType'].valid && formsWizStep2_7.controls['licType'].touched)}">
+                            <option value="0" selected="">C35 - Limited Value Shipments (LVS)</option>
+                        </select>
+                        <div *ngIf="formsWizStep2_7.controls['licType'].valid">
+                            <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-licType-error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_7.controls['licType'].valid &amp;&amp; formsWizStep2_7.controls['licType'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_7.controls['licType'].hasError('required')">
+                                License Type Code is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <!-- END License Type Input -->
+                <!-- BEGIN Export Info Select -->
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-exportInfo" class="ups-form_label">
+                        Export Information Code
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-dropdown_wrapper ups-text_wrapper ups-input_wrapper">
+                        <select id="ups-exportInfo"
+                            class="ups-dropdown"
+                            name="ups-exportInfo"
+                            required
+                            aria-required="true"
+                            aria-describedby="ups-exportInfo_error"
+                            formControlName="exportInfo"
+                            [(ngModel)]="exportInfo"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['exportInfo'].valid && formsWizStep2_7.controls['exportInfo'].touched)}">
+                            <option value="1">CH - Charitable Donation</option>
+                            <option value="2">CI - Charitable Donation (Impelled)</option>
+                            <option value="3">DD - Currency &amp; Government Use</option>
+                            <option value="4">FI - Foreign Military Sales (Impelled)</option>
+                            <option value="5">FS - Foreign Military Sales</option>
+                            <option value="6">GP - Government Processing</option>
+                            <option value="7">GS - Government Shipment</option>
+                            <option value="8">HH - Personal and household effects</option>
+                            <option value="9">IP - Inbond Goods, Processed</option>
+                            <option value="10">IR - Inbond Goods, Repaired</option>
+                            <option value="11">IS - Inbond Goods in Same Condition</option>
+                            <option value="12">LC - License Required</option>
+                            <option value="13">LV - Limited Value</option>
+                            <option value="14">MS - Military Shipment</option>
+                            <option value="15">OI - Other Shipments (Impelled)</option>
+                            <option value="16">OS - Other Shipments</option>
+                            <option value="17">TE - Temporary Export</option>
+                            <option value="18">TL - Temporary Lease</option>
+                            <option value="19">TP - Temporary for Processing</option>
+                            <option value="20">UG - Single Gift Parcel</option>
+                        </select>
+                        <div *ngIf="formsWizStep2_7.controls['exportInfo'].valid">
+                            <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-exportInfo-error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_7.controls['exportInfo'].valid &amp;&amp; formsWizStep2_7.controls['exportInfo'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_7.controls['exportInfo'].hasError('required')">
+                                    Export Information Code is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <!-- END Export Info Input -->
+                <!-- BEGIN ECCN Input -->
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-eccn" class="ups-form_label">
+                        ECCN
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-help" upsHelpBtn>
+                        <button type="button" id="ups-formHelp4" class="ups-help_link">
+                            <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                            Help
+                        </button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close">
+                                <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Your export control classification number (ECCN) is a five-character code that identifies your product within one of the ten categories of regulated items in the Commerce Control List (CCL). Find your ECCN at www.bis.doc.gov.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="ups-eccn"
+                            id="ups-eccn"
+                            class="ups-form_input"
+                            aria-required="true"
+                            required=""
+                            aria-describedby="ups-eccn_error"
+                            formControlName="eccn"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['eccn'].valid && formsWizStep2_7.controls['eccn'].touched)}">
+                        <div *ngIf="formsWizStep2_7.controls['eccn'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-eccn" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_7.controls['eccn'].valid &amp;&amp; formsWizStep2_7.controls['eccn'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_7.controls['eccn'].hasError('required')">
+                                ECCN is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <!-- END ECCN Input -->
+                <!-- BEGIN Export License Input -->
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-expLicNum" class="ups-form_label">
+                        Export License Number
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-help" upsHelpBtn>
+                        <button type="button" id="ups-formHelp5" class="ups-help_link">
+                            <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                            Help
+                        </button>
+                        <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                            <button type="button" class="ups-help_close">
+                                <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Close</span>
+                            </button>
+                            <p>Export licenses are issued by the Bureau of Industry and Security (BIS) for the small percentage of exports regulated for "dual-use" military application, and when shipping to certain destinations. See licensing details and exemptions at www.bis.doc.gov.</p>
+                        </div>
+                    </div>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            name="ups-expLicNum"
+                            id="ups-expLicNum"
+                            class="ups-form_input"
+                            aria-required="true"
+                            required=""
+                            aria-describedby="ups-expLicNum_error"
+                            formControlName="expLicNum"
+                            [ngClass]="{'ups-bodError':  (!formsWizStep2_7.controls['expLicNum'].valid && formsWizStep2_7.controls['expLicNum'].touched)}">
+                        <div *ngIf="formsWizStep2_7.controls['expLicNum'].valid">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    </div>
+                    <span class="ups-icons-error" id="ups-expLicNum_error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!formsWizStep2_7.controls['expLicNum'].valid &amp;&amp; formsWizStep2_7.controls['expLicNum'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span class="ups-readerTxt"> Invalid</span>
+                            <span *ngIf="formsWizStep2_7.controls['expLicNum'].hasError('required')">
+                                Export License Number is required.
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <!-- END Export License Input -->
+            </div>
+        </div>
+    </div>
+    <!-- BEGIN Previous/Next buttons -->
+    <div class="ups-form_ctaGroup text-center">
+        <button class="ups-cta ups-cta_tertiary" type="button">Previous</button>
+        <button class="ups-cta ups-cta_primary" type="button" (click)="formSubmit()">Next</button>
+    </div>
+    <!-- END Previous/Next buttons -->
+</div>

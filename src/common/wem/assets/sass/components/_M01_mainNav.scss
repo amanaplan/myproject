@@ -1,0 +1,1242 @@
+// ----------------------------------------------------
+// MAIN NAV
+// ----------------------------------------------------
+
+#ups-headerWrap {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: $ups_brown;
+    height: $head_hgt - $head_line;
+    z-index: $zTop;
+    position: relative;
+    width: 100%;
+
+    .touch & {
+       /*position: fixed; //defect id : 308904
+        top: 0;*/
+
+        @media #{$media-small} {
+            position: relative;
+            top: auto;
+        }
+    }
+
+    @include transition-property(all);
+    @include transition-duration(0.3s);
+
+    .ups-touchDemo & {
+        position: relative;
+    }
+
+    .ups-headFixed &,
+    &.ups-header_light {
+        top: -32px;
+        right: 0%;
+        width: 100%;
+    }
+
+
+
+
+    .ups-headFixed & {
+        position: fixed;
+    }
+
+    & ~ #ups-main, & ~ .container-fluid.iw_section:nth-child(2) {
+        margin-top: -40px; // changed per PMG-157
+        // padding-top: 32px; defect id : 308904
+
+        @media #{$media-medium} {
+            margin-top: -32px; // changed per PMG-157
+        }
+    }
+}
+
+#ups-header {
+    @include pie-clearfix;
+    position: relative;
+    height: ($head_hgt - $head_line);
+
+    .ups-touchDemo &:before {
+        content: '';
+        position: fixed;
+        display: block;
+        width: 1024px;
+        height: 690px;
+        top: 0;
+        left: 50%;
+        margin-left: -512px;
+        border: 2px dashed $red;
+        z-index: 1;
+    }
+}
+
+
+#ups-skipNav {
+    position: absolute;
+    width: 140px;
+    background: $ups_gold;
+    padding: 5px;
+    text-align: center;
+    color: $ups_brown;
+    top: -100px;
+    left: 50%;
+    margin-left: -70px;
+    font-family: $sans;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    max-height: 40px;
+    z-index: $zTop + 1;
+    @include transition-property(top);
+    @include transition-duration(0.3s);
+
+    &:focus { top: 0; }
+}
+.ups-header_light {
+    #ups-skipNav{
+        &:focus { top: 32px; }
+    }
+
+    &:not(.ups-header_ls_down) {
+        #ups-skipNav {
+            display:none;
+        }
+    }
+}
+
+
+
+#ups-header_logo {
+    position: absolute;
+    display: block;
+    //bottom: 11px;
+    bottom: 22px;
+    z-index: 2;
+    #{$default-float}: 0;
+    transition: 0.3s;
+    // width: 72px;
+    width: 67px;
+    height: 78px;
+    // padding-top: 85px;
+    // padding-top: 78px;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    // @include transition-property(all);
+    // @include transition-duration(0.3s);
+    background-image: image-url('UPS_logo.svg');
+    .no-svg & { background-image: image-url('UPS_logo.png'); }
+    @include hide-text;
+
+    .ups-headFixed &,
+    .ups-header_light & {
+//         padding-top: 68px;
+//         width: 57px;
+// //        top: 47px;
+        bottom: 11px;
+    }
+}
+
+.ups-header_utils {
+    @include unlist;
+    position: absolute;
+    #{$opposite-direction}: 0;
+    top: 14px;
+
+    li {
+        float: $default-float;
+        font-size: 0.9em;
+        padding: 0 20px;
+        border-#{$opposite-direction}: 1px solid $brown_s1;
+        color: $white;
+
+        &.ups-active {
+            a {
+                text-decoration: none;
+                color: $ups_gold;
+            }
+        }
+
+        a {
+            color: $white;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                color: $ups_gold;
+            }
+            
+            
+            &.ups-menu_toggle .ups-icon-chevrondown:before {
+                @include ups-icons;
+                content: "\e626";
+                padding-#{$default-float}: 10px;
+                font-size: 0.8em;
+                line-height: 0;
+                position: relative;
+                top: 1px;
+            }
+        }
+
+        &.ups-account {
+
+            .ups-menu_toggle {
+                // &.ups-user:before {
+                //     @include ups-icons;
+                //     content: "\e675";
+                //     padding-#{$opposite-direction}: 10px;
+                //     font-size: 1.3em;
+                //     line-height: 0;
+                //     position: relative;
+                //     top: 3px;
+                // }
+
+                .ups-account_user {
+                    display: block;
+                    float: $default-float;
+                    position: relative;
+                    top: -6px;
+                    height: 24px;
+                    margin-#{$opposite-direction}: 10px;
+                    border: 1px solid $white;
+                    &[src='']{
+                        display:none;
+                    }
+                }
+            }
+
+            .ups-cta {
+                margin-bottom: 12px;
+                display: block;
+                color: $white;
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    color: $white;
+                }
+            }
+        }
+
+        &.ups-language {
+            .ups-menu_toggle {
+                .ups-icon-globe:before {
+                    @include ups-icons;
+                    content: '\e63e';
+                    position: relative;
+                    top: 2px;
+                    margin-#{$opposite-direction}: 10px;
+                    font-size: 1.1em;
+                    line-height: 0;
+                }
+            }
+            &.ups-no-language{
+              .ups-more{
+                margin-top:0;
+                padding-top:0;
+                border-top:none;
+              }
+            }
+        }
+
+        &.ups-alerts_link {
+            a:before {
+                @include ups-icons;
+                content: '\e639';
+                font-size: 1.2em;
+                position: relative;
+                top: 2px;
+                margin-#{$opposite-direction}: 6px;
+                line-height: 0;
+            }
+        }
+
+        &:last-child {
+            padding-#{$opposite-direction}: 0;
+            border: 0;
+        }
+    }
+
+    .ups-menu {
+        position: relative;
+        &.ups-active {
+            .ups-menu_toggle .ups-icon-chevrondown:before {
+                content: "\e62b";
+                top:0;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                height: 8px;
+                background: $ups_gold;
+            }
+        }
+    }
+
+    .ups-menu_list {
+        display: none;
+        position: absolute;
+        background: $white;
+        width: 300px;
+        top: 100%;
+        #{$opposite-direction}: 0;
+        z-index: 1;
+        margin-top: 6px;
+        border: 1px solid $ups_stone;
+        border-top: 2px solid $ups_gold;
+        border-bottom: 5px solid $ups_gold;
+        padding: 12px 22px;
+
+        ul {
+            @include unlist;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 2px solid $ups_stone;
+
+            &:first-of-type {
+                margin: 0;
+                padding-top: 0;
+                border: none;
+            }
+           
+           &.ups-profile_links > li:first-child{
+           		border-top: 0px solid #d9d9d6 !important; 
+            }
+           &.ups-profile_links > li:nth-child(5n+1){
+           		border-top: 2px solid $ups_stone;
+            }
+           
+        }
+
+        li {
+            font-size: 1.1em;
+            float: none;
+            border: none;
+            padding: 10px 0 ;
+
+            a {
+                color: $black_s3;
+                &:before { display: none; }
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    color: $black_s1;
+                    text-decoration: underline;
+                }
+                
+            }
+        }
+
+        .ups-more {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 2px solid $ups_stone;
+            font-weight: 700;
+            font-family: $sans;
+
+            a {
+                font-size: 1.1em;
+                display: block;
+                padding: 12px 0;
+                color: $ups_brown;
+                // &:before {
+                //     @include ups-icons;
+                //     content: "\e629";
+                //     float: right;
+                // }
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    color: $ups_brown;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .ups-account_profile {
+            display: none;
+        }
+
+    }
+
+    @media #{$media-medium} {
+
+    }
+}
+
+#ups-header_search {
+    position: absolute;
+    top: 44px;
+    #{$opposite-direction}: 0;
+    border: 1px solid $ups_stone;
+    height: 28px;
+    width: 200px;
+
+    input {
+        display: block;
+        height: 26px;
+        width: 100%;
+        padding: 0 10px;
+        padding-#{$opposite-direction}: 38px;
+        border: none;
+        line-height: 28px;
+        font-size: 0.9em;
+        font-style: italic;
+        background: $ups_brown;
+        color: $stone_s3;
+
+        @include input-placeholder {
+            color: $ups_stone;
+        }
+
+        &:focus,
+        &.ups-active {
+            background: $white;
+            color: $ups_brown;
+
+            @include input-placeholder {
+                color: $stone_s3;
+            }
+        }
+    }
+
+    button {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        height: 0;
+        top: 0;
+        #{$opposite-direction}: 0;
+        width: 28px;
+        padding: 26px 0 0;
+        border: none;
+        background: $water_s3;
+        color: $white;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        .ups-headerTool_widgetAlert {
+            @include ups-icons;
+            content: "\e668";
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            line-height: 26px;
+
+            &:before {
+                line-height: 21px;
+            }
+        }
+
+        .no-touch &:hover,
+        .no-touch &:focus {
+            background: darken($water_s3, 5%);
+            // background: $ups_water;
+            // color: $ups_brown;
+        }
+    }
+
+    .ups-header_search_submit i:before {
+        top: 50%;
+        left: 0;
+        position: absolute;
+        -ms-tranform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        right: 0;
+
+        // icon is ie9 is displayed incorrectly
+        .ie9 & {
+            top: 25%;
+        }
+    }
+}
+
+#ups-header_custServ {
+    position: absolute;
+    bottom: 0;
+    #{$opposite-direction}: 0;
+    padding: 0;
+    height: 47px;
+
+    &.ups-active {
+
+        .ups-menu_toggle {
+            &:after {
+                height: 12px;
+            }
+        }
+
+        .ups-header_custServ_list {
+            top: 47px;
+        }
+    }
+
+    .ups-menu_toggle {
+        @include unbutton;
+        float: #{$opposite-direction};
+        margin: 0;
+        color: $white;
+        background: $water_s3;
+        font: 0.9em/35px $sans;
+        height: 35px;
+        width: 200px;
+        padding-top: 1px;
+        position: relative;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        .icon:before {
+            @include ups-icons;
+            content: "\e660";
+            font-size: 1.4em;
+            position: relative;
+            top: 4px;
+            padding-#{$opposite-direction}: 8px;
+            line-height: 0;
+        }
+
+        &:after {
+            content: '';
+            background: darken($water_s3, 5%);
+            position: absolute;
+            display: block;
+            height: 0;
+            width: 100%;
+            top: 100%;
+            #{$default-float}: 0;
+        }
+
+        .no-touch &:hover {
+            outline: none;
+            background: darken($water_s3, 5%);
+        }
+
+        .no-touch &:focus {
+            outline: 1px auto #ffb500;
+            background: darken($water_s3, 5%);
+        }
+    }
+
+    &.ups-active .ups-menu_toggle,
+    .no-touch &.ups-active .ups-menu_toggle:hover,
+    .no-touch &.ups-active .ups-menu_toggle:focus {
+        background: darken($water_s3, 5%);
+    }
+
+}
+
+.ups-header_custServ_list {
+    position: absolute;
+    display: none;
+    top: 35px;
+    #{$opposite-direction}: 0;
+    width: 400px;
+    margin-top: -2px;
+    padding: 10px 0;
+    color: $ups_brown;
+    background: $white;
+    border: 1px solid $ups_stone;
+    border-top: 2px solid $ups_water;
+    border-bottom: 5px solid $water_s3;
+    z-index: 1;
+
+    &.ups-header_custServ_list-hasSupport {
+        width: 600px;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        #{$opposite-direction}: 0;
+        bottom: 0;
+        width: 200px;
+        background: $stone_60;
+        border-left: 1px solid $ups_stone;
+    }
+
+    ul {
+        float: $opposite-direction;
+        list-style: none;
+        margin: 0;
+
+        a {
+            display: inline-block;
+            padding: 15px 0;
+            color: $ups_brown;
+        }
+    }
+
+    .ups-header_custServ_contact {
+        padding: 0;
+        li {
+        	&.ups-icon-conversation:before,
+        	&.ups-icon-email:before,
+        	&.ups-icon-phone:before,
+        	&.ups-icon-locator:before{
+        		content: '';
+        	}
+          &.ups-email a .icon:before,&.ups-icon-email a .icon:before { content: "\e637"; }
+          &.ups-phone a .icon:before, &.ups-icon-phone a .icon:before { content: "\e658"; }
+          &.ups-conversation a .icon:before, &.ups-icon-conversation a .icon:before { content: "\e62f"; }
+          &.ups-locator a .icon:before,&.ups-icon-locator a .icon:before { content: "\e62d"; }
+          a{
+            .icon.ups-link_newwindow{
+              &:before{
+                position: static;
+                content: "\e656";
+                font-size: 11px;
+              }
+            }
+            &:hover{
+              .icon{
+                  text-decoration: none;
+              }
+            }
+          }
+        }
+
+        a {
+            padding-#{$default-float}: 48px;
+            position: relative;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+
+            .icon:before {
+                @include ups-icons;
+                color: $water_s3;
+                position: absolute;
+                top: 13px;
+                #{$default-float}: 20px;
+                font-size: 1.3em;
+                @media #{$media-medium} {
+					         top: 19px;
+                	 #{$default-float}: 3px;
+    			      }
+            }
+        }
+    }
+
+    .ups-header_custServ_support {
+        float: right;
+
+        h3 {
+            margin: 0 0 10px;
+            padding-top: 12px;
+            font-size: 1.2em;
+            font-family: $serif;
+        }
+
+        a {
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        ul {
+            padding: 0;
+            float: none;
+        }
+
+        li {
+            padding: 10px 0;
+
+            span {
+                display: block;
+                font-family: $sans-bd;
+
+                .ups-rtl {
+                    font-family: $sans;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        @media #{$media-medium} {
+            float: none;
+        }
+    }
+}
+
+#ups-navItems {
+    z-index: -1;
+    .ups-menuBack {
+        display: none;
+    }
+}
+
+.ups-navItems_primary {
+    margin-#{$default-float}: 25%;
+    padding-top: ($head_hgt - $head_line - 47);
+    width: 50%;
+    @include display-flex;
+    @include justify-content(space-around);
+
+    .no-flexbox & {
+        display: block;
+    }
+}
+
+.ups-navMenu {
+    $menu_gutter: 15px;
+
+    float: $default-float;
+    clear: $opposite-direction;
+    padding: 12px 15px 0;
+
+    .no-flexbox & {
+        width: 33.33%;
+    }
+
+    .ups-menu_toggle {
+        @include unbutton;
+        display: block;
+        margin: 0;
+        color: $white;
+        font: 1.1em/1 $sans-bd;
+        letter-spacing: 0.07em;
+        padding: 0 0 8px;
+        height: 35px;
+        text-align: center;
+        outline: none;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .no-flexbox & {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ie9[lang="de"] & {
+            font-size: 0.85em;
+        }
+
+        .no-touch &:hover {
+            outline: none;
+            text-decoration: none;
+            color: $ups_gold;
+        }
+
+        .no-touch &:focus {
+            text-decoration: none;
+            color: $ups_gold;
+            position: relative;
+
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                height: 8px;
+                bottom: 0;
+                width: 100%;
+                background: $ups_gold;
+            }
+
+            @media #{$media-medium} {
+                color: $white;
+                &:before { display: none; }
+            }
+        }
+    }
+
+    &.ups-active .ups-menu_toggle {
+        color: $ups_gold;
+        position: relative;
+
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 8px;
+            bottom: 0;
+            width: 100%;
+            background: $ups_gold;
+        }
+
+        @media #{$media-medium} {
+            color: $white;
+            &:before { display: none; }
+        }
+    }
+
+    .ups-menu_list {
+        position: absolute;
+        display: none;
+        z-index: 1;
+        #{$opposite-direction}: 0;
+        top: 100%;
+        margin-top: -2px;
+        padding: 30px 0 0;
+        background: $white;
+        border: 1px solid $ups_stone;
+        border-top: 2px solid $ups_gold;
+        border-bottom: 5px solid $ups_gold;
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            #{$opposite-direction}: 0;
+            bottom: 0;
+            width: 25%;
+            background: $stone_60;
+            border-left: 1px solid $ups_stone;
+
+            @media #{$media-medium} {
+                display: none;
+            }
+        }
+/*
+        &.ups-cols-1 {
+            left: 25%;
+            #{$opposite-direction}: 25%;
+            &:before,
+            .ups-menu_mktg,
+            .ups-menu_listCols {
+                width: 50%;
+            }
+            .ups-menu_column {
+                width: 100%;
+            }
+            .ups-menu_cta {
+                #{$opposite-direction}: 50%;
+            }
+        }
+*/
+        &.ups-cols-2, &.ups-cols-1 {
+            #{$default-float}: 25%;
+            &:before,
+            .ups-menu_mktg {
+                width: 33.33%;
+            }
+            .ups-menu_listCols {
+                width: 66.66%;
+            }
+            .ups-menu_column {
+                width: 50%;
+            }
+            .ups-menu_cta {
+                #{$opposite-direction}: 33.33%;
+                color: $black_s3;
+                @include transition-property(all);
+                @include transition-duration($main-transition-speed);
+
+                &:hover {
+                    color: $black_s1;
+                }
+
+            }
+        }
+
+        &.ups-cols-3 {
+            #{$default-float}: 0;
+        }
+
+        .ups-menu_listCols {
+            padding: 0 ($menu_gutter/2) 60px;
+            width: 75%;
+            float: $default-float;
+        }
+
+        .ups-menu_column {
+            float: $default-float;
+            padding: 0 $menu_gutter;
+            width: 33.33%;
+        }
+
+        h3 {
+            font-family: $serif;
+            margin: 0 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid $ups_gold;
+            text-transform: uppercase;
+            font-size: 1.2em;
+
+            .ups-more {
+                float: #{$opposite-direction};
+                font: 0.8em/1.5 $sans;
+                text-transform: none;
+                text-decoration: underline;
+                color: $ups_brown;
+                letter-spacing: 0;
+            }
+        }
+
+        ul {
+            @include unlist;
+
+            a {
+                display: block;
+                color: $black_s3;
+                padding: 10px 13px;
+                @include transition-property(all);
+                @include transition-duration($main-transition-speed);
+
+                em {
+                    display: block;
+                }
+
+                &.ups-more {
+                    font-family: $sans-bd;
+
+                    .ups-rtl & {
+                        font-family: $sans;
+                        font-weight: 700;
+                    }
+                }
+
+                &:hover {
+                    color: $black_s1;
+                }
+                
+
+            }
+        }
+
+        .ups-menu_cta {
+            position: absolute;
+            #{$opposite-direction}: 25%;
+            bottom: 20px;
+            margin-#{$opposite-direction}: $menu_gutter * 2;
+            color: $black_s3;
+            padding-#{$opposite-direction}: 15px;
+
+            .icon:before {
+                @include ups-icons;
+                content: "\e629";
+                position: relative;
+                top: 2px;
+                margin-#{$default-float}: 4px;
+                font-size: 0.8em;
+                line-height: 0;
+                position: absolute;
+                #{$opposite-direction}: 0px;
+                top: 8px;
+                @media #{$media-small}, #{$media-medium}{
+			        position: static;
+			    }
+            }
+
+            .ups-rtl &:after {
+                content: "\e201";
+            }
+
+            &:hover, &:focus {
+                color: $black_s1;
+                &:after {
+                    text-decoration: none;
+                }
+            }
+            
+ 
+        }
+
+        .ups-menu_mktg {
+            float: $opposite-direction;
+            position: relative;
+            width: 25%;
+            padding: 0 $menu_gutter 24px;
+
+            img {
+                cursor: pointer;
+                width: 100%;
+                display: block;
+                margin-bottom: 30px;
+            }
+
+            h3 {
+                text-transform: none;
+                border: none;
+                font: 1em $sans;
+                font-weight: 700;
+                padding: 0;
+            }
+
+            .ups-cta_link {
+                color: $black_s3;
+                text-decoration: underline;
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    color: $black_s1;
+                }
+                
+
+            }
+
+            .ups-menu_mktgLinks {
+                padding-bottom: $menu_gutter;
+                margin-bottom: 22px;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    height: 2px;
+                    position: absolute;
+                    bottom: 1px;
+                    #{$default-float}: (-$menu_gutter);
+                    #{$opposite-direction}: (-$menu_gutter);
+                    background: rgba($stone_s3, 0.3);
+                }
+
+                h3 {
+                    margin: 0 0 15px;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid $ups_gold;
+                    text-transform: uppercase;
+                    font: 1.2em $serif;
+                }
+            }
+        }
+    }
+}
+
+#ups-header_search-mob {
+    display: none;
+}
+
+
+
+// MEDIUM VIEWPORT
+// ----------------------------------------------------
+@media #{$media-medium} {
+
+    #ups-header {
+        height: ($head_hgt_md - $head_line_md);
+    }
+
+    #ups-header_logo {
+        &, .ups-headFixed & {
+            top: auto;
+            bottom: 20px;
+            width: 47px;
+            height: 55px;
+        }
+    }
+
+    .ups-navMenu {
+        .no-flexbox & {
+            width: auto;
+        }
+    }
+
+    #ups-touchNav {
+        position: absolute;
+        top: 0;
+        #{$opposite-direction}: 0;
+        padding-top: 22px;
+
+        // commented as search button overlaps over quickstart dropdown
+        /*a, button {
+            margin-#{$default-float}: 15px;
+        }*/
+
+        .ups-menuToggle {
+            @include unbutton;
+            color: $white;
+            float: $opposite-direction;
+            font-size: 32px;
+            width: 48px;
+            height: 55px;
+            position: relative;
+
+            .ups-icon-menu:before {
+                display: block;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                line-height: 55px;
+                text-align: center;
+            }
+        }
+
+        .ups-searchBtn {
+            /* background: $water_s3;*/
+            color: $white;
+            float: $opposite-direction;
+            font-size: 34px;
+            width: 60px;
+            height: 74px;
+            position: relative;
+
+            .ups-icon-search:before {
+                display: block;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                line-height: 40px;
+                text-align: center;
+                padding-top: 4px;
+            }
+
+            &.ups-active {
+                background: $white;
+                color: $ups_brown;
+                z-index: $zQtr + 1;
+
+            }
+
+            .no-touch &:hover,
+            .no-touch &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+
+    #ups-header_search { display: none; }
+
+    #ups-header_search-mob {
+        position: absolute;
+        top: 94px;
+        z-index: $zQtr;
+        #{$opposite-direction}: 0;
+        width: 60%;
+        overflow: hidden;
+        border: 1px solid $ups_stone;
+
+        input[type="text"],
+        input[type="search"] {
+            border: 1px solid $white;
+            display: block;
+            width: 100%;
+            padding: 0 15px;
+            height: 48px;
+            line-height: 48px;
+            padding-#{$opposite-direction}: 70px;
+            background: $white;
+            font-size: 1.5em;
+
+            @include input-placeholder {
+                color: $black_s1;
+                font-style: italic;
+            }
+        }
+
+        button {
+            display: block;
+            position: absolute;
+            overflow: hidden;
+            height: 0;
+            top: 0;
+            border-radius: 0;
+            #{$opposite-direction}: 0;
+            width: 48px;
+            padding: 48px 0 0;
+            border: none;
+            color: $water_s3;
+
+            .no-touch &:hover,
+            .no-touch &:focus {
+                color: $ups_water;
+            }
+
+            .icon:before {
+                @include ups-icons;
+                content: "\e629";
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                text-align: center;
+                line-height: 48px;
+                font-size: 28px;
+                color: $white;
+            }
+
+            .ups-rtl &:before {
+                content: "\e201";
+            }
+        }
+
+        @media #{$media-medium} {
+            &.ups-active {
+                display: block;
+            }
+        }
+
+        @media #{$media-small} {
+            top: 76px;
+            width: auto;
+            left: -20px;
+            right: -20px;
+        }
+
+    }
+
+}
+
+// SMALL VIEWPORT
+// ----------------------------------------------------
+@media #{$media-small} {
+    #ups-headerWrap {
+        border-width: $head_line_sm;
+        height: auto;
+    }
+
+    #ups-header {
+        height: auto;
+        padding-top: ($head_hgt_sm - $head_line_sm);
+        z-index: 1000;
+    }
+
+    #ups-header_logo {
+        &, .ups-headFixed & {
+            bottom: auto;
+            top: 14px;
+            width: 42px;
+            height: 50px;
+            z-Index: 0;
+        }
+    }
+
+    #ups-touchNav {
+        padding-top: 14px;
+
+        .ups-menuToggle,
+        .ups-searchBtn {
+            // margin-#{$default-float}: 4px;
+            width: 48px;
+            height: 64px;
+            font-size: 28px;
+
+            .ups-icon-menu:before, .ups-icon-search:before {
+                line-height: 50px;
+            }
+        }
+    }
+}
+
+/* .ups-service_speed{
+	margin-top: 5px;
+} */
+
+
+

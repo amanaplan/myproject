@@ -1,0 +1,2205 @@
+---
+title: ct1_tra_tra(1tra)
+layout: legacy.hbs
+version: v4
+appID: com.ups.trackWeb
+appCSS: ups.legacy_overrideWebTrkApp
+dir: ltr
+lang: en
+---
+
+<div id="main" class="ups-form_wrap ups-application_wrapper">
+		<!-- Style for the icdev display control box, not to be used on UPS.com -->
+		<style type="text/css">
+		.ctrl_box {
+			z-index: 2001;
+			margin: 10px;
+			padding: 10px;
+			background-color: #FFF2AC;
+			border: 1px solid #FF7800;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		.ctrl_box .btn {
+			background-color: #F31A12;
+			border-color: #FF7800 #850600 #850600 #FF7800;
+		}
+		</style>
+		<!-- End Style for the icdev display control box -->
+
+		<form action="repl_fname">
+						<!-- Begin SubTabs -->
+						<ul class="subTab clearfix">
+							<li class="tab-on">track</li>
+							<li class="tab-off"><a href="repl_href">my inbound</a></li>
+							<li class="tab-off"><a href="repl_href">quantum view</a></li>
+							<li class="tab-off"><a href="repl_href">flex global view</a></li>
+						</ul>
+						<!-- End SubTabs -->
+						<!-- Begin Application Module -->
+						<div class="appLvl tab col24 clearfix" id="fontControl">
+							<fieldset>
+								<!-- Begin Application Header -->
+								<div class="appHead clearfix">
+									<ul id="fontControlButtons" class="clearfix">
+										<!--
+									<li class="indent"><a href="javascript:void(0);" class="fontSmall" title="Small Font">A</a><a href="javascript:void(0);" class="fontMedium" title="Medium Font">A</a><a href="javascript:void(0);" class="fontLarge" title="Large Font">A</a></li>
+									<li><a href="javascript:void(0);" class="fontIncrease" title="Increase Font Size">&#43;</a></li>
+									<li><a href="javascript:void(0);" class="fontReset" title="Reset Font Size">reset</a></li>
+									<li><a href="javascript:void(0);" class="fontDecrease" title="Decrease Font Size">&#8722;</a></li>
+									-->
+									<!-- TFS327500 change the help icon to the font icon in WEM -->
+										<!-- <li><span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+										<a href="repl_href" class="helpIcon">help</a></li> -->
+										<!--
+									<li><a href="repl_href" class="btnIconL printIcon">print</a></li>
+									-->
+									</ul>
+								</div>
+								<!-- End Application Header -->
+
+								<!-- Begin Application Body -->
+								<div class="appBody clearfix fontControlBody">
+
+									<!-- Begin Section Module -->
+									<div class="secLvl secLvlPlain seccol8 marginBegin clearfix">
+										<fieldset>
+											<!-- Begin Section Body -->
+												<div class="secBody">
+												<!--<section class="ups-accordion_list">
+												<div class="ups-accordion_wrapper">-->
+		<div class="ui-accordion ui-widget ui-helper-reset" id="accordion" role="tablist">
+			<h3 aria-controls="ui-id-2" aria-expanded="true" aria-selected="true" class="ui-accordion-header ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons" id="ui-id-1" role="tab" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span><a href="#" role="tab" aria-controls="ups-accordionPanel0" aria-selected="false" id="ups-accordionHead0" aria-expanded="false">Track by Number</a></h3>
+			<div aria-hidden="false" aria-labelledby="ui-id-1" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" id="ui-id-2" role="tabpanel" style="display: block;">
+				<form action="https://wwwapps.ups.com/WebTracking/track" id="trkbynum" method="post" name="trkbynum">
+					<input name="loc" type="hidden" value="en_US"> <input name="HTMLVersion" type="hidden" value="5.0"> <input name="USER_HISTORY_LIST" type="hidden" value="">
+					<div class="secLvl clearfix">
+						<fieldset>
+						<!-- TFS327500 Removed dl dt dd -->
+							<div class="ups-form_group">
+									<label class="ups-form_label" for="trackNums"><a href="javascript:helpModLvl('https://www.ups.com/content/us/en/tracking/help/tracking/tnh.html')">Tracking or InfoNotice Numbers:</a> <span class="icon ups-track_help ups-icon-questioncircle" aria-hidden="true"></span></label>							
+									<div class="ups-textArea_wrapper ups-input_wrapper ups-showError">
+										<textarea class="ups-textArea" cols="40" id="trackNums" name="trackNums"  rows="6" placeholder="Enter up to 25 tracking or InfoNotice numbers, one per line."></textarea>
+									</div>
+							</div>
+							
+							<div class="secBody">
+								<p>By selecting the <span class="pi-h4">Track</span> button, I agree to the <a  href="javascript:helpModLvl('/WebTracking/terms?loc=en_US')">Terms and Conditions.</a><span class="icon ups-link_newwindow" aria-hidden="true"></span><span class="ups-readerTxt">Open the link in a new window</span></p>
+							</div>
+							<div class="secFooter">
+								<div class="btnBar">
+									<button class="ups-cta ups-cta_primary" name="track.x" type="submit" value="">Track</button>
+								</div>
+							</div>
+						<!-- end TFS327500 -->	
+						</fieldset>
+					</div>
+				</form>
+				<script language="JavaScript1.2" type="text/javascript">
+				/*$(function()
+				{
+				    Tracking.setLocaleString('en_US');
+				    Tracking.setLoadingText('Loading. Please wait a moment.');
+				    Tracking.setErrorMessage3('The system is unable to process your request at this time. Please try again later.');
+				    Tracking.addInstructionTextForInputPage("Enter up to 25 tracking or InfoNotice numbers, one per line.", 'y');
+				});*/
+				</script>
+			</div>
+			<h3 aria-controls="ui-id-4" aria-expanded="false" aria-selected="false" class="ui-accordion-header ui-state-default ui-corner-all ui-accordion-icons" id="ui-id-3" role="tab" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#" class="ups-accordion_toggle">Track by Reference</a></h3>
+			<div aria-hidden="true" aria-labelledby="ui-id-3" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-id-4" role="tabpanel" style="display: none;">
+				<form action="https://wwwapps.ups.com/WebTracking/track?loc=en_US" id="refinput" method="post" name="refinput">
+					<input name="USER_HISTORY_LIST" type="hidden" value=""> <input id="destCntry" name="DestinationCountry&quot;" type="hidden" value="">
+					<div class="secLvl subcolIE6 clearfix">
+						<fieldset>
+							<div class="secBody">
+							<!-- TFS327500 removed dl dt dd -->
+								<fieldset class="ups-form_group">
+									<legend class="ups-form_label"><a  href="javascript:helpModLvl('https://%20www.ups.com/content/us/en/tracking/reference/shipment_type.html')">Shipment Type:</a> <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span></label></legend>
+									<div class="ups-buttonList_wrapper ups-input_wrapper"><input checked="checked" id="packageRadio" class="ups-radio-custom" name="shipmentType" onclick="Tracking.showPackageFields('28');" type="radio" value="package"><label class="ups-radio-custom-label" for="packageRadio">Package</label></div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper"><input id="freightRadio" name="shipmentType" class="ups-radio-custom" onclick="Tracking.showFreightFields('28');" type="radio" value="freight"><label class="ups-radio-custom-label" for="freightRadio">Freight</label>
+									</div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper"><input id="mailRadio" name="shipmentType" class="ups-radio-custom" onclick="Tracking.showMailInnovationsFields('28');" type="radio" value="mi"><label class="ups-radio-custom-label" for="mailRadio">Mail Innovations</label></div>
+								</fieldset>
+								<div class="ups-form_group ups-form_required">
+									<label class="ups-form_label" for=""><a href="javascript:helpModLvl('https://www.ups.com/content/us/en/tracking/help/tracking/rnh.html')">Shipment Reference:</a><span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+                                    <span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+                                     </label>
+									<div class="ups-text_wrapper ups-input_wrapper"><input class="ups-form_input modTxtMedium" maxlength="35" name="ReferenceNumber" type="text" value=""></div>
+								</div>
+								<div class="ups-form_group ups-form_required">
+									<label class="ups-form_label" for="">Shipment Date Range: <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span></label>
+									<div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon"><input class="ups-form_input" id="fromDatepicker" maxlength="10" name="FromDatepicker" tabindex="5" type="text" value="02/06/2017"><button type="button" class="ups-date_picker_button">
+                                <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Select date from a calendar</span>
+										</button></div><label class="ups-form_label" for="">To</label> <div class="ups-text_wrapper ups-input_wrapper ups-has_calendar_icon"><input class="ups-form_input" id="toDatepicker" maxlength="10" name="ToDatepicker"  tabindex="5" type="text" value="03/06/2017"><button type="button" class="ups-date_picker_button">
+                                <span class="icon ups-icon-calendar" aria-hidden="true"></span>
+                                <span class="ups-readerTxt">Select date from a calendar</span>
+                            </button></div>
+								</div>
+								<div class="ups-form_group">
+									<label class="ups-form_label" for="">Shipper Account:</label>
+										<div class="ups-text_wrapper ups-input_wrapper"><input class="ups-form_input" id="acctNum" name="SenderShipperNumber" type="text" value=""></div>	
+								</div>
+								<div class="ups-form_group ups-help_wrapper">
+									<label class="ups-form_label" for="">Origin Country or Territory:</label>
+										<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select class="ups-dropdown" name="OriginCountry">
+											<option value=" ">
+												Select one
+											</option>
+											<option value="af">
+												Afghanistan
+											</option>
+											<option value="al">
+												Albania
+											</option>
+											<option value="dz">
+												Algeria
+											</option>
+											<option value="as">
+												American Samoa
+											</option>
+											<option value="ad">
+												Andorra
+											</option>
+											<option value="ao">
+												Angola
+											</option>
+											<option value="ai">
+												Anguilla
+											</option>
+											<option value="ag">
+												Antigua and Barbuda
+											</option>
+											<option value="an">
+												Antilles Netherlands
+											</option>
+											<option value="ar">
+												Argentina
+											</option>
+											<option value="am">
+												Armenia
+											</option>
+											<option value="aw">
+												Aruba
+											</option>
+											<option value="au">
+												Australia
+											</option>
+											<option value="at">
+												Austria
+											</option>
+											<option value="az">
+												Azerbaijan
+											</option>
+											<option value="ap">
+												Azores
+											</option>
+											<option value="bs">
+												Bahamas
+											</option>
+											<option value="bh">
+												Bahrain
+											</option>
+											<option value="bd">
+												Bangladesh
+											</option>
+											<option value="bb">
+												Barbados
+											</option>
+											<option value="by">
+												Belarus (Byelorussia)
+											</option>
+											<option value="be">
+												Belgium
+											</option>
+											<option value="bz">
+												Belize
+											</option>
+											<option value="bj">
+												Benin
+											</option>
+											<option value="bm">
+												Bermuda
+											</option>
+											<option value="bt">
+												Bhutan
+											</option>
+											<option value="bo">
+												Bolivia
+											</option>
+											<option value="bq">
+												Bonaire, St. Eustatius and Saba
+											</option>
+											<option value="ba">
+												Bosnia-Herzegovina
+											</option>
+											<option value="bw">
+												Botswana
+											</option>
+											<option value="br">
+												Brazil
+											</option>
+											<option value="vg">
+												British Virgin Islands
+											</option>
+											<option value="bn">
+												Brunei
+											</option>
+											<option value="bg">
+												Bulgaria
+											</option>
+											<option value="bf">
+												Burkina Faso
+											</option>
+											<option value="bi">
+												Burundi
+											</option>
+											<option value="kh">
+												Cambodia
+											</option>
+											<option value="cm">
+												Cameroon
+											</option>
+											<option value="ca">
+												Canada
+											</option>
+											<option value="ce">
+												Canary Islands
+											</option>
+											<option value="cv">
+												Cape Verde
+											</option>
+											<option value="ky">
+												Cayman Islands
+											</option>
+											<option value="cf">
+												Central African Republic
+											</option>
+											<option value="td">
+												Chad
+											</option>
+											<option value="nn">
+												Channel Islands
+											</option>
+											<option value="cl">
+												Chile
+											</option>
+											<option value="cn">
+												China
+											</option>
+											<option value="co">
+												Colombia
+											</option>
+											<option value="km">
+												Comoros
+											</option>
+											<option value="cg">
+												Congo
+											</option>
+											<option value="ck">
+												Cook Islands
+											</option>
+											<option value="cr">
+												Costa Rica
+											</option>
+											<option value="hr">
+												Croatia
+											</option>
+											<option value="cw">
+												Curacao
+											</option>
+											<option value="cy">
+												Cyprus
+											</option>
+											<option value="cz">
+												Czech Republic
+											</option>
+											<option value="cd">
+												Democratic Republic of Congo
+											</option>
+											<option value="dk">
+												Denmark
+											</option>
+											<option value="dj">
+												Djibouti
+											</option>
+											<option value="dm">
+												Dominica
+											</option>
+											<option value="do">
+												Dominican Republic
+											</option>
+											<option value="tl">
+												East Timor (Timor Leste)
+											</option>
+											<option value="ec">
+												Ecuador
+											</option>
+											<option value="eg">
+												Egypt
+											</option>
+											<option value="sv">
+												El Salvador
+											</option>
+											<option value="en">
+												England
+											</option>
+											<option value="gq">
+												Equatorial Guinea
+											</option>
+											<option value="er">
+												Eritrea
+											</option>
+											<option value="ee">
+												Estonia
+											</option>
+											<option value="et">
+												Ethiopia
+											</option>
+											<option value="fo">
+												Faeroe Islands
+											</option>
+											<option value="fj">
+												Fiji
+											</option>
+											<option value="fi">
+												Finland
+											</option>
+											<option value="fr">
+												France
+											</option>
+											<option value="gf">
+												French Guiana
+											</option>
+											<option value="pf">
+												French Polynesia
+											</option>
+											<option value="ga">
+												Gabon
+											</option>
+											<option value="gm">
+												Gambia
+											</option>
+											<option value="ge">
+												Georgia
+											</option>
+											<option value="de">
+												Germany
+											</option>
+											<option value="gh">
+												Ghana
+											</option>
+											<option value="gi">
+												Gibraltar
+											</option>
+											<option value="gr">
+												Greece
+											</option>
+											<option value="gl">
+												Greenland
+											</option>
+											<option value="gd">
+												Grenada
+											</option>
+											<option value="gp">
+												Guadeloupe
+											</option>
+											<option value="gu">
+												Guam
+											</option>
+											<option value="gt">
+												Guatemala
+											</option>
+											<option value="gg">
+												Guernsey
+											</option>
+											<option value="gw">
+												Guinea
+											</option>
+											<option value="gn">
+												Guinea - Bissau
+											</option>
+											<option value="gy">
+												Guyana
+											</option>
+											<option value="ht">
+												Haiti
+											</option>
+											<option value="ho">
+												Holland
+											</option>
+											<option value="hn">
+												Honduras
+											</option>
+											<option value="hk">
+												Hong Kong
+											</option>
+											<option value="hu">
+												Hungary
+											</option>
+											<option value="is">
+												Iceland
+											</option>
+											<option value="in">
+												India
+											</option>
+											<option value="id">
+												Indonesia
+											</option>
+											<option value="iq">
+												Iraq
+											</option>
+											<option value="ie">
+												Ireland
+											</option>
+											<option value="il">
+												Israel
+											</option>
+											<option value="it">
+												Italy
+											</option>
+											<option value="CI">
+												Ivory Coast
+											</option>
+											<option value="jm">
+												Jamaica
+											</option>
+											<option value="jp">
+												Japan
+											</option>
+											<option value="je">
+												Jersey
+											</option>
+											<option value="jo">
+												Jordan
+											</option>
+											<option value="kz">
+												Kazakhstan
+											</option>
+											<option value="ke">
+												Kenya
+											</option>
+											<option value="ki">
+												Kiribati
+											</option>
+											<option value="kv">
+												Kosovo
+											</option>
+											<option value="ko">
+												Kosrae
+											</option>
+											<option value="kw">
+												Kuwait
+											</option>
+											<option value="kg">
+												Kyrgyzstan
+											</option>
+											<option value="la">
+												Laos
+											</option>
+											<option value="lv">
+												Latvia
+											</option>
+											<option value="lb">
+												Lebanon
+											</option>
+											<option value="ls">
+												Lesotho
+											</option>
+											<option value="lr">
+												Liberia
+											</option>
+											<option value="ly">
+												Libya
+											</option>
+											<option value="li">
+												Liechtenstein
+											</option>
+											<option value="lt">
+												Lithuania
+											</option>
+											<option value="lu">
+												Luxembourg
+											</option>
+											<option value="mo">
+												Macau
+											</option>
+											<option value="mk">
+												Macedonia (FYROM)
+											</option>
+											<option value="mg">
+												Madagascar
+											</option>
+											<option value="pt2">
+												Madeira
+											</option>
+											<option value="mw">
+												Malawi
+											</option>
+											<option value="my">
+												Malaysia
+											</option>
+											<option value="mv">
+												Maldives
+											</option>
+											<option value="ml">
+												Mali
+											</option>
+											<option value="mt">
+												Malta
+											</option>
+											<option value="mh">
+												Marshall Islands
+											</option>
+											<option value="mq">
+												Martinique
+											</option>
+											<option value="mr">
+												Mauritania
+											</option>
+											<option value="mu">
+												Mauritius
+											</option>
+											<option value="yt">
+												Mayotte
+											</option>
+											<option value="mx">
+												Mexico
+											</option>
+											<option value="fm">
+												Micronesia
+											</option>
+											<option value="md">
+												Moldova
+											</option>
+											<option value="mc">
+												Monaco
+											</option>
+											<option value="mn">
+												Mongolia
+											</option>
+											<option value="me">
+												Montenegro
+											</option>
+											<option value="ms">
+												Montserrat
+											</option>
+											<option value="ma">
+												Morocco
+											</option>
+											<option value="mz">
+												Mozambique
+											</option>
+											<option value="na">
+												Namibia
+											</option>
+											<option value="np">
+												Nepal
+											</option>
+											<option value="nl">
+												Netherlands
+											</option>
+											<option value="nc">
+												New Caledonia
+											</option>
+											<option value="nz">
+												New Zealand
+											</option>
+											<option value="ni">
+												Nicaragua
+											</option>
+											<option value="ne">
+												Niger
+											</option>
+											<option value="ng">
+												Nigeria
+											</option>
+											<option value="nf">
+												Norfolk Island
+											</option>
+											<option value="nb">
+												Northern Ireland
+											</option>
+											<option value="mp">
+												Northern Mariana Islands
+											</option>
+											<option value="no">
+												Norway
+											</option>
+											<option value="om">
+												Oman
+											</option>
+											<option value="pk">
+												Pakistan
+											</option>
+											<option value="pw">
+												Palau
+											</option>
+											<option value="pa">
+												Panama
+											</option>
+											<option value="pg">
+												Papua New Guinea
+											</option>
+											<option value="py">
+												Paraguay
+											</option>
+											<option value="pe">
+												Peru
+											</option>
+											<option value="ph">
+												Philippines
+											</option>
+											<option value="pl">
+												Poland
+											</option>
+											<option value="po">
+												Ponape
+											</option>
+											<option value="pt">
+												Portugal
+											</option>
+											<option value="pr">
+												Puerto Rico
+											</option>
+											<option value="qa">
+												Qatar
+											</option>
+											<option value="re">
+												Reunion
+											</option>
+											<option value="ro">
+												Romania
+											</option>
+											<option value="rt">
+												Rota
+											</option>
+											<option value="ru">
+												Russia
+											</option>
+											<option value="rw">
+												Rwanda
+											</option>
+											<option value="bq1">
+												Saba
+											</option>
+											<option value="sp">
+												Saipan
+											</option>
+											<option value="sm">
+												San Marino
+											</option>
+											<option value="ws">
+												Samoa
+											</option>
+											<option value="st">
+												Sao Tome and Principe
+											</option>
+											<option value="sa">
+												Saudi Arabia
+											</option>
+											<option value="sf">
+												Scotland
+											</option>
+											<option value="sn">
+												Senegal
+											</option>
+											<option value="rs">
+												Serbia
+											</option>
+											<option value="sc">
+												Seychelles
+											</option>
+											<option value="sl">
+												Sierra Leone
+											</option>
+											<option value="sg">
+												Singapore
+											</option>
+											<option value="sk">
+												Slovakia
+											</option>
+											<option value="si">
+												Slovenia
+											</option>
+											<option value="sb">
+												Solomon Islands
+											</option>
+											<option value="za">
+												South Africa
+											</option>
+											<option value="kr">
+												South Korea
+											</option>
+											<option value="es">
+												Spain
+											</option>
+											<option value="lk">
+												Sri Lanka
+											</option>
+											<option value="bl">
+												St. Barthelemy
+											</option>
+											<option value="sw">
+												St. Christopher
+											</option>
+											<option value="sx">
+												St. Croix
+											</option>
+											<option value="bq2">
+												St. Eustatius
+											</option>
+											<option value="uv">
+												St. John
+											</option>
+											<option value="kn">
+												St. Kitts and Nevis
+											</option>
+											<option value="lc">
+												St. Lucia
+											</option>
+											<option value="sx1">
+												St. Maarten/St. Martin
+											</option>
+											<option value="vl">
+												St. Thomas
+											</option>
+											<option value="vc">
+												St. Vincent and the Grenadines
+											</option>
+											<option value="sr">
+												Suriname
+											</option>
+											<option value="sz">
+												Swaziland
+											</option>
+											<option value="se">
+												Sweden
+											</option>
+											<option value="ch">
+												Switzerland
+											</option>
+											<option value="ta">
+												Tahiti
+											</option>
+											<option value="tw">
+												Taiwan
+											</option>
+											<option value="tj">
+												Tajikistan
+											</option>
+											<option value="tz">
+												Tanzania
+											</option>
+											<option value="th">
+												Thailand
+											</option>
+											<option value="ti">
+												Tinian
+											</option>
+											<option value="tg">
+												Togo
+											</option>
+											<option value="to">
+												Tonga
+											</option>
+											<option value="vg2">
+												Tortola
+											</option>
+											<option value="tt">
+												Trinidad &amp; Tobago
+											</option>
+											<option value="tu">
+												Truk
+											</option>
+											<option value="tn">
+												Tunisia
+											</option>
+											<option value="tr">
+												Turkey
+											</option>
+											<option value="tm">
+												Turkmenistan
+											</option>
+											<option value="tc">
+												Turks and Caicos
+											</option>
+											<option value="tv">
+												Tuvalu
+											</option>
+											<option value="ug">
+												Uganda
+											</option>
+											<option value="ua">
+												Ukraine
+											</option>
+											<option value="ui">
+												Union Island
+											</option>
+											<option value="vi">
+												U.S. Virgin Islands
+											</option>
+											<option value="ae">
+												United Arab Emirates
+											</option>
+											<option value="gb">
+												United Kingdom
+											</option>
+											<option value="us">
+												United States
+											</option>
+											<option value="uy">
+												Uruguay
+											</option>
+											<option value="uz">
+												Uzbekistan
+											</option>
+											<option value="vu">
+												Vanuatu
+											</option>
+											<option value="va">
+												Vatican City
+											</option>
+											<option value="ve">
+												Venezuela
+											</option>
+											<option value="vn">
+												Vietnam
+											</option>
+											<option value="vr">
+												Virgin Gorda
+											</option>
+											<option value="wl">
+												Wales
+											</option>
+											<option value="wf">
+												Wallis &amp; Futuna Islands
+											</option>
+											<option value="ya">
+												Yap
+											</option>
+											<option value="ye">
+												Yemen
+											</option>
+											<option value="zm">
+												Zambia
+											</option>
+											<option value="zw">
+												Zimbabwe
+											</option>
+										</select>
+									</div>
+								</div>
+								<div id="origPostalDiv" style="display: none;">
+									<label class="ups-form_label" for="">Origin Postal/ZIP Code:</label>
+									<div class="ups-text_wrapper ups-input_wrapper"><input class="ups-form_input" id="" name="OriginPostalCode" type="text" value=""></div>
+								</div>
+								<div class="ups-form_group ups-help_wrapper" style="display: block;">
+									<label class="ups-form_label" for="">Destination Country or Territory:</label>
+										<div class="ups-dropdown_wrapper ups-input_wrapper">
+										<select class=ups-dropdown name="DestCountry">
+											<option value=" ">
+												Select one
+											</option>
+											<option value="af">
+												Afghanistan
+											</option>
+											<option value="al">
+												Albania
+											</option>
+											<option value="dz">
+												Algeria
+											</option>
+											<option value="as">
+												American Samoa
+											</option>
+											<option value="ad">
+												Andorra
+											</option>
+											<option value="ao">
+												Angola
+											</option>
+											<option value="ai">
+												Anguilla
+											</option>
+											<option value="ag">
+												Antigua and Barbuda
+											</option>
+											<option value="an">
+												Antilles Netherlands
+											</option>
+											<option value="ar">
+												Argentina
+											</option>
+											<option value="am">
+												Armenia
+											</option>
+											<option value="aw">
+												Aruba
+											</option>
+											<option value="au">
+												Australia
+											</option>
+											<option value="at">
+												Austria
+											</option>
+											<option value="az">
+												Azerbaijan
+											</option>
+											<option value="ap">
+												Azores
+											</option>
+											<option value="bs">
+												Bahamas
+											</option>
+											<option value="bh">
+												Bahrain
+											</option>
+											<option value="bd">
+												Bangladesh
+											</option>
+											<option value="bb">
+												Barbados
+											</option>
+											<option value="by">
+												Belarus (Byelorussia)
+											</option>
+											<option value="be">
+												Belgium
+											</option>
+											<option value="bz">
+												Belize
+											</option>
+											<option value="bj">
+												Benin
+											</option>
+											<option value="bm">
+												Bermuda
+											</option>
+											<option value="bt">
+												Bhutan
+											</option>
+											<option value="bo">
+												Bolivia
+											</option>
+											<option value="bq">
+												Bonaire, St. Eustatius and Saba
+											</option>
+											<option value="ba">
+												Bosnia-Herzegovina
+											</option>
+											<option value="bw">
+												Botswana
+											</option>
+											<option value="br">
+												Brazil
+											</option>
+											<option value="vg">
+												British Virgin Islands
+											</option>
+											<option value="bn">
+												Brunei
+											</option>
+											<option value="bg">
+												Bulgaria
+											</option>
+											<option value="bf">
+												Burkina Faso
+											</option>
+											<option value="bi">
+												Burundi
+											</option>
+											<option value="kh">
+												Cambodia
+											</option>
+											<option value="cm">
+												Cameroon
+											</option>
+											<option value="ca">
+												Canada
+											</option>
+											<option value="ce">
+												Canary Islands
+											</option>
+											<option value="cv">
+												Cape Verde
+											</option>
+											<option value="ky">
+												Cayman Islands
+											</option>
+											<option value="cf">
+												Central African Republic
+											</option>
+											<option value="td">
+												Chad
+											</option>
+											<option value="nn">
+												Channel Islands
+											</option>
+											<option value="cl">
+												Chile
+											</option>
+											<option value="cn">
+												China
+											</option>
+											<option value="co">
+												Colombia
+											</option>
+											<option value="km">
+												Comoros
+											</option>
+											<option value="cg">
+												Congo
+											</option>
+											<option value="ck">
+												Cook Islands
+											</option>
+											<option value="cr">
+												Costa Rica
+											</option>
+											<option value="hr">
+												Croatia
+											</option>
+											<option value="cw">
+												Curacao
+											</option>
+											<option value="cy">
+												Cyprus
+											</option>
+											<option value="cz">
+												Czech Republic
+											</option>
+											<option value="cd">
+												Democratic Republic of Congo
+											</option>
+											<option value="dk">
+												Denmark
+											</option>
+											<option value="dj">
+												Djibouti
+											</option>
+											<option value="dm">
+												Dominica
+											</option>
+											<option value="do">
+												Dominican Republic
+											</option>
+											<option value="tl">
+												East Timor (Timor Leste)
+											</option>
+											<option value="ec">
+												Ecuador
+											</option>
+											<option value="eg">
+												Egypt
+											</option>
+											<option value="sv">
+												El Salvador
+											</option>
+											<option value="en">
+												England
+											</option>
+											<option value="gq">
+												Equatorial Guinea
+											</option>
+											<option value="er">
+												Eritrea
+											</option>
+											<option value="ee">
+												Estonia
+											</option>
+											<option value="et">
+												Ethiopia
+											</option>
+											<option value="fo">
+												Faeroe Islands
+											</option>
+											<option value="fj">
+												Fiji
+											</option>
+											<option value="fi">
+												Finland
+											</option>
+											<option value="fr">
+												France
+											</option>
+											<option value="gf">
+												French Guiana
+											</option>
+											<option value="pf">
+												French Polynesia
+											</option>
+											<option value="ga">
+												Gabon
+											</option>
+											<option value="gm">
+												Gambia
+											</option>
+											<option value="ge">
+												Georgia
+											</option>
+											<option value="de">
+												Germany
+											</option>
+											<option value="gh">
+												Ghana
+											</option>
+											<option value="gi">
+												Gibraltar
+											</option>
+											<option value="gr">
+												Greece
+											</option>
+											<option value="gl">
+												Greenland
+											</option>
+											<option value="gd">
+												Grenada
+											</option>
+											<option value="gp">
+												Guadeloupe
+											</option>
+											<option value="gu">
+												Guam
+											</option>
+											<option value="gt">
+												Guatemala
+											</option>
+											<option value="gg">
+												Guernsey
+											</option>
+											<option value="gw">
+												Guinea
+											</option>
+											<option value="gn">
+												Guinea - Bissau
+											</option>
+											<option value="gy">
+												Guyana
+											</option>
+											<option value="ht">
+												Haiti
+											</option>
+											<option value="ho">
+												Holland
+											</option>
+											<option value="hn">
+												Honduras
+											</option>
+											<option value="hk">
+												Hong Kong
+											</option>
+											<option value="hu">
+												Hungary
+											</option>
+											<option value="is">
+												Iceland
+											</option>
+											<option value="in">
+												India
+											</option>
+											<option value="id">
+												Indonesia
+											</option>
+											<option value="iq">
+												Iraq
+											</option>
+											<option value="ie">
+												Ireland
+											</option>
+											<option value="il">
+												Israel
+											</option>
+											<option value="it">
+												Italy
+											</option>
+											<option value="CI">
+												Ivory Coast
+											</option>
+											<option value="jm">
+												Jamaica
+											</option>
+											<option value="jp">
+												Japan
+											</option>
+											<option value="je">
+												Jersey
+											</option>
+											<option value="jo">
+												Jordan
+											</option>
+											<option value="kz">
+												Kazakhstan
+											</option>
+											<option value="ke">
+												Kenya
+											</option>
+											<option value="ki">
+												Kiribati
+											</option>
+											<option value="kv">
+												Kosovo
+											</option>
+											<option value="ko">
+												Kosrae
+											</option>
+											<option value="kw">
+												Kuwait
+											</option>
+											<option value="kg">
+												Kyrgyzstan
+											</option>
+											<option value="la">
+												Laos
+											</option>
+											<option value="lv">
+												Latvia
+											</option>
+											<option value="lb">
+												Lebanon
+											</option>
+											<option value="ls">
+												Lesotho
+											</option>
+											<option value="lr">
+												Liberia
+											</option>
+											<option value="ly">
+												Libya
+											</option>
+											<option value="li">
+												Liechtenstein
+											</option>
+											<option value="lt">
+												Lithuania
+											</option>
+											<option value="lu">
+												Luxembourg
+											</option>
+											<option value="mo">
+												Macau
+											</option>
+											<option value="mk">
+												Macedonia (FYROM)
+											</option>
+											<option value="mg">
+												Madagascar
+											</option>
+											<option value="pt2">
+												Madeira
+											</option>
+											<option value="mw">
+												Malawi
+											</option>
+											<option value="my">
+												Malaysia
+											</option>
+											<option value="mv">
+												Maldives
+											</option>
+											<option value="ml">
+												Mali
+											</option>
+											<option value="mt">
+												Malta
+											</option>
+											<option value="mh">
+												Marshall Islands
+											</option>
+											<option value="mq">
+												Martinique
+											</option>
+											<option value="mr">
+												Mauritania
+											</option>
+											<option value="mu">
+												Mauritius
+											</option>
+											<option value="yt">
+												Mayotte
+											</option>
+											<option value="mx">
+												Mexico
+											</option>
+											<option value="fm">
+												Micronesia
+											</option>
+											<option value="md">
+												Moldova
+											</option>
+											<option value="mc">
+												Monaco
+											</option>
+											<option value="mn">
+												Mongolia
+											</option>
+											<option value="me">
+												Montenegro
+											</option>
+											<option value="ms">
+												Montserrat
+											</option>
+											<option value="ma">
+												Morocco
+											</option>
+											<option value="mz">
+												Mozambique
+											</option>
+											<option value="na">
+												Namibia
+											</option>
+											<option value="np">
+												Nepal
+											</option>
+											<option value="nl">
+												Netherlands
+											</option>
+											<option value="nc">
+												New Caledonia
+											</option>
+											<option value="nz">
+												New Zealand
+											</option>
+											<option value="ni">
+												Nicaragua
+											</option>
+											<option value="ne">
+												Niger
+											</option>
+											<option value="ng">
+												Nigeria
+											</option>
+											<option value="nf">
+												Norfolk Island
+											</option>
+											<option value="nb">
+												Northern Ireland
+											</option>
+											<option value="mp">
+												Northern Mariana Islands
+											</option>
+											<option value="no">
+												Norway
+											</option>
+											<option value="om">
+												Oman
+											</option>
+											<option value="pk">
+												Pakistan
+											</option>
+											<option value="pw">
+												Palau
+											</option>
+											<option value="pa">
+												Panama
+											</option>
+											<option value="pg">
+												Papua New Guinea
+											</option>
+											<option value="py">
+												Paraguay
+											</option>
+											<option value="pe">
+												Peru
+											</option>
+											<option value="ph">
+												Philippines
+											</option>
+											<option value="pl">
+												Poland
+											</option>
+											<option value="po">
+												Ponape
+											</option>
+											<option value="pt">
+												Portugal
+											</option>
+											<option value="pr">
+												Puerto Rico
+											</option>
+											<option value="qa">
+												Qatar
+											</option>
+											<option value="re">
+												Reunion
+											</option>
+											<option value="ro">
+												Romania
+											</option>
+											<option value="rt">
+												Rota
+											</option>
+											<option value="ru">
+												Russia
+											</option>
+											<option value="rw">
+												Rwanda
+											</option>
+											<option value="bq1">
+												Saba
+											</option>
+											<option value="sp">
+												Saipan
+											</option>
+											<option value="sm">
+												San Marino
+											</option>
+											<option value="ws">
+												Samoa
+											</option>
+											<option value="st">
+												Sao Tome and Principe
+											</option>
+											<option value="sa">
+												Saudi Arabia
+											</option>
+											<option value="sf">
+												Scotland
+											</option>
+											<option value="sn">
+												Senegal
+											</option>
+											<option value="rs">
+												Serbia
+											</option>
+											<option value="sc">
+												Seychelles
+											</option>
+											<option value="sl">
+												Sierra Leone
+											</option>
+											<option value="sg">
+												Singapore
+											</option>
+											<option value="sk">
+												Slovakia
+											</option>
+											<option value="si">
+												Slovenia
+											</option>
+											<option value="sb">
+												Solomon Islands
+											</option>
+											<option value="za">
+												South Africa
+											</option>
+											<option value="kr">
+												South Korea
+											</option>
+											<option value="es">
+												Spain
+											</option>
+											<option value="lk">
+												Sri Lanka
+											</option>
+											<option value="bl">
+												St. Barthelemy
+											</option>
+											<option value="sw">
+												St. Christopher
+											</option>
+											<option value="sx">
+												St. Croix
+											</option>
+											<option value="bq2">
+												St. Eustatius
+											</option>
+											<option value="uv">
+												St. John
+											</option>
+											<option value="kn">
+												St. Kitts and Nevis
+											</option>
+											<option value="lc">
+												St. Lucia
+											</option>
+											<option value="sx1">
+												St. Maarten/St. Martin
+											</option>
+											<option value="vl">
+												St. Thomas
+											</option>
+											<option value="vc">
+												St. Vincent and the Grenadines
+											</option>
+											<option value="sr">
+												Suriname
+											</option>
+											<option value="sz">
+												Swaziland
+											</option>
+											<option value="se">
+												Sweden
+											</option>
+											<option value="ch">
+												Switzerland
+											</option>
+											<option value="ta">
+												Tahiti
+											</option>
+											<option value="tw">
+												Taiwan
+											</option>
+											<option value="tj">
+												Tajikistan
+											</option>
+											<option value="tz">
+												Tanzania
+											</option>
+											<option value="th">
+												Thailand
+											</option>
+											<option value="ti">
+												Tinian
+											</option>
+											<option value="tg">
+												Togo
+											</option>
+											<option value="to">
+												Tonga
+											</option>
+											<option value="vg2">
+												Tortola
+											</option>
+											<option value="tt">
+												Trinidad &amp; Tobago
+											</option>
+											<option value="tu">
+												Truk
+											</option>
+											<option value="tn">
+												Tunisia
+											</option>
+											<option value="tr">
+												Turkey
+											</option>
+											<option value="tm">
+												Turkmenistan
+											</option>
+											<option value="tc">
+												Turks and Caicos
+											</option>
+											<option value="tv">
+												Tuvalu
+											</option>
+											<option value="ug">
+												Uganda
+											</option>
+											<option value="ua">
+												Ukraine
+											</option>
+											<option value="ui">
+												Union Island
+											</option>
+											<option value="vi">
+												U.S. Virgin Islands
+											</option>
+											<option value="ae">
+												United Arab Emirates
+											</option>
+											<option value="gb">
+												United Kingdom
+											</option>
+											<option value="us">
+												United States
+											</option>
+											<option value="uy">
+												Uruguay
+											</option>
+											<option value="uz">
+												Uzbekistan
+											</option>
+											<option value="vu">
+												Vanuatu
+											</option>
+											<option value="va">
+												Vatican City
+											</option>
+											<option value="ve">
+												Venezuela
+											</option>
+											<option value="vn">
+												Vietnam
+											</option>
+											<option value="vr">
+												Virgin Gorda
+											</option>
+											<option value="wl">
+												Wales
+											</option>
+											<option value="wf">
+												Wallis &amp; Futuna Islands
+											</option>
+											<option value="ya">
+												Yap
+											</option>
+											<option value="ye">
+												Yemen
+											</option>
+											<option value="zm">
+												Zambia
+											</option>
+											<option value="zw">
+												Zimbabwe
+											</option>
+										</select>
+									</div>
+								</div>
+								<div class="ups-form_group" id="lblCntry" style="display: none;">
+									<label class="ups-form_label" for="">Destination Country or Territory:</label>
+										United States									
+								</div>
+								<div class="ups-form_group">
+									<label class="ups-form_label" for="">Destination ZIP/Postal Code:</label>
+									<div class="ups-text_wrapper ups-input_wrapper"><input class="ups-form_input" id="DestinationPostalCode" name="DestinationPostalCode" type="text" value="">
+								</div>
+							</div>
+							<div class="secBody">
+								<p>By selecting the <span class="pi-h4">Track</span> button, I agree to the <a  href="javascript:helpModLvl('/WebTracking/terms?loc=en_US')">Terms and Conditions.</a><span class="icon ups-link_newwindow" aria-hidden="true"></span><span class="ups-readerTxt">Open the link in a new window</span></p>
+							</div>
+							<div class="secFooter">
+								<div class="btnBar">
+									<button class="ups-cta ups-cta_primary" name="track.x" type="submit" value="">Track</button>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</form>
+				<script type="text/javascript">
+				/*var dateRange = 28;
+				$(function()
+				{
+				    Tracking.loadReferenceElements("package", dateRange);
+				});*/
+				</script>
+			</div>
+			<h3 aria-controls="ui-id-6" aria-expanded="false" aria-selected="false" class="ui-accordion-header ui-state-default ui-corner-all ui-accordion-icons" id="ui-id-5" role="tab" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#" class="ups-accordion_toggle">Track by E-mail</a></h3>
+			<div aria-hidden="true" aria-labelledby="ui-id-5" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-id-6" role="tabpanel" style="display: none;">
+				<div class="secLvl subcolIE6 clearfix">
+					<fieldset>
+						<div class="secBody">
+							<!-- cms: id="ct1_fra_tra_tra_email_en_us" actiontype="0" -->
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td colspan="3">
+											Track up to 25 small package shipments at once by sending your tracking numbers in an e-mail message to <a href="mailto:totaltrack@ups.com">totaltrack@ups.com</a>.<br>
+											<br>
+											<strong>Track a Single Tracking Number</strong><br>
+											Enter the UPS Tracking Number in the subject line of the e-mail or in the body of the message. A detailed tracking response will be returned to your e-mail address.<br>
+											<br>
+											<strong>Track Multiple Tracking Numbers</strong><br>
+											Enter all UPS Tracking Numbers in the body of the e-mail message. You do not&nbsp;need to specify a subject for the e-mail. A detailed tracking response for all numbers will be returned to your e-mail address.<br>
+											<br>
+											<strong>Note:</strong> This feature is not available for freight shipment tracking.
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3"><img alt="" border="0" height="10" src="/img/1.gif" width="1"></td>
+									</tr>
+								</tbody>
+							</table>
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<table border="0" cellpadding="0" cellspacing="0" width="100%"></table>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<h3 aria-controls="ui-id-8" aria-expanded="false" aria-selected="false" class="ui-accordion-header ui-state-default ui-corner-all ui-accordion-icons" id="ui-id-7" role="tab" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#" class="ups-accordion_toggle">Import Tracking Numbers</a></h3>
+			<div aria-hidden="true" aria-labelledby="ui-id-7" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-id-8" role="tabpanel" style="display: none;">
+				<form action="https://wwwapps.ups.com/tracking_import/ProcessImport?loc=en_US" enctype="multipart/form-data" id="importtrk" method="post" name="importtrk">
+					<input name="loc" type="hidden" value="en_US">
+					<div class="secLvl subcolIE6 clearfix">
+						<fieldset class="ups-form_group">
+							<div class="secBody">
+								<p>To import tracking numbers on UPS.com you must log in or register.</p>
+								<ul>
+									<li>
+										<a href="#" onclick="javascript:launchLoginModal('en_US');">Login</a>
+									</li>
+									<li>
+										<a href="#/doapp/register/?ClientId=02&amp;loc=en_US&amp;ReturnTo=https://www.ups.com/WebTracking/track?loc=en_US">Sign up</a>
+									</li>
+								</ul>
+							</div>
+						</fieldset>
+					</div>
+					<div class="secLvl subcolIE6 clearfix">
+<fieldset class="ups-form_group">
+	
+	<div class="secBody">		
+		
+		<p id="importFileError" class="error" style="display: none;"></p>
+		<p id="importEmailError" class="error" style="display: none;"></p>		
+		
+				<label class="error usp-form_label" id="errorFileLabel" style="display: none">
+					<a href="javascript:helpModLvl('https://www.ups.com/content/us/en/tracking/tracking/help.html')"> Import File: <span>(.dat and .csv only)</span></a><span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+					<div class="ups-text_wrapper ups-input_wrapper">
+					<input id="file" name="file" type="file">
+				</div>
+				</label>
+				
+				<div class="ups-text_wrapper ups-input_wrapper">
+				<label class="ups-form_label" id="validFileLabel" style="display: block;">
+					<a href="javascript:helpModLvl('https://www.ups.com/content/us/en/tracking/tracking/help.html')"> Import File: <span>(.dat and .csv only)</span></a><span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-track_help icon ups-icon-questioncircle" aria-hidden="true"></span>
+				<div class="ups-text_wrapper ups-input_wrapper">
+					<input id="file" name="file" type="file">
+				</div>
+				</label>
+				
+				<div class="ups-text_wrapper ups-input_wrapper">
+		
+				<label class="ups-form_label">Tracking Results Options</label>
+				
+		<p class="ups-form_label">Choose how you want to receive your results.</p>
+				
+		<p class="usp-form_label">
+			<strong>Note:</strong> This feature is not available for freight shipment tracking.
+		</p>
+					<div class="ups-buttonList_wrapper ups-input_wrapper">
+						<input class="ups-radio-custom" onclick="Tracking.changeCsvValue('yes')" name="csv_button" value="yes" id="csv_button" type="radio" checked="">
+					
+						<label class="ups-radio-custom-label" for="csv_button" class="sel">							
+							CSV file							
+						</label>
+				
+					</div>
+					<div class="ups-buttonList_wrapper ups-input_wrapper">
+						<input class="ups-radio-custom" onclick="Tracking.changeCsvValue('no')" name="csv_button" value="no" id="email_results" type="radio">
+					
+						<label class="ups-radio-custom-label" for="email_results" class="sel">
+							E-mail the results to me.
+						</label>
+					</div>
+					<div class="ups-text_wrapper ups-input_wrapper">
+						<input class="ups-form_input" id="eaddress" name="eaddress" type="text" value="MPADWAL@TRANSPERFECT.COM">
+					</div>
+			
+					
+	</div>
+	
+	
+	<div class="secFooter">
+		
+		<div class="ups-form_ctaGroup">			
+			<button class="ups-cta ups-cta_primary" name="IMPORT.x" onclick="return Tracking.validateAndSubmitImport('/tracking_import/impVal');" type="submit" value="">Import</button>
+		</div>
+		
+	</div>
+</fieldset>
+</div>
+				</form>
+			</div>
+			<h3 aria-controls="ui-id-10" aria-expanded="false" aria-selected="false" class="ui-accordion-header ui-state-default ui-corner-all ui-accordion-icons" id="ui-id-9" role="tab" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><a href="#" class="ups-accordion_toggle">SMS Tracking</a></h3>
+			<div aria-hidden="true" aria-labelledby="ui-id-9" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-id-10" role="tabpanel" style="display: none;">
+				<div class="secLvl subcolIE6 clearfix">
+					<fieldset>
+						<div class="secBody">
+							<!-- cms: id="ct1_fra_tra_tra_sms_en_us" actiontype="0" -->
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td colspan="3">
+											Get information on the status of your shipments quickly and efficiently with UPS SMS Tracking. You must opt into the service to begin tracking with SMS.<br>
+											<br>
+											<ol>
+												<li>From the Tracking Detail page, add SMS notifications by selecting&nbsp;<strong>Notify&nbsp;Me with&nbsp;Updates</strong>.</li>
+												<li>When selecting the type of notification, select SMS Text Message and enter your mobile number to opt in.</li>
+												<li>After confirming your request from your mobile phone, UPS will begin to send you <strong>SMS text messages</strong> with your tracking status for this shipment.</li>
+												<li>Once opted in, you will not be asked to verify your request from your phone again unless you choose to opt out of the service.</li>
+												<li>For logged in users, an option to <strong>Remember this Number</strong> is presented in the Notifications dialog box. By selecting that checkbox, your phone number is retained as an option to select the next time you track.</li>
+											</ol><br>
+											To track packages while on the go,&nbsp;send UPS an SMS to get the status of your shipment. Simply text&nbsp;your tracking&nbsp;keyword followed by your tracking number to your country or territory SMS number and we'll reply with your shipment status details. If you are new to receiving text messages from UPS, this also opts you in to our SMS notifications program.
+										</td>
+									</tr>
+									<tr>
+										<td colspan="3"><img alt="" border="0" height="10" src="/img/1.gif" width="1"></td>
+									</tr>
+								</tbody>
+							</table>
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<table border="0" cellpadding="0" cellspacing="0" width="100%"></table>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+													<!--</div>
+													</section>-->
+	</div>
+											<!-- End Section Body -->
+										</fieldset>
+									</div>
+									<!-- End Section Module -->
+
+									<!-- Begin Section Module -->
+									<div class="secLvl seccol16 gradient gradientGroup7 trackingGrid tableonly marginEnd clearfix">
+										<fieldset>
+											<legend></legend>
+
+											<!-- Begin Section Header -->
+											<div class="secHead clearfix">
+												<h3>recently tracked</h3>
+												<!-- <ul>
+											<li>last updated: 00:00 a.m., 00/00/0000</li>
+										</ul> -->
+											</div>
+											<!-- End Section Header -->
+
+											<!-- Begin Section Body -->
+											<div class="secBody">
+
+												<!-- /////////////// -->
+												<!-- BEGIN FLEXIGRID -->
+
+												<div dir="ltr" id="trk-grid-wrapper" style="position:relative;width:620px;">
+													<div class="trk-grid" id="trk-grid-0" style="width:620px;height:125px;left:0px;top:0px;">
+
+														<!-- Grid Body Start -->
+
+														<!-- //UnAthenticated// -->
+														<div class="indent trk-grid-textOnly">
+															<p><a href="repl_href">login</a> or <a href="repl_href">sign up</a> to view your recently tracked shipments</p>
+														</div>
+													</div>
+												</div>
+
+												<!-- END FLEXIGRID -->
+												<!-- ///////////// -->
+
+											</div>
+											<!-- End Section Body -->
+
+											<!-- Begin Setion Footer
+									<div class="secFooter trk-grid-footer"> -->
+											<!-- Begin Button Bar Row
+										<div class="btnBar">
+												<button class="button btnGroup6 arrowIconRight" formaction="" type="submit" id="" value="">track selected</button>
+												<button class="button btnGroup6 arrowIconRight" formaction="" type="submit" id="" value="">remove selected</button>
+												<button class="button btnGroup6 arrowIconRight" formaction="" type="submit" id="" value="">save selected</button>
+										</div> -->
+											<!-- End Button Bar Row -->
+											<!-- </div>
+									End Section Footer -->
+
+										</fieldset>
+									</div>
+									<!-- End Section Module -->
+
+									<!-- Begin Section Module -->
+									<div class="secLvl seccol16 gradient gradientGroup7 trackingGrid tableonly marginEnd clearfix">
+										<fieldset>
+											<legend></legend>
+
+											<!-- Begin Section Header -->
+											<div class="secHead clearfix">
+												<h3>recently tracked</h3>
+												<ul>
+													<li>last updated: 00:00 a.m., 00/00/0000</li>
+												</ul>
+											</div>
+											<!-- End Section Header -->
+
+											<!-- Begin Section Body -->
+											<div class="secBody">
+
+												<!-- /////////////// -->
+												<!-- BEGIN FLEXIGRID -->
+
+												<div dir="ltr" id="trk-grid-wrapper" style="position:relative;width:620px;">
+													<div class="trk-grid" id="trk-grid-0" style="width:620px;height:150px;left:0px;top:0px;">
+
+														<!-- Grid Header Start -->
+														<div class="trk-grid-hdr" id="trk-grid-hdr-0">
+															<div dir="ltr" class="trk-grid-col-hdr" id="trk-grid-col-hdr-0" style="width:25px;left:0px;">
+																<input  name="selectAll" value="selected" type="checkbox" class="trk-grid-cell-checkAll" id="trk-grid-hdr-checkAll-0">
+															</div>
+															<div dir="ltr" class="trk-grid-col-hdr" id="trk-grid-col-hdr-1" style="width:150px;left:25px"> <a href="">
+															<div style="cursor:pointer; margin-left:7px;margin-top: 5px;">Recent Tracks</div><!--<img src="/img/icn_sort_down.gif" alt="" width="10" height="10" border="0">--></a> </div>
+															<div dir="ltr" class="trk-grid-col-hdr" id="trk-grid-col-hdr-2" style="width:235px;left:175px"> <a href=""><div style="cursor:pointer; margin-left:7px;margin-top: 5px;">Description</div></a> </div>
+															<div dir="ltr" class="trk-grid-col-hdr" id="trk-grid-col-hdr-3" style="width:175px;left:410px"> <a href=""><div style="cursor:pointer; margin-left:7px;margin-top: 5px;">Status</div></a> </div>
+															<div dir="ltr" class="trk-grid-col-hdr" id="trk-grid-col-hdr-4" style="width:44px;left:575px">
+																<div class="trk-grid-save"> <a href=""> <img alt="" border="0" height="16" width="16" src="/img/1.gif" class="iconPushPinColor7116"> </a> </div>
+															</div>
+														</div>
+
+														<!-- Grid Body Start -->
+
+														<!-- //UnAthenticated// -->
+														<!--<div class="indent trk-grid-textOnly">
+												<p><a href="repl_href">login</a> or <a href="repl_href">register</a> to view your recently tracked shipments</p>
+											</div>-->
+
+														<div class="trk-grid-body" id="trk-grid-body-0" dir="ltr" style="height:125px;top:25px;" >
+															<div class="trk-grid-col" id="trk-grid-col-0" style="width:25px;left:0px">
+																<div class="trk-grid-cell" id="trk-grid-cell-0-0">
+																	<input class="trk-grid-cell-check" type="checkbox" id="trk-grid-cell-check-0" >
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-0-1">
+																	<input class="trk-grid-cell-check" type="checkbox" id="trk-grid-cell-check-0" >
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-0-2">
+																	<input class="trk-grid-cell-check" type="checkbox" id="trk-grid-cell-check-0" >
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-0-3">
+																	<input class="trk-grid-cell-check" type="checkbox" id="trk-grid-cell-check-0" >
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-0-4">
+																	<input class="trk-grid-cell-check" type="checkbox" id="trk-grid-cell-check-0" >
+																</div>
+															</div>
+															<div class="trk-grid-col" id="trk-grid-col-1" style="width:150px;left:25px">
+																<div class="trk-grid-cell" id="trk-grid-cell-1-0">
+																	<div><a class="ups-link_light" href="">1z1234567890123456</a></div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-1-1">
+																	<div><a class="ups-link_light"href="">1z1234567890123456</a></div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-1-2">
+																	<div><a class="ups-link_light"href="">1z1234567890123456</a></div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-1-3">
+																	<div><a class="ups-link_light" href="">1z1234567890123456</a></div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-1-4">
+																	<div><a class="ups-link_light" href="">1z1234567890123456</a></div>
+																</div>
+															</div>
+															<div class="trk-grid-col" id="trk-grid-col-2" style="width:235px;left:180px">
+																<div class="trk-grid-cell" id="trk-grid-cell-2-0">
+																	<div class="trk-grid-desc-text-edit trk-grid-desc-text-edit-input" id="tx0">
+																		<div class="reqTxtInst"> click to add a description</div>
+																	</div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-2-1">
+																	<div class="trk-grid-desc-text-edit trk-grid-desc-text-edit-input" id="tx1">
+																		<div class="userDescription"><img alt="reset" border="0" height="16" width="16" src="/img/1.gif" class="crossMini floatEnd">golf clubs</div>
+																	</div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-2-2">
+																	<div class="trk-grid-desc-text-edit trk-grid-desc-text-edit-input" id="tx2">
+																		<input name="" type="text" id="" value="" placeholder="books for mother from amazon.com">
+																		<img alt="save" border="0" height="16" width="16" src="/img/1.gif" class="updatedIcon"></div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-2-3">
+																	<div class="trk-grid-desc-text-edit trk-grid-desc-text-edit-input" id="tx3">
+																		<div class="reqTxtInst"> click to add a description</div>
+																	</div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-2-4">
+																	<div class="trk-grid-desc-text-edit trk-grid-desc-text-edit-input" id="tx4">
+																		<div class="reqTxtInst"> click to add a description</div>
+																	</div>
+																</div>
+															</div>
+															<div class="trk-grid-col" id="trk-grid-col-3" style="width:165px;left:414px">
+																<div class="trk-grid-cell" id="trk-grid-cell-3-0"><a title="TITLE: tt_1" class="ups-link_light infoAnchor btnlnkR hozAnchor" href="javascript:void(0)" id="tt_5">on time: intransit</a><span class="icon ups-icon-questioncircle" aria-hidden="true"></span></div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-3-1"><a title="TITLE: tt_2" class="ups-link_light infoAnchor btnlnkR hozAnchor" href="javascript:void(0)" id="tt_5">delivered</a><span class="icon ups-icon-questioncircle" aria-hidden="true"></span></div>
+																<div class="trk-grid-cell" id="trk-grid-cell-3-2"><a title="TITLE: tt_3" class="ups-link_light infoAnchor btnlnkR hozAnchor" href="javascript:void(0)" id="tt_5">delayed: action requried</a><span class="icon ups-icon-questioncircle" aria-hidden="true"></span></div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-3-3"><a title="TITLE: tt_4" class="ups-link_light infoAnchor btnlnkR hozAnchor" href="javascript:void(0)" id="tt_5">shipping label crated</a><span class="icon ups-icon-questioncircle" aria-hidden="true"></span></div>
+																<div class="trk-grid-cell" id="trk-grid-cell-3-4"><a title="TITLE: tt_5" class="ups-link_light infoAnchor btnlnkR hozAnchor" href="javascript:void(0)" id="tt_5">out for delivery</a><span class="icon ups-icon-questioncircle" aria-hidden="true"></span></div>
+															</div>
+															<div class="trk-grid-col" id="trk-grid-col-4" style="width:44px;left:575px">
+																<div class="trk-grid-cell" id="trk-grid-cell-4-0">
+																	<div class="trk-grid-save"> <img alt="saved" border="0" height="16" width="16" src="/img/1.gif" class="iconPushPinColor7116"> </div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-4-1">
+																	<div class="trk-grid-save"> <img alt="saved" border="0" height="16" width="16" src="/img/1.gif" class="iconPushPinColor7116"> </div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-4-2">
+																	<div class="trk-grid-save"> <!--<img alt="saved" border="0" height="16" width="16" src="/img/1.gif" class="iconPushPinColor7116"> <br>-->
+																		<span class="icon ups-icon-pushpin" aria-hidden="true"></span> </div>
+																</div>
+																<div class="trk-grid-cell-odd" id="trk-grid-cell-4-3">
+																	<div class="trk-grid-save"> <img alt="" src="/img/1.gif" width="16" height="16"> </div>
+																</div>
+																<div class="trk-grid-cell" id="trk-grid-cell-4-4">
+																	<div class="trk-grid-save"> <img alt="" src="/img/1.gif" width="16" height="16"> </div>
+																</div>
+															</div>
+														</div>
+
+														<!-- Column Handles -->
+														<hr style="width: 1px; height: 18px; top: 1px; left: 170px; visibility: visible;" onMouseDown="window.TrackingGrid.mouseDown(this.id, event);" col="1" id="trk-grid-0_resizer-1" class="trk-grid-hResizer">
+														<hr style="width: 1px; height: 18px; top: 1px; left: 405px; visibility: visible;" onMouseDown="window.TrackingGrid.mouseDown(this.id, event);" col="2" id="trk-grid-0_resizer-2" class="trk-grid-hResizer">
+														<!-- Grid Footer Start -->
+														<hr class="trk-grid-hResizer" id="trk-grid-0_resizer-1" style="left:175px">
+														<hr class="trk-grid-hResizer" id="trk-grid-0_resizer-2" style="left:375px">
+													</div>
+													<div class="trk-grid-vResizer" id="trk-grid-0_resizerBottom" style="top:150px; width:620px;">
+														<div style="top:2px" class="vResizer"><img onClick="return false;" onMouseDown="return stopDrag(event);" alt="" border="0" height="1" src="/img/1.gif" width="20"></div>
+														<div style="top:4px" class="vResizer"><img onClick="return false;" alt="" onMouseDown="return stopDrag(event);" border="0" height="1" src="/img/1.gif" width="20"></div>
+														<div style="top:6px" class="vResizer"><img onClick="return false;" alt="" onMouseDown="return stopDrag(event);" border="0" height="1" src="/img/1.gif" width="20"></div>
+													</div>
+												</div>
+
+												<!-- END FLEXIGRID -->
+												<!-- ///////////// -->
+
+											</div>
+											<!-- End Section Body -->
+
+											<!-- Begin Setion Footer  -->
+											<div class="secFooter trk-grid-footer">
+												<!-- Begin Button Bar Row -->
+												<div class="row">
+													<div class="col-xs-4"><button class="ups-cta ups-cta_primary ups-extended" type="submit" value="">track selected</button></div>
+													<div class="col-xs-4"><button class="ups-cta ups-cta_primary ups-extended" type="submit" value="">remove selected</button></div>
+													<div class="col-xs-4"><button class="ups-cta ups-cta_primary ups-extended" type="submit" value="">save selected</button></div>
+												</div>
+												<!-- End Button Bar Row -->
+											</div>
+											<!-- End Section Footer -->
+
+										</fieldset>
+									</div>
+									<!-- End Section Module -->
+								</div>
+								<!-- End Application Body -->
+							</fieldset>
+						</div>
+						<!-- End Application Module -->
+
+					</form>
+
+<!------------- -- -------------->
+<!--   IC DEV Display Module   -->
+<!------------- -- -------------->
+<script type="text/javascript">
+//var htmlcobrand;
+//$(document).ready(function(){
+	/* Prepend Control Box */
+	//$('body').prepend('<div id="control_box" class="ctrl_box"><div class="control_box_head"><label class="error" id="">Switch View:</label></div><div class="alignCenter"><input type="button" onclick="switchContainer(\'ccacmpad1\')" value="Campus Track" class="btn"><br><input type="button" onclick="switchContainer(\'ccCntMod\')" value="Tracking" class="btn"></div></div>');
+	/* Set default container and stylesheet to Internet Pickup */
+	//$('.switchContainer').removeClass('ccacmpad1');
+	//$('.switchContainer').attr('id', 'ccCntMod');
+	//chooseStyle('Tracking', 60);
+	//htmlcobrand = $('.cobrand').html();
+	//$('.cobrand').remove();
+
+//});
+/* function to switch views */
+/*function switchContainer(container) {
+	if(container == 'ccCntMod') {
+		$('.switchContainer').removeClass('ccacmpad1');
+		$('.switchContainer').attr('id', container);
+		chooseStyle('Tracking', 60);
+		$('.cobrand').remove();
+	}
+	if(container == 'ccacmpad1') {
+		$('.switchContainer').attr('id', '');
+		$('.switchContainer').addClass(container);
+		chooseStyle('Campus Track', 60);
+		$('.cobrand').remove();
+		$('form[action=repl_fname]').append($('<div class="cobrand" align="center" />').append(htmlcobrand));
+	}
+}*/
+
+</script>
+
+<!------------- -- -------------->
+<!-- END IC DEV Display Module -->
+<!------------- -- -------------->
+
+<script type="text/javascript">
+$(function(){
+
+	// Accordion
+	$("#accordion").accordion({ header: "h3",heightStyle: "content" });
+
+});
+
+
+$(function(){
+
+	// Datepicker
+	$('#datepicker').datepicker({
+		inline: true,
+		numberOfMonths: 1,
+		showButtonPanel: true,
+		closeText: 'Close',
+		showOn: 'button',
+		buttonImage: '/img/icn_calendar.gif',
+		buttonImageOnly: true
+
+	});
+
+	$('#datepicker2').datepicker({
+		inline: true,
+		numberOfMonths: 1,
+		showButtonPanel: true,
+		closeText: 'Close',
+		showOn: 'button',
+		buttonImage: '/img/icn_calendar.gif',
+		buttonImageOnly: true
+
+	});
+
+
+});
+
+</script>
+<script type="text/javascript">
+	/*$('#fontControl ul').icfontcontrol();*/
+</script>
+<script type="text/javascript">
+/*$(document).ready(function(){
+	$('a.gradient7').hover(function(){
+		$(this).css("background-position","0 -20px");
+		//$(this).animate( { backgroundPositionY: "-30px" }, 10 );
+	},function(){
+		//$(this).animate( { backgroundPositionY: "-4px" }, 1000 );
+		$(this).css("background-position","0 0px");
+	});
+});*/
+
+</script>
+<script type="text/javascript">
+	/*$('#fontControl ul').icfontcontrol();*/
+</script>
+<div id="ttc_bullpen" class="hidden">
+  <div id="ttc_tt_0"> </div>
+</div>
+<script type="text/javascript">
+	/*function buildExamplePage(){
+		var winWidth = $(window).width();
+		var tempWidth = winWidth;
+		var thisWidth;
+		for(i=1;i<6;i++){
+			if(tempWidth < 400){
+				thisWidth = tempWidth-151;
+				tempWidth = winWidth;
+				cat = true;
+			} else {
+				thisWidth = Math.floor(Math.random()*(300-150+1)) + 150;
+				tempWidth -= thisWidth;
+				cat = false;
+			}
+			$('#ttc_bullpen').append("<div id=\"ttc_tt_" + i + "\"><div class=\"appLvl\"><div class=\"appHead clearfix\"><h2>IC ToolTip</h2></div><div class=\"appBody\"><p>Tooltip content from element id: ttc_tt_" + i + "<p>This was generated by ictooltip, a tooltip plugin for jQuery. It has been tested with jQuery 1.2.6 and 1.3.2. Enhancements will follow. (11/20/09)</p><p><strong>Note:</strong> Need to add options for hoverOutDelay, persistence/close controls. (ToolTip Content ID: ttc_tt_" + i + ")</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum, diam id ultricies pulvinar, ante tortor sagittis nunc, nec vehicula sapien ligula eu nibh. Vestibulum molestie, ante non hendrerit fermentum, metus urna laoreet lacus, tincidunt tristique eros risus id leo. Suspendisse vel risus lorem, ac venenatis erat. Suspendisse sit amet est risus. Etiam a nibh orci, non varius orci. Fusce augue dui, molestie non ornare eu, mattis et tellus. Maecenas sapien eros, consectetur vitae fermentum non, sagittis quis lorem. Proin lestie adipiscing. Nullam egestas sapien nec nisl volutpat ut dignissim eros blandit. Aliquam vitae nisl at mauris congue molestie. In quis metus aliquet est dignissim pretium. Donec enim orci, blandit vestibulum dapibus sit amet, varius eget erat. In suscipit ipsum nec odio fringilla nec tristique leo rutrum. Cras et porta lectus. Nullam semper felis sed elit feugiat at convallis nibh eleifend. Etiam venenatis lorem ligula, sit amet tristique mi. Cras a tempor leo.</p></div><div class=\"appFooter\"></div></div></div>");
+		}
+	}
+	$(document).ready(function(){
+		buildExamplePage();
+		$('.hozAnchor').ictooltip({
+			orientation: "horiz",
+			tooltipClasses: "col12",
+			hoverDelay: 450,
+			tooltipID: "horiz_tt"
+		});
+	});*/
+</script>
+</div>

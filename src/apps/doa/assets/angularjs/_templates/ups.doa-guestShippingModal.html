@@ -1,0 +1,71 @@
+<div class="ups-confirmation">
+	<!-- //// begin ups.doa-guestShippingModal //// -->
+    <!-- CONFIRMATION CONTENT -->
+    <p>We've saved your information. Use your new ID to set shipping preferences, order supplies, schedule pickups, and more.</p>
+
+    <div id="profileAddressTxt" class="ups-group">
+        <p class="ups-group_label">Profile Address</p>
+        <p>John Smith</p>
+        <p>1234 Main Street</p>
+        <p>Rosewell, GA 30076</p>
+        <p>US</p>
+    </div>
+    <div id="profileEmailTxt" class="ups-group">
+        <p class="ups-group_label">Email</p>
+        <p>jsmith@email.com</p>
+    </div>
+	<div id="userIDTxt" class="ups-group">
+        <p class="ups-group_label">User ID:</p>
+        <p>jsmith</p>
+    </div>
+    <div id="paymentMethodTxt" class="ups-group">
+        <p class="ups-group_label">Payment Method</p>
+        <p>VISA ending in 1234</p>
+    </div>
+    <div id="contactTxt" class="ups-group">
+        <p class="ups-group_label">Contact</p>
+        <p>Jane Doe</p>
+        <p>785 Elm Street</p>
+        <p>Atlanta, GA 30032</p>
+        <p>US</p>
+    </div>
+<!--		
+    <div class="ups-form_group" data-ng-if="!NotEligible">
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input check-verify id="ups-notificationCheck" class="ups-checkbox-custom"
+                name="ups-notificationCheck" type="checkbox" value="1"
+                data-ng-model="upsnotificationCheck"
+                data-ng-checked="upsnotificationCheck">
+            <label for="ups-notificationCheck" class="ups-checkbox-custom-label">I want to receive package notifications.</label>
+        </div>
+    </div>
+-->		
+    <div data-ng-controller="popoverCtrl">
+         <div class="ups-form_group ups-form_popover">
+             <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-notificationCheck" class="ups-checkbox-custom"
+                    name="ups-notificationCheck" type="checkbox" value="1"
+                    data-ng-model="upsnotificationCheck"
+                    data-ng-checked="upsnotificationCheck">
+                <label for="ups-notificationCheck" class="ups-checkbox-custom-label">Send me updates about my eligible deliveries with UPS.</label>
+            </div>
+            <div class="ups-group ups-hintPopover" data-ng-if="!NotEligible">
+                <p>
+                    <a href="#" onclick="return false;" 
+                        data-uib-popover-template="toolTip.templateUrl"
+                        data-popover-placement="{{toolTip.position}}"
+                        popover-trigger="focus" class="ups-link ups-new-window">Learn about UPS My Choice&reg; Alerts<span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+                </p>
+            </div>
+         </div>
+    </div>
+    <div class="ups-form_ctaGroup text-center">
+        <button type="submit" 
+            class="ups-cta ups-cta_primary"
+            data-ng-click="ok()">Close</button>
+        <button type="submit" 
+            class="ups-cta ups-cta_secondary"
+            data-ng-click="redirectToMyProfile('guestShipping')">Manage My Profile</button>
+    </div>
+	<!-- //// end ups.doa-guestShippingModal //// -->
+</div>

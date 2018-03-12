@@ -1,0 +1,23 @@
+<!-- MODAL BASE CONTENT -->
+<div class="modal-header">
+	<button class="close ups-modal-close-icon" data-ng-click="cancel()">
+		<span class="ups-icon-x" aria-hidden="true"></span>
+		<span class="ups-readerTxt">Close {{design.title}} dialog</span>
+	</button>
+	<h2 id="ups-modal-heading" class="modal-title">
+		<span data-ng-bind-html="trustAsHtml(design.title)"></span>
+	</h2>
+</div>
+<div
+	class="modal-body ups-form_wrap ups-application_wrapper ups-modal-wrapper ups-onboApp-wrap-ppc">
+	<p data-ng-if="design.subtitle">
+		<span data-ng-bind-html="trustAsHtml(design.subtitle)"></span>
+	</p>
+	<div data-ng-include="design.content"></div>
+	<div class="ups-form_ctaGroup">
+		<button type="button" class="ups-cta"
+			data-ng-repeat="item in design.buttons"
+			data-ng-class="{'ups-cta_tertiary':!item.type, 'ups-cta_primary':item.type}"
+			data-ng-click="item.type?ok():cancel()">{{item.title}}</button>
+	</div>
+</div>

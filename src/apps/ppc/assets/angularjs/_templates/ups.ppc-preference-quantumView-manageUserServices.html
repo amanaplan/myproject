@@ -1,0 +1,54 @@
+<div data-ng-controller="quantumViewAdministrationManageUserServicesCtrl">
+
+    <h3>Quantum View Manage</h3>
+    <!-- Table -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-table table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="ups-table_header_tertiary">Service</th>
+                            <th scope="col" class="ups-table_header_tertiary">Status</th>
+                            <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                        </tr>
+                        <tr data-ng-repeat="service in manageUserServices">
+                            <th scope="row">{{service.serviceLabel}}</th>
+                            <td data-ng-if="service.activeStatus">Active</td>
+                            <td data-ng-if="service.noneStatus">None</td>
+                            <td>
+                                <a href="{{service.link}}" data-ng-if="service.editButton">Edit<span class="ups-readerTxt">{{service.serviceLabel}}</span></a><span data-ng-if="service.suspendButton">|</span> <a href="#" data-ng-if="service.suspendButton">Suspend <span class="ups-readerTxt">{{service.serviceLabel}}</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Table -->
+    <h3>Claims</h3>
+    <!-- Table -->
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ups-table table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="col" class="ups-table_header_tertiary">Service</th>
+                            <th scope="col" class="ups-table_header_tertiary">Status</th>
+                            <th scope="col" class="ups-table_header_tertiary">Actions</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Claims</th>
+                            <td>None</td>
+                            <td>
+                                <span class="ups-readerTxt">No action needed at this time</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- End of Table -->
+</div>

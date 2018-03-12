@@ -1,0 +1,425 @@
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// Begin UPS CPC form                            //// -->
+<!-- /////////////////////////////////////////////////////// -->
+<section [formGroup]="cpcForm">
+    <div *ngIf="visibleCardType">
+        <!--<div class="col-md-6">-->
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-cpc-card-type" class="ups-form_label">
+                    Card Type
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="ups-cpc-card-type"
+                        class="ups-dropdown"
+                        name="ups-cpc-card-type"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cpc-card-type-error"
+                        formControlName="cardType"
+                        [(ngModel)]="cardTypeSel"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardType'].valid && cpcForm.controls['cardType'].touched)}">
+                        <option value="" selected>--Select One--</option>
+                        <option *ngFor="let type of cardTypes" value="{{ type.value }}">
+                            {{ type.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="cpcForm.controls['cardType'].valid">
+                        <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-type-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardType'].valid &amp;&amp; cpcForm.controls['cardType'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardType'].hasError('required')">
+                            Card Type is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+
+        <!--</div>-->
+    </div>
+
+    <div *ngIf="visibleCardholderName">
+        <!--<div class="col-md-6">-->
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-cpc-card-name" class="ups-form_label">
+                    Cardholder Name
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        id="ups-cpc-card-name"
+                        name="ups-cpc-card-name"
+                        class="ups-form_input"
+                        maxlength="35"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cpc-card-name-error"
+                        formControlName="cardHolderName"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardHolderName'].valid && cpcForm.controls['cardHolderName'].touched)}">
+                    <div *ngIf="cpcForm.controls['cardHolderName'].valid">
+                        <span class="ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-name-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardHolderName'].valid &amp;&amp; cpcForm.controls['cardHolderName'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardHolderName'].hasError('required')">
+                            Cardholder Name is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        <!--</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-cpc-card-number" class="ups-form_label">
+                    Card Number
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        id="ups-cpc-card-number"
+                        name="ups-cpc-card-number"
+                        class="ups-form_input"
+                        maxlength="35"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cpc-card-number-error"
+                        formControlName="cardHolderCard"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardHolderCard'].valid && cpcForm.controls['cardHolderCard'].touched)}">
+                    <div *ngIf="cpcForm.controls['cardHolderCard'].valid">
+                        <span class="ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-number-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardHolderCard'].valid &amp;&amp; cpcForm.controls['cardHolderCard'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardHolderCard'].hasError('required')">
+                            Card Number is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ups-group clearfix ups-no_label" aria-hidden="true">
+                <ul class="ups-cardOrder_list">
+                    <li *ngFor="let type of cardTypes"
+                        class="ups-{{ type.value }}"
+                        [ngClass]="{ 'ups-active' : (cardTypeSel == type.value) }">
+                    </li>
+                    <!--<li class="ups-{{item | join}}"
+                        data-ng-repeat="item in payementData.cardOptions"
+                        data-ng-class="{'ups-active':item===form.Cardtype}"
+                        data-ng-show="(payementData.cardCountries[countryCode].indexOf(item) !== -1)">
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="ups-form_group ups-form_required">
+                <label for="ups-cpc-card-month" class="ups-form_label">
+                    Expiration <span class="ups-readerTxt">Month</span>
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select id="ups-cpc-card-month"
+                        name="ups-cpc-card-month"
+                        class="ups-dropdown"
+                        pattern="^[1-9][0-2]?$"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cpc-card-month-error"
+                        formControlName="cardExpirationMonth"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardExpirationMonth'].valid && cpcForm.controls['cardExpirationMonth'].touched)}">
+                        <option value="0" selected>--Month--</option>
+                        <option *ngFor="let month of months" value="{{ month.monthNum }}">
+                            {{ month.monthNum }}
+                        </option>
+                    </select>
+                    <div *ngIf="cpcForm.controls['cardExpirationMonth'].valid">
+                        <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-month-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardExpirationMonth'].valid &amp;&amp; cpcForm.controls['cardExpirationMonth'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardExpirationMonth'].hasError('pattern')">
+                            Month is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ups-form_group ups-form_required ups-no_label">
+                <label for="ups-cpc-card-year" class="ups-no_label ups-readerTxt">
+                    Expiration Year
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper ups-offset-22"
+                    data-errormsg="This field is required">
+                    <select id="ups-cpc-card-year"
+                        name="ups-cpc-card-year"
+                        class="ups-dropdown"
+                        pattern="^[1-9][0-9]+$"
+                        required
+                        aria-required="true"
+                        aria-describedby=""
+                        formControlName="cardExpirationYear"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardExpirationYear'].valid && cpcForm.controls['cardExpirationYear'].touched)}">
+                        <option value="0" selected>--Year--</option>
+                        <option *ngFor="let year of years" value="{{ year }}">
+                            {{ year }}
+                        </option>
+                    </select>
+                    <div *ngIf="cpcForm.controls['cardExpirationYear'].valid">
+                        <span class="icon ups-icon-check selectbox" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-year-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardExpirationYear'].valid &amp;&amp; cpcForm.controls['cardExpirationYear'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardExpirationYear'].hasError('pattern')">
+                            Year is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ups-form_group ups-form_required ups-help_wrapper">
+                <label for="ups-cpc-card-cvv" class="ups-form_label">
+                    CVV
+                    <span aria-hidden="true" class="ups-required_indicator"></span>
+                </label>
+                <div class="ups-help" upsHelpBtn>
+                    <button type="button" id="ups-formHelp2" class="ups-help_link">
+                        <span class="icon ups-icon-questioncircle" aria-hidden="true"></span>
+                        Help
+                    </button>
+                    <div class="ups-help_tooltip ups-help_tooltip_topleft">
+                        <button type="button" class="ups-help_close">
+                            <span class="icon ups-icon-x ups-iconAlone" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Close</span>
+                        </button>
+                        <p>The CVV is the number your card company uses to verify transactions. Most cards show a three-digit number to the right of your signature area on the back. American Express<sup>&reg;</sup> prints a four-digit code on the front of the card, directly above the card number.</p>
+                    </div>
+                </div>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        id="ups-cpc-card-cvv"
+                        name="ups-cpc-card-cvv"
+                        class="ups-form_input"
+                        maxlength="4"
+                        required
+                        aria-required="true"
+                        aria-describedby="ups-cpc-card-cvv-error"
+                        formControlName="cardCVV"
+                        [ngClass]="{'ups-bodError':  (!cpcForm.controls['cardCVV'].valid && cpcForm.controls['cardCVV'].touched)}">
+                    <div *ngIf="cpcForm.controls['cardCVV'].valid">
+                        <span class="ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Check</span>
+                    </div>
+                </div>
+                <span class="ups-icons-error" id="ups-cpc-card-cvv-error" role="alert">
+                    <span class="ups-invalid_color"
+                        *ngIf="(!cpcForm.controls['cardCVV'].valid &amp;&amp; cpcForm.controls['cardCVV'].touched)">
+                        <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                        <span class="ups-readerTxt"> Invalid</span>
+                        <span *ngIf="cpcForm.controls['cardCVV'].hasError('required')">
+                            CVV is required.
+                        </span>
+                    </span>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <!-- BEGIN VAT sections -->
+    <!-- VAT ID Portugal -->
+    <!-- This feild displays in error if the wrong data is entered, but does not display in error if blank -->
+    <!-- Since we do not have the business logic, we have set correct data to be 5-10 letter "a" in a row. -->
+    <!-- You can update this in the Validator.pattern in the .ts file. -->
+    <div class="row" *ngIf="visibleVatIdPt">
+        <div class="col-md-6">
+            <div class="ups-form_group">
+                <label for="ups-cpc-vat-id" class="ups-form_label">
+                    VAT ID
+                </label>
+                <p class="ups-form_subheader" id="ups-cpc-vatPt-id-helpTxt">If no VAT ID is given you will receive a final consumer invoice.</p>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        id="ups-cpc-vatPt-id"
+                        name="ups-cpc-vatPt-id"
+                        class="ups-form_input"
+                        aria-describedby="ups-cpc-vatPt-id-helpTxt">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- VAT / NIF ID  Spain -->
+    <fieldset class="ups-form_group" *ngIf="visibleVatIdEs">
+        <legend class="ups-form_label">Invoice Identification Number</legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-cpc-vatIdEs0" 
+                class="ups-radio-custom" 
+                name="ups-cpc-vatIdEs" 
+                value="vat" 
+                type="radio"
+                [(ngModel)]="iin"
+                [ngModelOptions]="{'standalone' : true}">
+            <label for="ups-cpc-vatIdEs0" class="ups-radio-custom-label">
+                VAT ID <em>(value added tax identification number)</em>
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-cpc-vatIdEs1" 
+                class="ups-radio-custom" 
+                name="ups-cpc-vatIdEs" 
+                value="nif" 
+                type="radio"
+                [(ngModel)]="iin"
+                [ngModelOptions]="{'standalone' : true}">
+            <label for="ups-cpc-vatIdEs1" class="ups-radio-custom-label">
+                NIF ID <em>(Personal Tax number)</em>
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input id="ups-cpc-vatIdEs2" 
+                class="ups-radio-custom" 
+                name="ups-cpc-vatIdEs" 
+                value="nonRes" 
+                type="radio"
+                [(ngModel)]="iin"
+                [ngModelOptions]="{'standalone' : true}">
+            <label for="ups-cpc-vatIdEs2" class="ups-radio-custom-label">
+                Non Resident
+            </label>
+        </div>
+        <div class="row" *ngIf="iin != 'nonRes'">
+            <div class="col-md-6">
+                <div class="ups-form_group ups-form_required">
+                    <label for="ups-cpc-vatEs-id" class="ups-form_label">
+                        <span *ngIf="iin == 'vat'">VAT ID</span>
+                        <span *ngIf="iin == 'nif'">NIF ID</span>
+                        <span aria-hidden="true" class="ups-required_indicator"></span>
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input type="text"
+                            id="ups-cpc-vatEs-id"
+                            name="ups-cpc-vatEs-id"
+                            class="ups-form_input"
+                            aria-describedby="ups-cpc-vatEs-id-error"
+                            formControlName="vatIdEs"
+                            [ngClass]="{'ups-bodError':  (!cpcForm.controls['vatIdEs'].valid && cpcForm.controls['vatIdEs'].touched)}">
+                    </div>
+                    <span class="ups-icons-error" id="ups-cpc-vatEs-id-error" role="alert">
+                        <span class="ups-invalid_color"
+                            *ngIf="(!cpcForm.controls['vatIdEs'].valid && cpcForm.controls['vatIdEs'].touched)">
+                            <span class="icon ups-icon-exclamation ups-error_exclamation" aria-hidden="true"></span>
+                            <span *ngIf="iin == 'vat'">VAT ID is required</span>
+                            <span *ngIf="iin == 'nif'">NIF ID is required</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <!-- END VAT sections -->
+    <div *ngIf="visibleCardNickname">
+        <!--<div class="col-md-6">-->
+            <div class="ups-form_group">
+                <label class="ups-form_label" for="ups-cpc-nickname">Nickname</label>
+                <div class="ups-text_wrapper ups-input_wrapper">
+                    <input type="text"
+                        id="ups-cpc-nickname"
+                        name="ups-cpc-nickname"
+                        class="ups-form_input"
+                        maxlength="35">
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+    <div class="ups-form_group ups-checkbox ups-input_wrapper" *ngIf="visibleMakeDefault">
+        <input type="checkbox"
+            id="ups-cpc-make-default"
+            name="ups-cpc-make-default"
+            class="ups-checkbox-custom">
+        <label for="ups-cpc-make-default" class="ups-checkbox-custom-label">
+            Make this my default payment method.
+        </label>
+    </div>
+
+    <fieldset class="ups-form_group ups-form_required">
+        <legend class="ups-form_label ups-no-border ups-asterisk-no-label">
+            Billing Address
+            <span aria-hidden="true" class="ups-required_indicator"></span><span class="ups-readerTxt">Required</span>
+        </legend>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input type="radio"
+                id="ups-cpc-bill-address-same"
+                class="ups-radio-custom"
+                name="ups-cpc-bill-address"
+                value="SameAdd"
+                [(ngModel)]="billAddress"
+                [ngModelOptions]="{ 'standalone' : true }">
+            <label for="ups-cpc-bill-address-same"
+                class="ups-radio-custom-label">
+                <!--Same as my profile address.-->
+                <address>
+                    <!--<p>[address2]</p>-->
+                    <p>[address1], [address 2], [address3]</p>
+                    <p>[city], [state], [postal], [country]</p>
+                </address>
+            </label>
+        </div>
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input type="radio"
+                id="ups-cpc-bill-address-diff"
+                name="ups-cpc-bill-address"
+                class="ups-radio-custom"
+                value="diffAdd"
+                [(ngModel)]="billAddress"
+                [ngModelOptions]="{ 'standalone' : true }">
+            <label for="ups-cpc-bill-address-diff"
+                class="ups-radio-custom-label">
+                Enter a different billing address.
+            </label>
+        </div>
+    </fieldset>
+
+    <!--<div class="row">
+        <div class="col-md-6">-->
+            <ups-cac *ngIf="(billAddress == 'diffAdd')" #cpcCtrlCAC></ups-cac>
+        <!--</div>
+    </div>-->
+
+</section>
+
+<!-- /////////////////////////////////////////////////////// -->
+<!-- //// End UPS CPC form                              //// -->
+<!-- /////////////////////////////////////////////////////// -->

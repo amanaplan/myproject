@@ -1,0 +1,1225 @@
+// ----------------------------------------------------
+// UI
+// ----------------------------------------------------
+
+
+.ups-placeholder {
+    color: $black_s1;
+    font-style: italic;
+    font-weight: normal;
+}
+
+::-webkit-input-placeholder {
+    color: $black_s1;
+    font-style: italic;
+    font-weight: normal;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: $black_s1;
+    font-style: italic;
+    font-weight: normal;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $black_s1;
+    color: $black;
+    font-style: italic;
+    font-weight: normal;
+}
+
+:-ms-input-placeholder {
+    color: $black_s1;
+    font-style: italic;
+    font-weight: normal;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+select {
+    color: $black_s4;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select::-ms-value {
+    background: none;
+    color: inherit;
+}
+
+a:focus, button:focus, input:focus, select:focus, textarea:focus
+{
+    outline: 5px auto $ups_gold;
+}
+
+.ie9, .ie10, .ie11{
+  a:focus, button:focus, input:focus, select:focus, textarea:focus
+    {
+        outline: 1px solid $ups_gold;
+    }
+}
+
+@-moz-document url-prefix() {
+    a:focus, button:focus, input:focus, select:focus , textarea:focus {
+        outline: 1px auto $ups_gold;
+    }
+}
+
+*:active,
+a:active {
+    outline: none;
+}
+
+a:focus {
+    outline-offset: 2px;
+}
+
+.touch a:hover,
+.touch a:active {
+    text-decoration: none;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    -webkit-appearance: none;
+    border-radius: 0;
+
+    .touch & {
+        font-size: 16px !important;
+    }
+}
+
+textarea {
+    -webkit-appearance: none;
+    border-radius: 0;
+    resize: none;
+}
+
+
+/*.ups-hidden_text {
+    position:absolute;
+    #{$default-float}:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    color: transparent;
+    overflow:hidden;
+}*/
+
+@mixin ups-readerTxt() {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+.ups-readerTxt {
+	@include ups-readerTxt();
+}
+@media #{$not-mobile_or_tablet} {
+	.ups-readerTxt_LVP {
+		@include ups-readerTxt();
+	}
+}
+.ups-cta {
+    @include unbutton;
+	@include border-radius($border_radius);
+    display: block;
+    background: $water_s3;
+    color: $white;
+    font-size: 1.1em;
+    line-height: 1.1em;      //updated for CTA height
+    padding: 10px 30px 10px; //updated for CTA height
+    text-align: center;
+    font-weight: 400;
+    font-family: $sans-bd;
+    display: inline-block;
+    text-decoration: none;
+
+    @include transition-property(all);
+    @include transition-duration($main-transition-speed);
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    &:hover,
+    &:focus {
+        // background: $ups_water;
+        background: darken($water_s3, 5%);
+        color: $white;
+        text-decoration: none;
+    }
+
+    &.ups-cta_secondary {
+        background: none;
+        color:$black_s3;
+        text-decoration: underline;
+        font-family: $sans-bd;
+
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+
+        .no-touch &:hover, .no-touch &:focus {
+            background: none;
+            color:$black_s1;
+            text-decoration: underline;
+        }
+    }
+
+	&.ups-cta_tertiary {
+		background: $black_s1;
+		/*float:#{$opposite-direction};*/
+
+		&:hover,
+		&:focus {
+			background: darken($black_s3, 5%);
+		}
+	}
+
+    @media #{$media-small} {
+        width: 100%;
+    }
+
+    &.text-left {
+        text-align: left !important;
+    }
+
+    /* class overwrite */
+  &.ups-cta-secondary {
+    background: $black_s1 !important;
+    color: $white !important;
+    padding: 15px 30px;
+
+    .no-touch &:hover,
+        .no-touch &:focus {
+            background: lighten($black_s1, 10%) !important;
+            color: $white !important;
+        }
+  }
+}
+
+button.ups-link {  //added so .ups-link can be used on a <button>
+	@include unbutton;
+}
+
+.ups-link {
+    text-decoration: underline;
+    color: $black_s3;
+    font-family: $sans-bd;
+
+    .ups-rtl {
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    &:hover {
+        color: $black_s1;
+    }
+}
+.ups-link_newwindow {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 0.8em;
+    &:before {
+        @include ups-icons;
+        content: "\e656";
+    }
+}
+
+
+.ups-body-link {
+    color: $black_s3;
+    text-decoration: underline;
+    @include transition-property(color);
+    @include transition-duration($main-transition-speed);
+
+
+    &:hover {
+        color: $black_s1;
+    }
+}
+
+.ups-header-link {
+    @include transition-property(color);
+    @include transition-duration($main-transition-speed);
+
+    &:hover {
+        text-decoration: underline;
+        color: $black_s1;
+    }
+}
+
+.ups-resource {
+    width: 100%;
+    background: $white;
+    color: $black_s3;
+    .img-container {
+        position: relative;
+        img {
+            width: 100%;
+        }
+    }
+    .txt-container {
+        padding: $margin_4 4% $margin_3;
+        h3 {
+            font-size: 14px;
+            color: $sun_s3;
+            font-family: $sans;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            margin-bottom: $margin_5;
+        }
+        p {
+            font-size: 20px;
+            font-family: $sans;
+            font-weight: 700;
+            margin: 0 0 $margin_4;
+        }
+    }
+
+    .ups-iconAlone {
+        position: absolute;
+        top: 10px;
+        color: $white;
+        font-size: 50px;
+        #{$opposite-direction}: 10px;
+        .ups-icon-play{
+            position:relative
+        }
+        .ups-icon-play:before {
+            display:block;
+            width:46px;
+            height:41px;
+            line-height: 43px;
+            position: relative;
+            z-index: 1;
+            border-radius: 50%;
+            background-color: rgba($black, 0.3);
+            .ie9 & { background: none; }
+        }
+
+        .ups-icon-document:before{
+          #{$opposite-direction}:5px;
+          width: 40px;
+          height: 49px;
+          background-size: 40px;
+          position:absolute;
+          @include icon-document-shading;
+        }
+
+        //.ups-icon-play:after {
+        //    content: '';
+        //    border-radius: 50%;
+        //    line-height: 40px;
+        //    position: absolute;
+        //    height: 45px;
+        //    width: 45px;
+        //    #{$opposite-direction}: 5px;
+        //    top: 0px;
+        //    margin-#{$default-float}: -20px;
+        //    background-color: rgba($black, 0.3);
+        //    @include transition-property(background-color);
+        //    @include transition-duration(0.3s);
+        //
+        //    .ie9 & { background: none; }
+        //}
+
+    }
+
+    .no-touch & a:hover {
+        .ups-iconAlone {
+            .ups-icon-play:after {
+                background-color: rgba($black, 0.6);
+            }
+        }
+    }
+
+    @media #{$media-small} {
+        .ups-iconAlone {
+            font-size: 45px;
+            .ups-icon-play:before {
+                width:44px;
+                height:41px;
+            //    border-radius: 15px;
+            //    line-height: 30px;
+            }
+            //.ups-icon-play:after {
+            //    margin-#{$default-float}: -11px;
+            //    height: 40px;
+            //    width: 40px;
+            //    #{$opposite-direction}:2px;
+            //}
+        }
+    }
+}
+
+.ie9{
+
+	.ups-headerTools_widgets li .ups-widget .ups-input_wrapper{
+		height: 35px;
+	}
+	.ups-dropdown_wrapper{
+		max-width: 200px;
+		border-radius: 7px;
+		overflow: hidden;
+        border: 1px solid $stone_s3;
+        height: 35px;
+
+        /*
+        Changes below added for TFS 334464 on Mar 27, 2017
+        */
+        &:before {
+            z-index: 1;
+            background-color: white;
+        }
+        /*
+        End Changes for TFS 334464
+        */
+        .ups-dropdown{
+         border-radius: 0;
+         border: 0;
+        }
+	}
+}
+/*
+Changes below added for TFS 334464 on Mar 27, 2017
+*/
+.ie9 .ups-application_wrapper .ups-input_has_unit {
+    padding-right: 50px;
+    .ups-dropdown_wrapper:before {
+        right: 0;
+    }
+    .ups-input_wrapper {
+        padding-right: 0;
+    }
+    .ups-input_unit_measure {
+        right: -45px;
+    }
+}
+/*
+End Changes for TFS 334464
+*/
+
+.ups-dropdown_wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 35px;
+    max-width: 450px;
+    overflow: visible;
+    background: $white;
+    border-radius: 7px;
+	  //border: 1px solid $stone_s3;
+
+    .ups-dropdown {
+        width: 100%;
+		display: block;
+		margin-bottom: $margin_5;
+        height: 35px; //37px
+        padding: 8px 10px 5px;
+        border-radius: 7px;
+        border: 1px solid $stone_s3;
+        font-size: 12px;
+        font-family: $sans;
+        font-weight: 700;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: transparent;
+        position: relative;
+        cursor: pointer;
+        pointer-events: auto;
+        padding-#{$opposite-direction}: 30px;
+        #{$default-float}: 0;
+	&.ng-invalid.ng-dirty, &.parsley-error {
+		padding-#{$opposite-direction}: 60px;
+		border-color: $red;
+    		outline-color: $red;
+	}
+
+        .ie9 & {
+            /*
+            Changes below added for TFS 334464 on Mar 27, 2017
+            */
+            //width: 300px;
+            width: 100%;
+            /*
+            End Changes for TFS 334464
+            */
+        }
+
+        @media screen and (min-width: 0\0) {
+            background: none;
+            padding: 5px;
+        }
+    }
+    &:before {
+        content: "\e677"; //""\e626"; // Design change
+        position: absolute;
+        text-align: center;
+        color: $ups_grass;//$water_s3;
+        top: 0px;
+        width: 46px;
+        height: 35px;
+        // border: 1px solid $white;
+        // background: $white;
+        @include ups-icons;
+        line-height: 35px;
+        #{$opposite-direction}: 0px;
+
+        .ie9 &{
+          z-index:999;
+        }
+    }
+
+    option:disabled {
+        font-family: $sans;
+        font-style: italic;
+    }
+}
+
+.ups-form_label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.ups-form_input {
+    display: block;
+    width: 100%;
+    // height: 100%;
+    height: 35px; //37px
+    border: 1px solid $stone_s3;
+    padding: 0 10px;
+    color: $black_s4;
+    font-size: 14px;
+    font-family: $sans;
+    font-weight: 700;
+    -webkit-appearance: none;
+    border-radius: 0;
+    //commenting due to form gets misaligned..
+    margin-bottom: $margin_5; //added for error message placement
+}
+
+.ups-textArea {
+    width: 100%;
+    border: 1px solid $stone_s3;
+}
+
+.ups-form_wrap .ups-input_wrapper.email_input {
+    max-width: 100%;
+}
+
+.ups-text_wrapper {
+    position: relative;
+    width: 100%;
+    //max-width: 390px;
+    min-height: 35px; //37px
+
+    .ups-form_input {
+        display: block;
+        //width: 75%;
+        height: 35px;
+        border: 1px solid $stone_s3;
+        padding: 0 10px;
+        font-size: 14px;
+        font-family: $sans;
+        font-weight: 700;
+
+        .touch & {
+            @media #{$media-small}{
+                    font-size: 16px;
+            }
+        }
+
+    }
+    .ups-input_unit {
+        position: absolute;
+        top:0px;
+        #{$default-float}:55%;
+        line-height: 45px;
+        &.ups-dropdown_wrapper {
+            margin: 0;
+            line-height: initial;
+            width: 45%;
+            #{$opposite-direction}:0;
+            #{$default-float}:initial;
+        }
+    }
+}
+
+.ups-input_wrapper {
+    .ups-form_input, .ups-textArea {
+        &.parsley-error {
+            border-color:$red;
+        }
+    }
+}
+
+.ups-quote,.ups-shipping {
+    .ups-text_wrapper .ups-form_input {
+        width: 50%;
+    }
+}
+
+
+.ups-form_button {
+    @media #{$media-small} {
+        height: 50px;
+        width:100%;
+        max-width: 100%;
+    }
+    &.ups-form_doubleButton {
+        display: inline-block;
+        @if $text-direction == ltr {
+            float:#{$default-float};
+            margin-#{$opposite-direction}: 30px;
+        } @else {
+            float:#{$opposite-direction};
+            margin-#{$default-float}: 30px;
+        }
+
+        &:last-child{
+            margin:0;
+        }
+    }
+}
+
+.ups-article-header {
+    font-family: $serif;
+    margin: 0 0 $margin_2 0; // 45px
+    padding-bottom: 10px;
+    position: relative;
+    font-size: 1.715em;
+    color: $ups_brown;
+    min-height: 24px;
+    &:after {
+        content: '';
+        width: 112px;
+        height: 1px;
+        position: absolute;
+        bottom: 0;
+        background: $ups_gold;
+        text-align: $default-float;
+        #{$default-float}: 0;
+    }
+    &.small {
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.ups-helper,
+.ups-contentBlock .ups-helper {
+    width:100%;
+    padding: $margin_4;
+    border: 1px solid $black_s1;
+    background: image-url('dot_tile.png');
+    h4 {
+        font-size: 1.2em;
+        margin-top: 0;
+        margin-bottom: $margin_4;
+        padding: 0;
+        min-height: 0;
+
+        &:after { display: none; }
+    }
+    a {
+        text-decoration: underline;
+        color: $black_s3;
+        display: inline;
+        padding: 0;
+        margin: 0;
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        &:hover {
+            color: $black_s1;
+        }
+    }
+    .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 30px;
+        margin: auto;
+        background: $black_s3;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    .ups-helper_imgCont {
+        text-align: center;
+        margin-bottom: $margin_4;
+    }
+
+    @media #{$media-mediumMid} {
+        padding: $page-margin-sm $page-margin-sm;
+    }
+}
+
+.ups-related_links{
+    background: $stone_60;
+    padding: 30px 20px 20px;
+    margin-top: -20px;
+
+    a {
+        color:$black_s3;
+        text-decoration: underline;
+        font-family: $sans;
+        font-weight: 700;
+        margin: 20px 0 5px;
+        font-size: 16px;
+        display: block;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+
+}
+
+.ups-carousel_sm {
+    max-width: $aside-width;
+
+    @media #{$media-mediumMid} {
+        max-width: none;
+    }
+
+    &.slick-slider {
+        padding-bottom: 60px;
+
+        .ups-resource .txt-container {
+            border-bottom: none;
+        }
+    }
+
+    .slick-next,
+    .slick-prev {
+        display: block;
+        position: absolute;
+        bottom: $margin_4;
+        z-index: 1;
+        height: 30px;
+        padding: 30px 0 0;
+        margin: 12px 25px 0;
+        width: 26px;
+        border: none;
+        background: none;
+
+        .icon:before {
+            @include ups-icons;
+            position: absolute;
+            display: block;
+            height: 30px;
+            width: 26px;
+            top: 0;
+            #{$default-float}: 0;
+            text-align: center;
+            line-height: 30px;
+            color: $black_s1;
+            font-size: 20px;
+        }
+
+        &.slick-disabled {
+            opacity: 0.5;
+        }
+    }
+
+    .slick-next {
+        #{$opposite-direction}: 0;
+
+        .icon:before {
+            content: '\e629';
+            .ups-rtl & { content: '\e627'; }
+        }
+    }
+
+    .slick-prev {
+        #{$default-float}: 0;
+
+        .icon:before {
+            content: '\e627';
+            .ups-rtl & { content: '\e629'; }
+        }
+    }
+
+    .slick-dots {
+        @include unlist;
+        display: block;
+        position: absolute;
+        bottom: 21px;
+        z-index: 1;
+        width: 50%;
+        #{$default-float}: 25%;
+        #{$opposite-direction}: 25%;
+        text-align: center;
+
+        li {
+            display: inline;
+
+            &.slick-active {
+                button {
+                    background: $ups_gold;
+                    color: $ups_gold;
+                }
+            }
+        }
+
+        button {
+            @include unbutton;
+            height: 18px;
+            width: 18px;
+            border-radius: 18px;
+            border: 3px solid $black_s1;
+            background: $black_s1;
+            color: $black_s1;
+            font-size: 0.5em;
+            margin: 0 5%;
+        }
+    }
+
+    .slick-slide {
+        position: relative;
+        z-index: -1;
+        outline: none;
+
+        &.slick-active {
+            z-index: 0;
+        }
+    }
+}
+
+.ups-icon-email {
+    position: relative;
+}
+
+.icon-social {
+    display: block;
+    background-image: image-url('social.jpg');
+    width: 20px;
+    height: 20px;
+
+    &.ups-icon-facebook { background-position: 0 0; }
+    &.ups-icon-twitter  { background-position: 0 -20px; }
+    &.ups-icon-linkedin { background-position: 0 -40px; }
+    &.ups-icon-youtube  { background-position: 0 -60px; }
+	&.ups-icon-amazon 	{ background-position: 0 -80px; }
+	&.ups-icon-google 	{ background-position: 0 -100px; }
+
+    @media #{$highres} {
+        background-image: image-url('social_2x.jpg');
+        background-size: 20px 80px;
+    }
+}
+
+.icon-social_mob {
+    border-radius: 100%;
+    display: block;
+    background-color: $stone_s3;
+    background-image: image-url('social_mob.png');
+    width: 35px;
+    height: 35px;
+
+    &.ups-icon-facebook { background-position: 0 0; }
+    &.ups-icon-twitter  { background-position: 0 -35px; }
+    &.ups-icon-linkedin { background-position: 0 -70px; }
+    &.ups-icon-youtube  { background-position: 0 -105px; }
+
+    @media #{$highres} {
+        background-image: image-url('social_mob_2x.png');
+        background-size: 35px 140px;
+    }
+}
+
+.ups-clear { clear: both; }
+
+
+.ups-vidThumb {
+    position: relative;
+    padding: 0;
+
+    .icon {
+
+        &:before {
+            @include ups-icons;
+            content: '\e65a';
+            position: absolute;
+            top: 10px;
+            color: $white;
+            font-size: 40px;
+            #{$opposite-direction}: 10px;
+            // border-radius: 20px;
+            line-height: 40px;
+            // background-color: rgba($black, 0.3);
+            // @include transition-property(background-color);
+            // @include transition-duration(0.3s);
+            z-index: 2;
+        }
+
+      &:after {
+            content: '';
+            border-radius: 50%;
+            line-height: 40px;
+            position: absolute;
+            height: 32px;
+            width: 32px;
+            z-index: 1;
+            top: 13px;
+            #{$opposite-direction}: 14px;
+            background-color: rgba($black, 0.3);
+            @include transition-property(background-color);
+            @include transition-duration(0.3s);
+            .ie9 & {
+                background: none;
+            }
+        }
+}
+
+    .no-touch a:hover & {
+        &:after {
+            background-color: rgba($black, 0.6);
+        }
+    }
+
+    @media #{$media-small} {
+        &:before {
+            font-size: 30px;
+            border-radius: 15px;
+            line-height: 30px;
+        }
+        &:after {
+            height: 24px;
+            width: 24px;
+            top: 12px;
+            #{$opposite-direction}: 13px;
+        }
+    }
+}
+.ups-dropdown_wrapper .ups-dropdown:focus
+{
+    // outline: 5px auto $ups_gold;
+    box-shadow: 0px 0px 2px 2px $ups_gold;
+    border-radius: 7px;
+    outline: none;
+	// outline: 2px solid $ups_gold;
+    // outline-offset: 0;
+    //outline-color: $ups_gold;
+}
+@-moz-document url-prefix() {
+    .ups-dropdown_wrapper .ups-dropdown:focus {
+        // outline: 1px auto $ups_gold;
+        box-shadow: 0px 0px 2px 2px $ups_gold;
+        border-radius: 7px;
+        outline: none;
+        //     outline-offset: 0;
+    }
+}
+
+.ups-bg-stone{
+  background-color:$ups_stone;
+  color: $black;
+  }
+
+.ups-bg-sand{
+  background-color:$ups_sand;
+  color: $black;
+  }
+
+.ups-bg-grass{
+  background-color:$ups_grass;
+  color: $black;
+  }
+
+.ups-bg-water{
+  background-color:$ups_water;
+  color: $black;
+  }
+
+/* .ups-bg-sky{
+  background-color:$ups_sky;
+  color: $white;
+} */
+
+.ups-bg-sun{
+  background-color:$ups_sun;
+  color: $black;
+  }
+
+.ups-bg-stone60{
+  background-color:$stone_60;
+  color: $black;
+  }
+
+.ups-bg-sand60{
+  background-color:$sand_60;
+  color: $black;
+  }
+
+.ups-bg-grass60{
+  background-color:$grass_60;
+  color: $black ;
+  }
+
+.ups-bg-water60{
+  background-color:$water_60;
+  color: $black;
+  }
+
+.ups-bg-sky60{
+  background-color:$sky_60;
+  color: $black;
+  }
+
+.ups-bg-sun60{
+  background-color:$sun_60;
+  color: $black;
+  }
+
+/*.ups-bg-stone-s3{
+  background-color:$stone_s3;
+  color: $black;
+  }
+*/
+
+.ups-bg-sand-s2{
+  background-color:$sand_s2;
+  color: $black;
+}
+
+.ups-bg-grass-s3{
+  background-color:$grass_s3;
+  color: $white;
+  }
+
+/*.ups-bg-water-s3{
+  background-color:$water_s3;
+  color: $white;
+}*/
+
+/*.ups-bg-sky-s3{
+  background-color:$sky_s3;
+  color: $white;
+}*/
+
+/*.ups-bg-sun-s3{
+  background-color:$sun_s3;
+  color: $white;
+}*/
+
+.ups-bg-darkbrown{
+  background-color:$brown_dk;
+  color: $white;
+}
+
+.ups-bg-black-s4{
+  background-color:$black_s4;
+  color: $white;
+}
+
+.ups-bg-brown{
+  background-color:$ups_brown;
+  color: $white;
+}
+.ups-bg-gold{
+  background-color:$ups_gold;
+  color: $black;
+}
+.ups-bg-black-s3{
+  background-color:$black_s3;
+  color: $white;
+}
+.ups-bg-brown-s3{
+  background-color:$brown_s3;
+  color: $white;
+}
+.ups-bg-gold60{
+  background-color:$gold_60;
+  color: $black;
+}
+/*.ups-bg-black-s1{
+  background-color:$black_s1;
+  color: $white;
+}*/
+.ups-bg-brown-s1{
+  background-color:$brown_s1;
+  color: $white;
+}
+.ups-bg-gold40{
+  background-color:$gold_40;
+  color: $black;
+}
+.ups-bg-stone40{
+  background-color:$stone_40;
+  color: $black;
+}
+.ups-bg-sand40{
+  background-color:$sand_40;
+  color: $black;
+}
+.ups-bg-white{
+  background-color:$white;
+  color: $black;
+  border: 1px solid $black;
+}
+
+/* Widget Background */
+
+@mixin widget_backg{
+  .ups-cont-stone60{
+    margin-top:0;
+    background: $stone_60;
+    padding-top:60px;
+    padding-bottom:60px;
+    margin-bottom:0;
+  }
+  .ups-cont-white{
+    .ups-widget_panel{
+      border: 1px solid $black_s1;
+      border-top: 0;
+    }
+  }
+}
+
+  .ups-cont-white{
+    .ups-widget_panel{
+      border: 1px solid $black_s1;
+      border-top: 0;
+    }
+  }
+
+.ups-subsection, .iw_columns.col-lg-12{
+  .subsection_main,
+  .iw_columns.col-lg-8{
+      @include widget_backg;
+  }
+}
+
+.iw_columns.col-lg-12 > .iw_component{
+  @include widget_backg;
+}
+
+/***********************************************
+**                                            **
+**	UPS Locator                               **
+**                                            **
+***********************************************/
+.ups-locator_container {
+	height: 400px;
+    border: 1px solid silver;
+    overflow-y: scroll;
+    background-color: white;
+    label {
+        width: 100%;
+		vertical-align: top;
+		padding: 5px;
+        font-weight: normal;
+        cursor: pointer;
+        .ups-locator_address {
+            display: block;
+            margin-#{$opposite-direction}: 30px;
+			/*address {
+				margin-bottom: 5px;
+			}*/
+		}
+    }
+	label.ups-radio-custom-label {
+		.ups-locator_address {
+            display: block;
+            margin-#{$default-float}: 22px;
+            margin-#{$opposite-direction}: 55px;
+			/*address {
+				margin-bottom: 5px;
+			}*/
+		}
+	}
+	/*.ups-locator_icon {
+		margin-#{$opposite-direction}: 5px;
+	}
+	.ups-locator_miles, .ups-locator_icon {
+		height: 5em;
+	}*/
+	.ups-radio-custom:checked + label {
+		background-color: $water_s3;
+        color: white;
+        .ups-form_label {
+            color: white;
+        }
+        .ups-locator_number {
+            color: black;
+        }
+        .ups-link {
+            color: white;
+        }
+	}
+    .ups-radio-custom:focus ~ label, .ups-radio-custom:active ~ label {
+        outline: 5px auto $ups_gold;
+        outline-offset: -3px;
+    }
+    .ups-locator_number {
+        padding: 1px 3px;
+        background-color: $ups_gold;
+    }
+}
+.ups-locator_pager {
+	text-align: center;
+	padding: 8px 0;
+	margin-bottom: 15px;
+	.ups-locator_previous_page {
+		float: $default-float;
+	}
+	.ups-locator_next_page {
+		float: $opposite-direction;
+	}
+}
+.ups-locator_directions {
+	border-top: 1px solid $black;
+	border-bottom: 1px solid $black;
+	padding-top: 5px;
+	/*.row .col-xs-6 {
+		border-bottom: 1px solid $stone_60;
+		padding: 0 3px;
+	}
+	.row:last-child .col-xs-6 {
+		border-bottom: none;
+	}*/
+}
+p:empty {
+	display: none;
+}

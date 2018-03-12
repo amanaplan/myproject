@@ -1,0 +1,200 @@
+<div class="main">
+	<h1>Quantum View Manage</h1>
+	<form action="../../../legacy_spa/qvmc/_templates/repl_fname" method="repl_method" name="repl_fname">
+		<div class="floatBegin">
+			<ul class="subTab clearfix">
+				<li class="tab-on">Combined</li>
+				<li class="tab-off"><a ui-sref="outbound">Outbound</a></li>
+				<li class="tab-off"><a ui-sref="inbound">Inbound</a></li>
+				<li class="tab-off"><a ui-sref="thirdparty">Third Party</a></li>
+				<li class="tab-off"><a ui-sref="imports">Imports</li>
+			</ul>
+		</div>
+		<div class="floatEnd">
+			<p>Last Updated: 02/15/2016 01:10PM <span><a href="" class="btnlnkR printIconR">Print</a></span> <span><a href="" class="btnlnkR helpIconR">Help</a> </span> </p>
+		</div>
+		<div class="clear"></div>
+		<div class="appLvl tab col24 clearfix">
+			<div class="appHead"></div>
+			<div class="appBody clearfix">
+				<div class="floatBegin">
+                            <div class="flexFirst clearfix" ng-controller="DropdownCtrl">
+                                <dl role="presentation" class="outHozFlex">
+                                    <dt><label for="selectbox_01"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+                                    <dd>
+                                        <select name="singleSelect" id="selectbox_01" ng-model="data.singleSelect" class="formcol4">
+                                            <option selected="selected" value="option-1">Default Combined View</option>
+                                            <option value="option-2">Saved Custom Views</option>
+                                            <option value="option-3"> &nbsp; Approx 7,000</option>
+                                            <option value="option-4"> &nbsp; Comb for exceptions</option>
+                                            <option value="option-5"> &nbsp; Comb for exceptions - Biddle</option>
+                                            <option value="option-6">Option 3</option>
+                                            <option value="option-7">Option 4</option>
+                                        </select>
+                                    </dd>
+                                </dl>
+                            </div>
+                        	<div class="flexAfter clearfix"> <span><img alt="Save" class="img-save" src="/img/btn_save_mini.gif"></span> <span><img alt="Close" class="img-close" src="/img/btn_close_mini.gif"></span> </div>
+                            <div ng-controller="DatepickerCtrl" class="flexAfter clearfix">
+                                <div class="flexFirst clearfix">
+                                    <dl role="presentation" class="outHozFlex flexFirstPadQvm clearfix">
+                                        <dt><label for="datepicker_01">Date Range: <span class="visually-hidden"> from</span> </label></dt>
+                                        <dd>
+                                            <input name="text" type="text" id="datepicker_01" size="15" value="01/01/2014" />
+                                            <dd>
+                                    </dl>
+                                </div>
+                                <div class="flexAfter clearfix">
+                                    <dl role="presentation" class="outHozFlex flexAfterPadQvm clearfix">
+                                        <dt><label for="datepicker_02"> <span class="visually-hidden">date range</span> to</label></dt>
+                                        <dd>
+                                            <input name="text" type="text" id="datepicker_02" size="15" value="01/01/2014" />
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="flexAfter clearfix">
+                                    <span class=""><img ng-click="()" alt="calender" src="/img/icn_calendar.gif" /></span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                                <div class="floatEnd">
+                                    <div class="flexFirstPad clearfix">
+                                        <span class="visually-hidden">Click to view preferences</span>
+                                        <input type="button" class="btn" value="Preferences" />
+                                    </div>
+                                    <div class="flexAfterPad clearfix">
+                                        <span class="visually-hidden">Click to view alerts</span>
+                                        <input type="button" class="btn" value="Alerts" />
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+
+                                <div class="flexFirst clearfix">
+                                    <dl role="presentation" class="outHozFlex">
+                                        <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+                                        <dd>
+                                            <input type="text" name="txtbox" class="formcol4" />
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="flexAfter clearfix" ng-controller="DropdownCtrl">
+                                    <dl role="presentation" class="outHozFlex">
+                                        <dt><label for="selectbox_02"></label><span class="visually-hidden"> Use if label would not be desciptive to the visually impaired</span> </dt>
+                                        <dd>
+                                            <select name="singleSelect" id="selectbox_02" ng-model="data.singleSelect" class="formcol4">
+                                                <option value="option-1">Select One</option>
+                                                <option value="option-2">Reference Number(s)</option>
+                                                <option value="option-3">Ship To Name</option>
+                                                <option value="option-4">Ship To Postal Code</option>
+                                                <option value="option-5">Ship to State/Provience</option>
+                                                <option value="option-6">Shipper Name</option>
+                                                <option value="option-7">Tracking Number</option>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                </div>
+                               	<div class="flexAfter clearfix"> <input type="button" class="btn" value="Search"></div>
+
+                                <div class="flexAfter clearfix">
+                                    <div class="flexFirstPad clearfix">
+                                        <input type="button" class="btn" value="Apply Filters" /><span class="visually-hidden">to results table</span>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+
+                                <div class="secLvl step combBlock">
+                                    <div class="secHead">
+                                        <h2> Summary</h2>
+                                    </div>
+                                    <div class="secBody">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="sel" scope="row">
+                                                        <input name="repl_name" type="checkbox" ng-model="checkboxModel.value1" id="outBound" value="">
+                                                    </td>
+                                                    <td>
+                                                        <label for="outBound" class="sel">Outbound (500)</label>
+                                                    </td>
+                                                    <td>&nbsp</td>
+                                                    <td>&nbsp</td>
+                                                    <td class="sel" scope="row">
+                                                        <input name="repl_name" type="checkbox" value="" ng-model="checkboxModel.value2" id="inBound">
+                                                    </td>
+                                                    <td>
+                                                        <label for="inBound" class="sel">Inbound (500)</label>
+                                                    </td>
+                                                    <td>&nbsp</td>
+                                                    <td>&nbsp</td>
+                                                    <td class="sel" scope="row">
+                                                        <input name="repl_name" type="checkbox" value="" ng-model="checkboxModel.value3" id="thirdParty">
+                                                    </td>
+                                                    <td>
+                                                        <label for="thirdParty" class="sel">Third Party (500)</label>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="clear"></div>
+
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="secLvl step" ng-show="checkboxModel.value1">
+                                    <div class="secHead">
+                                        <h2>Shipment Details</h2>
+                                    </div>
+                                    <div class="secBody combBlock">
+                                        <div class="floatBegin">&nbsp;</div>
+                                        <div class="floatEnd">
+                                            <div class="flexFirstPad clearfix">
+                                                <input type="button" class="btn" value="Download as CSV" />
+                                            </div>
+                                            <div class="flexAfterPad clearfix">
+                                                <input type="button" class="btn" value="Schedule a Report" />
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="flexFirst clearfix">
+                                            <p>You can display all of your shipments together in the combined view. Try narrowing down your results or you can download the shipment detail.</p>
+                                            <p>To narrow down your results:</p>
+                                            <p>- <a href="#">Change the date range</a>
+                                            </p>
+                                            <p>- <a href="#">Apply one or more filters</a>
+                                            </p>
+                                            <p>- Unselect one or more shipment types.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="secLvl step" ng-show="checkboxModel.value2">
+                                    <div class="secHead">
+                                        <h2>Shipment Details</h2>
+                                    </div>
+                                    <div class="secBody combBlock">
+                                        <div ng-controller="InshipDetCtrl" class="gridcontent">
+                                            <div ui-grid="gridOptions" class="grid"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="secLvl step" ng-show="checkboxModel.value3">
+                                    <div class="secHead">
+                                        <h2>Shipment Details</h2>
+                                    </div>
+                                    <div class="secBody combBlock">
+
+                                        <div class="flexFirst clearfix">
+                                            <p>No shipment information exists for the date range you entered. Please modify your date range and try again.</p>
+                                            <p>Next steps:</p>
+                                            <p> - <a href="#">Change the date range</a> </p>
+                                        </div>
+                                    </div>
+                                </div>
+			</div>
+		</div>
+	</form>
+</div>

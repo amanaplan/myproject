@@ -1,0 +1,1282 @@
+<!--<div class="row">
+    <div class="col-md-7">-->
+<div class="ups-progress_bar">
+    {{>A22_progress_tracker review_progress }}
+</div>
+
+<div class="ups-app_inner">
+    <div class="ups-group">
+        <h2 class="text-center ups-section_heading ups-centered_header">Let's make sure everything is in order.</h2>
+    </div>
+    {{#if email_required}}
+        {{> A04_page_level_required_message }}
+    {{/if}}
+
+    {{#if error }}
+    	{{> A03_page_level_error }}
+    {{/if}}
+
+    {{>BS02_alert review_email_tip}}
+
+    <!-- start of where -->
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <button class="ups-link pull-right"><span class="ups-readerTxt">Where Section</span> Edit</button>
+            <h3 class="ups-section_heading">Where</h3>
+        </div>
+        <div class="row" id="defaultDeliveryAddress">
+            <div class="col-sm-4">
+                <h3 class="ups-form_label">From</h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Shipper Name], [Shipper Contact Name]</p>
+						<address class="ups-address_condensed">
+						[Street Address], [Address 2]<br>
+						[City], [State], [Zip] <br>
+						[Country or Territory]
+						</address>
+					<p>[Email]</p>
+					<p>[Phone]</p>
+				</div>
+			</div>
+            <div class="col-sm-4">
+            	<h3 class="ups-form_label">To
+                </h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Receiver Name], [Receiver Contact Name]</p>
+						<address class="ups-address_condensed">
+						[Street Address], [Address 2]<br>
+						[City], [State], [Zip] <br>
+						[Country or Territory]
+						</address>
+                    </p>
+                </div>
+                <div class="ups-form_group{{#if email_required}} ups-form_required{{/if}}">
+                    <label for="review_email" class="ups-form_label">
+                        Email
+                        {{#if email_required}} <span class="ups-required_indicator" aria-hidden="true"></span>{{/if}}
+                    </label>
+                    <div class="ups-text_wrapper ups-input_wrapper">
+                        <input name="review_email" class="ups-form_input{{#if error}} ng-invalid ng-dirty ng-touched{{/if}}" id="review_email" type="text"{{#if email_required}}aria-required="true" required{{/if}}{{#if error}} aria-describedby="review_email_error"{{/if}}>
+                    </div>
+                    {{#if non_error}}
+                        <div class="ups-check ups-active">
+                            <span class="icon ups-icon-check" aria-hidden="true"></span>
+                            <span class="ups-readerTxt">Check</span>
+                        </div>
+                    {{/if}}
+                    {{#if error}}
+                        {{>A11_field_lvl_error error_review_email }}
+                    {{/if}}
+                </div>
+				<p>[Phone]</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="ups-form_label">Return</h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Return Name], [Return Contact Name]</p>
+						<address class="ups-address_condensed">
+						[Street Address], [Address 2]<br>
+						[City], [State], [Zip] <br>
+						[Country or Territory]
+						</address>
+				</div>
+            </div>
+        </div>
+        <div class="row" id="residentialDeliveryAddress">
+            <div class="col-sm-4">
+                <h3 class="ups-form_label">From</h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Shipper Name], [Shipper Contact Name]</p>
+						<address class="ups-address_condensed">
+						[Street Address], [Address 2]<br>
+						[City], [State], [Zip] <br>
+						[Country or Territory]
+						</address>
+					<p>[Email]</p>
+					<p>[Phone]</p>
+					<p>[Phone]</p>
+					<p>[Residential Address]</p>
+				</div>
+            </div>
+            <div class="col-sm-4">
+            	<h3 class="ups-form_label">To</h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Receiver Name], [Receiver Contact Name]</p>
+					<address class="ups-address_condensed">
+					[Street Address], [Address 2]<br>
+					[City], [State], [Zip]<br>
+					[Country or Territory]
+					</address>
+					<p>[Email]</p>
+					<p>[Phone]</p>
+				</div>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="ups-form_label">Return</h3>
+				<div class="ups-group ups-group_condensed">
+					<p>[Return Name], [Return Contact Name]</p>
+						<address class="ups-address_condensed">
+						[Street Address], [Address 2]<br>
+						[City], [State], [Zip] <br>
+						[Country or Territory]
+						</address>
+				</div>
+            </div>
+        </div>
+
+        <div id="alternateDeliveryAddress">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3 class="ups-form_label">From</h3>
+    				<div class="ups-group ups-group_condensed">
+    					<p>[Shipper Name], [Shipper Contact Name]</p>
+    						<address class="ups-address_condensed">
+    						[Street Address], [Address 2]<br>
+    						[City], [State], [Zip] <br>
+    						[Country or Territory]
+    						</address>
+    					<p>[Email]</p>
+    					<p>[Phone]</p>
+    					<p>[Residential Address]</p>
+    				</div>
+                </div>
+                <div class="col-sm-3">
+                	<h3 class="ups-form_label">Alternate Delivery</h3>
+    				<div class="ups-group ups-group_condensed">
+    					<p>	[Receiver Name], [Receiver Contact Name]</p>
+    						<address class="ups-address_condensed">
+    						[Street Address], [Address 2]<br>
+    						[City], [State], [Zip] <br>
+    						[Country or Territory]
+    						</address>
+    				</div>
+                </div>
+                <div class="col-sm-3">
+                	<h3 class="ups-form_label">To</h3>
+    				<div class="ups-group ups-group_condensed">
+    					<p>	[Receiver Name], [Receiver Contact Name]</p>
+    					<address class="ups-address_condensed">
+    					[Street Address], [Address 2]<br>
+    					[City], [State], [Zip] <br>
+    					[Country or Territory]
+    					</address>
+    					<p>[Email]</p>
+    					<p>[Phone]</p>
+    				</div>
+                </div>
+                <div class="col-sm-3">
+                    <h3 class="ups-form_label">Return</h3>
+    				<div class="ups-group ups-group_condensed">
+    					<p>[Return Name], [Return Contact Name]</p>
+    					<address class="ups-address_condensed">
+    					[Street Address], [Address 2]<br>
+    					[City], [State], [Zip] <br>
+    					[Country or Territory]
+    					</address>
+    				</div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-md-10">
+                	<p>Note: The UPS Access Point&trade; location selected may not be available when the shipment is scheduled for delivery.  Service commit time may be affected.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of where -->
+
+    <!-- start of what -->
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <button class="ups-link pull-right"><span class="ups-readerTxt">What Section</span> Edit</button>
+            <h3 class="ups-section_heading">What</h3>
+        </div>
+        	<div class="ups-section">
+            <!-- start of US to Non US - Package -->
+                <div id="packageUSNonUS">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p class="ups-form_label">Actual Weight</p>
+                            <p class="ups-form_label">Total Billable Weight</p>
+                            <p class="ups-form_label">Description of Goods</p>
+                       </div>
+                       <div class="col-md-5 col-md-offset-1">
+                            <p>[00.00] [lbs]</p>
+                            <p>[00.00] [lbs]</p>
+                            <p>[description]</p>
+                       </div>
+                    </div>
+                    </div>
+        		</div>
+
+                <!-- end of US to Non US - Package -->
+
+            <!-- start of DE to DE Forward - Package Processing -->
+
+                <div id="deToDePackageProcessing">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                    	<div class="row">
+                            <div class="col-md-5">
+                                   <p class="ups-form_label">Actual Weight</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00.00] [kg]</p>
+                            </div>
+                        </div>
+                    	<div class="row">
+                            <div class="col-md-5">
+                                   <p class="ups-form_label">Total Billable Weight</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00.00] [kg]</p>
+                            </div>
+                        </div>
+                    	<div class="row">
+                            <div class="col-md-5">
+                                <p class="ups-form_label">Description of Goods</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[description]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p class="ups-form_label">Reference Number 1</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[description]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p class="ups-form_label">Reference Number 2</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[description]</p>
+                            </div>
+                        </div>
+                    </div>
+        		</div>
+
+                <!-- end of DE to DE Forward - Package Processing -->
+
+            <!-- start of EU - Shipment Rating - Package Determination -->
+
+                <div id="euPackageDetermination">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <p class="ups-form_label">Total Billable Weight</p>
+                            <p class="ups-form_label">Description of Goods</p>
+                       </div>
+                       <div class="col-md-5 col-md-offset-1">
+                            <p>[00.00] [kg]</p>
+                            <p>[description]</p>
+                       </div>
+                    </div>
+                    </div>
+        		</div>
+
+                <!-- end of EU - Shipment Rating - Package Determination -->
+
+                 <!-- start of DE to FR - Transborder - Package Processing -->
+
+                <div id="deFRPackagingProcessing">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Actual Weight</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00.00] [kg]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Total Billable Weight</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[00.00] [kg]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Description of Goods</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[description]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Reference Number 1</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[description]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Reference Number 2</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[description]</p>
+                        </div>
+                    </div>
+                    </div>
+        		</div>
+
+                <!-- end of DE to FR - Transborder - Package Processing -->
+
+            <!-- start of package 1 -->
+            <div class="ups-group">
+            	<div id="packageDefault">
+                    <div class="ups-section-header">
+                        <h3 id="packageInformation">Package Information</h3>
+                        <h3>Package 1</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Weight</div>
+                                <p>15 lbs</p>
+                                <p>(nn.n [lbs] billable)</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Dimensions</div>
+                                <p>10 x 5 x 5 [in.] - Large Package</p>
+                                <p>My Packaging</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Declared Value</div>
+                                <p>[$] 25.00 USD</p>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Reference Numbers</div>
+                                <p>123456789012345</p>
+                                <p>123456789012345</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="packageDefaultBtn" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">See Package Detail <span class="icon ups-icon-wedgedown"></span></button>
+                    <button type="button" id="packageMultiPieceBtn" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">Hide Package Detail<span class="icon ups-icon-wedgeup"></span></button>
+
+                </div>
+
+                <div id="packageMultiPiece">
+                    <p>Chain of Custody   <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>C.O.D. Amount: 25.00 USD, Cashier's Chk./M.O. Only   <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>UPS Premium Care   <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Adult Signature Required   <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                </div>
+                </div>
+                <!-- end of package 1 -->
+
+                <!-- start of package 2 -->
+                <div class="ups-group">
+                <div id="packageDefault2">
+                    <div class="ups-section-header">
+                        <h3>Package 2</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Weight</div>
+                                <p>15 lbs</p>
+                                <p>(nn.n [lbs] billable)</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Dimensions</div>
+                                <p>10 x 5 x 5 [in.] - Large Package</p>
+                                <p>My Packaging</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Declared Value</div>
+                                <p>[$] 25.00 USD</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Reference Numbers</div>
+                                <p>123456789012345</p>
+                                <p>123456789012345</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="packageDefaultBtn2" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">See Package Detail <span class="icon ups-icon-wedgedown"></span></button>
+                    <button type="button" id="packageMultiPieceBtn2" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">Hide Package Detail <span class="icon ups-icon-wedgeup"></span></button>
+
+                </div>
+
+                <div id="packageMultiPiece2">
+                    <p>Proactive Response <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Signature Required <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>UPS carbon neutral <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Saturday Delivery <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    	<p>Note: Remember to put a Saturday Delivery sitckeron your packages.</p>
+                    <p>Package Release Code: {12345} <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Direct Delivery Only  <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Deliver to Addressee Only <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Collect Proof of Identity <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                </div>
+                </div>
+
+                <!-- end of package 2 -->
+
+                <!-- start of package 1 -->
+
+                <div class="ups-group">
+            	<div id="packageDefault3">
+                    <div class="ups-section-header">
+                        <h3>Package Information</h3>
+                        <h3>Package 1</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Weight</div>
+                                <p>15 [kg]</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Dimensions</div>
+                                <p>10 x 5 x 5 [cm]</p>
+                                <p>My Packaging</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Declared Value</div>
+                                <p>[$] 25.00 [EUR]</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="packageDefaultBtn3" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">See Package Detail <span class="icon ups-icon-wedgedown"></span></button>
+                    <button type="button" id="packageMultiPieceBtn3" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">Hide Package Detail <span class="icon ups-icon-wedgeup"></span></button>
+
+                </div>
+
+                <div id="packageMultiPiece3">
+                    <p>Chain of Custody <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>C.O.D. Amount: 25.00 USD, Cashier's Chk./M.O. Only <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>UPS Premium Care <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Adult Signature Required <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                </div>
+                </div>
+                <!-- end of package 1 -->
+
+                <!-- start of package 2 -->
+
+                <div class="ups-group">
+                <div id="packageDefault4">
+                    <div class="ups-section-header">
+                        <h3>Package 2</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Weight</div>
+                                <p>15 [kg]</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Dimensions</div>
+                                <p>10 x 5 x 5 [cm]</p>
+                                <p>My Packaging</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="ups-group">
+                                <div class="ups-group_label">Declared Value</div>
+                                <p>[$] 25.00 [EUR]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="packageDefaultBtn4" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">See Package Detail <span class="icon ups-icon-wedgedown"></span></button>
+                    <button type="button" id="packageMultiPieceBtn4" class="ups-cta ups-cta_secondary ups-link ups-btn_has_icon">Hide Package Detail <span class="icon ups-icon-wedgeup"></span></button>
+
+                </div>
+
+                <div id="packageMultiPiece4">
+                    <p>Proactive Response <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Signature Required <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>UPS carbon neutral <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Saturday Delivery <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    	<p>Note: Remember to put a Saturday Delivery sitckeron your packages.</p>
+                    <p>Package Release Code: {12345} <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Direct Delivery Only  <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Deliver to Addressee Only <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                    <p>Collect Proof of Identity <button type="button" class="ups-cta ups-cta_secondary">Cancel</button></p>
+                </div>
+                </div>
+
+                <!-- end of package 2 -->
+
+                </div>
+               <!-- end of what -->
+
+                 <!-- start of EU - Shipment Rating - Shipment Determination -->
+                <div id="euShipmentDetermination">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p class="ups-form_label">[Shipment/Actual] Weight</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00,00] [kg]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Total Billable Weight</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00,00] [kg]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Description of Goods</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[Description of Goods]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Shipment Declared Value</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00,00] EUR</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Number of Packages</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Packaging Type</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[Packaging Type]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Package Dimensions</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                 <p>[llx ww x hh] [in.]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Number of Packages that are Large Packages</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                 <p class="ups-form_label">Number of Packages with Additional Handling</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[00]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                  <p class="ups-form_label">{Reference #1}</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[Appropriation Number - 3q1q34g24]</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                  <p class="ups-form_label">{Reference #2}</p>
+                            </div>
+                            <div class="col-md-5 col-md-offset-1">
+                                <p>[FDA Product Code - q1234fg244]</p>
+                            </div>
+                         </div>
+                    </div>
+        		</div>
+
+                <!-- end of EU - Shipment Rating - Shipment Determination -->
+
+                <!-- start of DE to EU - Transborder - GNIFC - Shipment -->
+
+                <div id="deEUGnifcShipment">
+                    <div class="ups-section-header">
+                        <h3>Shipment Information</h3>
+                    </div>
+                    <div class="ups-group">
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">[Shipment/Actual] Weight</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00.00] [kg]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Total Billable Weight</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00.00] [kg]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Description of Goods</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[Description of Goods]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Movement Reference Number</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[Movement Reference Number]</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Shipment Declared Value</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00,00] EUR</p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Number of Packages</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00]</p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Packaging Type</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[Packing Type]</p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Package Dimensions</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[ll x ww x hh] [in.]</p>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Number of Packages that are Large Packages</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00]</p>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Number of Packages with Additional Handling</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[00]</p>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">{Reference #1}</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	<p>[Appropriation Number - 3q1q34g24] EUR</p>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">{Reference #2}</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[FDA Product Code - q1234fg244]</p>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-5">
+                        	<p class="ups-form_label">Other Options</p>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                        	 <p>[Goods not in Free Circulation]</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+        		</div>
+
+                <!-- end of DE to EU - Transborder - GNIFC - Shipment -->
+
+      <!-- end of what -->
+
+      <!-- start of when -->
+
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <button class="ups-link pull-right"><span class="ups-readerTxt">When Section</span> Edit</button>
+            <h3 class="ups-section_heading">When</h3>
+        </div>
+        <div class="ups-group" id="defaultPickup">
+        	<div class="row">
+        	<div class="col-md-5">
+        		<p class="ups-form_label">Service Selection</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>[UPS 2nd Day Air]</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">Arrival</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>[mm/dd/yyyy], by [end of day]</p>
+            </div>
+        </div>
+        </div>
+        <div class="ups-group" id="scheduledPickup">
+        <div class="row">
+        	<div class="col-md-5">
+        		<p class="ups-form_label">Service Selection</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>[UPS 2nd Day Air]</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">Arrival</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>[mm/dd/yyyy], by [end of day]</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">UPS will Pick up</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>[Name],[Contact Name]</p>
+                <p><address>[Street Address], [Address2], [City], [State], [Zip]</address></p>
+                <p>[Email],[Phone],[ext]</p>
+                <p>[mm/dd/yyyy], [8 am-6pm], at [Front Door]</p>
+                <p>Pick</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- end of when -->
+
+    <!-- start of forms -->
+    <div class="ups-section">
+    	<div class="ups-section-header">
+        	<button href="#" class="ups-link pull-right"><span class="ups-readerTxt">Forms Section</span> Edit</button>
+            <h3 class="ups-section_heading">Forms</h3>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">UPS Paperless Invoice</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Commercial Invoice</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Ready to go<span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span></p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Packaging List</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Ready to go<span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span></p>
+            </div>
+         </div>
+         <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">Uploaded</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>NAFTA Certificate of Origin</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Ready to go<span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+            	<p>US Certificate of Origin</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Ready to go<span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span></p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Electronic Export Information</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Ready to go<span class="icon ups-icon-check ups-position-normal" aria-hidden="true"></span></p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p class="ups-form_label">Complete offline</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Commercial Invoice</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Incomplete</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Packaging List</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Incomplete</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>NAFTA Certificate of Origin</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Incomplete</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>US Certificate of Origin</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Incomplete</p>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-5">
+            	<p>Electronic Export Information</p>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            	<p>Incomplete</p>
+            </div>
+        </div>
+   	 </div>
+
+    <!-- end of forms -->
+
+    <!-- start of add-ons -->
+    <div class="ups-section">
+        <div class="ups-section-header">
+            <button class="ups-link pull-right"><span class="ups-readerTxt">Add Ons Section</span> Edit</button>
+            <h3 class="ups-section_heading">Add-Ons</h3>
+        </div>
+        <div id="addOnsNoneSelected">
+            <div class="row" >
+                <div class="col-md-5">
+                    <p>n/a</p>
+                </div>
+            </div>
+        </div>
+        <div id="addOns">
+            <div class="row">
+                <div class="col-md-5">
+                    <p>Email Shipping Label and Documents</p>
+                    <p>{email address}</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Email Shipping Label and Documents</span> Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <p>Include a Return Label</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Include a Return Label</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Email Notifications</p>
+                    <p>1. {email address} - [Ship, [Exception], [Delivery]</p>
+                    <p>2. {email address} - [Ship, [Exception]</p>
+                    <p>Email Failure Notification: {email address}</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Email Notifications</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Verify Delivery</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Verify Delivery</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-10">
+                    <p class="ups-form_label">Signature Required: Receiver confirms delivery of shipment</p>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Direct Delivery</p>
+
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Direct Delivery</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>UPS carbon neutral</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel UPS carbon neutral</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>C.O.D</p>
+                    <p>C.O.D. Currency [USD]</p>
+                    <p>Amount to Collect on Delivery [nn.nn]</p>
+                    <p>C.O.D Payment Method [check]</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel C.O.D</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Designated for State Department License Filing</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Designated for State Department License Filing</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>UPS Returns &reg; Exchange</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel UPS Returns &reg; Exchange</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Call: {phone number} - {Country or Territory - Language}</p>
+                    <p>SMS: {mobile number} - {Country or Territory - Language}</p>
+                    <p>Email: {email address} - {Country or Territory - Language}</p>
+                    <p>Email Failure Notification: {email address}</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Call, SMS, Email, Email Failure Notification</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Liftgate on Pickup</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Liftgate on Pickup</span> Cancel</button>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-md-5">
+                    <p>Liftgate on Delivery</p>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <button type="button" class="ups-cta ups-cta_secondary ups-link"><span class="ups-readerTxt">Cancel Liftgate on Delivery</span> Cancel</button>
+                </div>
+             </div>
+        	</div>
+        </div>
+        <!-- end of add-ons -->
+
+        <!-- start of Payment -->
+        <div class="ups-section">
+            <div class="ups-section-header">
+                <button class="ups-link pull-right"><span class="ups-readerTxt">Payment Section</span> Edit</button>
+                <h3 class="ups-section_heading">Payment</h3>
+            </div>
+
+            <!-- start of Apply Promo Code -->
+            <div id="applyPromoCode">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Bill Shipping {and Pickup} Charges to:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>{Payment Method}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>VAT ID:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>{nnnnnnnnnnnnnnn}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Bill Duties and Taxes to:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>{Payment Method}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Associated Shipper's Account:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>XNNXNN</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end of Apply Promo Code -->
+
+            <!-- start of ALT Method Nickname -->
+            <div id="altMethodNickname">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Bill Shipping {and Pickup} Charges to:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>PayPal - {PayPal Nickname}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>VAT ID:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>{nnnnnnnnnnnnnnn}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Bill Duties and Taxes to:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>{Payment Method}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Associated Shipper's Account:</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>XNNXNN</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end of ALT Method Nickname -->
+
+            <!-- start of Pay At Store -->
+            <div id="payAtStore">
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Bill Shipping {and Pickup} Charges to</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>Pay at Store</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p>Email Shipping Ticket {and Receipt} To</p>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <p>jsmith@email.com, United States - English</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <p>Note: The final shipment cost may vary. The final charges will be determined when you complete the shipping transaction at the UPS Access Point location.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end of Pay At Store -->
+
+            <div id="applyPromo">
+                <div class="row">
+                	<div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                        	<label for="apply_promo" class="ups-form_label">Apply Promo</label>
+                           	<div class="ups-text_wrapper ups-input_wrapper">
+                            	<input type="text" name="apply_promo" class="ups-form_input" id="apply_promo" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                    	<button class="ups-btn_has_icon ups-no_label ups-cta ups-cta_secondary ups-input_btn_action"><span class="icon ups-icon-pluscircle" aria-hidden="true"></span> Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="applyPromoCodeEntered">
+                <div class="row">
+                	<div class="col-md-5">
+                        <div class="ups-form_group ups-form_required">
+                        	<label for="apply_promo" class="ups-form_label">Apply Promo</label>
+                           	<div class="ups-text_wrapper ups-input_wrapper">
+                            	<input type="text" name="apply_promo" class="ups-form_input" id="apply_promo" aria-required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                    	<button class="ups-no_label ups-cta ups-cta_secondary ups-btn_has_icon"><span class="icon ups-icon-minuscircle" aria-hidden="true"></span>Remove</button>
+                    </div>
+                </div>
+                <div class="row">
+                	<div class="col-md-5">
+                    	<p>Receive 40% off a ground shipment within the continental United States.</p>
+                        <p><button type="button" class="ups-cta ups-cta_secondary">Read Promotion Terms and Conditions</button></p>
+                    </div>
+                </div>
+            </div>
+
+       	</div>
+    	<!-- end of Payment -->
+
+       	<div class="ups-cms-demo">
+        	<button type="button" id="defaultDeliveryBtn" class="ups-cta ups-cta_primary">Where - Default Delivery Address</button>
+            <br>
+            <br>
+            <button type="button" id="residentialDeliveryBtn" class="ups-cta ups-cta_primary">Where - Residential Delivery Address</button>
+            <br>
+            <br>
+        	<button type="button" id="alternateDeliveryBtn" class="ups-cta ups-cta_primary">Where - Alternate Delivery Address</button>
+            <br>
+            <br>
+            <hr>
+            <button type="button" id="usToUSBtn" class="ups-cta ups-cta_primary">What - US to US Package</button>
+            <br>
+            <br>
+        	<button type="button" id="usNonUSBtn" class="ups-cta ups-cta_primary">What - US to Non US Package</button>
+            <br>
+            <br>
+            <button type="button" id="deToDeProcessingBtn" class="ups-cta ups-cta_primary">What - DE to DE Forward - Package Processing</button>
+            <br>
+            <br>
+            <button type="button" id="euShipmentDeterminationBtn" class="ups-cta ups-cta_primary">What - EU - Shipment Rating - Shipment Determination</button>
+            <br>
+            <br>
+            <button type="button" id="euPackageDeterminationBtn" class="ups-cta ups-cta_primary">What - EU - Shipment Rating - Package Determination</button>
+            <br>
+            <br>
+            <button type="button" id="deFRPackagingProcessingBtn" class="ups-cta ups-cta_primary">What - DE to FR - Transborder - Package Processing</button>
+            <br>
+            <br>
+            <button type="button" id="deEUGnifcShipmentBtn" class="ups-cta ups-cta_primary">What - DE to EU Transborder - GNIFC - Shipment</button>
+            <br>
+            <br>
+            <hr>
+            <button type="button" id="defaultPickupBtn" class="ups-cta ups-cta_primary">When - Default Pickup</button>
+            <br>
+            <br>
+            <button type="button" id="scheduledPickupBtn" class="ups-cta ups-cta_primary">When - Scheduled Pickup</button>
+            <br>
+            <br>
+            <hr>
+            <button type="button" id="addOnsNoneSelectedBtn" class="ups-cta ups-cta_primary">Add-Ons - None Selected</button>
+            <br>
+            <br>
+            <button type="button" id="addOnsBtn" class="ups-cta ups-cta_primary">Add-Ons</button>
+            <br>
+            <br>
+            <hr>
+            <button type="button" id="applyPromoCodeBtn" class="ups-cta ups-cta_primary">Payment - Apply Promo Code</button>
+            <br>
+            <br>
+            <button type="button" id="altMethodNicknameBtn" class="ups-cta ups-cta_primary">Payment - ALT Method Nickname</button>
+            <br>
+            <br>
+            <button type="button" id="payAtStoreBtn" class="ups-cta ups-cta_primary">Payment - Pay at store</button>
+            <br>
+            <br>
+            <button type="button" id="applyPromoCodeEnteredBtn" class="ups-cta ups-cta_primary">Payment - Apply Promo Code Entered</button>
+            <br>
+            <br>
+        </div>
+        <div class="ups-form_ctaGroup">
+            <button type="submit" class="ups-cta ups-cta_tertiary">Back</button>
+            <button type="submit" class="ups-cta ups-cta_primary">Continue</button>
+            <button type="button" class="ups-cta ups-cta_secondary">Cancel Shipment</button>
+            <button type="submit" class="ups-cta ups-cta_secondary ups-btn_has_icon">
+                Save Shipment for Later
+                <span class="icon ups-icon-save" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+<!-- Balance Bar Widget -->
+{{> A23_balance_bar balance_bar }}
+<!-- End Balance Bar Container -->

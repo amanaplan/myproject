@@ -1,0 +1,47 @@
+// ----------------------------------------------------
+// W66 Download Zone Chart
+// ----------------------------------------------------
+
+@mixin zone_cta {
+	.ups-form_ctaGroup {
+		width: 100%;
+		margin: 30px 0;
+
+		.ups-cta {
+			width: 100%;
+		}
+	}
+}
+
+.ups-zoneChart.ups-widget {
+	.ups-widget_header {
+		text-align: $default-float;
+	}
+	.ups-widget_panel {
+		border: 1px solid $black_s1;
+		border-top: none;
+		@media #{$media-small} {
+			border-left: none;
+			border-right: none;
+		}
+	}
+
+	p {
+		margin-bottom: $margin_3;
+	}
+
+	aside &,
+	.iw_columns.col-lg-4 &  {
+		@include zone_cta;
+	}
+
+    @media #{$media-small} {
+    	@include zone_cta;
+    }
+}
+
+.contentBlock_landing_gray .ups-zoneChart.ups-widget, .ups-subsection-alt .ups-zoneChart.ups-widget {
+	.ups-widget_panel {
+		border: none;
+	}
+}

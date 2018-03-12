@@ -1,0 +1,466 @@
+// ----------------------------------------------------
+// M03 BANNER
+// ----------------------------------------------------
+
+@mixin banner_table {
+
+    .ups-banner_main {
+        display: table;
+        float: $default-float;
+        @include horizontal-align();
+
+        .text-container {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: $default-float;
+            padding-#{$opposite-direction}: $grid-gutter-width;
+            padding-bottom: 0;
+        }
+
+        .ups-cta {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 10px 36px 10px;
+        }
+    }
+}
+
+@mixin banner_block {
+
+    .ups-banner_main {
+        display: block;
+        float: none;
+        #{$default-float}: 0;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+
+        .text-container {
+            display: block;
+            text-align: center;
+            padding-#{$opposite-direction}: 0;
+            padding-bottom: $grid-gutter-width;
+        }
+
+        .ups-cta {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .ups-banner-image{
+            display: inline-block;
+        }
+
+        .ups-content{
+            display: inline-block;
+            text-align: center;
+            padding: 10px 0 30px 0;
+        }
+
+        .ups-cta-styling{
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    .ups-banner_container {
+        padding-#{$default-float}: $page-margin-sm;
+        padding-#{$opposite-direction}: $page-margin-sm;
+    }
+}
+
+// SVP mixin for M03 BANNER
+@mixin ups_banner_sm {
+
+    @include banner_block;
+}
+
+// SVP/MVP mixin for M03 BANNER ASIDE
+@mixin ups_banner_aside {
+
+    @include banner_block;
+    .ups-banner_container{
+        @media #{$media-mediumMid} {
+            display: block;
+            width: 100%;
+        }
+        .ups-banner_main{
+            .text-container{
+                img{
+                    position: relative;
+                    padding-bottom: 10px;
+                }
+                img + h2{
+                    padding-#{$default-float}:0;
+                }
+                img + h2 + p{
+                    padding-#{$default-float}:0;
+                }
+                /* Portrait */
+                @media only screen
+                and (min-device-width: $screen-sm)
+                and (max-device-width: 1024px)
+                and (orientation: portrait) {
+                    img{
+                        position: relative;
+                    }
+                    img + h2{
+                        padding-#{$default-float}:75px;
+                    }
+                    img + h2 + p{
+                        padding-#{$default-float}:75px;
+                    }
+
+
+                }
+
+                .ups-banner-image{
+                    display: inline-block;
+                    width:100%;
+                    padding: 0 10px;
+                }
+
+                .ups-content{
+                    display: inline-block;
+                    text-align: center;
+                    padding: 10px 10px 30px 10px;
+                    width:100%;
+                }
+
+                .ups-cta-styling{
+                    display: inline-block;
+                    vertical-align: top;
+                    width:100%;
+                    padding: 0 10px;
+                    span.ups-cta{
+                        width:auto;
+                    }
+                }
+
+            }
+        }
+    }
+    @media #{$media-mediumMid} {
+        @include banner_table;
+
+        margin-#{$default-float}: -$page-margin;
+        margin-#{$opposite-direction}: -$page-margin;
+    }
+
+    @media #{$media-small} {
+        margin-#{$default-float}: -$page-margin-sm;
+        margin-#{$opposite-direction}: -$page-margin-sm;
+
+        @include banner_block;
+    }
+}
+
+.ups-banner {
+    display: block;
+    position: relative;
+    @include unbutton;
+    width: 100%;
+
+    .ups-banner_container {
+        padding-top: $grid-gutter-width;
+        padding-bottom: $grid-gutter-width;
+        position: relative;
+        overflow:hidden;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    p {
+        margin-top: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &:hover, &:active, &:focus {
+        text-decoration: none;
+    }
+
+    &.banner_dark {
+        background: $black_s3;
+        color: $white;
+
+        &:hover, &:active, &:focus {
+            color: $white;
+        }
+    }
+
+    &.banner_light {
+        color: $black_s3;
+        background: $white;
+
+        &:hover, &:active, &:focus {
+            color: $black_s3;
+        }
+    }
+
+    &.banner_black_s4 {
+        background: $black_s4;
+        color: $white;
+
+        &:hover, &:active, &:focus {
+            color: $white;
+        }
+    }
+
+    &.banner_black_s3 {
+        background: $black_s3;
+        color: $white;
+
+        &:hover, &:active, &:focus {
+            color: $white;
+        }
+    }
+
+    &.banner_black_s1 {
+        background: $black_s1;
+        color: $white;
+
+        &:hover, &:active, &:focus {
+            color: $white;
+        }
+    }
+
+    &.banner_white{
+        background: $white;
+        color: $black;
+        border: 1px solid $black;
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_stone_60{
+        background: $stone_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_sand_60{
+        background: $sand_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_grass_60{
+        background: $grass_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_water_60{
+        background: $water_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_sky_60{
+        background: $sky_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+    &.banner_sun_60{
+        background: $sun_60;
+        color: $black;
+
+        &:hover, &:active, &:focus {
+            color: $black;
+        }
+    }
+
+
+    .ups-banner_main {
+        display: table;
+        float: $default-float;
+        @include horizontal-align();
+
+        .text-container {
+            display: table-cell;
+            vertical-align: middle;
+            padding-#{$opposite-direction}: $grid-gutter-width;
+            &.ups-icon-play,
+            &.ups-icon-document{
+                &:before{
+                    position:absolute;
+                    #{$default-float}:-70px;
+                    font-size:60px;
+                    top:-3px;
+                    @media #{$media-small} {
+                        position:relative;
+                        top:auto;
+                        #{$default-float}:auto;
+                        font-size:40px;
+                    }
+                }
+            }
+            &.ups-icon-document {
+                @include icon-document-shading;
+            }
+            img{
+                position:relative;
+                @media #{$media-mediumMid}{
+                    position:relative;
+                }
+            }
+            img + h2{
+                padding-#{$default-float}:70px;
+                @media #{$media-mediumMid}{
+                    padding-top:10px;
+                    padding-#{$default-float}:0;
+                }
+            }
+            img + h2 + p{
+                padding-#{$default-float}:70px;
+                @media #{$media-mediumMid}{
+                    padding-#{$default-float}:0;
+                }
+            }
+        }
+
+        .ups-cta {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 10px 36px 10px;
+        }
+    }
+
+    .ups-imgFrame {
+        position: absolute;
+        top: 0;
+        #{$default-float}: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media #{$media-small} {
+        @include ups_banner_sm;
+    }
+
+    // Textured Banners only
+    &.ups-dark-tiles,
+    &.ups-light-geo,
+    &.ups-lightdesat-geo,
+    &.ups-med-cardboard{
+        display:table;
+        background-repeat: repeat;
+        background-size:auto;
+        .ups-banner_container{
+            display:table-cell;
+            vertical-align:middle;
+            color:$black_s4;
+            .text-container{
+                h2, p{
+                    color:$black_s4;
+                }
+            }
+        }
+    }
+    &.ups-dark-tiles{
+        background-image:url("/assets/resources/images/components/banner/dark-texture-1.jpg");
+        .ups-banner_container{
+            color:$ups_gold;
+            .text-container{
+                h2, p{
+                    color:$ups_gold;
+                }
+            }
+        }
+    }
+
+    &.ups-light-geo{
+        background-image:url("/assets/resources/images/components/banner/light-texture-1.jpg");
+    }
+
+    &.ups-lightdesat-geo{
+        background-image:url("/assets/resources/images/components/banner/light-texture-2.jpg");
+    }
+
+    &.ups-med-cardboard{
+        background-image:url("/assets/resources/images/components/banner/dark-texture-2.jpg");
+    }
+
+}
+
+.subsection_main .ups-banner:before {
+    content: '';
+    position: absolute;
+    width: 6000px;
+    height: 100%;
+    top: 0;
+    #{$default-float}: -3000px;
+    background: inherit;
+}
+
+.subsection_main .ups-banner picture {
+    #{$default-float}: -$page-margin;
+
+    @media #{$media-mediumMid} {
+        #{$default-float}: 0;
+    }
+}
+
+.subsection_aside .ups-banner,
+.iw_columns.col-lg-4 .ups-banner {
+    @include aside-pad-sm;
+    @include ups_banner_aside;
+    @media #{$media-mediumMid} {
+        margin: 0;
+    }
+}
+
+.ups-banner-image{
+    display: table-cell;
+    padding-right: 20px;
+    vertical-align: middle;
+}
+
+.ups-content{
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 30px;
+}
+
+.ups-cta-styling{
+    display: table-cell;
+    vertical-align: top;
+}
+
+.ups-banner{
+  cursor: pointer;
+  &:focus{
+    outline: 5px auto $ups-gold;
+  }
+}
+
+.ie9, .ie10, .ie11{
+  .ups-banner{
+    &:focus{
+      outline: 2px solid $ups-gold;
+    }
+  }
+}
+

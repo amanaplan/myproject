@@ -1,0 +1,958 @@
+---
+title: ups.com QA Server | v1.2.0
+---
+<style type="text/css">
+    .ups-contentBlock h2 { margin-bottom: 15px; }
+    .ups-contentBlock h2 em { color: #888; }
+    .ups-contentBlock h3 { font-size: 1.3em; }
+    .ups-contentBlock ul h3,
+    .ups-contentBlock ul h3 { margin: 0 0 10px; }
+    .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_expand li { margin: 0 0 10px; }
+    .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_expand a { display: inline-block; padding: 0; }
+    .ups-accordion_group  { margin-bottom: 60px; }
+    .ups-accordion_group .ups-accordion_list { margin-bottom: 0; }
+    .ups-changelog dt {
+        float: left;
+        clear: both;
+    }
+    .ups-changelog dd {
+        font-style: italic;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        margin-left: 50px;
+        padding-top: 3px;
+    }
+    .subsection_aside dl .ups-accordion_list,
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper {
+        margin: 0;
+    }
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper .ups-accordion_content  {
+        border: none;
+    }
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item {
+        min-height: 0;
+        font-size: 0.9em;
+    }
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_toggle {
+        padding: 5px;
+        font-family: "UPSSans", sans-serif;
+        color: #888;
+    }
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_expand {
+        padding: 0;
+    }
+    .subsection_aside dl .ups-accordion_list .ups-accordion_wrapper .ups-accordion_content .ups-accordion_item .ups-accordion_expand a {
+        display: block;
+    }
+</style>
+
+
+{{> ts_rr_start}}
+    {{>ts_component_start}}
+        <div class="ups-contentBlock ups-wrap">
+            <div class="ups-wrap_inner">
+
+                <h2>WEM <em>(ups.com redesign)</em> CMS Code</h2>
+                <section class="ups-accordion_list">
+                    <div class="ups-accordion_wrapper">
+                        <ul class="ups-accordion_content">
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Illustrative Pages <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li><a href="home.html">Home Page</a> [<a href="home-rtl.html">RTL</a>]</li>
+                                        <li><a href="langSelect.html">Country/Language Selector</a> [<a href="langSelect-rtl.html">RTL</a>]</li>
+                                        <h3>Services</h3>
+                                        <li><a href="prodServices.html">Services</a> [<a href="prodServices-rtl.html">RTL</a>]</li>
+                                        <li><a href="healthcare.html">Services > Healthcare</a> [<a href="healthcare-rtl.html">RTL</a>]</li>
+                                        <li><a href="shippingSolutions.html">Services > Shipping Solutions</a> [<a href="shippingSolutions-rtl.html">RTL</a>]</li>
+                                        <li><a href="temperatureTrue.html">Services > Healthcare > Temperature True</a> [<a href="temperatureTrue-rtl.html">RTL</a>]</li>
+                                        <li><a href="smallBusiness.html">Small Business</a> [<a href="smallBusiness-rtl.html">RTL</a>]</li>
+                                        <h3>Shipping Pages</h3>
+                                        <li><a href="shipping.html">Shipping</a> [<a href="shipping-rtl.html">RTL</a>]</li>
+                                        <li><a href="shipping_banner.html">Shipping (Banner Page)</a> [<a href="shipping_banner-rtl.html">RTL</a>]</li>
+                                        <li><a href="serviceGuide.html">Service Guide | U.S. Shipping</a> [<a href="serviceGuide-rtl.html">RTL</a>]</li>
+                                        <li><a href="internationalShipping.html">Service Guide | International Shipping</a> [<a href="internationalShipping-rtl.html">RTL</a>]</li>
+                                        <li><a href="freightShipping.html">Service Guide | Freight Shipping</a> [<a href="freightShipping-rtl.html">RTL</a>]</li>
+                                        <li><a href="groundFreightPricing.html">UPS Ground And Freight Pricing</a> [<a href="groundFreightPricing-rtl.html">RTL</a>]</li>
+                                        <h3>Help Center Pages</h3>
+                                        <li><a href="helpCenter.html">Help Center</a> [<a href="helpCenter-rtl.html">RTL</a>]</li>
+                                        <li><a href="helpShippingSupport.html">Shipping Support</a> [<a href="helpShippingSupport-rtl.html">RTL</a>]</li>
+                                        <li><a href="packagingSupplies.html">Packaging &amp; Supplies</a> [<a href="packagingSupplies-rtl.html">RTL</a>]</li>
+                                        <li><a href="suppliesForms.html">Supplies and Forms</a> [<a href="suppliesForms-rtl.html">RTL</a>]</li>
+                                        <li><a href="internet_shipping_labels.html">Internet Shipping Labels</a> [<a href="internet_shipping_labels-rtl.html">RTL</a>]</li>
+                                        <h3>Other Pages</h3>
+                                        <li><a href="contactUPSGermany.html">Contact UPS: Germany</a> [<a href="contactUPSGermany-rtl.html">RTL</a>]</li>
+                                        <li><a href="singlePage.html">Single Page</a> [<a href="singlePage-rtl.html">RTL</a>]</li>
+                                        <li><a href="errorPage.html">Error Page</a> [<a href="errorPage-rtl.html">RTL</a>]</li>
+                                        <li><a href="ls_down.html">LiveSite Down Pages</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Header/Footer Variations <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li><a href="example.html">Not Logged In</a> [<a href="example-ar.html">RTL</a>]</li>
+                                        <li><a href="example-auth.html">Logged In <em>(Consumer)</em></a> [<a href="example-auth-ar.html">RTL</a>]</li>
+                                        <li><a href="example-auth-bus.html">Logged In <em>(Campus Ship)</em></a> [<a href="example-auth-bus-ar.html">RTL</a>]</li>
+                                        <li><a href="example-alerts.html">Active Alerts Bar</a> [<a href="example-alerts-ar.html">RTL</a>]</li>
+                                        <li><a href="example-light.html">Light Header and Footer</a> [<a href="example-light-ar.html">RTL</a>]</li>
+                                        <li><a href="example-de.html"><em>LANGUAGE</em> - German</a></li>
+                                        <li><a href="example-ar.html"><em>LANGUAGE</em> - Arabic</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Modules <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li><a href="M03_banner.html">M03 Banner</a> [<a href="M03_banner-rtl.html">RTL</a>]</li>
+                                        <li><a href="M04_carousel.html">M04 Carousel</a> [<a href="M04_carousel-rtl.html">RTL</a>]</li>
+                                        <li><a href="M07_pageTitle.html">M07 Page Title</a> [<a href="M07_pageTitle-rtl.html">RTL</a>]</li>
+                                        <li><a href="M07_pageTitleShare.html">M07 Page Title and Share</a> [<a href="M07_pageTitleShare-rtl.html">RTL</a>]</li>
+                                        <li><a href="M08_tabs.html">M08 Tabs</a> [<a href="M08_tabs-rtl.html">RTL</a>]</li>
+                                        <li><a href="M09_secondary_nav.html">M09 Secondary Navigation</a> [<a href="M09_secondary_nav-rtl.html">RTL</a>]</li>
+                                        <li><a href="M10_article.html">M10 Article</a> [<a href="M10_article-rtl.html">RTL</a>]</li>
+                                        <li><a href="M11_feedBased_blog.html">M11 Feed-based Blog</a> [<a href="M11_feedBased_blog-rtl.html">RTL</a>]</li>
+                                        <li><a href="M13_legacyTabs.html">M13 Legacy Tabs</a> [<a href="M13_legacyTabs-rtl.html">RTL</a>]</li>
+                                        <li><a href="M14_breadcrumb.html">M14 Breadcrumb</a> [<a href="M14_breadcrumb-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_single.html">M15 List Single Column</a> [<a href="M15_list_single-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_multi.html">M15 List Multi Column</a> [<a href="M15_list_multi-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_alt.html">M15 List Simple Alternative</a> [<a href="M15_list_alt-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_imageblock.html">M15 List ImageBlock</a> [<a href="M15_list_imageblock-rtl.html">RTL</a>] </li>
+                                        <li><a href="M15_list_links.html">M15 List of Links</a> [<a href="M15_list_links-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_bullets.html">M15 List Bullets</a> [<a href="M15_list_bullets-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_help.html">M15 List Help</a> [<a href="M15_list_help-rtl.html">RTL</a>]</li>
+                                        <li><a href="M15_list_black.html">M15 List Black</a> [<a href="M15_list_black-rtl.html">RTL</a>]</li>
+                                        <li><a href="M17_form.html">M17 Form</a> [<a href="M17_form-rtl.html">RTL</a>]</li>
+                                        <li><a href="M19_media_player.html">M19 Media Player</a> [<a href="M19_media_player-rtl.html">RTL</a>]</li>
+                                        <li><a href="langSelect.html">M21 Image Map</a> [<a href="langSelect-rtl.html">RTL</a>]</li>
+                                        <li><a href="M22_accordion_list.html">M22 Accordion List</a> [<a href="M22_accordion_list-rtl.html">RTL</a>]</li>
+                                        <li><a href="M23_follow_me.html">M23 Follow Me</a> [<a href="M23_follow_me-rtl.html">RTL</a>]</li>
+                                        <li><a href="M24_calendar.html">M24 Calendar (Full)</a> [<a href="M24_calendar-rtl.html">RTL</a>]</li>
+                                        <li><a href="M24_calendar-2col.html">M24 Calendar (Body)</a> [<a href="M24_calendar-2col-rtl.html">RTL</a>]</li>
+
+                                        <li><a href="M27_search_support.html">M27 Search and Results</a> [<a href="M27_search_support-rtl.html">RTL</a>]</li>
+                                        <li><a href="M28_siteMap.html">M28 Site Map</a> [<a href="M28_siteMap-rtl.html">RTL</a>]</li>
+                                        <li><a href="M29_faq.html">M29 FAQ</a> [<a href="M29_faq-rtl.html">RTL</a>]</li>
+                                        <li><a href="M31_author_bio.html">M31 Author Bio</a> [<a href="M31_author_bio-rtl.html">RTL</a>]</li>
+                                        <li><a href="M32_pageLevel_notifications.html">M32 Page Level Notifications</a> [<a href="M32_pageLevel_notifications-rtl.html">RTL</a>]</li>
+                                        <li><a href="M33_compact_feed.html">M33 Compact Feed</a> [<a href="M33_compact_feed-rtl.html">RTL</a>]</li>
+                                        <li><a href="M35_news.html">M35 News</a> [<a href="M35_news-rtl.html">RTL</a>]</li>
+                                        <li><a href="M35_news_body.html">M35 News (Body)</a> [<a href="M35_news_body-rtl.html">RTL</a>]</li>
+                                        <li><a href="M44_content_block.html">M44 Content Block</a> [<a href="M44_content_block-rtl.html">RTL</a>]</li>
+                                        <li><a href="M45_service.html">M45 Service</a> [<a href="M45_service-rtl.html">RTL</a>]</li>
+                                        <li><a href="M48_content_with_anchor.html">M48 Content With Anchor</a> [<a href="M48_content_with_anchor-rtl.html">RTL</a>]</li>
+                                        <li><a href="M52_featured_three_piece.html">M52 Featured Three Piece</a> [<a href="M52_featured_three_piece-rtl.html">RTL</a>]</li>
+                                        <li><a href="M53_filtered_list.html">M53 Filtered List</a> [<a href="M53_filtered_list-rtl.html">RTL</a>]</li>
+                                        <li><a href="M54_daysofoperation.html">M54 Days of Operation - Entry</a> [<a href="M54_daysofoperation-rtl.html">RTL</a>]</li>
+                                        <li><a href="M54_daysofoperation_full.html">M54 Days of Operation - All Holidays</a> [<a href="M54_daysofoperation_full-rtl.html">RTL</a>]</li>
+                                        <li><a href="M55_ship_by.html">M55 Ship By</a> [<a href="M55_ship_by-rtl.html">RTL</a>]</li>
+                                        <li><a href="M55_ship_by_allOpen.html">M55 Ship By, All Open</a> [<a href="M55_ship_by_allOpen-rtl.html">RTL</a>]</li>
+                                        <li><a href="M55_ship_by_twoDays.html">M55 Ship By, Two Days</a> [<a href="M55_ship_by_twoDays-rtl.html">RTL</a>]</li>
+                                        <li><a href="M56_video_downloads.html">M56 Video Downloads</a> [<a href="M56_video_downloads-rtl.html">RTL</a>]</li>
+                                        <li><a href="M57_featured_glossary_carousel.html">M57 Featured Glossary Carousel</a> [<a href="M57_featured_glossary_carousel-rtl.html">RTL</a>]</li>
+                                        <li><a href="M59_services_alerts_ziplookup.html">M59 Services Alerts Zip Lookup</a> [<a href="M59_services_alerts_ziplookup-rtl.html">RTL</a>]</li>
+                                        <li><a href="M59_services_alerts.html">M59 Services Alerts</a> [<a href="M59_services_alerts-rtl.html">RTL</a>]</li>
+                                        <li><a href="M60_personalizationOptOut.html">M60 Personalization Opt Out</a> [<a href="M60_personalizationOptOut-rtl.html">RTL</a>]</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Widgets <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li> <a href="W01_location_finder.html">W01 Location Finder</a> [<a href="W01_location_finder-rtl.html">RTL</a>]
+                                            <ul>
+                                                <li><a href="example.html">Quick Start</a> [<a href="example-ar.html">RTL</a>]</li>
+                                                <li><a href="quickstart_LOC_noMap.html">Quick Start - Unknown Location</a> [<a href="quickstart_LOC_noMap-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_LOC_alert.html">Quick Start - Alert</a> [<a href="quickstart_LOC_alert-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_LOC_noLoc.html">Quick Start - No Location Shared</a></li>
+                                            </ul>
+                                        </li>
+                                        <li> <a href="W04_billing.html">W04 My Billing</a> [<a href="W04_billing-rtl.html">RTL</a>]
+                                            <ul>
+                                                <li><a href="example.html">Quick Start (Bill Due)</a> [<a href="example-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_BILL_noBill.html">Quick Start (No Bill Due)</a> [<a href="quickstart_BILL_noBill-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_BILL_addAccount.html">Quick Start (Add Account)</a> [<a href="quickstart_BILL_addAccount-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_BILL_multipleDueBill.html">Quick Start (Multiple Account)</a> [<a href="quickstart_BILL_multipleDueBill-rtl.html">RTL</a>]</li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="W05_manageHomeDeliveres.html">W05 Manage Home Deliveries, Remembered, Not Logged In</a> [<a href="W05_manageHomeDeliveres-rtl.html">RTL</a>]</li>
+                                        <li><a href="W05_manageHomeDeliveres-One.html">W05 Manage Home Deliveries, One Account</a> [<a href="W05_manageHomeDeliveres-One-rtl.html">RTL</a>]</li>
+                                        <li><a href="W05_manageHomeDeliveres-Multiple.html">W05 Manage Home Deliveries, Multiple Account</a> [<a href="W05_manageHomeDeliveres-Multiple-rtl.html">RTL</a>]</li>
+                                        <li><a href="W05_manageHomeDeliveres-nodeliverables.html">W05 Manage Home Deliveries, One Account No Deliverables</a> [<a href="W05_manageHomeDeliveres-nodeliverables-rtl.html">RTL</a>]
+                                            <ul>
+                                                <li><a href="quickstart_DEL_notLoggedIn.html">Quick Start - Not Logged In</a></li>
+                                                <li><a href="quickstart_DEL_oneAccount.html">Quick Start - One Account</a></li>
+                                                <li><a href="quickstart_DEL_noDeliverables.html">Quick Start - No Deliverables</a></li>
+                                                <li><a href="quickstart_DEL_multiple.html">Quick Start - Multiple</a></li>
+                                            </ul>
+                                        </li>
+                                        <li> <a href="W11_quote.html">W11 Quote</a> [<a href="W11_quote-rtl.html">RTL</a>]
+                                            <ul>
+                                                <li><a href="example.html">Quick Start - Not Logged In - Package</a> [<a href="example-ar.html">RTL</a>]</li>
+                                                <li><a href="example.html">Quick Start - Not Logged In - Letter</a> [<a href="example-rtl.html">RTL</a>]</li>
+                                                <li><a href="example.html">Quick Start - Not Logged In - Freight</a> [<a href="example-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_QUOTE_logIn.html">Quick Start - Logged In - Package</a> [<a href="quickstart_QUOTE_logIn-ar.html">RTL</a>]</li>
+                                                <li><a href="quickstart_QUOTE_logIn.html">Quick Start - Logged In - Letter</a> [<a href="quickstart_QUOTE_logIn-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_QUOTE_logIn.html">Quick Start - Logged In - Freight</a> [<a href="quickstart_QUOTE_logIn-rtl.html">RTL</a>]</li>
+                                            </ul>
+                                        </li>
+                                        <li> <a href="W13_shipping.html">W13 Shipping</a> [<a href="W13_shipping-rtl.html">RTL</a>]
+                                            <ul>
+                                                <li><a href="example.html">Quick Start - Not Logged In - Package or Letter</a> [<a href="example-ar.html">RTL</a>]</li>
+                                                <li><a href="quickstart_SHIP_freight.html">Quick Start - Not Logged In - Freight</a> [<a href="quickstart_SHIP_freight-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_SHIP_logIn.html">Quick Start - Logged In - Package or Letter</a> [<a href="quickstart_SHIP_logIn-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_SHIP_logIn_freight.html">Quick Start - Logged In - Freight</a> [<a href="quickstart_SHIP_logIn_freight-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_SHIP_logIn.html">Quick Start - Logged In - Returns</a> [<a href="quickstart_SHIP_logIn-rtl.html">RTL</a>]</li>
+                                                <li><a href="quickstart_SHIP_campus.html">Quick Start - Campus Ship</a> [<a href="quickstart_SHIP_campus-rtl.html">RTL</a>]</li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="W16_simple_track.html">W16 Simple Track</a> [<a href="W16_simple_track-rtl.html">RTL</a>]</li>
+                                        <li><a href="W18_subscribe_to_email.html">W18 Subscribe to Email</a> [<a href="W18_subscribe_to_email-rtl.html">RTL</a>]</li>
+                                        <li><a href="W20_track_history.html">W20 Track with History</a> [<a href="W20_track_history-rtl.html">RTL</a>]</li>
+                                        <li><a href="W66_download_zone_chart.html">W66 Zones and Rates</a> [<a href="W66_download_zone_chart-rtl.html">RTL</a>]</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Rich Text Editor (RTE) Styles <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li><a href="RTE_styles.html">RTE Styles</a></li>
+                                        <li><a href="RTE_table.html">RTE Table</a> [<a href="RTE_table-rtl.html">RTL</a>]</li>
+                                        <li><a href="RTE_table_styles.html">RTE Table Styles</a></li>
+                                        <li><a href="RTE_comparisonTable.html">RTE Comparison Table</a> [<a href="RTE_comparisonTable-rtl.html">RTL</a>]</li>
+                                        <li><a href="RTE_comp_table_styles.html">RTE Comparison Table Styles</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Application Pages with New Styles <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li>
+                                            <a href="pickUp.html">Pickup</a> [<a href="pickUp-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="pickUp_freight.html">Pickup Freight</a> [<a href="pickUp_freight-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="tradeAbility.html">TradeAbility</a> [<a href="tradeAbility-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="tracking.html">Tracking</a> [<a href="tracking-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="tracking_details.html">Tracking Details</a> [<a href="tracking_details-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="campusShip.html">CampusShip</a> [<a href="campusShip-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="campusShip_admin.html">CampusShip Admin</a> [<a href="campusShip_admin-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="campusShip_settings.html">CampusShip Settings</a> [<a href="campusShip_settings-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="globalLocator.html">Global Locator</a> [<a href="globalLocator-original.html">Original</a>]
+                                        </li>
+                                        </li>
+                                        <li>
+                                            <a href="globalLocatorResults.html">Global Locator with Results</a> [<a href="globalLocatorResults-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="globalLocatorListResults.html">Global Locator with List Results</a> [<a href="globalLocatorListResults-original.html">Original</a>]
+                                        </li>
+                                        <li>
+                                            <a href="globalLocatorSearchMatchesSelection.html">Global Locator Search Match Selection</a> [<a href="globalLocatorSearchMatchesSelection-original.html">Original</a>]
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Mobile Application Pages with New Styles <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li>
+                                            <a href="m.globalLocatorResults.html">Mobile Global Locator with Search Results</a> [<a href="m.globalLocatorResults-original.html">Original</a>]
+                                        </li>
+
+                                        <li>
+                                            <a href="m.globalLocatorFilter.html">Mobile Global Locator Filter</a> [<a href="m.globalLocatorFilter-original.html">Original</a>]
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Templates Pages <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <ul>
+                                        <li><a href="L1_oneCol.html">L1 One Column</a></li>
+                                        <li><a href="L1_oneCol-home.html">L1 One Column (Home)</a></li>
+                                        <li><a href="L4_rightRail.html">L4 Right Rail</a></li>
+                                        <li><a href="L4_rightRail_alt.html">L4 Right Rail (Alt)</a></li>
+                                        <li><a href="L5_popup.html">L5 Pop-up</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ups-accordion_item">
+                                <button class="ups-accordion_toggle"> Application Pages <em>(fixed width)</em> <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                <div class="ups-accordion_expand">
+                                    <p><em>The intent of the Application Templates is to house the fixed-width, legacy applications for UPS.com. The templates utilize the responsive header and footer that will adapt to the users' viewports while maintaining a fixed width body area.</em></p>
+                                    <ul>
+                                        <li><a href="L1_oneCol_app.html">L1 One Column (App Page)</a></li>
+                                        <li><a href="L4_rightRail_app.html">L4 Right Rail (App Page)</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <h2>UPS Onboarding <em>(ER 1702)</em></h2>
+
+                <div class="ups-accordion_group">
+
+                    <h3>Static Application Code (vHTML)</h3>
+                    <section class="ups-accordion_list">
+                        <div class="ups-accordion_wrapper">
+                            <ul class="ups-accordion_content">
+
+                                <!-- ////////////////////// -->
+                                <li class="ups-accordion_item">
+                                    <button class="ups-accordion_toggle">Digital Onboarding (DO App)<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                    <div class="ups-accordion_expand">
+                                        <div class="ups-contentBlock">
+                                            <div class="ups-table">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="col">Page Title</th>
+                                                        <th scope="col">GPS ID</th>
+                                                        <th scope="col">Change Date</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Enter Address</td>
+                                                        <td><a href="enter_address.html">TBD</a> [<a href="enter_address_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>My Choice Availability</td>
+                                                        <td><a href="my_choice_availability.html">TBD</a> [<a href="my_choice_availability_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>My Choice Confirmation</td>
+                                                        <td><a href="my_choice_confirmation.html">TBD</a> [<a href="my_choice_confirmation_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sign Up</td>
+                                                        <td><a href="signup.html">TBD</a> [<a href="signup_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sign Up Confirmation</td>
+                                                        <td><a href="signup_confirmation.html">TBD</a> [<a href="signup_confirmation_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UTA</td>
+                                                        <td><a href="uta.html">TBD</a> [<a href="uta_rtl.html">rtl</a>]</td>
+                                                        <td>02/05/2016</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- ////////////////////// -->
+                                <li class="ups-accordion_item">
+                                    <button class="ups-accordion_toggle"> Profile &amp; Preference Center (PPC) <i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                    <div class="ups-accordion_expand">
+
+                                    </div>
+                                </li>
+                                <!-- ////////////////////// -->
+                            </ul>
+                        </div>
+                    </section>
+
+                    <h3>Dynamic Application Code (Single Page Apps)</h3>
+                    <section class="ups-accordion_list">
+                        <div class="ups-accordion_wrapper">
+                            <ul class="ups-accordion_content">
+
+                                <!-- ////////////////////// -->
+                                <!--<li class="ups-accordion_item">-->
+                                <!--<button class="ups-accordion_toggle">Digital Onboarding (DOA)<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>-->
+                                <!--<div class="ups-accordion_expand">-->
+                                <!--<ul>-->
+                                <!--<li><a href="doaSignup.html">Sign Up</a> [<a href="doaSignup-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaAddress.html">My Choice</a> [<a href="doaAddress-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaAddOrAuthenticateAccount.html">Add or Authenticate Account</a> [<a href="doaAddOrAuthenticateAccount-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaChooseNotification.html">Choose Notification</a> [<a href="doaChooseNotification-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaAccountOptions.html">Account Options</a>[<a href="doaAccountOptions-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaChoosePayment.html">Choose a payment Method</a> [<a href="doaChoosePayment-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaAPACTaxInfo.html">APAC-TaxInfo</a> [<a href="doaAPACTaxInfo-rtl.html">RTL</a>]</li>-->
+                                <!--<li><a href="doaRequiredDocsUpload.html">Required Documents File upload</a></li>-->
+                                <!--<li><a href="doaFromguestShipping.html">From Guest Shipping</a> [<a href="ups.doa-guestShipping-rtl.html">RTL</a>]</li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+                                <!--</li>-->
+                                <li class="ups-accordion_item">
+                                    <button class="ups-accordion_toggle">Digital Onboarding (DOA)<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                    <div class="ups-accordion_expand">
+                                        <ul>
+                                            <li><a href="doaSignup.html">Sign Up</a> [<a href="doaSignup-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaAddress.html">My Choice</a> [<a href="doaAddress-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaChooseNotification.html">Choose Notification</a> [<a href="doaChooseNotification-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaAccountOptions.html">Account Options</a>[<a href="doaAccountOptions-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaChoosePayment.html">Choose a payment Method</a> [<a href="doaChoosePayment-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaFromguestShipping.html">From Guest Shipping</a> [<a href="doaFromguestShipping-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaNewpassword.html">Enter New Password.</a> [<a href="doaNewpassword-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaOpenAccountPromo.html">Open Account-Promo Added</a> [<a href="doaOpenAccountPromo-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaSchedulePickup.html">From Schedule Pickup</a> [<a href="doaSchedulePickup-rtl.html">RTL</a>]</li>
+                                            <li><a href="doaOpenAccountFail.html">OpenAccount-Fail</a> [<a href="doaOpenAccountFail-rtl.html">RTL</a>]</li>
+                                            <li><a href="doa.html#/signup">Standalone Sign Up Page</a> [<a href="doa-rtl.html#/signup">RTL</a>]</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <!-- ////////////////////// -->
+                                <!--<li class="ups-accordion_item">-->
+                                <!--<button class="ups-accordion_toggle">Profile & Preference Center (PPC)<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>-->
+                                <!--<div class="ups-accordion_expand">-->
+                                <!--<ul>-->
+                                <!--<li><a href="ppc.html">Login Page</a> [<a href="ppc-rtl.html">RTL</a>]</li>-->
+                                <!--</ul>-->
+                                <!--<ul>-->
+                                <!--<li><a href="ppcProfile.html#/profilePage">PPC Profile Page</a> [<a href="ppcProfile-rtl.html#/profilePage">RTL</a>]</li>-->
+                                <!--</ul>-->
+                                <!--</div>-->
+                                <!--</li>-->
+                                <li class="ups-accordion_item">
+                                    <button class="ups-accordion_toggle">Profile & Preference Center (PPC)<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                    <div class="ups-accordion_expand">
+                                        <ul>
+                                            <li><a href="ppc.html">Login Page</a> [<a href="ppc-rtl.html">RTL</a>]</li>
+                                            <li><a href="ppcProfile.html#/login">Standalone Login Page</a> [<a href="ppcProfile-rtl.html#/login">RTL</a>]</li>
+                                            <li><a href="ppcProfile.html#/profilePage">PPC Profile Page</a> [<a href="ppcProfile-rtl.html#/profilePage">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/notYetEnrolled">Preference - My Choice - Not Yet Enrolled</a> [<a href="/ppcProfile-rtl.html#/notYetEnrolled">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/autoRenewValidation">Preference - My Choice - Auto Renewal Validation</a> [<a href="/ppcProfile-rtl.html#/autoRenewValidation">RTL</a>]</li>
+                                            <li><a href="ppcServiceTerms.html">Preference - My Choice - Service Terms Dialog</a> [<a href="ppcServiceTerms.hbs-rtl.html">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/preferencePage/mychoice/authenticate">Preference - My Choice - Verify Now Authentication</a> [<a href="/ppcProfile-rtl.html#/preferencePage/mychoice/authenticate">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/preferencePage/mychoice/authenticate_birthday">Preference - My Choice - Verify Now Authentication - Enter Birthday</a> [<a href="/ppcProfile-rtl.html#/preferencePage/mychoice/authenticate_birthday">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/preferencePage/mychoice/authenticate_mailprocess">Preference - My Choice - Verify Now Authentication - Code By Mail Option - Enrolled</a> [<a href="/ppcProfile-rtl.html#/preferencePage/mychoice/authenticate_mailprocess">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/preferencePage/mychoice/authenticate_mailverify">Preference - My Choice - Verify Now Authentication - Code By Mail Is Only Option - US - Required Verification for Enrollment</a> [<a href="/ppcProfile-rtl.html#/preferencePage/mychoice/authenticate_mailverify">RTL</a>]</li>
+                                            <li><a href="/ppcProfile.html#/preferencePage/mychoice/authenticate_failed">Preference - My Choice - Verify Now Authentication - Failure or Lockout</a> [<a href="/ppcProfile-rtl.html#/preferencePage/mychoice/authenticate_failed">RTL</a>]</li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <!-- ////////////////////// -->
+                            </ul>
+                        </div>
+                    </section>
+
+                </div>
+
+                <h2>Guides</h2>
+                <ul>
+                    <li><h3><a href="http://wss.inside.ups.com/sites/cim/uat/ecommerce/digitalchannel/WEM%20Implementation/02.%20Marketing%20Communication%20Workstreams/Deliverables/Visual%20Design%20Style%20Guide/UPS%20WEM%20VD%20StyleGuide.pdf">Style Guide [PDF] <em>(UPS SharePoint)</em></a> </h3></li>
+                    <li><h3><a href="https://sapient.box.com/s/axzsja8xrj7epe2e0zogqjp843ke8vb7">Templates with Module Mapping [PPT] <em>(Sapient Box)</em></a> </h3></li>
+                </ul>
+                <ul>
+                    <li><h4><a href="colors.html">Brand Colors</a></h4></li>
+                    <li><h4><a href="iconfont.html">Icon Font</a></h4></li>
+                    <li><h4><a href="grid.html">Grid Demo</a></h4></li>
+                </ul>
+
+            </div> <!-- @end .ups-contentBlock -->
+        </div>
+    {{>ts_component_end}}
+{{> ts_rr_mid}}
+    {{>ts_component_start}}
+        <div class="ups-contentBlock ups-wrap">
+            <div class="ups-wrap_inner">
+                <h2>Change Log</h2>
+                <dl class="ups-changelog">
+
+                    <dt>v1.2.0<dt>
+                    <dd>
+                        WEM UI Design Changes, CMS/APP Integration Support, APP CSS Overrides (11/21/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4499" target="_blank">UPS-4499 - 230389 | IBM PreUAT | Font Icon - Accessibility Issue</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4766" target="_blank">UPS-4766 - 226850 | UX -Help Tool tip link and Character count options are not available in "Formpage_H12" page.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5266" target="_blank">UPS-5266 - 278936 | Locator Widget - Special Alerts</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5293" target="_blank">UPS-5293 - 280490 | Locator Widget Styles & Layout</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5294" target="_blank">UPS-5294 - 280544 | Widget Form Styles Inconsistent</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5335" target="_blank">UPS-5335 - Quickstart | Tracking numbers field box is bigger when compared to gold html</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5345" target="_blank">UPS-5345 - M10|Primary CTA appears distorted on article</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5359" target="_blank">UPS-5359 - Banner|Banner seems misaligned both in full body and right rail view.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5373" target="_blank">UPS-5373 - TFS 287413|M04 - Carousel | Discrepancy in Content Type Sheet and ups-gold</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5379" target="_blank">UPS-5379 - TFS 288431 |WEM homepage header drops when scrolling - shield and navigational terms</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5395" target="_blank">UPS-5395 - Help Icon in M17 Form modification</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5418" target="_blank">UPS-5418 - 282583 | M7 Page Title and Share - As per UX Spec, Share Menu is not closed on clicking anywhere else on the page.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5419" target="_blank">UPS-5419 - 289066 | Sup tag styling issue</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5420" target="_blank">UPS-5420 - 292068 | Gutter Spacing Issues in Side-rail</a></li>
+                                                <li><a href="#" target="_blank">TFS-291881</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+
+
+
+                    <dt>v1.1.9<dt>
+                    <dd>
+                        MC Backlog Change Requests (10/24/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5234" target="_blank">UPS-5234 - Share icon is coming on follow me component when opened</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5207" target="_blank">273547 | UPS-5207 - Content Migration - 3_column_module_with_optional_support - In Team site "api" page "Next steps" content having more space for the Next line content</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4379" target="_blank">279078 | UPS-4379 â€“ CampusShip Quickstart Missing icons </a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5266" target="_blank">278936 | UPS-5266 â€“ Location Widget Special Alerts </a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2860" target="_blank">UPS-2860 - svp_m17 forms_help tooltip not visible in rtl</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4550" target="_blank">232929 | UPS-4550 - Accessibility Defect - Language of Content</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4798" target="_blank">UPS-4798 - Ipad/Iphone | UI | Banner, subscribe to email, calendar is distorted in devices.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5294" target="_blank">UPS-5294 | 280544 - Widget Form Styles Inconsistent</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3804" target="_blank">UPS-3804 - W16-Simple Track & W20-Track With History | Win Edge | Help icon getting underlined</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4766" target="_blank">UPS-4766 - 226850 | UX -Help Tool tip link and Character count options are not available in "Formpage_H12" page</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+
+
+                    <dt>v1.1.8<dt>
+                    <dd>
+                        MC Backlog Change Requests (10/04/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4384" target="_blank">UPS-4384: M59 Service Alerts Details | Download csv link is not working on any devices</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4561" target="_blank">UPS-4561: 232963 | Accessibility Defect - Color Palette</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4607" target="_blank">UPS-4607: 238035 | PreUAT | Focus & Active Indicators in Header - Accessibility Defect</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4939" target="_blank">UPS-4939: 249677 | MC UAT2 - DEF - Component - M44 Need to be able to add classes to table cells</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5074" target="_blank">UPS-5074: M13 Tabs|In mobile view M13 legacy tab incorrect in UPS-QA and UPS-GOLD snatlanta site</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5154" target="_blank">UPS-5154: M59 Services Alerts | Service alert page has the Go button touching the field box</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5186" target="_blank">UPS-5186: Header|Customer Services|Campusship User| If email us,live chat,see all,call us links are not configured for ecsuser/ecsadmin then the customer service dropdown shows blank space adjacent to Campuship Admin Links</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5201" target="_blank">UPS-5201: Widgets| Remove "Please select an item in the list." validation from W11 and W13 widgets</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5205" target="_blank">UPS-5205: UPS UAT |News | In preview of page the news component slider doesnt move to next news item</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5210" target="_blank">UPS-5210: News | The 'See All' view of news shows extra grey border on one of the news item</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems?_a=edit&id=272327" target="_blank">TFS-272327: Navigation Link Updates</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.7<dt>
+                    <dd>
+                        MC Backlog Change Requests (9/26/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3044" target="_blank">UPS-3044: Full definition of RTE Styles & Link Creation - PMG# 82</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3744" target="_blank">UPS-3744: Fix UI Code issue using checks in the Table Cell</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3774" target="_blank">UPS-3774: Onboarding: Field Level Validation UX</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4290" target="_blank">UPS-4290: Accessibility - New Window Icon for Links</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4384" target="_blank">UPS-4384: M59 Service Alerts Details | Download csv link is not working on any devices</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4437" target="_blank">UPS-4437: M27 Search Support | HTML | search button is uneven in devices for html page</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4456" target="_blank">UPS-4456: W18 Subscribe To Email | Firefox | Close icon seen when "View Example" is clicked open is not functional</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4499" target="_blank">UPS-4499: 230389 | IBM PreUAT | Font Icon - Accessibility Issue</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4561" target="_blank">UPS-4561: 232963 | Accessibility Defect - Color Palette</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4607" target="_blank">UPS-4607: 238035 | PreUAT | Focus & Active Indicators in Header - Accessibility Defect</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4632" target="_blank">UPS-4632: RTL | Desktop|Ipad|Share icon and UI Issues seen in RTL page.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4636" target="_blank">UPS-4636: M10 Article | More space is displayed between tags and tags label</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4688" target="_blank">UPS-4688: RTL | Video | Video images are not displayed properly in RTL page.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4776" target="_blank">UPS-4776: 250066 | MC UAT - DEF - Component - Icon Overlays - Shading Inconsistent</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4854" target="_blank">UPS-4854: 245927 | Accessibility Defect - Accordion/Menu Screenreader Txt</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4964" target="_blank">UPS-4964: 264686 | M23 Follow Me component not keyboard accessible</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4965" target="_blank">UPS-4965: 264689 | M59 Service Alerts state links not accessible</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4969" target="_blank">UPS-4969: Update Required Field Markup for WEM per Onboarding Changes</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4974" target="_blank">UPS-4974: 265193 | SA - Visible outlines on the components are shown in some pages</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4977" target="_blank">UPS-4977: 265963 | Multiple screen reader classes created</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5023" target="_blank">UPS-5023: 266900 | SA - Content in sri_container gets cut off in the SVP and some LVP	</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5024" target="_blank">UPS-5024: 265312 | SA - Images inside a content block should not change resolution, causes pixelation</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5033" target="_blank">UPS-5033: 266290 | Skip link not visible when alert ribbon is active</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5043" target="_blank">UPS-5043: M59 Next/Prev Focus indicator styling issues</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5045" target="_blank">UPS-5045: 264292 | MC UAT3 - DEF - Ship By component dropdown does not display the whole date</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5019" target="_blank">UPS-5019: 266287 | Empty buttons in RTE Table with no reader text</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5089" target="_blank">UPS-5089: 268745 | WEM SVP MVP Search in Header Submit Button Border Radius</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5090" target="_blank">UPS-5090: RTL | Ipad|M03 Banner | Banner icon is overlapped in rtl page when checked in ipad</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5093" target="_blank">UPS-5093: M09 Secondary Navigation | Israel secondary peer nav is overlapped by arrow</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5098" target="_blank">UPS-5098: 271224 | WEM Component Spacing Issues</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5115" target="_blank">UPS-5115: M3-Banner | Banner content is misaligned when more content is added in the banner body</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5118" target="_blank">UPS-5118: 270506 | Remove Unnecessary Tabindex from Featured 3 Piece</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5164" target="_blank">UPS-5164: 272594 | SA - Widget UI - Update the html and css to say "View Locations List" as in the UX spec for the locator widget</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-5186" target="_blank">UPS-5186: Header|Customer Services|Campusship User| If email us,live chat,see all,call us links are not configured for ecsuser/ecsadmin then the customer service dropdown shows blank space adjacent to Campuship Admin Links</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems?_a=edit&id=252099" target="_blank">TFS-252099: Content Migration - View_and_download - CM-601 - M48 Title "Package Services" is missing from Content block</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems?_a=edit&id=262284" target="_blank">TFS-262284: SA: CM-586 - M48 component does not render text from Title and Sub-Title fields</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems?_a=edit&id=262595" target="_blank">TFS-262595: PMG #64 - Ship Widget - Login Defect</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems?_a=edit&id=266286" target="_blank">TFS-266286: M48 Content with Anchor has extra spacing when no Intro Copy is provided</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.6<dt>
+                    <dd>
+                        MC Backlog Change Requests (8/28/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3744" target="_blank">UPS-3744: Fix UI Code issue using checks in the Table Cell</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4607" target="_blank">UPS-4607: 238035 | PreUAT | Focus & Active Indicators in Header - Accessibility Defect</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4655" target="_blank">UPS-4655: RTL | Desktop|Ipad|M03 Banner | Banner icon is overlapped in rtl page</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4660" target="_blank">UPS-4660: RTL | M55 Ship By |Desktop|Ipad| Spacing issue and icon overlap in ship by component in rtl page</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4761" target="_blank">UPS-4761: RTL | Banner is distorted in spain RTL page	</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4969" target="_blank">UPS-4969: Update Required Field Markup for WEM per Onboarding Changes</a></li>
+                                                <li><a href="http://tfs.ups.com:8080/tfs/UpsProd/DMCT/_workitems/edit/264196" target="_blank">TFS-264196: Form Design Updates - Touch Targets and Spacing</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.5<dt>
+                    <dd>
+                        MC Backlog Change Requests (8/19/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2973" target="_blank">UPS-2973: Cross Cutting - CTA Link changed to being a replicant</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3485" target="_blank">UPS-3485: Update to the HTML for CTA Links</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4184" target="_blank">UPS-4184: W1 - Location Finder - Store Hours are Missing from HTML</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4285" target="_blank">UPS-4285: Update the UI Code for the changes in the log in link</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4290" target="_blank">UPS-4290: Accessibility - New Window Icon for Links</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4299" target="_blank">UPS-4299: M15 List HTML Update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4320" target="_blank">UPS-4320: LiveSite Not Available Page</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4578" target="_blank">UPS-4578: 237733 | PreUAT | Accessibility | Email Widget UI Code Defect</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4605" target="_blank">UPS-4605: 232937 | PreUAT Testing | Accessibility Defect - Focus Indicator</a></li>
+                                                <li><a href="https://upsprojects.inside.ups.com/upsprojects/apps/issue_edit.cfm?pn=30327&in=50602&v=v" target="_blank">PMG-157: Remove Golden Thread (Global and Light Headers)</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.4<dt>
+                    <dd>
+                        MC Backlog Change Requests (8/12/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2567" target="_blank">UPS-2567: M10/M48 - Article - Anchor list link limitation</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2596" target="_blank">UPS-2596: Download Zone Chart Widget HTML - PMG# 66</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2686" target="_blank">UPS-2686: M10/M48 - Article - Anchor list link limitation (Update HTML Code for M48)</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4005" target="_blank">UPS-4005: Update UI Code for M59 Service Details & Remove W17 Zip Code Look Up</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4026" target="_blank">UPS-4026: Update FAQ UI Code</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4431" target="_blank">UPS-4431: Accessibility of Form Helper Text (UPS-4555)</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4469" target="_blank">UPS-4469: Help Center /../ Packaging and Supplies [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4550" target="_blank">UPS-4550: (TFS-232929) Accessibility Defect - Language of Content</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4552" target="_blank">UPS-4552: (TFS-232935) Accessibility Defect - Accordions</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4553" target="_blank">UPS-4553: (TFS-232936) Accessibility Defect - Breadcrumbs</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4554" target="_blank">UPS-4554: (TFS-232938) Accessibility Defect - WEM Footer Tab Order</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4555" target="_blank">UPS-4555: (TFS-232941) Accessibility Defect - Helper Text (UPS-4431)</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4556" target="_blank">UPS-4556: (TFS-232948) Accessibility Defect - SVG Map</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4557" target="_blank">UPS-4557: (TFS-232943) Accessibility Defect - Main Nav and Quick Start</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4558" target="_blank">UPS-4558: (TFS-232944) Accessibility Defect - Track & Header Search Submit Buttons</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4559" target="_blank">UPS-4559: (TFS-232945) Accessibility Defect - Footer Role</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4561" target="_blank">UPS-4561: (TFS-232963) Accessibility Defect - Color Palette</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4881" target="_blank">UPS-4881: (TFS-237608) ENH - Accessibility -CR- Wrap Breadcrumb in NAV Element</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.3<dt>
+                    <dd>
+                        MC Backlog Change Requests (8/7/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2908" target="_blank">UPS-2908: Integrate with Onboarding Functionality - PMG #64</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3848" target="_blank">UPS-3848: Accessibility Complance - Green text color	</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4060" target="_blank">UPS-4060: M35| News and Info| On Adding single News in to the body News feed gets misaligned.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4146" target="_blank">UPS-4146: Accessibility - Accordion Focus Indicator</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4160" target="_blank">UPS-4160: Update 3 Icons - Ship, Track, Manage Home Deliveries</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4172" target="_blank">UPS-4172: Log in / Register Changes from Onboarding - PMG #64</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4186" target="_blank">UPS-4186: UAT Task for W1 Location Finder hours dropdown	</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4439" target="_blank">UPS-4439: UAT/QA Gold Standard Page Creation</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4440" target="_blank">UPS-4440: Shipping / Service Guide [UPDATE]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4441" target="_blank">UPS-4441: Services / Healthcare [UPDATE]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4442" target="_blank">UPS-4442: Services /../ Temperature True [UPDATE]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4443" target="_blank">UPS-4443: Help Center /../../../ Internet Shipping Labels [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4444" target="_blank">UPS-4444: Shipping /../ UPS Ground with Freight Pricing [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4460" target="_blank">UPS-4460: Help Center /../../ Supplies and Forms [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4461" target="_blank">UPS-4461: Help Center / Shipping Support [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4469" target="_blank">UPS-4469: Help Center /../ Packaging and Supplies [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4471" target="_blank">UPS-4471: Select Another Country [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4472" target="_blank">UPS-4472: Services / Shipping Solutions [NEW]</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4473" target="_blank">UPS-4473: Services / Small Business [NEW]	</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4497" target="_blank">UPS-4497: Services Landing</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4551" target="_blank">UPS-4551: 232932 | Accessibility Defect - Tabs</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4552" target="_blank">UPS-4552: 232935 | Accessibility Defect - Accordions</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4606" target="_blank">UPS-4606: 237604 | PreUAT | Skip Link Accessibility Issue</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+                    <dt>v1.1.2<dt>
+                    <dd>
+                        MC Backlog Change Requests (7/3/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3006" target="_blank">UPS-3006: M3 - Banner - Update the UI code</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3041" target="_blank">UPS-3041: Update UI Code with Default View</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3434" target="_blank">UPS-3434: Update the UI code for Subscribe to Email</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3819" target="_blank">UPS-3819: Update the UI code for M9</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3946" target="_blank">UPS-3946: Create HTML of seach and results with results showing</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4020" target="_blank">UPS-4020: Update the UI Code for M4 and M3 to be usable in the right rail</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4036" target="_blank">UPS-4036: Update UI code for M35 to have functionality when see all is clicked within new component skin</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4057" target="_blank">UPS-4057: Update UI code for Media Player and List</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4193" target="_blank">UPS-4193: M7-Page title & share | Share title is overlapped on share icon</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4291" target="_blank">UPS-4291: Locator Widget HTML Update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4292" target="_blank">UPS-4292: Manage Home Deliveries Widget</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4294" target="_blank">UPS-4294: Footer HTML Update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4295" target="_blank">UPS-4295: Header HTML Update Question</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4297" target="_blank">UPS-4297: M19 Media Player UI update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3430" target="_blank">UPS-3430: UI Code update for Ship By</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4026" target="_blank">UPS-4026: Update FAQ UI Code</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4296" target="_blank">UPS-4296: M3 Banner HTML Update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4305" target="_blank">UPS-4305: Update to the HTML youtube Logo Icon</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3844" target="_blank">UPS-3844: M55 - Days of Operation - HTML Code update for international countries or territories</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4174" target="_blank">UPS-4174: M55 Ship By | Issue exists on IE9 and IE 11 on Calender dropdown.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3505" target="_blank">UPS-3505: Update the UI code for M15 - List</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+
+
+                    <dt>v1.1.1<dt>
+                    <dd>
+                        MC Backlog Change Requests (2/25/16)
+                        <section class="ups-accordion_list">
+                            <div class="ups-accordion_wrapper">
+                                <ul class="ups-accordion_content">
+
+                                    <!-- ////////////////////// -->
+                                    <li class="ups-accordion_item">
+                                        <button class="ups-accordion_toggle">Change Requests<i class="icon ups-icon-plus"><span class="ups-readerTxt">expand</span></i> </button>
+                                        <div class="ups-accordion_expand">
+                                            <ul>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2562" target="_blank">UPS-2562: M1 - Header - Quick Start link vertical height limit update</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2571" target="_blank">UPS-2571: M2 - Footer - content types fields</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2578" target="_blank">UPS-2578: M3 Banner - Works on Right Rail - Add Icon/Image PMG#68</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2587" target="_blank">UPS-2587: M55 Ship By - allow easier date selection and AX - PMG#84</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2589" target="_blank">UPS-2589: M8 - Tab title wrapping added to tabs and a limit of english characters</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2590" target="_blank">UPS-2590: M9 - Secondary Navigation - Add Option to Show Peers - PMG# 70</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2593" target="_blank">UPS-2593: M3 Banner - Neck and Ankle Banner Template in Apps - PMG# 81</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2596" target="_blank">UPS-2596: New Widget - Download Zone Chart Widget - PMG# 66</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2898" target="_blank">UPS-2898: Onboarding UX & Design Changes to WEM - PMG #69</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2902" target="_blank">UPS-2902: Component Error Conditions and Handling - PMG# 74</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2908" target="_blank">UPS-2908: Integrate with Onboarding Functionality - PMG #64</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2920" target="_blank">UPS-2920: Campus Ship Experience within WEM - PMG# 63</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2943" target="_blank">UPS-2943: Sitemap</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2947" target="_blank">UPS-2947: FAQ Component</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2948" target="_blank">UPS-2948: M32 - Page Level Notification - New Content Type - PMG# 87</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2953" target="_blank">UPS-2953: Metadata Content Type Update For Image Sizes - PMG# 73</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-2973" target="_blank">UPS-2973: Cross Cutting - CTA Link changed to being a replicant</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3044" target="_blank">UPS-3044: Full definition of RTE Styles & Link Creation - PMG# 82</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3045" target="_blank">UPS-3045: M27 Search - Auhor Management of "Search within" - PMG# 83</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3064" target="_blank">UPS-3064: M15 - List - Black requires List content type /itemURL to be optional</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3069" target="_blank">UPS-3069: M15 - List - Icon vs. Image selection in list</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3141" target="_blank">UPS-3141: M15 - List - clicking image/icon to download attachment.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3404" target="_blank">UPS-3404: Calendar M24 : Icon not displayed if image missing</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3494" target="_blank">UPS-3494: M3 - Banner - New Content type - PMG# 86</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3503" target="_blank">UPS-3503: M15 - List - Update for different layouts</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3566" target="_blank">UPS-3566: M35 - News And Info - Update to the Component Def and Content Type based on Design</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3567" target="_blank">UPS-3567: W17 - Zip Look up and Service alerts Requirements - PMG# 88</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3739" target="_blank">UPS-3739: M11-Feed Based Blog | Conflict between HTMLs and Wireframe.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3747" target="_blank">UPS-3747: UPS.com UX for System Down</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3760" target="_blank">UPS-3760: Update to the Filtered List Content Type</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3774" target="_blank">UPS-3774: Onboarding: Field Level Validation UX</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3780" target="_blank">UPS-3780: M11 Feed Based Blog | Pagination mentioned in Wireframes but not in HTML</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3868" target="_blank">UPS-3868: Update Required Form Field Symbol Size and Color</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3876" target="_blank">UPS-3876: Onboarding Impact: Change Buttons to Pill Shaped</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3879" target="_blank">UPS-3879: Onboarding Impact: Disabled Button State</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3948" target="_blank">UPS-3948: M04-Hero Carousel | Hero carousel is not supported in right rail for preview/published pages but is mentioned in the templates pdf.</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3957" target="_blank">UPS-3957: Discuss the migration impact of the default population of date for FAQ Single Question</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-3959" target="_blank">UPS-3959: Feb 2016 Bulk Design Doc Updates from PMG Review Feedback</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4011" target="_blank">UPS-4011: M1 Header DCT Alignment</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4018" target="_blank">UPS-4018: M35 - News and Info - New skin needed for handling the "See All" Functionality on News</a></li>
+                                                <li><a href="https://tools.sapient.com/jira/browse/UPS-4044" target="_blank">UPS-4044: Widget Error Handling UX Specifications Update</a></li>
+                                            </ul>:
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </dd>
+                    <dt>v1.1.0<dt>
+                    <dd>
+                        UPS DO App Sprint 1 Deliverable <br>
+                        App CSS Inventory and Prototypes <br>
+                        WEM UX Backlog Updates
+                    </dd>
+                    <dt>v1.0.0<dt><dd>Handoff to CT and UX Dev</dd>
+                    <dt>v0.1.7<dt><dd>Prior to acceptance of UX Dev changes</dd>
+                    <dt>v0.1.6<dt><dd>11/17/15 release for CT Review</dd>
+                    <dt>v0.1.5<dt><dd>11/16/15 release for CT Review</dd>
+                    <dt>v0.1.4<dt><dd>11/13/15 release for CT Review</dd>
+                    <dt>v0.1.3<dt><dd>11/12/15 release for CT Review</dd>
+                    <dt>v0.1.2<dt><dd>11/11/15 release for CT Review</dd>
+                    <dt>v0.1.1<dt><dd>11/09/15 release for CT Review</dd>
+                    <dt>v0.1.0<dt><dd>Initial release to CT for review</dd>
+                </dl>
+                <hr>
+                <h2>UI Dev Documentation</h2>
+                <p><em>Sapient BOX credentials required.</em></p>
+                <ul>
+                    <li><a href="https://sapient.box.com/s/u1dvp8hgs5zjmoxzxb6d2zvcbrr270j0" target="_blank">UPS WEM UI Architecture Document</a></li>
+                    <li><a href="https://sapient.box.com/s/fux076tc17g3vq6gu6eyhpueqqnlcme1" target="_blank">UPS WEM UI - GIT Process</a></li>
+                    <li><a href="https://sapient.box.com/s/5i83vjk2ev0qm5aele207vop0vw0m91a" target="_blank">UPS WEM UI - Dependencies and Build</a></li>
+                    <li><a href="https://sapient.box.com/s/qvetbpj99nj5oywoj20irr7mqn4ddarg" target="_blank">UPS WEM UI - Dev Servers</a></li>
+                    <li><a href="https://sapient.box.com/s/27vom0u1d3ufguatf17hqwz2ulvkr9jt" target="_blank">UPS WEM UI - Setup of Environment within UPS</a></li>
+                    <li><a href="https://sapient.box.com/s/qq4axgt1jatjaonwfyqa67mo91yz11xg" target="_blank">UPS WEM UI - Icon Font Update</a></li>
+                    <li><a href="https://sapient.box.com/s/jku2dbd63ymsol10n8ou6rghvxm0ki4a" target="_blank">UPS WEM UI - SVG Map Update</a></li>
+                </ul>
+                <hr>
+                <h2>UI Dev Enviornments</h2>
+                <ul>
+                    <li>
+                        <h3><a href="http://ups-gold.snatlanta.com">UPS Gold</a></h3>
+                        <p>This is the "Gold Standard" server. It will serve as a visual reference for developers during CMS integration and future component development. Only stable and vetted builds will be published to this server.</p>
+                        <p><a href="http://</li>ups-gold.snatlanta.com">http://ups-gold.snatlanta.com</a></p>
+                    </li>
+                    <li>
+                        <h3><a href="http://ups-qa.snatlanta.com">UPS QA</a></h3>
+                        <p>This is QA and UAT server. It will receive periodic builds for testing prior to release.</p>
+                        <p><a href="http://ups-qa.snatlanta.com">http://ups-qa.snatlanta.com</a></p>
+                    </li>
+                    <li>
+                        <h3><a href="http://ups.snatlanta.com">UPS DEV</a></h3>
+                        <p>This is our development server. This server will receive frequent builds for testing during development and is only intended for development purposes. <em>Defects are not to be raised on anything found on this server, as everything is considered a work in progress.</em></p>
+                        <p><a href="http://ups.snatlanta.com">http://ups.snatlanta.com</a></p>
+                    </li>
+                    <li>
+                        <h3><a href="http://ups-onboarding-uat.snatlanta.com">UPS ONBOARDING UAT</a></h3>
+                        <p>This is the UAT server for the UPS Digital Onboarding project. <em>Only builds created from the â€œONBOARDINGâ€� branch of the GIT repository are to be published here.</em></p>
+                        <p><a href="http://ups-onboarding-uat.snatlanta.com">http://ups-onboarding-uat.snatlanta.com</a></p>
+                    </li>
+                    <li>
+                        <h3><a href="http://ups-onboarding.snatlanta.com">UPS ONBOARDING QA</a></h3>
+                        <p>This is the QA server for the UPS Digital Onboarding project. <em>Only builds created from the â€œONBOARDINGâ€� branch of the GIT repository are to be published here.</em></p>
+                        <p><a href="http://ups-onboarding.snatlanta.com">http://ups-onboarding.snatlanta.com</a></p>
+                    </li>
+                    <li>
+                        <h3><a href="http://ups-onboarding-dev.snatlanta.com">UPS ONBOARDING DEV</a></h3>
+                        <p>This is the development server for the UPS Digital Onboarding project. This server will receive frequent builds for testing during development and is only intended for development purposes. <em>Only builds created from the â€œONBOARDINGâ€� branch of the GIT repository are to be published here. Defects are not to be raised on anything found on this server, as everything is considered a work in progress.</em></p>
+                        <p><a href="http://ups-onboarding-dev.snatlanta.com">http://ups-onboarding.snatlanta.com</a></p>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+    {{>ts_component_end}}
+{{> ts_rr_end}}
+
+

@@ -1,0 +1,29 @@
+<!-- BEGIN progress tracker -->
+<div class="ups-progress_bar"> 
+    <div class="ups-progress_bar_inner">
+        <ul>
+            <li *ngFor="let step of steps; let number = index">
+                <div class="ups-progress_number"
+                        [ngClass]="{'ups-progress_current' : stepNumber == (number+1), 'ups-progress_complete' :  stepNumber > (number+1)}">
+                    <span class="ups-readerTxt" *ngIf="stepCurrent">{{step.hiddenText}} </span>
+                    <span *ngIf="stepNumber <= (number+1)">{{1+number}}</span>
+                    <a href="{{step.link}}" *ngIf="stepNumber > (number+1)">
+                        <span class="icon ups-icon-check" aria-hidden="true"></span>
+                        <span class="ups-readerTxt">Step {{1+number}} Done</span>
+                    </a>
+                </div>
+                <div class="ups-progress_name">
+                    <span *ngIf="stepNumber <= (number+1)">{{step.name}}</span>
+                    <a href="{{step.link}}" class="ups-link" *ngIf="stepNumber > (number+1)">{{step.name}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- END progress tracker -->
+
+
+
+
+
+

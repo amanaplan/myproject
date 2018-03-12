@@ -1,0 +1,61 @@
+{{!-----------------------------------------------------------------------------
+================================================================================
+M21 Image Map
+================================================================================
+********************************************************************************
+
+CONFIGS:
+
+Configs via DATA attributes:
+
+    DATA-ATTRIBUTE      TYPE     DEFAULT
+    data-noscroll     = boolean  /  true     disable autoscroll on accordion
+
+********************************************************************************
+-------------------------------------------------------------------------------}}
+<!-- M21 Image Map -->
+<!-- For full documentation app/source/partials/modules/M21_imageMap.hbs -->
+<div id="ups-langSelect">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="ups-page-title ups-wrap">
+                <div class="ups-wrap_inner">
+                    <div class="page-title_table">
+                        <div class="page-title_cell">
+                            <h1>{{title}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ups-langSelect_map hidden-sm hidden-xs">
+                {{> countries_svg }}
+            </div>
+        </div>
+
+        <div class="col-md-3 ups-accordion_wrapper ups-langSelect_accordion" data-noscroll="true">
+            <div class="ups-accordion_content" role="presentation" >
+                {{#each regions}}
+                    <div class='ups-accordion_item'>
+                        <div class="ups-acc-headcont" role="heading" aria-level="3">
+                            <a href="#" class="ups-accordion_toggle {{this.class}}" data-map="{{map}}" role="button" id="ups-imagemap{{@index}}" aria-controls="ups-imagemap{{@index}}_links" aria-expanded="false">
+                                {{this.label}}
+                                <i>
+                                    <span class="icon ups-icon-plus" aria-hidden="true"></span>
+                                    {{!-- <span class="ups-readerTxt" data-lang-show="expand" data-lang-hide="collapse">expand</span> --}}
+                                </i>
+                            </a>
+                        </div>
+                        <ul class="ups-accordion_expand" aria-hidden="true" aria-labelledby="ups-imagemap{{@index}}" id="ups-imagemap{{@index}}_links" role="region">
+                            {{#each this.countries}}
+                            <li lang="{{this.lang}}">
+                                <a href="{{this.url}}" data-code="{{this.code}}">{{this.country}} &ndash; {{this.language}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+</div>

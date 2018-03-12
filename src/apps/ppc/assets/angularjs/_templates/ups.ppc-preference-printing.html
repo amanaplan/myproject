@@ -1,0 +1,89 @@
+<div class="ups-application_wrapper ups-app_onboarding ups-printing_pref" data-ng-controller='PrintingPrefCtrl'>
+	<ng-form name="ups_PrintingPrefernce" data-novalidate>
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// begin ups.ppc-preference-printing      //// -->
+    <!-- //////////////////////////////////////////////// -->
+	<p>We recommend printing a sample label before you ship to make
+				sure everything works correctly.</p>
+			<fieldset class="ups-form_group">
+				<legend class="ups-form_label">Choose your printing
+					preferences.</legend>
+
+					<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input check-verify id="ups-label_Intruction"
+								class="ups-checkbox-custom" name="printLabel" type="checkbox"
+								value="1" data-ng-change="choosePrivelege()"
+								data-ng-model="formObj.label" data-ng-checked="formObj.label">
+							<label for="ups-label_Intruction"
+								class="ups-checkbox-custom-label">Print label
+								instructions</label>
+					</div>
+				<div class="ups-radio_options" data-ng-if="formObj.label">
+						<fieldset>
+							<legend class="ups-readerTxt">Print label</legend>
+							<span data-ng-repeat="labelType in formObj.labelInstruction"
+								class="ups-checkbox ups-input_wrapper  ups-display-inline">
+									<input id="labelType{{$index}}" class="ups-radio-custom"
+										type="radio" data-ng-value={{$index}} name="labelType"
+										data-ng-model="formObj.labelType" /> <label
+										for="labelType{{$index}}"
+										class="ups-form_label ups-radio-custom-label">{{labelType}}
+									</label>
+							</span>
+						</fieldset>
+				</div>
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input check-verify id="ups-print_Receipt"
+								class="ups-checkbox-custom" name="printLabel" type="checkbox"
+								value="1" data-ng-change="choosePrivelege()"
+								data-ng-model="formObj.printLabel"
+								data-ng-checked="formObj.printLabel"
+								checked="formObj.printLabel"> <label
+								for="ups-print_Receipt" class="ups-checkbox-custom-label">Print
+								a receipt. </label>
+				</div>
+
+	
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input check-verify id="ups-thermal_label"
+								class="ups-checkbox-custom" name="thermalLabel" type="checkbox"
+								value="1" data-ng-change="choosePrivelege()"
+								data-ng-model="fromObj.thermalLabel"
+								data-ng-checked="fromObj.thermalLabel"> <label
+								for="ups-thermal_label" class="ups-checkbox-custom-label">Use
+								my UPS thermal printer to print labels.</label>
+						</div>
+				
+
+				
+						<div class="ups-buttonList_wrapper ups-input_wrapper">
+							<input check-verify id="ups-thermal_Receipt"
+								class="ups-checkbox-custom" name="thermalReceipt"
+								type="checkbox" value="1" data-ng-change="choosePrivelege()"
+								data-ng-model="formObj.thermalReceipt"
+								data-ng-checked="formObj.thermalReceipt"> <label
+								for="ups-thermal_Receipt" class="ups-checkbox-custom-label">Use
+								my UPS thermal printer to print receipts.</label>
+						</div>
+
+				<!-- ups-buttonList_wrapper ups-input_wrapper -->
+			</fieldset>
+						<p>
+							<a href="https://www.ups.com/content/us/en/resources/sri/thermal-printing-chrome.html" target="_blank" class="ups-link ups-new-window">Install UPS Thermal Printer<span class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+						</p>
+						<p>
+							<a href="#" onclick="return false;" class="ups-link">Print a Sample Label</a>
+						</p>
+	
+			<div class="ups-form_ctaGroup ">
+				<button type="submit"
+					class="ups-cta ups-cta_primary ups-form-offset"
+					data-ng-click="savePritingPref()">Save</button>
+                    <!-- data-ng-disabled="!(ups_PrintingPrefernce.$dirty)" -->
+			</div>
+			<!-- ups-form_ctaGroup -->
+    <!-- //////////////////////////////////////////////// -->
+    <!-- //// end ups.ppc-preference-printing        //// -->
+    <!-- //////////////////////////////////////////////// -->
+	</ng-form>
+</div>

@@ -1,0 +1,901 @@
+---
+title: Demo
+layout: default.hbs
+dir: ltr
+lang: en
+---
+{{!-----------------------------------------------------------------------------
+================================================================================
+Form Download/Upload Page
+================================================================================
+-------------------------------------------------------------------------------}}
+<!-- @start demo -->
+
+<div class="ups-page-title ups-wrap">
+	<div class="ups-wrap_inner">
+		<div class="page-title_table">
+			<div class="page-title_cell">
+				<h1>Level 1 Header</h1>
+			</div>
+		</div>
+	</div>
+</div> 
+<!-- @end ups-page-title -->
+
+<div class="ups-form_wrap ups-wrap"> 
+	<div class="ups-wrap_inner">
+		<h2 class="ups-article-header">Level 2 Header (Old Dark Brown Bar)</h2>
+		<div class="ups-ippa_panel">
+			<div class="introductory">
+				<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+				<p><strong>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham.</strong></p>
+			</div>
+			<p class="ups-reqMsg"><span>*</span><i> Indicates required field</i></p>
+			<form>
+				<h3 class="ups-error_alert ups-icon-exclamationcircle">Please correct the following errors:</h3>
+				
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Level 3 Header (Old Gray/Brown Bar) - Checkboxes</h3>
+						<button class="ups-help_button icon ups-icon-questioncircle">Help</button>
+					</div>
+					<div class="ups-app_panel">
+						<!-- checkbox - group -->
+						<div class="ups-form_group">
+							<fieldset>
+								<legend class="ups-form_label">Checkbox Group Legend:</legend>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="checkbox_1" class="ups-checkbox-custom" name="check" type="checkbox" checked="">
+									<label for="checkbox_1" value="1" class="ups-checkbox-custom-label">Checkbox 1</label>
+								</div>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="checkbox_2" class="ups-checkbox-custom" name="check" type="checkbox">
+									<label for="checkbox_2" value="2" class="ups-checkbox-custom-label">Checkbox 2</label>
+								</div>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="checkbox_3" class="ups-checkbox-custom" name="check" type="checkbox">
+									<label for="checkbox_3" value="3" class="ups-checkbox-custom-label">Checkbox 3</label>
+								</div>
+							</fieldset>
+						</div>
+						
+						<!-- checkbox - group, required -->
+						<!-- NOTE: A custom error message only needs to be placed on the wrapper of the first checkbox in a group -->
+						<div class="ups-form_group ups-form_required">
+							<fieldset>
+								<legend class="ups-form_label">Checkbox Group Legend:</legend>
+								<div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+									<input id="checkbox_4" class="ups-checkbox-custom" name="check" type="checkbox">
+									<label for="checkbox_4" value="1" class="ups-checkbox-custom-label">Checkbox 1</label>
+								</div>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="checkbox_5" class="ups-checkbox-custom" name="check" type="checkbox">
+									<label for="checkbox_5" value="2" class="ups-checkbox-custom-label">Checkbox 2</label>
+								</div>
+								<div class="ups-buttonList_wrapper ups-input_wrapper">
+									<input id="checkbox_6" class="ups-checkbox-custom" name="check" type="checkbox">
+									<label for="checkbox_6" value="3" class="ups-checkbox-custom-label">Checkbox 3</label>
+								</div>
+							</fieldset>
+						</div>
+						
+						<!-- checkbox - required -->
+						<!-- NOTE: An actual error message will not display for single checkboxes.  Only the error [!] will show.  Therefore no data-errormsg attribute is required. -->
+						<div class="ups-form_group ups-form_required ">
+							<div class="ups-checkbox ups-input_wrapper">
+								<input id="checkbox_req" class="ups-checkbox-custom" name="check_req" type="checkbox">
+								<label for="checkbox_req" value="1" class="ups-form_label ups-checkbox-custom-label">
+									Required checkbox.
+								</label>
+							</div>
+						</div>
+						
+						<!-- checkbox - link -->
+						<div class="ups-form_group">
+							<div class="ups-checkbox ups-input_wrapper" data-errormsg="Agreement to Terms &amp; Conditions is required.">
+								<input id="checkbox_req2" class="ups-checkbox-custom" name="check_req" type="checkbox">
+								<label for="checkbox_req2" value="1" class="ups-checkbox-custom-label">
+									Checkbox with <a href="#">link</a>.
+								</label>
+							</div>
+						</div>
+						
+						<!-- checkbox - required, link -->
+						<div class="ups-form_group ups-form_required ">
+							<div class="ups-checkbox ups-input_wrapper">
+								<input id="checkbox_req3" class="ups-checkbox-custom" name="check_req" type="checkbox">
+								<label for="checkbox_req3" value="1" class="ups-form_label ups-checkbox-custom-label">
+									Required checkbox with <a href="#">link</a>.
+								</label>
+							</div>
+						</div>
+										
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Radio Buttons</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- radio buttons -->
+						<fieldset class="ups-form_group">
+							<legend class="ups-form_label">Are you shipping from the United States?</legend>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="ups-uid-form_title-yes" class="ups-radio-custom" name="ups-uid-form_title-radio_group" type="radio" value="yes" checked="">
+								<label for="ups-uid-form_title-yes" class="ups-radio-custom-label">Yes</label>
+	
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="ups-uid-form_title-no" class="ups-radio-custom" name="ups-uid-form_title-radio_group" type="radio" value="no">
+								<label for="ups-uid-form_title-no" class="ups-radio-custom-label">No</label>
+	
+							</div>
+						</fieldset>
+						
+						<!-- radio buttons - required -->
+						<!-- NOTE: A custom error message only needs to be placed on the wrapper of the first radio button in a group -->
+						<fieldset class="ups-form_group ups-form_required">
+							<legend class="ups-form_label">Are you shipping from the United States?</legend>
+							<div class="ups-buttonList_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+								<input id="ups-uid-form_title-yes" class="ups-radio-custom" name="ups-uid-form_title-radio_group2" type="radio" value="yes">
+								<label for="ups-uid-form_title-yes" class="ups-radio-custom-label">Yes</label>
+	
+							</div>
+							<div class="ups-buttonList_wrapper ups-input_wrapper">
+								<input id="ups-uid-form_title-no" class="ups-radio-custom" name="ups-uid-form_title-radio_group2" type="radio" value="no">
+								<label for="ups-uid-form_title-no" class="ups-radio-custom-label">No</label>
+	
+							</div>
+						</fieldset>
+										
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Select Boxes</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- select box -->
+						<div class="ups-form_group">
+							<label for="select_box_1" class="ups-form_label">Select Box</label>
+							<div class="ups-dropdown_wrapper ups-input_wrapper">
+								<select name="select" class="ups-dropdown" id="select_box_1">
+									<option value="">Select One</option>
+									<option value="option_1">Option 1</option>
+									<option value="option_2">Option 2</option>
+									<option value="option_3">Option 3</option>
+								</select>
+							</div>
+						</div>
+						
+						<!-- select box, required -->
+						<div class="ups-form_group ups-form_required">
+							<label for="select_box_2" class="ups-form_label">Select Box - Required</label>
+							<div class="ups-dropdown_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+								<select name="select" class="ups-dropdown" id="select_box_2">
+									<option value="">Select One</option>
+									<option value="option_1">Option 1</option>
+									<option value="option_2">Option 2</option>
+									<option value="option_3">Option 3</option>
+								</select>
+							</div>
+						</div>
+						
+						<!-- select box, help text -->
+						<div class="ups-form_group ups-help_wrapper">
+							<label for="select_box_3" class="ups-form_label">Select Box - Help</label>
+							<div class="ups-help">
+								<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+								<div class="ups-help_tooltip">
+									<button type="button" class="ups-help_close icon ups-icon-xcircle ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+									<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+								</div>
+							</div>
+							<div class="ups-dropdown_wrapper ups-input_wrapper">
+								<select name="select" class="ups-dropdown" id="select_box_3">
+									<option value="">Select One</option>
+									<option value="option_1">Option 1</option>
+									<option value="option_2">Option 2</option>
+									<option value="option_3">Option 3</option>
+								</select>
+							</div>
+						</div>
+						
+						<!-- select box, required, help text -->
+						<div class="ups-form_group ups-form_required ups-help_wrapper">
+							<label for="select_box_4" class="ups-form_label">Select Box - Required / Help</label>
+							<div class="ups-help">
+								<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+								<div class="ups-help_tooltip">
+									<button type="button" class="ups-help_close icon ups-icon-xcircle ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+									<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+								</div>
+							</div>
+							<div class="ups-dropdown_wrapper ups-input_wrapper" data-errormsg="This field is required">
+								<select name="select" class="ups-dropdown" id="select_box_4">
+									<option value="">Select One</option>
+									<option value="option_1">Option 1</option>
+									<option value="option_2">Option 2</option>
+									<option value="option_3">Option 3</option>
+								</select>
+							</div>
+						</div>	
+										
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Text Inputs</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- text input -->
+						<div class="ups-form_group">
+							<label for="text_input_0" class="ups-form_label">Text Input</label>
+							<div class="ups-text_wrapper ups-input_wrapper">
+								<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0">
+							</div>
+						</div>
+						
+						<!-- text input, required -->
+						<div class="ups-form_group ups-form_required">
+							<label for="text_input_1" class="ups-form_label">Text Input - Required</label>
+							<div class="ups-text_wrapper ups-input_wrapper" data-errormsg="This field is required">
+								<input type="text" name="name" class="ups-form_input ups-error" id="text_input_1">
+							</div>
+						</div>
+						
+						<!-- text input, help text -->
+						<div class="ups-form_group ups-help_wrapper ups-help_textWrapper">
+							<label for="text_input_2" class="ups-form_label">Text Input - Help</label>
+							<div class="ups-help">
+								<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+								<div class="ups-help_tooltip">
+									<button type="button" class="ups-help_close icon ups-icon-xcircle ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+									<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+								</div>
+							</div>
+							<div class=" ups-text_wrapper ups-input_wrapper email_input" data-errormsg="Please enter a valid email address.">
+								<input type="text" name="name" class="ups-form_input ups-error" id="text_input_2">
+							</div>
+						</div>
+						
+						<!-- text input, required, help text -->
+						<div class="ups-form_group ups-form_required ups-help_wrapper ups-help_textWrapper">
+							<label for="text_input_3" class="ups-form_label">Text Input - Help</label>
+							<div class="ups-help">
+								<button type="button" class="ups-help_link icon ups-icon-questioncircle">Help</button>
+								<div class="ups-help_tooltip">
+									<button type="button" class="ups-help_close icon ups-icon-xcircle ups-iconAlone"> <span class="ups-readerTxt">Close</span> </button>
+									<p>Explanatory text lorem ipsum dolor sit amet, consectetur adipis, eget maximus orci rhoncus. Fusce lorem odio, finibus sed varius at, cursus a augue. Suspendisse volutpat viverra sed varius at cursus.</p>
+								</div>
+							</div>
+							<div class=" ups-text_wrapper ups-input_wrapper email_input" data-errormsg="Please enter a valid email address.">
+								<input type="text" name="name" class="ups-form_input ups-error" id="text_input_3">
+							</div>
+						</div>
+						
+						<!-- text input, formatted input - email -->
+						<div class="ups-form_group ups-form_required ">
+							<label for="text_input_4" class="ups-form_label">Text Input - Email</label>
+							<p id="emailAddressHelperTxt" class="ups-form_subheader">address@email.com</p>
+							<div class=" ups-text_wrapper ups-input_wrapper email_input" data-errormsg="Please enter a valid email address.">
+								<input type="email" name="email" class="ups-form_input ups-error" id="text_input_4" aria-describedby="emailAddressHelperTxt">
+							</div>
+						</div>	
+										
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Textareas</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- textarea -->
+						<div class="ups-form_group">
+							<label for="replace_textarea" class="ups-form_label">Textarea Label</label>									
+							<div class="ups-textArea_wrapper ups-input_wrapper">
+								<textarea class="ups-textArea" id="replace_textarea" rows="8" maxlength="500" name=""></textarea>
+								<p class="ups-textArea_characters">Enter up to 500 characters.</p>
+							</div>
+						</div>
+						
+						<!-- textarea required -->
+						<div class="ups-form_group ups-form_required">
+							<label for="replace_textarea" class="ups-form_label">Textarea Label</label>									
+							<div class="ups-textArea_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+								<textarea class="ups-textArea" id="replace_textarea" rows="8" maxlength="500" name=""></textarea>
+								<p class="ups-textArea_characters">Enter up to 500 characters.</p>
+							</div>
+						</div>
+						
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>File Upload</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- file input -->
+						<div class="ups-form_group">
+							<label for="replace_visible_input_id" class="ups-form_label">Upload the Form</label>
+							<p id="browse3HelperTxt" class="ups-form_subheader">Lorem ipsum dolor...</p>
+							<div class="ups-text_wrapper ups-input_wrapper input-group" data-errormsg="This is an example error message placeholder.">
+								<span class="input-group-btn"><button class="btn ups-browse_button" type="button">Browse</button></span>
+						  		<input type="text" class="ups-form_input ups-error ups-file_input" id="replace_visible_input_id" readonly>
+							</div>
+							<input type="file" class="ups-readerTxt" aria-hidden="true" tabindex="-1" aria-describedby="browse3HelperTxt">
+						</div>
+						
+						<!-- file input - required -->
+						<div class="ups-form_group ups-form_required">
+							<label for="replace_visible_input_id2" class="ups-form_label">Upload the Form</label>
+							<p id="browse4HelperTxt" class="ups-form_subheader">Lorem ipsum dolor...</p>
+							<div class="ups-text_wrapper ups-input_wrapper input-group" data-errormsg="This is an example error message placeholder.">
+								<span class="input-group-btn"><button class="btn ups-browse_button" type="button">Browse</button></span>
+						  		<input type="text" class="ups-form_input ups-error ups-file_input" id="replace_visible_input_id2" readonly aria-describedby="browse4HelperTxt">
+							</div>
+							<input type="file" class="ups-readerTxt" aria-hidden="true" tabindex="-1">
+						</div>
+										
+						<!-- cta group -->
+						<div class="ups-form_ctaGroup">
+							<button type="submit" class="ups-cta ups-cta_primary">Submit</button>
+							<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+						</div>
+					</div>
+				</div>
+				<div class="ups-app">
+					<div class="ups-app_header">
+						<h3>Grid</h3>
+					</div>
+					<div class="ups-app_panel">
+						<!-- @start multi-column grid -->
+						<div class="row">
+							<p>This demo will show the dynamic 12-column grid</p>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_00" class="ups-form_label">Text Input 1</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_00">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_01" class="ups-form_label">Text Input 2</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_01">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_02" class="ups-form_label">Text Input 3</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_02">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_03" class="ups-form_label">Text Input 4</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_03">
+									</div>
+								</div>
+							</div> 
+						</div>
+						<hr>
+						<div class="row">
+							<p>This demo will show the dynamic 12-column grid</p>
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_00" class="ups-form_label">Text Input 1</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_00">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_01" class="ups-form_label">Text Input 2</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_01">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_02" class="ups-form_label">Text Input 3</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_02">
+									</div>
+								</div>
+							</div> 
+							<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+								<div class="ups-form_group">
+									<label for="text_input_03" class="ups-form_label">Text Input 4</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_03">
+									</div>
+								</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Color Panels with Headers</h3>
+				</div>
+				<div class="ups-app_panel">
+					<!-- panel-default -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Default Skin
+						</div>
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-primary -->
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							Primary Skin
+						</div>
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-info -->
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							Info Skin
+						</div>
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-success -->
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							Success Skin
+						</div>
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-warning -->
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							Warning Skin
+						</div>
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Color Panels without Headers</h3>
+				</div>
+				<div class="ups-app_panel">
+					<!-- panel-default -->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-primary -->
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-info -->
+					<div class="panel panel-info">
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-success -->
+					<div class="panel panel-success">
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+					
+					<!-- panel-warning -->
+					<div class="panel panel-warning">
+						<div class="panel-body">
+							<p>Bacon ipsum dolor amet bacon cupim picanha t-bone short loin. Pastrami chuck pork loin pork belly ball tip, pig bacon corned beef salami meatloaf strip steak flank ham. Pastrami ribeye ham hock, shoulder corned beef beef doner chicken porchetta ham pork loin shankle t-bone short ribs landjaeger. Ribeye tenderloin ham sirloin, meatball bresaola andouille fatback landjaeger tri-tip pork belly corned beef turducken tail shankle.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Links &amp; Icons</h3>
+				</div>
+				<div class="ups-app_panel">
+					<p><a class="ups-icon-print">Print Link</a></p>
+					<p><a class="ups-icon-edit">Edit Link</a></p>
+					<p><a class="ups-icon-questioncircle">Help Link</a></p>
+					<p><a class="ups-icon-2chevronright">Forward</a></p>
+					<p><a class="ups-icon-2chevronleft">Backward</a></p>
+					<p><a class="ups-icon-arrowright">Right</a></p>
+					<p><a class="ups-icon-arrowleft">Left</a></p>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Responsive Data Table</h3>
+				</div>
+				<div class="ups-app_panel">
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr class="ups-table_header_primary">
+									<td colspan="7">Hero Header</td>
+								</tr>
+								<tr class="ups-table_header_secondary">
+									<th colspan="7">Secondary Header</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th class="ups-table_header_tertiary" scope="col">Column 1 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 2 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 3 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 4 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 5 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 6 Header</th>
+									<th class="ups-table_header_tertiary" scope="col">Column 7 Header</th>
+								</tr>
+								<tr>
+									<td>Cell 1 - 1</td>
+									<td>Cell 1 - 2</td>
+									<td>Cell 1 - 3</td>
+									<td>Cell 1 - 4</td>
+									<td>Cell 1 - 5</td>
+									<td>Cell 1 - 6</td>
+									<td>Cell 1 - 7</td>
+								</tr>
+								<tr>
+									<td>Cell 2 - 1</td>
+									<td>Cell 2 - 2</td>
+									<td>Cell 2 - 3</td>
+									<td>Cell 2 - 4</td>
+									<td>Cell 2 - 5</td>
+									<td>Cell 2 - 6</td>
+									<td>Cell 2 - 7</td>
+								</tr>
+								<tr>
+									<td>Cell 3 - 1</td>
+									<td>Cell 3 - 2</td>
+									<td>Cell 3 - 3</td>
+									<td>Cell 3 - 4</td>
+									<td>Cell 3 - 5</td>
+									<td>Cell 3 - 6</td>
+									<td>Cell 3 - 7</td>
+								</tr>
+								<tr>
+									<td>Cell 4 - 1</td>
+									<td>Cell 4 - 2</td>
+									<td>Cell 4 - 3</td>
+									<td>Cell 4 - 4</td>
+									<td>Cell 4 - 5</td>
+									<td>Cell 4 - 6</td>
+									<td>Cell 4 - 7</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th colspan="6" scope="row">Footer (totals)</th>
+									<td>###.##</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="ups-table_header_primary" colspan="3">Hero Header</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th class="ups-table_header_tertiary" scope="col">Short content</th>
+									<th class="ups-table_header_tertiary" scope="col">Long content</th>
+									<th class="ups-table_header_tertiary" scope="col">Short content</th>
+								</tr>
+								<tr>
+									<td>Text</td>
+									<td>Bacon ipsum dolor amet beef ribs alcatra prosciutto boudin strip steak short ribs tail ham. Chuck shoulder beef t-bone rump ball tip andouille alcatra tongue shank meatloaf boudin jerky. Shoulder venison fatback capicola flank pig ham hock ribeye. Shankle cupim tri-tip sausage, boudin ribeye fatback chicken spare ribs venison. Short loin pork loin shankle kevin pastrami. Meatball biltong drumstick beef ribs shankle corned beef filet mignon sausage pork chop venison.</td>
+									<td>Text</td>
+								</tr>
+								<tr>
+									<td>Text</td>
+									<td>Bacon ipsum dolor amet beef ribs alcatra prosciutto boudin strip steak short ribs tail ham. Chuck shoulder beef t-bone rump ball tip andouille alcatra tongue shank meatloaf boudin jerky. Shoulder venison fatback capicola flank pig ham hock ribeye. Shankle cupim tri-tip sausage, boudin ribeye fatback chicken spare ribs venison. Short loin pork loin shankle kevin pastrami. Meatball biltong drumstick beef ribs shankle corned beef filet mignon sausage pork chop venison.</td>
+									<td>Text</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Scrollable Text (T&amp;C)</h3>
+				</div>
+				<div class="ups-app_panel">
+					<p>As DIV:</p>
+					<div class="ups-text_scroll">
+						<h4>This is a header</h4>
+						<p>Bacon ipsum dolor amet beef ribs alcatra prosciutto boudin strip steak short ribs tail ham. Chuck shoulder beef t-bone rump ball tip andouille alcatra tongue shank meatloaf boudin jerky. Shoulder venison fatback capicola flank pig ham hock ribeye. Shankle cupim tri-tip sausage, boudin ribeye fatback chicken spare ribs venison. Short loin pork loin shankle kevin pastrami. Meatball biltong drumstick beef ribs shankle corned beef filet mignon sausage pork chop venison.</p>
+
+						<p>Strip steak hamburger beef ribs ball tip pork chop swine sausage ground round andouille tail. Pancetta alcatra corned beef short loin, shoulder andouille turducken t-bone jerky meatball. Sausage shank rump turducken meatloaf. Jowl ham hock meatball pig pancetta brisket sausage alcatra tri-tip. Sirloin biltong sausage, pig alcatra landjaeger bresaola hamburger kielbasa flank shankle beef ribs. Cow ground round sirloin, landjaeger pastrami pork belly porchetta doner salami cupim ball tip bacon.</p>
+
+						<p>Tri-tip kielbasa jowl doner pancetta cow bacon tail salami strip steak tenderloin ham hock rump. Tail beef turducken short loin hamburger. Biltong ball tip alcatra rump chuck frankfurter swine drumstick kielbasa pork belly. Porchetta bresaola shank, short ribs short loin tongue chicken tenderloin drumstick shoulder ball tip pork loin kielbasa meatloaf. Chuck turkey kevin pig shoulder ham hock flank andouille short loin fatback beef. Meatloaf beef ribs tenderloin beef.</p>
+
+						<p>Pig boudin pork shankle short ribs jowl sausage beef ribs andouille meatloaf. Ball tip pig alcatra leberkas. Flank turducken porchetta picanha leberkas ham hock meatloaf brisket shank kevin. Chuck leberkas venison, t-bone short ribs capicola fatback tenderloin tongue shankle pork belly salami filet mignon kevin pig. Tail jerky boudin ground round sirloin bacon. Pork belly meatloaf pork loin kielbasa filet mignon alcatra t-bone short loin sausage brisket cupim.</p>
+
+						<p>Chicken cow tri-tip meatloaf t-bone cupim. Beef ribs capicola swine leberkas. Filet mignon tenderloin pork chop, sirloin tongue swine shank drumstick prosciutto hamburger landjaeger ham hock salami short loin. Pastrami filet mignon turkey swine, short ribs sirloin alcatra jowl t-bone turducken prosciutto fatback. Turkey capicola porchetta brisket alcatra andouille. Beef ground round pork chop kevin tri-tip sirloin.</p>
+					</div>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Button Group</h3>
+				</div>
+				<div class="ups-app_panel">		
+					<div class="ups-form_group">	
+						<label for="text_input_001" class="ups-form_label">Text Input</label>		
+						<div class="ups-input_wrapper ups-group_wrapper input-group">
+							<input type="text" name="name" class="ups-form_input ups-error" id="text_input_001">
+							<div class="input-group-btn"> 
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="ups-menu1"> <span class="ups-icon-wedgedown"></span> <span class="ups-readerTxt">Toggle Dropdown</span> </button> 
+								<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="ups-menu1"> 
+									<li class="dropdown-header">Dropdown Header</li>
+									<li><a href="javascript:void(0)">Action</a></li> 
+									<li><a href="javascript:void(0)">Another action</a></li> 
+									<li><a href="javascript:void(0)">Something else here</a></li> 
+									<li role="separator" class="divider"></li> 
+									<li><a href="javascript:void(0)">Separated link</a></li> 
+								</ul> 
+								<button type="button" class="btn btn-primary">Action</button> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>Date Picker</h3>
+				</div>
+				<div class="ups-app_panel">
+					<div class="ups-ship-by">
+						<div class="ship-by_calendar ups-text_wrapper" data-date-range="+2M +10D">
+							<div class="ship-by_calendar_datepicker clearfix">
+								<label for="ship-by_calendar_input" class="ups-form_label">Deliver my shipment by:</label>
+								<input class="ship-by_calendar_input" type="date">
+								<button class="calendar-btn">
+									<span class="icon ups-icon-calendar"></span>
+								</button>
+							</div>
+							<div class="ship-by_calendar_dropdowns clearfix">
+								<label for="ship-by_month_dropdown" class="ship-by_calendar_label">Deliver my shipment by Month:</label>
+								<div class="ship-by_month_dropdown ups-dropdown_wrapper ups-input_wrapper">
+									<select name="calendar_month" class="ups-dropdown">
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									</select>
+								</div>
+								<label for="ship-by_day_dropdown" class="ship-by_calendar_label">Day:</label>
+								<div class="ship-by_day_dropdown ups-dropdown_wrapper ups-input_wrapper">
+									<select name="calendar_day" class="ups-dropdown">
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>
+								</div>
+								<label for="ship-by_year_dropdown" class="ship-by_calendar_label">Year:</label>
+								<div class="ship-by_year_dropdown ups-dropdown_wrapper ups-input_wrapper dropdown_year">
+									<select name="calendar_year" class="ups-dropdown">
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+			</div>
+			<div class="ups-app">
+				<div class="ups-app_header">
+					<h3>1.  Where is this shipment going?</h3>
+				</div>
+				<div class="ups-app_panel">
+					<h4>Enter a New Address</h4>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<div class="ups-form_group ups-form_required">
+									<label for="text_input_0001" class="ups-form_label">Company or Name</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0001">
+									</div>
+								</div>
+								<div class="ups-form_group ups-form_required">
+									<label for="text_input_0002" class="ups-form_label">Contact</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0002">
+									</div>
+								</div>
+								<div class="ups-group">
+									<p><strong>Country or Territory:</strong></p>
+									<p><a href="#">United States</a></p>
+								</div>
+								<div class="ups-form_group ups-form_required">
+									<label for="text_input_0003" class="ups-form_label">Address Line 1</label>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0003">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="text_input_0004" class="ups-form_label">Address Line 2</label>
+									<p id="address2HelperTxt" class="ups-form_subheader">Apartment, suite, unit, building, floor, etc.</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0004" aria-describedby="address2HelperTxt">
+									</div>
+								</div>
+								<div class="ups-form_group">
+									<label for="text_input_0005" class="ups-form_label">Address Line 3</label>
+									<p id="address3HelperTxt" class="ups-form_subheader">Department, c/o, etc.</p>
+									<div class="ups-text_wrapper ups-input_wrapper">
+										<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0005" aria-describedby="address3HelperTxt">
+									</div>
+								</div>
+							</div>
+						
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<div class="ups-form_group ups-form_required">
+								<label for="text_input_0006" class="ups-form_label">City</label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0006">
+								</div>
+							</div>
+							<div class="ups-form_group ups-form_required">
+								<label for="select_box_0001" class="ups-form_label">State</label>
+								<div class="ups-dropdown_wrapper ups-input_wrapper" data-errormsg="Custom error message">
+									<select name="select" class="ups-dropdown" id="select_box_0001">
+										<option value="">Select One</option>
+										<option value="option_1">Option 1</option>
+										<option value="option_2">Option 2</option>
+										<option value="option_3">Option 3</option>
+									</select>
+								</div>
+							</div>
+							<div class="ups-form_group ups-form_required">
+								<label for="text_input_0007" class="ups-form_label">ZIP Code</label>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0007">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+									<div class="ups-form_group">
+										<label for="text_input_0008" class="ups-form_label">Telephone</label>
+										<div class="ups-text_wrapper ups-input_wrapper">
+											<input type="number" name="name" class="ups-form_input ups-error" id="text_input_0008" pattern="[0-9]*">
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+									<div class="ups-form_group">
+										<label for="text_input_0009" class="ups-form_label">Ext.</label>
+										<div class="ups-text_wrapper ups-input_wrapper">
+											<input type="number" name="name" class="ups-form_input ups-error" id="text_input_0009" pattern="[0-9]*">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ups-form_group">
+								<label for="text_input_0010" class="ups-form_label">Email</label>
+								<p id="emailHelperTxt" class="ups-form_subheader">address@email.com</p>
+								<div class="ups-text_wrapper ups-input_wrapper">
+									<input type="text" name="name" class="ups-form_input ups-error" id="text_input_0010" aria-describedby="emailHelperTxt">
+								</div>
+							</div>
+							<div class="ups-form_group">
+								<fieldset>
+									<legend class="ups-form_label">More about this address</legend>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="checkbox_0001" class="ups-checkbox-custom" name="check_0001" type="checkbox">
+										<label for="checkbox_0001" value="1" class="ups-checkbox-custom-label">Validate this Street Address</label>
+									</div>
+									<div class="ups-buttonList_wrapper ups-input_wrapper">
+										<input id="checkbox_0002" class="ups-checkbox-custom" name="check_0001" type="checkbox">
+										<label for="checkbox_0002" value="2" class="ups-checkbox-custom-label">Residential Address</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

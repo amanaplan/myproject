@@ -1,0 +1,88 @@
+ {{>"background_modal_content"}} 
+
+<!-- Begin Application Module -->
+<div class="appLvl modal-dialog mod modal dialog"> 
+	
+	<!-- Begin Application Header -->
+	<div class="appHead clearfix">
+		<h2 class="ups-modal_heading">Need A Freight Quote?</h2>
+		<!-- Old Close Button Implementation --> 
+		<!--<ul>
+			<li>
+				<input id="modalClose" type="button" title="Close" class="btnlnkL closeIcon">
+			</li>
+		</ul>--> 
+		
+		<!-- New WEM Button Implementation -->
+		<button id="modalClose" class="close ups-modal-close-icon" data-ng-click="cancel()"> <span class="icon ups-icon-x" aria-hidden="true"></span> <span class="ups-readerTxt ng-binding">Close This Dialog</span> </button>
+	</div>
+	<!-- End Application Header --> 
+	
+	<!-- Begin Application Body -->
+	<div class="appBody"> 
+		
+		<!-- /////////////////////////////////////////////////////////////// --> 
+		<!-- Begin Freight Supported - WW Express Freight over Weight (1304) -->
+		<p>[Your total shipment weight is more than 4400 lbs or 2000 kgs and requires approval, please contact UPS customer service at 1-800-782-7892].</p>
+		<p>One or more of your {packages/pallets}, or your total shipment weight is more than 4400 lbs or 2000 kgs and requires approval.</p>
+		<!-- End Freight Supported - WW Express Freight over Weight (1304) --> 
+		<!-- ///////////////////////////////////////////////////////////// -->
+		
+		<p>You have indicated that one or more of your {packages/pallets} is more than [150] [lb/kg].</p>
+		<p>If you have incorrectly entered the weight, or the number of {packages/pallets}, select <strong>Cancel</strong> and correct weight or {package/pallet} information to continue a {package/pallet} services quote.</p>
+		<p>or, if you are trying to get a freight quote, select <strong>Get Freight Quote</strong>, or select the <strong>Freight</strong> tab above.</p>
+		<p>One or more of your {packages/pallets} exceeds the allowable weight for a {package/pallet} service quote.</p>
+		<p>The service that you selected can only be used to ship items under [150] [lb/kg].</p>
+		<p>If you have incorrectly entered the weight, or the number of {packages/pallets}, select <strong>Cancel</strong> and correct weight or {package}{pallet} information to continue a {package}{pallet} service quote.</p>
+		<p>or, if you are trying to get a freight quote, select the <strong>Contact UPS</strong> link above.</p>
+		
+		<!-- ///////////////////////////////////////////////// --> 
+		<!-- Begin Freight Supported - Over cubic Limit (1304) -->
+		<p>The total size of your {package/pallet} is more than [000] [in/cm] (where total size is length of the longest side plus 2 x width plus 2 x height).</p>
+		<p>The dimensions of your pallet exceeds the allowable dimensions of [000] [in/cm] for the ups worldwide express freight service.</p>
+		<!-- End Freight Supported - Over cubic Limit (1304) --> 
+		<!-- /////////////////////////////////////////////// --> 
+		
+		<!-- ////////////////////////////////////////////////// --> 
+		<!-- Begin Freight Supported - WW Saver over Dimensions -->
+		<div class="ups-group">
+			<p>The dimensions of your pallet exceeds the allowable dimensions of <strong>[000] [in/cm]</strong> for the WW Express Freight Service</p>
+			<p>Select <strong>Cancel</strong> to change your dimensions or <strong>Get Freight Quote</strong> to continue with a different freight service</p>
+			<p>Select <strong>Okay</strong> to change the dimensions, or for a freight quote using a different service, select the <strong>Contact UPS</strong> link above</p>
+			<p>One or more of your pallets is more than <strong>[000] [in/cm]</strong>.</p>
+			<p>Select <strong>Cancel</strong> to change the weight or <strong>Get Freight Quote</strong> to continue.</p>
+		</div>
+		<!-- End Freight Supported - WW Saver over Dimenstions --> 
+		<!-- ///////////////////////////////////////////////// --> 
+		
+	</div>
+	<!-- End Application Body --> 
+	
+	<!-- Begin Application Footer --> 
+	<!-- Old Legacy Implementation --> 
+	<!--<div class="appFooter">
+		<div class="btnBar alignCenter">
+			<input name="repl_name" type="button" value="cancel" class="btn">
+			<input name="repl_name" type="button" value="get a freight quote" class="btn">
+		</div>
+	</div>--> 
+	<!-- New WEM/Legacy Hybrid Implementation -->
+	<div class="appFooter">
+		<div class="ups-form_ctaGroup text-center">
+			<button type="button" class="ups-cta ups-cta_primary">Get A Freight Quote</button>
+			<button type="button" class="ups-cta ups-cta_secondary">Cancel</button>
+		</div>
+	</div>
+	<!-- End Application Footer --> 
+	
+</div>
+<!-- End Application Module --> 
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var modal=$('.modal').dialog({modal:true,bgiframe:true,dialogClass:'modal',width:590});
+	$('#modalClose').click(function(e){
+			modal.dialog('close');
+	});
+});
+</script> 

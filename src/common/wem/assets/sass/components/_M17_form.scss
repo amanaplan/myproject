@@ -1,0 +1,829 @@
+// ----------------------------------------------------
+// M17 Form
+// ----------------------------------------------------
+.ups-formConfirmation_wrap{display:none;}
+.ups-form_wrap {
+    @include ups-component_margin;
+
+    .ups-form_group {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        margin-bottom: $margin_4;
+        clear: both;
+        .ups-required_indicator {
+            &:after {
+				content: "*";
+            }
+        }
+        &.ups-help_wrapper {
+            &.ups-help_textWrapper{
+                .ups-help_link {
+                    #{$opposite-direction} : 0%;
+                }
+                /* .ups-help_tooltip {
+                    #{$default-float} : 100%;
+                } */
+            }
+        }
+        .ups-formError{
+            display:none;
+        }
+        &.ups-error {
+            .ups-form_required:before {
+                content: '[ ! ]';
+                color:$red;
+                font-weight: normal;
+                @if $text-direction == ltr {
+                    margin-right:5px;
+                } @else {
+                    margin-left:5px;
+                }
+            }
+            .ups-formError{
+                display:block;
+                color:$red;
+            }
+            input, textarea{
+              border-color: $red;
+            }
+        }
+        //&.ups-error_showMsg{
+        //    padding-bottom: 55px;
+        //}
+    }
+
+    .introductory {
+        margin-bottom: $margin_3;
+    }
+
+    .ups-reqMsg {
+        clear: both;
+        margin-bottom: $margin_3;
+//        font-style: italic;
+
+        //span { color: $ups_sun; }
+    }
+
+    .ups-form_label {
+        font-family: $sans-bd;
+        font-weight: normal;
+        color:$black_s4;
+        margin:0 0 $margin_5;
+        display: inline-block;
+        width: 100%;
+        border: none;
+        font-size: 1em;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    .ups-form_subheader {
+        font-style: italic;
+        margin-bottom: 5px;
+    }
+    
+    .ups-buttonList_wrapper.ups-input_wrapper .ups-form_subheader {
+        padding-#{$default-float}: 32px;
+        margin-top: -5px;
+    }
+
+    .ups-help {
+    	//display: none; // this needs to be reomved from CMS component instead of hiding via CSS
+        z-index: 11;
+        @if $text-direction == ltr {
+            float:right;
+            text-align: right;
+        } @else {
+            float:left;
+            text-align: left;
+        }
+        .ups-help_link {
+            color: $black_s3;
+            -webkit-appearance: none;
+            border-radius: 0;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            #{$opposite-direction} :0;
+            .ups-icon-questioncircle {
+                display:inline;
+            }
+            &:hover {
+                color: $black_s1;
+                text-decoration: underline;
+            }
+            .icon:before {
+                line-height: 1.1;
+                top: -1px;
+                position: relative;
+               @if $text-direction == ltr {
+                   float:right;
+                   margin-left: 5px;
+                } @else {
+                    float:left;
+                    margin-right: 5px;
+                }
+            }
+        }
+        .ups-help_tooltip {
+            display: none;
+            position: absolute;
+            max-width: 350px;
+            width: 100%;
+            bottom:100%;
+            margin-bottom: 50px;
+            background: $ups_stone;
+            border: 2px solid $stone_s3;
+            padding: 30px;
+            font-family: $sans;
+            /* #{$default-float} :100%; */
+            margin-#{$default-float}: -8px;
+            text-align: #{$default-float};
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 100%;
+                width: 0; height: 0;
+                border-top: 50px solid $stone_s3;
+                @if $text-direction == ltr {
+                    margin-left:-2px;
+                    left: 0%;
+                    border-right: 50px solid transparent;
+                } @else {
+                    margin-right:-2px;
+                    right:0;
+                    border-left: 50px solid transparent;
+                }
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                width: 0; height: 0;
+                border-top: 45px solid $ups_stone;
+                @if $text-direction == ltr {
+                    left: 0%;
+                    border-right: 45px solid transparent;
+                } @else {
+                    right:0;
+                    border-left: 45px solid transparent;
+                }
+            }
+
+            &.ups-help_tooltip_bottomright {
+                top: 87px;
+                bottom: auto;
+                margin-top:-25px;
+                margin-bottom: 0;
+                &:before {
+                    top: auto;
+                    bottom: 100%;
+                    border-top:0;
+                    border-bottom: 50px solid $stone_s3;
+                }
+                &:after {
+                    top: auto;
+                    bottom: 100%;
+                    border-top:0;
+                    border-bottom: 45px solid $ups_stone;
+                }
+            }
+            &.ups-help_tooltip_bottomleft {
+                right: 6px;
+                left: auto;
+                top: 87px;
+                bottom: auto;
+                margin-top:-25px;
+                margin-bottom: 0;
+                &:before {
+                    left:auto;
+                    right:0;
+                    top: auto;
+                    margin-right: -2px;
+                    bottom: 100%;
+                    border-top:0;
+                    border-right:0;
+                    border-bottom: 50px solid $stone_s3;
+                    border-left: 50px solid transparent;
+                }
+                &:after {
+                    left:auto;
+                    right:0;
+                    top: auto;
+                    bottom: 100%;
+                    border-top:0;
+                    border-right:0;
+                    border-bottom: 45px solid $ups_stone;
+                    border-left: 45px solid transparent;
+                }
+            }
+            &.ups-help_tooltip_topleft {
+                right: 6px;
+                left: auto;
+
+                &:before {
+                    left:auto;
+                    right:0;
+                    margin-right: -2px;
+                    border-right:0;
+                    border-left: 50px solid transparent;
+                }
+                &:after {
+                    left:auto;
+                    right:0;
+                    border-right:0;
+                    border-left: 45px solid transparent;
+                }
+            }
+        }
+        .ups-help_close {
+            @include unbutton;
+            position: absolute;
+            cursor: pointer;
+            top:10px;
+            font-size: 14px;
+            @if $text-direction == ltr {
+                right:10px;
+            } @else {
+                left:10px;
+            }
+            &:before {
+                line-height: 1.1;
+            }
+        }
+    }
+
+    .ups-error_show {
+        .ups-error_alert,.ups-errorChannel {
+            display: block;
+        }
+    }
+
+    .ups-error_alert {
+        display: none;
+        position: relative;
+        font-family: $sans-bd;
+        font-weight: normal;
+        color: $red;
+        font-size: 14px;
+        //padding: 0 40px;
+        padding: 0 30px;
+        //margin: 0 0 30px;
+        margin: 0 0 15px;
+        .icon:before {
+            //font-size: 34px;
+            font-size: 24px;
+            position: absolute;
+            //top:-10px;
+            top:-5px;
+            @if $text-direction == ltr {
+                left:0;
+            } @else {
+                right:0;
+            }
+        }
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    .ups-error_exclaim {
+        color: $red;
+        margin-#{$opposite-direction}: 5px;
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    .ups-form_errorWrap {
+        position: absolute;
+        bottom: 0;
+        left:0;
+        width: 100%;
+        .ups-form_errorMsg {
+            position: relative;
+            p {
+                background: $white;
+                border: 2px solid $red;
+                color: $red;
+                padding: 10px 0;
+                margin: 0;
+                text-align: center;
+                width: 100%;
+                font-family: $sans;
+                line-height: 20px;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: -10px;
+                    width: 0;
+                    height: 0;
+                    border-bottom: 10px solid $red;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    #{$default-float}: 20px;
+                }
+            }
+        }
+    }
+
+    .ups-form_link {
+        position: absolute;
+        top:0;
+        color:$black_s3;
+        text-decoration: underline;
+        @if $text-direction == ltr {
+            right:0;
+        } @else {
+            left:0;
+        }
+    }
+
+    .ups-input_wrapper {
+        width:100%;
+        padding: 0;
+        position: relative;
+        .ups-checkIcon{
+            display:none;
+        }
+        &.ups-noError{
+            .ups-checkIcon {
+                display:block;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                .ups-icon-check:before{
+                    color: #64a70b;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+        &.ups-showError{
+            .ups-form_input, .ups-textArea {
+                border-color:$red;
+                padding-right:25px;
+            }
+
+            //> *[required]{
+            //    border:1px solid $red;
+            //}
+            //.ups-formError{
+            //    display:block;
+            //    position: absolute;
+            //    top: 10px;
+            //    right: 10px;
+            //    .ups-icon-exclamation:before{
+            //        color:$red;
+            //    }
+            //}
+            .error-list-wrapper {
+                display:block;
+            }
+        }
+        //&.ups-buttonList_wrapper {  //removed onboarding change because it broke form spacing
+        //    margin: $margin_4 0;
+        //}
+    }
+    .error-list-wrapper {
+        display:none;
+        .ups-icon-exclamation {
+            position: absolute;
+            right: 10px;
+            top:10px;
+            color:$red;
+        }
+    }
+    .parsley-errors-list{
+        -webkit-padding-start: 0px;
+        padding:0px;
+        li{
+            list-style:none;
+            color:$red;
+            margin-top:5px;
+        }
+    }
+    .ups-errorChannel{
+        display:none;
+        margin-bottom:20px;
+        li{
+            list-style:none;
+            a{
+                color: $red;
+            }
+        }
+    }
+    .ups-cancelText{
+        display:none;
+    }
+
+    .ups-textArea_wrapper{
+       // width: 120%;
+
+        @media #{$media-small} {
+            width: auto;
+        }
+
+        .ups-textArea_characters {
+            margin-top: 10px;
+            font-style: italic;
+            .ups-contentExceed{
+                display:none;
+            }
+            &.ups-active{
+                .ups-contentExceed{
+                    display:inline-block;
+                    margin-#{$default-float}:5px;
+                    color:$red;
+                }
+            }
+        }
+    }
+
+    .ups-checkbox {
+        .ups-form_errorWrap {
+            display: none;
+            @if $text-direction == ltr {
+                margin-left:-30px;
+            } @else {
+                margin-right:-30px;
+            }
+        }
+    }
+
+    .ups-checkbox, .ups-radio {
+        & ~ .error-list-wrapper {
+            margin-top: -6px;
+            .ups-icon-exclamation {
+                left:24px;
+                top:9px;
+            }
+        }
+
+        &.ups-showError ~ .error-list-wrapper{
+            display:block;
+        }
+    }
+
+    .ups-checkbox-custom, .ups-radio-custom {
+        opacity: 0;
+        position: absolute;
+
+        &:focus ~ label:before {
+            background: $ups_gold_light;
+        }
+    }
+
+    .ups-checkbox-custom, .ups-checkbox-custom-label, .ups-radio-custom, .ups-radio-custom-label {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 5px 0;
+        cursor: pointer;
+    }
+
+
+    .ups-checkbox-custom-label, .ups-radio-custom-label {
+        position: relative;
+        line-height: 25px;
+        padding-#{$default-float}: 32px;
+        font-family: $sans;
+        font-weight: normal;
+
+        a {
+            color:$black_s3;
+            text-decoration: underline;
+            @include transition-property(color);
+            @include transition-duration(0.3s);
+
+            &:hover {
+                color: $black-s1;
+            }
+        }
+    }
+
+    .ups-checkbox-custom + .ups-checkbox-custom-label:before,
+    .ups-radio-custom + .ups-radio-custom-label:before {
+        content: '';
+        background: #fff;
+        border: 2px solid $stone_s3;
+        display: inline-block;
+        vertical-align: middle;
+        width: 21px;
+        height: 21px;
+        padding: 2px;
+        text-align: center;
+        position: absolute;
+        @if $text-direction == ltr {
+            margin-right: 10px;
+            left:0;
+        } @else {
+            margin-left: 10px;
+            right:0;
+        }
+    }
+
+    .ups-error .ups-checkbox-custom-label,
+    .ups-error .ups-radio-custom-label,
+    .parsley-error .ups-checkbox-custom-label,
+    .parsley-error .ups-radio-custom-label {
+        padding-left: 40px;
+        &:before{
+            border-color:$red;
+        }
+    }
+
+
+
+    .ups-checkbox-custom:checked + .ups-checkbox-custom-label:after {
+        box-shadow: none;
+        content: " ";
+        position: absolute;
+        #{$default-float}: 8px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border-right: 3px solid $ups_grass;
+        border-bottom: 3px solid $ups_grass;
+        -o-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+        padding: 0;
+    }
+
+
+
+    .ups-radio-custom:checked + .ups-radio-custom-label:before {
+        background: $ups_grass;
+        box-shadow: inset 0px 0px 0px 4px $white;
+    }
+
+    .ups-radio-custom:focus + .ups-radio-custom-label:before {
+        box-shadow: inset 0px 0px 0px 4px $ups_gold_light;
+    }
+
+    .ups-radio-custom + .ups-radio-custom-label:before {
+        border-radius: 50%;
+    }
+
+    .ups-form_ctaGroup {
+//        margin-top: -10px;
+        .ups-cta {
+           // margin-top: 15px;
+        }
+    }
+	/***********************************************
+	**                                            **
+	**	Button Icons Class                        **
+	**                                            **
+	***********************************************/
+	.ups-btn_has_icon .icon {
+		margin: 0 5px;
+		position: relative;
+		display: inline-block;
+		font-size: 0.8em;
+	}
+	/*********************************************************
+	*
+	*	Disabled Styles for Checkboxs and Radio Buttons
+	*
+	*********************************************************/
+	.ups-radio-custom[disabled] + label, .ups-radio-custom[disabled="disabled"] + label,
+	.ups-checkbox-custom[disabled] + label, .ups-checkbox-custom[disabled="disabled"] + label,
+    .ups-radio-custom[readonly] + label,
+    .ups-checkbox-custom[readonly] + label{
+		color: $black_s1;
+		cursor: not-allowed;
+	}
+	.ups-radio-custom[disabled] + label:before, .ups-radio-custom[disabled="disabled"] + label:before,
+	.ups-checkbox-custom[disabled] + label:before, .ups-checkbox-custom[disabled="disabled"] + label:before,
+    .ups-radio-custom[readonly] + label:before,
+    .ups-checkbox-custom[readonly] + label:before {
+		background-color: $stone_40;
+		border-color: $stone_s3;
+		cursor: not-allowed;
+	}
+	.ups-radio-custom:checked[disabled] + label:before,
+    .ups-radio-custom:checked[readonly] + label:before {
+		background: $black_s1;
+    	box-shadow: inset 0px 0px 0px 4px $stone_40;
+	}
+	.ups-checkbox-custom:checked[disabled] + .ups-checkbox-custom-label:after,
+    .ups-checkbox-custom:checked[readonly] + .ups-checkbox-custom-label:after{
+		border-right-color: $black_s1;
+		border-bottom-color: $black_s1;
+	}
+	/*********************************************************
+	*
+	*	End Disabled Styles for Checkboxs and Radio Buttons
+	*
+	*********************************************************/
+    /*********************************************************
+	*
+	*	Disabled Styles for Select, Textboxes, and Textareas
+	*
+	*********************************************************/
+    input:disabled,
+    textarea:disabled, input[readonly], textarea[readonly] {
+        background: $stone_40;
+        color: $black_s1;
+        cursor: not-allowed;
+    }
+
+    .ups-dropdown_wrapper .ups-dropdown:disabled, .ups-dropdown_wrapper .ups-dropdown[readonly]{
+        background: $stone_40;
+        opacity: 0.9;
+        color: $black_s1;
+        cursor: not-allowed;
+    }
+    /*********************************************************
+	*
+	*	End Disabled Styles for Select, Textboxes, and Textareas
+	*
+	*********************************************************/
+}
+
+@mixin ups_form_sm {
+    .ups-text_wrapper {
+        max-width: 100%;
+    }
+
+    .ups-help_wrapper{
+        .ups-input_wrapper {
+            overflow: hidden;
+        }
+        fieldset {
+            width:100%;
+        }
+        .ups-help {
+            width:100%;
+            .ups-help_link {
+                @include unbutton;
+                position: absolute;
+                top:0;
+                @if $text-direction == ltr {
+                    right:0;
+                } @else {
+                    left:0;
+                }
+            }
+            .ups-help_tooltip {
+                position: relative;
+                left:0;
+                margin:15px 0;
+                max-width: 100%;
+                &:before {
+                    top:initial;
+                    bottom: 100%;
+                    left:initial;
+                    right: 0%;
+                    margin:0;
+                    margin-right:-3px;
+                    border:0;
+                }
+                &:after {
+                    top:initial;
+                    bottom: 100%;
+                    left:initial;
+                    right: 0%;
+                    border:0;
+                }
+            }
+        }
+        &.ups-help_textWrapper{
+            .ups-help_link{
+                #{$opposite-direction} : 25%;
+            }
+        }
+    }
+
+    .ups-checkbox .ups-form_errorWrap {
+        margin: 30px 0;
+    }
+
+    .ups-form_ctaGroup .ups-cta {
+        max-width: 100%;
+        padding: 10px 30px 10px;
+        font-family: $sans-bd;
+
+        /*&:last-of-type {
+            margin: $margin_4 0 0;
+        }*/
+		margin: $margin_4 0 0; //changed to this to space out buttons on svp
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+
+    .ups-form_group {
+        margin-bottom: $margin_4;
+        clear: both;
+    }
+}
+//Added for TFS #321536; Prevent the Help button from running into the text
+.ups-form_wrap .ups-help_wrapper .ups-checkbox-custom-label {
+    padding-#{$opposite-direction}: 85px;
+}
+.ups-form_wrap {
+    @media #{$media-small} {
+        @include ups_form_sm;
+    }
+}
+
+.subsection_aside .ups-form_wrap {
+    @include ups_form_sm;
+}
+
+.ups-headerTools_widgets li.ups-active .ups-tool, .ups-form_wrap.ups-widget{
+
+    .ups-checkbox .ups-form_errorWrap {
+        margin: 30px 0;
+    }
+
+    .ups-form_group {
+        // margin-bottom: 20px;
+        clear: none;
+    }
+    .ups-form_requiredNoAlert{
+        &.ups-inactive{
+            display:none;
+        }
+        &.ups-active{
+            display:block;
+        }
+    }
+    .ups-notLoggedIn,.ups-loggedIn{
+        display:none;
+        &.ups-active{
+            display: block;
+        }
+    }
+    .ups-quote_freight:not(.ups-quote_type) {
+        display:none;
+        &.ups-active{
+            display: block;
+        }
+    }
+}
+
+
+.ups-form_wrap.ups-widget{
+    .ups-form_group {
+        clear: both;
+    }
+}
+
+.ups-formConfirmation_wrap {
+    //min-height: 500px;
+    h3 {
+        font-family: $sans-bd;
+        margin-bottom: 20px;
+
+        .ups-rtl {
+            font-family: $sans;
+            font-weight: 700;
+        }
+    }
+    .ups-form_ctaGroup {
+        margin-top: 50px;
+    }
+
+    @media #{$media-small} {
+       .ups-form_ctaGroup .ups-cta {
+            max-width: 100%;
+            margin:5px 0;
+            height: 50px;
+            font-family: $sans-bd;
+
+            .ups-rtl {
+                font-family: $sans;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.subsection_aside .ups-form_wrap,
+.iw_columns.col-lg-4 .ups-form_wrap {
+    @include aside-pad_sm;
+}
+.ups-form_note.ups-quote_package.ups-quote_letter.ups-form_group.ups-inactive{display:none;}
+.ups-form_note.ups-quote_package.ups-quote_letter.ups-form_group.ups-active{display:block;}
+
+#captcha_element .error-list-wrapper {
+    display: block;
+    .ups-icon-exclamation{
+        display:none;
+    }
+}

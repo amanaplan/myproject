@@ -1,0 +1,86 @@
+<div class="ups-application_wrapper ups-app_onboarding">
+	<p>Customize your shipping history table: You can set the default numbers of days displayed, choose what's shown in each column, and specify a sort order.</p>
+	<ng-form name="ups_shippingHistoryform" data-novalidate>
+    <div data-ng-if="(!checkColVal) && submitClicked ">
+        <h3 class="ups-invalid_color">
+            <span id="sameCol-error"><span class="ups-icon-exclamation" aria-hidden="true"></span>You may not select the same field for more than one column of Shipping History.</span>
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="ups-form_group">
+                <label for="ups-daysDisplay" class="ups-form_label">Number
+                    of Days to Display</label>
+                <div class="ups-dropdown_wrapper ups-input_wrapper">
+                    <select name="ups-numDaysDisplay" id="ups-daysDisplay"
+                        class="ups-dropdown"
+                        data-ng-model="shippingHistoryObj.numDaysDisplay">
+                        <option
+                            data-ng-repeat="numDaysDisplay in shippingHistoryObj.daysDisplay"
+                            value="{{numDaysDisplay.type}}">{{numDaysDisplay.type}}</option>
+                    </select>
+                </div>
+                <!-- ups-dropdown_wrapper ups-input_wrapper -->
+            </div>
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-md-3"
+			data-ng-repeat="(selectIndex, itemValue) in shippingHistoryObj.columnIndex">
+			<div class="ups-form_group">
+				<label for="Column{{selectIndex+1}}" class="ups-form_label">Column
+					{{selectIndex+1}}</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="Column{{selectIndex+1}}"
+						aria-describedby="sameCol-error" id="Column{{selectIndex+1}}"
+						data-ng-model="shippingHistoryObj.data[selectIndex]"
+						class="ups-dropdown" data-ng-change="columnValCheck()">
+						<option data-ng-repeat="item in shippingHistoryObj.column"
+							value="{{item}}"
+							data-ng-selected="shippingHistoryObj.data[selectIndex] == item">{{item}}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="ups-form_group">
+				<label for="ups-sortTable" class="ups-form_label">Sort Table
+					By</label>
+				<div class="ups-dropdown_wrapper ups-input_wrapper">
+					<select name="ups-sortTable" id="ups-sortTable"
+						class="ups-dropdown" data-ng-model="shippingHistoryObj.sortTable">
+						<option
+							data-ng-repeat="sortTable in shippingHistoryObj.sortByTable"
+							value="{{sortTable.type}}">{{sortTable.type}}</option>
+					</select>
+				</div>
+				<!-- ups-dropdown_wrapper ups-input_wrapper -->
+			</div>
+		</div>
+    </div>
+    <fieldset class="ups-form_group">
+        <legend class="ups-readerTxt">Ascending Descending</legend>
+        <div data-ng-repeat="i in shippingHistoryObj.ascendDescend"
+            class="ups-checkbox ups-input_wrapper">
+            <input
+            id="{{i.text}}" class="ups-radio-custom" type="radio"
+            name="deafultRatingReq" value="{{$index}}"
+            data-ng-model="shippingHistoryObj.ascendDes"
+            data-ng-checked="shippingHistoryObj.ascendDes" /> 
+            <label
+                for="{{i.text}}" class="ups-form_label ups-radio-custom-label">{{i.text}}
+            </label>
+        </div>
+    </fieldset>
+    <div class="ups-form_ctaGroup">
+        <button type="submit" class="ups-cta ups-cta_primary"
+            data-ng-click="saveShippingHistory()">Save
+        </button>
+        <!-- data-ng-disabled=" !(ups_shippingHistoryform.$dirty)" -->
+        <button type="submit" class="ups-cta ups-cta_secondary"
+            data-dismiss="modal" data-ng-click="resetShippingHistory()">Reset</button>
+    </div>
+    <!-- ups-form_ctaGroup -->
+	</ng-form>
+</div>

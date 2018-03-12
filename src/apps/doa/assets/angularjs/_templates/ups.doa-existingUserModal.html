@@ -1,0 +1,53 @@
+<div class="ups-confirmation">
+	<!-- //// begin ups.doa-existingUserModal //// -->
+    <!-- CONFIRMATION CONTENT -->
+    <p>Charge your next shipment to your account and then manage your weekly bills in our online billing center</p>
+
+    <div id="accountNumTxt" class="ups-group">
+        <p class="ups-group_label">Account Number</p>
+        <p>NNXNNX</p>
+    </div>
+    <div id="pickupOptTxt" class="ups-group">
+        <p class="ups-group_label">Pickup Options</p>
+        <p>No Pickup Needed</p>
+    </div>
+<!--		
+    <div class="ups-form_group" data-ng-if="!NotEligible">
+        <div class="ups-buttonList_wrapper ups-input_wrapper">
+            <input check-verify id="ups-notificationCheck" class="ups-checkbox-custom"
+                name="ups-notificationCheck" type="checkbox" value="1"
+                data-ng-model="upsnotificationCheck"
+                data-ng-checked="upsnotificationCheck">
+            <label for="ups-notificationCheck" class="ups-checkbox-custom-label">I want to receive package notifications.</label>
+        </div>
+    </div>
+-->		
+    <div data-ng-controller="popoverCtrl">
+         <div class="ups-form_group ups-form_popover">
+             <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input check-verify id="ups-notificationCheck" class="ups-checkbox-custom"
+                    name="ups-notificationCheck" type="checkbox" value="1"
+                    data-ng-model="upsnotificationCheck"
+                    data-ng-checked="upsnotificationCheck">
+                <label for="ups-notificationCheck" class="ups-checkbox-custom-label">Send me updates about my home deliveries.</label>
+            </div>
+            <div class="ups-group ups-hintPopover" data-ng-if="!NotEligible">
+                <p>
+                    <a href="#" onclick="return false;" 
+                        data-uib-popover-template="toolTip.templateUrl"
+                        data-popover-placement="{{toolTip.position}}"
+                        popover-trigger="focus" class="ups-link ups-new-window">Learn about UPS My Choice&reg; Alerts<span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+                </p>
+            </div>
+         </div>
+    </div>
+    <div class="ups-form_ctaGroup text-center">
+        <button type="submit" 
+            class="ups-cta ups-cta_primary"
+            data-ng-click="ok()">Close</button>
+        <button type="submit" 
+            class="ups-cta ups-cta_secondary"
+            data-ng-click="redirectToMyProfile('guestShipping')">Manage My Profile</button>
+    </div>
+	<!-- //// end ups.doa-existingUserModal //// -->
+</div>

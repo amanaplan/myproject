@@ -1,0 +1,156 @@
+<div data-ng-controller="accountCtrl">
+	<div class="ups-introductory">
+		<p class="ups-offset-none">Because you've indicated the need to
+			ship hazardous materials, we cannot open your account until you
+			confirm each item in the below checklist.</p>
+		<p class="ups-offset-none">If you have questions about government
+			regulations for the transportation and delivery of these items,
+			please call the UPS Hazardous Materials Support Center at
+			1-800-554-9964.</p>
+		<p><strong>Read the information you need to safely ship hazardous materials.</strong></p>
+		<p><a data-ng-if="isUS" href="https://www.ups.com/cc/ll/help-center/packaging-and-supplies/special-care-shipments/hazardous-materials.html"
+		target="_blank" class="ups-link ups-new-window">UPS Guide for Shipping Ground and Air Hazardous Materials <span
+		class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+		<p><a href="https://www.ups.com/cc/ll/help-center/packaging-and-supplies/special-care-shipments/international-dangerous-goods.page"
+		target="_blank" class="ups-link ups-new-window" class="ups-link ups-new-window">UPS Guide for Shipping International Dangerous Goods <span
+		class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+		<p><a href="https://www.ups.com/cc/ll/help-center/legal-terms-conditions/tariff.html"
+		target="_blank" class="ups-link ups-new-window">UPS Tariff/Terms and Conditions of Service <span
+		class="ups-readerTxt">This will open in a new window</span><span class="ups-icon-newwindow" aria-hidden="true"></span></a></p>
+	</div>
+	
+    <form name="ups_specialNeedsform" error-on-submit novalidate>
+        <fieldset class="ups-form_group">
+            <legend class="ups-form_label">Dangerous Goods Agreement
+                Checklist</legend>
+            <div class="ups-form_group ups-checkbox_group">
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed1"
+                        class="ups-checkbox-custom" name="ups-shipNeed1" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed1"
+                        data-ng-checked="formObj.shipNeed1" data-ng-required="true" />
+                    <label for="ups-shipNeed1"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto"><span
+                        data-ng-if="!isUS">I agree to read, understand, and be
+                            bound by the </span><span data-ng-if="isUS">I confirm that I
+                            have read, understood, and am bound by the </span><a data-ng-if="isUS"
+                        href="https://www.ups.com/content/en/us/resources/ship/hazardous/index.html"
+                        target="_blank" class="ups-link ups-new-window">UPS Guide for
+                            Shipping Ground and Air Hazardous Materials</a>
+                        <span data-ng-if="isUS"> , the </span><a
+                        href="https://www.ups.com/content/en/us/resources/ship/idg/index.html"
+                        target="_blank" class="ups-link ups-new-window">UPS Guide for
+                            Shipping International Dangerous Goods<span
+                            class="ups-readerTxt">This will open in a new window</span><span aria-hidden="true"></span></a>
+                        <span data-ng-if="isUS">and the</span> <a data-ng-if="isUS"
+                        href="http://www.ups.com/tariff" target="_blank"
+                        class="ups-link ups-new-window">UPS Terms and Conditions of Service<span
+                            class="ups-readerTxt">This will open in a new window</span><span aria-hidden="true"></span></a>
+                        <span data-ng-if="!isUS">and the</span> <a data-ng-if="!isUS"
+                        href="#" data-ng-click="openpopup('tariff_NONUS')"
+                        class="ups-link ups-new-window">UPS Terms and Conditions of
+                            {Service/Carriage}<span class="ups-readerTxt">This will
+                                open in a new window</span><span aria-hidden="true"></span></a>.
+                    </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify id="ups-shipNeed2"
+                        class="ups-checkbox-custom" name="ups-shipNeed2" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed2"
+                        data-ng-checked="formObj.shipNeed2" data-ng-required="true" />
+                    <label for="ups-shipNeed2"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">I
+                        will comply with all applicable regulatory requirements when
+                        shipping hazardous materials, including those in Tile 49 of the
+                        Code of Federal Regulations (49 CFR), the International Civil
+                        Aviation Organization Technical Instructions, and the
+                        International Air Transport Association (IATA) Dangerous Goods
+                        Regulations.</label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed3"
+                        class="ups-checkbox-custom" name="ups-shipNeed3" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed3"
+                        data-ng-checked="formObj.shipNeed3" /> 
+                    <label for="ups-shipNeed3"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">I
+                        will ensure that all hazardous-materials shipments will be
+                        properly classified, packaged, marked, and labeled--and
+                        understand that my failure to do so could result in fines,
+                        penalties, or other claims. </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed4"
+                        class="ups-checkbox-custom" name="ups-shipNeed4" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed4"
+                        data-ng-checked="formObj.shipNeed4" /> 
+                    <label for="ups-shipNeed4"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">I
+                        understand that UPS may refuse, return, or properly dispose of
+                        my hazardous-materials shipments if UPS determines them to be
+                        improperly prepared. </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed5"
+                        class="ups-checkbox-custom" name="ups-shipNeed5" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed5"
+                        data-ng-checked="formObj.shipNeed5" /> 
+                    <label for="ups-shipNeed5"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">I
+                        confirm that all employees involved in preparation of a
+                        hazardous-materials shipments to be handled by UPS are properly
+                        trained under the requirements of 49 CFR and applicable
+                        provisions of the IATA Dangerous Goods Regulations. If
+                        requested, I will provide proof of this training. </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed6"
+                        class="ups-checkbox-custom" name="ups-shipNeed6" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed6"
+                        data-ng-checked="formObj.shipNeed6" /> 
+                    <label for="ups-shipNeed6"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">I
+                        acknowledge that UPS has the right to suspend, cancel and/or
+                        terminate the transportation of hazardous materials if my
+                        organization fails to comply with the provisions in this
+                        checklist or in the UPS Terms and Conditions of Service. </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper ">
+                    <input check-verify id="ups-shipNeed7"
+                        class="ups-checkbox-custom" name="ups-shipNeed7" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed7"
+                        data-ng-checked="formObj.shipNeed7" data-ng-required="true" />
+                    <label for="ups-shipNeed7"
+                        class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        I understand that UPS's dangerous goods service only covers certain commodities to <a href="https://www.ups.com/content/us/en/resources/ship/idg/information/acl.html" target="_blank" class="ups-link ups-new-window">approved destinations 
+                        <span class="ups-readerTxt">This will open in a new window</span>
+                        <span class="ups-icon-newwindow" aria-hidden="true"></span></a>.
+                        I agree to only submit UPS-accepted commodities for delivery to these locations.
+                    </label>
+                </div>
+                <div class="ups-checkbox ups-input_wrapper">
+                    <input check-verify id="ups-shipNeed8"
+                        class="ups-checkbox-custom" name="ups-shipNeed8" value="1"
+                        type="checkbox" data-ng-model="formObj.shipNeed8"
+                        data-ng-checked="formObj.shipNeed8" />
+                    <label for="ups-shipNeed8" class="ups-form_label ups-checkbox-custom-label ups-width_auto">
+                        I will process all hazardous-material shipments through WorldShip<sup>&reg;</sup> or a
+                        <a href="#" target="_blank" class="ups-link ups-new-window" data-ng-click="openpopup('compliant')"> comparable third-party shipping system 
+                        <span class="ups-readerTxt">This will open in a new window</span>
+                        <span class="ups-icon-newwindow" aria-hidden="true"></span></a>
+                        that provides UPS with the required electronic information.
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        
+		<div class="ups-form_ctaGroup text-center">
+            <button type="submit" class="ups-cta ups-cta_tertiary "
+                data-ng-click="ModalService.back()">Back</button>
+            <button type="submit" class="ups-cta ups-cta_primary "
+                data-ng-click="nextShippingStep()">Next</button>
+            <button type="submit" class="ups-cta ups-cta_secondary"
+                data-ng-click="ModalService.dismiss()">Cancel</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,38 @@
+<!-- ************************************************************************************ -->
+<!-- M15 List Multi                                                                       -->
+<!-- ************************************************************************************ -->
+
+
+{{!--
+********************************************************************************
+M15 LIST MULTI: ROWS
+********************************************************************************
+
+M15 List MULTI only uses 1 row and puts all the entries inside. 
+This way, plugin list.js can allocate space to entries based on viewport and 
+location of component (full, body, or aside). 
+
+M15 List MULTI can be a 'list-detail' or an 'imageblock'
+
+********************************************************************************
+--}}
+
+<div class="ups-list_multi">
+    <div class="ups-list_row clearfix">  
+    {{#compare this.type "===" "default"}}
+        {{#each this.entries}} 
+            <div class="ups-list_detail"{{#if tag}} data-tag="{{tag}}"{{/if}}> 
+                {{> M15_list_detail this}}
+            </div>
+        {{/each}}  
+    {{/compare}} 
+        
+    {{#compare this.type "===" "imageblock"}}
+        {{#each this.entries}} 
+            <div class="ups-list_detail ups-detail_imageblock"{{#if tag}} data-tag="{{tag}}"{{/if}}> 
+                {{> M15_list_imageblock this}}
+            </div>
+        {{/each}}  
+    {{/compare}} 
+    </div> 
+</div>

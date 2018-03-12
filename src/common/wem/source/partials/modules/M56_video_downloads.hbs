@@ -1,0 +1,39 @@
+<!-- ************************************************************************************ -->
+<!-- M56 Videos and Downloads                                                             -->
+<!-- ************************************************************************************ -->
+
+
+{{!--
+********************************************************************************
+M56 VIDEOS AND DOWNLOADS: -LAYOUT-
+********************************************************************************
+
+| 60px
+-image-
+| 15px
+-header-
+| 5px
+-text-
+| 15px
+-cta-
+| ~ 30px
+-carousel btns-
+| ~ 30px
+| 60px 
+
+********************************************************************************
+--}}
+
+<div class="ups-video-downloads ups-carousel_sm">
+	{{#if autoplay}}
+		<a class="ups-skipNav_carousel" href="javascript:void(0)" tabindex="0">{{autoplay}}</a>
+		{{#each this.slides}}
+        	{{> resource_video_downloads this}}
+	    {{/each}}
+	    <div class="ups-carousel-navbuttons"></div>
+    {{else}}
+    	{{#each this}}
+    		{{> resource_video_downloads this}}
+		{{/each}}
+	{{/if}}
+</div>

@@ -1,0 +1,241 @@
+// ----------------------------------------------------
+// W18 Subscribe To Email
+// ----------------------------------------------------
+
+@mixin ups_subscribe_email_sm {
+    .col-sm-4 {
+        margin-bottom: $grid-gutter-width;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    col-sm-3 {
+        margin-bottom: $page-margin / 2;
+
+        .template {
+            margin-bottom: 0;
+        }
+
+        .template-desc {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    }
+
+    .ups-text_wrapper {
+        margin-top: $margin_5;
+    }
+
+    .template {
+        margin-top: $grid-gutter-width;
+        float: $default-float;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .template-title {
+            min-height: 0 !important;
+        }
+
+        .template-desc {
+            border-bottom: 1px solid $black_s3;
+            padding-bottom: $page-margin / 2;
+        }
+    }
+
+    .txt-container {
+        float: $default-float;
+    }
+
+    .cta_signup {
+        width: 100%;
+    }
+}
+
+.ups-subscribe-email {
+    // MAIN
+    .main {
+        background: $ups_stone;
+        padding-top: $page-margin / 2;
+        padding-bottom: $page-margin / 2;
+        position: relative;
+        z-index: $zQtr;
+    }
+
+    .txt-container {
+        float: $opposite-direction;
+    }
+
+    .ups-icon-plus {
+        font-size: 10px;
+    }
+
+    .ups-text_wrapper {
+        padding-#{$opposite-direction}: 0;
+        max-width: none;
+    }
+
+    .cta_signup {
+        /*width: 120px;*/
+        max-width: 100%;
+        border-radius:25px;
+    }
+
+    .modify-container a {
+        color: $black_s3;
+        text-decoration: underline;
+    }
+
+    // TEMPLATE
+    .templates {
+        background: $white; // $stone_40;
+        max-height: 0px;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        @include transition-property(max-height);
+        @include transition-duration(0.3s);
+    }
+
+    .templates_toggle {
+        @include unbutton;
+
+        .ups-iconAlone {
+            margin-#{$default-float}: 3px;
+        }
+    }
+
+    button.ups-link {
+        @include unbutton;
+        padding-top: 1px;
+    }
+
+    .subscribe-input-title {
+        font-family: $sans;
+        font-weight: 700;
+        color: $black_s3;
+    }
+
+    .ups-form_input {
+        width: 100%;
+        margin-#{$opposite-direction}: 0;
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .templates-container {
+        padding-top: 0;
+        padding-bottom: $page-margin;
+        @include transition-property(padding);
+        @include transition-duration(0.3s);
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: $grid-gutter-width;
+        font-family: $sans;
+        font-weight: 700;
+    }
+
+    .templates-main-desc {
+        margin-top: $grid-gutter-width;
+        margin-bottom: $grid-gutter-width;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .template-title {
+        margin-top: 0;
+        margin-bottom: $margin_4;
+
+        h3 {
+            font-family: $sans;
+            font-weight: 700;
+            margin-top: 0;
+        }
+    }
+
+    .template-img img {
+        max-width: 100%;
+        border: 1px solid $stone_60;
+    }
+
+    .template-desc {
+        margin-top: $grid-gutter-width / 2;
+    }
+
+    .templates_close {
+        color: $black_s3;
+        @include unbutton;
+        position: absolute;
+        #{$opposite-direction}: 15px;
+        text-decoration: none;
+        /* top: -($page-margin / 2); */
+        /*top: -($page-margin / 2);*/ 
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        @include transition-property(all);
+        @include transition-duration($main-transition-speed);
+
+        .icon {
+            position: relative;
+            font-size: 20px;
+            /*top: 17px;
+            right: -17px;*/
+        }
+
+        &:hover {
+            color: $black_s1;
+        }
+    }
+    .ups-subscribe-view{display:inline;}
+    .ups-subscribe-hide{display:none;}
+
+    &.active {
+        .templates {
+            max-height: 10000px;
+
+            .templates-container {
+               padding-top: $margin_3;
+            }
+        }
+
+        .ups-iconAlone:before {
+            content: '\e653';
+        }
+        .ups-subscribe-view{display:none;}
+        .ups-subscribe-hide{display:inline;}
+    }
+
+    &.inactive .templates {
+        a, button {
+            display: none;
+        }
+        .ups-subscribe-view{display:inline;}
+        .ups-subscribe-hide{display:none;}
+    }
+
+    @media #{$media-small} {
+        @include ups_subscribe_email_sm;
+        .cta_signup{
+        	margin-top : 8px;
+        }
+    }
+    
+    form{ 
+    & + .col-sm-4.ups-sm_show{
+      margin-top:20px;
+    }
+    .col-sm-4{
+    	label{
+    		margin-bottom: 0;
+    	}
+    }
+   }
+}

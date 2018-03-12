@@ -1,0 +1,86 @@
+<!--Import Contacts-->
+
+<div class="ups-export-import ups-form_wrap ups-application_wrapper ups-importContacts"
+	data-page-title="Import your contacts">
+    <!-- DOWNLOAD EXPORTED CONTACTS PAGE -->
+    <!--Previous Link Starts-->
+    <a point-focus="" href="#/contactPage" class="ups-previous_page"> <span class="icon ups-icon-chevronleft" aria-hidden="true"></span> Back to Contacts </a>
+    <!--Previous Link Ends-->
+    <form name="ups_exportContactsform" error-on-submit novalidate>
+
+        <!-- /////////////////////////////////////////// -->
+        <!-- //// Begin h3 added for error handling //// -->
+        <!-- //// TFS#310575                        //// -->
+        <!-- /////////////////////////////////////////// -->
+        <h3 data-ng-if="fileError" class="ups-invalid_color-list ups-error_alert-list">
+            <span class="icon ups-icon-exclamation" aria-hidden="true"></span>
+            Please, enter an csv file.
+        </h3>
+        <!-- /////////////////////////////////////////// -->
+        <!-- //// End h3 added for error handling   //// -->
+        <!-- //// TFS#310575                        //// -->
+        <!-- /////////////////////////////////////////// -->
+
+        <p> Use a comma-separated values (CSV) file to <a href="https://www.ups.com/content/us/en/myups/address/import_addresses.html" target="_blank" class="ups-new-window ups-link">upload your contacts. <span class="ups-readerTxt">This will open in a new window</span> <span class="ups-icon-newwindow" aria-hidden="true"></span></a> </p>
+
+        <div class="ups-button_marginTop">
+            <div class="ups-upload-wrap">
+                <input type="file" data-ngf-select="addFil($file)" name="file"
+						data-accept=".csv" data-ngf-max-size="maxSize" required
+						data-ngf-model-invalid="errorFile" class="ups-upload">
+                <span> Select My File </span> </div>
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// Begin div removed error handling  //// -->
+                <!-- //// TFS#310575                        //// -->
+                <!-- /////////////////////////////////////////// -->
+                <!-- <div data-ng-if="fileError"
+				class="ups-invalid_color ups-import-file"> <span>Invalid File.</span> </div> -->
+                <!-- /////////////////////////////////////////// -->
+                <!-- //// End div removed error handling    //// -->
+                <!-- //// TFS#310575                        //// -->
+                <!-- /////////////////////////////////////////// -->
+        </div>
+        <h2>CSV File Name</h2>
+        <p data-ng-model="picFile" class="ups-contact-file-name">{{fileName}}</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="ups-form_group">
+                    <label for="ups-original-file-format" class="ups-form_label">Original File Format</label>
+                    <div class="ups-dropdown_wrapper ups-input_wrapper">
+                        <select error-on-blur class="ups-dropdown" required
+							name="ups-original-file-format" id="ups-original-file-format"
+							data-ng-model="form.formatFile"
+							data-ng-options="item for item in orignalFileFormat">
+                            <option
+								value="" selected>Select One</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <fieldset class="ups-form_group" data-ng-init="form.contact='Add'">
+            <legend class="ups-form_label">How would you like to save these contacts?</legend>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio" value="Add"
+					name="ups-uid-form_title-radio_group" data-ng-model="form.contact"
+					class="ups-radio-custom" id="ups-imported-contact">
+                <label class="ups-radio-custom-label" for="ups-imported-contact">Add
+                    the imported information to my current list of contacts.</label>
+            </div>
+            <div class="ups-buttonList_wrapper ups-input_wrapper">
+                <input type="radio" value="Replace"
+					name="ups-uid-form_title-radio_group" data-ng-model="form.contact"
+					class="ups-radio-custom" id="ups-replace-contacts">
+                <label class="ups-radio-custom-label" for="ups-replace-contacts">Replace
+                    my existing contacts with the imported information.</label>
+            </div>
+        </fieldset>
+        <div class="ups-form_ctaGroup">
+            <button data-ng-click="uploadFiles(picFile)"
+                    class="ups-cta ups-cta_primary " type="submit" disabled="disabled">Upload My File</button>
+            <!-- data-ng-disabled="!ups_exportContactsform.$valid" -->
+            <button data-ng-click="cancel()" class="ups-cta ups-cta_secondary "
+                    type="submit">Cancel</button>
+        </div>
+    </form>
+</div>

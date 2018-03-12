@@ -1,0 +1,171 @@
+/** add detailed explenation of what this styles */
+
+//used when in a section heading to set the size/position of the radio group regardless of header, i.e. h1, h2, etc, value
+.ups-section_heading .ups-btn_group_fieldset {
+	font-size: 16px;
+	float: right;
+	.ups-btn_group .ups-btn_group_inner {
+		margin-top: -10px;
+		// @media #{$media-small} {margin-top: -4px;}
+	}
+}
+
+@mixin btn_group_action_pushed() {
+    //background-color: $stone_40;
+    //box-shadow: 2px 2px 3px $ups_stone inset, -1px -1px 1px $stone_60 inset;
+    background-color: $water_s3;
+    color: $white;
+
+    .icon:hover {
+        color: $white;
+    }
+}
+
+.ups-btn_group {
+    display: inline-block;
+
+    &.ups-btn_group_separate {
+        margin-#{$opposite-direction}: 10px;
+    }
+
+    .ups-btn_group_inner {
+        display: table;
+        margin: 0;
+        padding: 0;
+
+        .ups-btn_group_action_inner {
+            display: table-cell;
+            list-style: none;
+
+            &:first-child .ups-btn_group_action, &:first-child .ups-btn_group_label {
+                border-top-#{$default-float}-radius: 4px;
+                border-bottom-#{$default-float}-radius: 4px;
+            }
+
+            &:last-child .ups-btn_group_action, &:last-child .ups-btn_group_label {
+                border-#{$opposite-direction}: 1px solid $stone_s3;
+                border-top-#{$opposite-direction}-radius: 4px;
+                border-bottom-#{$opposite-direction}-radius: 4px;
+            }
+
+            .ups-btn_group_action, .ups-btn_group_label {
+                //background-color: transparent;
+                color: $black;
+                border-radius: 0;
+                border-#{$default-float}: 1px solid $stone_s3;
+                border-top: 1px solid $stone_s3;
+                border-bottom: 1px solid $stone_s3;
+                background-color: $white;
+                width: 100%;
+                margin-bottom: 0;
+                cursor: pointer;
+
+                &:focus, &:active {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                /*@media #{$media-medium} {
+                    padding: 10px 15px;
+                }*/
+            }
+
+            .ups-btn_group_label {
+                margin: 0;
+                //padding: 10px 8px;
+                padding: 10px 15px;
+                height: 35px;
+                text-align: center;
+
+                .icon {
+                    position: relative;
+                    top: -1px;
+                    #{$default-float}: -2px;
+                }
+
+                @media #{$media-medium} {
+                    padding: 10px 15px;
+                }
+            }
+
+            .ups-btn_group_action_pushed {
+                @include btn_group_action_pushed();
+            }
+
+            .ups-btn_group_action_selected {
+                background-color: $water_s3;
+                color: $white;
+            }
+
+            .ups-btn_group_radio {
+                position: absolute;
+                #{$default-float}: 0;
+                opacity: 0;
+
+                &:focus + .ups-btn_group_label {
+                    position: relative;
+                    z-index: 2;
+
+                    outline: 5px auto $ups-gold;
+
+                    .ie9, .ie10, .ie11 & {
+                        outline: 1px solid $ups-gold;
+                    }
+
+                    // @at-root {
+                    //     @-moz-document url-prefix() {
+                    //         & {
+                    //             outline: 1px auto $ups-gold;
+                    //         }
+                    //     }
+                    // }
+                }
+
+                &:checked + .ups-btn_group_label {
+                    @include btn_group_action_pushed();
+                }
+            }
+        }
+
+    }
+}
+.ups-btn_group_fieldset {
+    display: inline-block;
+
+    .ups-btn_group_legend {
+        display: inline-block;
+        line-height: 35px;
+        width: auto;
+        float: #{$default-float};
+        margin-#{$opposite-direction}: 10px;
+    }
+}
+@media #{$media-small-sm} {
+    .ups-btn_group .ups-btn_group_inner .ups-btn_group_action_inner {
+        display: block;
+	} 
+	.ups-btn_group {
+	
+		.ups-btn_group_inner {
+	
+			.ups-btn_group_action_inner {
+	
+				&:first-child .ups-btn_group_action, &:first-child .ups-btn_group_label {
+					border-#{$opposite-direction}: 1px solid $stone_s3;
+					border-top-#{$opposite-direction}-radius: 4px;
+					border-top-#{$default-float}-radius: 4px;
+					border-bottom-#{$opposite-direction}-radius: 0px;
+					border-bottom-#{$default-float}-radius: 0px;
+				}
+	
+				&:last-child .ups-btn_group_action, &:last-child .ups-btn_group_label {
+					border-top: 1px solid $stone_s3;
+					border-top-#{$opposite-direction}-radius: 0px;
+					border-top-#{$default-float}-radius: 0px;
+					border-bottom-#{$opposite-direction}-radius: 4px;
+					border-bottom-#{$default-float}-radius: 4px;
+				}
+			}
+		}
+	}
+}
